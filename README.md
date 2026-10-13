@@ -35,7 +35,7 @@ launchd `com.pjy.kr-flow-dashboard` 가 **5분마다** `scripts/run.sh` 를 부�
 | 누락 보충 | 맥미니가 꺼져 있던 날 등은 다음 실행에서 자동 보충(30분 간격 재시도) |
 
 잠정치는 페이지에 '잠정' 표시가 붙고, 확정 수집 후 사라진다.
-실측 기록(2026-10-13 측정 중): `scratchpad/probe/freesis_poll.log`, `daum_poll.log` — 결과가 나오면 `FREESIS_FROM`·`FINAL_AT` 을 좁힌다.
+공표 시각 실측(2026-10-13~) 결과가 나오면 `build_data.py` 의 `FREESIS_FROM`·`FINAL_AT` 을 좁힌다.
 
 ## 실행
 
@@ -77,7 +77,10 @@ vendor/chart.umd.min.js  Chart.js 4.4.0 (인라인)
 
 후보: 프로그램 매매(차익/비차익), 대차잔고(FreeSIS 대차거래추이), 공매도 잔고(KRX 로그인 필요), 코스닥150 선물, 고객 RP/CMA.
 
-## GitHub Pages (다음 단계)
+## GitHub Pages
 
-로컬 안정화 후 자사주 대시보드와 같은 방식(`docs/index.html` + `publish.sh`, SSH 키 `~/.ssh/id_ed25519_gh`, 커밋 신원
-`Jaey27@users.noreply.github.com`)으로 붙인다. `render.py --docs` 가 docs/index.html 을 함께 굽는다.
+- 공개 페이지: https://jaey27.github.io/kr-flow-dashboard/ (리포 `Jaey27/kr-flow-dashboard`, main 브랜치 `/docs`)
+- `run.sh` 가 렌더한 실행에서만 `render.py --docs` → `scripts/publish.sh` 로 `docs/index.html`·`data/flows.json`·`data/ledger/` 를 커밋·push 한다.
+  타임스탬프만 바뀐 경우는 커밋하지 않고, push 실패분은 다음 실행이 다시 민다. `KRFLOW_PUBLISH=0` 이면 끈다.
+- push 인증은 SSH 키 `~/.ssh/id_ed25519_gh`(~/.ssh/config 의 github.com), 커밋 신원은 리포 로컬 `Jaey27 <Jaey27@users.noreply.github.com>` — 개인 메일 금지.
+- `.env`(KRX 키)는 .gitignore 대상이고 publish.sh 가 추적 여부를 매번 검사한다.
