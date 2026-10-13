@@ -7,3 +7,4 @@ dashboard.html
 *.tmp
 .DS_Store
 data/state.json
+data/krx_inv/

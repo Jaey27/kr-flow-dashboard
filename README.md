@@ -59,6 +59,16 @@ launchd `com.pjy.kr-flow-dashboard` 가 **5분마다** `scripts/run.sh` 를 부�
 - 금감원 월말 수치는 수동 갱신: 보도자료가 나오면 rows 에
   `{"month":"YYYY-MM","holding_jo":…,"share_pct":…,"net_buy_jo":…,"url":…}` 한 줄 추가(15일 이후 전월분이 없으면 로그 경고).
 
+## 섹터 수급 탭 (네이버 업종 78개 × KRX 주체별)
+
+- 업종: 네이버 `m.stock.naver.com/api/stocks/industry` 79개 중 '기타' 제외 78개(2,868종목, 중복 소속 없음) → `data/sectors_naver.json`
+  (`scripts/sources/naver_sector.py` 로 갱신). 현재 소속으로 과거까지 묶는다.
+- 수급: KRX 정보데이터시스템 종목별 투자자(개인·외국인·기관합계) 매수·매도 거래대금, pykrx `get_market_net_purchases_of_equities(D,D,"ALL",주체)`.
+  **로그인 필요** — `.env` 의 `KRX_ID`/`KRX_PW`(사용자가 직접 입력). 종목 원자료는 `data/krx_inv/YYYY-MM.json.gz`(git 제외),
+  업종 집계는 `data/ledger/krx_sector_flow.json`. 매일 18:40 이후 수집, 백필은 `scripts/backfill_krx_inv.py`.
+- 검증(2026-10-06, BLITZ '섹션별 수급' 포스트 대조): 업종 순매수는 ±1% 안에서 일치(개인 전자장비와기기 −3,952억 동일 등).
+  주체별 '거래액'은 포스트보다 5~10% 크게 나온다(집계 범위 정의 차이로 추정).
+
 ## 실행
 
 ```bash

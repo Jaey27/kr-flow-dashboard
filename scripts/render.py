@@ -89,6 +89,40 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .nav-link.active{color:var(--bg-0);background:var(--hl-teal);box-shadow:0 0 14px rgba(151,252,228,.28);font-weight:600}
 .nav-link:focus-visible{outline:2px solid var(--hl-teal);outline-offset:2px}
 .claim{margin-bottom:16px}
+.sec-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.sec-lbl{font-size:12px;color:var(--text-muted)}
+.sec-note{font-size:11px;color:var(--text-muted)}
+#tab-sector .card{margin-bottom:16px}
+.sec3{display:grid;grid-template-columns:90px repeat(3,1fr);border:1px solid rgba(151,252,228,.10);border-radius:12px;overflow:hidden}
+.sec3>div{padding:9px 11px;border-bottom:1px solid rgba(151,252,228,.07);border-left:1px solid rgba(151,252,228,.05);font-size:12px;line-height:1.55;font-variant-numeric:tabular-nums;min-width:0}
+.sec3 .h{font-size:11px;font-weight:700;color:var(--text-muted);background:rgba(151,252,228,.04)}
+.sec3 .who{font-weight:700;color:var(--text);border-left:none}
+.sec3 .who small{display:block;font-weight:500;color:var(--text-dim);font-size:10.5px}
+.sec3 .sx{margin-bottom:7px}.sec3 .sx:last-child{margin-bottom:0}
+.sec3 .sn{font-weight:700;color:var(--text)}
+.sec3 ol{margin:2px 0 0 15px;color:var(--text-dim);font-size:11px}
+.sec3 a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(127,168,164,.5)}
+@media (max-width:820px){.sec3{grid-template-columns:1fr}.sec3 .h{display:none}.sec3 .who{background:rgba(151,252,228,.05)}
+  .sec3>div{border-left:none}.sec3 .c::before{content:attr(data-h);display:block;font-size:10.5px;color:var(--text-muted);font-weight:700;margin-bottom:3px}}
+.heat-box{position:relative;overflow:hidden}
+#sec-heat{display:block;width:100%}
+.heat-tip{position:absolute;pointer-events:none;background:rgba(6,30,32,.96);border:1px solid rgba(151,252,228,.25);border-radius:9px;
+  padding:7px 9px;font-size:11.5px;line-height:1.5;color:var(--text);white-space:nowrap;z-index:5;font-variant-numeric:tabular-nums}
+.rank-box{position:relative}
+.sec-pick{background:#0b2b2d;color:var(--text);border:1px solid rgba(151,252,228,.2);border-radius:8px;padding:5px 8px;font:inherit;font-size:12px;max-width:220px}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:640px){.mini-grid{grid-template-columns:repeat(2,1fr)}}
+.mini{border:1px solid rgba(151,252,228,.08);border-radius:12px;padding:8px 8px 4px;cursor:pointer;min-width:0}
+.mini:hover{border-color:var(--hl-teal-border)}
+.mini .t{font-size:11.5px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .v{font-size:10.5px;color:var(--text-dim);font-variant-numeric:tabular-nums;margin-bottom:2px}
+.mini .cb{position:relative;height:90px}
+.top-tbl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media (max-width:640px){.top-tbl{grid-template-columns:1fr}}
+.top-tbl h4{font-size:11.5px;color:var(--text-dim);margin-bottom:4px;font-weight:700}
+.top-tbl table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.top-tbl td{padding:4px 6px;border-bottom:1px solid rgba(151,252,228,.05)}
+.top-tbl td:last-child{text-align:right}
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table.ct{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;min-width:640px}
 table.ct th{text-align:right;font-size:12px;font-weight:700;color:var(--text);padding:6px 10px;border-bottom:1px solid rgba(151,252,228,.14);white-space:nowrap}
@@ -313,6 +347,14 @@ var PANELS=[
     {label:'미수금',type:'line',unit:'eok',series:[{k:'unpaid',name:'위탁매매 미수금',color:COL.teal}]}
   ]},
   {id:'inst',title:'기관 세부 누적 순매수',src:'다음 금융(KRX)',asof:'investor',views:[instView('kospi','코스피'),instView('kosdaq','코스닥')]},
+  {id:'vkospi',title:'VKOSPI · 삼성전자/하이닉스 주가 YoY',src:'KRX 파생상품지수 · 왼쪽 VKOSPI / 오른쪽 YoY%',asof:'index',views:[
+    {label:'VKOSPI + YoY',type:'line',unit:'idx',unit2:'pct',note:(S.vkospi.some(function(v){return v!=null;})?'오른쪽 축 = 전년 같은 날 대비 주가 상승률':'VKOSPI 는 KRX 파생상품지수 승인 후 표시'),series:[
+      {k:'vkospi',name:'VKOSPI',color:COL.teal},
+      {k:'yoy_005930',name:'삼성전자 YoY',color:'#9085e9',axis:'y1',unit:'pct',signed:true},
+      {k:'yoy_000660',name:'SK하이닉스 YoY',color:'#d55181',axis:'y1',unit:'pct',signed:true}]},
+    {label:'YoY만',type:'line',unit:'pct',zero:true,series:[
+      {k:'yoy_005930',name:'삼성전자',short:'삼성',color:'#9085e9',signed:true},{k:'yoy_000660',name:'SK하이닉스',short:'하이닉스',color:'#d55181',signed:true}]}
+  ]},
   {id:'index',title:'지수',src:'다음 금융',asof:'index',views:[
     {label:'코스피',type:'line',unit:'idx',series:[{k:'idx_kospi',name:'코스피',color:COL.teal}]},
     {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
@@ -415,6 +457,7 @@ function datasets(view){
       o.pointBackgroundColor=sp.color;o.pointBorderColor='#061E20';o.pointBorderWidth=1.5;o.spanGaps=false;o.stack='pts';}
     else if(view.type==='stack'){o.stack='s';o.fill=j===0?'origin':'-1';o.backgroundColor=hexA(sp.color,.30);}
     if(sp.dash) o.borderDash=[5,4];
+    if(sp.axis==='y1') o.yAxisID='y1';
     return o;
   });
 }
@@ -422,7 +465,8 @@ function datasets(view){
 function config(card){
   var view=card.p.views[card.v],unit=view.unit;
   var lines=view.series.filter(function(sp){return !sp.points;}).length;
-  var direct=view.series.length>1&&lines<=4&&view.type!=='bar';
+  var hasY1=view.series.some(function(sp){return sp.axis==='y1';});
+  var direct=view.series.length>1&&lines<=4&&view.type!=='bar'&&!hasY1;
   var anyCum=view.series.some(function(sp){return isCum(view,sp);});
   function signedOf(sp){return isCum(view,sp)||view.type==='bar'||!!sp.signed;}
   return {
@@ -441,7 +485,7 @@ function config(card){
           filter:function(it){return it.raw!=null;},
           callbacks:{
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
-            label:function(it){var f=FMT[unit],sp=view.series[it.datasetIndex];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
+            label:function(it){var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
             labelColor:function(it){var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
               if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
@@ -460,7 +504,9 @@ function config(card){
         y:{stacked:view.type==='stack',beginAtZero:!!(anyCum||view.type==='bar'||view.type==='stack'||view.zero),
           border:{display:false},
           grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;},drawTicks:false},
-          ticks:{color:COL.muted,font:{size:10.5},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}}
+          ticks:{color:COL.muted,font:{size:10.5},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}},
+        y1:hasY1?{position:'right',border:{display:false},grid:{display:false},
+          ticks:{color:COL.muted,font:{size:10.5},padding:4,maxTicksLimit:6,callback:function(v){return TICK[view.unit2||'pct'](v);}}}:{display:false}
       }
     }
   };
@@ -676,14 +722,135 @@ function renderClaim(){
   document.getElementById('claim-body').innerHTML=h;
 }
 
+// ---- 섹터 수급 탭 (네이버 업종 78개 × KRX 주체별) -----------------------------------
+var SF=F.sector, SEC={inv:'foreign',sort:'trade',rows:20,pick:'',win:'5',minis:[],rank:null,det:null};
+var INV_NAME={foreign:'외국인',inst:'기관',indiv:'개인'}, INV_COL={foreign:COL.foreign,inst:COL.inst,indiv:COL.indiv};
+function eokF(v){return FMT.eok(v);}
+function secSum(arr,a,b){var s=0;for(var i=a;i<=b;i++) if(arr[i]!=null) s+=arr[i];return s;}
+function nlink(n,c){return '<a href="https://m.stock.naver.com/domestic/stock/'+c+'/total" target="_blank" rel="noopener">'+n+'</a>';}
+function initSector(){
+  if(!SF){document.getElementById('tab-sector').innerHTML='<section class="card"><div class="card-title">섹터 수급</div><div class="card-sub" style="margin-top:6px">KRX 종목별 투자자 데이터가 아직 없습니다(.env 의 KRX_ID/KRX_PW 필요).</div></section>';return;}
+  var segs=[['sec-inv',[['foreign','외국인'],['inst','기관'],['indiv','개인']],'inv'],['sec-sort',[['trade','거래대금순'],['net','순매수순']],'sort'],['sec-rows',[[20,'상위 20'],[999,'전체 '+SF.n_sectors]],'rows']];
+  segs.forEach(function(g){var box=document.getElementById(g[0]);g[1].forEach(function(o){var b=el('button',null,o[1]);b.type='button';
+    b.onclick=function(){SEC[g[2]]=o[0];paintSegs();renderSector();};b.dataset.v=o[0];b.dataset.k=g[2];box.appendChild(b);});});
+  var sel=document.getElementById('sec-pick');sel.innerHTML='<option value="">전체 (상위 12개)</option>'+SF.names.map(function(n){return '<option>'+n+'</option>';}).join('');
+  sel.onchange=function(){SEC.pick=sel.value;renderDetail();};
+  document.getElementById('sec-note').textContent='네이버 업종 '+SF.n_sectors+'개(기타 제외) · KRX 확정 · '+dyy(SF.first)+'~'+dyy(SF.last);
+  paintSegs();renderLatest();
+}
+function paintSegs(){Array.prototype.forEach.call(document.querySelectorAll('#tab-sector .seg button'),function(b){b.classList.toggle('on',String(SEC[b.dataset.k])===b.dataset.v);});}
+function renderLatest(){
+  var L=SF.latest,h='<div class="sec3"><div class="h">주체</div><div class="h">거래액 섹션</div><div class="h">순매수 섹션</div><div class="h">순매도 섹션</div>';
+  function cell(list,hd,signed){return '<div class="c" data-h="'+hd+'">'+(list.length?list.map(function(x){
+    return '<div class="sx"><span class="sn">'+x[0]+'</span> '+(signed?sg(eokF,x[1]):eokF(x[1]))+'<ol>'+x[2].map(function(s){return '<li>'+nlink(s[0],s[1])+' '+(signed?sg(eokF,s[2]):eokF(s[2]))+(s[3]!=null?' ('+nf(s[3],1)+'%)':'')+'</li>';}).join('')+'</ol></div>';}).join(''):'–')+'</div>';}
+  ['indiv','inst','foreign'].forEach(function(k){var r=L.inv[k];
+    h+='<div class="who">'+INV_NAME[k]+'<small>'+sg(eokF,r.net)+' ('+eokF(r.trade)+')</small></div>'+cell(r.trade_secs,'거래액 섹션',false)+cell(r.buy_secs,'순매수 섹션',true)+cell(r.sell_secs,'순매도 섹션',true);});
+  document.getElementById('sec-latest').innerHTML=h+'</div>';
+  document.getElementById('sec-latest-sub').textContent=dlong(L.date)+' 확정 · KRX · 괄호는 업종 안 비중 · 종목명은 네이버 증권 링크';
+}
+function secOrder(){
+  var a=W.i0,b=W.i1,inv=SEC.inv;
+  var arr=SF.names.map(function(n){return {n:n,net:secSum(SF.net[inv][n],a,b),tr:secSum(SF.trade[n],a,b)};});
+  arr.sort(SEC.sort==='net'?function(x,y){return y.net-x.net;}:function(x,y){return y.tr-x.tr;});
+  return arr;
+}
+function heatCols(){
+  var cols=[],span=W.i1-W.i0+1,any=SF.trade[SF.names[0]];
+  if(span<=130){for(var i=W.i0;i<=W.i1;i++) if(any[i]!=null) cols.push({a:i,b:i,l:D[i]});return {cols:cols,weekly:false};}
+  var cur=null;
+  for(i=W.i0;i<=W.i1;i++){if(any[i]==null) continue;var d=new Date(D[i]+'T00:00:00Z'),wk=Math.floor((d.getTime()/864e5+3)/7);
+    if(!cur||cur.wk!==wk){cur={a:i,b:i,wk:wk,l:D[i]};cols.push(cur);} else cur.b=i;}
+  return {cols:cols,weekly:true};
+}
+function drawHeat(){
+  var cv=document.getElementById('sec-heat'),box=cv.parentNode,inv=SEC.inv;if(!box.clientWidth) return;
+  var ord=secOrder();if(SEC.sort==='net'&&SEC.rows<ord.length){ord=ord.slice(0,10).concat(ord.slice(-10));} else ord=ord.slice(0,SEC.rows);
+  var hc=heatCols(),cols=hc.cols,narrow=box.clientWidth<560,LW=narrow?92:138,CH=narrow?14:16,TOP=4,BOT=20;
+  var W2=box.clientWidth,H=TOP+ord.length*CH+BOT,dpr=window.devicePixelRatio||1;
+  cv.width=W2*dpr;cv.height=H*dpr;cv.style.height=H+'px';var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W2,H);
+  var cw=(W2-LW)/Math.max(1,cols.length),vals=[],abs=[];
+  ord.forEach(function(o,r){vals[r]=cols.map(function(cl){var v=0,has=false;for(var i=cl.a;i<=cl.b;i++){var x=SF.net[inv][o.n][i];if(x!=null){v+=x;has=true;}}if(has) abs.push(Math.abs(v));return has?v:null;});});
+  abs.sort(function(a,b){return a-b;});var sc=abs.length?abs[Math.floor(abs.length*0.95)]||1:1;
+  c.font='600 '+(narrow?10:11)+'px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif';c.textBaseline='middle';
+  ord.forEach(function(o,r){var y=TOP+r*CH;c.fillStyle=COL.dim;c.textAlign='right';
+    var name=o.n;while(c.measureText(name).width>LW-8&&name.length>2) name=name.slice(0,-1);if(name!==o.n) name+='…';c.fillText(name,LW-6,y+CH/2);
+    vals[r].forEach(function(v,j){if(v==null) return;var t=Math.min(1,Math.abs(v)/sc),a=0.08+0.92*Math.pow(t,0.7);
+      c.fillStyle=v>=0?'rgba(248,113,113,'+a+')':'rgba(96,165,250,'+a+')';c.fillRect(LW+j*cw+0.5,y+0.5,Math.max(1,cw-1),CH-1);});});
+  c.fillStyle=COL.muted;c.textAlign='center';c.font='10px -apple-system,sans-serif';
+  var step=Math.max(1,Math.ceil(cols.length/(narrow?4:8)));
+  for(var j=0;j<cols.length;j+=step){c.fillText(cols[j].l.slice(2).replace(/-/g,'.'),LW+j*cw+cw/2,H-BOT/2);}
+  SEC.heat={ord:ord,cols:cols,vals:vals,LW:LW,CH:CH,TOP:TOP,cw:cw,weekly:hc.weekly};
+  document.getElementById('sec-heat-sub').textContent=INV_NAME[inv]+' · '+(hc.weekly?'주 단위 합계':'일별')+' · 색 진하기 = 95% 분위 기준 · 억원';
+  document.getElementById('sec-heat-note').textContent=SEC.sort==='net'&&SEC.rows<99?'· 기간 순매수 상위 10 / 하위 10':'· 기간 거래대금 순';
+}
+(function(){var cv=document.getElementById('sec-heat'),tip=document.getElementById('sec-tip');if(!cv) return;
+  cv.addEventListener('mousemove',function(e){var H=SEC.heat;if(!H) return;var r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    var ri=Math.floor((y-H.TOP)/H.CH),ci=Math.floor((x-H.LW)/H.cw);
+    if(ri<0||ri>=H.ord.length||ci<0||ci>=H.cols.length||x<H.LW){tip.hidden=true;return;}
+    var v=H.vals[ri][ci],cl=H.cols[ci];tip.hidden=false;
+    tip.innerHTML='<b>'+H.ord[ri].n+'</b><br>'+(H.weekly?dyy(D[cl.a])+'~'+dyy(D[cl.b]):dlong(D[cl.a]))+'<br>'+INV_NAME[SEC.inv]+' '+(v==null?'–':sg(eokF,v));
+    var tx=Math.min(x+12,r.width-tip.offsetWidth-4);tip.style.left=tx+'px';tip.style.top=(y+14)+'px';});
+  cv.addEventListener('mouseleave',function(){tip.hidden=true;});
+  cv.addEventListener('click',function(){var H=SEC.heat,tipOn=!tip.hidden;if(!H||!tipOn) return;});
+})();
+function drawRank(){
+  var ord=secOrder().slice();ord.sort(function(x,y){return y.net-x.net;});
+  var pick=ord.slice(0,10).concat(ord.slice(-10).filter(function(o){return ord.indexOf(o)>=10;}));
+  var labels=pick.map(function(o){return o.n;}),a=W.i0,b=W.i1;
+  var ds=['foreign','inst','indiv'].map(function(k){return {label:INV_NAME[k],data:pick.map(function(o){return Math.round(secSum(SF.net[k][o.n],a,b));}),
+    backgroundColor:INV_COL[k],borderRadius:2,barPercentage:.9,categoryPercentage:.8};});
+  var cv=document.getElementById('sec-rank');cv.parentNode.style.height=(pick.length*34+40)+'px';
+  if(SEC.rank) SEC.rank.destroy();
+  SEC.rank=new Chart(cv,{type:'bar',data:{labels:labels,datasets:ds},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,animation:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+' '+sg(eokF,it.raw);}}}},
+    scales:{x:{grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:10},callback:function(v){return TICK.eok(v);}}},
+      y:{grid:{display:false},ticks:{color:COL.dim,font:{size:11}}}}}});
+  document.getElementById('sec-rank-sub').textContent=INV_NAME[SEC.inv]+' 기간 순매수 상위 10·하위 10 섹터 · '+dyy(D[a])+'~'+dyy(D[b])+' · 막대는 세 주체 모두';
+}
+function cumArr(arr,a,b){var out=[],s=0;for(var i=a;i<=b;i++){if(arr[i]!=null) s+=arr[i];out.push(arr[i]==null&&i>lastNN(arr,a,b)?null:Math.round(s));}return out;}
+function renderDetail(){
+  var box=document.getElementById('sec-detail'),a=W.i0,b=W.i1;
+  SEC.minis.forEach(function(ch){ch.destroy();});SEC.minis=[];if(SEC.det){SEC.det.destroy();SEC.det=null;}
+  var lineDs=function(n){return ['foreign','inst','indiv'].map(function(k){return {label:INV_NAME[k],data:cumArr(SF.net[k][n],a,b),borderColor:INV_COL[k],backgroundColor:INV_COL[k],borderWidth:1.6,pointRadius:0,tension:0,spanGaps:true};});};
+  var labels=D.slice(a,b+1);
+  if(!SEC.pick){
+    var ord=secOrder().sort(function(x,y){return y.tr-x.tr;}).slice(0,12);
+    box.innerHTML='<div class="legend"><span><i style="background:var(--s-foreign)"></i>외국인</span><span><i style="background:var(--s-inst)"></i>기관</span><span><i style="background:var(--s-indiv)"></i>개인</span><span class="note">· 기간 누적 순매수 · 거래대금 상위 12 · 누르면 상세</span></div><div class="mini-grid">'+
+      ord.map(function(o,i){return '<div class="mini" data-n="'+o.n+'"><div class="t">'+o.n+'</div><div class="v">외 '+sg(eokF,secSum(SF.net.foreign[o.n],a,b))+' · 기 '+sg(eokF,secSum(SF.net.inst[o.n],a,b))+' · 개 '+sg(eokF,secSum(SF.net.indiv[o.n],a,b))+'</div><div class="cb"><canvas id="mini'+i+'"></canvas></div></div>';}).join('')+'</div>';
+    ord.forEach(function(o,i){SEC.minis.push(new Chart(document.getElementById('mini'+i),{type:'line',data:{labels:labels,datasets:lineDs(o.n)},
+      options:{responsive:true,maintainAspectRatio:false,animation:false,events:[],plugins:{legend:{display:false},tooltip:{enabled:false}},
+        scales:{x:{display:false},y:{display:false,grid:{display:false}}}}}));});
+    Array.prototype.forEach.call(box.querySelectorAll('.mini'),function(m){m.onclick=function(){SEC.pick=m.dataset.n;document.getElementById('sec-pick').value=SEC.pick;renderDetail();};});
+    return;
+  }
+  var n=SEC.pick,w=SEC.win,t=(SF.top[w]||{});
+  var tb=function(k){var r=(t[k]||{})[n]||{buy:[],sell:[]};
+    var row=function(x){return '<tr><td>'+nlink(x[0],x[1])+'</td><td class="'+cls(x[2])+'">'+sg(eokF,x[2])+'</td></tr>';};
+    return '<div><h4>'+INV_NAME[k]+' 순매수</h4><table>'+(r.buy.map(row).join('')||'<tr><td>–</td></tr>')+'</table></div><div><h4>'+INV_NAME[k]+' 순매도</h4><table>'+(r.sell.map(row).join('')||'<tr><td>–</td></tr>')+'</table></div>';};
+  box.innerHTML='<div class="legend"><span><i style="background:var(--s-foreign)"></i>외국인</span><span><i style="background:var(--s-inst)"></i>기관</span><span><i style="background:var(--s-indiv)"></i>개인</span><span class="note">· 누적 기준일 '+dyy(D[a])+'</span></div>'+
+    '<div class="chart-box"><canvas id="sec-det"></canvas></div>'+
+    '<div class="card-tools" style="margin-top:12px"><span class="sec-lbl">상위 종목</span><div class="seg" id="sec-win"></div></div><div class="top-tbl">'+tb(SEC.inv)+'</div>';
+  var wb=document.getElementById('sec-win');[['1','최근일'],['5','5일'],['20','20일'],['60','60일']].forEach(function(o){var x=el('button',null,o[1]);x.type='button';if(o[0]===w) x.classList.add('on');x.onclick=function(){SEC.win=o[0];renderDetail();};wb.appendChild(x);});
+  SEC.det=new Chart(document.getElementById('sec-det'),{type:'line',data:{labels:labels,datasets:lineDs(n)},options:{responsive:true,maintainAspectRatio:false,animation:false,
+    interaction:{mode:'index',intersect:false},layout:{padding:{right:labelPad({series:[{name:'외국인'}]})}},
+    plugins:{legend:{display:false},endLabels:{on:true},tooltip:{callbacks:{title:function(it){return it.length?dlong(it[0].label):'';},label:function(it){return ' '+it.dataset.label+' '+sg(eokF,it.raw);}}}},
+    scales:{x:{grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:6,font:{size:10.5},callback:function(v){var s=this.getLabelForValue(v);return (b-a>140)?s.slice(2,7).replace('-','.'):dshort(s);}}},
+      y:{beginAtZero:true,grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:10.5},callback:function(v){return TICK.eok(v);}}}}}});
+  document.getElementById('sec-detail-sub').textContent=n+' · 기간 누적 순매수(억원) · 상위 종목은 '+INV_NAME[SEC.inv]+' 기준';
+}
+function renderSector(){if(!SF||TAB!=='sector') return;drawHeat();drawRank();renderDetail();}
+window.addEventListener('resize',function(){if(TAB==='sector') drawHeat();});
+
 // ---- 탭 -------------------------------------------------------------------
 var TAB=ls('tab')||'market';
 function setTab(t){
   TAB=t;ls('tab',t);
   document.getElementById('tab-market').hidden=t!=='market';
   document.getElementById('tab-foreign').hidden=t!=='foreign';
+  document.getElementById('tab-sector').hidden=t!=='sector';
   Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
   CARDS.forEach(function(c){if((c.p.tab||'market')===t&&c.chart) c.chart.resize();});
+  if(t==='sector'){renderSector();setTimeout(renderSector,60);}
 }
 Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
 
@@ -709,7 +876,7 @@ function setWindow(a,b,preset){
   // rAF 는 백그라운드 탭에서 멈추므로 타이머를 함께 건다(먼저 오는 쪽이 한 번만 그린다)
   if(raf) return;
   raf=1;
-  var run=function(){if(!raf) return;raf=0;CARDS.forEach(updateCard);renderTiles();renderTiles2();drawOverview();};
+  var run=function(){if(!raf) return;raf=0;CARDS.forEach(updateCard);renderTiles();renderTiles2();drawOverview();renderSector();};
   requestAnimationFrame(run);setTimeout(run,80);
 }
 function drawOverview(){
@@ -760,7 +927,8 @@ function onOrBefore(s){return isB(s)?s:prevB(s);}
 // ---- 시작 ---------------------------------------------------------------
 PANELS.forEach(buildCard);
 renderClaim();
-setTab(TAB==='foreign'?'foreign':'market');
+initSector();
+setTab(['foreign','sector'].indexOf(TAB)>=0?TAB:'market');
 var pre=ls('preset');var P=PRESETS.filter(function(p){return p[0]===pre;})[0]||PRESETS[3];
 setWindow(idxMonthsBack(P[1]),N-1,P[0]);
 })();
@@ -788,6 +956,7 @@ HTML = r"""<!DOCTYPE html>
 <div class="top-nav-row"><nav class="top-nav" id="tabs" aria-label="보기 전환">
   <button class="nav-link active" data-tab="market" type="button">시장 수급</button>
   <button class="nav-link" data-tab="foreign" type="button">외국인 보유 · 삼성/하이닉스</button>
+  <button class="nav-link" data-tab="sector" type="button">섹터 수급</button>
 </nav></div>
 
 <div class="range-bar"><div class="range-inner">
@@ -815,6 +984,27 @@ HTML = r"""<!DOCTYPE html>
 </section>
 <div class="tiles" id="tiles2"></div>
 <div class="grid" id="grid2"></div>
+</div>
+<div id="tab-sector" hidden>
+<div class="sec-bar"><span class="sec-lbl">주체</span><div class="seg" id="sec-inv"></div>
+  <span class="sec-note" id="sec-note"></span></div>
+<section class="card" id="sec-latest-card"><div class="card-head"><div><div class="card-title">섹션별 수급</div>
+  <div class="card-sub" id="sec-latest-sub"></div></div></div><div id="sec-latest"></div></section>
+<section class="card" id="sec-heat-card"><div class="card-head"><div><div class="card-title">섹터 × 날짜 순매수 히트맵</div>
+  <div class="card-sub" id="sec-heat-sub"></div></div>
+  <div class="card-tools"><div class="seg" id="sec-sort"></div><div class="seg" id="sec-rows"></div></div></div>
+  <div class="legend"><span><i style="background:var(--up)"></i> 순매수</span><span><i style="background:var(--down)"></i> 순매도</span><span class="note" id="sec-heat-note"></span></div>
+  <div class="heat-box"><canvas id="sec-heat"></canvas><div class="heat-tip" id="sec-tip" hidden></div></div></section>
+<div class="grid">
+<section class="card" id="sec-rank-card"><div class="card-head"><div><div class="card-title">기간 누적 순매수 — 섹터 순위</div>
+  <div class="card-sub" id="sec-rank-sub"></div></div></div>
+  <div class="legend"><span><i style="background:var(--s-foreign)"></i>외국인</span><span><i style="background:var(--s-inst)"></i>기관</span><span><i style="background:var(--s-indiv)"></i>개인</span></div>
+  <div class="rank-box"><canvas id="sec-rank"></canvas></div></section>
+<section class="card" id="sec-detail-card"><div class="card-head"><div><div class="card-title">섹터 상세</div>
+  <div class="card-sub" id="sec-detail-sub">섹터를 고르면 그 섹터만, 안 고르면 거래대금 상위 12개를 한꺼번에</div></div>
+  <div class="card-tools"><select id="sec-pick" class="sec-pick"></select></div></div>
+  <div id="sec-detail"></div></section>
+</div>
 </div>
 
 <footer>

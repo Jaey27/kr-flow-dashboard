@@ -27,6 +27,8 @@ import daum as daum_src  # noqa: E402
 import freesis as freesis_src  # noqa: E402
 import krx as krx_src  # noqa: E402
 import holdings  # noqa: E402
+import krx_inv  # noqa: E402
+import sector_flow  # noqa: E402
 import naver as naver_src  # noqa: E402
 
 # --------------------------------------------------------------------------
@@ -37,7 +39,9 @@ CLOSE_GRACE_MIN = 10                    # 장 마감 후 이만큼 지나야 당
 FINAL_AT = dt.time(18, 30)              # 이 시각 이후 받은 당일 수급은 '확정'으로 본다(KRX 18시 확정)
 FREESIS_FROM = dt.time(7, 0)            # 금투협 T+1 공표를 이 시각부터 폴링
 RECENT_DAYS = 15                        # --auto/--full 에서 다시 받는 최근 일수(정정 반영)
-RETRY_MIN = {"daum": 30, "freesis": 10, "krx": 20}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
+RETRY_MIN = {"daum": 30, "freesis": 10, "krx": 20, "krxinv": 30, "vkospi": 20}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
+KRXINV_AT = dt.time(18, 40)             # KRX 투자자별 확정(18시경) 뒤에 종목별 원자료를 받는다
+KRXINV_PER_RUN = 15                     # 한 번 실행에 받는 최대 일수(백필은 scripts/backfill_krx_inv.py)
 KRX_OPEN_AT = dt.time(8, 10)            # KRX Open API: 기준일 D 의 값은 D+1 오전 8시 전후에 열린다
 KRX_GIVE_UP_DAYS = 7                    # 이만큼 지나도 비어 있으면 그 날짜는 포기(무한 재시도 방지)
 STOCKS = holdings.STOCKS               # 종목별 추적: 삼성전자(보통주), SK하이닉스 — 우선주 제외
@@ -164,6 +168,82 @@ def fetch_krx(start: dt.date, now: dt.datetime) -> bool:
     return changed
 
 
+def krxinv_targets(now: dt.datetime) -> list[str]:
+    if not krx_inv.load_env():
+        return []
+    cal = load_ledger("daum_investor_kospi")["rows"]
+    today = now.date().isoformat()
+    out = []
+    for d in sorted(cal)[-KRXINV_PER_RUN * 3:]:
+        if d == today and now.time() < KRXINV_AT:
+            continue
+        if not krx_inv.has_raw(d):
+            out.append(d)
+    return out
+
+
+def krxinv_due(now: dt.datetime) -> str | None:
+    t = krxinv_targets(now)
+    return f"KRX 종목별 투자자 미수집 {len(t)}일 (최근 {t[-1]})" if t else None
+
+
+def fetch_krxinv(start: dt.date, now: dt.datetime) -> bool:
+    _, code2sec, _ = sector_flow.sectors()
+    done = []
+    for d in krxinv_targets(now)[-KRXINV_PER_RUN:]:
+        raw = krx_inv.day(dt.date.fromisoformat(d))
+        if raw:
+            krx_inv.save_raw_day(d, raw)
+            done.append(d)
+    if done:
+        sector_flow.rebuild_ledger(set(done))
+    log(f"krx 종목별 투자자: {len(done)}일 반영 {done[-3:]}")
+    return bool(done)
+
+
+def vkospi_targets(now: dt.datetime) -> list[str]:
+    led = load_ledger("krx_vkospi")
+    if led.get("unauth_at") and now - dt.datetime.fromisoformat(led["unauth_at"]) < dt.timedelta(hours=6):
+        return []
+    skip = set(led.get("unavailable", []))
+    out = []
+    for d in sorted(load_ledger("daum_investor_kospi")["rows"]):
+        if d < HISTORY_START.isoformat() or d in led["rows"] or d in skip:
+            continue
+        if now >= dt.datetime.combine(dt.date.fromisoformat(d) + dt.timedelta(days=1), KRX_OPEN_AT, now.tzinfo):
+            out.append(d)
+    return out
+
+
+def vkospi_due(now: dt.datetime) -> str | None:
+    t = vkospi_targets(now)
+    return f"VKOSPI 미수집 {len(t)}일" if t else None
+
+
+def fetch_vkospi(start: dt.date, now: dt.datetime) -> bool:
+    k = krx_src.KRX()
+    led = load_ledger("krx_vkospi")
+    got = 0
+    try:
+        for d in vkospi_targets(now)[-40:]:
+            v = krx_src.vkospi_day(k, dt.date.fromisoformat(d))
+            if v is not None:
+                led["rows"][d] = {"vkospi": v}
+                got += 1
+            elif (now.date() - dt.date.fromisoformat(d)).days > KRX_GIVE_UP_DAYS:
+                led.setdefault("unavailable", []).append(d)
+    except krx_src.Unauthorized as e:
+        led["unauth_at"] = now.isoformat(timespec="seconds")
+        log(f"vkospi: {e} — 6시간 뒤 재확인")
+    else:
+        led.pop("unauth_at", None)
+    led["fetched_at"] = now.isoformat(timespec="seconds")
+    save_ledger("krx_vkospi", led)
+    if got:
+        log(f"vkospi: {got}일 반영")
+    return got > 0
+
+
 def krx_due(now: dt.datetime) -> str | None:
     t = krx_targets(now)
     return f"KRX 시총 미수집 {len(t)}일 (최근 {t[-1]})" if t else None
@@ -278,6 +358,28 @@ def assemble(now: dt.datetime) -> dict:
     for f in ("foreign", "inst", "indiv", "oi", "price"):
         S[f"fut_{f}"] = col("daum_futures", f)
 
+    # VKOSPI(KRX, 승인 후) · 삼성전자/하이닉스 주가 YoY(%)
+    vk = load_ledger("krx_vkospi")["rows"]
+    S["vkospi"] = [vk.get(d, {}).get("vkospi") for d in dates]
+    px = {}
+    for d, r in load_ledger("price_hist")["rows"].items():
+        for c, v in r.items():
+            px.setdefault(c, {})[d] = v
+    for c in ("005930", "000660"):
+        for d, r in load_ledger(f"daum_stock_{c}")["rows"].items():
+            if r.get("close"):
+                px.setdefault(c, {})[d] = r["close"]
+        keys = sorted(px.get(c, {}))
+        out = []
+        import bisect
+        for d in dates:
+            p1 = px.get(c, {}).get(d)
+            ref = (dt.date.fromisoformat(d) - dt.timedelta(days=365)).isoformat()
+            j = bisect.bisect_right(keys, ref) - 1
+            p0 = px[c][keys[j]] if j >= 0 and keys[j] >= (dt.date.fromisoformat(ref) - dt.timedelta(days=7)).isoformat() else None
+            out.append(round((p1 / p0 - 1) * 100, 1) if p1 and p0 else None)
+        S[f"yoy_{c}"] = out
+
     # 외국인 보유·시총 비중 (삼성전자·하이닉스 실측 + 금감원 월말 + 일별 추정)
     hold_meta = holdings.build(dates, S)
 
@@ -307,6 +409,7 @@ def assemble(now: dt.datetime) -> dict:
         },
         "futures_mismatch_days": L["daum_futures"].get("investor_mismatch_days", 0),
         "holdings": hold_meta,
+        "sector": sector_flow.build(dates),
         "holiday_cover_to": HOLIDAY_COVER_TO,
     }
 
@@ -344,7 +447,7 @@ def main() -> int:
             state["last_full"] = now.date().isoformat()
         else:
             tries = state.setdefault("last_try", {})
-            for name, fn in (("daum", daum_due), ("freesis", freesis_due), ("krx", krx_due)):
+            for name, fn in (("daum", daum_due), ("freesis", freesis_due), ("krx", krx_due), ("krxinv", krxinv_due), ("vkospi", vkospi_due)):
                 why = fn(now)
                 if not why:
                     continue
@@ -372,7 +475,7 @@ def main() -> int:
     for name, start, why in jobs:
         log(f"{name}: {why} (from {start})")
         try:
-            changed |= {"daum": fetch_daum, "freesis": fetch_freesis, "krx": fetch_krx}[name](start, now)
+            changed |= {"daum": fetch_daum, "freesis": fetch_freesis, "krx": fetch_krx, "krxinv": fetch_krxinv, "vkospi": fetch_vkospi}[name](start, now)
         except Exception:  # noqa: BLE001
             failed.append(name)
             log(f"[ERROR] {name} 수집 실패\n{traceback.format_exc()}")

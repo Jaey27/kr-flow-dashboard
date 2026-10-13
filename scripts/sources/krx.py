@@ -15,6 +15,7 @@ import os
 from common import ROOT, request_json, session
 
 API = "https://data-dbg.krx.co.kr/svc/apis/sto/{svc}"
+IDX_API = "https://data-dbg.krx.co.kr/svc/apis/idx/drvprod_dd_trd"   # 파생상품지수 일별시세 (코스피200 변동성지수 포함)
 SERVICES = {"kospi": "stk_bydd_trd", "kosdaq": "ksq_bydd_trd"}
 WATCH = ("005930", "005935", "000660")   # 삼성전자, 삼성전자우, SK하이닉스
 EOK = 1e8
@@ -57,3 +58,21 @@ class KRX:
                     row[f"s{c}_mcap"] = round(int(x["MKTCAP"]) / EOK, 1)
                     row[f"s{c}_shares"] = int(x["LIST_SHRS"])
         return row
+
+
+class Unauthorized(RuntimeError):
+    pass
+
+
+def vkospi_day(k: "KRX", d: dt.date) -> float | None:
+    """코스피200 변동성지수(VKOSPI) 종가. 서비스 미승인이면 Unauthorized."""
+    js = request_json(k.s, "GET", IDX_API, params={"basDd": d.strftime("%Y%m%d")})
+    if str(js.get("respCode")) == "401":
+        raise Unauthorized("KRX Open API 파생상품지수 시세정보 미승인(401)")
+    for x in js.get("OutBlock_1", []):
+        name = x.get("IDX_NM", "")
+        if "변동성" in name and "선물" not in name:
+            for key, v in x.items():
+                if key.startswith("CLSPRC") and v not in ("", "-", None):
+                    return float(str(v).replace(",", ""))
+    return None
