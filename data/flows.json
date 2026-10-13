@@ -547,7 +547,7 @@
   "freesis": "2026-10-13"
  },
  "futures_mismatch_days": 0,
- "generated_at": "2026-10-14T02:44:45+09:00",
+ "generated_at": "2026-10-14T03:05:33+09:00",
  "holdings": {
   "fss": [
    {
@@ -234082,17 +234082,17 @@
    null
   ],
   "vkospi": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
+   25.89,
+   25.84,
+   25.41,
+   25.62,
+   23.27,
+   21.99,
+   21.81,
+   21.24,
+   21.65,
+   21.09,
+   20.75,
    20.9,
    21.7,
    21.54,
