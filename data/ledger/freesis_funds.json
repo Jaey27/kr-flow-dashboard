@@ -1,0 +1,3942 @@
+{
+ "fetched_at": "2026-10-13T12:51:07+09:00",
+ "prov": [],
+ "rows": {
+  "2024-10-02": {
+   "deposit": 56331304,
+   "deriv_deposit": 12809020,
+   "forced_ratio": 1.7,
+   "forced_sale": 15611,
+   "rp_balance": 90820127,
+   "unpaid": 935116
+  },
+  "2024-10-04": {
+   "deposit": 52704265,
+   "deriv_deposit": 12693998,
+   "forced_ratio": 1.4,
+   "forced_sale": 13308,
+   "rp_balance": 91827299,
+   "unpaid": 958722
+  },
+  "2024-10-07": {
+   "deposit": 51510003,
+   "deriv_deposit": 12652169,
+   "forced_ratio": 0.8,
+   "forced_sale": 7814,
+   "rp_balance": 91744885,
+   "unpaid": 965914
+  },
+  "2024-10-08": {
+   "deposit": 50695204,
+   "deriv_deposit": 12588199,
+   "forced_ratio": 0.5,
+   "forced_sale": 4731,
+   "rp_balance": 90233605,
+   "unpaid": 967980
+  },
+  "2024-10-10": {
+   "deposit": 52348904,
+   "deriv_deposit": 12497522,
+   "forced_ratio": 0.7,
+   "forced_sale": 6575,
+   "rp_balance": 90042628,
+   "unpaid": 953501
+  },
+  "2024-10-11": {
+   "deposit": 52212688,
+   "deriv_deposit": 12159235,
+   "forced_ratio": 0.6,
+   "forced_sale": 5761,
+   "rp_balance": 91357818,
+   "unpaid": 953276
+  },
+  "2024-10-14": {
+   "deposit": 52578867,
+   "deriv_deposit": 12246171,
+   "forced_ratio": 0.6,
+   "forced_sale": 5509,
+   "rp_balance": 91398380,
+   "unpaid": 953757
+  },
+  "2024-10-15": {
+   "deposit": 52940651,
+   "deriv_deposit": 12149793,
+   "forced_ratio": 1.2,
+   "forced_sale": 11757,
+   "rp_balance": 91957054,
+   "unpaid": 939619
+  },
+  "2024-10-16": {
+   "deposit": 53360046,
+   "deriv_deposit": 12257249,
+   "forced_ratio": 0.6,
+   "forced_sale": 5671,
+   "rp_balance": 91507388,
+   "unpaid": 928720
+  },
+  "2024-10-17": {
+   "deposit": 52367810,
+   "deriv_deposit": 12091964,
+   "forced_ratio": 1,
+   "forced_sale": 9113,
+   "rp_balance": 91052896,
+   "unpaid": 933712
+  },
+  "2024-10-18": {
+   "deposit": 51252472,
+   "deriv_deposit": 12064845,
+   "forced_ratio": 1.9,
+   "forced_sale": 17724,
+   "rp_balance": 91338124,
+   "unpaid": 948238
+  },
+  "2024-10-21": {
+   "deposit": 54433877,
+   "deriv_deposit": 12056470,
+   "forced_ratio": 0.8,
+   "forced_sale": 7504,
+   "rp_balance": 92102107,
+   "unpaid": 931976
+  },
+  "2024-10-22": {
+   "deposit": 54710008,
+   "deriv_deposit": 12136101,
+   "forced_ratio": 0.8,
+   "forced_sale": 7711,
+   "rp_balance": 91320381,
+   "unpaid": 930638
+  },
+  "2024-10-23": {
+   "deposit": 55677139,
+   "deriv_deposit": 11990458,
+   "forced_ratio": 0.7,
+   "forced_sale": 6375,
+   "rp_balance": 91218095,
+   "unpaid": 918256
+  },
+  "2024-10-24": {
+   "deposit": 54033813,
+   "deriv_deposit": 12058096,
+   "forced_ratio": 0.5,
+   "forced_sale": 4812,
+   "rp_balance": 91133470,
+   "unpaid": 963601
+  },
+  "2024-10-25": {
+   "deposit": 53594216,
+   "deriv_deposit": 12055206,
+   "forced_ratio": 0.4,
+   "forced_sale": 4269,
+   "rp_balance": 90597735,
+   "unpaid": 918233
+  },
+  "2024-10-28": {
+   "deposit": 50732485,
+   "deriv_deposit": 12070478,
+   "forced_ratio": 0.6,
+   "forced_sale": 5236,
+   "rp_balance": 91317013,
+   "unpaid": 945175
+  },
+  "2024-10-29": {
+   "deposit": 50481517,
+   "deriv_deposit": 12057470,
+   "forced_ratio": 0.5,
+   "forced_sale": 5078,
+   "rp_balance": 90389189,
+   "unpaid": 980416
+  },
+  "2024-10-30": {
+   "deposit": 49597314,
+   "deriv_deposit": 12160904,
+   "forced_ratio": 0.6,
+   "forced_sale": 5809,
+   "rp_balance": 90103300,
+   "unpaid": 920871
+  },
+  "2024-10-31": {
+   "deposit": 50586581,
+   "deriv_deposit": 12127737,
+   "forced_ratio": 0.5,
+   "forced_sale": 5003,
+   "rp_balance": 90895125,
+   "unpaid": 919508
+  },
+  "2024-11-01": {
+   "deposit": 51431835,
+   "deriv_deposit": 12076369,
+   "forced_ratio": 0.6,
+   "forced_sale": 5317,
+   "rp_balance": 91460238,
+   "unpaid": 922448
+  },
+  "2024-11-04": {
+   "deposit": 50432795,
+   "deriv_deposit": 11873372,
+   "forced_ratio": 0.9,
+   "forced_sale": 8316,
+   "rp_balance": 91609627,
+   "unpaid": 921127
+  },
+  "2024-11-05": {
+   "deposit": 50063881,
+   "deriv_deposit": 11871389,
+   "forced_ratio": 0.9,
+   "forced_sale": 8689,
+   "rp_balance": 91698747,
+   "unpaid": 868143
+  },
+  "2024-11-06": {
+   "deposit": 49889998,
+   "deriv_deposit": 11971521,
+   "forced_ratio": 0.4,
+   "forced_sale": 3861,
+   "rp_balance": 91771698,
+   "unpaid": 894278
+  },
+  "2024-11-07": {
+   "deposit": 50084385,
+   "deriv_deposit": 11968949,
+   "forced_ratio": 0.3,
+   "forced_sale": 2936,
+   "rp_balance": 91810529,
+   "unpaid": 893106
+  },
+  "2024-11-08": {
+   "deposit": 49902287,
+   "deriv_deposit": 11985564,
+   "forced_ratio": 0.5,
+   "forced_sale": 4885,
+   "rp_balance": 91815663,
+   "unpaid": 924139
+  },
+  "2024-11-11": {
+   "deposit": 51195195,
+   "deriv_deposit": 12154395,
+   "forced_ratio": 0.9,
+   "forced_sale": 8115,
+   "rp_balance": 91761792,
+   "unpaid": 937239
+  },
+  "2024-11-12": {
+   "deposit": 52733562,
+   "deriv_deposit": 12166312,
+   "forced_ratio": 0.6,
+   "forced_sale": 5253,
+   "rp_balance": 91614805,
+   "unpaid": 931263
+  },
+  "2024-11-13": {
+   "deposit": 51499492,
+   "deriv_deposit": 12195272,
+   "forced_ratio": 1,
+   "forced_sale": 9647,
+   "rp_balance": 91621763,
+   "unpaid": 967097
+  },
+  "2024-11-14": {
+   "deposit": 52955169,
+   "deriv_deposit": 11978626,
+   "forced_ratio": 1.4,
+   "forced_sale": 13071,
+   "rp_balance": 91713625,
+   "unpaid": 1003936
+  },
+  "2024-11-15": {
+   "deposit": 50612937,
+   "deriv_deposit": 11844573,
+   "forced_ratio": 1.6,
+   "forced_sale": 16489,
+   "rp_balance": 91655759,
+   "unpaid": 1042779
+  },
+  "2024-11-18": {
+   "deposit": 50918298,
+   "deriv_deposit": 11821397,
+   "forced_ratio": 1.1,
+   "forced_sale": 11653,
+   "rp_balance": 91895195,
+   "unpaid": 1013305
+  },
+  "2024-11-19": {
+   "deposit": 49992847,
+   "deriv_deposit": 11825610,
+   "forced_ratio": 0.8,
+   "forced_sale": 8530,
+   "rp_balance": 91826973,
+   "unpaid": 965733
+  },
+  "2024-11-20": {
+   "deposit": 49812839,
+   "deriv_deposit": 11814684,
+   "forced_ratio": 1.1,
+   "forced_sale": 10152,
+   "rp_balance": 91998383,
+   "unpaid": 976928
+  },
+  "2024-11-21": {
+   "deposit": 50309567,
+   "deriv_deposit": 11801069,
+   "forced_ratio": 1.1,
+   "forced_sale": 11169,
+   "rp_balance": 92238729,
+   "unpaid": 945480
+  },
+  "2024-11-22": {
+   "deposit": 49919044,
+   "deriv_deposit": 11927400,
+   "forced_ratio": 0.5,
+   "forced_sale": 5095,
+   "rp_balance": 92058006,
+   "unpaid": 923968
+  },
+  "2024-11-25": {
+   "deposit": 50424359,
+   "deriv_deposit": 11934570,
+   "forced_ratio": 0.4,
+   "forced_sale": 3827,
+   "rp_balance": 91872040,
+   "unpaid": 916404
+  },
+  "2024-11-26": {
+   "deposit": 52240821,
+   "deriv_deposit": 12008141,
+   "forced_ratio": 0.4,
+   "forced_sale": 3235,
+   "rp_balance": 91953442,
+   "unpaid": 901260
+  },
+  "2024-11-27": {
+   "deposit": 50895783,
+   "deriv_deposit": 12019897,
+   "forced_ratio": 0.3,
+   "forced_sale": 2459,
+   "rp_balance": 91792821,
+   "unpaid": 891627
+  },
+  "2024-11-28": {
+   "deposit": 51600491,
+   "deriv_deposit": 12028519,
+   "forced_ratio": 0.5,
+   "forced_sale": 4271,
+   "rp_balance": 91937623,
+   "unpaid": 917967
+  },
+  "2024-11-29": {
+   "deposit": 52296893,
+   "deriv_deposit": 12182757,
+   "forced_ratio": 0.5,
+   "forced_sale": 4811,
+   "rp_balance": 92561814,
+   "unpaid": 925700
+  },
+  "2024-12-02": {
+   "deposit": 52335882,
+   "deriv_deposit": 12033089,
+   "forced_ratio": 1,
+   "forced_sale": 8916,
+   "rp_balance": 92475234,
+   "unpaid": 918925
+  },
+  "2024-12-03": {
+   "deposit": 49898695,
+   "deriv_deposit": 12052080,
+   "forced_ratio": 1.2,
+   "forced_sale": 10835,
+   "rp_balance": 91943908,
+   "unpaid": 928544
+  },
+  "2024-12-04": {
+   "deposit": 51455169,
+   "deriv_deposit": 12247692,
+   "forced_ratio": 0.7,
+   "forced_sale": 6418,
+   "rp_balance": 92008283,
+   "unpaid": 950979
+  },
+  "2024-12-05": {
+   "deposit": 52469232,
+   "deriv_deposit": 12174897,
+   "forced_ratio": 0.6,
+   "forced_sale": 5348,
+   "rp_balance": 91975002,
+   "unpaid": 922927
+  },
+  "2024-12-06": {
+   "deposit": 51740790,
+   "deriv_deposit": 12053843,
+   "forced_ratio": 0.8,
+   "forced_sale": 6937,
+   "rp_balance": 92276250,
+   "unpaid": 926902
+  },
+  "2024-12-09": {
+   "deposit": 51906416,
+   "deriv_deposit": 12129598,
+   "forced_ratio": 0.9,
+   "forced_sale": 8401,
+   "rp_balance": 92265130,
+   "unpaid": 945304
+  },
+  "2024-12-10": {
+   "deposit": 52512921,
+   "deriv_deposit": 11913955,
+   "forced_ratio": 1.1,
+   "forced_sale": 10018,
+   "rp_balance": 92263865,
+   "unpaid": 932197
+  },
+  "2024-12-11": {
+   "deposit": 52922807,
+   "deriv_deposit": 12002546,
+   "forced_ratio": 0.8,
+   "forced_sale": 7593,
+   "rp_balance": 92663099,
+   "unpaid": 944784
+  },
+  "2024-12-12": {
+   "deposit": 52662183,
+   "deriv_deposit": 11844739,
+   "forced_ratio": 0.4,
+   "forced_sale": 3600,
+   "rp_balance": 92858808,
+   "unpaid": 901383
+  },
+  "2024-12-13": {
+   "deposit": 53572768,
+   "deriv_deposit": 11805226,
+   "forced_ratio": 0.7,
+   "forced_sale": 5907,
+   "rp_balance": 93070627,
+   "unpaid": 885341
+  },
+  "2024-12-16": {
+   "deposit": 52707872,
+   "deriv_deposit": 11676920,
+   "forced_ratio": 0.2,
+   "forced_sale": 2122,
+   "rp_balance": 92985316,
+   "unpaid": 884044
+  },
+  "2024-12-17": {
+   "deposit": 52552215,
+   "deriv_deposit": 11612608,
+   "forced_ratio": 0.4,
+   "forced_sale": 3321,
+   "rp_balance": 92876846,
+   "unpaid": 892528
+  },
+  "2024-12-18": {
+   "deposit": 51560362,
+   "deriv_deposit": 11330482,
+   "forced_ratio": 0.4,
+   "forced_sale": 3155,
+   "rp_balance": 92938376,
+   "unpaid": 990446
+  },
+  "2024-12-19": {
+   "deposit": 51351353,
+   "deriv_deposit": 11473632,
+   "forced_ratio": 0.6,
+   "forced_sale": 5858,
+   "rp_balance": 92797684,
+   "unpaid": 901835
+  },
+  "2024-12-20": {
+   "deposit": 52015852,
+   "deriv_deposit": 11186014,
+   "forced_ratio": 0.7,
+   "forced_sale": 6156,
+   "rp_balance": 92426595,
+   "unpaid": 883328
+  },
+  "2024-12-23": {
+   "deposit": 52084455,
+   "deriv_deposit": 11017521,
+   "forced_ratio": 0.7,
+   "forced_sale": 5860,
+   "rp_balance": 92460243,
+   "unpaid": 888523
+  },
+  "2024-12-24": {
+   "deposit": 50626520,
+   "deriv_deposit": 10975491,
+   "forced_ratio": 0.8,
+   "forced_sale": 6988,
+   "rp_balance": 91965303,
+   "unpaid": 911733
+  },
+  "2024-12-26": {
+   "deposit": 52595975,
+   "deriv_deposit": 11058825,
+   "forced_ratio": 0.4,
+   "forced_sale": 3912,
+   "rp_balance": 90789976,
+   "unpaid": 890477
+  },
+  "2024-12-27": {
+   "deposit": 54447545,
+   "deriv_deposit": 11058519,
+   "forced_ratio": 0.4,
+   "forced_sale": 3992,
+   "rp_balance": 90063386,
+   "unpaid": 880971
+  },
+  "2024-12-30": {
+   "deposit": 54555510,
+   "deriv_deposit": 10949728,
+   "forced_ratio": 1,
+   "forced_sale": 8534,
+   "rp_balance": 87585137,
+   "unpaid": 910283
+  },
+  "2024-12-31": {
+   "deposit": 54242674,
+   "deriv_deposit": 10897921,
+   "forced_ratio": 0,
+   "forced_sale": 0,
+   "rp_balance": 83410161,
+   "unpaid": 872829
+  },
+  "2025-01-02": {
+   "deposit": 57058284,
+   "deriv_deposit": 10892122,
+   "forced_ratio": 0.6,
+   "forced_sale": 5390,
+   "rp_balance": 90524089,
+   "unpaid": 892652
+  },
+  "2025-01-03": {
+   "deposit": 54550814,
+   "deriv_deposit": 11537836,
+   "forced_ratio": 0.5,
+   "forced_sale": 4339,
+   "rp_balance": 92169522,
+   "unpaid": 873049
+  },
+  "2025-01-06": {
+   "deposit": 53795823,
+   "deriv_deposit": 11765535,
+   "forced_ratio": 0.6,
+   "forced_sale": 5540,
+   "rp_balance": 92357722,
+   "unpaid": 859867
+  },
+  "2025-01-07": {
+   "deposit": 52336001,
+   "deriv_deposit": 11894091,
+   "forced_ratio": 0.3,
+   "forced_sale": 2700,
+   "rp_balance": 92511623,
+   "unpaid": 839372
+  },
+  "2025-01-08": {
+   "deposit": 51940012,
+   "deriv_deposit": 11982806,
+   "forced_ratio": 0.2,
+   "forced_sale": 2025,
+   "rp_balance": 92747143,
+   "unpaid": 895825
+  },
+  "2025-01-09": {
+   "deposit": 52755299,
+   "deriv_deposit": 11851216,
+   "forced_ratio": 0.4,
+   "forced_sale": 3574,
+   "rp_balance": 93242617,
+   "unpaid": 922486
+  },
+  "2025-01-10": {
+   "deposit": 52279384,
+   "deriv_deposit": 11834242,
+   "forced_ratio": 0.5,
+   "forced_sale": 4841,
+   "rp_balance": 93309731,
+   "unpaid": 906648
+  },
+  "2025-01-13": {
+   "deposit": 53747926,
+   "deriv_deposit": 12006420,
+   "forced_ratio": 0.5,
+   "forced_sale": 4634,
+   "rp_balance": 93435146,
+   "unpaid": 886970
+  },
+  "2025-01-14": {
+   "deposit": 53769014,
+   "deriv_deposit": 11731403,
+   "forced_ratio": 0.7,
+   "forced_sale": 5945,
+   "rp_balance": 93092343,
+   "unpaid": 896303
+  },
+  "2025-01-15": {
+   "deposit": 52787693,
+   "deriv_deposit": 11761502,
+   "forced_ratio": 0.6,
+   "forced_sale": 5059,
+   "rp_balance": 92533346,
+   "unpaid": 912512
+  },
+  "2025-01-16": {
+   "deposit": 51869021,
+   "deriv_deposit": 11826691,
+   "forced_ratio": 0.6,
+   "forced_sale": 5548,
+   "rp_balance": 92983391,
+   "unpaid": 893917
+  },
+  "2025-01-17": {
+   "deposit": 51270091,
+   "deriv_deposit": 11892685,
+   "forced_ratio": 0.6,
+   "forced_sale": 4944,
+   "rp_balance": 93008253,
+   "unpaid": 896865
+  },
+  "2025-01-20": {
+   "deposit": 53225906,
+   "deriv_deposit": 11890652,
+   "forced_ratio": 0.4,
+   "forced_sale": 3962,
+   "rp_balance": 93077139,
+   "unpaid": 886585
+  },
+  "2025-01-21": {
+   "deposit": 52798131,
+   "deriv_deposit": 11888918,
+   "forced_ratio": 0.5,
+   "forced_sale": 4649,
+   "rp_balance": 93479005,
+   "unpaid": 897010
+  },
+  "2025-01-22": {
+   "deposit": 52102632,
+   "deriv_deposit": 11946640,
+   "forced_ratio": 0.7,
+   "forced_sale": 5935,
+   "rp_balance": 90819316,
+   "unpaid": 898037
+  },
+  "2025-01-23": {
+   "deposit": 52112577,
+   "deriv_deposit": 12004332,
+   "forced_ratio": 0.5,
+   "forced_sale": 4593,
+   "rp_balance": 90461385,
+   "unpaid": 892252
+  },
+  "2025-01-24": {
+   "deposit": 54144254,
+   "deriv_deposit": 11772294,
+   "forced_ratio": 0.7,
+   "forced_sale": 6008,
+   "rp_balance": 93307776,
+   "unpaid": 872474
+  },
+  "2025-01-31": {
+   "deposit": 55578588,
+   "deriv_deposit": 11926157,
+   "forced_ratio": 0.4,
+   "forced_sale": 3057,
+   "rp_balance": 92311405,
+   "unpaid": 886925
+  },
+  "2025-02-03": {
+   "deposit": 58231702,
+   "deriv_deposit": 12028173,
+   "forced_ratio": 0.8,
+   "forced_sale": 7399,
+   "rp_balance": 92557499,
+   "unpaid": 869954
+  },
+  "2025-02-04": {
+   "deposit": 57753199,
+   "deriv_deposit": 11811416,
+   "forced_ratio": 1,
+   "forced_sale": 8488,
+   "rp_balance": 92559343,
+   "unpaid": 909385
+  },
+  "2025-02-05": {
+   "deposit": 53333038,
+   "deriv_deposit": 11802633,
+   "forced_ratio": 0.7,
+   "forced_sale": 6476,
+   "rp_balance": 92820881,
+   "unpaid": 990278
+  },
+  "2025-02-06": {
+   "deposit": 54673361,
+   "deriv_deposit": 11826718,
+   "forced_ratio": 0.4,
+   "forced_sale": 4095,
+   "rp_balance": 93144709,
+   "unpaid": 945638
+  },
+  "2025-02-07": {
+   "deposit": 52823988,
+   "deriv_deposit": 11854503,
+   "forced_ratio": 0.5,
+   "forced_sale": 4472,
+   "rp_balance": 93100741,
+   "unpaid": 899558
+  },
+  "2025-02-10": {
+   "deposit": 53107554,
+   "deriv_deposit": 11819634,
+   "forced_ratio": 0.3,
+   "forced_sale": 2940,
+   "rp_balance": 92893363,
+   "unpaid": 882140
+  },
+  "2025-02-11": {
+   "deposit": 53364910,
+   "deriv_deposit": 11782705,
+   "forced_ratio": 0.6,
+   "forced_sale": 4880,
+   "rp_balance": 93048260,
+   "unpaid": 891577
+  },
+  "2025-02-12": {
+   "deposit": 52892908,
+   "deriv_deposit": 11862769,
+   "forced_ratio": 0.5,
+   "forced_sale": 4560,
+   "rp_balance": 92497653,
+   "unpaid": 927852
+  },
+  "2025-02-13": {
+   "deposit": 53922452,
+   "deriv_deposit": 11767083,
+   "forced_ratio": 0.4,
+   "forced_sale": 3929,
+   "rp_balance": 92928181,
+   "unpaid": 929404
+  },
+  "2025-02-14": {
+   "deposit": 54510649,
+   "deriv_deposit": 11778473,
+   "forced_ratio": 0.4,
+   "forced_sale": 3730,
+   "rp_balance": 92527258,
+   "unpaid": 932690
+  },
+  "2025-02-17": {
+   "deposit": 53508575,
+   "deriv_deposit": 11843723,
+   "forced_ratio": 0.4,
+   "forced_sale": 3557,
+   "rp_balance": 92637986,
+   "unpaid": 902172
+  },
+  "2025-02-18": {
+   "deposit": 53914507,
+   "deriv_deposit": 11859152,
+   "forced_ratio": 0.4,
+   "forced_sale": 3788,
+   "rp_balance": 93417774,
+   "unpaid": 891933
+  },
+  "2025-02-19": {
+   "deposit": 55117344,
+   "deriv_deposit": 12087701,
+   "forced_ratio": 0.3,
+   "forced_sale": 2958,
+   "rp_balance": 93426592,
+   "unpaid": 891895
+  },
+  "2025-02-20": {
+   "deposit": 54622415,
+   "deriv_deposit": 12213716,
+   "forced_ratio": 0.3,
+   "forced_sale": 2270,
+   "rp_balance": 93393143,
+   "unpaid": 891045
+  },
+  "2025-02-21": {
+   "deposit": 54958763,
+   "deriv_deposit": 12148247,
+   "forced_ratio": 0.6,
+   "forced_sale": 5152,
+   "rp_balance": 93064245,
+   "unpaid": 897455
+  },
+  "2025-02-24": {
+   "deposit": 54029761,
+   "deriv_deposit": 12220713,
+   "forced_ratio": 0.8,
+   "forced_sale": 6918,
+   "rp_balance": 92996313,
+   "unpaid": 936342
+  },
+  "2025-02-25": {
+   "deposit": 54898670,
+   "deriv_deposit": 12165835,
+   "forced_ratio": 0.9,
+   "forced_sale": 8550,
+   "rp_balance": 93205654,
+   "unpaid": 918860
+  },
+  "2025-02-26": {
+   "deposit": 54421931,
+   "deriv_deposit": 12220587,
+   "forced_ratio": 0.7,
+   "forced_sale": 6141,
+   "rp_balance": 93326498,
+   "unpaid": 911850
+  },
+  "2025-02-27": {
+   "deposit": 55218464,
+   "deriv_deposit": 12118120,
+   "forced_ratio": 0.8,
+   "forced_sale": 6872,
+   "rp_balance": 93403117,
+   "unpaid": 912936
+  },
+  "2025-02-28": {
+   "deposit": 56052943,
+   "deriv_deposit": 12290172,
+   "forced_ratio": 0.9,
+   "forced_sale": 7762,
+   "rp_balance": 93063232,
+   "unpaid": 904949
+  },
+  "2025-03-04": {
+   "deposit": 57232826,
+   "deriv_deposit": 11945819,
+   "forced_ratio": 1.2,
+   "forced_sale": 10934,
+   "rp_balance": 93358794,
+   "unpaid": 903009
+  },
+  "2025-03-05": {
+   "deposit": 53548724,
+   "deriv_deposit": 11897907,
+   "forced_ratio": 1.2,
+   "forced_sale": 10509,
+   "rp_balance": 92358362,
+   "unpaid": 936852
+  },
+  "2025-03-06": {
+   "deposit": 52877238,
+   "deriv_deposit": 11865233,
+   "forced_ratio": 0.8,
+   "forced_sale": 7176,
+   "rp_balance": 92582616,
+   "unpaid": 917440
+  },
+  "2025-03-07": {
+   "deposit": 51350679,
+   "deriv_deposit": 11940030,
+   "forced_ratio": 0.4,
+   "forced_sale": 3970,
+   "rp_balance": 92486593,
+   "unpaid": 888119
+  },
+  "2025-03-10": {
+   "deposit": 53770232,
+   "deriv_deposit": 11975747,
+   "forced_ratio": 0.9,
+   "forced_sale": 8370,
+   "rp_balance": 92735815,
+   "unpaid": 895583
+  },
+  "2025-03-11": {
+   "deposit": 53300356,
+   "deriv_deposit": 12026388,
+   "forced_ratio": 0.8,
+   "forced_sale": 7103,
+   "rp_balance": 92911627,
+   "unpaid": 883956
+  },
+  "2025-03-12": {
+   "deposit": 52806016,
+   "deriv_deposit": 11989887,
+   "forced_ratio": 0.6,
+   "forced_sale": 5325,
+   "rp_balance": 92580307,
+   "unpaid": 895268
+  },
+  "2025-03-13": {
+   "deposit": 52246368,
+   "deriv_deposit": 11911995,
+   "forced_ratio": 0.5,
+   "forced_sale": 4038,
+   "rp_balance": 93349302,
+   "unpaid": 908482
+  },
+  "2025-03-14": {
+   "deposit": 51356628,
+   "deriv_deposit": 11816018,
+   "forced_ratio": 0.4,
+   "forced_sale": 3550,
+   "rp_balance": 93697867,
+   "unpaid": 893860
+  },
+  "2025-03-17": {
+   "deposit": 51861446,
+   "deriv_deposit": 11767668,
+   "forced_ratio": 0.7,
+   "forced_sale": 5852,
+   "rp_balance": 93452075,
+   "unpaid": 908021
+  },
+  "2025-03-18": {
+   "deposit": 50956701,
+   "deriv_deposit": 11893821,
+   "forced_ratio": 0.4,
+   "forced_sale": 3469,
+   "rp_balance": 93578679,
+   "unpaid": 891760
+  },
+  "2025-03-19": {
+   "deposit": 51913402,
+   "deriv_deposit": 11846530,
+   "forced_ratio": 0.3,
+   "forced_sale": 2990,
+   "rp_balance": 93719518,
+   "unpaid": 904443
+  },
+  "2025-03-20": {
+   "deposit": 52497301,
+   "deriv_deposit": 11968815,
+   "forced_ratio": 0.4,
+   "forced_sale": 3853,
+   "rp_balance": 93982325,
+   "unpaid": 917004
+  },
+  "2025-03-21": {
+   "deposit": 53615312,
+   "deriv_deposit": 11916369,
+   "forced_ratio": 0.5,
+   "forced_sale": 4271,
+   "rp_balance": 94252240,
+   "unpaid": 918163
+  },
+  "2025-03-24": {
+   "deposit": 53282249,
+   "deriv_deposit": 11925068,
+   "forced_ratio": 0.7,
+   "forced_sale": 6551,
+   "rp_balance": 94302269,
+   "unpaid": 937964
+  },
+  "2025-03-25": {
+   "deposit": 55162222,
+   "deriv_deposit": 11831336,
+   "forced_ratio": 0.9,
+   "forced_sale": 8593,
+   "rp_balance": 94237359,
+   "unpaid": 930532
+  },
+  "2025-03-26": {
+   "deposit": 55671371,
+   "deriv_deposit": 11788302,
+   "forced_ratio": 0.6,
+   "forced_sale": 5740,
+   "rp_balance": 93284748,
+   "unpaid": 903374
+  },
+  "2025-03-27": {
+   "deposit": 54693639,
+   "deriv_deposit": 11724872,
+   "forced_ratio": 0.5,
+   "forced_sale": 4071,
+   "rp_balance": 92870291,
+   "unpaid": 922528
+  },
+  "2025-03-28": {
+   "deposit": 56932752,
+   "deriv_deposit": 11723256,
+   "forced_ratio": 0.8,
+   "forced_sale": 7591,
+   "rp_balance": 93272073,
+   "unpaid": 896532
+  },
+  "2025-03-31": {
+   "deposit": 58474325,
+   "deriv_deposit": 11814803,
+   "forced_ratio": 1.3,
+   "forced_sale": 11505,
+   "rp_balance": 90985855,
+   "unpaid": 893280
+  },
+  "2025-04-01": {
+   "deposit": 59496706,
+   "deriv_deposit": 11513586,
+   "forced_ratio": 1.6,
+   "forced_sale": 13936,
+   "rp_balance": 93040117,
+   "unpaid": 909352
+  },
+  "2025-04-02": {
+   "deposit": 54357742,
+   "deriv_deposit": 11814430,
+   "forced_ratio": 0.8,
+   "forced_sale": 7113,
+   "rp_balance": 93720047,
+   "unpaid": 933353
+  },
+  "2025-04-03": {
+   "deposit": 55320004,
+   "deriv_deposit": 11911738,
+   "forced_ratio": 0.7,
+   "forced_sale": 6910,
+   "rp_balance": 93593939,
+   "unpaid": 901185
+  },
+  "2025-04-04": {
+   "deposit": 55607731,
+   "deriv_deposit": 11879668,
+   "forced_ratio": 0.9,
+   "forced_sale": 7991,
+   "rp_balance": 93299830,
+   "unpaid": 892982
+  },
+  "2025-04-07": {
+   "deposit": 57843409,
+   "deriv_deposit": 12628174,
+   "forced_ratio": 0.8,
+   "forced_sale": 6737,
+   "rp_balance": 92805618,
+   "unpaid": 888967
+  },
+  "2025-04-08": {
+   "deposit": 55909187,
+   "deriv_deposit": 12021330,
+   "forced_ratio": 0.9,
+   "forced_sale": 8029,
+   "rp_balance": 93015446,
+   "unpaid": 913786
+  },
+  "2025-04-09": {
+   "deposit": 54160437,
+   "deriv_deposit": 12122897,
+   "forced_ratio": 1.8,
+   "forced_sale": 16620,
+   "rp_balance": 92914654,
+   "unpaid": 975964
+  },
+  "2025-04-10": {
+   "deposit": 54692394,
+   "deriv_deposit": 11764113,
+   "forced_ratio": 1.3,
+   "forced_sale": 12505,
+   "rp_balance": 93203734,
+   "unpaid": 946669
+  },
+  "2025-04-11": {
+   "deposit": 53618358,
+   "deriv_deposit": 11558024,
+   "forced_ratio": 0.6,
+   "forced_sale": 5614,
+   "rp_balance": 93653645,
+   "unpaid": 937048
+  },
+  "2025-04-14": {
+   "deposit": 54875870,
+   "deriv_deposit": 11480207,
+   "forced_ratio": 0.6,
+   "forced_sale": 6017,
+   "rp_balance": 93675901,
+   "unpaid": 895889
+  },
+  "2025-04-15": {
+   "deposit": 54754228,
+   "deriv_deposit": 11340012,
+   "forced_ratio": 0.4,
+   "forced_sale": 3736,
+   "rp_balance": 93951843,
+   "unpaid": 876041
+  },
+  "2025-04-16": {
+   "deposit": 52977268,
+   "deriv_deposit": 11374824,
+   "forced_ratio": 0.2,
+   "forced_sale": 1592,
+   "rp_balance": 94118744,
+   "unpaid": 885162
+  },
+  "2025-04-17": {
+   "deposit": 53633088,
+   "deriv_deposit": 11358954,
+   "forced_ratio": 0.4,
+   "forced_sale": 3941,
+   "rp_balance": 94311268,
+   "unpaid": 880177
+  },
+  "2025-04-18": {
+   "deposit": 53824750,
+   "deriv_deposit": 11220365,
+   "forced_ratio": 0.3,
+   "forced_sale": 2700,
+   "rp_balance": 94738702,
+   "unpaid": 890129
+  },
+  "2025-04-21": {
+   "deposit": 53836524,
+   "deriv_deposit": 11305370,
+   "forced_ratio": 0.5,
+   "forced_sale": 4629,
+   "rp_balance": 94995074,
+   "unpaid": 898193
+  },
+  "2025-04-22": {
+   "deposit": 53962600,
+   "deriv_deposit": 11615670,
+   "forced_ratio": 0.4,
+   "forced_sale": 4033,
+   "rp_balance": 95188447,
+   "unpaid": 893124
+  },
+  "2025-04-23": {
+   "deposit": 54397449,
+   "deriv_deposit": 11679348,
+   "forced_ratio": 0.3,
+   "forced_sale": 2880,
+   "rp_balance": 95175295,
+   "unpaid": 889585
+  },
+  "2025-04-24": {
+   "deposit": 54307578,
+   "deriv_deposit": 11716738,
+   "forced_ratio": 0.7,
+   "forced_sale": 6071,
+   "rp_balance": 94990140,
+   "unpaid": 886828
+  },
+  "2025-04-25": {
+   "deposit": 55310304,
+   "deriv_deposit": 11681694,
+   "forced_ratio": 0.5,
+   "forced_sale": 4560,
+   "rp_balance": 94006892,
+   "unpaid": 878814
+  },
+  "2025-04-28": {
+   "deposit": 55941685,
+   "deriv_deposit": 11771744,
+   "forced_ratio": 0.4,
+   "forced_sale": 3519,
+   "rp_balance": 93507552,
+   "unpaid": 903270
+  },
+  "2025-04-29": {
+   "deposit": 57561498,
+   "deriv_deposit": 11686677,
+   "forced_ratio": 0.6,
+   "forced_sale": 5166,
+   "rp_balance": 94076200,
+   "unpaid": 891385
+  },
+  "2025-04-30": {
+   "deposit": 57547610,
+   "deriv_deposit": 11687456,
+   "forced_ratio": 0.6,
+   "forced_sale": 5782,
+   "rp_balance": 94132889,
+   "unpaid": 922902
+  },
+  "2025-05-02": {
+   "deposit": 56530870,
+   "deriv_deposit": 11755402,
+   "forced_ratio": 1,
+   "forced_sale": 8800,
+   "rp_balance": 94523287,
+   "unpaid": 908718
+  },
+  "2025-05-07": {
+   "deposit": 56449422,
+   "deriv_deposit": 11820892,
+   "forced_ratio": 0.5,
+   "forced_sale": 4760,
+   "rp_balance": 94543301,
+   "unpaid": 906452
+  },
+  "2025-05-08": {
+   "deposit": 56436361,
+   "deriv_deposit": 11682062,
+   "forced_ratio": 0.4,
+   "forced_sale": 4049,
+   "rp_balance": 94690906,
+   "unpaid": 895259
+  },
+  "2025-05-09": {
+   "deposit": 54262394,
+   "deriv_deposit": 11550312,
+   "forced_ratio": 0.4,
+   "forced_sale": 3771,
+   "rp_balance": 94531257,
+   "unpaid": 911781
+  },
+  "2025-05-12": {
+   "deposit": 56162461,
+   "deriv_deposit": 11579338,
+   "forced_ratio": 0.5,
+   "forced_sale": 4460,
+   "rp_balance": 93042756,
+   "unpaid": 920529
+  },
+  "2025-05-13": {
+   "deposit": 55206493,
+   "deriv_deposit": 11599087,
+   "forced_ratio": 0.7,
+   "forced_sale": 6450,
+   "rp_balance": 93713346,
+   "unpaid": 950465
+  },
+  "2025-05-14": {
+   "deposit": 57471284,
+   "deriv_deposit": 11674385,
+   "forced_ratio": 0.5,
+   "forced_sale": 4459,
+   "rp_balance": 93733348,
+   "unpaid": 955356
+  },
+  "2025-05-15": {
+   "deposit": 56518593,
+   "deriv_deposit": 11620381,
+   "forced_ratio": 0.4,
+   "forced_sale": 3816,
+   "rp_balance": 93907091,
+   "unpaid": 918934
+  },
+  "2025-05-16": {
+   "deposit": 56274366,
+   "deriv_deposit": 11676670,
+   "forced_ratio": 0.9,
+   "forced_sale": 8221,
+   "rp_balance": 95556308,
+   "unpaid": 896802
+  },
+  "2025-05-19": {
+   "deposit": 56185030,
+   "deriv_deposit": 11786016,
+   "forced_ratio": 0.6,
+   "forced_sale": 5112,
+   "rp_balance": 95728409,
+   "unpaid": 907246
+  },
+  "2025-05-20": {
+   "deposit": 56545822,
+   "deriv_deposit": 11719152,
+   "forced_ratio": 0.8,
+   "forced_sale": 7555,
+   "rp_balance": 95622870,
+   "unpaid": 903737
+  },
+  "2025-05-21": {
+   "deposit": 56101266,
+   "deriv_deposit": 11718501,
+   "forced_ratio": 0.9,
+   "forced_sale": 7933,
+   "rp_balance": 95620937,
+   "unpaid": 912250
+  },
+  "2025-05-22": {
+   "deposit": 56212991,
+   "deriv_deposit": 11747089,
+   "forced_ratio": 0.5,
+   "forced_sale": 4770,
+   "rp_balance": 95790792,
+   "unpaid": 910973
+  },
+  "2025-05-23": {
+   "deposit": 56750014,
+   "deriv_deposit": 11646014,
+   "forced_ratio": 1.1,
+   "forced_sale": 9763,
+   "rp_balance": 94817312,
+   "unpaid": 886502
+  },
+  "2025-05-26": {
+   "deposit": 56756516,
+   "deriv_deposit": 11686431,
+   "forced_ratio": 0.6,
+   "forced_sale": 5258,
+   "rp_balance": 94673137,
+   "unpaid": 902323
+  },
+  "2025-05-27": {
+   "deposit": 57500411,
+   "deriv_deposit": 11648675,
+   "forced_ratio": 0.7,
+   "forced_sale": 6093,
+   "rp_balance": 95634078,
+   "unpaid": 904879
+  },
+  "2025-05-28": {
+   "deposit": 56402864,
+   "deriv_deposit": 11857986,
+   "forced_ratio": 0.5,
+   "forced_sale": 4186,
+   "rp_balance": 94973031,
+   "unpaid": 910349
+  },
+  "2025-05-29": {
+   "deposit": 58029086,
+   "deriv_deposit": 11993650,
+   "forced_ratio": 0.4,
+   "forced_sale": 3369,
+   "rp_balance": 94934890,
+   "unpaid": 913941
+  },
+  "2025-05-30": {
+   "deposit": 57297162,
+   "deriv_deposit": 11973271,
+   "forced_ratio": 0.4,
+   "forced_sale": 3836,
+   "rp_balance": 95181939,
+   "unpaid": 899053
+  },
+  "2025-06-02": {
+   "deposit": 60188565,
+   "deriv_deposit": 11723849,
+   "forced_ratio": 0.5,
+   "forced_sale": 4651,
+   "rp_balance": 95572434,
+   "unpaid": 887415
+  },
+  "2025-06-04": {
+   "deposit": 60035306,
+   "deriv_deposit": 11871736,
+   "forced_ratio": 0.7,
+   "forced_sale": 6645,
+   "rp_balance": 95912209,
+   "unpaid": 891923
+  },
+  "2025-06-05": {
+   "deposit": 58369719,
+   "deriv_deposit": 11869645,
+   "forced_ratio": 0.4,
+   "forced_sale": 3523,
+   "rp_balance": 95977265,
+   "unpaid": 881422
+  },
+  "2025-06-09": {
+   "deposit": 59660312,
+   "deriv_deposit": 11912279,
+   "forced_ratio": 0.2,
+   "forced_sale": 1643,
+   "rp_balance": 95980978,
+   "unpaid": 882463
+  },
+  "2025-06-10": {
+   "deposit": 62349794,
+   "deriv_deposit": 11964473,
+   "forced_ratio": 0.4,
+   "forced_sale": 3218,
+   "rp_balance": 96201245,
+   "unpaid": 885352
+  },
+  "2025-06-11": {
+   "deposit": 61982196,
+   "deriv_deposit": 12029918,
+   "forced_ratio": 0.4,
+   "forced_sale": 3477,
+   "rp_balance": 96333466,
+   "unpaid": 920383
+  },
+  "2025-06-12": {
+   "deposit": 62944457,
+   "deriv_deposit": 12098138,
+   "forced_ratio": 0.5,
+   "forced_sale": 4557,
+   "rp_balance": 96529702,
+   "unpaid": 956325
+  },
+  "2025-06-13": {
+   "deposit": 63819596,
+   "deriv_deposit": 11919808,
+   "forced_ratio": 0.4,
+   "forced_sale": 4007,
+   "rp_balance": 97019430,
+   "unpaid": 914363
+  },
+  "2025-06-16": {
+   "deposit": 64965825,
+   "deriv_deposit": 11766398,
+   "forced_ratio": 0.4,
+   "forced_sale": 3703,
+   "rp_balance": 96623595,
+   "unpaid": 925711
+  },
+  "2025-06-17": {
+   "deposit": 65020221,
+   "deriv_deposit": 11866813,
+   "forced_ratio": 0.6,
+   "forced_sale": 5592,
+   "rp_balance": 96792449,
+   "unpaid": 960979
+  },
+  "2025-06-18": {
+   "deposit": 63498938,
+   "deriv_deposit": 11952293,
+   "forced_ratio": 0.5,
+   "forced_sale": 5167,
+   "rp_balance": 97113097,
+   "unpaid": 947381
+  },
+  "2025-06-19": {
+   "deposit": 63604817,
+   "deriv_deposit": 11985685,
+   "forced_ratio": 0.4,
+   "forced_sale": 4020,
+   "rp_balance": 97504897,
+   "unpaid": 958242
+  },
+  "2025-06-20": {
+   "deposit": 64214361,
+   "deriv_deposit": 11735141,
+   "forced_ratio": 1.2,
+   "forced_sale": 11154,
+   "rp_balance": 97017902,
+   "unpaid": 942349
+  },
+  "2025-06-23": {
+   "deposit": 65017255,
+   "deriv_deposit": 11755930,
+   "forced_ratio": 0.6,
+   "forced_sale": 5223,
+   "rp_balance": 96608421,
+   "unpaid": 924607
+  },
+  "2025-06-24": {
+   "deposit": 66411445,
+   "deriv_deposit": 11782451,
+   "forced_ratio": 0.8,
+   "forced_sale": 7645,
+   "rp_balance": 95700981,
+   "unpaid": 907075
+  },
+  "2025-06-25": {
+   "deposit": 66676929,
+   "deriv_deposit": 11904670,
+   "forced_ratio": 0.5,
+   "forced_sale": 4623,
+   "rp_balance": 94923658,
+   "unpaid": 974240
+  },
+  "2025-06-26": {
+   "deposit": 69055963,
+   "deriv_deposit": 11949616,
+   "forced_ratio": 0.7,
+   "forced_sale": 7166,
+   "rp_balance": 95225061,
+   "unpaid": 985518
+  },
+  "2025-06-27": {
+   "deposit": 67712740,
+   "deriv_deposit": 11895863,
+   "forced_ratio": 1.3,
+   "forced_sale": 12872,
+   "rp_balance": 95328976,
+   "unpaid": 1045755
+  },
+  "2025-06-30": {
+   "deposit": 68972400,
+   "deriv_deposit": 11832655,
+   "forced_ratio": 1.2,
+   "forced_sale": 12807,
+   "rp_balance": 93212124,
+   "unpaid": 1043687
+  },
+  "2025-07-01": {
+   "deposit": 70413289,
+   "deriv_deposit": 11786713,
+   "forced_ratio": 1.2,
+   "forced_sale": 12280,
+   "rp_balance": 96016975,
+   "unpaid": 986295
+  },
+  "2025-07-02": {
+   "deposit": 66053345,
+   "deriv_deposit": 12335319,
+   "forced_ratio": 1.1,
+   "forced_sale": 10526,
+   "rp_balance": 96493777,
+   "unpaid": 981233
+  },
+  "2025-07-03": {
+   "deposit": 66285116,
+   "deriv_deposit": 12397981,
+   "forced_ratio": 1.1,
+   "forced_sale": 10905,
+   "rp_balance": 96656815,
+   "unpaid": 964050
+  },
+  "2025-07-04": {
+   "deposit": 65383990,
+   "deriv_deposit": 12480471,
+   "forced_ratio": 1.9,
+   "forced_sale": 18192,
+   "rp_balance": 95995510,
+   "unpaid": 961912
+  },
+  "2025-07-07": {
+   "deposit": 67337759,
+   "deriv_deposit": 12300016,
+   "forced_ratio": 0.8,
+   "forced_sale": 7756,
+   "rp_balance": 96016782,
+   "unpaid": 947050
+  },
+  "2025-07-08": {
+   "deposit": 66503811,
+   "deriv_deposit": 12414746,
+   "forced_ratio": 1,
+   "forced_sale": 9106,
+   "rp_balance": 96898057,
+   "unpaid": 954659
+  },
+  "2025-07-09": {
+   "deposit": 65195774,
+   "deriv_deposit": 12529777,
+   "forced_ratio": 0.8,
+   "forced_sale": 7233,
+   "rp_balance": 97243070,
+   "unpaid": 924175
+  },
+  "2025-07-10": {
+   "deposit": 65937053,
+   "deriv_deposit": 12417789,
+   "forced_ratio": 0.4,
+   "forced_sale": 3497,
+   "rp_balance": 97301160,
+   "unpaid": 873242
+  },
+  "2025-07-11": {
+   "deposit": 66369233,
+   "deriv_deposit": 12343076,
+   "forced_ratio": 0.3,
+   "forced_sale": 2280,
+   "rp_balance": 97884460,
+   "unpaid": 871767
+  },
+  "2025-07-14": {
+   "deposit": 68081493,
+   "deriv_deposit": 12437008,
+   "forced_ratio": 0.3,
+   "forced_sale": 2738,
+   "rp_balance": 97813470,
+   "unpaid": 873093
+  },
+  "2025-07-15": {
+   "deposit": 66852063,
+   "deriv_deposit": 12507958,
+   "forced_ratio": 0.3,
+   "forced_sale": 2944,
+   "rp_balance": 97354610,
+   "unpaid": 890639
+  },
+  "2025-07-16": {
+   "deposit": 65595894,
+   "deriv_deposit": 12656771,
+   "forced_ratio": 1,
+   "forced_sale": 8890,
+   "rp_balance": 96621582,
+   "unpaid": 897135
+  },
+  "2025-07-17": {
+   "deposit": 66634991,
+   "deriv_deposit": 12607367,
+   "forced_ratio": 0.5,
+   "forced_sale": 4506,
+   "rp_balance": 97096225,
+   "unpaid": 888887
+  },
+  "2025-07-18": {
+   "deposit": 65364424,
+   "deriv_deposit": 12553016,
+   "forced_ratio": 0.4,
+   "forced_sale": 3948,
+   "rp_balance": 97776010,
+   "unpaid": 926137
+  },
+  "2025-07-21": {
+   "deposit": 65265402,
+   "deriv_deposit": 12552631,
+   "forced_ratio": 0.8,
+   "forced_sale": 7422,
+   "rp_balance": 97293811,
+   "unpaid": 948105
+  },
+  "2025-07-22": {
+   "deposit": 65607845,
+   "deriv_deposit": 12750114,
+   "forced_ratio": 0.8,
+   "forced_sale": 7509,
+   "rp_balance": 97408187,
+   "unpaid": 917109
+  },
+  "2025-07-23": {
+   "deposit": 66402278,
+   "deriv_deposit": 12466092,
+   "forced_ratio": 0.5,
+   "forced_sale": 4680,
+   "rp_balance": 96188815,
+   "unpaid": 908014
+  },
+  "2025-07-24": {
+   "deposit": 64766556,
+   "deriv_deposit": 12504714,
+   "forced_ratio": 0.8,
+   "forced_sale": 6822,
+   "rp_balance": 96113950,
+   "unpaid": 946207
+  },
+  "2025-07-25": {
+   "deposit": 65162253,
+   "deriv_deposit": 12479738,
+   "forced_ratio": 1.3,
+   "forced_sale": 12267,
+   "rp_balance": 96930288,
+   "unpaid": 921240
+  },
+  "2025-07-28": {
+   "deposit": 67724782,
+   "deriv_deposit": 12515122,
+   "forced_ratio": 0.5,
+   "forced_sale": 4740,
+   "rp_balance": 96991173,
+   "unpaid": 926329
+  },
+  "2025-07-29": {
+   "deposit": 67357704,
+   "deriv_deposit": 12604280,
+   "forced_ratio": 1,
+   "forced_sale": 9161,
+   "rp_balance": 96767352,
+   "unpaid": 900574
+  },
+  "2025-07-30": {
+   "deposit": 68236779,
+   "deriv_deposit": 12670623,
+   "forced_ratio": 0.8,
+   "forced_sale": 7624,
+   "rp_balance": 97026783,
+   "unpaid": 924746
+  },
+  "2025-07-31": {
+   "deposit": 68685235,
+   "deriv_deposit": 12669041,
+   "forced_ratio": 0.6,
+   "forced_sale": 5329,
+   "rp_balance": 98029242,
+   "unpaid": 923902
+  },
+  "2025-08-01": {
+   "deposit": 71777723,
+   "deriv_deposit": 12758483,
+   "forced_ratio": 0.6,
+   "forced_sale": 5707,
+   "rp_balance": 98452083,
+   "unpaid": 921454
+  },
+  "2025-08-04": {
+   "deposit": 70294315,
+   "deriv_deposit": 12616057,
+   "forced_ratio": 1.8,
+   "forced_sale": 16924,
+   "rp_balance": 98849408,
+   "unpaid": 951025
+  },
+  "2025-08-05": {
+   "deposit": 67008067,
+   "deriv_deposit": 12518298,
+   "forced_ratio": 1.4,
+   "forced_sale": 13376,
+   "rp_balance": 98812681,
+   "unpaid": 1027661
+  },
+  "2025-08-06": {
+   "deposit": 66281131,
+   "deriv_deposit": 12441187,
+   "forced_ratio": 0.9,
+   "forced_sale": 8847,
+   "rp_balance": 97040264,
+   "unpaid": 934802
+  },
+  "2025-08-07": {
+   "deposit": 66876509,
+   "deriv_deposit": 12391374,
+   "forced_ratio": 0.5,
+   "forced_sale": 4307,
+   "rp_balance": 97556654,
+   "unpaid": 904008
+  },
+  "2025-08-08": {
+   "deposit": 67490593,
+   "deriv_deposit": 12435677,
+   "forced_ratio": 0.4,
+   "forced_sale": 3571,
+   "rp_balance": 98061432,
+   "unpaid": 906006
+  },
+  "2025-08-11": {
+   "deposit": 67961833,
+   "deriv_deposit": 12400997,
+   "forced_ratio": 0.6,
+   "forced_sale": 5881,
+   "rp_balance": 97991747,
+   "unpaid": 931220
+  },
+  "2025-08-12": {
+   "deposit": 68083551,
+   "deriv_deposit": 12481376,
+   "forced_ratio": 0.7,
+   "forced_sale": 6604,
+   "rp_balance": 98444665,
+   "unpaid": 949027
+  },
+  "2025-08-13": {
+   "deposit": 67833939,
+   "deriv_deposit": 12446911,
+   "forced_ratio": 0.7,
+   "forced_sale": 6826,
+   "rp_balance": 98158728,
+   "unpaid": 975169
+  },
+  "2025-08-14": {
+   "deposit": 69397303,
+   "deriv_deposit": 12327810,
+   "forced_ratio": 0.8,
+   "forced_sale": 7537,
+   "rp_balance": 99719609,
+   "unpaid": 1000777
+  },
+  "2025-08-18": {
+   "deposit": 67601908,
+   "deriv_deposit": 12364927,
+   "forced_ratio": 1.1,
+   "forced_sale": 11193,
+   "rp_balance": 99392817,
+   "unpaid": 926627
+  },
+  "2025-08-19": {
+   "deposit": 67492992,
+   "deriv_deposit": 12393070,
+   "forced_ratio": 0.8,
+   "forced_sale": 7043,
+   "rp_balance": 99580585,
+   "unpaid": 895564
+  },
+  "2025-08-20": {
+   "deposit": 68508197,
+   "deriv_deposit": 12396574,
+   "forced_ratio": 0.8,
+   "forced_sale": 7516,
+   "rp_balance": 99748593,
+   "unpaid": 914436
+  },
+  "2025-08-21": {
+   "deposit": 67463145,
+   "deriv_deposit": 12428560,
+   "forced_ratio": 1.4,
+   "forced_sale": 12612,
+   "rp_balance": 99871462,
+   "unpaid": 929586
+  },
+  "2025-08-22": {
+   "deposit": 66622228,
+   "deriv_deposit": 12362446,
+   "forced_ratio": 1.4,
+   "forced_sale": 13060,
+   "rp_balance": 100203764,
+   "unpaid": 923158
+  },
+  "2025-08-25": {
+   "deposit": 66124843,
+   "deriv_deposit": 12410054,
+   "forced_ratio": 0.5,
+   "forced_sale": 4961,
+   "rp_balance": 99576321,
+   "unpaid": 905656
+  },
+  "2025-08-26": {
+   "deposit": 68274038,
+   "deriv_deposit": 12478414,
+   "forced_ratio": 0.4,
+   "forced_sale": 3771,
+   "rp_balance": 99899934,
+   "unpaid": 880694
+  },
+  "2025-08-27": {
+   "deposit": 66861747,
+   "deriv_deposit": 12365627,
+   "forced_ratio": 0.4,
+   "forced_sale": 3852,
+   "rp_balance": 99950525,
+   "unpaid": 894507
+  },
+  "2025-08-28": {
+   "deposit": 67359049,
+   "deriv_deposit": 12349355,
+   "forced_ratio": 0.6,
+   "forced_sale": 5709,
+   "rp_balance": 99768550,
+   "unpaid": 915445
+  },
+  "2025-08-29": {
+   "deposit": 66299202,
+   "deriv_deposit": 12271635,
+   "forced_ratio": 0.8,
+   "forced_sale": 7148,
+   "rp_balance": 99959753,
+   "unpaid": 911498
+  },
+  "2025-09-01": {
+   "deposit": 68477259,
+   "deriv_deposit": 12376268,
+   "forced_ratio": 1,
+   "forced_sale": 8723,
+   "rp_balance": 99981212,
+   "unpaid": 896411
+  },
+  "2025-09-02": {
+   "deposit": 66185769,
+   "deriv_deposit": 12249482,
+   "forced_ratio": 0.7,
+   "forced_sale": 6148,
+   "rp_balance": 99975619,
+   "unpaid": 891147
+  },
+  "2025-09-03": {
+   "deposit": 65459551,
+   "deriv_deposit": 12263345,
+   "forced_ratio": 0.5,
+   "forced_sale": 4674,
+   "rp_balance": 100270358,
+   "unpaid": 914724
+  },
+  "2025-09-04": {
+   "deposit": 65940333,
+   "deriv_deposit": 12225739,
+   "forced_ratio": 0.4,
+   "forced_sale": 3853,
+   "rp_balance": 100844422,
+   "unpaid": 898114
+  },
+  "2025-09-05": {
+   "deposit": 64979582,
+   "deriv_deposit": 12236008,
+   "forced_ratio": 0.6,
+   "forced_sale": 5214,
+   "rp_balance": 100718226,
+   "unpaid": 892778
+  },
+  "2025-09-08": {
+   "deposit": 65800881,
+   "deriv_deposit": 12126770,
+   "forced_ratio": 0.5,
+   "forced_sale": 4286,
+   "rp_balance": 100853622,
+   "unpaid": 883479
+  },
+  "2025-09-09": {
+   "deposit": 68378500,
+   "deriv_deposit": 12210761,
+   "forced_ratio": 0.5,
+   "forced_sale": 4306,
+   "rp_balance": 100754568,
+   "unpaid": 893993
+  },
+  "2025-09-10": {
+   "deposit": 70590693,
+   "deriv_deposit": 12316675,
+   "forced_ratio": 0.3,
+   "forced_sale": 3120,
+   "rp_balance": 100945657,
+   "unpaid": 875016
+  },
+  "2025-09-11": {
+   "deposit": 71011813,
+   "deriv_deposit": 12444257,
+   "forced_ratio": 0.7,
+   "forced_sale": 6389,
+   "rp_balance": 100451453,
+   "unpaid": 883323
+  },
+  "2025-09-12": {
+   "deposit": 72887328,
+   "deriv_deposit": 12526377,
+   "forced_ratio": 0.5,
+   "forced_sale": 4591,
+   "rp_balance": 100207778,
+   "unpaid": 890190
+  },
+  "2025-09-15": {
+   "deposit": 74764367,
+   "deriv_deposit": 12451490,
+   "forced_ratio": 0.3,
+   "forced_sale": 2661,
+   "rp_balance": 100823231,
+   "unpaid": 895814
+  },
+  "2025-09-16": {
+   "deposit": 74928122,
+   "deriv_deposit": 12535583,
+   "forced_ratio": 0.4,
+   "forced_sale": 3436,
+   "rp_balance": 100725257,
+   "unpaid": 897225
+  },
+  "2025-09-17": {
+   "deposit": 73025829,
+   "deriv_deposit": 12749612,
+   "forced_ratio": 0.7,
+   "forced_sale": 6024,
+   "rp_balance": 100960837,
+   "unpaid": 929567
+  },
+  "2025-09-18": {
+   "deposit": 73606507,
+   "deriv_deposit": 12634528,
+   "forced_ratio": 0.9,
+   "forced_sale": 7934,
+   "rp_balance": 101326266,
+   "unpaid": 907199
+  },
+  "2025-09-19": {
+   "deposit": 72551874,
+   "deriv_deposit": 12726897,
+   "forced_ratio": 0.8,
+   "forced_sale": 7241,
+   "rp_balance": 99448770,
+   "unpaid": 928665
+  },
+  "2025-09-22": {
+   "deposit": 73560788,
+   "deriv_deposit": 12623020,
+   "forced_ratio": 0.7,
+   "forced_sale": 6103,
+   "rp_balance": 99306796,
+   "unpaid": 938260
+  },
+  "2025-09-23": {
+   "deposit": 74921264,
+   "deriv_deposit": 12722714,
+   "forced_ratio": 0.7,
+   "forced_sale": 6543,
+   "rp_balance": 101034705,
+   "unpaid": 1050048
+  },
+  "2025-09-24": {
+   "deposit": 75197067,
+   "deriv_deposit": 12861861,
+   "forced_ratio": 0.5,
+   "forced_sale": 5461,
+   "rp_balance": 101102932,
+   "unpaid": 979930
+  },
+  "2025-09-25": {
+   "deposit": 75995189,
+   "deriv_deposit": 12805324,
+   "forced_ratio": 0.6,
+   "forced_sale": 5430,
+   "rp_balance": 100996740,
+   "unpaid": 1040406
+  },
+  "2025-09-26": {
+   "deposit": 75617889,
+   "deriv_deposit": 12990102,
+   "forced_ratio": 1.1,
+   "forced_sale": 11727,
+   "rp_balance": 100796578,
+   "unpaid": 943481
+  },
+  "2025-09-29": {
+   "deposit": 76808482,
+   "deriv_deposit": 12322286,
+   "forced_ratio": 2.1,
+   "forced_sale": 19739,
+   "rp_balance": 99686489,
+   "unpaid": 939970
+  },
+  "2025-09-30": {
+   "deposit": 76447369,
+   "deriv_deposit": 12389203,
+   "forced_ratio": 1.5,
+   "forced_sale": 14465,
+   "rp_balance": 98753224,
+   "unpaid": 1105883
+  },
+  "2025-10-01": {
+   "deposit": 76530136,
+   "deriv_deposit": 12425103,
+   "forced_ratio": 1.1,
+   "forced_sale": 12665,
+   "rp_balance": 100878802,
+   "unpaid": 919729
+  },
+  "2025-10-02": {
+   "deposit": 73135876,
+   "deriv_deposit": 12921530,
+   "forced_ratio": 0.5,
+   "forced_sale": 4319,
+   "rp_balance": 101143705,
+   "unpaid": 910238
+  },
+  "2025-10-10": {
+   "deposit": 76322460,
+   "deriv_deposit": 13168570,
+   "forced_ratio": 0.9,
+   "forced_sale": 8056,
+   "rp_balance": 101184917,
+   "unpaid": 908101
+  },
+  "2025-10-13": {
+   "deposit": 80190101,
+   "deriv_deposit": 13550413,
+   "forced_ratio": 0.4,
+   "forced_sale": 3933,
+   "rp_balance": 101493181,
+   "unpaid": 913657
+  },
+  "2025-10-14": {
+   "deposit": 79974887,
+   "deriv_deposit": 13449383,
+   "forced_ratio": 0.6,
+   "forced_sale": 5664,
+   "rp_balance": 102090738,
+   "unpaid": 957831
+  },
+  "2025-10-15": {
+   "deposit": 78651417,
+   "deriv_deposit": 13285420,
+   "forced_ratio": 1,
+   "forced_sale": 9927,
+   "rp_balance": 102048744,
+   "unpaid": 1032881
+  },
+  "2025-10-16": {
+   "deposit": 76537436,
+   "deriv_deposit": 13616323,
+   "forced_ratio": 1,
+   "forced_sale": 9866,
+   "rp_balance": 102514281,
+   "unpaid": 1091347
+  },
+  "2025-10-17": {
+   "deposit": 78314510,
+   "deriv_deposit": 13781537,
+   "forced_ratio": 1,
+   "forced_sale": 10864,
+   "rp_balance": 102506936,
+   "unpaid": 1077479
+  },
+  "2025-10-20": {
+   "deposit": 80625741,
+   "deriv_deposit": 13991579,
+   "forced_ratio": 0.5,
+   "forced_sale": 5508,
+   "rp_balance": 102813997,
+   "unpaid": 941807
+  },
+  "2025-10-21": {
+   "deposit": 80329780,
+   "deriv_deposit": 14380512,
+   "forced_ratio": 1,
+   "forced_sale": 9150,
+   "rp_balance": 103030435,
+   "unpaid": 964510
+  },
+  "2025-10-22": {
+   "deposit": 80480303,
+   "deriv_deposit": 14151341,
+   "forced_ratio": 0.6,
+   "forced_sale": 5362,
+   "rp_balance": 102763200,
+   "unpaid": 909385
+  },
+  "2025-10-23": {
+   "deposit": 80168381,
+   "deriv_deposit": 14340934,
+   "forced_ratio": 0.6,
+   "forced_sale": 5154,
+   "rp_balance": 102925464,
+   "unpaid": 953550
+  },
+  "2025-10-24": {
+   "deposit": 79482481,
+   "deriv_deposit": 13986267,
+   "forced_ratio": 1.6,
+   "forced_sale": 14877,
+   "rp_balance": 102016288,
+   "unpaid": 950135
+  },
+  "2025-10-27": {
+   "deposit": 81091075,
+   "deriv_deposit": 14422958,
+   "forced_ratio": 0.4,
+   "forced_sale": 3725,
+   "rp_balance": 101444246,
+   "unpaid": 974821
+  },
+  "2025-10-28": {
+   "deposit": 83873131,
+   "deriv_deposit": 15039831,
+   "forced_ratio": 0.4,
+   "forced_sale": 3952,
+   "rp_balance": 101811944,
+   "unpaid": 922451
+  },
+  "2025-10-29": {
+   "deposit": 85915908,
+   "deriv_deposit": 14938205,
+   "forced_ratio": 0.4,
+   "forced_sale": 3817,
+   "rp_balance": 101842932,
+   "unpaid": 979536
+  },
+  "2025-10-30": {
+   "deposit": 85713610,
+   "deriv_deposit": 15033995,
+   "forced_ratio": 1.1,
+   "forced_sale": 10968,
+   "rp_balance": 102326463,
+   "unpaid": 1026127
+  },
+  "2025-10-31": {
+   "deposit": 85456932,
+   "deriv_deposit": 15330761,
+   "forced_ratio": 0.7,
+   "forced_sale": 7246,
+   "rp_balance": 102531098,
+   "unpaid": 1036188
+  },
+  "2025-11-03": {
+   "deposit": 86770436,
+   "deriv_deposit": 15981497,
+   "forced_ratio": 1.3,
+   "forced_sale": 13361,
+   "rp_balance": 103051365,
+   "unpaid": 1101256
+  },
+  "2025-11-04": {
+   "deposit": 86832592,
+   "deriv_deposit": 17015996,
+   "forced_ratio": 1.5,
+   "forced_sale": 16251,
+   "rp_balance": 102879856,
+   "unpaid": 996037
+  },
+  "2025-11-05": {
+   "deposit": 88270869,
+   "deriv_deposit": 17037812,
+   "forced_ratio": 0.8,
+   "forced_sale": 7954,
+   "rp_balance": 101212741,
+   "unpaid": 970501
+  },
+  "2025-11-06": {
+   "deposit": 86955673,
+   "deriv_deposit": 16762932,
+   "forced_ratio": 2.3,
+   "forced_sale": 21865,
+   "rp_balance": 101865585,
+   "unpaid": 1124772
+  },
+  "2025-11-07": {
+   "deposit": 85722161,
+   "deriv_deposit": 16788718,
+   "forced_ratio": 3.4,
+   "forced_sale": 38023,
+   "rp_balance": 101795841,
+   "unpaid": 1178765
+  },
+  "2025-11-10": {
+   "deposit": 83109660,
+   "deriv_deposit": 16678219,
+   "forced_ratio": 1.6,
+   "forced_sale": 19029,
+   "rp_balance": 101693796,
+   "unpaid": 1101541
+  },
+  "2025-11-11": {
+   "deposit": 83030408,
+   "deriv_deposit": 16744911,
+   "forced_ratio": 1.8,
+   "forced_sale": 19554,
+   "rp_balance": 102014535,
+   "unpaid": 1038302
+  },
+  "2025-11-12": {
+   "deposit": 82468593,
+   "deriv_deposit": 16920891,
+   "forced_ratio": 0.6,
+   "forced_sale": 6471,
+   "rp_balance": 102157642,
+   "unpaid": 910437
+  },
+  "2025-11-13": {
+   "deposit": 82584491,
+   "deriv_deposit": 16804358,
+   "forced_ratio": 0.6,
+   "forced_sale": 5041,
+   "rp_balance": 104348381,
+   "unpaid": 918921
+  },
+  "2025-11-14": {
+   "deposit": 82724559,
+   "deriv_deposit": 16925547,
+   "forced_ratio": 1.1,
+   "forced_sale": 10340,
+   "rp_balance": 104147146,
+   "unpaid": 897817
+  },
+  "2025-11-17": {
+   "deposit": 85944802,
+   "deriv_deposit": 16229126,
+   "forced_ratio": 0.4,
+   "forced_sale": 3741,
+   "rp_balance": 103761446,
+   "unpaid": 913254
+  },
+  "2025-11-18": {
+   "deposit": 79661502,
+   "deriv_deposit": 16680639,
+   "forced_ratio": 3.6,
+   "forced_sale": 33196,
+   "rp_balance": 103913437,
+   "unpaid": 1014681
+  },
+  "2025-11-19": {
+   "deposit": 80027611,
+   "deriv_deposit": 16202889,
+   "forced_ratio": 1,
+   "forced_sale": 10602,
+   "rp_balance": 102915553,
+   "unpaid": 1007340
+  },
+  "2025-11-20": {
+   "deposit": 78212051,
+   "deriv_deposit": 16031324,
+   "forced_ratio": 1.3,
+   "forced_sale": 12788,
+   "rp_balance": 102845373,
+   "unpaid": 1015699
+  },
+  "2025-11-21": {
+   "deposit": 78826325,
+   "deriv_deposit": 16270546,
+   "forced_ratio": 1.7,
+   "forced_sale": 16776,
+   "rp_balance": 104018136,
+   "unpaid": 1021752
+  },
+  "2025-11-24": {
+   "deposit": 80195335,
+   "deriv_deposit": 15559895,
+   "forced_ratio": 1.1,
+   "forced_sale": 11397,
+   "rp_balance": 101436418,
+   "unpaid": 982207
+  },
+  "2025-11-25": {
+   "deposit": 75622307,
+   "deriv_deposit": 15547748,
+   "forced_ratio": 3.8,
+   "forced_sale": 37308,
+   "rp_balance": 101406813,
+   "unpaid": 1029992
+  },
+  "2025-11-26": {
+   "deposit": 77954553,
+   "deriv_deposit": 15616427,
+   "forced_ratio": 0.7,
+   "forced_sale": 7020,
+   "rp_balance": 103466780,
+   "unpaid": 993749
+  },
+  "2025-11-27": {
+   "deposit": 77471172,
+   "deriv_deposit": 15613235,
+   "forced_ratio": 0.4,
+   "forced_sale": 4142,
+   "rp_balance": 103870948,
+   "unpaid": 975060
+  },
+  "2025-11-28": {
+   "deposit": 77911992,
+   "deriv_deposit": 15844558,
+   "forced_ratio": 0.4,
+   "forced_sale": 4113,
+   "rp_balance": 103931267,
+   "unpaid": 909449
+  },
+  "2025-12-01": {
+   "deposit": 80176651,
+   "deriv_deposit": 16051388,
+   "forced_ratio": 0.5,
+   "forced_sale": 4396,
+   "rp_balance": 103846300,
+   "unpaid": 907016
+  },
+  "2025-12-02": {
+   "deposit": 77067324,
+   "deriv_deposit": 16412391,
+   "forced_ratio": 1,
+   "forced_sale": 8882,
+   "rp_balance": 103402645,
+   "unpaid": 922488
+  },
+  "2025-12-03": {
+   "deposit": 76964366,
+   "deriv_deposit": 16630938,
+   "forced_ratio": 0.4,
+   "forced_sale": 3519,
+   "rp_balance": 102874666,
+   "unpaid": 944945
+  },
+  "2025-12-04": {
+   "deposit": 77406998,
+   "deriv_deposit": 16622425,
+   "forced_ratio": 0.6,
+   "forced_sale": 5952,
+   "rp_balance": 102153099,
+   "unpaid": 911162
+  },
+  "2025-12-05": {
+   "deposit": 78137070,
+   "deriv_deposit": 16595355,
+   "forced_ratio": 0.6,
+   "forced_sale": 5085,
+   "rp_balance": 102483700,
+   "unpaid": 901397
+  },
+  "2025-12-08": {
+   "deposit": 79385990,
+   "deriv_deposit": 16825360,
+   "forced_ratio": 0.9,
+   "forced_sale": 7820,
+   "rp_balance": 104168718,
+   "unpaid": 934714
+  },
+  "2025-12-09": {
+   "deposit": 80575403,
+   "deriv_deposit": 16997300,
+   "forced_ratio": 0.8,
+   "forced_sale": 7300,
+   "rp_balance": 104968261,
+   "unpaid": 951435
+  },
+  "2025-12-10": {
+   "deposit": 80566459,
+   "deriv_deposit": 17060791,
+   "forced_ratio": 0.8,
+   "forced_sale": 7669,
+   "rp_balance": 102824574,
+   "unpaid": 1048181
+  },
+  "2025-12-11": {
+   "deposit": 81641531,
+   "deriv_deposit": 17252320,
+   "forced_ratio": 0.8,
+   "forced_sale": 7869,
+   "rp_balance": 103248246,
+   "unpaid": 1014633
+  },
+  "2025-12-12": {
+   "deposit": 83941863,
+   "deriv_deposit": 16694126,
+   "forced_ratio": 0.8,
+   "forced_sale": 8402,
+   "rp_balance": 103438629,
+   "unpaid": 1050980
+  },
+  "2025-12-15": {
+   "deposit": 82864679,
+   "deriv_deposit": 17053142,
+   "forced_ratio": 0.7,
+   "forced_sale": 7252,
+   "rp_balance": 102647037,
+   "unpaid": 1046621
+  },
+  "2025-12-16": {
+   "deposit": 84352786,
+   "deriv_deposit": 16739219,
+   "forced_ratio": 1,
+   "forced_sale": 10686,
+   "rp_balance": 102507057,
+   "unpaid": 913361
+  },
+  "2025-12-17": {
+   "deposit": 83526293,
+   "deriv_deposit": 16485072,
+   "forced_ratio": 0.8,
+   "forced_sale": 7125,
+   "rp_balance": 103481793,
+   "unpaid": 940500
+  },
+  "2025-12-18": {
+   "deposit": 81710726,
+   "deriv_deposit": 16616913,
+   "forced_ratio": 1.6,
+   "forced_sale": 15218,
+   "rp_balance": 104501769,
+   "unpaid": 1010288
+  },
+  "2025-12-19": {
+   "deposit": 81034422,
+   "deriv_deposit": 16139385,
+   "forced_ratio": 0.9,
+   "forced_sale": 9283,
+   "rp_balance": 102405220,
+   "unpaid": 954324
+  },
+  "2025-12-22": {
+   "deposit": 81719604,
+   "deriv_deposit": 16222612,
+   "forced_ratio": 1,
+   "forced_sale": 9201,
+   "rp_balance": 104233150,
+   "unpaid": 932493
+  },
+  "2025-12-23": {
+   "deposit": 81076938,
+   "deriv_deposit": 16697322,
+   "forced_ratio": 0.5,
+   "forced_sale": 5062,
+   "rp_balance": 103768094,
+   "unpaid": 939581
+  },
+  "2025-12-24": {
+   "deposit": 83304002,
+   "deriv_deposit": 16750102,
+   "forced_ratio": 0.4,
+   "forced_sale": 3956,
+   "rp_balance": 103011388,
+   "unpaid": 914994
+  },
+  "2025-12-26": {
+   "deposit": 85425076,
+   "deriv_deposit": 16927871,
+   "forced_ratio": 0.5,
+   "forced_sale": 4539,
+   "rp_balance": 102497906,
+   "unpaid": 897165
+  },
+  "2025-12-29": {
+   "deposit": 86475780,
+   "deriv_deposit": 17169227,
+   "forced_ratio": 0.9,
+   "forced_sale": 7935,
+   "rp_balance": 103055568,
+   "unpaid": 914848
+  },
+  "2025-12-30": {
+   "deposit": 87398579,
+   "deriv_deposit": 17425818,
+   "forced_ratio": 0.7,
+   "forced_sale": 6834,
+   "rp_balance": 102484432,
+   "unpaid": 941320
+  },
+  "2025-12-31": {
+   "deposit": 87829057,
+   "deriv_deposit": 17371190,
+   "forced_ratio": 0.3,
+   "forced_sale": 2361,
+   "rp_balance": 100272753,
+   "unpaid": 960235
+  },
+  "2026-01-02": {
+   "deposit": 89521075,
+   "deriv_deposit": 18398675,
+   "forced_ratio": 0.8,
+   "forced_sale": 8067,
+   "rp_balance": 103344464,
+   "unpaid": 927308
+  },
+  "2026-01-05": {
+   "deposit": 89130391,
+   "deriv_deposit": 18901201,
+   "forced_ratio": 0.9,
+   "forced_sale": 8223,
+   "rp_balance": 101863885,
+   "unpaid": 921033
+  },
+  "2026-01-06": {
+   "deposit": 88633858,
+   "deriv_deposit": 19324606,
+   "forced_ratio": 0.6,
+   "forced_sale": 5209,
+   "rp_balance": 102256704,
+   "unpaid": 937940
+  },
+  "2026-01-07": {
+   "deposit": 89765035,
+   "deriv_deposit": 19792911,
+   "forced_ratio": 0.8,
+   "forced_sale": 7210,
+   "rp_balance": 102703620,
+   "unpaid": 990221
+  },
+  "2026-01-08": {
+   "deposit": 92853739,
+   "deriv_deposit": 19602265,
+   "forced_ratio": 0.7,
+   "forced_sale": 7414,
+   "rp_balance": 102982986,
+   "unpaid": 1039608
+  },
+  "2026-01-09": {
+   "deposit": 88872017,
+   "deriv_deposit": 19311242,
+   "forced_ratio": 1.1,
+   "forced_sale": 11752,
+   "rp_balance": 103628228,
+   "unpaid": 1091415
+  },
+  "2026-01-12": {
+   "deposit": 88988049,
+   "deriv_deposit": 19437875,
+   "forced_ratio": 1.2,
+   "forced_sale": 13077,
+   "rp_balance": 103924885,
+   "unpaid": 1109166
+  },
+  "2026-01-13": {
+   "deposit": 88048929,
+   "deriv_deposit": 19359405,
+   "forced_ratio": 1.1,
+   "forced_sale": 12234,
+   "rp_balance": 103403486,
+   "unpaid": 1030149
+  },
+  "2026-01-14": {
+   "deposit": 89309938,
+   "deriv_deposit": 19178238,
+   "forced_ratio": 1.1,
+   "forced_sale": 11491,
+   "rp_balance": 103883438,
+   "unpaid": 1015277
+  },
+  "2026-01-15": {
+   "deposit": 92603047,
+   "deriv_deposit": 19360319,
+   "forced_ratio": 0.9,
+   "forced_sale": 9040,
+   "rp_balance": 105024798,
+   "unpaid": 1018290
+  },
+  "2026-01-16": {
+   "deposit": 91218177,
+   "deriv_deposit": 19696710,
+   "forced_ratio": 1.5,
+   "forced_sale": 14956,
+   "rp_balance": 104901295,
+   "unpaid": 1026858
+  },
+  "2026-01-19": {
+   "deposit": 93862316,
+   "deriv_deposit": 19949183,
+   "forced_ratio": 0.8,
+   "forced_sale": 8660,
+   "rp_balance": 104876317,
+   "unpaid": 1051066
+  },
+  "2026-01-20": {
+   "deposit": 95525974,
+   "deriv_deposit": 20296204,
+   "forced_ratio": 0.9,
+   "forced_sale": 9360,
+   "rp_balance": 104104459,
+   "unpaid": 991800
+  },
+  "2026-01-21": {
+   "deposit": 96331743,
+   "deriv_deposit": 20104458,
+   "forced_ratio": 0.8,
+   "forced_sale": 8312,
+   "rp_balance": 102714947,
+   "unpaid": 983496
+  },
+  "2026-01-22": {
+   "deposit": 95727595,
+   "deriv_deposit": 20103495,
+   "forced_ratio": 0.7,
+   "forced_sale": 6942,
+   "rp_balance": 102351831,
+   "unpaid": 1059465
+  },
+  "2026-01-23": {
+   "deposit": 93809507,
+   "deriv_deposit": 20030121,
+   "forced_ratio": 1.3,
+   "forced_sale": 14241,
+   "rp_balance": 104686069,
+   "unpaid": 1052002
+  },
+  "2026-01-26": {
+   "deposit": 97540543,
+   "deriv_deposit": 20684882,
+   "forced_ratio": 1.1,
+   "forced_sale": 11902,
+   "rp_balance": 104335997,
+   "unpaid": 1110846
+  },
+  "2026-01-27": {
+   "deposit": 100282602,
+   "deriv_deposit": 20892405,
+   "forced_ratio": 1.7,
+   "forced_sale": 19317,
+   "rp_balance": 104504810,
+   "unpaid": 1038255
+  },
+  "2026-01-28": {
+   "deposit": 103362323,
+   "deriv_deposit": 22008926,
+   "forced_ratio": 0.8,
+   "forced_sale": 8717,
+   "rp_balance": 104433687,
+   "unpaid": 1021773
+  },
+  "2026-01-29": {
+   "deposit": 103707195,
+   "deriv_deposit": 22673292,
+   "forced_ratio": 0.8,
+   "forced_sale": 8468,
+   "rp_balance": 104794997,
+   "unpaid": 973521
+  },
+  "2026-01-30": {
+   "deposit": 106032452,
+   "deriv_deposit": 23580561,
+   "forced_ratio": 1,
+   "forced_sale": 9682,
+   "rp_balance": 104984937,
+   "unpaid": 1020951
+  },
+  "2026-02-02": {
+   "deposit": 111296538,
+   "deriv_deposit": 24882865,
+   "forced_ratio": 1.2,
+   "forced_sale": 11968,
+   "rp_balance": 104830069,
+   "unpaid": 1029921
+  },
+  "2026-02-03": {
+   "deposit": 105584468,
+   "deriv_deposit": 23154771,
+   "forced_ratio": 1.5,
+   "forced_sale": 15940,
+   "rp_balance": 105477317,
+   "unpaid": 1077941
+  },
+  "2026-02-04": {
+   "deposit": 100817155,
+   "deriv_deposit": 24039423,
+   "forced_ratio": 1.2,
+   "forced_sale": 13289,
+   "rp_balance": 105919283,
+   "unpaid": 1259997
+  },
+  "2026-02-05": {
+   "deposit": 104866667,
+   "deriv_deposit": 24412049,
+   "forced_ratio": 1,
+   "forced_sale": 12756,
+   "rp_balance": 105988743,
+   "unpaid": 1009409
+  },
+  "2026-02-06": {
+   "deposit": 109009927,
+   "deriv_deposit": 23787731,
+   "forced_ratio": 0.9,
+   "forced_sale": 9326,
+   "rp_balance": 106041696,
+   "unpaid": 992213
+  },
+  "2026-02-09": {
+   "deposit": 98590517,
+   "deriv_deposit": 23766440,
+   "forced_ratio": 3.6,
+   "forced_sale": 35997,
+   "rp_balance": 107333697,
+   "unpaid": 1123841
+  },
+  "2026-02-10": {
+   "deposit": 95299599,
+   "deriv_deposit": 23883431,
+   "forced_ratio": 1.5,
+   "forced_sale": 16870,
+   "rp_balance": 107257861,
+   "unpaid": 1126016
+  },
+  "2026-02-11": {
+   "deposit": 98163375,
+   "deriv_deposit": 23716662,
+   "forced_ratio": 0.7,
+   "forced_sale": 8035,
+   "rp_balance": 107870595,
+   "unpaid": 1033084
+  },
+  "2026-02-12": {
+   "deposit": 103018385,
+   "deriv_deposit": 23560946,
+   "forced_ratio": 1.2,
+   "forced_sale": 12026,
+   "rp_balance": 108352773,
+   "unpaid": 1023759
+  },
+  "2026-02-13": {
+   "deposit": 99273599,
+   "deriv_deposit": 24285614,
+   "forced_ratio": 0.6,
+   "forced_sale": 6257,
+   "rp_balance": 109340901,
+   "unpaid": 1000082
+  },
+  "2026-02-19": {
+   "deposit": 106570048,
+   "deriv_deposit": 23960700,
+   "forced_ratio": 0.9,
+   "forced_sale": 9426,
+   "rp_balance": 109563051,
+   "unpaid": 985005
+  },
+  "2026-02-20": {
+   "deposit": 104129136,
+   "deriv_deposit": 24700770,
+   "forced_ratio": 0.9,
+   "forced_sale": 8709,
+   "rp_balance": 110278626,
+   "unpaid": 986768
+  },
+  "2026-02-23": {
+   "deposit": 108290073,
+   "deriv_deposit": 25326064,
+   "forced_ratio": 0.7,
+   "forced_sale": 7068,
+   "rp_balance": 108713278,
+   "unpaid": 1013185
+  },
+  "2026-02-24": {
+   "deposit": 107903182,
+   "deriv_deposit": 25166402,
+   "forced_ratio": 1,
+   "forced_sale": 9684,
+   "rp_balance": 107652919,
+   "unpaid": 1043882
+  },
+  "2026-02-25": {
+   "deposit": 109467654,
+   "deriv_deposit": 26255734,
+   "forced_ratio": 2.8,
+   "forced_sale": 29055,
+   "rp_balance": 108803775,
+   "unpaid": 1148329
+  },
+  "2026-02-26": {
+   "deposit": 119483202,
+   "deriv_deposit": 26558264,
+   "forced_ratio": 1.3,
+   "forced_sale": 15398,
+   "rp_balance": 110847726,
+   "unpaid": 1096225
+  },
+  "2026-02-27": {
+   "deposit": 118748760,
+   "deriv_deposit": 29213675,
+   "forced_ratio": 0.7,
+   "forced_sale": 7678,
+   "rp_balance": 111007026,
+   "unpaid": 1052616
+  },
+  "2026-03-03": {
+   "deposit": 129818794,
+   "deriv_deposit": 30113174,
+   "forced_ratio": 0.9,
+   "forced_sale": 9219,
+   "rp_balance": 109793041,
+   "unpaid": 1060562
+  },
+  "2026-03-04": {
+   "deposit": 132068238,
+   "deriv_deposit": 29403230,
+   "forced_ratio": 2.1,
+   "forced_sale": 22499,
+   "rp_balance": 108369580,
+   "unpaid": 1204065
+  },
+  "2026-03-05": {
+   "deposit": 130887316,
+   "deriv_deposit": 26674713,
+   "forced_ratio": 6.5,
+   "forced_sale": 77684,
+   "rp_balance": 109565297,
+   "unpaid": 2148791
+  },
+  "2026-03-06": {
+   "deposit": 129957423,
+   "deriv_deposit": 27595794,
+   "forced_ratio": 3.8,
+   "forced_sale": 82421,
+   "rp_balance": 110259165,
+   "unpaid": 2098340
+  },
+  "2026-03-09": {
+   "deposit": 127421841,
+   "deriv_deposit": 28171964,
+   "forced_ratio": 1.7,
+   "forced_sale": 35419,
+   "rp_balance": 110489595,
+   "unpaid": 1330396
+  },
+  "2026-03-10": {
+   "deposit": 125584440,
+   "deriv_deposit": 26638764,
+   "forced_ratio": 3.4,
+   "forced_sale": 44602,
+   "rp_balance": 111983792,
+   "unpaid": 1177854
+  },
+  "2026-03-11": {
+   "deposit": 119027974,
+   "deriv_deposit": 26969491,
+   "forced_ratio": 1.9,
+   "forced_sale": 22343,
+   "rp_balance": 112350683,
+   "unpaid": 1245340
+  },
+  "2026-03-12": {
+   "deposit": 120146171,
+   "deriv_deposit": 26602039,
+   "forced_ratio": 1.6,
+   "forced_sale": 19416,
+   "rp_balance": 112122617,
+   "unpaid": 1066368
+  },
+  "2026-03-13": {
+   "deposit": 119696048,
+   "deriv_deposit": 26343326,
+   "forced_ratio": 1.3,
+   "forced_sale": 13389,
+   "rp_balance": 112718141,
+   "unpaid": 1111822
+  },
+  "2026-03-16": {
+   "deposit": 117801150,
+   "deriv_deposit": 26308910,
+   "forced_ratio": 2.8,
+   "forced_sale": 31579,
+   "rp_balance": 113607197,
+   "unpaid": 1027468
+  },
+  "2026-03-17": {
+   "deposit": 114778257,
+   "deriv_deposit": 26674971,
+   "forced_ratio": 1,
+   "forced_sale": 9815,
+   "rp_balance": 112008706,
+   "unpaid": 1023970
+  },
+  "2026-03-18": {
+   "deposit": 112280744,
+   "deriv_deposit": 26744435,
+   "forced_ratio": 1.4,
+   "forced_sale": 13889,
+   "rp_balance": 111821052,
+   "unpaid": 1006348
+  },
+  "2026-03-19": {
+   "deposit": 115644268,
+   "deriv_deposit": 28113495,
+   "forced_ratio": 0.7,
+   "forced_sale": 6785,
+   "rp_balance": 113601925,
+   "unpaid": 1048607
+  },
+  "2026-03-20": {
+   "deposit": 120696831,
+   "deriv_deposit": 27326736,
+   "forced_ratio": 0.8,
+   "forced_sale": 8143,
+   "rp_balance": 113432160,
+   "unpaid": 982440
+  },
+  "2026-03-23": {
+   "deposit": 121899192,
+   "deriv_deposit": 28488066,
+   "forced_ratio": 1.6,
+   "forced_sale": 15321,
+   "rp_balance": 112097481,
+   "unpaid": 1010663
+  },
+  "2026-03-24": {
+   "deposit": 119759946,
+   "deriv_deposit": 27185118,
+   "forced_ratio": 2.3,
+   "forced_sale": 23462,
+   "rp_balance": 111865168,
+   "unpaid": 1006094
+  },
+  "2026-03-25": {
+   "deposit": 108849805,
+   "deriv_deposit": 27339424,
+   "forced_ratio": 2.3,
+   "forced_sale": 23618,
+   "rp_balance": 111811484,
+   "unpaid": 1221838
+  },
+  "2026-03-26": {
+   "deposit": 111579004,
+   "deriv_deposit": 27590258,
+   "forced_ratio": 1,
+   "forced_sale": 11820,
+   "rp_balance": 112824410,
+   "unpaid": 1177409
+  },
+  "2026-03-27": {
+   "deposit": 112837249,
+   "deriv_deposit": 26721535,
+   "forced_ratio": 1.6,
+   "forced_sale": 18933,
+   "rp_balance": 112901034,
+   "unpaid": 1006932
+  },
+  "2026-03-30": {
+   "deposit": 111074174,
+   "deriv_deposit": 26861479,
+   "forced_ratio": 2.4,
+   "forced_sale": 23722,
+   "rp_balance": 111915537,
+   "unpaid": 1100437
+  },
+  "2026-03-31": {
+   "deposit": 110288948,
+   "deriv_deposit": 26845024,
+   "forced_ratio": 3.3,
+   "forced_sale": 36751,
+   "rp_balance": 109700727,
+   "unpaid": 1038993
+  },
+  "2026-04-01": {
+   "deposit": 111676635,
+   "deriv_deposit": 26399245,
+   "forced_ratio": 2.9,
+   "forced_sale": 30575,
+   "rp_balance": 111431875,
+   "unpaid": 1052999
+  },
+  "2026-04-02": {
+   "deposit": 108573983,
+   "deriv_deposit": 27841096,
+   "forced_ratio": 0.9,
+   "forced_sale": 9088,
+   "rp_balance": 111808328,
+   "unpaid": 1235646
+  },
+  "2026-04-03": {
+   "deposit": 109016507,
+   "deriv_deposit": 26791248,
+   "forced_ratio": 1.3,
+   "forced_sale": 15874,
+   "rp_balance": 112918883,
+   "unpaid": 1025110
+  },
+  "2026-04-06": {
+   "deposit": 107467398,
+   "deriv_deposit": 27551682,
+   "forced_ratio": 0.8,
+   "forced_sale": 8099,
+   "rp_balance": 112825402,
+   "unpaid": 1197565
+  },
+  "2026-04-07": {
+   "deposit": 108921448,
+   "deriv_deposit": 27674303,
+   "forced_ratio": 1.6,
+   "forced_sale": 19621,
+   "rp_balance": 112935484,
+   "unpaid": 1008474
+  },
+  "2026-04-08": {
+   "deposit": 109833228,
+   "deriv_deposit": 28367143,
+   "forced_ratio": 0.8,
+   "forced_sale": 8321,
+   "rp_balance": 112307503,
+   "unpaid": 1028443
+  },
+  "2026-04-09": {
+   "deposit": 112807019,
+   "deriv_deposit": 30661349,
+   "forced_ratio": 0.7,
+   "forced_sale": 7382,
+   "rp_balance": 112515812,
+   "unpaid": 1063945
+  },
+  "2026-04-10": {
+   "deposit": 115364212,
+   "deriv_deposit": 29103790,
+   "forced_ratio": 0.8,
+   "forced_sale": 8058,
+   "rp_balance": 114439668,
+   "unpaid": 1059787
+  },
+  "2026-04-13": {
+   "deposit": 116107492,
+   "deriv_deposit": 29195997,
+   "forced_ratio": 1.1,
+   "forced_sale": 12048,
+   "rp_balance": 114442846,
+   "unpaid": 1085600
+  },
+  "2026-04-14": {
+   "deposit": 117672486,
+   "deriv_deposit": 28922429,
+   "forced_ratio": 1.4,
+   "forced_sale": 14932,
+   "rp_balance": 114181872,
+   "unpaid": 997228
+  },
+  "2026-04-15": {
+   "deposit": 117165120,
+   "deriv_deposit": 29731583,
+   "forced_ratio": 1.2,
+   "forced_sale": 12431,
+   "rp_balance": 113284613,
+   "unpaid": 1014805
+  },
+  "2026-04-16": {
+   "deposit": 119074288,
+   "deriv_deposit": 30001749,
+   "forced_ratio": 0.8,
+   "forced_sale": 8504,
+   "rp_balance": 114653645,
+   "unpaid": 998121
+  },
+  "2026-04-17": {
+   "deposit": 120585455,
+   "deriv_deposit": 30380868,
+   "forced_ratio": 0.8,
+   "forced_sale": 8204,
+   "rp_balance": 116480717,
+   "unpaid": 1040904
+  },
+  "2026-04-20": {
+   "deposit": 121817265,
+   "deriv_deposit": 30090664,
+   "forced_ratio": 0.8,
+   "forced_sale": 8601,
+   "rp_balance": 116537391,
+   "unpaid": 1020947
+  },
+  "2026-04-21": {
+   "deposit": 121286062,
+   "deriv_deposit": 30367055,
+   "forced_ratio": 1.6,
+   "forced_sale": 16128,
+   "rp_balance": 115321978,
+   "unpaid": 1032858
+  },
+  "2026-04-22": {
+   "deposit": 122538133,
+   "deriv_deposit": 30922946,
+   "forced_ratio": 1,
+   "forced_sale": 9817,
+   "rp_balance": 115365349,
+   "unpaid": 1027853
+  },
+  "2026-04-23": {
+   "deposit": 126035131,
+   "deriv_deposit": 30821788,
+   "forced_ratio": 0.7,
+   "forced_sale": 6868,
+   "rp_balance": 116518770,
+   "unpaid": 996685
+  },
+  "2026-04-24": {
+   "deposit": 125686926,
+   "deriv_deposit": 31217580,
+   "forced_ratio": 1.2,
+   "forced_sale": 11616,
+   "rp_balance": 116838328,
+   "unpaid": 1124908
+  },
+  "2026-04-27": {
+   "deposit": 125950282,
+   "deriv_deposit": 31314514,
+   "forced_ratio": 0.7,
+   "forced_sale": 7827,
+   "rp_balance": 116261559,
+   "unpaid": 1131491
+  },
+  "2026-04-28": {
+   "deposit": 127413417,
+   "deriv_deposit": 31907462,
+   "forced_ratio": 1.6,
+   "forced_sale": 17570,
+   "rp_balance": 115307729,
+   "unpaid": 1084889
+  },
+  "2026-04-29": {
+   "deposit": 129732118,
+   "deriv_deposit": 32035005,
+   "forced_ratio": 0.7,
+   "forced_sale": 7895,
+   "rp_balance": 114690076,
+   "unpaid": 1024159
+  },
+  "2026-04-30": {
+   "deposit": 124759101,
+   "deriv_deposit": 32233517,
+   "forced_ratio": 1.4,
+   "forced_sale": 14698,
+   "rp_balance": 115347004,
+   "unpaid": 1115157
+  },
+  "2026-05-04": {
+   "deposit": 124840571,
+   "deriv_deposit": 33087620,
+   "forced_ratio": 1.8,
+   "forced_sale": 19836,
+   "rp_balance": 115492983,
+   "unpaid": 1018343
+  },
+  "2026-05-06": {
+   "deposit": 130743350,
+   "deriv_deposit": 35905223,
+   "forced_ratio": 0.7,
+   "forced_sale": 7164,
+   "rp_balance": 113195851,
+   "unpaid": 1161129
+  },
+  "2026-05-07": {
+   "deposit": 136989027,
+   "deriv_deposit": 38256738,
+   "forced_ratio": 1,
+   "forced_sale": 11379,
+   "rp_balance": 114191205,
+   "unpaid": 1131427
+  },
+  "2026-05-08": {
+   "deposit": 135299146,
+   "deriv_deposit": 39509213,
+   "forced_ratio": 1.9,
+   "forced_sale": 21011,
+   "rp_balance": 116510312,
+   "unpaid": 1286911
+  },
+  "2026-05-11": {
+   "deposit": 134098716,
+   "deriv_deposit": 40106314,
+   "forced_ratio": 5.4,
+   "forced_sale": 69402,
+   "rp_balance": 115878376,
+   "unpaid": 1412388
+  },
+  "2026-05-12": {
+   "deposit": 137417444,
+   "deriv_deposit": 42444087,
+   "forced_ratio": 2.6,
+   "forced_sale": 36936,
+   "rp_balance": 113120723,
+   "unpaid": 1278589
+  },
+  "2026-05-13": {
+   "deposit": 137120084,
+   "deriv_deposit": 41882816,
+   "forced_ratio": 1.8,
+   "forced_sale": 23565,
+   "rp_balance": 113140518,
+   "unpaid": 1327067
+  },
+  "2026-05-14": {
+   "deposit": 133508767,
+   "deriv_deposit": 43096873,
+   "forced_ratio": 1.8,
+   "forced_sale": 24482,
+   "rp_balance": 115558920,
+   "unpaid": 1703517
+  },
+  "2026-05-15": {
+   "deposit": 132859687,
+   "deriv_deposit": 44231218,
+   "forced_ratio": 2.2,
+   "forced_sale": 37486,
+   "rp_balance": 114401474,
+   "unpaid": 1537438
+  },
+  "2026-05-18": {
+   "deposit": 132985285,
+   "deriv_deposit": 41785459,
+   "forced_ratio": 6,
+   "forced_sale": 91706,
+   "rp_balance": 113887257,
+   "unpaid": 1460586
+  },
+  "2026-05-19": {
+   "deposit": 126959944,
+   "deriv_deposit": 41928327,
+   "forced_ratio": 4.6,
+   "forced_sale": 67654,
+   "rp_balance": 114396311,
+   "unpaid": 1924089
+  },
+  "2026-05-20": {
+   "deposit": 125643978,
+   "deriv_deposit": 40394088,
+   "forced_ratio": 7.6,
+   "forced_sale": 145842,
+   "rp_balance": 114338015,
+   "unpaid": 1642125
+  },
+  "2026-05-21": {
+   "deposit": 122381941,
+   "deriv_deposit": 41227733,
+   "forced_ratio": 3.8,
+   "forced_sale": 62456,
+   "rp_balance": 113904907,
+   "unpaid": 1659828
+  },
+  "2026-05-22": {
+   "deposit": 121245209,
+   "deriv_deposit": 42787979,
+   "forced_ratio": 3.2,
+   "forced_sale": 52399,
+   "rp_balance": 114832853,
+   "unpaid": 1480489
+  },
+  "2026-05-26": {
+   "deposit": 124576854,
+   "deriv_deposit": 43855254,
+   "forced_ratio": 0.3,
+   "forced_sale": 5170,
+   "rp_balance": 113989029,
+   "unpaid": 1149173
+  },
+  "2026-05-27": {
+   "deposit": 128574969,
+   "deriv_deposit": 46535794,
+   "forced_ratio": 0.7,
+   "forced_sale": 7984,
+   "rp_balance": 112709681,
+   "unpaid": 1154116
+  },
+  "2026-05-28": {
+   "deposit": 131131823,
+   "deriv_deposit": 47550522,
+   "forced_ratio": 0.7,
+   "forced_sale": 7812,
+   "rp_balance": 112870746,
+   "unpaid": 1253420
+  },
+  "2026-05-29": {
+   "deposit": 131585593,
+   "deriv_deposit": 48024761,
+   "forced_ratio": 1.2,
+   "forced_sale": 15414,
+   "rp_balance": 114656708,
+   "unpaid": 1349236
+  },
+  "2026-06-01": {
+   "deposit": 132599248,
+   "deriv_deposit": 52291730,
+   "forced_ratio": 2.5,
+   "forced_sale": 33171,
+   "rp_balance": 114672903,
+   "unpaid": 1359703
+  },
+  "2026-06-02": {
+   "deposit": 136811118,
+   "deriv_deposit": 53450906,
+   "forced_ratio": 1.2,
+   "forced_sale": 16845,
+   "rp_balance": 114853099,
+   "unpaid": 1330488
+  },
+  "2026-06-04": {
+   "deposit": 139694762,
+   "deriv_deposit": 53518520,
+   "forced_ratio": 1.8,
+   "forced_sale": 24311,
+   "rp_balance": 115191240,
+   "unpaid": 1829259
+  },
+  "2026-06-05": {
+   "deposit": 134234434,
+   "deriv_deposit": 52704600,
+   "forced_ratio": 9.1,
+   "forced_sale": 166192,
+   "rp_balance": 115663691,
+   "unpaid": 1688524
+  },
+  "2026-06-08": {
+   "deposit": 136384688,
+   "deriv_deposit": 49635991,
+   "forced_ratio": 8.2,
+   "forced_sale": 139134,
+   "rp_balance": 114380544,
+   "unpaid": 1624597
+  },
+  "2026-06-09": {
+   "deposit": 130118913,
+   "deriv_deposit": 46812045,
+   "forced_ratio": 10.5,
+   "forced_sale": 169796,
+   "rp_balance": 114176796,
+   "unpaid": 1595371
+  },
+  "2026-06-10": {
+   "deposit": 127606552,
+   "deriv_deposit": 52164009,
+   "forced_ratio": 2.5,
+   "forced_sale": 39661,
+   "rp_balance": 112629376,
+   "unpaid": 1691776
+  },
+  "2026-06-11": {
+   "deposit": 127371833,
+   "deriv_deposit": 48539561,
+   "forced_ratio": 1.8,
+   "forced_sale": 30620,
+   "rp_balance": 113809491,
+   "unpaid": 1207168
+  },
+  "2026-06-12": {
+   "deposit": 121056634,
+   "deriv_deposit": 49041088,
+   "forced_ratio": 4,
+   "forced_sale": 47685,
+   "rp_balance": 114184359,
+   "unpaid": 1376408
+  },
+  "2026-06-15": {
+   "deposit": 120581711,
+   "deriv_deposit": 48955290,
+   "forced_ratio": 0.7,
+   "forced_sale": 10081,
+   "rp_balance": 113474839,
+   "unpaid": 1224541
+  },
+  "2026-06-16": {
+   "deposit": 124551647,
+   "deriv_deposit": 50813052,
+   "forced_ratio": 0.4,
+   "forced_sale": 5095,
+   "rp_balance": 114290026,
+   "unpaid": 1154463
+  },
+  "2026-06-17": {
+   "deposit": 124632043,
+   "deriv_deposit": 52956348,
+   "forced_ratio": 1,
+   "forced_sale": 12035,
+   "rp_balance": 114304183,
+   "unpaid": 1230322
+  },
+  "2026-06-18": {
+   "deposit": 128408618,
+   "deriv_deposit": 56620550,
+   "forced_ratio": 1.2,
+   "forced_sale": 14187,
+   "rp_balance": 114524628,
+   "unpaid": 1229356
+  },
+  "2026-06-19": {
+   "deposit": 129353455,
+   "deriv_deposit": 57502587,
+   "forced_ratio": 1.9,
+   "forced_sale": 23479,
+   "rp_balance": 112845298,
+   "unpaid": 1205775
+  },
+  "2026-06-22": {
+   "deposit": 132185720,
+   "deriv_deposit": 58826084,
+   "forced_ratio": 1.6,
+   "forced_sale": 19891,
+   "rp_balance": 112479294,
+   "unpaid": 1297609
+  },
+  "2026-06-23": {
+   "deposit": 136831367,
+   "deriv_deposit": 64220373,
+   "forced_ratio": 3.3,
+   "forced_sale": 42427,
+   "rp_balance": 111899505,
+   "unpaid": 1479239
+  },
+  "2026-06-24": {
+   "deposit": 136552702,
+   "deriv_deposit": 53336679,
+   "forced_ratio": 7.5,
+   "forced_sale": 110793,
+   "rp_balance": 110589761,
+   "unpaid": 1376883
+  },
+  "2026-06-25": {
+   "deposit": 126992350,
+   "deriv_deposit": 56857833,
+   "forced_ratio": 3.5,
+   "forced_sale": 47653,
+   "rp_balance": 110507003,
+   "unpaid": 2068789
+  },
+  "2026-06-26": {
+   "deposit": 126604894,
+   "deriv_deposit": 62266182,
+   "forced_ratio": 2.5,
+   "forced_sale": 50977,
+   "rp_balance": 110562080,
+   "unpaid": 1563233
+  },
+  "2026-06-29": {
+   "deposit": 132469655,
+   "deriv_deposit": 56524385,
+   "forced_ratio": 3.2,
+   "forced_sale": 49442,
+   "rp_balance": 110225102,
+   "unpaid": 1242256
+  },
+  "2026-06-30": {
+   "deposit": 121633951,
+   "deriv_deposit": 53373510,
+   "forced_ratio": 5.6,
+   "forced_sale": 69406,
+   "rp_balance": 108775199,
+   "unpaid": 1298261
+  },
+  "2026-07-01": {
+   "deposit": 120083674,
+   "deriv_deposit": 56257708,
+   "forced_ratio": 2,
+   "forced_sale": 25727,
+   "rp_balance": 110397801,
+   "unpaid": 1259120
+  },
+  "2026-07-02": {
+   "deposit": 119926438,
+   "deriv_deposit": 57472348,
+   "forced_ratio": 1.6,
+   "forced_sale": 19635,
+   "rp_balance": 109218797,
+   "unpaid": 1068500
+  },
+  "2026-07-03": {
+   "deposit": 118259372,
+   "deriv_deposit": 50937756,
+   "forced_ratio": 5.3,
+   "forced_sale": 56360,
+   "rp_balance": 109532826,
+   "unpaid": 1127816
+  },
+  "2026-07-06": {
+   "deposit": 112208237,
+   "deriv_deposit": 53786747,
+   "forced_ratio": 3.5,
+   "forced_sale": 39698,
+   "rp_balance": 109812250,
+   "unpaid": 1440024
+  },
+  "2026-07-07": {
+   "deposit": 112325979,
+   "deriv_deposit": 53574265,
+   "forced_ratio": 2.2,
+   "forced_sale": 31741,
+   "rp_balance": 109179916,
+   "unpaid": 1140929
+  },
+  "2026-07-08": {
+   "deposit": 110874403,
+   "deriv_deposit": 52109072,
+   "forced_ratio": 2.5,
+   "forced_sale": 28846,
+   "rp_balance": 108337256,
+   "unpaid": 1391052
+  },
+  "2026-07-09": {
+   "deposit": 107127865,
+   "deriv_deposit": 50478457,
+   "forced_ratio": 10.2,
+   "forced_sale": 142197,
+   "rp_balance": 108690716,
+   "unpaid": 1432231
+  },
+  "2026-07-10": {
+   "deposit": 105575754,
+   "deriv_deposit": 51598032,
+   "forced_ratio": 5.7,
+   "forced_sale": 81613,
+   "rp_balance": 109699873,
+   "unpaid": 1429389
+  },
+  "2026-07-13": {
+   "deposit": 109011570,
+   "deriv_deposit": 53055340,
+   "forced_ratio": 1.8,
+   "forced_sale": 26240,
+   "rp_balance": 109609706,
+   "unpaid": 1131667
+  },
+  "2026-07-14": {
+   "deposit": 111282480,
+   "deriv_deposit": 47499250,
+   "forced_ratio": 1.9,
+   "forced_sale": 21563,
+   "rp_balance": 108657584,
+   "unpaid": 1013673
+  },
+  "2026-07-15": {
+   "deposit": 109866972,
+   "deriv_deposit": 49577784,
+   "forced_ratio": 3.8,
+   "forced_sale": 38467,
+   "rp_balance": 108701220,
+   "unpaid": 1396799
+  },
+  "2026-07-16": {
+   "deposit": 108081874,
+   "deriv_deposit": 50767139,
+   "forced_ratio": 1.1,
+   "forced_sale": 14824,
+   "rp_balance": 110158018,
+   "unpaid": 1144638
+  },
+  "2026-07-20": {
+   "deposit": 112519003,
+   "deriv_deposit": 48416323,
+   "forced_ratio": 4.6,
+   "forced_sale": 52843,
+   "rp_balance": 109566313,
+   "unpaid": 1044672
+  },
+  "2026-07-21": {
+   "deposit": 106692980,
+   "deriv_deposit": 46893819,
+   "forced_ratio": 5.7,
+   "forced_sale": 59596,
+   "rp_balance": 109566423,
+   "unpaid": 1057875
+  },
+  "2026-07-22": {
+   "deposit": 103876545,
+   "deriv_deposit": 46589575,
+   "forced_ratio": 1.4,
+   "forced_sale": 14923,
+   "rp_balance": 109763862,
+   "unpaid": 1026340
+  },
+  "2026-07-23": {
+   "deposit": 104297489,
+   "deriv_deposit": 46694953,
+   "forced_ratio": 0.7,
+   "forced_sale": 7208,
+   "rp_balance": 109872298,
+   "unpaid": 945478
+  },
+  "2026-07-24": {
+   "deposit": 105637070,
+   "deriv_deposit": 48321162,
+   "forced_ratio": 0.8,
+   "forced_sale": 7488,
+   "rp_balance": 109984998,
+   "unpaid": 1032131
+  },
+  "2026-07-27": {
+   "deposit": 109167491,
+   "deriv_deposit": 45921759,
+   "forced_ratio": 2.2,
+   "forced_sale": 22961,
+   "rp_balance": 109916138,
+   "unpaid": 1078329
+  },
+  "2026-07-28": {
+   "deposit": 107199449,
+   "deriv_deposit": 48326943,
+   "forced_ratio": 1.3,
+   "forced_sale": 13890,
+   "rp_balance": 109279819,
+   "unpaid": 1223729
+  },
+  "2026-07-29": {
+   "deposit": 109592595,
+   "deriv_deposit": 45202382,
+   "forced_ratio": 5,
+   "forced_sale": 61133,
+   "rp_balance": 108234039,
+   "unpaid": 1199966
+  },
+  "2026-07-30": {
+   "deposit": 104658382,
+   "deriv_deposit": 44158650,
+   "forced_ratio": 8.6,
+   "forced_sale": 103789,
+   "rp_balance": 107899181,
+   "unpaid": 1724914
+  },
+  "2026-07-31": {
+   "deposit": 104135408,
+   "deriv_deposit": 44416347,
+   "forced_ratio": 7.1,
+   "forced_sale": 122012,
+   "rp_balance": 108056271,
+   "unpaid": 1661465
+  },
+  "2026-08-03": {
+   "deposit": 102825553,
+   "deriv_deposit": 48855893,
+   "forced_ratio": 1.3,
+   "forced_sale": 22371,
+   "rp_balance": 108101862,
+   "unpaid": 1566322
+  },
+  "2026-08-04": {
+   "deposit": 110407061,
+   "deriv_deposit": 45616689,
+   "forced_ratio": 2,
+   "forced_sale": 31535,
+   "rp_balance": 109159748,
+   "unpaid": 1216610
+  },
+  "2026-08-05": {
+   "deposit": 103212504,
+   "deriv_deposit": 44638804,
+   "forced_ratio": 1,
+   "forced_sale": 11768,
+   "rp_balance": 108726482,
+   "unpaid": 1094271
+  },
+  "2026-08-06": {
+   "deposit": 104071197,
+   "deriv_deposit": 45518351,
+   "forced_ratio": 1,
+   "forced_sale": 10694,
+   "rp_balance": 109009784,
+   "unpaid": 1062380
+  },
+  "2026-08-07": {
+   "deposit": 104206412,
+   "deriv_deposit": 43543999,
+   "forced_ratio": 2.2,
+   "forced_sale": 23443,
+   "rp_balance": 109416850,
+   "unpaid": 1003408
+  },
+  "2026-08-10": {
+   "deposit": 100718025,
+   "deriv_deposit": 42681030,
+   "forced_ratio": 4.1,
+   "forced_sale": 40857,
+   "rp_balance": 109124645,
+   "unpaid": 1051270
+  },
+  "2026-08-11": {
+   "deposit": 97928935,
+   "deriv_deposit": 42342749,
+   "forced_ratio": 1.7,
+   "forced_sale": 18285,
+   "rp_balance": 108918011,
+   "unpaid": 949790
+  },
+  "2026-08-12": {
+   "deposit": 99976460,
+   "deriv_deposit": 41799481,
+   "forced_ratio": 0.6,
+   "forced_sale": 5733,
+   "rp_balance": 109045865,
+   "unpaid": 924444
+  },
+  "2026-08-13": {
+   "deposit": 100068383,
+   "deriv_deposit": 42180011,
+   "forced_ratio": 0.5,
+   "forced_sale": 5004,
+   "rp_balance": 109494792,
+   "unpaid": 913051
+  },
+  "2026-08-14": {
+   "deposit": 100710332,
+   "deriv_deposit": 41671535,
+   "forced_ratio": 0.4,
+   "forced_sale": 3768,
+   "rp_balance": 109867933,
+   "unpaid": 867036
+  },
+  "2026-08-18": {
+   "deposit": 104755058,
+   "deriv_deposit": 42113802,
+   "forced_ratio": 0.7,
+   "forced_sale": 6445,
+   "rp_balance": 110124357,
+   "unpaid": 920208
+  },
+  "2026-08-19": {
+   "deposit": 106575016,
+   "deriv_deposit": 41950580,
+   "forced_ratio": 0.6,
+   "forced_sale": 5556,
+   "rp_balance": 109288388,
+   "unpaid": 913506
+  },
+  "2026-08-20": {
+   "deposit": 105354289,
+   "deriv_deposit": 41011948,
+   "forced_ratio": 1,
+   "forced_sale": 9354,
+   "rp_balance": 108864567,
+   "unpaid": 1097393
+  },
+  "2026-08-21": {
+   "deposit": 100745646,
+   "deriv_deposit": 42151818,
+   "forced_ratio": 4.4,
+   "forced_sale": 48433,
+   "rp_balance": 108929901,
+   "unpaid": 1071523
+  },
+  "2026-08-24": {
+   "deposit": 103013654,
+   "deriv_deposit": 42823214,
+   "forced_ratio": 0.6,
+   "forced_sale": 5985,
+   "rp_balance": 108970319,
+   "unpaid": 991564
+  },
+  "2026-08-25": {
+   "deposit": 102534150,
+   "deriv_deposit": 41797406,
+   "forced_ratio": 0.9,
+   "forced_sale": 9205,
+   "rp_balance": 108779104,
+   "unpaid": 1002274
+  },
+  "2026-08-26": {
+   "deposit": 98917653,
+   "deriv_deposit": 41482993,
+   "forced_ratio": 1.3,
+   "forced_sale": 12701,
+   "rp_balance": 108947162,
+   "unpaid": 1149189
+  },
+  "2026-08-27": {
+   "deposit": 96709071,
+   "deriv_deposit": 41412025,
+   "forced_ratio": 2.2,
+   "forced_sale": 24871,
+   "rp_balance": 109205394,
+   "unpaid": 1023289
+  },
+  "2026-08-28": {
+   "deposit": 98704872,
+   "deriv_deposit": 41379416,
+   "forced_ratio": 0.5,
+   "forced_sale": 4797,
+   "rp_balance": 109523053,
+   "unpaid": 930301
+  },
+  "2026-08-31": {
+   "deposit": 99704432,
+   "deriv_deposit": 40277616,
+   "forced_ratio": 0.7,
+   "forced_sale": 6650,
+   "rp_balance": 109005922,
+   "unpaid": 931875
+  },
+  "2026-09-01": {
+   "deposit": 98169090,
+   "deriv_deposit": 40977296,
+   "forced_ratio": 1,
+   "forced_sale": 8909,
+   "rp_balance": 109757119,
+   "unpaid": 924043
+  },
+  "2026-09-02": {
+   "deposit": 102267236,
+   "deriv_deposit": 41498822,
+   "forced_ratio": 1.6,
+   "forced_sale": 14976,
+   "rp_balance": 109464127,
+   "unpaid": 923527
+  },
+  "2026-09-03": {
+   "deposit": 97761496,
+   "deriv_deposit": 40622994,
+   "forced_ratio": 1.1,
+   "forced_sale": 10595,
+   "rp_balance": 109542673,
+   "unpaid": 990744
+  },
+  "2026-09-04": {
+   "deposit": 93549981,
+   "deriv_deposit": 40524767,
+   "forced_ratio": 2.6,
+   "forced_sale": 26063,
+   "rp_balance": 110102749,
+   "unpaid": 1051987
+  },
+  "2026-09-07": {
+   "deposit": 93925789,
+   "deriv_deposit": 42406680,
+   "forced_ratio": 0.9,
+   "forced_sale": 9074,
+   "rp_balance": 109126021,
+   "unpaid": 1146731
+  },
+  "2026-09-08": {
+   "deposit": 96986329,
+   "deriv_deposit": 43160449,
+   "forced_ratio": 0.3,
+   "forced_sale": 3244,
+   "rp_balance": 109451246,
+   "unpaid": 881867
+  },
+  "2026-09-09": {
+   "deposit": 102846170,
+   "deriv_deposit": 43635558,
+   "forced_ratio": 0.3,
+   "forced_sale": 2264,
+   "rp_balance": 110233523,
+   "unpaid": 869794
+  },
+  "2026-09-10": {
+   "deposit": 107657276,
+   "deriv_deposit": 43762054,
+   "forced_ratio": 0.7,
+   "forced_sale": 5836,
+   "rp_balance": 111416711,
+   "unpaid": 1021436
+  },
+  "2026-09-11": {
+   "deposit": 107056001,
+   "deriv_deposit": 43295214,
+   "forced_ratio": 1,
+   "forced_sale": 9940,
+   "rp_balance": 110960915,
+   "unpaid": 1030195
+  },
+  "2026-09-14": {
+   "deposit": 106817908,
+   "deriv_deposit": 42162107,
+   "forced_ratio": 1.1,
+   "forced_sale": 10865,
+   "rp_balance": 110328901,
+   "unpaid": 986142
+  },
+  "2026-09-15": {
+   "deposit": 105327532,
+   "deriv_deposit": 40830155,
+   "forced_ratio": 1.8,
+   "forced_sale": 18057,
+   "rp_balance": 110147322,
+   "unpaid": 939435
+  },
+  "2026-09-16": {
+   "deposit": 99574864,
+   "deriv_deposit": 40818353,
+   "forced_ratio": 1.8,
+   "forced_sale": 17366,
+   "rp_balance": 109716118,
+   "unpaid": 1042440
+  },
+  "2026-09-17": {
+   "deposit": 97491073,
+   "deriv_deposit": 41852709,
+   "forced_ratio": 2.4,
+   "forced_sale": 24620,
+   "rp_balance": 110010827,
+   "unpaid": 1013774
+  },
+  "2026-09-18": {
+   "deposit": 98334648,
+   "deriv_deposit": 41304116,
+   "forced_ratio": 0.5,
+   "forced_sale": 4637,
+   "rp_balance": 110139175,
+   "unpaid": 890406
+  },
+  "2026-09-21": {
+   "deposit": 98138613,
+   "deriv_deposit": 41845328,
+   "forced_ratio": 0.4,
+   "forced_sale": 3635,
+   "rp_balance": 110083325,
+   "unpaid": 872160
+  },
+  "2026-09-22": {
+   "deposit": 100982555,
+   "deriv_deposit": 42217285,
+   "forced_ratio": 0.4,
+   "forced_sale": 3687,
+   "rp_balance": 110640626,
+   "unpaid": 853709
+  },
+  "2026-09-23": {
+   "deposit": 101634868,
+   "deriv_deposit": 41491163,
+   "forced_ratio": 0.3,
+   "forced_sale": 2378,
+   "rp_balance": 111513447,
+   "unpaid": 888130
+  },
+  "2026-09-28": {
+   "deposit": 104489234,
+   "deriv_deposit": 41653966,
+   "forced_ratio": 0.6,
+   "forced_sale": 5041,
+   "rp_balance": 110385832,
+   "unpaid": 1066267
+  },
+  "2026-09-29": {
+   "deposit": 107725670,
+   "deriv_deposit": 39289619,
+   "forced_ratio": 1.4,
+   "forced_sale": 15227,
+   "rp_balance": 109343773,
+   "unpaid": 1147997
+  },
+  "2026-09-30": {
+   "deposit": 104664400,
+   "deriv_deposit": 38359002,
+   "forced_ratio": 2,
+   "forced_sale": 22696,
+   "rp_balance": 107442758,
+   "unpaid": 1101967
+  },
+  "2026-10-01": {
+   "deposit": 104637666,
+   "deriv_deposit": 38375727,
+   "forced_ratio": 2.5,
+   "forced_sale": 27220,
+   "rp_balance": 109894519,
+   "unpaid": 983659
+  },
+  "2026-10-02": {
+   "deposit": 100842194,
+   "deriv_deposit": 40188465,
+   "forced_ratio": 0.9,
+   "forced_sale": 8553,
+   "rp_balance": 110347107,
+   "unpaid": 988331
+  },
+  "2026-10-06": {
+   "deposit": 101048627,
+   "deriv_deposit": 39983218,
+   "forced_ratio": 1.6,
+   "forced_sale": 16258,
+   "rp_balance": 109858099,
+   "unpaid": 960129
+  },
+  "2026-10-07": {
+   "deposit": 100379607,
+   "deriv_deposit": 39538190,
+   "forced_ratio": 2,
+   "forced_sale": 19220,
+   "rp_balance": 110096501,
+   "unpaid": 931602
+  },
+  "2026-10-08": {
+   "deposit": 100109941,
+   "deriv_deposit": 39391418,
+   "forced_ratio": 0.7,
+   "forced_sale": 6359,
+   "rp_balance": 109146122,
+   "unpaid": 991462
+  }
+ }
+}

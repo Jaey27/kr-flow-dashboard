@@ -1,0 +1,3942 @@
+{
+ "fetched_at": "2026-10-13T12:51:07+09:00",
+ "prov": [],
+ "rows": {
+  "2024-10-02": {
+   "collateral_loan": 19764289,
+   "credit_kosdaq": 7413847,
+   "credit_kospi": 10169343,
+   "credit_total": 17583190,
+   "ipo_loan": 0,
+   "short_total": 3449
+  },
+  "2024-10-04": {
+   "collateral_loan": 19780439,
+   "credit_kosdaq": 7424092,
+   "credit_kospi": 10279610,
+   "credit_total": 17703702,
+   "ipo_loan": 0,
+   "short_total": 3436
+  },
+  "2024-10-07": {
+   "collateral_loan": 19791306,
+   "credit_kosdaq": 7404391,
+   "credit_kospi": 10361229,
+   "credit_total": 17765620,
+   "ipo_loan": 0,
+   "short_total": 3392
+  },
+  "2024-10-08": {
+   "collateral_loan": 19835737,
+   "credit_kosdaq": 7391475,
+   "credit_kospi": 10339243,
+   "credit_total": 17730717,
+   "ipo_loan": 0,
+   "short_total": 3354
+  },
+  "2024-10-10": {
+   "collateral_loan": 19873555,
+   "credit_kosdaq": 7417232,
+   "credit_kospi": 10370181,
+   "credit_total": 17787412,
+   "ipo_loan": 0,
+   "short_total": 3307
+  },
+  "2024-10-11": {
+   "collateral_loan": 19858597,
+   "credit_kosdaq": 7465670,
+   "credit_kospi": 10484563,
+   "credit_total": 17950233,
+   "ipo_loan": 0,
+   "short_total": 3286
+  },
+  "2024-10-14": {
+   "collateral_loan": 19910442,
+   "credit_kosdaq": 7520091,
+   "credit_kospi": 10479644,
+   "credit_total": 17999735,
+   "ipo_loan": 0,
+   "short_total": 3239
+  },
+  "2024-10-15": {
+   "collateral_loan": 19933079,
+   "credit_kosdaq": 7511792,
+   "credit_kospi": 10507832,
+   "credit_total": 18019624,
+   "ipo_loan": 0,
+   "short_total": 3180
+  },
+  "2024-10-16": {
+   "collateral_loan": 19884624,
+   "credit_kosdaq": 7528828,
+   "credit_kospi": 10488200,
+   "credit_total": 18017027,
+   "ipo_loan": 0,
+   "short_total": 3163
+  },
+  "2024-10-17": {
+   "collateral_loan": 19930716,
+   "credit_kosdaq": 7565604,
+   "credit_kospi": 10491693,
+   "credit_total": 18057297,
+   "ipo_loan": 0,
+   "short_total": 3151
+  },
+  "2024-10-18": {
+   "collateral_loan": 19982373,
+   "credit_kosdaq": 7585963,
+   "credit_kospi": 10576830,
+   "credit_total": 18162793,
+   "ipo_loan": 0,
+   "short_total": 3131
+  },
+  "2024-10-21": {
+   "collateral_loan": 19941260,
+   "credit_kosdaq": 7591557,
+   "credit_kospi": 10624148,
+   "credit_total": 18215705,
+   "ipo_loan": 0,
+   "short_total": 3087
+  },
+  "2024-10-22": {
+   "collateral_loan": 20030881,
+   "credit_kosdaq": 7585353,
+   "credit_kospi": 10642171,
+   "credit_total": 18227524,
+   "ipo_loan": 0,
+   "short_total": 3073
+  },
+  "2024-10-23": {
+   "collateral_loan": 19975509,
+   "credit_kosdaq": 7566225,
+   "credit_kospi": 10586623,
+   "credit_total": 18152847,
+   "ipo_loan": 0,
+   "short_total": 3051
+  },
+  "2024-10-24": {
+   "collateral_loan": 20055854,
+   "credit_kosdaq": 7531016,
+   "credit_kospi": 10562656,
+   "credit_total": 18093672,
+   "ipo_loan": 0,
+   "short_total": 3012
+  },
+  "2024-10-25": {
+   "collateral_loan": 20010023,
+   "credit_kosdaq": 7467930,
+   "credit_kospi": 10490205,
+   "credit_total": 17958135,
+   "ipo_loan": 0,
+   "short_total": 2999
+  },
+  "2024-10-28": {
+   "collateral_loan": 19996754,
+   "credit_kosdaq": 7469740,
+   "credit_kospi": 10530566,
+   "credit_total": 18000306,
+   "ipo_loan": 0,
+   "short_total": 2993
+  },
+  "2024-10-29": {
+   "collateral_loan": 20093976,
+   "credit_kosdaq": 7405265,
+   "credit_kospi": 10481702,
+   "credit_total": 17886967,
+   "ipo_loan": 0,
+   "short_total": 2961
+  },
+  "2024-10-30": {
+   "collateral_loan": 20063458,
+   "credit_kosdaq": 7383346,
+   "credit_kospi": 10449268,
+   "credit_total": 17832614,
+   "ipo_loan": 0,
+   "short_total": 2957
+  },
+  "2024-10-31": {
+   "collateral_loan": 20038465,
+   "credit_kosdaq": 7408005,
+   "credit_kospi": 10478109,
+   "credit_total": 17886113,
+   "ipo_loan": 0,
+   "short_total": 2943
+  },
+  "2024-11-01": {
+   "collateral_loan": 20011630,
+   "credit_kosdaq": 7425860,
+   "credit_kospi": 10509148,
+   "credit_total": 17935008,
+   "ipo_loan": 0,
+   "short_total": 2940
+  },
+  "2024-11-04": {
+   "collateral_loan": 20100818,
+   "credit_kosdaq": 7396795,
+   "credit_kospi": 10546983,
+   "credit_total": 17943777,
+   "ipo_loan": 0,
+   "short_total": 2936
+  },
+  "2024-11-05": {
+   "collateral_loan": 20071850,
+   "credit_kosdaq": 7384231,
+   "credit_kospi": 10497396,
+   "credit_total": 17881627,
+   "ipo_loan": 0,
+   "short_total": 2929
+  },
+  "2024-11-06": {
+   "collateral_loan": 20034466,
+   "credit_kosdaq": 7353582,
+   "credit_kospi": 10486959,
+   "credit_total": 17840541,
+   "ipo_loan": 0,
+   "short_total": 2921
+  },
+  "2024-11-07": {
+   "collateral_loan": 20090500,
+   "credit_kosdaq": 7394511,
+   "credit_kospi": 10568985,
+   "credit_total": 17963496,
+   "ipo_loan": 0,
+   "short_total": 2918
+  },
+  "2024-11-08": {
+   "collateral_loan": 20100407,
+   "credit_kosdaq": 7423939,
+   "credit_kospi": 10548028,
+   "credit_total": 17971966,
+   "ipo_loan": 0,
+   "short_total": 2911
+  },
+  "2024-11-11": {
+   "collateral_loan": 20135260,
+   "credit_kosdaq": 7420394,
+   "credit_kospi": 10515347,
+   "credit_total": 17935741,
+   "ipo_loan": 0,
+   "short_total": 2906
+  },
+  "2024-11-12": {
+   "collateral_loan": 20143639,
+   "credit_kosdaq": 7400404,
+   "credit_kospi": 10499533,
+   "credit_total": 17899937,
+   "ipo_loan": 0,
+   "short_total": 2884
+  },
+  "2024-11-13": {
+   "collateral_loan": 20193266,
+   "credit_kosdaq": 7368774,
+   "credit_kospi": 10502856,
+   "credit_total": 17871630,
+   "ipo_loan": 0,
+   "short_total": 2814
+  },
+  "2024-11-14": {
+   "collateral_loan": 20109554,
+   "credit_kosdaq": 7225123,
+   "credit_kospi": 10351813,
+   "credit_total": 17576936,
+   "ipo_loan": 0,
+   "short_total": 2767
+  },
+  "2024-11-15": {
+   "collateral_loan": 20022548,
+   "credit_kosdaq": 7059291,
+   "credit_kospi": 10190440,
+   "credit_total": 17249731,
+   "ipo_loan": 0,
+   "short_total": 2698
+  },
+  "2024-11-18": {
+   "collateral_loan": 19841494,
+   "credit_kosdaq": 6925598,
+   "credit_kospi": 10021349,
+   "credit_total": 16946947,
+   "ipo_loan": 0,
+   "short_total": 2672
+  },
+  "2024-11-19": {
+   "collateral_loan": 19710865,
+   "credit_kosdaq": 6825033,
+   "credit_kospi": 9887960,
+   "credit_total": 16712993,
+   "ipo_loan": 0,
+   "short_total": 2600
+  },
+  "2024-11-20": {
+   "collateral_loan": 19632669,
+   "credit_kosdaq": 6847047,
+   "credit_kospi": 9845131,
+   "credit_total": 16692178,
+   "ipo_loan": 0,
+   "short_total": 2587
+  },
+  "2024-11-21": {
+   "collateral_loan": 19617410,
+   "credit_kosdaq": 6868663,
+   "credit_kospi": 9823928,
+   "credit_total": 16692591,
+   "ipo_loan": 0,
+   "short_total": 2585
+  },
+  "2024-11-22": {
+   "collateral_loan": 19615777,
+   "credit_kosdaq": 6861530,
+   "credit_kospi": 9816658,
+   "credit_total": 16678188,
+   "ipo_loan": 0,
+   "short_total": 2572
+  },
+  "2024-11-25": {
+   "collateral_loan": 19694838,
+   "credit_kosdaq": 6828055,
+   "credit_kospi": 9805588,
+   "credit_total": 16633643,
+   "ipo_loan": 0,
+   "short_total": 2566
+  },
+  "2024-11-26": {
+   "collateral_loan": 19674349,
+   "credit_kosdaq": 6779771,
+   "credit_kospi": 9715400,
+   "credit_total": 16495171,
+   "ipo_loan": 0,
+   "short_total": 2552
+  },
+  "2024-11-27": {
+   "collateral_loan": 19635691,
+   "credit_kosdaq": 6789599,
+   "credit_kospi": 9711306,
+   "credit_total": 16500905,
+   "ipo_loan": 0,
+   "short_total": 2533
+  },
+  "2024-11-28": {
+   "collateral_loan": 19631429,
+   "credit_kosdaq": 6825016,
+   "credit_kospi": 9764255,
+   "credit_total": 16589271,
+   "ipo_loan": 0,
+   "short_total": 2529
+  },
+  "2024-11-29": {
+   "collateral_loan": 19677429,
+   "credit_kosdaq": 6843944,
+   "credit_kospi": 9743782,
+   "credit_total": 16587727,
+   "ipo_loan": 0,
+   "short_total": 2529
+  },
+  "2024-12-02": {
+   "collateral_loan": 19713705,
+   "credit_kosdaq": 6856705,
+   "credit_kospi": 9725177,
+   "credit_total": 16581881,
+   "ipo_loan": 0,
+   "short_total": 2527
+  },
+  "2024-12-03": {
+   "collateral_loan": 19799193,
+   "credit_kosdaq": 6827466,
+   "credit_kospi": 9738377,
+   "credit_total": 16565842,
+   "ipo_loan": 0,
+   "short_total": 2523
+  },
+  "2024-12-04": {
+   "collateral_loan": 19687283,
+   "credit_kosdaq": 6760113,
+   "credit_kospi": 9625400,
+   "credit_total": 16385514,
+   "ipo_loan": 0,
+   "short_total": 2467
+  },
+  "2024-12-05": {
+   "collateral_loan": 19587339,
+   "credit_kosdaq": 6748160,
+   "credit_kospi": 9565426,
+   "credit_total": 16313586,
+   "ipo_loan": 0,
+   "short_total": 2466
+  },
+  "2024-12-06": {
+   "collateral_loan": 19659070,
+   "credit_kosdaq": 6698402,
+   "credit_kospi": 9506188,
+   "credit_total": 16204590,
+   "ipo_loan": 0,
+   "short_total": 2432
+  },
+  "2024-12-09": {
+   "collateral_loan": 19637528,
+   "credit_kosdaq": 6616648,
+   "credit_kospi": 9423523,
+   "credit_total": 16040171,
+   "ipo_loan": 0,
+   "short_total": 2425
+  },
+  "2024-12-10": {
+   "collateral_loan": 19566938,
+   "credit_kosdaq": 6507297,
+   "credit_kospi": 9239432,
+   "credit_total": 15746728,
+   "ipo_loan": 0,
+   "short_total": 2415
+  },
+  "2024-12-11": {
+   "collateral_loan": 19453311,
+   "credit_kosdaq": 6310285,
+   "credit_kospi": 9000395,
+   "credit_total": 15310680,
+   "ipo_loan": 0,
+   "short_total": 2359
+  },
+  "2024-12-12": {
+   "collateral_loan": 19263639,
+   "credit_kosdaq": 6241520,
+   "credit_kospi": 8921701,
+   "credit_total": 15163222,
+   "ipo_loan": 0,
+   "short_total": 2349
+  },
+  "2024-12-13": {
+   "collateral_loan": 19300897,
+   "credit_kosdaq": 6281477,
+   "credit_kospi": 8967905,
+   "credit_total": 15249382,
+   "ipo_loan": 0,
+   "short_total": 2337
+  },
+  "2024-12-16": {
+   "collateral_loan": 19354934,
+   "credit_kosdaq": 6377883,
+   "credit_kospi": 8983725,
+   "credit_total": 15361608,
+   "ipo_loan": 0,
+   "short_total": 2337
+  },
+  "2024-12-17": {
+   "collateral_loan": 19422076,
+   "credit_kosdaq": 6439274,
+   "credit_kospi": 9041286,
+   "credit_total": 15480560,
+   "ipo_loan": 0,
+   "short_total": 2337
+  },
+  "2024-12-18": {
+   "collateral_loan": 19402793,
+   "credit_kosdaq": 6523567,
+   "credit_kospi": 9166716,
+   "credit_total": 15690283,
+   "ipo_loan": 0,
+   "short_total": 2336
+  },
+  "2024-12-19": {
+   "collateral_loan": 19470724,
+   "credit_kosdaq": 6575304,
+   "credit_kospi": 9291728,
+   "credit_total": 15867032,
+   "ipo_loan": 0,
+   "short_total": 2330
+  },
+  "2024-12-20": {
+   "collateral_loan": 19433727,
+   "credit_kosdaq": 6591174,
+   "credit_kospi": 9227051,
+   "credit_total": 15818225,
+   "ipo_loan": 0,
+   "short_total": 2330
+  },
+  "2024-12-23": {
+   "collateral_loan": 19522055,
+   "credit_kosdaq": 6597622,
+   "credit_kospi": 9329189,
+   "credit_total": 15926811,
+   "ipo_loan": 0,
+   "short_total": 2328
+  },
+  "2024-12-24": {
+   "collateral_loan": 19590373,
+   "credit_kosdaq": 6539473,
+   "credit_kospi": 9325924,
+   "credit_total": 15865397,
+   "ipo_loan": 0,
+   "short_total": 2326
+  },
+  "2024-12-26": {
+   "collateral_loan": 19502579,
+   "credit_kosdaq": 6504414,
+   "credit_kospi": 9228137,
+   "credit_total": 15732552,
+   "ipo_loan": 0,
+   "short_total": 2325
+  },
+  "2024-12-27": {
+   "collateral_loan": 19408420,
+   "credit_kosdaq": 6566203,
+   "credit_kospi": 9253167,
+   "credit_total": 15819370,
+   "ipo_loan": 0,
+   "short_total": 2306
+  },
+  "2024-12-30": {
+   "collateral_loan": 19443902,
+   "credit_kosdaq": 6586079,
+   "credit_kospi": 9238235,
+   "credit_total": 15824314,
+   "ipo_loan": 0,
+   "short_total": 2306
+  },
+  "2024-12-31": {
+   "collateral_loan": 19489336,
+   "credit_kosdaq": 6583917,
+   "credit_kospi": 9233106,
+   "credit_total": 15817022,
+   "ipo_loan": 0,
+   "short_total": 2306
+  },
+  "2025-01-02": {
+   "collateral_loan": 19360517,
+   "credit_kosdaq": 6524590,
+   "credit_kospi": 9157739,
+   "credit_total": 15682329,
+   "ipo_loan": 0,
+   "short_total": 2290
+  },
+  "2025-01-03": {
+   "collateral_loan": 19228465,
+   "credit_kosdaq": 6487547,
+   "credit_kospi": 9086402,
+   "credit_total": 15573950,
+   "ipo_loan": 0,
+   "short_total": 2289
+  },
+  "2025-01-06": {
+   "collateral_loan": 19292621,
+   "credit_kosdaq": 6543437,
+   "credit_kospi": 9158732,
+   "credit_total": 15702169,
+   "ipo_loan": 0,
+   "short_total": 2287
+  },
+  "2025-01-07": {
+   "collateral_loan": 19265304,
+   "credit_kosdaq": 6594953,
+   "credit_kospi": 9127923,
+   "credit_total": 15722877,
+   "ipo_loan": 0,
+   "short_total": 2280
+  },
+  "2025-01-08": {
+   "collateral_loan": 19277072,
+   "credit_kosdaq": 6695032,
+   "credit_kospi": 9180615,
+   "credit_total": 15875647,
+   "ipo_loan": 0,
+   "short_total": 2280
+  },
+  "2025-01-09": {
+   "collateral_loan": 19339286,
+   "credit_kosdaq": 6777652,
+   "credit_kospi": 9246064,
+   "credit_total": 16023716,
+   "ipo_loan": 0,
+   "short_total": 2263
+  },
+  "2025-01-10": {
+   "collateral_loan": 19382301,
+   "credit_kosdaq": 6819428,
+   "credit_kospi": 9283924,
+   "credit_total": 16103352,
+   "ipo_loan": 0,
+   "short_total": 2257
+  },
+  "2025-01-13": {
+   "collateral_loan": 19347439,
+   "credit_kosdaq": 6850803,
+   "credit_kospi": 9334350,
+   "credit_total": 16185153,
+   "ipo_loan": 0,
+   "short_total": 2256
+  },
+  "2025-01-14": {
+   "collateral_loan": 19405607,
+   "credit_kosdaq": 6902855,
+   "credit_kospi": 9416909,
+   "credit_total": 16319765,
+   "ipo_loan": 0,
+   "short_total": 2256
+  },
+  "2025-01-15": {
+   "collateral_loan": 19526334,
+   "credit_kosdaq": 6909382,
+   "credit_kospi": 9512084,
+   "credit_total": 16421466,
+   "ipo_loan": 0,
+   "short_total": 2256
+  },
+  "2025-01-16": {
+   "collateral_loan": 19503016,
+   "credit_kosdaq": 6919994,
+   "credit_kospi": 9573337,
+   "credit_total": 16493331,
+   "ipo_loan": 0,
+   "short_total": 2256
+  },
+  "2025-01-17": {
+   "collateral_loan": 19495575,
+   "credit_kosdaq": 6930729,
+   "credit_kospi": 9574819,
+   "credit_total": 16505549,
+   "ipo_loan": 0,
+   "short_total": 2255
+  },
+  "2025-01-20": {
+   "collateral_loan": 19457807,
+   "credit_kosdaq": 6923851,
+   "credit_kospi": 9535325,
+   "credit_total": 16459176,
+   "ipo_loan": 0,
+   "short_total": 2255
+  },
+  "2025-01-21": {
+   "collateral_loan": 19532339,
+   "credit_kosdaq": 6964273,
+   "credit_kospi": 9612611,
+   "credit_total": 16576883,
+   "ipo_loan": 0,
+   "short_total": 2245
+  },
+  "2025-01-22": {
+   "collateral_loan": 20207983,
+   "credit_kosdaq": 7009458,
+   "credit_kospi": 9671522,
+   "credit_total": 16680980,
+   "ipo_loan": 0,
+   "short_total": 2234
+  },
+  "2025-01-23": {
+   "collateral_loan": 20194325,
+   "credit_kosdaq": 7058394,
+   "credit_kospi": 9692008,
+   "credit_total": 16750402,
+   "ipo_loan": 0,
+   "short_total": 2208
+  },
+  "2025-01-24": {
+   "collateral_loan": 19594979,
+   "credit_kosdaq": 7067979,
+   "credit_kospi": 9616470,
+   "credit_total": 16684449,
+   "ipo_loan": 0,
+   "short_total": 2170
+  },
+  "2025-01-31": {
+   "collateral_loan": 19739214,
+   "credit_kosdaq": 7089470,
+   "credit_kospi": 9749706,
+   "credit_total": 16839177,
+   "ipo_loan": 0,
+   "short_total": 2160
+  },
+  "2025-02-03": {
+   "collateral_loan": 19736475,
+   "credit_kosdaq": 7062541,
+   "credit_kospi": 9698159,
+   "credit_total": 16760700,
+   "ipo_loan": 0,
+   "short_total": 2158
+  },
+  "2025-02-04": {
+   "collateral_loan": 19750953,
+   "credit_kosdaq": 7090823,
+   "credit_kospi": 9812658,
+   "credit_total": 16903481,
+   "ipo_loan": 0,
+   "short_total": 2153
+  },
+  "2025-02-05": {
+   "collateral_loan": 19820457,
+   "credit_kosdaq": 7028190,
+   "credit_kospi": 9777558,
+   "credit_total": 16805748,
+   "ipo_loan": 0,
+   "short_total": 2130
+  },
+  "2025-02-06": {
+   "collateral_loan": 19734457,
+   "credit_kosdaq": 7009382,
+   "credit_kospi": 9698274,
+   "credit_total": 16707656,
+   "ipo_loan": 0,
+   "short_total": 2126
+  },
+  "2025-02-07": {
+   "collateral_loan": 19655840,
+   "credit_kosdaq": 7085670,
+   "credit_kospi": 9679071,
+   "credit_total": 16764741,
+   "ipo_loan": 0,
+   "short_total": 2126
+  },
+  "2025-02-10": {
+   "collateral_loan": 19630634,
+   "credit_kosdaq": 7142441,
+   "credit_kospi": 9697606,
+   "credit_total": 16840047,
+   "ipo_loan": 0,
+   "short_total": 2126
+  },
+  "2025-02-11": {
+   "collateral_loan": 19739256,
+   "credit_kosdaq": 7209800,
+   "credit_kospi": 9787129,
+   "credit_total": 16996929,
+   "ipo_loan": 0,
+   "short_total": 2123
+  },
+  "2025-02-12": {
+   "collateral_loan": 19825831,
+   "credit_kosdaq": 7299260,
+   "credit_kospi": 9829573,
+   "credit_total": 17128833,
+   "ipo_loan": 0,
+   "short_total": 2123
+  },
+  "2025-02-13": {
+   "collateral_loan": 19758638,
+   "credit_kosdaq": 7364626,
+   "credit_kospi": 9848546,
+   "credit_total": 17213172,
+   "ipo_loan": 0,
+   "short_total": 2123
+  },
+  "2025-02-14": {
+   "collateral_loan": 19809777,
+   "credit_kosdaq": 7415027,
+   "credit_kospi": 9917520,
+   "credit_total": 17332547,
+   "ipo_loan": 0,
+   "short_total": 2104
+  },
+  "2025-02-17": {
+   "collateral_loan": 19871717,
+   "credit_kosdaq": 7453924,
+   "credit_kospi": 9910257,
+   "credit_total": 17364181,
+   "ipo_loan": 0,
+   "short_total": 2102
+  },
+  "2025-02-18": {
+   "collateral_loan": 19918562,
+   "credit_kosdaq": 7506484,
+   "credit_kospi": 9997489,
+   "credit_total": 17503973,
+   "ipo_loan": 0,
+   "short_total": 2102
+  },
+  "2025-02-19": {
+   "collateral_loan": 19905799,
+   "credit_kosdaq": 7556481,
+   "credit_kospi": 10047493,
+   "credit_total": 17603974,
+   "ipo_loan": 0,
+   "short_total": 2101
+  },
+  "2025-02-20": {
+   "collateral_loan": 19926105,
+   "credit_kosdaq": 7635829,
+   "credit_kospi": 10155673,
+   "credit_total": 17791501,
+   "ipo_loan": 0,
+   "short_total": 2082
+  },
+  "2025-02-21": {
+   "collateral_loan": 19993846,
+   "credit_kosdaq": 7697162,
+   "credit_kospi": 10113861,
+   "credit_total": 17811023,
+   "ipo_loan": 0,
+   "short_total": 2043
+  },
+  "2025-02-24": {
+   "collateral_loan": 20067300,
+   "credit_kosdaq": 7723842,
+   "credit_kospi": 10165093,
+   "credit_total": 17888934,
+   "ipo_loan": 0,
+   "short_total": 2031
+  },
+  "2025-02-25": {
+   "collateral_loan": 20004993,
+   "credit_kosdaq": 7726829,
+   "credit_kospi": 10219147,
+   "credit_total": 17945977,
+   "ipo_loan": 0,
+   "short_total": 2027
+  },
+  "2025-02-26": {
+   "collateral_loan": 20023055,
+   "credit_kosdaq": 7772676,
+   "credit_kospi": 10311218,
+   "credit_total": 18083895,
+   "ipo_loan": 0,
+   "short_total": 2015
+  },
+  "2025-02-27": {
+   "collateral_loan": 20107950,
+   "credit_kosdaq": 7807384,
+   "credit_kospi": 10385323,
+   "credit_total": 18192707,
+   "ipo_loan": 0,
+   "short_total": 1983
+  },
+  "2025-02-28": {
+   "collateral_loan": 20188369,
+   "credit_kosdaq": 7852828,
+   "credit_kospi": 10380302,
+   "credit_total": 18233130,
+   "ipo_loan": 0,
+   "short_total": 1972
+  },
+  "2025-03-04": {
+   "collateral_loan": 20235465,
+   "credit_kosdaq": 7851394,
+   "credit_kospi": 10453130,
+   "credit_total": 18304523,
+   "ipo_loan": 0,
+   "short_total": 1969
+  },
+  "2025-03-05": {
+   "collateral_loan": 20303900,
+   "credit_kosdaq": 7790538,
+   "credit_kospi": 10563162,
+   "credit_total": 18353700,
+   "ipo_loan": 0,
+   "short_total": 1968
+  },
+  "2025-03-06": {
+   "collateral_loan": 20216103,
+   "credit_kosdaq": 7684523,
+   "credit_kospi": 10512408,
+   "credit_total": 18196932,
+   "ipo_loan": 0,
+   "short_total": 1965
+  },
+  "2025-03-07": {
+   "collateral_loan": 20136718,
+   "credit_kosdaq": 7693750,
+   "credit_kospi": 10512298,
+   "credit_total": 18206048,
+   "ipo_loan": 0,
+   "short_total": 1961
+  },
+  "2025-03-10": {
+   "collateral_loan": 20174733,
+   "credit_kosdaq": 7736680,
+   "credit_kospi": 10504529,
+   "credit_total": 18241209,
+   "ipo_loan": 0,
+   "short_total": 1960
+  },
+  "2025-03-11": {
+   "collateral_loan": 20212685,
+   "credit_kosdaq": 7681238,
+   "credit_kospi": 10463440,
+   "credit_total": 18144678,
+   "ipo_loan": 0,
+   "short_total": 1949
+  },
+  "2025-03-12": {
+   "collateral_loan": 20231335,
+   "credit_kosdaq": 7666724,
+   "credit_kospi": 10506064,
+   "credit_total": 18172788,
+   "ipo_loan": 0,
+   "short_total": 1940
+  },
+  "2025-03-13": {
+   "collateral_loan": 20199291,
+   "credit_kosdaq": 7640383,
+   "credit_kospi": 10506329,
+   "credit_total": 18146713,
+   "ipo_loan": 0,
+   "short_total": 1939
+  },
+  "2025-03-14": {
+   "collateral_loan": 20187368,
+   "credit_kosdaq": 7645642,
+   "credit_kospi": 10453373,
+   "credit_total": 18099015,
+   "ipo_loan": 0,
+   "short_total": 1938
+  },
+  "2025-03-17": {
+   "collateral_loan": 20190659,
+   "credit_kosdaq": 7696183,
+   "credit_kospi": 10464216,
+   "credit_total": 18160400,
+   "ipo_loan": 0,
+   "short_total": 1938
+  },
+  "2025-03-18": {
+   "collateral_loan": 20191242,
+   "credit_kosdaq": 7688794,
+   "credit_kospi": 10509310,
+   "credit_total": 18198104,
+   "ipo_loan": 0,
+   "short_total": 1937
+  },
+  "2025-03-19": {
+   "collateral_loan": 20188705,
+   "credit_kosdaq": 7759309,
+   "credit_kospi": 10456380,
+   "credit_total": 18215689,
+   "ipo_loan": 0,
+   "short_total": 1937
+  },
+  "2025-03-20": {
+   "collateral_loan": 20215409,
+   "credit_kosdaq": 7803618,
+   "credit_kospi": 10480543,
+   "credit_total": 18284161,
+   "ipo_loan": 0,
+   "short_total": 1936
+  },
+  "2025-03-21": {
+   "collateral_loan": 20220786,
+   "credit_kosdaq": 7834460,
+   "credit_kospi": 10451212,
+   "credit_total": 18285672,
+   "ipo_loan": 0,
+   "short_total": 1936
+  },
+  "2025-03-24": {
+   "collateral_loan": 20203122,
+   "credit_kosdaq": 7786289,
+   "credit_kospi": 10366091,
+   "credit_total": 18152379,
+   "ipo_loan": 0,
+   "short_total": 1935
+  },
+  "2025-03-25": {
+   "collateral_loan": 20158856,
+   "credit_kosdaq": 7695268,
+   "credit_kospi": 10267447,
+   "credit_total": 17962715,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-03-26": {
+   "collateral_loan": 20131264,
+   "credit_kosdaq": 7673723,
+   "credit_kospi": 10278840,
+   "credit_total": 17952563,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-03-27": {
+   "collateral_loan": 20135578,
+   "credit_kosdaq": 7624615,
+   "credit_kospi": 10217637,
+   "credit_total": 17842252,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-03-28": {
+   "collateral_loan": 19959352,
+   "credit_kosdaq": 7563427,
+   "credit_kospi": 10131656,
+   "credit_total": 17695083,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-03-31": {
+   "collateral_loan": 20072384,
+   "credit_kosdaq": 7511301,
+   "credit_kospi": 10082573,
+   "credit_total": 17593874,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-04-01": {
+   "collateral_loan": 20036229,
+   "credit_kosdaq": 7402408,
+   "credit_kospi": 9976634,
+   "credit_total": 17379043,
+   "ipo_loan": 0,
+   "short_total": 1934
+  },
+  "2025-04-02": {
+   "collateral_loan": 19919852,
+   "credit_kosdaq": 7253862,
+   "credit_kospi": 9856385,
+   "credit_total": 17110247,
+   "ipo_loan": 0,
+   "short_total": 9816
+  },
+  "2025-04-03": {
+   "collateral_loan": 19789585,
+   "credit_kosdaq": 7186141,
+   "credit_kospi": 9785909,
+   "credit_total": 16972050,
+   "ipo_loan": 0,
+   "short_total": 13372
+  },
+  "2025-04-04": {
+   "collateral_loan": 19906793,
+   "credit_kosdaq": 7206125,
+   "credit_kospi": 9834305,
+   "credit_total": 17040431,
+   "ipo_loan": 0,
+   "short_total": 14406
+  },
+  "2025-04-07": {
+   "collateral_loan": 19928347,
+   "credit_kosdaq": 7149943,
+   "credit_kospi": 9807787,
+   "credit_total": 16957730,
+   "ipo_loan": 0,
+   "short_total": 16832
+  },
+  "2025-04-08": {
+   "collateral_loan": 19873374,
+   "credit_kosdaq": 7119956,
+   "credit_kospi": 9841672,
+   "credit_total": 16961627,
+   "ipo_loan": 0,
+   "short_total": 17220
+  },
+  "2025-04-09": {
+   "collateral_loan": 19904375,
+   "credit_kosdaq": 6997037,
+   "credit_kospi": 9793716,
+   "credit_total": 16790753,
+   "ipo_loan": 0,
+   "short_total": 13490
+  },
+  "2025-04-10": {
+   "collateral_loan": 19780253,
+   "credit_kosdaq": 6887707,
+   "credit_kospi": 9658973,
+   "credit_total": 16546680,
+   "ipo_loan": 0,
+   "short_total": 17212
+  },
+  "2025-04-11": {
+   "collateral_loan": 19764510,
+   "credit_kosdaq": 6821197,
+   "credit_kospi": 9625170,
+   "credit_total": 16446368,
+   "ipo_loan": 0,
+   "short_total": 17369
+  },
+  "2025-04-14": {
+   "collateral_loan": 19646723,
+   "credit_kosdaq": 6819697,
+   "credit_kospi": 9484851,
+   "credit_total": 16304549,
+   "ipo_loan": 0,
+   "short_total": 19736
+  },
+  "2025-04-15": {
+   "collateral_loan": 19703320,
+   "credit_kosdaq": 6894871,
+   "credit_kospi": 9681165,
+   "credit_total": 16576036,
+   "ipo_loan": 0,
+   "short_total": 21147
+  },
+  "2025-04-16": {
+   "collateral_loan": 19701928,
+   "credit_kosdaq": 6981734,
+   "credit_kospi": 9802423,
+   "credit_total": 16784156,
+   "ipo_loan": 0,
+   "short_total": 23273
+  },
+  "2025-04-17": {
+   "collateral_loan": 19687726,
+   "credit_kosdaq": 7062979,
+   "credit_kospi": 9835763,
+   "credit_total": 16898742,
+   "ipo_loan": 0,
+   "short_total": 24524
+  },
+  "2025-04-18": {
+   "collateral_loan": 19735550,
+   "credit_kosdaq": 7132000,
+   "credit_kospi": 9887019,
+   "credit_total": 17019019,
+   "ipo_loan": 0,
+   "short_total": 25707
+  },
+  "2025-04-21": {
+   "collateral_loan": 19698559,
+   "credit_kosdaq": 7144144,
+   "credit_kospi": 9930822,
+   "credit_total": 17074966,
+   "ipo_loan": 0,
+   "short_total": 28996
+  },
+  "2025-04-22": {
+   "collateral_loan": 19705686,
+   "credit_kosdaq": 7201605,
+   "credit_kospi": 9971957,
+   "credit_total": 17173562,
+   "ipo_loan": 0,
+   "short_total": 30930
+  },
+  "2025-04-23": {
+   "collateral_loan": 19746367,
+   "credit_kosdaq": 7253525,
+   "credit_kospi": 10020770,
+   "credit_total": 17274295,
+   "ipo_loan": 0,
+   "short_total": 31300
+  },
+  "2025-04-24": {
+   "collateral_loan": 19807277,
+   "credit_kosdaq": 7299850,
+   "credit_kospi": 10128336,
+   "credit_total": 17428186,
+   "ipo_loan": 0,
+   "short_total": 33041
+  },
+  "2025-04-25": {
+   "collateral_loan": 19825918,
+   "credit_kosdaq": 7315577,
+   "credit_kospi": 10077141,
+   "credit_total": 17392718,
+   "ipo_loan": 0,
+   "short_total": 33410
+  },
+  "2025-04-28": {
+   "collateral_loan": 19950177,
+   "credit_kosdaq": 7332565,
+   "credit_kospi": 10179417,
+   "credit_total": 17511981,
+   "ipo_loan": 0,
+   "short_total": 35959
+  },
+  "2025-04-29": {
+   "collateral_loan": 22204659,
+   "credit_kosdaq": 7368236,
+   "credit_kospi": 10154141,
+   "credit_total": 17522377,
+   "ipo_loan": 0,
+   "short_total": 36749
+  },
+  "2025-04-30": {
+   "collateral_loan": 22256308,
+   "credit_kosdaq": 7397076,
+   "credit_kospi": 10160895,
+   "credit_total": 17557971,
+   "ipo_loan": 0,
+   "short_total": 38317
+  },
+  "2025-05-02": {
+   "collateral_loan": 22165994,
+   "credit_kosdaq": 7371841,
+   "credit_kospi": 10161121,
+   "credit_total": 17532962,
+   "ipo_loan": 0,
+   "short_total": 38244
+  },
+  "2025-05-07": {
+   "collateral_loan": 22178299,
+   "credit_kosdaq": 7388679,
+   "credit_kospi": 10226886,
+   "credit_total": 17615566,
+   "ipo_loan": 0,
+   "short_total": 39439
+  },
+  "2025-05-08": {
+   "collateral_loan": 22128589,
+   "credit_kosdaq": 7358601,
+   "credit_kospi": 10156702,
+   "credit_total": 17515303,
+   "ipo_loan": 0,
+   "short_total": 40531
+  },
+  "2025-05-09": {
+   "collateral_loan": 22149726,
+   "credit_kosdaq": 7381725,
+   "credit_kospi": 10146178,
+   "credit_total": 17527903,
+   "ipo_loan": 0,
+   "short_total": 41612
+  },
+  "2025-05-12": {
+   "collateral_loan": 22424700,
+   "credit_kosdaq": 7415038,
+   "credit_kospi": 10247522,
+   "credit_total": 17662560,
+   "ipo_loan": 0,
+   "short_total": 41563
+  },
+  "2025-05-13": {
+   "collateral_loan": 22356488,
+   "credit_kosdaq": 7497427,
+   "credit_kospi": 10289814,
+   "credit_total": 17787241,
+   "ipo_loan": 0,
+   "short_total": 42759
+  },
+  "2025-05-14": {
+   "collateral_loan": 22374692,
+   "credit_kosdaq": 7505604,
+   "credit_kospi": 10224374,
+   "credit_total": 17729978,
+   "ipo_loan": 0,
+   "short_total": 39183
+  },
+  "2025-05-15": {
+   "collateral_loan": 22307619,
+   "credit_kosdaq": 7529819,
+   "credit_kospi": 10275507,
+   "credit_total": 17805327,
+   "ipo_loan": 0,
+   "short_total": 42221
+  },
+  "2025-05-16": {
+   "collateral_loan": 22234241,
+   "credit_kosdaq": 7543490,
+   "credit_kospi": 10236751,
+   "credit_total": 17780241,
+   "ipo_loan": 0,
+   "short_total": 43659
+  },
+  "2025-05-19": {
+   "collateral_loan": 22293977,
+   "credit_kosdaq": 7607196,
+   "credit_kospi": 10314544,
+   "credit_total": 17921741,
+   "ipo_loan": 0,
+   "short_total": 43638
+  },
+  "2025-05-20": {
+   "collateral_loan": 22313655,
+   "credit_kosdaq": 7623029,
+   "credit_kospi": 10320861,
+   "credit_total": 17943890,
+   "ipo_loan": 0,
+   "short_total": 46089
+  },
+  "2025-05-21": {
+   "collateral_loan": 22332749,
+   "credit_kosdaq": 7624305,
+   "credit_kospi": 10349223,
+   "credit_total": 17973528,
+   "ipo_loan": 0,
+   "short_total": 45535
+  },
+  "2025-05-22": {
+   "collateral_loan": 22326673,
+   "credit_kosdaq": 7592759,
+   "credit_kospi": 10383768,
+   "credit_total": 17976527,
+   "ipo_loan": 0,
+   "short_total": 48112
+  },
+  "2025-05-23": {
+   "collateral_loan": 22318260,
+   "credit_kosdaq": 7603765,
+   "credit_kospi": 10393950,
+   "credit_total": 17997714,
+   "ipo_loan": 0,
+   "short_total": 50602
+  },
+  "2025-05-26": {
+   "collateral_loan": 22374055,
+   "credit_kosdaq": 7620909,
+   "credit_kospi": 10525098,
+   "credit_total": 18146008,
+   "ipo_loan": 0,
+   "short_total": 49797
+  },
+  "2025-05-27": {
+   "collateral_loan": 22300325,
+   "credit_kosdaq": 7626388,
+   "credit_kospi": 10548986,
+   "credit_total": 18175374,
+   "ipo_loan": 0,
+   "short_total": 50487
+  },
+  "2025-05-28": {
+   "collateral_loan": 22273517,
+   "credit_kosdaq": 7625113,
+   "credit_kospi": 10538853,
+   "credit_total": 18163966,
+   "ipo_loan": 0,
+   "short_total": 52007
+  },
+  "2025-05-29": {
+   "collateral_loan": 22327854,
+   "credit_kosdaq": 7673673,
+   "credit_kospi": 10667364,
+   "credit_total": 18341038,
+   "ipo_loan": 0,
+   "short_total": 53122
+  },
+  "2025-05-30": {
+   "collateral_loan": 22359970,
+   "credit_kosdaq": 7660447,
+   "credit_kospi": 10613462,
+   "credit_total": 18273909,
+   "ipo_loan": 0,
+   "short_total": 50187
+  },
+  "2025-06-02": {
+   "collateral_loan": 22372323,
+   "credit_kosdaq": 7688655,
+   "credit_kospi": 10657652,
+   "credit_total": 18346307,
+   "ipo_loan": 0,
+   "short_total": 50129
+  },
+  "2025-06-04": {
+   "collateral_loan": 22500665,
+   "credit_kosdaq": 7721989,
+   "credit_kospi": 10792422,
+   "credit_total": 18514411,
+   "ipo_loan": 0,
+   "short_total": 49492
+  },
+  "2025-06-05": {
+   "collateral_loan": 22424613,
+   "credit_kosdaq": 7712711,
+   "credit_kospi": 10840298,
+   "credit_total": 18553009,
+   "ipo_loan": 0,
+   "short_total": 49143
+  },
+  "2025-06-09": {
+   "collateral_loan": 22415430,
+   "credit_kosdaq": 7713043,
+   "credit_kospi": 10820009,
+   "credit_total": 18533053,
+   "ipo_loan": 0,
+   "short_total": 50073
+  },
+  "2025-06-10": {
+   "collateral_loan": 22476967,
+   "credit_kosdaq": 7738709,
+   "credit_kospi": 10778179,
+   "credit_total": 18516888,
+   "ipo_loan": 0,
+   "short_total": 49443
+  },
+  "2025-06-11": {
+   "collateral_loan": 22467106,
+   "credit_kosdaq": 7777406,
+   "credit_kospi": 10946786,
+   "credit_total": 18724192,
+   "ipo_loan": 0,
+   "short_total": 47874
+  },
+  "2025-06-12": {
+   "collateral_loan": 22552175,
+   "credit_kosdaq": 7846233,
+   "credit_kospi": 11003767,
+   "credit_total": 18850001,
+   "ipo_loan": 0,
+   "short_total": 49998
+  },
+  "2025-06-13": {
+   "collateral_loan": 22690224,
+   "credit_kosdaq": 7869806,
+   "credit_kospi": 11119042,
+   "credit_total": 18988848,
+   "ipo_loan": 0,
+   "short_total": 51370
+  },
+  "2025-06-16": {
+   "collateral_loan": 22746403,
+   "credit_kosdaq": 7958788,
+   "credit_kospi": 11253046,
+   "credit_total": 19211834,
+   "ipo_loan": 0,
+   "short_total": 53952
+  },
+  "2025-06-17": {
+   "collateral_loan": 22920010,
+   "credit_kosdaq": 8013850,
+   "credit_kospi": 11371795,
+   "credit_total": 19385645,
+   "ipo_loan": 0,
+   "short_total": 50407
+  },
+  "2025-06-18": {
+   "collateral_loan": 22872741,
+   "credit_kosdaq": 8026067,
+   "credit_kospi": 11534234,
+   "credit_total": 19560301,
+   "ipo_loan": 0,
+   "short_total": 51684
+  },
+  "2025-06-19": {
+   "collateral_loan": 22886900,
+   "credit_kosdaq": 8020364,
+   "credit_kospi": 11588069,
+   "credit_total": 19608433,
+   "ipo_loan": 0,
+   "short_total": 51734
+  },
+  "2025-06-20": {
+   "collateral_loan": 22970505,
+   "credit_kosdaq": 8018685,
+   "credit_kospi": 11801082,
+   "credit_total": 19819766,
+   "ipo_loan": 0,
+   "short_total": 52715
+  },
+  "2025-06-23": {
+   "collateral_loan": 23105439,
+   "credit_kosdaq": 8074025,
+   "credit_kospi": 12022555,
+   "credit_total": 20096580,
+   "ipo_loan": 0,
+   "short_total": 52562
+  },
+  "2025-06-24": {
+   "collateral_loan": 23203454,
+   "credit_kosdaq": 8090043,
+   "credit_kospi": 12049286,
+   "credit_total": 20139329,
+   "ipo_loan": 0,
+   "short_total": 52610
+  },
+  "2025-06-25": {
+   "collateral_loan": 23361775,
+   "credit_kosdaq": 8152354,
+   "credit_kospi": 12420269,
+   "credit_total": 20572623,
+   "ipo_loan": 0,
+   "short_total": 52062
+  },
+  "2025-06-26": {
+   "collateral_loan": 23331251,
+   "credit_kosdaq": 8122168,
+   "credit_kospi": 12412998,
+   "credit_total": 20535166,
+   "ipo_loan": 0,
+   "short_total": 50706
+  },
+  "2025-06-27": {
+   "collateral_loan": 23379833,
+   "credit_kosdaq": 8159248,
+   "credit_kospi": 12523813,
+   "credit_total": 20683061,
+   "ipo_loan": 0,
+   "short_total": 49099
+  },
+  "2025-06-30": {
+   "collateral_loan": 23606437,
+   "credit_kosdaq": 8130737,
+   "credit_kospi": 12656094,
+   "credit_total": 20786831,
+   "ipo_loan": 0,
+   "short_total": 46997
+  },
+  "2025-07-01": {
+   "collateral_loan": 23463750,
+   "credit_kosdaq": 8119282,
+   "credit_kospi": 12760534,
+   "credit_total": 20879816,
+   "ipo_loan": 0,
+   "short_total": 47023
+  },
+  "2025-07-02": {
+   "collateral_loan": 23336365,
+   "credit_kosdaq": 8099902,
+   "credit_kospi": 12779641,
+   "credit_total": 20879543,
+   "ipo_loan": 0,
+   "short_total": 48531
+  },
+  "2025-07-03": {
+   "collateral_loan": 23374382,
+   "credit_kosdaq": 8108449,
+   "credit_kospi": 12671212,
+   "credit_total": 20779661,
+   "ipo_loan": 0,
+   "short_total": 48907
+  },
+  "2025-07-04": {
+   "collateral_loan": 23474714,
+   "credit_kosdaq": 8108145,
+   "credit_kospi": 12699280,
+   "credit_total": 20807425,
+   "ipo_loan": 0,
+   "short_total": 47673
+  },
+  "2025-07-07": {
+   "collateral_loan": 23365149,
+   "credit_kosdaq": 8118978,
+   "credit_kospi": 12679792,
+   "credit_total": 20798770,
+   "ipo_loan": 0,
+   "short_total": 50220
+  },
+  "2025-07-08": {
+   "collateral_loan": 23381789,
+   "credit_kosdaq": 8149690,
+   "credit_kospi": 12678451,
+   "credit_total": 20828141,
+   "ipo_loan": 0,
+   "short_total": 48428
+  },
+  "2025-07-09": {
+   "collateral_loan": 23298402,
+   "credit_kosdaq": 8129057,
+   "credit_kospi": 12731010,
+   "credit_total": 20860067,
+   "ipo_loan": 0,
+   "short_total": 49324
+  },
+  "2025-07-10": {
+   "collateral_loan": 23345191,
+   "credit_kosdaq": 8143822,
+   "credit_kospi": 12871177,
+   "credit_total": 21015000,
+   "ipo_loan": 0,
+   "short_total": 51940
+  },
+  "2025-07-11": {
+   "collateral_loan": 23418376,
+   "credit_kosdaq": 8178128,
+   "credit_kospi": 13088846,
+   "credit_total": 21266974,
+   "ipo_loan": 0,
+   "short_total": 53358
+  },
+  "2025-07-14": {
+   "collateral_loan": 23474930,
+   "credit_kosdaq": 8220508,
+   "credit_kospi": 13114660,
+   "credit_total": 21335168,
+   "ipo_loan": 0,
+   "short_total": 52635
+  },
+  "2025-07-15": {
+   "collateral_loan": 23525689,
+   "credit_kosdaq": 8229484,
+   "credit_kospi": 13171409,
+   "credit_total": 21400892,
+   "ipo_loan": 0,
+   "short_total": 50627
+  },
+  "2025-07-16": {
+   "collateral_loan": 23696178,
+   "credit_kosdaq": 8265039,
+   "credit_kospi": 13206751,
+   "credit_total": 21471790,
+   "ipo_loan": 0,
+   "short_total": 50850
+  },
+  "2025-07-17": {
+   "collateral_loan": 23569524,
+   "credit_kosdaq": 8310757,
+   "credit_kospi": 13277329,
+   "credit_total": 21588086,
+   "ipo_loan": 0,
+   "short_total": 51460
+  },
+  "2025-07-18": {
+   "collateral_loan": 23513329,
+   "credit_kosdaq": 8375809,
+   "credit_kospi": 13372123,
+   "credit_total": 21747933,
+   "ipo_loan": 0,
+   "short_total": 51586
+  },
+  "2025-07-21": {
+   "collateral_loan": 23598892,
+   "credit_kosdaq": 8415474,
+   "credit_kospi": 13339937,
+   "credit_total": 21755412,
+   "ipo_loan": 0,
+   "short_total": 52346
+  },
+  "2025-07-22": {
+   "collateral_loan": 23554131,
+   "credit_kosdaq": 8424275,
+   "credit_kospi": 13302983,
+   "credit_total": 21727258,
+   "ipo_loan": 0,
+   "short_total": 53117
+  },
+  "2025-07-23": {
+   "collateral_loan": 24044845,
+   "credit_kosdaq": 8450547,
+   "credit_kospi": 13274363,
+   "credit_total": 21724910,
+   "ipo_loan": 0,
+   "short_total": 53015
+  },
+  "2025-07-24": {
+   "collateral_loan": 24121387,
+   "credit_kosdaq": 8473370,
+   "credit_kospi": 13354413,
+   "credit_total": 21827783,
+   "ipo_loan": 0,
+   "short_total": 51433
+  },
+  "2025-07-25": {
+   "collateral_loan": 23732824,
+   "credit_kosdaq": 8486752,
+   "credit_kospi": 13344173,
+   "credit_total": 21830926,
+   "ipo_loan": 0,
+   "short_total": 53726
+  },
+  "2025-07-28": {
+   "collateral_loan": 23686735,
+   "credit_kosdaq": 8491102,
+   "credit_kospi": 13292496,
+   "credit_total": 21783598,
+   "ipo_loan": 0,
+   "short_total": 52784
+  },
+  "2025-07-29": {
+   "collateral_loan": 23569282,
+   "credit_kosdaq": 8489987,
+   "credit_kospi": 13298339,
+   "credit_total": 21788326,
+   "ipo_loan": 0,
+   "short_total": 52448
+  },
+  "2025-07-30": {
+   "collateral_loan": 23597360,
+   "credit_kosdaq": 8504551,
+   "credit_kospi": 13353527,
+   "credit_total": 21858078,
+   "ipo_loan": 0,
+   "short_total": 51597
+  },
+  "2025-07-31": {
+   "collateral_loan": 23563977,
+   "credit_kosdaq": 8499381,
+   "credit_kospi": 13292465,
+   "credit_total": 21791845,
+   "ipo_loan": 0,
+   "short_total": 52183
+  },
+  "2025-08-01": {
+   "collateral_loan": 23526067,
+   "credit_kosdaq": 8496879,
+   "credit_kospi": 13273097,
+   "credit_total": 21769976,
+   "ipo_loan": 0,
+   "short_total": 52372
+  },
+  "2025-08-04": {
+   "collateral_loan": 23533836,
+   "credit_kosdaq": 8480571,
+   "credit_kospi": 13299641,
+   "credit_total": 21780212,
+   "ipo_loan": 0,
+   "short_total": 53219
+  },
+  "2025-08-05": {
+   "collateral_loan": 23609771,
+   "credit_kosdaq": 8389191,
+   "credit_kospi": 13261987,
+   "credit_total": 21651178,
+   "ipo_loan": 0,
+   "short_total": 48137
+  },
+  "2025-08-06": {
+   "collateral_loan": 23731330,
+   "credit_kosdaq": 8361083,
+   "credit_kospi": 13139218,
+   "credit_total": 21500301,
+   "ipo_loan": 0,
+   "short_total": 48001
+  },
+  "2025-08-07": {
+   "collateral_loan": 23692639,
+   "credit_kosdaq": 8401041,
+   "credit_kospi": 13174212,
+   "credit_total": 21575253,
+   "ipo_loan": 0,
+   "short_total": 50353
+  },
+  "2025-08-08": {
+   "collateral_loan": 23465196,
+   "credit_kosdaq": 8436679,
+   "credit_kospi": 13351229,
+   "credit_total": 21787908,
+   "ipo_loan": 0,
+   "short_total": 51436
+  },
+  "2025-08-11": {
+   "collateral_loan": 23512731,
+   "credit_kosdaq": 8508077,
+   "credit_kospi": 13528166,
+   "credit_total": 22036242,
+   "ipo_loan": 0,
+   "short_total": 52204
+  },
+  "2025-08-12": {
+   "collateral_loan": 23628009,
+   "credit_kosdaq": 8549984,
+   "credit_kospi": 13639210,
+   "credit_total": 22189194,
+   "ipo_loan": 0,
+   "short_total": 52940
+  },
+  "2025-08-13": {
+   "collateral_loan": 23648586,
+   "credit_kosdaq": 8579335,
+   "credit_kospi": 13623810,
+   "credit_total": 22203145,
+   "ipo_loan": 0,
+   "short_total": 52823
+  },
+  "2025-08-14": {
+   "collateral_loan": 23440426,
+   "credit_kosdaq": 8594424,
+   "credit_kospi": 13616811,
+   "credit_total": 22211235,
+   "ipo_loan": 0,
+   "short_total": 51490
+  },
+  "2025-08-18": {
+   "collateral_loan": 23399291,
+   "credit_kosdaq": 8638937,
+   "credit_kospi": 13599863,
+   "credit_total": 22238800,
+   "ipo_loan": 0,
+   "short_total": 51442
+  },
+  "2025-08-19": {
+   "collateral_loan": 23314873,
+   "credit_kosdaq": 8572593,
+   "credit_kospi": 13512563,
+   "credit_total": 22085156,
+   "ipo_loan": 0,
+   "short_total": 49802
+  },
+  "2025-08-20": {
+   "collateral_loan": 23358711,
+   "credit_kosdaq": 8652272,
+   "credit_kospi": 13635068,
+   "credit_total": 22287340,
+   "ipo_loan": 0,
+   "short_total": 48304
+  },
+  "2025-08-21": {
+   "collateral_loan": 23351504,
+   "credit_kosdaq": 8598477,
+   "credit_kospi": 13552476,
+   "credit_total": 22150954,
+   "ipo_loan": 0,
+   "short_total": 48108
+  },
+  "2025-08-22": {
+   "collateral_loan": 23329611,
+   "credit_kosdaq": 8535340,
+   "credit_kospi": 13403698,
+   "credit_total": 21939038,
+   "ipo_loan": 0,
+   "short_total": 47039
+  },
+  "2025-08-25": {
+   "collateral_loan": 23267730,
+   "credit_kosdaq": 8533076,
+   "credit_kospi": 13406947,
+   "credit_total": 21940022,
+   "ipo_loan": 0,
+   "short_total": 50638
+  },
+  "2025-08-26": {
+   "collateral_loan": 23190846,
+   "credit_kosdaq": 8531516,
+   "credit_kospi": 13318556,
+   "credit_total": 21850072,
+   "ipo_loan": 0,
+   "short_total": 52519
+  },
+  "2025-08-27": {
+   "collateral_loan": 23145016,
+   "credit_kosdaq": 8539433,
+   "credit_kospi": 13347855,
+   "credit_total": 21887288,
+   "ipo_loan": 0,
+   "short_total": 53355
+  },
+  "2025-08-28": {
+   "collateral_loan": 23294868,
+   "credit_kosdaq": 8565975,
+   "credit_kospi": 13505217,
+   "credit_total": 22071192,
+   "ipo_loan": 0,
+   "short_total": 52734
+  },
+  "2025-08-29": {
+   "collateral_loan": 23376667,
+   "credit_kosdaq": 8584833,
+   "credit_kospi": 13570237,
+   "credit_total": 22155070,
+   "ipo_loan": 0,
+   "short_total": 55033
+  },
+  "2025-09-01": {
+   "collateral_loan": 23373464,
+   "credit_kosdaq": 8605644,
+   "credit_kospi": 13617025,
+   "credit_total": 22222669,
+   "ipo_loan": 0,
+   "short_total": 55484
+  },
+  "2025-09-02": {
+   "collateral_loan": 23402791,
+   "credit_kosdaq": 8611122,
+   "credit_kospi": 13649154,
+   "credit_total": 22260275,
+   "ipo_loan": 0,
+   "short_total": 54921
+  },
+  "2025-09-03": {
+   "collateral_loan": 23377021,
+   "credit_kosdaq": 8576984,
+   "credit_kospi": 13609001,
+   "credit_total": 22185984,
+   "ipo_loan": 0,
+   "short_total": 53465
+  },
+  "2025-09-04": {
+   "collateral_loan": 23336126,
+   "credit_kosdaq": 8572301,
+   "credit_kospi": 13578947,
+   "credit_total": 22151248,
+   "ipo_loan": 0,
+   "short_total": 54565
+  },
+  "2025-09-05": {
+   "collateral_loan": 23440139,
+   "credit_kosdaq": 8597731,
+   "credit_kospi": 13623224,
+   "credit_total": 22220955,
+   "ipo_loan": 0,
+   "short_total": 54251
+  },
+  "2025-09-08": {
+   "collateral_loan": 23418062,
+   "credit_kosdaq": 8634115,
+   "credit_kospi": 13619560,
+   "credit_total": 22253675,
+   "ipo_loan": 0,
+   "short_total": 55306
+  },
+  "2025-09-09": {
+   "collateral_loan": 23486001,
+   "credit_kosdaq": 8664332,
+   "credit_kospi": 13678072,
+   "credit_total": 22342404,
+   "ipo_loan": 0,
+   "short_total": 55804
+  },
+  "2025-09-10": {
+   "collateral_loan": 23506967,
+   "credit_kosdaq": 8709510,
+   "credit_kospi": 13671464,
+   "credit_total": 22380974,
+   "ipo_loan": 0,
+   "short_total": 56415
+  },
+  "2025-09-11": {
+   "collateral_loan": 23539616,
+   "credit_kosdaq": 8757467,
+   "credit_kospi": 13678776,
+   "credit_total": 22436243,
+   "ipo_loan": 0,
+   "short_total": 58842
+  },
+  "2025-09-12": {
+   "collateral_loan": 23544263,
+   "credit_kosdaq": 8787213,
+   "credit_kospi": 13620011,
+   "credit_total": 22407225,
+   "ipo_loan": 0,
+   "short_total": 62008
+  },
+  "2025-09-15": {
+   "collateral_loan": 23610307,
+   "credit_kosdaq": 8857688,
+   "credit_kospi": 13643602,
+   "credit_total": 22501290,
+   "ipo_loan": 0,
+   "short_total": 57699
+  },
+  "2025-09-16": {
+   "collateral_loan": 23688839,
+   "credit_kosdaq": 8879650,
+   "credit_kospi": 13648284,
+   "credit_total": 22527934,
+   "ipo_loan": 0,
+   "short_total": 59030
+  },
+  "2025-09-17": {
+   "collateral_loan": 23917093,
+   "credit_kosdaq": 8979473,
+   "credit_kospi": 13800184,
+   "credit_total": 22779657,
+   "ipo_loan": 0,
+   "short_total": 59275
+  },
+  "2025-09-18": {
+   "collateral_loan": 23913538,
+   "credit_kosdaq": 9039576,
+   "credit_kospi": 13841904,
+   "credit_total": 22881480,
+   "ipo_loan": 0,
+   "short_total": 61439
+  },
+  "2025-09-19": {
+   "collateral_loan": 24375267,
+   "credit_kosdaq": 9077777,
+   "credit_kospi": 13959176,
+   "credit_total": 23036952,
+   "ipo_loan": 0,
+   "short_total": 59951
+  },
+  "2025-09-22": {
+   "collateral_loan": 24419284,
+   "credit_kosdaq": 9114083,
+   "credit_kospi": 14046911,
+   "credit_total": 23160995,
+   "ipo_loan": 0,
+   "short_total": 59607
+  },
+  "2025-09-23": {
+   "collateral_loan": 24099990,
+   "credit_kosdaq": 9152655,
+   "credit_kospi": 14134036,
+   "credit_total": 23286691,
+   "ipo_loan": 0,
+   "short_total": 59443
+  },
+  "2025-09-24": {
+   "collateral_loan": 24201864,
+   "credit_kosdaq": 9213174,
+   "credit_kospi": 14151139,
+   "credit_total": 23364313,
+   "ipo_loan": 0,
+   "short_total": 59584
+  },
+  "2025-09-25": {
+   "collateral_loan": 24274132,
+   "credit_kosdaq": 9293871,
+   "credit_kospi": 14226035,
+   "credit_total": 23519906,
+   "ipo_loan": 0,
+   "short_total": 59982
+  },
+  "2025-09-26": {
+   "collateral_loan": 24331809,
+   "credit_kosdaq": 9314468,
+   "credit_kospi": 14223322,
+   "credit_total": 23537790,
+   "ipo_loan": 0,
+   "short_total": 58619
+  },
+  "2025-09-29": {
+   "collateral_loan": 24372598,
+   "credit_kosdaq": 9298686,
+   "credit_kospi": 14164543,
+   "credit_total": 23463228,
+   "ipo_loan": 0,
+   "short_total": 58202
+  },
+  "2025-09-30": {
+   "collateral_loan": 24552093,
+   "credit_kosdaq": 9248147,
+   "credit_kospi": 14244693,
+   "credit_total": 23492840,
+   "ipo_loan": 0,
+   "short_total": 55945
+  },
+  "2025-10-01": {
+   "collateral_loan": 24077105,
+   "credit_kosdaq": 9224021,
+   "credit_kospi": 14121818,
+   "credit_total": 23345839,
+   "ipo_loan": 0,
+   "short_total": 56685
+  },
+  "2025-10-02": {
+   "collateral_loan": 24191570,
+   "credit_kosdaq": 9262265,
+   "credit_kospi": 14078990,
+   "credit_total": 23341255,
+   "ipo_loan": 0,
+   "short_total": 55716
+  },
+  "2025-10-10": {
+   "collateral_loan": 24384798,
+   "credit_kosdaq": 9257721,
+   "credit_kospi": 13985986,
+   "credit_total": 23243706,
+   "ipo_loan": 0,
+   "short_total": 57162
+  },
+  "2025-10-13": {
+   "collateral_loan": 24440584,
+   "credit_kosdaq": 9264294,
+   "credit_kospi": 14003454,
+   "credit_total": 23267748,
+   "ipo_loan": 0,
+   "short_total": 55564
+  },
+  "2025-10-14": {
+   "collateral_loan": 24463317,
+   "credit_kosdaq": 9315170,
+   "credit_kospi": 14243392,
+   "credit_total": 23558561,
+   "ipo_loan": 0,
+   "short_total": 55631
+  },
+  "2025-10-15": {
+   "collateral_loan": 24561782,
+   "credit_kosdaq": 9345029,
+   "credit_kospi": 14483809,
+   "credit_total": 23828839,
+   "ipo_loan": 0,
+   "short_total": 50872
+  },
+  "2025-10-16": {
+   "collateral_loan": 24776373,
+   "credit_kosdaq": 9360779,
+   "credit_kospi": 14415042,
+   "credit_total": 23775822,
+   "ipo_loan": 0,
+   "short_total": 49614
+  },
+  "2025-10-17": {
+   "collateral_loan": 24946784,
+   "credit_kosdaq": 9400933,
+   "credit_kospi": 14479035,
+   "credit_total": 23879969,
+   "ipo_loan": 0,
+   "short_total": 54204
+  },
+  "2025-10-20": {
+   "collateral_loan": 24924807,
+   "credit_kosdaq": 9450749,
+   "credit_kospi": 14604406,
+   "credit_total": 24055155,
+   "ipo_loan": 0,
+   "short_total": 53812
+  },
+  "2025-10-21": {
+   "collateral_loan": 25127408,
+   "credit_kosdaq": 9435056,
+   "credit_kospi": 14491256,
+   "credit_total": 23926313,
+   "ipo_loan": 0,
+   "short_total": 48865
+  },
+  "2025-10-22": {
+   "collateral_loan": 25010147,
+   "credit_kosdaq": 9475000,
+   "credit_kospi": 14766954,
+   "credit_total": 24241954,
+   "ipo_loan": 0,
+   "short_total": 51359
+  },
+  "2025-10-23": {
+   "collateral_loan": 25161233,
+   "credit_kosdaq": 9529392,
+   "credit_kospi": 14890560,
+   "credit_total": 24419952,
+   "ipo_loan": 0,
+   "short_total": 52413
+  },
+  "2025-10-24": {
+   "collateral_loan": 25319153,
+   "credit_kosdaq": 9568474,
+   "credit_kospi": 15083364,
+   "credit_total": 24651838,
+   "ipo_loan": 0,
+   "short_total": 52706
+  },
+  "2025-10-27": {
+   "collateral_loan": 25424107,
+   "credit_kosdaq": 9589681,
+   "credit_kospi": 15186978,
+   "credit_total": 24776660,
+   "ipo_loan": 0,
+   "short_total": 53782
+  },
+  "2025-10-28": {
+   "collateral_loan": 25496582,
+   "credit_kosdaq": 9616393,
+   "credit_kospi": 15206652,
+   "credit_total": 24823045,
+   "ipo_loan": 0,
+   "short_total": 55412
+  },
+  "2025-10-29": {
+   "collateral_loan": 25397779,
+   "credit_kosdaq": 9636795,
+   "credit_kospi": 15460011,
+   "credit_total": 25096806,
+   "ipo_loan": 0,
+   "short_total": 55093
+  },
+  "2025-10-30": {
+   "collateral_loan": 25655898,
+   "credit_kosdaq": 9667445,
+   "credit_kospi": 15605150,
+   "credit_total": 25272595,
+   "ipo_loan": 0,
+   "short_total": 54670
+  },
+  "2025-10-31": {
+   "collateral_loan": 25805834,
+   "credit_kosdaq": 9709640,
+   "credit_kospi": 15817250,
+   "credit_total": 25526891,
+   "ipo_loan": 0,
+   "short_total": 55638
+  },
+  "2025-11-03": {
+   "collateral_loan": 25946831,
+   "credit_kosdaq": 9679880,
+   "credit_kospi": 15781983,
+   "credit_total": 25461864,
+   "ipo_loan": 0,
+   "short_total": 55484
+  },
+  "2025-11-04": {
+   "collateral_loan": 25991812,
+   "credit_kosdaq": 9714514,
+   "credit_kospi": 15797236,
+   "credit_total": 25511751,
+   "ipo_loan": 0,
+   "short_total": 55089
+  },
+  "2025-11-05": {
+   "collateral_loan": 24715377,
+   "credit_kosdaq": 9759782,
+   "credit_kospi": 16062683,
+   "credit_total": 25822465,
+   "ipo_loan": 0,
+   "short_total": 55077
+  },
+  "2025-11-06": {
+   "collateral_loan": 24532886,
+   "credit_kosdaq": 9784801,
+   "credit_kospi": 16093351,
+   "credit_total": 25878152,
+   "ipo_loan": 0,
+   "short_total": 53164
+  },
+  "2025-11-07": {
+   "collateral_loan": 24785407,
+   "credit_kosdaq": 9870028,
+   "credit_kospi": 16346519,
+   "credit_total": 26216547,
+   "ipo_loan": 0,
+   "short_total": 51585
+  },
+  "2025-11-10": {
+   "collateral_loan": 24487370,
+   "credit_kosdaq": 9828688,
+   "credit_kospi": 16291077,
+   "credit_total": 26119765,
+   "ipo_loan": 0,
+   "short_total": 51805
+  },
+  "2025-11-11": {
+   "collateral_loan": 24723059,
+   "credit_kosdaq": 9765876,
+   "credit_kospi": 16225900,
+   "credit_total": 25991776,
+   "ipo_loan": 0,
+   "short_total": 49681
+  },
+  "2025-11-12": {
+   "collateral_loan": 24387496,
+   "credit_kosdaq": 9754732,
+   "credit_kospi": 16255034,
+   "credit_total": 26009766,
+   "ipo_loan": 0,
+   "short_total": 52775
+  },
+  "2025-11-13": {
+   "collateral_loan": 24014884,
+   "credit_kosdaq": 9770150,
+   "credit_kospi": 16481350,
+   "credit_total": 26251500,
+   "ipo_loan": 0,
+   "short_total": 52033
+  },
+  "2025-11-14": {
+   "collateral_loan": 24116105,
+   "credit_kosdaq": 9771641,
+   "credit_kospi": 16631690,
+   "credit_total": 26403331,
+   "ipo_loan": 0,
+   "short_total": 52725
+  },
+  "2025-11-17": {
+   "collateral_loan": 24091756,
+   "credit_kosdaq": 9859785,
+   "credit_kospi": 16743159,
+   "credit_total": 26602943,
+   "ipo_loan": 0,
+   "short_total": 50599
+  },
+  "2025-11-18": {
+   "collateral_loan": 24421384,
+   "credit_kosdaq": 9849598,
+   "credit_kospi": 16946970,
+   "credit_total": 26796568,
+   "ipo_loan": 0,
+   "short_total": 45789
+  },
+  "2025-11-19": {
+   "collateral_loan": 24211283,
+   "credit_kosdaq": 9820048,
+   "credit_kospi": 17015793,
+   "credit_total": 26835841,
+   "ipo_loan": 0,
+   "short_total": 48664
+  },
+  "2025-11-20": {
+   "collateral_loan": 24385678,
+   "credit_kosdaq": 9788929,
+   "credit_kospi": 17058191,
+   "credit_total": 26847120,
+   "ipo_loan": 0,
+   "short_total": 47491
+  },
+  "2025-11-21": {
+   "collateral_loan": 24336830,
+   "credit_kosdaq": 9732782,
+   "credit_kospi": 17028465,
+   "credit_total": 26761247,
+   "ipo_loan": 0,
+   "short_total": 45806
+  },
+  "2025-11-24": {
+   "collateral_loan": 24372226,
+   "credit_kosdaq": 9727555,
+   "credit_kospi": 17034147,
+   "credit_total": 26761702,
+   "ipo_loan": 0,
+   "short_total": 49326
+  },
+  "2025-11-25": {
+   "collateral_loan": 24600149,
+   "credit_kosdaq": 9677712,
+   "credit_kospi": 16989274,
+   "credit_total": 26666986,
+   "ipo_loan": 0,
+   "short_total": 44026
+  },
+  "2025-11-26": {
+   "collateral_loan": 24151979,
+   "credit_kosdaq": 9631109,
+   "credit_kospi": 16861010,
+   "credit_total": 26492119,
+   "ipo_loan": 0,
+   "short_total": 46678
+  },
+  "2025-11-27": {
+   "collateral_loan": 24142673,
+   "credit_kosdaq": 9588529,
+   "credit_kospi": 16855553,
+   "credit_total": 26444082,
+   "ipo_loan": 0,
+   "short_total": 46291
+  },
+  "2025-11-28": {
+   "collateral_loan": 24088155,
+   "credit_kosdaq": 9591410,
+   "credit_kospi": 16853654,
+   "credit_total": 26445065,
+   "ipo_loan": 0,
+   "short_total": 49973
+  },
+  "2025-12-01": {
+   "collateral_loan": 24072838,
+   "credit_kosdaq": 9640385,
+   "credit_kospi": 16941967,
+   "credit_total": 26582351,
+   "ipo_loan": 0,
+   "short_total": 50954
+  },
+  "2025-12-02": {
+   "collateral_loan": 24268584,
+   "credit_kosdaq": 9635680,
+   "credit_kospi": 17163357,
+   "credit_total": 26799037,
+   "ipo_loan": 0,
+   "short_total": 49967
+  },
+  "2025-12-03": {
+   "collateral_loan": 24322510,
+   "credit_kosdaq": 9716405,
+   "credit_kospi": 17114607,
+   "credit_total": 26831012,
+   "ipo_loan": 0,
+   "short_total": 51796
+  },
+  "2025-12-04": {
+   "collateral_loan": 24510221,
+   "credit_kosdaq": 9801251,
+   "credit_kospi": 17094623,
+   "credit_total": 26895874,
+   "ipo_loan": 0,
+   "short_total": 53484
+  },
+  "2025-12-05": {
+   "collateral_loan": 24629129,
+   "credit_kosdaq": 9891992,
+   "credit_kospi": 17184317,
+   "credit_total": 27076309,
+   "ipo_loan": 0,
+   "short_total": 55912
+  },
+  "2025-12-08": {
+   "collateral_loan": 24588196,
+   "credit_kosdaq": 9922511,
+   "credit_kospi": 17432956,
+   "credit_total": 27355467,
+   "ipo_loan": 0,
+   "short_total": 54575
+  },
+  "2025-12-09": {
+   "collateral_loan": 24691134,
+   "credit_kosdaq": 9918586,
+   "credit_kospi": 17414901,
+   "credit_total": 27333487,
+   "ipo_loan": 0,
+   "short_total": 57228
+  },
+  "2025-12-10": {
+   "collateral_loan": 24906443,
+   "credit_kosdaq": 9954659,
+   "credit_kospi": 17451839,
+   "credit_total": 27406497,
+   "ipo_loan": 0,
+   "short_total": 51456
+  },
+  "2025-12-11": {
+   "collateral_loan": 24898635,
+   "credit_kosdaq": 10001852,
+   "credit_kospi": 17389363,
+   "credit_total": 27391215,
+   "ipo_loan": 0,
+   "short_total": 49266
+  },
+  "2025-12-12": {
+   "collateral_loan": 24742339,
+   "credit_kosdaq": 10038703,
+   "credit_kospi": 17340889,
+   "credit_total": 27379592,
+   "ipo_loan": 0,
+   "short_total": 49903
+  },
+  "2025-12-15": {
+   "collateral_loan": 24799249,
+   "credit_kosdaq": 10065618,
+   "credit_kospi": 17353166,
+   "credit_total": 27418784,
+   "ipo_loan": 0,
+   "short_total": 47851
+  },
+  "2025-12-16": {
+   "collateral_loan": 24819131,
+   "credit_kosdaq": 10066110,
+   "credit_kospi": 17271577,
+   "credit_total": 27337687,
+   "ipo_loan": 0,
+   "short_total": 48783
+  },
+  "2025-12-17": {
+   "collateral_loan": 24800628,
+   "credit_kosdaq": 10139752,
+   "credit_kospi": 17389027,
+   "credit_total": 27528779,
+   "ipo_loan": 0,
+   "short_total": 45995
+  },
+  "2025-12-18": {
+   "collateral_loan": 24809428,
+   "credit_kosdaq": 10079881,
+   "credit_kospi": 17264651,
+   "credit_total": 27344532,
+   "ipo_loan": 0,
+   "short_total": 43004
+  },
+  "2025-12-19": {
+   "collateral_loan": 24804408,
+   "credit_kosdaq": 10052352,
+   "credit_kospi": 17213669,
+   "credit_total": 27266021,
+   "ipo_loan": 0,
+   "short_total": 44547
+  },
+  "2025-12-22": {
+   "collateral_loan": 24748010,
+   "credit_kosdaq": 10036111,
+   "credit_kospi": 17207819,
+   "credit_total": 27243930,
+   "ipo_loan": 0,
+   "short_total": 42763
+  },
+  "2025-12-23": {
+   "collateral_loan": 24821866,
+   "credit_kosdaq": 10033713,
+   "credit_kospi": 17231418,
+   "credit_total": 27265131,
+   "ipo_loan": 0,
+   "short_total": 44242
+  },
+  "2025-12-24": {
+   "collateral_loan": 24894221,
+   "credit_kosdaq": 10072566,
+   "credit_kospi": 17197544,
+   "credit_total": 27270110,
+   "ipo_loan": 0,
+   "short_total": 46112
+  },
+  "2025-12-26": {
+   "collateral_loan": 24872412,
+   "credit_kosdaq": 10116116,
+   "credit_kospi": 17131457,
+   "credit_total": 27247572,
+   "ipo_loan": 0,
+   "short_total": 46670
+  },
+  "2025-12-29": {
+   "collateral_loan": 24866774,
+   "credit_kosdaq": 10126703,
+   "credit_kospi": 17167807,
+   "credit_total": 27294510,
+   "ipo_loan": 0,
+   "short_total": 46075
+  },
+  "2025-12-30": {
+   "collateral_loan": 24938420,
+   "credit_kosdaq": 10163462,
+   "credit_kospi": 17136086,
+   "credit_total": 27299548,
+   "ipo_loan": 0,
+   "short_total": 44425
+  },
+  "2025-12-31": {
+   "collateral_loan": 24051075,
+   "credit_kosdaq": 10160370,
+   "credit_kospi": 17126099,
+   "credit_total": 27286469,
+   "ipo_loan": 0,
+   "short_total": 44425
+  },
+  "2026-01-02": {
+   "collateral_loan": 24806213,
+   "credit_kosdaq": 10185294,
+   "credit_kospi": 17235406,
+   "credit_total": 27420700,
+   "ipo_loan": 0,
+   "short_total": 47132
+  },
+  "2026-01-05": {
+   "collateral_loan": 25061051,
+   "credit_kosdaq": 10202661,
+   "credit_kospi": 17419695,
+   "credit_total": 27622356,
+   "ipo_loan": 0,
+   "short_total": 46331
+  },
+  "2026-01-06": {
+   "collateral_loan": 25140232,
+   "credit_kosdaq": 10206123,
+   "credit_kospi": 17590138,
+   "credit_total": 27796261,
+   "ipo_loan": 0,
+   "short_total": 48274
+  },
+  "2026-01-07": {
+   "collateral_loan": 25246373,
+   "credit_kosdaq": 10277538,
+   "credit_kospi": 17593221,
+   "credit_total": 27870759,
+   "ipo_loan": 0,
+   "short_total": 50746
+  },
+  "2026-01-08": {
+   "collateral_loan": 25471208,
+   "credit_kosdaq": 10325733,
+   "credit_kospi": 17864561,
+   "credit_total": 28190294,
+   "ipo_loan": 0,
+   "short_total": 51079
+  },
+  "2026-01-09": {
+   "collateral_loan": 25405189,
+   "credit_kosdaq": 10408612,
+   "credit_kospi": 17941133,
+   "credit_total": 28349745,
+   "ipo_loan": 0,
+   "short_total": 55531
+  },
+  "2026-01-12": {
+   "collateral_loan": 25489776,
+   "credit_kosdaq": 10405575,
+   "credit_kospi": 18116833,
+   "credit_total": 28522408,
+   "ipo_loan": 0,
+   "short_total": 55150
+  },
+  "2026-01-13": {
+   "collateral_loan": 25691419,
+   "credit_kosdaq": 10391107,
+   "credit_kospi": 18266333,
+   "credit_total": 28657441,
+   "ipo_loan": 0,
+   "short_total": 55199
+  },
+  "2026-01-14": {
+   "collateral_loan": 25572544,
+   "credit_kosdaq": 10400314,
+   "credit_kospi": 18198979,
+   "credit_total": 28599293,
+   "ipo_loan": 0,
+   "short_total": 55043
+  },
+  "2026-01-15": {
+   "collateral_loan": 25759047,
+   "credit_kosdaq": 10454945,
+   "credit_kospi": 18290635,
+   "credit_total": 28745580,
+   "ipo_loan": 0,
+   "short_total": 55422
+  },
+  "2026-01-16": {
+   "collateral_loan": 25803527,
+   "credit_kosdaq": 10486379,
+   "credit_kospi": 18447408,
+   "credit_total": 28933786,
+   "ipo_loan": 0,
+   "short_total": 55602
+  },
+  "2026-01-19": {
+   "collateral_loan": 25908298,
+   "credit_kosdaq": 10522826,
+   "credit_kospi": 18472188,
+   "credit_total": 28995014,
+   "ipo_loan": 0,
+   "short_total": 54172
+  },
+  "2026-01-20": {
+   "collateral_loan": 26114853,
+   "credit_kosdaq": 10506554,
+   "credit_kospi": 18551999,
+   "credit_total": 29058554,
+   "ipo_loan": 0,
+   "short_total": 54240
+  },
+  "2026-01-21": {
+   "collateral_loan": 26111469,
+   "credit_kosdaq": 10572993,
+   "credit_kospi": 18509121,
+   "credit_total": 29082114,
+   "ipo_loan": 0,
+   "short_total": 56612
+  },
+  "2026-01-22": {
+   "collateral_loan": 26147971,
+   "credit_kosdaq": 10473358,
+   "credit_kospi": 18452386,
+   "credit_total": 28925745,
+   "ipo_loan": 0,
+   "short_total": 51272
+  },
+  "2026-01-23": {
+   "collateral_loan": 25934005,
+   "credit_kosdaq": 10456247,
+   "credit_kospi": 18599163,
+   "credit_total": 29055410,
+   "ipo_loan": 0,
+   "short_total": 53725
+  },
+  "2026-01-26": {
+   "collateral_loan": 26074107,
+   "credit_kosdaq": 10483826,
+   "credit_kospi": 18862856,
+   "credit_total": 29346682,
+   "ipo_loan": 0,
+   "short_total": 53758
+  },
+  "2026-01-27": {
+   "collateral_loan": 26217066,
+   "credit_kosdaq": 10460249,
+   "credit_kospi": 18784747,
+   "credit_total": 29244996,
+   "ipo_loan": 0,
+   "short_total": 54148
+  },
+  "2026-01-28": {
+   "collateral_loan": 26096824,
+   "credit_kosdaq": 10445133,
+   "credit_kospi": 19151033,
+   "credit_total": 29596166,
+   "ipo_loan": 0,
+   "short_total": 52074
+  },
+  "2026-01-29": {
+   "collateral_loan": 26124828,
+   "credit_kosdaq": 10500228,
+   "credit_kospi": 19592259,
+   "credit_total": 30092487,
+   "ipo_loan": 0,
+   "short_total": 53106
+  },
+  "2026-01-30": {
+   "collateral_loan": 26124342,
+   "credit_kosdaq": 10422957,
+   "credit_kospi": 19854894,
+   "credit_total": 30277851,
+   "ipo_loan": 0,
+   "short_total": 52027
+  },
+  "2026-02-02": {
+   "collateral_loan": 26215337,
+   "credit_kosdaq": 10374853,
+   "credit_kospi": 20098211,
+   "credit_total": 30473064,
+   "ipo_loan": 0,
+   "short_total": 52364
+  },
+  "2026-02-03": {
+   "collateral_loan": 26457724,
+   "credit_kosdaq": 10271701,
+   "credit_kospi": 20268065,
+   "credit_total": 30539766,
+   "ipo_loan": 0,
+   "short_total": 52261
+  },
+  "2026-02-04": {
+   "collateral_loan": 26638491,
+   "credit_kosdaq": 10311289,
+   "credit_kospi": 20623891,
+   "credit_total": 30935180,
+   "ipo_loan": 0,
+   "short_total": 46004
+  },
+  "2026-02-05": {
+   "collateral_loan": 26038299,
+   "credit_kosdaq": 10319994,
+   "credit_kospi": 20466799,
+   "credit_total": 30786792,
+   "ipo_loan": 0,
+   "short_total": 50455
+  },
+  "2026-02-06": {
+   "collateral_loan": 26223893,
+   "credit_kosdaq": 10431482,
+   "credit_kospi": 20668013,
+   "credit_total": 31099495,
+   "ipo_loan": 0,
+   "short_total": 49842
+  },
+  "2026-02-09": {
+   "collateral_loan": 26678323,
+   "credit_kosdaq": 10424756,
+   "credit_kospi": 21182942,
+   "credit_total": 31607698,
+   "ipo_loan": 0,
+   "short_total": 47244
+  },
+  "2026-02-10": {
+   "collateral_loan": 26438217,
+   "credit_kosdaq": 10375327,
+   "credit_kospi": 21185393,
+   "credit_total": 31560720,
+   "ipo_loan": 0,
+   "short_total": 42448
+  },
+  "2026-02-11": {
+   "collateral_loan": 25790247,
+   "credit_kosdaq": 10399594,
+   "credit_kospi": 20918416,
+   "credit_total": 31318010,
+   "ipo_loan": 0,
+   "short_total": 44492
+  },
+  "2026-02-12": {
+   "collateral_loan": 25807248,
+   "credit_kosdaq": 10506034,
+   "credit_kospi": 20960376,
+   "credit_total": 31466410,
+   "ipo_loan": 0,
+   "short_total": 46775
+  },
+  "2026-02-13": {
+   "collateral_loan": 25838624,
+   "credit_kosdaq": 10534462,
+   "credit_kospi": 20942212,
+   "credit_total": 31476674,
+   "ipo_loan": 0,
+   "short_total": 49414
+  },
+  "2026-02-19": {
+   "collateral_loan": 25702226,
+   "credit_kosdaq": 10648781,
+   "credit_kospi": 20944448,
+   "credit_total": 31593229,
+   "ipo_loan": 0,
+   "short_total": 47974
+  },
+  "2026-02-20": {
+   "collateral_loan": 25922730,
+   "credit_kosdaq": 10661343,
+   "credit_kospi": 20977105,
+   "credit_total": 31638448,
+   "ipo_loan": 0,
+   "short_total": 46150
+  },
+  "2026-02-23": {
+   "collateral_loan": 25739862,
+   "credit_kosdaq": 10590875,
+   "credit_kospi": 21121450,
+   "credit_total": 31712325,
+   "ipo_loan": 0,
+   "short_total": 47994
+  },
+  "2026-02-24": {
+   "collateral_loan": 26426052,
+   "credit_kosdaq": 10680687,
+   "credit_kospi": 21279520,
+   "credit_total": 31960208,
+   "ipo_loan": 0,
+   "short_total": 49136
+  },
+  "2026-02-25": {
+   "collateral_loan": 26249395,
+   "credit_kosdaq": 10734910,
+   "credit_kospi": 21399130,
+   "credit_total": 32134040,
+   "ipo_loan": 0,
+   "short_total": 49217
+  },
+  "2026-02-26": {
+   "collateral_loan": 26361958,
+   "credit_kosdaq": 10871692,
+   "credit_kospi": 21496796,
+   "credit_total": 32368488,
+   "ipo_loan": 0,
+   "short_total": 50269
+  },
+  "2026-02-27": {
+   "collateral_loan": 26328386,
+   "credit_kosdaq": 10996193,
+   "credit_kospi": 21672790,
+   "credit_total": 32668983,
+   "ipo_loan": 0,
+   "short_total": 50719
+  },
+  "2026-03-03": {
+   "collateral_loan": 26603635,
+   "credit_kosdaq": 11025996,
+   "credit_kospi": 21778077,
+   "credit_total": 32804073,
+   "ipo_loan": 0,
+   "short_total": 51979
+  },
+  "2026-03-04": {
+   "collateral_loan": 27162713,
+   "credit_kosdaq": 10966587,
+   "credit_kospi": 22231204,
+   "credit_total": 33197791,
+   "ipo_loan": 0,
+   "short_total": 50315
+  },
+  "2026-03-05": {
+   "collateral_loan": 28084542,
+   "credit_kosdaq": 10879241,
+   "credit_kospi": 22815279,
+   "credit_total": 33694521,
+   "ipo_loan": 0,
+   "short_total": 44672
+  },
+  "2026-03-06": {
+   "collateral_loan": 27674123,
+   "credit_kosdaq": 10441542,
+   "credit_kospi": 22348354,
+   "credit_total": 32789896,
+   "ipo_loan": 0,
+   "short_total": 33840
+  },
+  "2026-03-09": {
+   "collateral_loan": 25679556,
+   "credit_kosdaq": 10128161,
+   "credit_kospi": 21562347,
+   "credit_total": 31690508,
+   "ipo_loan": 0,
+   "short_total": 40838
+  },
+  "2026-03-10": {
+   "collateral_loan": 25946412,
+   "credit_kosdaq": 10171753,
+   "credit_kospi": 21631564,
+   "credit_total": 31803317,
+   "ipo_loan": 0,
+   "short_total": 39138
+  },
+  "2026-03-11": {
+   "collateral_loan": 26252211,
+   "credit_kosdaq": 10149380,
+   "credit_kospi": 21609005,
+   "credit_total": 31758385,
+   "ipo_loan": 0,
+   "short_total": 41601
+  },
+  "2026-03-12": {
+   "collateral_loan": 25922737,
+   "credit_kosdaq": 10320690,
+   "credit_kospi": 21821252,
+   "credit_total": 32141942,
+   "ipo_loan": 0,
+   "short_total": 41684
+  },
+  "2026-03-13": {
+   "collateral_loan": 25985351,
+   "credit_kosdaq": 10497713,
+   "credit_kospi": 22185649,
+   "credit_total": 32683362,
+   "ipo_loan": 0,
+   "short_total": 41064
+  },
+  "2026-03-16": {
+   "collateral_loan": 25882090,
+   "credit_kosdaq": 10598370,
+   "credit_kospi": 22620778,
+   "credit_total": 33219147,
+   "ipo_loan": 0,
+   "short_total": 37034
+  },
+  "2026-03-17": {
+   "collateral_loan": 26044707,
+   "credit_kosdaq": 10625120,
+   "credit_kospi": 22706498,
+   "credit_total": 33331617,
+   "ipo_loan": 0,
+   "short_total": 36858
+  },
+  "2026-03-18": {
+   "collateral_loan": 26188633,
+   "credit_kosdaq": 10641555,
+   "credit_kospi": 22846034,
+   "credit_total": 33487589,
+   "ipo_loan": 0,
+   "short_total": 35408
+  },
+  "2026-03-19": {
+   "collateral_loan": 25837580,
+   "credit_kosdaq": 10616230,
+   "credit_kospi": 22691397,
+   "credit_total": 33307626,
+   "ipo_loan": 0,
+   "short_total": 34239
+  },
+  "2026-03-20": {
+   "collateral_loan": 25907368,
+   "credit_kosdaq": 10638633,
+   "credit_kospi": 22616375,
+   "credit_total": 33255008,
+   "ipo_loan": 0,
+   "short_total": 37001
+  },
+  "2026-03-23": {
+   "collateral_loan": 26107959,
+   "credit_kosdaq": 10623582,
+   "credit_kospi": 22725036,
+   "credit_total": 33348618,
+   "ipo_loan": 0,
+   "short_total": 37265
+  },
+  "2026-03-24": {
+   "collateral_loan": 26247257,
+   "credit_kosdaq": 10576239,
+   "credit_kospi": 22845615,
+   "credit_total": 33421855,
+   "ipo_loan": 0,
+   "short_total": 36436
+  },
+  "2026-03-25": {
+   "collateral_loan": 26268882,
+   "credit_kosdaq": 10393864,
+   "credit_kospi": 22634659,
+   "credit_total": 33028524,
+   "ipo_loan": 0,
+   "short_total": 31501
+  },
+  "2026-03-26": {
+   "collateral_loan": 25774976,
+   "credit_kosdaq": 10304490,
+   "credit_kospi": 22447926,
+   "credit_total": 32752416,
+   "ipo_loan": 0,
+   "short_total": 35229
+  },
+  "2026-03-27": {
+   "collateral_loan": 25748838,
+   "credit_kosdaq": 10328355,
+   "credit_kospi": 22456119,
+   "credit_total": 32784474,
+   "ipo_loan": 0,
+   "short_total": 37313
+  },
+  "2026-03-30": {
+   "collateral_loan": 25594865,
+   "credit_kosdaq": 10317027,
+   "credit_kospi": 22284736,
+   "credit_total": 32601763,
+   "ipo_loan": 0,
+   "short_total": 36820
+  },
+  "2026-03-31": {
+   "collateral_loan": 25676887,
+   "credit_kosdaq": 10362934,
+   "credit_kospi": 22559682,
+   "credit_total": 32922615,
+   "ipo_loan": 0,
+   "short_total": 37389
+  },
+  "2026-04-01": {
+   "collateral_loan": 25966684,
+   "credit_kosdaq": 10371616,
+   "credit_kospi": 22609406,
+   "credit_total": 32981021,
+   "ipo_loan": 0,
+   "short_total": 36077
+  },
+  "2026-04-02": {
+   "collateral_loan": 26224496,
+   "credit_kosdaq": 10219122,
+   "credit_kospi": 22506384,
+   "credit_total": 32725506,
+   "ipo_loan": 0,
+   "short_total": 31566
+  },
+  "2026-04-03": {
+   "collateral_loan": 25296762,
+   "credit_kosdaq": 10165120,
+   "credit_kospi": 22278863,
+   "credit_total": 32443983,
+   "ipo_loan": 0,
+   "short_total": 37238
+  },
+  "2026-04-06": {
+   "collateral_loan": 25523015,
+   "credit_kosdaq": 10202318,
+   "credit_kospi": 22643583,
+   "credit_total": 32845902,
+   "ipo_loan": 0,
+   "short_total": 34745
+  },
+  "2026-04-07": {
+   "collateral_loan": 25391936,
+   "credit_kosdaq": 10189042,
+   "credit_kospi": 22468639,
+   "credit_total": 32657681,
+   "ipo_loan": 0,
+   "short_total": 37576
+  },
+  "2026-04-08": {
+   "collateral_loan": 25435315,
+   "credit_kosdaq": 10156499,
+   "credit_kospi": 22573506,
+   "credit_total": 32730005,
+   "ipo_loan": 0,
+   "short_total": 37325
+  },
+  "2026-04-09": {
+   "collateral_loan": 25856913,
+   "credit_kosdaq": 10083900,
+   "credit_kospi": 22636117,
+   "credit_total": 32720017,
+   "ipo_loan": 0,
+   "short_total": 37546
+  },
+  "2026-04-10": {
+   "collateral_loan": 25721893,
+   "credit_kosdaq": 10150824,
+   "credit_kospi": 22750606,
+   "credit_total": 32901431,
+   "ipo_loan": 0,
+   "short_total": 40803
+  },
+  "2026-04-13": {
+   "collateral_loan": 24994153,
+   "credit_kosdaq": 10230189,
+   "credit_kospi": 22986628,
+   "credit_total": 33216818,
+   "ipo_loan": 0,
+   "short_total": 37721
+  },
+  "2026-04-14": {
+   "collateral_loan": 24911979,
+   "credit_kosdaq": 10241844,
+   "credit_kospi": 23040602,
+   "credit_total": 33282445,
+   "ipo_loan": 0,
+   "short_total": 37126
+  },
+  "2026-04-15": {
+   "collateral_loan": 25185591,
+   "credit_kosdaq": 10259698,
+   "credit_kospi": 23096979,
+   "credit_total": 33356678,
+   "ipo_loan": 0,
+   "short_total": 38360
+  },
+  "2026-04-16": {
+   "collateral_loan": 25043657,
+   "credit_kosdaq": 10446400,
+   "credit_kospi": 23425867,
+   "credit_total": 33872266,
+   "ipo_loan": 0,
+   "short_total": 38616
+  },
+  "2026-04-17": {
+   "collateral_loan": 24931955,
+   "credit_kosdaq": 10518349,
+   "credit_kospi": 23509583,
+   "credit_total": 34027932,
+   "ipo_loan": 0,
+   "short_total": 41514
+  },
+  "2026-04-20": {
+   "collateral_loan": 24850982,
+   "credit_kosdaq": 10633598,
+   "credit_kospi": 23625640,
+   "credit_total": 34259238,
+   "ipo_loan": 0,
+   "short_total": 45554
+  },
+  "2026-04-21": {
+   "collateral_loan": 25048441,
+   "credit_kosdaq": 10699657,
+   "credit_kospi": 23994978,
+   "credit_total": 34694635,
+   "ipo_loan": 0,
+   "short_total": 45414
+  },
+  "2026-04-22": {
+   "collateral_loan": 25107236,
+   "credit_kosdaq": 10752190,
+   "credit_kospi": 24058499,
+   "credit_total": 34810689,
+   "ipo_loan": 0,
+   "short_total": 46783
+  },
+  "2026-04-23": {
+   "collateral_loan": 25311616,
+   "credit_kosdaq": 10836828,
+   "credit_kospi": 24243090,
+   "credit_total": 35079918,
+   "ipo_loan": 0,
+   "short_total": 49415
+  },
+  "2026-04-24": {
+   "collateral_loan": 25287311,
+   "credit_kosdaq": 10883664,
+   "credit_kospi": 24579345,
+   "credit_total": 35463009,
+   "ipo_loan": 0,
+   "short_total": 48509
+  },
+  "2026-04-27": {
+   "collateral_loan": 25415695,
+   "credit_kosdaq": 10885045,
+   "credit_kospi": 24652710,
+   "credit_total": 35537755,
+   "ipo_loan": 0,
+   "short_total": 47436
+  },
+  "2026-04-28": {
+   "collateral_loan": 25434889,
+   "credit_kosdaq": 10878016,
+   "credit_kospi": 24811639,
+   "credit_total": 35689655,
+   "ipo_loan": 0,
+   "short_total": 47536
+  },
+  "2026-04-29": {
+   "collateral_loan": 25171986,
+   "credit_kosdaq": 11050556,
+   "credit_kospi": 25017693,
+   "credit_total": 36068250,
+   "ipo_loan": 0,
+   "short_total": 50596
+  },
+  "2026-04-30": {
+   "collateral_loan": 25291961,
+   "credit_kosdaq": 11029522,
+   "credit_kospi": 24683557,
+   "credit_total": 35713079,
+   "ipo_loan": 0,
+   "short_total": 50072
+  },
+  "2026-05-04": {
+   "collateral_loan": 25507473,
+   "credit_kosdaq": 11022007,
+   "credit_kospi": 24816912,
+   "credit_total": 35838919,
+   "ipo_loan": 0,
+   "short_total": 50724
+  },
+  "2026-05-06": {
+   "collateral_loan": 25636717,
+   "credit_kosdaq": 10928915,
+   "credit_kospi": 24500853,
+   "credit_total": 35429768,
+   "ipo_loan": 0,
+   "short_total": 49775
+  },
+  "2026-05-07": {
+   "collateral_loan": 25419631,
+   "credit_kosdaq": 10954128,
+   "credit_kospi": 24553059,
+   "credit_total": 35507187,
+   "ipo_loan": 0,
+   "short_total": 54247
+  },
+  "2026-05-08": {
+   "collateral_loan": 25685928,
+   "credit_kosdaq": 11007335,
+   "credit_kospi": 24942683,
+   "credit_total": 35950018,
+   "ipo_loan": 0,
+   "short_total": 58321
+  },
+  "2026-05-11": {
+   "collateral_loan": 25857514,
+   "credit_kosdaq": 10952421,
+   "credit_kospi": 25046079,
+   "credit_total": 35998500,
+   "ipo_loan": 0,
+   "short_total": 52872
+  },
+  "2026-05-12": {
+   "collateral_loan": 26480312,
+   "credit_kosdaq": 10863907,
+   "credit_kospi": 25403831,
+   "credit_total": 36267738,
+   "ipo_loan": 0,
+   "short_total": 50447
+  },
+  "2026-05-13": {
+   "collateral_loan": 25919934,
+   "credit_kosdaq": 10760457,
+   "credit_kospi": 25313547,
+   "credit_total": 36074005,
+   "ipo_loan": 0,
+   "short_total": 54626
+  },
+  "2026-05-14": {
+   "collateral_loan": 26329967,
+   "credit_kosdaq": 10643004,
+   "credit_kospi": 25826781,
+   "credit_total": 36469784,
+   "ipo_loan": 0,
+   "short_total": 52896
+  },
+  "2026-05-15": {
+   "collateral_loan": 26364517,
+   "credit_kosdaq": 10579943,
+   "credit_kospi": 25987572,
+   "credit_total": 36567516,
+   "ipo_loan": 0,
+   "short_total": 55298
+  },
+  "2026-05-18": {
+   "collateral_loan": 25929748,
+   "credit_kosdaq": 10497167,
+   "credit_kospi": 25899488,
+   "credit_total": 36396655,
+   "ipo_loan": 0,
+   "short_total": 49069
+  },
+  "2026-05-19": {
+   "collateral_loan": 26534193,
+   "credit_kosdaq": 10332696,
+   "credit_kospi": 25523374,
+   "credit_total": 35856070,
+   "ipo_loan": 0,
+   "short_total": 44847
+  },
+  "2026-05-20": {
+   "collateral_loan": 26052925,
+   "credit_kosdaq": 10233400,
+   "credit_kospi": 26003624,
+   "credit_total": 36237024,
+   "ipo_loan": 0,
+   "short_total": 43920
+  },
+  "2026-05-21": {
+   "collateral_loan": 26326553,
+   "credit_kosdaq": 10107938,
+   "credit_kospi": 26364442,
+   "credit_total": 36472380,
+   "ipo_loan": 0,
+   "short_total": 39910
+  },
+  "2026-05-22": {
+   "collateral_loan": 25729842,
+   "credit_kosdaq": 9935618,
+   "credit_kospi": 26419905,
+   "credit_total": 36355524,
+   "ipo_loan": 0,
+   "short_total": 40510
+  },
+  "2026-05-26": {
+   "collateral_loan": 25281662,
+   "credit_kosdaq": 9855511,
+   "credit_kospi": 26399276,
+   "credit_total": 36254787,
+   "ipo_loan": 0,
+   "short_total": 43254
+  },
+  "2026-05-27": {
+   "collateral_loan": 25803160,
+   "credit_kosdaq": 9856320,
+   "credit_kospi": 26833716,
+   "credit_total": 36690036,
+   "ipo_loan": 0,
+   "short_total": 42397
+  },
+  "2026-05-28": {
+   "collateral_loan": 26190119,
+   "credit_kosdaq": 9884635,
+   "credit_kospi": 27184083,
+   "credit_total": 37068718,
+   "ipo_loan": 0,
+   "short_total": 44015
+  },
+  "2026-05-29": {
+   "collateral_loan": 26317824,
+   "credit_kosdaq": 9998209,
+   "credit_kospi": 28024472,
+   "credit_total": 38022681,
+   "ipo_loan": 0,
+   "short_total": 43642
+  },
+  "2026-06-01": {
+   "collateral_loan": 26211625,
+   "credit_kosdaq": 9835522,
+   "credit_kospi": 27845647,
+   "credit_total": 37681169,
+   "ipo_loan": 0,
+   "short_total": 46368
+  },
+  "2026-06-02": {
+   "collateral_loan": 26216206,
+   "credit_kosdaq": 9784943,
+   "credit_kospi": 27924185,
+   "credit_total": 37709128,
+   "ipo_loan": 0,
+   "short_total": 46177
+  },
+  "2026-06-04": {
+   "collateral_loan": 26402454,
+   "credit_kosdaq": 9705910,
+   "credit_kospi": 28031687,
+   "credit_total": 37737597,
+   "ipo_loan": 0,
+   "short_total": 51336
+  },
+  "2026-06-05": {
+   "collateral_loan": 26243312,
+   "credit_kosdaq": 9564895,
+   "credit_kospi": 28273482,
+   "credit_total": 37838377,
+   "ipo_loan": 0,
+   "short_total": 46310
+  },
+  "2026-06-08": {
+   "collateral_loan": 26550969,
+   "credit_kosdaq": 9463946,
+   "credit_kospi": 28326450,
+   "credit_total": 37790396,
+   "ipo_loan": 0,
+   "short_total": 42638
+  },
+  "2026-06-09": {
+   "collateral_loan": 26292257,
+   "credit_kosdaq": 9355849,
+   "credit_kospi": 28573169,
+   "credit_total": 37929018,
+   "ipo_loan": 0,
+   "short_total": 38193
+  },
+  "2026-06-10": {
+   "collateral_loan": 26048685,
+   "credit_kosdaq": 8965807,
+   "credit_kospi": 27807841,
+   "credit_total": 36773649,
+   "ipo_loan": 0,
+   "short_total": 34808
+  },
+  "2026-06-11": {
+   "collateral_loan": 24672893,
+   "credit_kosdaq": 8782096,
+   "credit_kospi": 27874378,
+   "credit_total": 36656474,
+   "ipo_loan": 0,
+   "short_total": 38886
+  },
+  "2026-06-12": {
+   "collateral_loan": 25420553,
+   "credit_kosdaq": 8768446,
+   "credit_kospi": 28110836,
+   "credit_total": 36879281,
+   "ipo_loan": 0,
+   "short_total": 36302
+  },
+  "2026-06-15": {
+   "collateral_loan": 25097917,
+   "credit_kosdaq": 8780874,
+   "credit_kospi": 28296079,
+   "credit_total": 37076954,
+   "ipo_loan": 0,
+   "short_total": 31000
+  },
+  "2026-06-16": {
+   "collateral_loan": 25290136,
+   "credit_kosdaq": 8854516,
+   "credit_kospi": 28531116,
+   "credit_total": 37385632,
+   "ipo_loan": 0,
+   "short_total": 35691
+  },
+  "2026-06-17": {
+   "collateral_loan": 25280087,
+   "credit_kosdaq": 8957236,
+   "credit_kospi": 28843289,
+   "credit_total": 37800525,
+   "ipo_loan": 0,
+   "short_total": 43217
+  },
+  "2026-06-18": {
+   "collateral_loan": 25570729,
+   "credit_kosdaq": 9052221,
+   "credit_kospi": 28927467,
+   "credit_total": 37979688,
+   "ipo_loan": 0,
+   "short_total": 40700
+  },
+  "2026-06-19": {
+   "collateral_loan": 26026160,
+   "credit_kosdaq": 9080960,
+   "credit_kospi": 29397728,
+   "credit_total": 38478688,
+   "ipo_loan": 0,
+   "short_total": 38454
+  },
+  "2026-06-22": {
+   "collateral_loan": 25950087,
+   "credit_kosdaq": 9060472,
+   "credit_kospi": 29470718,
+   "credit_total": 38531191,
+   "ipo_loan": 0,
+   "short_total": 39530
+  },
+  "2026-06-23": {
+   "collateral_loan": 26053308,
+   "credit_kosdaq": 8960378,
+   "credit_kospi": 29133243,
+   "credit_total": 38093622,
+   "ipo_loan": 0,
+   "short_total": 39435
+  },
+  "2026-06-24": {
+   "collateral_loan": 26346187,
+   "credit_kosdaq": 8878561,
+   "credit_kospi": 29754263,
+   "credit_total": 38632824,
+   "ipo_loan": 0,
+   "short_total": 38412
+  },
+  "2026-06-25": {
+   "collateral_loan": 26162923,
+   "credit_kosdaq": 8658995,
+   "credit_kospi": 29389386,
+   "credit_total": 38048381,
+   "ipo_loan": 0,
+   "short_total": 31651
+  },
+  "2026-06-26": {
+   "collateral_loan": 25459898,
+   "credit_kosdaq": 8431944,
+   "credit_kospi": 29329632,
+   "credit_total": 37761576,
+   "ipo_loan": 0,
+   "short_total": 34700
+  },
+  "2026-06-29": {
+   "collateral_loan": 25181088,
+   "credit_kosdaq": 8381608,
+   "credit_kospi": 29425399,
+   "credit_total": 37807006,
+   "ipo_loan": 0,
+   "short_total": 37049
+  },
+  "2026-06-30": {
+   "collateral_loan": 25494840,
+   "credit_kosdaq": 8093660,
+   "credit_kospi": 29234568,
+   "credit_total": 37328228,
+   "ipo_loan": 0,
+   "short_total": 31659
+  },
+  "2026-07-01": {
+   "collateral_loan": 25042032,
+   "credit_kosdaq": 8000514,
+   "credit_kospi": 29338829,
+   "credit_total": 37339343,
+   "ipo_loan": 0,
+   "short_total": 35077
+  },
+  "2026-07-02": {
+   "collateral_loan": 25004481,
+   "credit_kosdaq": 8084282,
+   "credit_kospi": 29634401,
+   "credit_total": 37718683,
+   "ipo_loan": 0,
+   "short_total": 34891
+  },
+  "2026-07-03": {
+   "collateral_loan": 24914753,
+   "credit_kosdaq": 8114841,
+   "credit_kospi": 29677370,
+   "credit_total": 37792211,
+   "ipo_loan": 0,
+   "short_total": 37345
+  },
+  "2026-07-06": {
+   "collateral_loan": 25285096,
+   "credit_kosdaq": 8098792,
+   "credit_kospi": 29561210,
+   "credit_total": 37660002,
+   "ipo_loan": 0,
+   "short_total": 34927
+  },
+  "2026-07-07": {
+   "collateral_loan": 24357516,
+   "credit_kosdaq": 7990423,
+   "credit_kospi": 29074973,
+   "credit_total": 37065396,
+   "ipo_loan": 0,
+   "short_total": 32838
+  },
+  "2026-07-08": {
+   "collateral_loan": 24705070,
+   "credit_kosdaq": 7960702,
+   "credit_kospi": 29239165,
+   "credit_total": 37199867,
+   "ipo_loan": 0,
+   "short_total": 30962
+  },
+  "2026-07-09": {
+   "collateral_loan": 25223393,
+   "credit_kosdaq": 7796236,
+   "credit_kospi": 28837405,
+   "credit_total": 36633641,
+   "ipo_loan": 0,
+   "short_total": 27897
+  },
+  "2026-07-10": {
+   "collateral_loan": 25237585,
+   "credit_kosdaq": 7554341,
+   "credit_kospi": 28019642,
+   "credit_total": 35573983,
+   "ipo_loan": 0,
+   "short_total": 25460
+  },
+  "2026-07-13": {
+   "collateral_loan": 24872258,
+   "credit_kosdaq": 7341451,
+   "credit_kospi": 27447168,
+   "credit_total": 34788619,
+   "ipo_loan": 0,
+   "short_total": 24200
+  },
+  "2026-07-14": {
+   "collateral_loan": 24804274,
+   "credit_kosdaq": 7255034,
+   "credit_kospi": 27452720,
+   "credit_total": 34707755,
+   "ipo_loan": 0,
+   "short_total": 28580
+  },
+  "2026-07-15": {
+   "collateral_loan": 25877910,
+   "credit_kosdaq": 7234735,
+   "credit_kospi": 27135448,
+   "credit_total": 34370184,
+   "ipo_loan": 0,
+   "short_total": 26953
+  },
+  "2026-07-16": {
+   "collateral_loan": 25195635,
+   "credit_kosdaq": 7109075,
+   "credit_kospi": 26253368,
+   "credit_total": 33362442,
+   "ipo_loan": 0,
+   "short_total": 24274
+  },
+  "2026-07-20": {
+   "collateral_loan": 24782509,
+   "credit_kosdaq": 7126183,
+   "credit_kospi": 26206459,
+   "credit_total": 33332642,
+   "ipo_loan": 0,
+   "short_total": 30774
+  },
+  "2026-07-21": {
+   "collateral_loan": 24912476,
+   "credit_kosdaq": 7137911,
+   "credit_kospi": 26420477,
+   "credit_total": 33558388,
+   "ipo_loan": 0,
+   "short_total": 25257
+  },
+  "2026-07-22": {
+   "collateral_loan": 25067386,
+   "credit_kosdaq": 7013411,
+   "credit_kospi": 26028687,
+   "credit_total": 33042098,
+   "ipo_loan": 0,
+   "short_total": 20774
+  },
+  "2026-07-23": {
+   "collateral_loan": 24838296,
+   "credit_kosdaq": 6910591,
+   "credit_kospi": 25838628,
+   "credit_total": 32749219,
+   "ipo_loan": 0,
+   "short_total": 25929
+  },
+  "2026-07-24": {
+   "collateral_loan": 24709692,
+   "credit_kosdaq": 6925945,
+   "credit_kospi": 25745724,
+   "credit_total": 32671670,
+   "ipo_loan": 0,
+   "short_total": 23451
+  },
+  "2026-07-27": {
+   "collateral_loan": 24690322,
+   "credit_kosdaq": 6905557,
+   "credit_kospi": 25835506,
+   "credit_total": 32741063,
+   "ipo_loan": 0,
+   "short_total": 30074
+  },
+  "2026-07-28": {
+   "collateral_loan": 25159474,
+   "credit_kosdaq": 6922071,
+   "credit_kospi": 26271969,
+   "credit_total": 33194040,
+   "ipo_loan": 0,
+   "short_total": 24959
+  },
+  "2026-07-29": {
+   "collateral_loan": 25515482,
+   "credit_kosdaq": 6819958,
+   "credit_kospi": 26175088,
+   "credit_total": 32995046,
+   "ipo_loan": 0,
+   "short_total": 24791
+  },
+  "2026-07-30": {
+   "collateral_loan": 25819358,
+   "credit_kosdaq": 6644461,
+   "credit_kospi": 25508658,
+   "credit_total": 32153119,
+   "ipo_loan": 0,
+   "short_total": 19393
+  },
+  "2026-07-31": {
+   "collateral_loan": 25449338,
+   "credit_kosdaq": 6094398,
+   "credit_kospi": 22840599,
+   "credit_total": 28934997,
+   "ipo_loan": 0,
+   "short_total": 14438
+  },
+  "2026-08-03": {
+   "collateral_loan": 24871213,
+   "credit_kosdaq": 5829763,
+   "credit_kospi": 21614091,
+   "credit_total": 27443854,
+   "ipo_loan": 0,
+   "short_total": 17040
+  },
+  "2026-08-04": {
+   "collateral_loan": 24137875,
+   "credit_kosdaq": 5814640,
+   "credit_kospi": 21589188,
+   "credit_total": 27403828,
+   "ipo_loan": 0,
+   "short_total": 26324
+  },
+  "2026-08-05": {
+   "collateral_loan": 24604608,
+   "credit_kosdaq": 5897647,
+   "credit_kospi": 22520319,
+   "credit_total": 28417966,
+   "ipo_loan": 0,
+   "short_total": 19019
+  },
+  "2026-08-06": {
+   "collateral_loan": 24371411,
+   "credit_kosdaq": 5925503,
+   "credit_kospi": 22868507,
+   "credit_total": 28794010,
+   "ipo_loan": 0,
+   "short_total": 24744
+  },
+  "2026-08-07": {
+   "collateral_loan": 24415045,
+   "credit_kosdaq": 6130422,
+   "credit_kospi": 23099946,
+   "credit_total": 29230368,
+   "ipo_loan": 0,
+   "short_total": 27780
+  },
+  "2026-08-10": {
+   "collateral_loan": 24672334,
+   "credit_kosdaq": 6185366,
+   "credit_kospi": 23838401,
+   "credit_total": 30023768,
+   "ipo_loan": 0,
+   "short_total": 25621
+  },
+  "2026-08-11": {
+   "collateral_loan": 24657728,
+   "credit_kosdaq": 6268345,
+   "credit_kospi": 23770378,
+   "credit_total": 30038722,
+   "ipo_loan": 0,
+   "short_total": 26310
+  },
+  "2026-08-12": {
+   "collateral_loan": 24715601,
+   "credit_kosdaq": 6219932,
+   "credit_kospi": 24198821,
+   "credit_total": 30418753,
+   "ipo_loan": 0,
+   "short_total": 27295
+  },
+  "2026-08-13": {
+   "collateral_loan": 24862321,
+   "credit_kosdaq": 6391359,
+   "credit_kospi": 24534908,
+   "credit_total": 30926266,
+   "ipo_loan": 0,
+   "short_total": 27985
+  },
+  "2026-08-14": {
+   "collateral_loan": 24918140,
+   "credit_kosdaq": 6540328,
+   "credit_kospi": 24327182,
+   "credit_total": 30867510,
+   "ipo_loan": 0,
+   "short_total": 31067
+  },
+  "2026-08-18": {
+   "collateral_loan": 25194954,
+   "credit_kosdaq": 6709822,
+   "credit_kospi": 24394711,
+   "credit_total": 31104533,
+   "ipo_loan": 0,
+   "short_total": 33446
+  },
+  "2026-08-19": {
+   "collateral_loan": 25126144,
+   "credit_kosdaq": 6824640,
+   "credit_kospi": 24487369,
+   "credit_total": 31312008,
+   "ipo_loan": 0,
+   "short_total": 33918
+  },
+  "2026-08-20": {
+   "collateral_loan": 25378522,
+   "credit_kosdaq": 6919721,
+   "credit_kospi": 24974174,
+   "credit_total": 31893895,
+   "ipo_loan": 0,
+   "short_total": 31482
+  },
+  "2026-08-21": {
+   "collateral_loan": 25576085,
+   "credit_kosdaq": 6855123,
+   "credit_kospi": 25561165,
+   "credit_total": 32416288,
+   "ipo_loan": 0,
+   "short_total": 27147
+  },
+  "2026-08-24": {
+   "collateral_loan": 25303427,
+   "credit_kosdaq": 6875094,
+   "credit_kospi": 25753152,
+   "credit_total": 32628246,
+   "ipo_loan": 0,
+   "short_total": 30955
+  },
+  "2026-08-25": {
+   "collateral_loan": 25646931,
+   "credit_kosdaq": 6946154,
+   "credit_kospi": 25902153,
+   "credit_total": 32848307,
+   "ipo_loan": 0,
+   "short_total": 29319
+  },
+  "2026-08-26": {
+   "collateral_loan": 25763003,
+   "credit_kosdaq": 6855441,
+   "credit_kospi": 26246926,
+   "credit_total": 33102367,
+   "ipo_loan": 0,
+   "short_total": 32977
+  },
+  "2026-08-27": {
+   "collateral_loan": 25614806,
+   "credit_kosdaq": 6850174,
+   "credit_kospi": 26478840,
+   "credit_total": 33329014,
+   "ipo_loan": 0,
+   "short_total": 28998
+  },
+  "2026-08-28": {
+   "collateral_loan": 25408681,
+   "credit_kosdaq": 6951882,
+   "credit_kospi": 26386089,
+   "credit_total": 33337971,
+   "ipo_loan": 0,
+   "short_total": 31019
+  },
+  "2026-08-31": {
+   "collateral_loan": 25503345,
+   "credit_kosdaq": 6962191,
+   "credit_kospi": 26290467,
+   "credit_total": 33252658,
+   "ipo_loan": 0,
+   "short_total": 30910
+  },
+  "2026-09-01": {
+   "collateral_loan": 25484072,
+   "credit_kosdaq": 7000763,
+   "credit_kospi": 26429397,
+   "credit_total": 33430161,
+   "ipo_loan": 0,
+   "short_total": 31776
+  },
+  "2026-09-02": {
+   "collateral_loan": 25291512,
+   "credit_kosdaq": 7024445,
+   "credit_kospi": 26415996,
+   "credit_total": 33440441,
+   "ipo_loan": 0,
+   "short_total": 31273
+  },
+  "2026-09-03": {
+   "collateral_loan": 25329740,
+   "credit_kosdaq": 7086597,
+   "credit_kospi": 26455419,
+   "credit_total": 33542016,
+   "ipo_loan": 0,
+   "short_total": 30477
+  },
+  "2026-09-04": {
+   "collateral_loan": 25662087,
+   "credit_kosdaq": 7066825,
+   "credit_kospi": 26528987,
+   "credit_total": 33595812,
+   "ipo_loan": 0,
+   "short_total": 29006
+  },
+  "2026-09-07": {
+   "collateral_loan": 25581596,
+   "credit_kosdaq": 7034210,
+   "credit_kospi": 26156115,
+   "credit_total": 33190325,
+   "ipo_loan": 0,
+   "short_total": 30211
+  },
+  "2026-09-08": {
+   "collateral_loan": 25304177,
+   "credit_kosdaq": 6994711,
+   "credit_kospi": 25743987,
+   "credit_total": 32738698,
+   "ipo_loan": 0,
+   "short_total": 30046
+  },
+  "2026-09-09": {
+   "collateral_loan": 25311683,
+   "credit_kosdaq": 7094076,
+   "credit_kospi": 25315145,
+   "credit_total": 32409222,
+   "ipo_loan": 0,
+   "short_total": 31944
+  },
+  "2026-09-10": {
+   "collateral_loan": 25460329,
+   "credit_kosdaq": 7143731,
+   "credit_kospi": 25216162,
+   "credit_total": 32359893,
+   "ipo_loan": 0,
+   "short_total": 34898
+  },
+  "2026-09-11": {
+   "collateral_loan": 25456405,
+   "credit_kosdaq": 7142216,
+   "credit_kospi": 25122672,
+   "credit_total": 32264888,
+   "ipo_loan": 0,
+   "short_total": 34650
+  },
+  "2026-09-14": {
+   "collateral_loan": 25456029,
+   "credit_kosdaq": 7153365,
+   "credit_kospi": 25469696,
+   "credit_total": 32623060,
+   "ipo_loan": 0,
+   "short_total": 34080
+  },
+  "2026-09-15": {
+   "collateral_loan": 25592589,
+   "credit_kosdaq": 7211552,
+   "credit_kospi": 25620409,
+   "credit_total": 32831961,
+   "ipo_loan": 0,
+   "short_total": 32773
+  },
+  "2026-09-16": {
+   "collateral_loan": 25930408,
+   "credit_kosdaq": 7163588,
+   "credit_kospi": 25909937,
+   "credit_total": 33073525,
+   "ipo_loan": 0,
+   "short_total": 31461
+  },
+  "2026-09-17": {
+   "collateral_loan": 25885442,
+   "credit_kosdaq": 7122301,
+   "credit_kospi": 25950716,
+   "credit_total": 33073017,
+   "ipo_loan": 0,
+   "short_total": 29971
+  },
+  "2026-09-18": {
+   "collateral_loan": 25747936,
+   "credit_kosdaq": 7137616,
+   "credit_kospi": 25777008,
+   "credit_total": 32914624,
+   "ipo_loan": 0,
+   "short_total": 32502
+  },
+  "2026-09-21": {
+   "collateral_loan": 25720195,
+   "credit_kosdaq": 7159727,
+   "credit_kospi": 25895759,
+   "credit_total": 33055486,
+   "ipo_loan": 0,
+   "short_total": 33317
+  },
+  "2026-09-22": {
+   "collateral_loan": 25625045,
+   "credit_kosdaq": 7210020,
+   "credit_kospi": 25609148,
+   "credit_total": 32819168,
+   "ipo_loan": 0,
+   "short_total": 34330
+  },
+  "2026-09-23": {
+   "collateral_loan": 25655415,
+   "credit_kosdaq": 7249477,
+   "credit_kospi": 25526956,
+   "credit_total": 32776434,
+   "ipo_loan": 0,
+   "short_total": 35864
+  },
+  "2026-09-28": {
+   "collateral_loan": 25963809,
+   "credit_kosdaq": 7291919,
+   "credit_kospi": 25566251,
+   "credit_total": 32858170,
+   "ipo_loan": 0,
+   "short_total": 36840
+  },
+  "2026-09-29": {
+   "collateral_loan": 26068120,
+   "credit_kosdaq": 7326516,
+   "credit_kospi": 25593489,
+   "credit_total": 32920005,
+   "ipo_loan": 0,
+   "short_total": 36936
+  },
+  "2026-09-30": {
+   "collateral_loan": 26315310,
+   "credit_kosdaq": 7332895,
+   "credit_kospi": 26057234,
+   "credit_total": 33390129,
+   "ipo_loan": 0,
+   "short_total": 37477
+  },
+  "2026-10-01": {
+   "collateral_loan": 26172347,
+   "credit_kosdaq": 7335205,
+   "credit_kospi": 26145638,
+   "credit_total": 33480843,
+   "ipo_loan": 0,
+   "short_total": 36035
+  },
+  "2026-10-02": {
+   "collateral_loan": 26299618,
+   "credit_kosdaq": 7353260,
+   "credit_kospi": 26274978,
+   "credit_total": 33628238,
+   "ipo_loan": 0,
+   "short_total": 36390
+  },
+  "2026-10-06": {
+   "collateral_loan": 26231692,
+   "credit_kosdaq": 7302699,
+   "credit_kospi": 26256444,
+   "credit_total": 33559143,
+   "ipo_loan": 0,
+   "short_total": 40760
+  },
+  "2026-10-07": {
+   "collateral_loan": 26101161,
+   "credit_kosdaq": 7420398,
+   "credit_kospi": 26096341,
+   "credit_total": 33516739,
+   "ipo_loan": 0,
+   "short_total": 40360
+  },
+  "2026-10-08": {
+   "collateral_loan": 26395073,
+   "credit_kosdaq": 7487178,
+   "credit_kospi": 26324143,
+   "credit_total": 33811321,
+   "ipo_loan": 0,
+   "short_total": 42343
+  }
+ }
+}

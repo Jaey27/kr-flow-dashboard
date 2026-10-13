@@ -1,0 +1,9 @@
+.env
+.venv/
+__pycache__/
+logs/
+.run.lock/
+dashboard.html
+*.tmp
+.DS_Store
+data/state.json
