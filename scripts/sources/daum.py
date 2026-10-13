@@ -82,6 +82,26 @@ class Daum:
             out[d] = x["tradePrice"]
         return out
 
+    # ---- 종목별: 외국인 보유주식 수·지분율, 외국인/기관 순매수 수량, 종가·평균가 ----------
+    def stock(self, code: str, start: dt.date) -> dict[str, dict]:
+        """foreignOwnShares 는 그날 장 마감 기준 외국인 보유 주식 수(한도 없는 종목은 상장주식 대비 비율이 Rate)."""
+        s = session(referer=f"https://finance.daum.net/quotes/A{code}")
+        out = {}
+        for x in _pages(s, f"{API}/investor/days", {"symbolCode": f"A{code}"}, start, per=300):
+            d = _day(x["date"])
+            if d < start.isoformat():
+                break
+            vol, val = x.get("accTradeVolume") or 0, x.get("accTradePrice") or 0
+            out[d] = {
+                "fo_shares": x.get("foreignOwnShares"),
+                "fo_rate": round(x["foreignOwnSharesRate"] * 100, 4) if x.get("foreignOwnSharesRate") is not None else None,
+                "f_net": x.get("foreignStraightPurchaseVolume"),
+                "i_net": x.get("institutionStraightPurchaseVolume"),
+                "close": x.get("tradePrice"),
+                "vwap": round(val / vol, 1) if vol else x.get("tradePrice"),
+            }
+        return out
+
     # ---- 코스피200 선물 ----------------------------------------------------------
     def future_days(self, code: str, start: dt.date) -> dict[str, dict]:
         out = {}

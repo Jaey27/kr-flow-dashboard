@@ -25,6 +25,9 @@ from common import (DATA, HOLIDAY_COVER_TO, is_bday, last_bday_on_or_before, loa
                     market_close, merge_rows, now_kst, prev_bday, save_json, save_ledger)
 import daum as daum_src  # noqa: E402
 import freesis as freesis_src  # noqa: E402
+import krx as krx_src  # noqa: E402
+import holdings  # noqa: E402
+import naver as naver_src  # noqa: E402
 
 # --------------------------------------------------------------------------
 # 설정 — 갱신 시각 근거는 README.md '갱신 시각' 절
@@ -34,7 +37,10 @@ CLOSE_GRACE_MIN = 10                    # 장 마감 후 이만큼 지나야 당
 FINAL_AT = dt.time(18, 30)              # 이 시각 이후 받은 당일 수급은 '확정'으로 본다(KRX 18시 확정)
 FREESIS_FROM = dt.time(7, 0)            # 금투협 T+1 공표를 이 시각부터 폴링
 RECENT_DAYS = 15                        # --auto/--full 에서 다시 받는 최근 일수(정정 반영)
-RETRY_MIN = {"daum": 30, "freesis": 10}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
+RETRY_MIN = {"daum": 30, "freesis": 10, "krx": 20}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
+KRX_OPEN_AT = dt.time(8, 10)            # KRX Open API: 기준일 D 의 값은 D+1 오전 8시 전후에 열린다
+KRX_GIVE_UP_DAYS = 7                    # 이만큼 지나도 비어 있으면 그 날짜는 포기(무한 재시도 방지)
+STOCKS = holdings.STOCKS               # 종목별 추적: 삼성전자(보통주), SK하이닉스 — 우선주 제외
 
 STATE_PATH = DATA / "state.json"
 FLOWS_PATH = DATA / "flows.json"
@@ -110,7 +116,57 @@ def fetch_daum(start: dt.date, now: dt.datetime) -> bool:
     led["investor_mismatch_days"] = mismatch
     save_ledger("daum_futures", led)
     log(f"daum futures: 월물 {len(per_contract)}개, 집계 {len(agg)}일, 투자자값 불일치 {mismatch}일")
+
+    # 종목별: 다음(외국인 보유주식 수·평균가) + 네이버(개인·외국인·기관 순매수 수량)
+    nv = naver_src.Naver()
+    for code in STOCKS:
+        for name, rows in ((f"daum_stock_{code}", d.stock(code, start)), (f"naver_stock_{code}", nv.trend(code, start))):
+            rows, prov = daum_window_rows(rows, now)
+            led = load_ledger(name)
+            changed |= merge_rows(led, rows, prov)
+            led["fetched_at"] = now.isoformat(timespec="seconds")
+            save_ledger(name, led)
+    log(f"종목별 {', '.join(STOCKS)}: 다음·네이버 갱신")
     return changed
+
+
+def krx_targets(now: dt.datetime) -> list[str]:
+    """KRX 원장에 없고, 이미 열렸어야 하는(D+1 08:10 경과) 영업일. 달력은 다음 투자자 원장."""
+    led = load_ledger("krx_mcap")
+    skip = set(led.get("unavailable", []))
+    cal = load_ledger("daum_investor_kospi")["rows"]
+    out = []
+    for d in sorted(cal):
+        if d < HISTORY_START.isoformat() or d in led["rows"] or d in skip:
+            continue
+        opens = dt.datetime.combine(dt.date.fromisoformat(d) + dt.timedelta(days=1), KRX_OPEN_AT, now.tzinfo)
+        if now >= opens:
+            out.append(d)
+    return out
+
+
+def fetch_krx(start: dt.date, now: dt.datetime) -> bool:
+    k = krx_src.KRX()
+    led = load_ledger("krx_mcap")
+    targets = [d for d in krx_targets(now) if d >= start.isoformat()][-30:]
+    changed = False
+    for d in targets:
+        row = k.day(dt.date.fromisoformat(d))
+        if row:
+            led["rows"][d] = row
+            changed = True
+        elif (now.date() - dt.date.fromisoformat(d)).days > KRX_GIVE_UP_DAYS:
+            led.setdefault("unavailable", []).append(d)
+            log(f"[WARN] KRX {d} 가 {KRX_GIVE_UP_DAYS}일 넘게 비어 있어 포기")
+    led["fetched_at"] = now.isoformat(timespec="seconds")
+    save_ledger("krx_mcap", led)
+    log(f"krx: 대상 {len(targets)}일, 반영 {sum(1 for d in targets if d in led['rows'])}일")
+    return changed
+
+
+def krx_due(now: dt.datetime) -> str | None:
+    t = krx_targets(now)
+    return f"KRX 시총 미수집 {len(t)}일 (최근 {t[-1]})" if t else None
 
 
 def _per_code_view(raw_rows: dict[str, dict]) -> dict[str, dict[str, dict]]:
@@ -167,15 +223,20 @@ def freesis_expected(today: dt.date) -> dt.date:
 
 
 def freesis_due(now: dt.datetime) -> str | None:
-    led = load_ledger("freesis_credit")
-    if not led["rows"]:
-        return "원장 비어 있음"
+    """금투협 표 4개(신용·증시자금·코스피/코스닥 증시동향) 중 하나라도 기대 기준일보다 늦으면 조회."""
     exp = freesis_expected(now.date()).isoformat()
-    if max(led["rows"]) >= exp:
+    lag = []
+    for obj, (name, _) in freesis_src.TABLES.items():
+        rows = load_ledger(name)["rows"]
+        if not rows:
+            return "원장 비어 있음"
+        if max(rows) < exp:
+            lag.append(f"{name}={max(rows)}")
+    if not lag:
         return None
     if is_bday(now.date()) and now.time() < FREESIS_FROM:
         return None
-    return f"T+1 공표 대기 (원장 최신 {max(led['rows'])} < 기대 {exp})"
+    return f"T+1 공표 대기 (기대 {exp}; {', '.join(lag)})"
 
 
 # --------------------------------------------------------------------------
@@ -217,10 +278,17 @@ def assemble(now: dt.datetime) -> dict:
     for f in ("foreign", "inst", "indiv", "oi", "price"):
         S[f"fut_{f}"] = col("daum_futures", f)
 
+    # 외국인 보유·시총 비중 (삼성전자·하이닉스 실측 + 금감원 월말 + 일별 추정)
+    hold_meta = holdings.build(dates, S)
+
     asof = {}
+    for n_ in ("krx_mcap", "daum_stock_005930", "naver_stock_005930", "freesis_kospi_market"):
+        L[n_] = load_ledger(n_)
     for key, ledger in (("credit", "freesis_credit"), ("funds", "freesis_funds"),
                         ("investor", "daum_investor_kospi"), ("futures", "daum_futures"),
-                        ("index", "daum_index")):
+                        ("index", "daum_index"), ("mcap", "krx_mcap"), ("stock", "daum_stock_005930"),
+                        ("fo_market", "freesis_kospi_market"),
+                        ("stock_flow", "naver_stock_005930")):
         rows = L[ledger]["rows"]
         asof[key] = {"date": max(rows) if rows else None,
                      "prov": sorted(L[ledger].get("prov", [])),
@@ -238,6 +306,7 @@ def assemble(now: dt.datetime) -> dict:
                      else last_bday_on_or_before(now.date())).isoformat(),
         },
         "futures_mismatch_days": L["daum_futures"].get("investor_mismatch_days", 0),
+        "holdings": hold_meta,
         "holiday_cover_to": HOLIDAY_COVER_TO,
     }
 
@@ -265,9 +334,9 @@ def main() -> int:
 
     jobs: list[tuple[str, dt.date, str]] = []
     if a.backfill:
-        jobs = [("daum", HISTORY_START, "backfill"), ("freesis", HISTORY_START, "backfill")]
+        jobs = [("daum", HISTORY_START, "backfill"), ("freesis", HISTORY_START, "backfill"), ("krx", HISTORY_START, "backfill")]
     elif a.full:
-        jobs = [("daum", recent, "full"), ("freesis", recent, "full")]
+        jobs = [("daum", recent, "full"), ("freesis", recent, "full"), ("krx", recent, "full")]
     else:
         # 하루 첫 실행(07시 이후)은 전 출처 최근 구간을 다시 받아 정정분을 반영한다
         if state.get("last_full") != now.date().isoformat() and now.time() >= dt.time(7, 0):
@@ -275,7 +344,7 @@ def main() -> int:
             state["last_full"] = now.date().isoformat()
         else:
             tries = state.setdefault("last_try", {})
-            for name, fn in (("daum", daum_due), ("freesis", freesis_due)):
+            for name, fn in (("daum", daum_due), ("freesis", freesis_due), ("krx", krx_due)):
                 why = fn(now)
                 if not why:
                     continue
@@ -285,12 +354,16 @@ def main() -> int:
                 if not urgent and last and now - dt.datetime.fromisoformat(last) < dt.timedelta(minutes=RETRY_MIN[name]):
                     continue
                 tries[name] = now.isoformat(timespec="seconds")
-                jobs.append((name, HISTORY_START if why == "원장 비어 있음" else recent, why))
+                jobs.append((name, HISTORY_START if (why == "원장 비어 있음" or name == "krx") else recent, why))
 
     if not jobs:
         save_json(STATE_PATH, state)
         return 3  # 조용히 종료(로그도 남기지 않는다 — run.sh 가 5분마다 부른다)
 
+    fss_rows = holdings.load_fss().get("rows", [])
+    prev_month = (now.date().replace(day=1) - dt.timedelta(days=1)).strftime("%Y-%m")
+    if now.day >= 15 and fss_rows and max(r["month"] for r in fss_rows) < prev_month:
+        log(f"[WARN] 금감원 외국인 보유 {prev_month} 월말 자료 미반영 — data/manual/fss_foreign_holdings.json 갱신 필요")
     if (dt.date.fromisoformat(HOLIDAY_COVER_TO) - now.date()).days < 45:
         log(f"[WARN] data/holidays_kr.json 휴장일 목록이 {HOLIDAY_COVER_TO} 까지만 있다 — 갱신 필요")
 
@@ -299,7 +372,7 @@ def main() -> int:
     for name, start, why in jobs:
         log(f"{name}: {why} (from {start})")
         try:
-            changed |= (fetch_daum if name == "daum" else fetch_freesis)(start, now)
+            changed |= {"daum": fetch_daum, "freesis": fetch_freesis, "krx": fetch_krx}[name](start, now)
         except Exception:  # noqa: BLE001
             failed.append(name)
             log(f"[ERROR] {name} 수집 실패\n{traceback.format_exc()}")

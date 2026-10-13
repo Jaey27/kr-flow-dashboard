@@ -78,6 +78,33 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .stale{display:flex;gap:10px;font-size:13px;line-height:1.6;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-weight:600;
   color:var(--warn);background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.34)}
 .stale[hidden]{display:none}
+[hidden]{display:none!important}
+.top-nav-row{display:flex;justify-content:flex-start;margin:0 0 10px}
+.top-nav{display:inline-flex;align-items:center;gap:4px;background:rgba(151,252,228,.04);
+  border:1px solid rgba(151,252,228,.10);border-radius:999px;padding:4px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.top-nav::-webkit-scrollbar{display:none}
+.nav-link{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;color:var(--text-dim);
+  background:none;border:none;font-family:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;letter-spacing:-.01em}
+.nav-link:hover{color:var(--hl-teal)}
+.nav-link.active{color:var(--bg-0);background:var(--hl-teal);box-shadow:0 0 14px rgba(151,252,228,.28);font-weight:600}
+.nav-link:focus-visible{outline:2px solid var(--hl-teal);outline-offset:2px}
+.claim{margin-bottom:16px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.ct{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;min-width:640px}
+table.ct th{text-align:right;font-size:12px;font-weight:700;color:var(--text);padding:6px 10px;border-bottom:1px solid rgba(151,252,228,.14);white-space:nowrap}
+table.ct th span{display:block;font-size:10.5px;font-weight:500;color:var(--text-muted)}
+table.ct td{padding:6px 10px;text-align:right;border-bottom:1px solid rgba(151,252,228,.05);white-space:nowrap}
+table.ct td:first-child{text-align:left;color:var(--text-dim);white-space:normal;min-width:150px}
+table.ct td:first-child,table.ct th:first-child{position:sticky;left:0;z-index:1;background:#0b2b2d}
+table.ct tr.hl td:first-child{background:#0f3436}
+table.ct tr.hl td{background:rgba(151,252,228,.05);font-weight:700;color:var(--text)}
+table.ct .dim{color:var(--text-muted);font-weight:400;font-size:11px}
+.verdict{display:grid;grid-template-columns:minmax(170px,.75fr) 2.5fr;border:1px solid rgba(151,252,228,.12);border-radius:12px;overflow:hidden;margin-top:14px}
+.verdict>div{padding:10px 12px;border-bottom:1px solid rgba(151,252,228,.08);font-size:12.5px;line-height:1.7;font-variant-numeric:tabular-nums}
+.verdict>div:nth-last-child(-n+2){border-bottom:none}
+.verdict .q{color:var(--text);font-weight:700;background:rgba(151,252,228,.04)}
+.verdict b{color:var(--hl-teal)}
+@media (max-width:640px){.verdict{grid-template-columns:1fr}.verdict .q{border-bottom:none}}
 
 /* ── 기간 바 (상단 고정) ─────────────────────────────────────── */
 .range-bar{position:sticky;top:0;z-index:20;margin:0 -8px 16px;padding:10px 8px 8px;
@@ -177,6 +204,11 @@ var COL={up:cv('--up'),down:cv('--down'),text:cv('--text'),dim:cv('--text-dim'),
   grid:'rgba(151,252,228,.07)',zero:'rgba(151,252,228,.30)'};
 // 기관 세부 6색: 검증 통과(인접 CVD ΔE≥8.4) 순서 고정
 var C6=['#3987e5','#d95926','#199e70','#c98500','#d55181','#9085e9'];
+// 종목 색: 삼성전자=파랑(우선주는 같은 색상 밝은 단계), SK하이닉스=주황, 기타=무채(‘Other’), 금감원 실측점=틸
+// 외국인 탭 색: 투자자 색(외국인 파랑·기관 주황·개인 청록)과 겹치지 않게 종목은 보라·자홍, 기타는 무채.
+// 검증(dark, all-pairs): 보라↔자홍 CVD 16.0·정상 19.7, 기타 #9db3b0 은 '기타'용 무채(채도 하한만 의도적 미달).
+var CS={samsung:'#9085e9',hynix:'#d55181',other:'#9db3b0',kospi:'#97FCE4',kosdaq:'#9db3b0',fss:'#ffffff',
+  total:'#97FCE4',trade:'#3987e5',price:'#c98500'};
 
 // ---- 파생 시리즈 ----------------------------------------------------------
 S.ratio_credit_deposit=D.map(function(_,i){var a=S.credit_total[i],b=S.deposit[i];
@@ -189,7 +221,7 @@ var PROV={};
 // ---- 숫자 형식 -----------------------------------------------------------
 function nf(v,d){d=d||0;return Number(v).toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});}
 var FMT={
-  jo:function(v){return nf(v/10000,2)+'조';},
+  jo:function(v){return nf(v/10000,Math.abs(v)>=1e7?1:2)+'조';},
   eok:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,a>=100000?1:2)+'조':nf(Math.round(v))+'억';},
   eok2:function(v){return nf(v,Math.abs(v)<100?1:0)+'억';},
   ct:function(v){return nf(Math.round(v))+'계약';},
@@ -223,11 +255,13 @@ function idxMonthsBack(m){
 }
 function lastNN(a,from,to){for(var i=to;i>=from;i--) if(a[i]!=null) return i;return -1;}
 function firstNN(a,from,to){for(var i=from;i<=to;i++) if(a[i]!=null) return i;return -1;}
-function slice(k,cum){
+// cum: 기간 시작일부터 누적. base: 시작일 '종가'를 0 으로 두고 그 다음 날부터 누적(잔고 변화 분해용 — 잔고 Δ 와 같은 기준)
+function slice(k,cum,base){
   var a=S[k],out=[],i;
   if(!cum){for(i=W.i0;i<=W.i1;i++) out.push(a[i]);return out;}
   var li=lastNN(a,W.i0,W.i1),acc=0;
-  for(i=W.i0;i<=W.i1;i++){if(i>li){out.push(null);continue;}if(a[i]!=null) acc+=a[i];out.push(Math.round(acc*10)/10);}
+  for(i=W.i0;i<=W.i1;i++){if(i>li){out.push(null);continue;}
+    if(!(base&&i===W.i0)&&a[i]!=null) acc+=a[i];out.push(Math.round(acc*10)/10);}
   return out;
 }
 
@@ -239,6 +273,14 @@ function invViews(mk){
     {label:'외국인 일별',type:'bar',unit:'eok',series:[{k:mk+'_foreign',name:'외국인 순매수',sign:true}]},
     {label:'기관 일별',type:'bar',unit:'eok',series:[{k:mk+'_inst',name:'기관 순매수',sign:true}]},
     {label:'개인 일별',type:'bar',unit:'eok',series:[{k:mk+'_indiv',name:'개인 순매수',sign:true}]}
+  ];
+}
+function stockViews(pre){
+  return [
+    {label:'누적',type:'line',cum:true,unit:'eok',series:[{k:pre+'_net_foreign',name:'외국인',color:COL.foreign},{k:pre+'_net_inst',name:'기관',color:COL.inst},{k:pre+'_net_indiv',name:'개인',color:COL.indiv}]},
+    {label:'외국인 일별',type:'bar',unit:'eok',series:[{k:pre+'_net_foreign',name:'외국인 순매수',sign:true}]},
+    {label:'기관 일별',type:'bar',unit:'eok',series:[{k:pre+'_net_inst',name:'기관 순매수',sign:true}]},
+    {label:'개인 일별',type:'bar',unit:'eok',series:[{k:pre+'_net_indiv',name:'개인 순매수',sign:true}]}
   ];
 }
 var INST=[['fin_invest','금융투자'],['pension','연기금'],['trust','투신'],['private_fund','사모'],['insurance','보험'],['bank','은행']];
@@ -275,7 +317,49 @@ var PANELS=[
     {label:'코스피',type:'line',unit:'idx',series:[{k:'idx_kospi',name:'코스피',color:COL.teal}]},
     {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
     {label:'K200 선물',type:'line',unit:'idx',series:[{k:'fut_price',name:'코스피200 선물(최다 거래 월물)',color:COL.teal}]}
-  ]}
+  ]},
+  // ---- 외국인 보유 · 삼성/하이닉스 탭 ----
+  {id:'mkthold',tab:'foreign',title:'시장 전체 외국인 보유액 (코스피+코스닥)',src:'금투협(KRX) 일별 실측 · 금감원 월말',asof:'fo_market',views:[
+    {label:'보유액',type:'stack',unit:'jo',series:[
+      {k:'fo_kospi',name:'코스피',color:CS.kospi},{k:'fo_kosdaq',name:'코스닥',color:CS.kosdaq},
+      {k:'fo_total_fss',name:'금감원 월말(결제 기준)',color:CS.fss,points:true}]},
+    {label:'외국인 비중',type:'line',unit:'pct',note:'시가총액 대비',series:[
+      {k:'fo_pct_kospi',name:'코스피',color:CS.kospi},{k:'fo_pct_kosdaq',name:'코스닥',color:CS.kosdaq}]},
+    {label:'삼성+하이닉스 비중',type:'line',unit:'pct',series:[
+      {k:'sh_in_fo_kospi',name:'코스피 외국인 보유액 중 삼성+하이닉스',color:CS.total}]}
+  ]},
+  {id:'decomp',tab:'foreign',title:'외국인 보유액 변화 분해 — 매매 vs 주가',src:'기간 시작일부터 누적 · 매매+주가 = 보유액 변화',asof:'fo_market',views:[
+    {label:'시장 전체',type:'line',cum:true,base:true,unit:'jo',note:'주가 효과 = 보유액 변화 − 순매수(잔차)',series:[
+      {k:'fo_dH_total',name:'보유액 변화',short:'보유액 변화',color:CS.total},
+      {k:'fo_net_total',name:'매매(외국인 순매수)',short:'매매',color:CS.trade},
+      {k:'fo_eff_price_total',name:'주가 효과',short:'주가',color:CS.price}]},
+    {label:'삼성+하이닉스',type:'line',cum:true,base:true,unit:'jo',note:'매매 = 보유주식 수 변화 × 주가(장외·DR 예탁 포함)',series:[
+      {k:'sh_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
+      {k:'sh_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
+      {k:'sh_eff_price',name:'주가 효과',short:'주가',color:CS.price}]},
+    {label:'삼성전자',type:'line',cum:true,base:true,unit:'jo',series:[
+      {k:'s005930_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
+      {k:'s005930_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
+      {k:'s005930_eff_price',name:'주가 효과',short:'주가',color:CS.price}]},
+    {label:'SK하이닉스',type:'line',cum:true,base:true,unit:'jo',series:[
+      {k:'s000660_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
+      {k:'s000660_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
+      {k:'s000660_eff_price',name:'주가 효과',short:'주가',color:CS.price}]}
+  ]},
+  {id:'shhold',tab:'foreign',title:'삼성전자·SK하이닉스 외국인 보유',src:'보유주식 수(다음, KRX 기준)×종가(KRX) · 삼성전자는 보통주',asof:'stock',views:[
+    {label:'보유액',type:'stack',unit:'jo',series:[
+      {k:'s005930_fo_val',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_val',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
+    {label:'지분율(주식 수)',type:'line',unit:'pct',series:[
+      {k:'s005930_fo_rate',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_rate',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]}
+  ]},
+  {id:'share',tab:'foreign',title:'코스피 시총 비중',src:'KRX 종목 시총 ÷ 금투협 코스피 시총',asof:'stock',views:[
+    {label:'비중',type:'line',unit:'pct',series:[{k:'share_sh',name:'삼성+하이닉스',short:'합계',color:CS.total},
+      {k:'share_samsung',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'share_hynix',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
+    {label:'시총',type:'stack',unit:'jo',series:[{k:'s005930_mcap',name:'삼성전자',short:'삼성',color:CS.samsung},
+      {k:'s000660_mcap',name:'SK하이닉스',short:'하이닉스',color:CS.hynix},{k:'mcap_kospi_rest',name:'코스피 기타',short:'기타',color:CS.other}]}
+  ]},
+  {id:'samsung',tab:'foreign',title:'삼성전자 투자자별 순매수',src:'수량(네이버)×평균가(다음) 추정',asof:'stock_flow',views:stockViews('s005930')},
+  {id:'hynix',tab:'foreign',title:'SK하이닉스 투자자별 순매수',src:'수량(네이버)×평균가(다음) 추정',asof:'stock_flow',views:stockViews('s000660')}
 ];
 
 // ---- 저장된 선택(뷰어 편의용, 실패해도 무시) ------------------------------
@@ -291,13 +375,13 @@ var endLabels={id:'endLabels',afterDatasetsDraw:function(ch,args,o){
   if(!o||!o.on) return;
   var c=ch.ctx,ca=ch.chartArea,items=[];
   ch.data.datasets.forEach(function(ds,i){
-    if(!ch.isDatasetVisible(i)) return;
+    if(!ch.isDatasetVisible(i)||ds.showLine===false) return;
     var meta=ch.getDatasetMeta(i),d=ds.data;
-    for(var k=d.length-1;k>=0;k--){if(d[k]!=null&&meta.data[k]){items.push({y:meta.data[k].y,name:ds.label,color:ds.borderColor});break;}}
+    for(var k=d.length-1;k>=0;k--){if(d[k]!=null&&meta.data[k]){items.push({y:meta.data[k].y,name:ds.short||ds.label,color:ds.borderColor});break;}}
   });
   items.sort(function(a,b){return a.y-b.y;});
   for(var i=1;i<items.length;i++) if(items[i].y-items[i-1].y<13) items[i].y=items[i-1].y+13;
-  c.save();c.font='600 10.5px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif';c.textBaseline='middle';
+  c.save();c.font=LABEL_FONT;c.textBaseline='middle';
   items.forEach(function(it){var x=ca.right+8;c.fillStyle=it.color;c.beginPath();c.arc(x+3,it.y,3.5,0,Math.PI*2);c.fill();
     c.fillStyle=COL.dim;c.fillText(it.name,x+11,it.y);});
   c.restore();}};
@@ -309,31 +393,44 @@ Chart.defaults.color=COL.muted;
 var CARDS=[];
 function hexA(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
 
+function isCum(view,sp){return sp.cum!=null?sp.cum:!!view.cum;}
+function cumText(view){return view.base?'· 기준 '+dyy(D[W.i0])+' 종가 = 0':'· 누적 기준일 '+dyy(D[W.i0]);}
+var LABEL_FONT='600 10.5px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif';
+var measureCtx=document.createElement('canvas').getContext('2d');
+function labelOf(sp){return sp.short||sp.name;}
+function labelPad(view){measureCtx.font=LABEL_FONT;var w=0;
+  view.series.forEach(function(sp){if(!sp.points) w=Math.max(w,measureCtx.measureText(labelOf(sp)).width);});
+  return Math.ceil(w)+22;}
 function datasets(view){
   return view.series.map(function(sp,j){
-    var data=slice(sp.k,view.cum);
+    var data=slice(sp.k,isCum(view,sp),view.base);
     if(view.type==='bar'){
       return {type:'bar',label:sp.name,data:data,borderWidth:0,borderRadius:2,borderSkipped:'start',
         categoryPercentage:1,barPercentage:.82,
         backgroundColor:sp.sign?data.map(function(v){return v>=0?COL.up:COL.down;}):(sp.color||COL.teal)};
     }
-    var o={type:'line',label:sp.name,data:data,borderColor:sp.color,backgroundColor:sp.color,borderWidth:2,
+    var o={type:'line',label:sp.name,short:sp.short,data:data,borderColor:sp.color,backgroundColor:sp.color,borderWidth:2,
       pointRadius:0,pointHoverRadius:4,pointHoverBorderWidth:2,pointHoverBorderColor:'#061E20',tension:0,spanGaps:true};
-    if(view.type==='stack'){o.fill=j===0?'origin':'-1';o.backgroundColor=hexA(sp.color,.30);}
+    if(sp.points){o.showLine=false;o.pointRadius=4.5;o.pointHoverRadius=6;o.pointStyle='rectRot';
+      o.pointBackgroundColor=sp.color;o.pointBorderColor='#061E20';o.pointBorderWidth=1.5;o.spanGaps=false;o.stack='pts';}
+    else if(view.type==='stack'){o.stack='s';o.fill=j===0?'origin':'-1';o.backgroundColor=hexA(sp.color,.30);}
+    if(sp.dash) o.borderDash=[5,4];
     return o;
   });
 }
 
 function config(card){
-  var view=card.p.views[card.v],unit=view.unit,multi=view.series.length>1;
-  var direct=multi&&view.series.length<=4&&view.type!=='bar';
-  var signed=view.cum||view.type==='bar';
+  var view=card.p.views[card.v],unit=view.unit;
+  var lines=view.series.filter(function(sp){return !sp.points;}).length;
+  var direct=view.series.length>1&&lines<=4&&view.type!=='bar';
+  var anyCum=view.series.some(function(sp){return isCum(view,sp);});
+  function signedOf(sp){return isCum(view,sp)||view.type==='bar'||!!sp.signed;}
   return {
     data:{labels:D.slice(W.i0,W.i1+1),datasets:datasets(view)},
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,normalized:true,
       interaction:{mode:'index',intersect:false},
-      layout:{padding:{right:direct?62:4,top:4}},
+      layout:{padding:{right:direct?labelPad(view):4,top:4}},
       plugins:{
         legend:{display:false},
         endLabels:{on:direct},
@@ -344,14 +441,14 @@ function config(card){
           filter:function(it){return it.raw!=null;},
           callbacks:{
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
-            label:function(it){var f=FMT[unit];return ' '+it.dataset.label+'  '+(signed?sg(f,it.raw):f(it.raw));},
+            label:function(it){var f=FMT[unit],sp=view.series[it.datasetIndex];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
             labelColor:function(it){var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
               if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
             footer:function(items){
-              if(!view.cum||!items.length) return '';
+              if(!anyCum||!items.length) return '';
               var i=W.i0+items[0].dataIndex,f=FMT[unit];
-              return '당일 '+view.series.filter(function(sp,j){return card.chart?card.chart.isDatasetVisible(j):true;})
+              return '당일 '+view.series.filter(function(sp,j){return isCum(view,sp)&&(card.chart?card.chart.isDatasetVisible(j):true);})
                 .map(function(sp){var v=S[sp.k][i];return sp.name+' '+(v==null?'–':sg(f,v));}).join(' · ');
             }
           }}
@@ -360,7 +457,7 @@ function config(card){
         x:{grid:{display:false},border:{color:'rgba(151,252,228,.14)'},
           ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:7,font:{size:10.5},
             callback:function(v){var s=this.getLabelForValue(v);return (W.i1-W.i0>140)?s.slice(2,7).replace('-','.'):dshort(s);}}},
-        y:{stacked:view.type==='stack',beginAtZero:!!(view.cum||view.type==='bar'||view.type==='stack'),
+        y:{stacked:view.type==='stack',beginAtZero:!!(anyCum||view.type==='bar'||view.type==='stack'||view.zero),
           border:{display:false},
           grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;},drawTicks:false},
           ticks:{color:COL.muted,font:{size:10.5},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}}
@@ -393,7 +490,7 @@ function buildCard(p){
   var box=el('div','chart-box');var cvs=document.createElement('canvas');cvs.setAttribute('role','img');box.appendChild(cvs);
   root.appendChild(box);card.canvas=cvs;
   card.tbl=el('div','tbl-wrap');card.tbl.hidden=true;root.appendChild(card.tbl);
-  document.getElementById('grid').appendChild(root);
+  document.getElementById(p.tab==='foreign'?'grid2':'grid').appendChild(root);
   CARDS.push(card);rebuild(card);
 }
 
@@ -407,14 +504,15 @@ function rebuild(card){
   // 범례: 2개 이상일 때 항상(클릭으로 숨기기). 단일 시리즈는 제목이 이름 역할
   card.legend.innerHTML='';
   if(view.series.length>1){
-    view.series.forEach(function(sp,i){var b=el('button',null,'<i style="background:'+sp.color+'"></i>'+sp.name);b.type='button';
+    view.series.forEach(function(sp,i){var b=el('button',null,'<i style="background:'+sp.color+(sp.points?';transform:rotate(45deg) scale(.8)':'')+(sp.dash?';opacity:.7':'')+'"></i>'+sp.name);b.type='button';
       b.onclick=function(){var vis=card.chart.isDatasetVisible(i);card.chart.setDatasetVisibility(i,!vis);b.classList.toggle('off',vis);card.chart.update('none');};
       card.legend.appendChild(b);});
   } else if(view.type==='bar'&&view.series[0].sign){
     card.legend.innerHTML='<span><i style="background:'+COL.up+'"></i> 순매수</span> <span><i style="background:'+COL.down+'"></i> 순매도</span>';
     card.legend.querySelectorAll('span').forEach(function(s){s.style.display='inline-flex';s.style.alignItems='center';s.style.gap='6px';});
   }
-  if(view.cum){var n=el('span','note','· 누적 기준일 '+dyy(D[W.i0]));card.legend.appendChild(n);card.cumNote=n;} else card.cumNote=null;
+  if(view.series.some(function(sp){return isCum(view,sp);})){var n=el('span','note',cumText(view));card.legend.appendChild(n);card.cumNote=n;card.cumView=view;} else card.cumNote=null;
+  if(view.note){card.legend.appendChild(el('span','note','· '+view.note));}
   updateSub(card);renderTable(card);
 }
 
@@ -431,20 +529,20 @@ function updateCard(card){
   var fresh=datasets(view);
   ch.data.datasets.forEach(function(ds,i){ds.data=fresh[i].data;if(view.type==='bar') ds.backgroundColor=fresh[i].backgroundColor;});
   ch.update('none');
-  if(card.cumNote) card.cumNote.textContent='· 누적 기준일 '+dyy(D[W.i0]);
+  if(card.cumNote) card.cumNote.textContent=cumText(view);
   if(card.table) renderTable(card);
 }
 
 function renderTable(card){
   card.tbl.hidden=!card.table;if(!card.table) return;
-  var view=card.p.views[card.v],f=FMT[view.unit],signed=view.cum||view.type==='bar';
-  var cols=view.series.map(function(sp){return {name:sp.name+(view.cum?' (누적)':''),data:slice(sp.k,view.cum)};});
+  var view=card.p.views[card.v],f=FMT[view.unit];
+  var cols=view.series.map(function(sp){var c=isCum(view,sp);return {name:sp.name+(c?' (누적)':''),data:slice(sp.k,c,view.base),signed:c||view.type==='bar'||!!sp.signed};});
   var h='<table class="dt"><thead><tr><th>날짜</th>'+cols.map(function(c){return '<th>'+c.name+'</th>';}).join('')+'</tr></thead><tbody>';
   for(var j=W.i1-W.i0;j>=0;j--){
     var d=D[W.i0+j];
     if(cols.every(function(c){return c.data[j]==null;})) continue;
     h+='<tr><td>'+d+(PROV[d]?' 잠정':'')+'</td>'+cols.map(function(c){var v=c.data[j];
-      return '<td class="'+(signed&&v!=null?cls(v):'')+'">'+(v==null?'–':(signed?sg(f,v):f(v)))+'</td>';}).join('')+'</tr>';
+      return '<td class="'+(c.signed&&v!=null?cls(v):'')+'">'+(v==null?'–':(c.signed?sg(f,v):f(v)))+'</td>';}).join('')+'</tr>';
   }
   card.tbl.innerHTML=h+'</tbody></table>';
 }
@@ -480,6 +578,115 @@ function renderTiles(){
     return '<div class="tile"><div class="k">'+t.k+'</div><div class="v">'+t.v+'</div><div class="s">'+t.s+'</div></div>';}).join('');
 }
 
+function rateTile(code,label){
+  var a=S['s'+code+'_fo_rate'],sh=S['s'+code+'_fo_shares'],li=lastNN(a,W.i0,W.i1),fi=firstNN(a,W.i0,W.i1);
+  if(li<0||fi<0) return {k:label,v:'–',s:''};
+  var dp=a[li]-a[fi],dsh=(sh[li]/sh[fi]-1)*100,pf=function(x){return nf(x,1)+'%';};
+  return {k:label+' · '+dshort(D[li]),v:FMT.pct(a[li]),
+    s:'구간 <b class="'+cls(dp)+'">'+arrow(dp)+nf(Math.abs(dp),2)+'%p</b> · 보유주식 <b class="'+cls(dsh)+'">'+sg(pf,dsh)+'</b>'};
+}
+function sumW(k,a,b){var s=0,x=S[k];for(var i=a;i<=b;i++) if(x[i]!=null) s+=x[i];return s;}
+function renderTiles2(){
+  var T=[
+    balTile('fo_total','외국인 보유 전체','jo',function(i){return '코스피 '+FMT.jo(S.fo_kospi[i])+' · 코스닥 '+FMT.jo(S.fo_kosdaq[i]);}),
+    (function(){var a=S.fo_pct_kospi,li=lastNN(a,W.i0,W.i1),fi=firstNN(a,W.i0,W.i1);if(li<0) return {k:'외국인 비중',v:'–',s:''};
+      var dp=a[li]-a[fi];return {k:'코스피 외국인 비중 · '+dshort(D[li]),v:FMT.pct(a[li]),
+        s:'구간 <b class="'+cls(dp)+'">'+arrow(dp)+nf(Math.abs(dp),2)+'%p</b> · 코스닥 '+FMT.pct(S.fo_pct_kosdaq[li])};})(),
+    balTile('sh_fo_val','외국인 보유 삼성+하이닉스','jo',function(i){var r=S.sh_in_fo_kospi[i];return '삼성 '+FMT.jo(S.s005930_fo_val[i])+' · 하이닉스 '+FMT.jo(S.s000660_fo_val[i])+(r!=null?'<br>코스피 외국인 보유의 '+FMT.pct(r):'');}),
+    rateTile('005930','삼성전자 외국인 지분율'),
+    rateTile('000660','하이닉스 외국인 지분율'),
+    (function(){var li=lastNN(S.fo_dH_total,W.i0,W.i1);if(li<0) return {k:'보유액 변화',v:'–',s:''};
+      var h0=firstNN(S.fo_total,W.i0,W.i1),base=h0>=0?S.fo_total[h0]:null;
+      var dh=sumW('fo_dH_total',h0+1,li),nb=sumW('fo_net_total',h0+1,li),pr=sumW('fo_eff_price_total',h0+1,li);
+      return {k:'구간 외국인 보유액 변화',v:'<span class="'+cls(dh)+'">'+sg(FMT.jo,dh)+'</span>',
+        s:'매매 <b class="'+cls(nb)+'">'+sg(FMT.jo,nb)+'</b> · 주가 <b class="'+cls(pr)+'">'+sg(FMT.jo,pr)+'</b>'+(base?'<br>순매수 ÷ 시작 보유액 <b>'+nf(nb/base*100,1)+'%</b>':'')};})()
+  ];
+  document.getElementById('tiles2').innerHTML=T.map(function(t){
+    return '<div class="tile"><div class="k">'+t.k+'</div><div class="v">'+t.v+'</div><div class="s">'+t.s+'</div></div>';}).join('');
+}
+
+// ---- 주장 검증 카드 (고정 기준일 — 기간 바와 무관, 매일 자동 재계산) ------------------
+function renderClaim(){
+  var box=document.getElementById('claim');if(!box) return;
+  function ok(i){return S.fo_total[i]!=null&&S.sh_fo_val[i]!=null&&S.idx_kospi[i]!=null;}
+  function ix(s){for(var i=N-1;i>=0;i--) if(D[i]<=s&&ok(i)) return i;return -1;}
+  var iB=-1;for(var t=N-1;t>=0;t--) if(ok(t)){iB=t;break;}
+  if(iB<0){box.hidden=true;return;}
+  var A0=ix('2024-10-31'),A1=ix('2024-12-31'),A2=ix('2025-12-31');
+  var iP=-1,hP=-Infinity;for(t=A2+1;t<=iB;t++) if(S.fo_total[t]!=null&&S.fo_total[t]>hP){hP=S.fo_total[t];iP=t;}
+  var cols=[A0,A1,A2,iP,iB],heads=['지수 2,500 무렵','연말 2,400 무렵','2026년 시작','2026 보유액 고점','최신'];
+  var J=FMT.jo,P=function(x){return x==null?'–':nf(x,2)+'%';};
+  function v(k,i,f){var x=S[k][i];return x==null?'–':(f||J)(x);}
+  function fssAt(i){for(var j=i;j>=0;j--) if(S.fo_total_fss[j]!=null) return {v:S.fo_total_fss[j],d:D[j]};return null;}
+  var rows=[
+    ['코스피 지수',function(i){return v('idx_kospi',i,FMT.idx);}],
+    ['코스피 시총',function(i){return v('mcap_kospi',i);}],
+    ['외국인 보유 · 코스피',function(i){return v('fo_kospi',i);}],
+    ['외국인 보유 · 코스닥',function(i){return v('fo_kosdaq',i);}],
+    ['외국인 보유 · 코스피+코스닥',function(i){return v('fo_total',i);},1],
+    ['외국인 비중 · 코스피',function(i){return P(S.fo_pct_kospi[i]);}],
+    ['(참고) 금감원 월말 · 결제 기준',function(i){var r=fssAt(i);if(!r) return '–';
+      return J(r.v)+' <span class="dim">('+r.d.slice(2,7).replace('-','.')+'말)</span>';}],
+    ['삼성전자 시총 · 코스피 비중',function(i){return v('s005930_mcap',i)+' · '+P(S.share_samsung[i]);}],
+    ['SK하이닉스 시총 · 코스피 비중',function(i){return v('s000660_mcap',i)+' · '+P(S.share_hynix[i]);}],
+    ['외국인 지분율(주식 수) 삼성 · 하이닉스',function(i){return P(S.s005930_fo_rate[i])+' · '+P(S.s000660_fo_rate[i]);}],
+    ['외국인 보유 · 삼성전자',function(i){return v('s005930_fo_val',i);}],
+    ['외국인 보유 · SK하이닉스',function(i){return v('s000660_fo_val',i);}],
+    ['외국인 보유 · 삼성+하이닉스',function(i){return v('sh_fo_val',i)+' <span class="dim">(코스피 외국인의 '+P(S.sh_in_fo_kospi[i])+')</span>';},1]
+  ];
+  var h='<div class="table-scroll"><table class="ct"><thead><tr><th></th>'+cols.map(function(i,c){
+    return '<th>'+(i<0?'–':dyy(D[i]))+'<span>'+heads[c]+'</span></th>';}).join('')+'</tr></thead><tbody>';
+  rows.forEach(function(r){h+='<tr'+(r[2]?' class="hl"':'')+'><td>'+r[0]+'</td>'+cols.map(function(i){return '<td>'+(i<0?'–':r[1](i))+'</td>';}).join('')+'</tr>';});
+  h+='</tbody></table></div>';
+
+  // ---- 주장별 대조 ----
+  function sumR(k,a,b){var s=0;for(var i=a+1;i<=b;i++) if(S[k][i]!=null) s+=S[k][i];return s;}   // (a,b]
+  function pc(x){return (x>0?'+':'')+nf(x,1)+'%';}
+  function mult(a,b){return '×'+nf(b/a,2);}
+  var kP=-Infinity,ikP=-1;for(t=A0;t<=iB;t++) if(S.idx_kospi[t]!=null&&S.idx_kospi[t]>kP){kP=S.idx_kospi[t];ikP=t;}
+  var nbK=sumR('kospi_foreign',A2,iB),nbQ=sumR('kosdaq_foreign',A2,iB),nb=nbK+nbQ;
+  var hA=S.fo_total[A2],hB=S.fo_total[iB];
+  var f0=fssAt(A0);
+  var near=Math.abs(S.fo_total[A0]-7e6)<Math.abs(S.sh_fo_val[A0]-7e6)?'시장 전체 보유액':'삼성+하이닉스 보유액';
+  function shareChg(c){var a=S['s'+c+'_fo_shares'];return (a[iB]/a[A2]-1)*100;}
+  function qtyChg(c){var a=S['s'+c+'_fo_shares'];return sumR('s'+c+'_net_foreign_qty',A2,iB)/a[A2]*100;}
+  var w=0,wb=0;['005930','000660'].forEach(function(c){var vv=S['s'+c+'_fo_val'][A2];w+=shareChg(c)*vv;wb+=vv;});
+  // 고점 이후 분해
+  var dTot=sumR('fo_dH_total',iP,iB),nbP=sumR('fo_net_total',iP,iB),prP=sumR('fo_eff_price_total',iP,iB);
+  var dSH=sumR('sh_dH',iP,iB),trSH=sumR('sh_eff_trade',iP,iB),prSH=sumR('sh_eff_price',iP,iB);
+  var q=[
+    ['① 지수 2,500일 때 외국인 700조',
+     dyy(D[A0])+' 코스피 '+FMT.idx(S.idx_kospi[A0])+': 외국인 보유 코스피+코스닥 <b>'+J(S.fo_total[A0])+'</b>'+(f0?' (금감원 '+f0.d.slice(2,7).replace('-','.')+'말 '+J(f0.v)+')':'')+
+     ' · 삼성+하이닉스 '+J(S.sh_fo_val[A0])+'<br>'+dyy(D[A1])+' 코스피 '+FMT.idx(S.idx_kospi[A1])+': 코스피+코스닥 <b>'+J(S.fo_total[A1])+'</b> · 삼성+하이닉스 '+J(S.sh_fo_val[A1])+
+     '<br>→ 700조에 가까운 것은 <b>'+near+'</b>'],
+    ['② 지수 3배 → 외국인 보유 2,000조',
+     '코스피 '+FMT.idx(S.idx_kospi[A0])+' → '+FMT.idx(S.idx_kospi[iB])+' ('+mult(S.idx_kospi[A0],S.idx_kospi[iB])+') · 고점 '+FMT.idx(kP)+' ('+dyy(D[ikP])+', '+mult(S.idx_kospi[A0],kP)+')<br>'+
+     '외국인 보유 코스피+코스닥 '+J(S.fo_total[A0])+' → <b>'+J(hB)+'</b> ('+mult(S.fo_total[A0],hB)+') · 고점 '+J(hP)+' ('+dyy(D[iP])+', '+mult(S.fo_total[A0],hP)+')'],
+    ['③ 2026년 200조 매도 = 보유의 10%',
+     dyy(D[A2])+' 이후 외국인 순매수 코스피 <b>'+sg(J,nbK)+'</b> · 코스닥 '+sg(J,nbQ)+' (합 '+sg(J,nb)+')<br>'+
+     '÷ 연초 보유 '+J(hA)+' = <b>'+pc(nb/hA*100)+'</b> · ÷ 2026 고점 '+J(hP)+' = <b>'+pc(nb/hP*100)+'</b> · ÷ 현재 '+J(hB)+' = <b>'+pc(nb/hB*100)+'</b>'],
+    ['④ 주가 효과를 뺀 실제 감축 (주식 수)',
+     '외국인 보유주식 수 '+dyy(D[A2])+' → '+dyy(D[iB])+': 삼성전자 <b>'+pc(shareChg('005930'))+'</b> (장내 순매수 누적 '+pc(qtyChg('005930'))+') · SK하이닉스 <b>'+pc(shareChg('000660'))+'</b> (장내 '+pc(qtyChg('000660'))+')'+
+     '<br>삼성+하이닉스 합산(연초 보유액 가중) <b>'+pc(w/wb)+'</b> · 코스피 외국인 비중 '+P(S.fo_pct_kospi[A2])+' → '+P(S.fo_pct_kospi[iB])],
+    ['⑤ 고점 이후 보유액 감소의 정체',
+     dyy(D[iP])+' → '+dyy(D[iB])+': 시장 전체 <b>'+sg(J,dTot)+'</b> = 순매수 '+sg(J,nbP)+' + 주가 <b>'+sg(J,prP)+'</b><br>'+
+     '삼성+하이닉스 <b>'+sg(J,dSH)+'</b> = 매매(보유주식 수) '+sg(J,trSH)+' + 주가 <b>'+sg(J,prSH)+'</b>']
+  ];
+  h+='<div class="verdict">'+q.map(function(r){return '<div class="q">'+r[0]+'</div><div>'+r[1]+'</div>';}).join('')+'</div>';
+  document.getElementById('claim-body').innerHTML=h;
+}
+
+// ---- 탭 -------------------------------------------------------------------
+var TAB=ls('tab')||'market';
+function setTab(t){
+  TAB=t;ls('tab',t);
+  document.getElementById('tab-market').hidden=t!=='market';
+  document.getElementById('tab-foreign').hidden=t!=='foreign';
+  Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  CARDS.forEach(function(c){if((c.p.tab||'market')===t&&c.chart) c.chart.resize();});
+}
+Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
+
 // ---- 기간 슬라이더 + 개요 스파크라인 --------------------------------------
 var r0=document.getElementById('r0'),r1=document.getElementById('r1'),ov=document.getElementById('overview');
 var PRESETS=[['1M',1],['3M',3],['6M',6],['1Y',12],['전체',0]];
@@ -502,7 +709,7 @@ function setWindow(a,b,preset){
   // rAF 는 백그라운드 탭에서 멈추므로 타이머를 함께 건다(먼저 오는 쪽이 한 번만 그린다)
   if(raf) return;
   raf=1;
-  var run=function(){if(!raf) return;raf=0;CARDS.forEach(updateCard);renderTiles();drawOverview();};
+  var run=function(){if(!raf) return;raf=0;CARDS.forEach(updateCard);renderTiles();renderTiles2();drawOverview();};
   requestAnimationFrame(run);setTimeout(run,80);
 }
 function drawOverview(){
@@ -538,6 +745,9 @@ function onOrBefore(s){return isB(s)?s:prevB(s);}
   }
   chips.push(chip('수급·선물',A.investor,expFlow));
   chips.push(chip('신용·예탁금',A.credit,expCredit));
+  if(A.mcap&&A.mcap.date) chips.push(chip('KRX 시총',A.mcap,expCredit));
+  var fl=(F.holdings&&F.holdings.fss)||[];
+  if(fl.length){var m=fl[fl.length-1].month;chips.push('<span class="chip"><i></i>금감원 '+m.slice(2).replace('-','.')+'월말</span>');}
   document.getElementById('chips').innerHTML=chips.join('');
   document.getElementById('gen').textContent='생성 '+F.generated_at.slice(0,16).replace('T',' ')+' KST';
   var late=[];
@@ -549,6 +759,8 @@ function onOrBefore(s){return isB(s)?s:prevB(s);}
 
 // ---- 시작 ---------------------------------------------------------------
 PANELS.forEach(buildCard);
+renderClaim();
+setTab(TAB==='foreign'?'foreign':'market');
 var pre=ls('preset');var P=PRESETS.filter(function(p){return p[0]===pre;})[0]||PRESETS[3];
 setWindow(idxMonthsBack(P[1]),N-1,P[0]);
 })();
@@ -573,6 +785,10 @@ HTML = r"""<!DOCTYPE html>
   <div class="stamp"><div id="gen"></div><div class="chips" id="chips"></div></div>
 </header>
 <div class="stale" id="stale" hidden></div>
+<div class="top-nav-row"><nav class="top-nav" id="tabs" aria-label="보기 전환">
+  <button class="nav-link active" data-tab="market" type="button">시장 수급</button>
+  <button class="nav-link" data-tab="foreign" type="button">외국인 보유 · 삼성/하이닉스</button>
+</nav></div>
 
 <div class="range-bar"><div class="range-inner">
   <div class="range-top">
@@ -587,8 +803,19 @@ HTML = r"""<!DOCTYPE html>
   </div>
 </div></div>
 
+<div id="tab-market">
 <div class="tiles" id="tiles"></div>
 <div class="grid" id="grid"></div>
+</div>
+<div id="tab-foreign" hidden>
+<section class="card claim" id="claim">
+  <div class="card-head"><div><div class="card-title">주장 검증 — "지수 2,500 때 외국인 700조 → 3배 → 2026년 200조 매도는 10%"</div>
+  <div class="card-sub">고정 기준일 비교(위 기간 바와 무관) · 매일 자동 재계산 · 시장 전체는 금투협 일별 실측, 삼성전자는 보통주</div></div></div>
+  <div id="claim-body"></div>
+</section>
+<div class="tiles" id="tiles2"></div>
+<div class="grid" id="grid2"></div>
+</div>
 
 <footer>
   <div class="foot-h">출처 · 갱신</div>
@@ -603,6 +830,15 @@ HTML = r"""<!DOCTYPE html>
     <li><b>외국인 선물</b> — 코스피200 선물 전 월물 합계 순매수(계약). 롤오버 주간에도 근월물만 보는 왜곡이 없다. 미결제약정은 상장 월물 전부의 합.</li>
     <li><b>외국인</b> 현물은 KRX '외국인' 구분(기타외국인 제외). <b>기관</b> = 금융투자+보험+투신+사모+은행+기타금융+연기금.</li>
     <li><b>신용융자</b> = 신용거래융자(대주 제외). 신용÷예탁금 = 신용거래융자 합계 ÷ 투자자예탁금.</li>
+  </ul>
+  <div class="foot-h">외국인 보유 탭</div>
+  <ul>
+    <li><b>시장 전체 외국인 보유액</b> = 금투협 FreeSIS '증시동향'의 외국인 보유 시가총액(코스피·코스닥, KRX 원천, 일별 실측). 금감원 월말 값은 결제 기준이고 분모가 달라 참고점으로만 표시한다.</li>
+    <li><b>종목 외국인 보유액</b> = 외국인 보유주식 수(다음 금융, KRX 외국인 보유 기준) × KRX 종가. <b>삼성전자는 보통주만</b>(우선주 제외).</li>
+    <li><b>보유액 변화 분해</b> — 종목: 매매 = 보유주식 수 변화 × 주가, 주가 = 전일 보유주식 수 × 주가 변화(정확히 더해짐). 시장 전체: 매매 = 외국인 순매수(코스피+코스닥), 주가 = 보유액 변화 − 순매수(잔차, 집계 기준 차이 포함).</li>
+    <li><b>보유주식 수에는 장외 이동·DR 예탁이 포함</b>된다. 예: SK하이닉스 2026-07-16 외국인 보유 +1,823만주(장내 순매수 −47만주) — 7월 미국 ADR 상장 예탁분. 그래서 하이닉스는 '보유주식 수 변화'와 '장내 순매수 누적'이 다르다.</li>
+    <li><b>시총·비중</b> — 종목 시총은 KRX Open API(기준일 다음 날 오전 공개, 최신일은 종가×상장주식수), 코스피 시총은 금투협.</li>
+    <li><b>종목 투자자별 순매수 금액</b> = 순매수 수량(네이버) × 그날 평균 체결가(다음, 거래대금÷거래량) — 추정치.</li>
   </ul>
 </footer>
 </div>

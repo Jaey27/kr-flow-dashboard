@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""금융투자협회 FreeSIS (freesis.kofia.or.kr) — 신용공여 잔고·증시자금.
+"""금융투자협회 FreeSIS (freesis.kofia.or.kr) — 신용공여 잔고·증시자금·시장별 외국인 보유 시가총액.
 
 - 웹 화면이 쓰는 JSON 엔드포인트를 그대로 쓴다(인증 없음).
 - ★ 세션 쿠키(WMONID/JSESSIONID)가 없으면 POST 가 HTML 오류 페이지를 돌려준다.
@@ -27,6 +27,21 @@ TABLES = {
         "TMPV5": "short_total",       # 신용거래대주 전체
         "TMPV8": "ipo_loan",          # 청약자금 대출
         "TMPV9": "collateral_loan",   # 예탁증권 담보융자
+    }),
+    # 증시동향 — 유가증권시장 / 코스닥: 지수·시가총액·외국인 보유 시가총액·외국인 비중 (KRX 원천, 일별)
+    "STATSCU0100000020BO": ("freesis_kospi_market", {
+        "TMPV2": "idx",               # 종가지수
+        "TMPV4": "trade_value",       # 거래대금(백만원)
+        "TMPV5": "mcap",              # 시가총액(백만원)
+        "TMPV6": "fo_mcap",           # 외국인 보유 시가총액(백만원)
+        "TMPV7": "fo_pct",            # 외국인 비중(%)
+    }),
+    "STATSCU0100000030BO": ("freesis_kosdaq_market", {
+        "TMPV2": "idx",
+        "TMPV4": "trade_value",
+        "TMPV5": "mcap",
+        "TMPV6": "fo_mcap",
+        "TMPV7": "fo_pct",
     }),
     # 증시자금 추이
     "STATSCU0100000060BO": ("freesis_funds", {
