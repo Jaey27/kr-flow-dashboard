@@ -8,4 +8,4 @@ dashboard.html
 .DS_Store
 data/state.json
 data/krx_inv/
-sector.html
+/sector.html
