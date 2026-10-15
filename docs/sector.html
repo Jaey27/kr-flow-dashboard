@@ -299,6 +299,14 @@ function eok(v){var a=Math.abs(v);return a>=10000?nf(v/10000,a>=100000?1:2)+'조
 function sg(v){return (v>0?'+':'')+eok(v);}
 var WD=['일','월','화','수','목','금','토'];
 function dlong(s){var d=new Date(s+'T00:00:00');return s.replace(/-/g,'.')+' ('+WD[d.getDay()]+')';}
+// 막대 끝 값 라벨: 순매수는 막대 오른쪽, 순매도는 왼쪽
+var barLabels={id:'barLabels',afterDatasetsDraw:function(ch){
+  var c=ch.ctx,meta=ch.getDatasetMeta(0),data=ch.data.datasets[0].data;
+  c.save();c.font='600 10.5px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif';c.textBaseline='middle';
+  meta.data.forEach(function(el,i){var v=data[i];if(v==null) return;
+    c.fillStyle=v>=0?'#fca5a5':'#93c5fd';c.textAlign=v>=0?'left':'right';
+    c.fillText(sg(v),el.x+(v>=0?5:-5),el.y);});
+  c.restore();}};
 Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif';
 function ls(k,v){try{if(v===undefined) return localStorage.getItem('krsec.'+k);localStorage.setItem('krsec.'+k,v);}catch(e){return null;}}
 
@@ -318,6 +326,8 @@ function parseDate(t){
   if(mo<1||mo>12||d<1||d>31) return null;
   return y+'-'+('0'+mo).slice(-2)+'-'+('0'+d).slice(-2);
 }
+function pad(pick){var mx=0,mn=0;pick.forEach(function(o){mx=Math.max(mx,o.v);mn=Math.min(mn,o.v);});
+  var span=Math.max(mx-mn,1),g=span*0.42;return {min:mn<0?mn-g:-span*0.04,max:mx>0?mx+g:span*0.04};}
 function win(){var k=has.indexOf(S.end);return has.slice(Math.max(0,k-S.w+1),k+1);}
 function sums(){
   var idx=win(),out={};
@@ -339,9 +349,10 @@ function draw(){
     document.getElementById('sum-'+k).textContent='업종 합계 '+sg(tot)+' · 상위 10 / 하위 10';
     var cfg={type:'bar',data:{labels:pick.map(function(o){return o.n;}),datasets:[{data:pick.map(function(o){return Math.round(o.v);}),
       backgroundColor:pick.map(function(o){return o.v>=0?COL.up:COL.down;}),borderRadius:2,barPercentage:.85,categoryPercentage:.9}]},
+      plugins:[barLabels],
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,animation:false,
         plugins:{legend:{display:false},tooltip:{callbacks:{label:function(it){return ' '+NAME[k]+' '+sg(it.raw);}}}},
-        scales:{x:{grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:10},
+        scales:{x:{min:pad(pick).min,max:pad(pick).max,grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:10},
           callback:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,1)+'조':nf(v)+'억';}}},
           y:{grid:{display:false},ticks:{color:COL.dim,font:{size:11},autoSkip:false}}}}};
     if(charts[k]) charts[k].destroy();charts[k]=new Chart(document.getElementById('c-'+k),cfg);
