@@ -20,7 +20,7 @@ import krx_inv
 
 SECTORS_PATH = DATA / "sectors_naver.json"
 LEDGER = "krx_sector_flow"
-WINDOWS = (1, 5, 20, 60)
+WINDOWS = (1, 5, 10, 20, 60)
 EOK = 1e8
 
 
@@ -143,4 +143,5 @@ def build(dates: list[str]) -> dict | None:
             "sell_secs": [[k, round(v[0] - v[1]), stocks(k, "sell", v[0] - v[1])] for k, v in secs_s],
         }
     return {"names": order, "net": net, "trade": trade, "top": top, "latest": latest,
+            "prov": load_ledger(LEDGER).get("prov", []),
             "first": have[0], "last": last, "n_sectors": len(order)}

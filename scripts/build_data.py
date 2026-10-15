@@ -40,7 +40,8 @@ FINAL_AT = dt.time(18, 30)              # 이 시각 이후 받은 당일 수급
 FREESIS_FROM = dt.time(7, 0)            # 금투협 T+1 공표를 이 시각부터 폴링
 RECENT_DAYS = 15                        # --auto/--full 에서 다시 받는 최근 일수(정정 반영)
 RETRY_MIN = {"daum": 30, "freesis": 10, "krx": 20, "krxinv": 30, "vkospi": 20}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
-KRXINV_AT = dt.time(18, 40)             # KRX 투자자별 확정(18시경) 뒤에 종목별 원자료를 받는다
+KRXINV_AT = dt.time(18, 40)             # KRX 투자자별 확정(18시경) 뒤에 다시 받아 확정 처리
+KRXINV_PROV_MIN = 15                    # 장 마감 15분 뒤 잠정치를 먼저 받는다
 KRXINV_PER_RUN = 15                     # 한 번 실행에 받는 최대 일수(백필은 scripts/backfill_krx_inv.py)
 KRX_OPEN_AT = dt.time(8, 10)            # KRX Open API: 기준일 D 의 값은 D+1 오전 8시 전후에 열린다
 KRX_GIVE_UP_DAYS = 7                    # 이만큼 지나도 비어 있으면 그 날짜는 포기(무한 재시도 방지)
@@ -171,14 +172,21 @@ def fetch_krx(start: dt.date, now: dt.datetime) -> bool:
 def krxinv_targets(now: dt.datetime) -> list[str]:
     if not krx_inv.load_env():
         return []
-    cal = load_ledger("daum_investor_kospi")["rows"]
-    today = now.date().isoformat()
+    cal = set(load_ledger("daum_investor_kospi")["rows"])
+    today = now.date()
+    t = today.isoformat()
+    close = dt.datetime.combine(today, market_close(today), now.tzinfo) + dt.timedelta(minutes=KRXINV_PROV_MIN)
+    if is_bday(today) and now >= close:
+        cal.add(t)                                   # 다음 원장보다 먼저 와도 당일을 대상으로
+    prov = set(load_ledger("krx_sector_flow").get("prov", []))
     out = []
     for d in sorted(cal)[-KRXINV_PER_RUN * 3:]:
-        if d == today and now.time() < KRXINV_AT:
+        if d == t and now < close:
             continue
         if not krx_inv.has_raw(d):
             out.append(d)
+        elif d in prov and (d < t or now.time() >= KRXINV_AT):
+            out.append(d)                            # 잠정치 → 확정치로 다시 받기
     return out
 
 
@@ -197,6 +205,13 @@ def fetch_krxinv(start: dt.date, now: dt.datetime) -> bool:
             done.append(d)
     if done:
         sector_flow.rebuild_ledger(set(done))
+        led = load_ledger("krx_sector_flow")
+        prov = set(led.get("prov", []))
+        t = now.date().isoformat()
+        for d in done:
+            (prov.add if (d == t and now.time() < KRXINV_AT) else prov.discard)(d)
+        led["prov"] = sorted(prov)
+        save_ledger("krx_sector_flow", led)
     log(f"krx 종목별 투자자: {len(done)}일 반영 {done[-3:]}")
     return bool(done)
 

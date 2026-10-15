@@ -24,7 +24,7 @@ if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
   git pull -q --rebase --autostash origin "$BRANCH" || die "pull --rebase 실패 — 수동 해결 필요"
 fi
 
-PATHS=(docs/index.html docs/.nojekyll data/flows.json data/holidays_kr.json data/ledger data/manual)
+PATHS=(docs/index.html docs/sector.html docs/.nojekyll data/flows.json data/holidays_kr.json data/ledger data/manual)
 for f in "${PATHS[@]}"; do [ -e "$f" ] && git add -- "$f"; done
 
 TS_RE='s/"(generated_at|fetched_at)"([[:space:]]*:[[:space:]]*)"[^"]*"/"\1"\2"~TS~"/g'

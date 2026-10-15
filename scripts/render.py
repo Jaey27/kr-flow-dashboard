@@ -86,6 +86,7 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .nav-link{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;color:var(--text-dim);
   background:none;border:none;font-family:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;letter-spacing:-.01em}
 .nav-link:hover{color:var(--hl-teal)}
+a.nav-link{text-decoration:none}
 .nav-link.active{color:var(--bg-0);background:var(--hl-teal);box-shadow:0 0 14px rgba(151,252,228,.28);font-weight:600}
 .nav-link:focus-visible{outline:2px solid var(--hl-teal);outline-offset:2px}
 .claim{margin-bottom:16px}
@@ -154,6 +155,12 @@ table.ct .dim{color:var(--text-muted);font-weight:400;font-size:11px}
 .seg button:hover{color:var(--hl-teal)}
 .seg button.on{color:var(--bg-0);background:var(--hl-teal);font-weight:700;box-shadow:0 0 12px rgba(151,252,228,.25)}
 .seg button:focus-visible{outline:2px solid var(--hl-teal);outline-offset:1px}
+.range-dates{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.range-dates>span{color:var(--text-muted);font-size:12px}
+.dinp{width:96px;background:#0b2b2d;color:var(--text);border:1px solid rgba(151,252,228,.2);border-radius:8px;padding:4px 7px;
+  font:inherit;font-size:12px;font-variant-numeric:tabular-nums;text-align:center}
+.dinp:focus{outline:none;border-color:var(--hl-teal)}
+.dinp.bad{border-color:var(--up)}
 .range-label{font-size:12px;color:var(--text);font-variant-numeric:tabular-nums;font-weight:600}
 .range-label span{color:var(--text-muted);font-weight:500;margin-left:6px}
 .rng{position:relative;height:40px;margin-top:6px}
@@ -848,14 +855,35 @@ function setTab(t){
   document.getElementById('tab-market').hidden=t!=='market';
   document.getElementById('tab-foreign').hidden=t!=='foreign';
   document.getElementById('tab-sector').hidden=t!=='sector';
-  Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-tab]'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
   CARDS.forEach(function(c){if((c.p.tab||'market')===t&&c.chart) c.chart.resize();});
   if(t==='sector'){renderSector();setTimeout(renderSector,60);}
 }
-Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
+Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-tab]'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
 
 // ---- 기간 슬라이더 + 개요 스파크라인 --------------------------------------
 var r0=document.getElementById('r0'),r1=document.getElementById('r1'),ov=document.getElementById('overview');
+// 텍스트 날짜 → ISO. 2025-06-01 · 20250601 · 2025.6.1 · 25.06.01 · 250601 · 6/1(최근 연도)
+function parseDate(t){
+  t=(t||'').trim().replace(/\s/g,'');var m,y,mo,d;
+  if((m=t.match(/^(\d{2})(\d{2})(\d{2})$/))){y=2000+ +m[1];mo=+m[2];d=+m[3];}
+  else if((m=t.match(/^(\d{4})[-./]?(\d{1,2})[-./]?(\d{1,2})$/))){y=+m[1];mo=+m[2];d=+m[3];}
+  else if((m=t.match(/^(\d{2})[-./](\d{1,2})[-./](\d{1,2})$/))||(m=t.match(/^(\d{2})(\d{2})(\d{2})$/))){y=2000+ +m[1];mo=+m[2];d=+m[3];}
+  else if((m=t.match(/^(\d{1,2})[-./](\d{1,2})$/))){y=+D[N-1].slice(0,4);mo=+m[1];d=+m[2];
+    var c=y+'-'+('0'+mo).slice(-2)+'-'+('0'+d).slice(-2);if(c>D[N-1]) y-=1;}
+  else return null;
+  if(mo<1||mo>12||d<1||d>31) return null;
+  return y+'-'+('0'+mo).slice(-2)+'-'+('0'+d).slice(-2);
+}
+function idxAtOrBefore(s){for(var i=N-1;i>=0;i--) if(D[i]<=s) return i;return 0;}
+function idxAtOrAfter(s){for(var i=0;i<N;i++) if(D[i]>=s) return i;return N-1;}
+['d0','d1'].forEach(function(id,k){var inp=document.getElementById(id);
+  inp.addEventListener('keydown',function(e){if(e.key!=='Enter') return;var iso=parseDate(inp.value);
+    if(!iso){inp.classList.add('bad');return;} inp.classList.remove('bad');
+    var a=W.i0,b=W.i1;if(k===0){a=idxAtOrAfter(iso);if(b-a<MINSPAN) b=Math.min(N-1,a+MINSPAN);}
+    else{b=idxAtOrBefore(iso);if(b-a<MINSPAN) a=Math.max(0,b-MINSPAN);}
+    setWindow(a,b,null);inp.blur();});
+  inp.addEventListener('focus',function(){inp.select();});});
 var PRESETS=[['1M',1],['3M',3],['6M',6],['1Y',12],['전체',0]];
 var presetBox=document.getElementById('presets');
 PRESETS.forEach(function(p){var b=el('button',null,p[0]);b.type='button';b.onclick=function(){setWindow(idxMonthsBack(p[1]),N-1,p[0]);};presetBox.appendChild(b);});
@@ -872,7 +900,8 @@ function setWindow(a,b,preset){
   W.i0=a;W.i1=b;r0.value=a;r1.value=b;
   Array.prototype.forEach.call(presetBox.children,function(btn,i){btn.classList.toggle('on',PRESETS[i][0]===preset);});
   if(preset) ls('preset',preset);else ls('preset','');
-  document.getElementById('range-label').innerHTML=D[a].replace(/-/g,'.')+' ~ '+D[b].replace(/-/g,'.')+'<span>'+(b-a+1)+'영업일</span>';
+  document.getElementById('d0').value=D[a].replace(/-/g,'.');document.getElementById('d1').value=D[b].replace(/-/g,'.');
+  document.getElementById('range-label').innerHTML='<span>'+(b-a+1)+'영업일</span>';
   // rAF 는 백그라운드 탭에서 멈추므로 타이머를 함께 건다(먼저 오는 쪽이 한 번만 그린다)
   if(raf) return;
   raf=1;
@@ -957,12 +986,15 @@ HTML = r"""<!DOCTYPE html>
   <button class="nav-link active" data-tab="market" type="button">시장 수급</button>
   <button class="nav-link" data-tab="foreign" type="button">외국인 보유 · 삼성/하이닉스</button>
   <button class="nav-link" data-tab="sector" type="button">섹터 수급</button>
+  <a class="nav-link" href="sector.html">섹터 일·주간 ↗</a>
 </nav></div>
 
 <div class="range-bar"><div class="range-inner">
   <div class="range-top">
     <div class="seg" id="presets" aria-label="기간 프리셋"></div>
-    <div class="range-label" id="range-label"></div>
+    <div class="range-dates"><input id="d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2025-06-01, 250601, 6/1)">
+      <span>~</span><input id="d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter">
+      <div class="range-label" id="range-label"></div></div>
   </div>
   <div class="rng">
     <canvas id="overview" aria-hidden="true"></canvas>

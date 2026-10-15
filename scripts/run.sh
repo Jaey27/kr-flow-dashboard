@@ -64,7 +64,7 @@ if [ "$rc" -eq 1 ]; then
 fi
 
 if [ "$rc" -eq 0 ] || [ ! -f "$PROJECT_DIR/dashboard.html" ]; then
-  if ! "$PY" scripts/render.py --docs >>"$RUN_LOG" 2>&1; then
+  if ! { "$PY" scripts/render.py --docs && "$PY" scripts/render_sector.py --docs; } >>"$RUN_LOG" 2>&1; then
     echo "[ERROR] render.py 실패" >>"$RUN_LOG"; exit 2
   fi
   # 렌더 성공 시에만 GitHub Pages 로 push. 실패해도 로컬은 정상이고 다음 실행이 밀린 커밋을 다시 push 한다
