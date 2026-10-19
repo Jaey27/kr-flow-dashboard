@@ -12,6 +12,8 @@ import json
 import sys
 from pathlib import Path
 
+import render_macro
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "flows.json"
 HOL_PATH = ROOT / "data" / "holidays_kr.json"
@@ -39,8 +41,8 @@ CSS = r"""
 :root{
   --hl-teal:#97FCE4; --hl-teal-dim:#50D2C1; --hl-teal-soft:rgba(151,252,228,.12);
   --hl-teal-border:rgba(151,252,228,.25);
-  --bg-0:#061E20; --surface:rgba(15,53,55,.55);
-  --text:#E8FFFA; --text-dim:#7FA8A4; --text-muted:#4F7773;
+  --bg-0:#061E20; --surface:rgba(9,34,36,.94);
+  --text:#F2FFFC; --text-dim:#B4D6D1; --text-muted:#8FB3AE;
   --up:#F87171; --down:#60A5FA; --warn:#FBBF24;
   --s-foreign:#3987e5; --s-inst:#d95926; --s-indiv:#199e70;
   --shadow:0 4px 30px rgba(0,0,0,.4);
@@ -89,7 +91,11 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 a.nav-link{text-decoration:none}
 .nav-link.active{color:var(--bg-0);background:var(--hl-teal);box-shadow:0 0 14px rgba(151,252,228,.28);font-weight:600}
 .nav-link:focus-visible{outline:2px solid var(--hl-teal);outline-offset:2px}
+.sub-nav .nav-link{font-size:12px;padding:4px 12px}
+#tabs .nav-link{font-size:14px;font-weight:700;padding:7px 18px}
 .claim{margin-bottom:16px}
+.grid2top .card{margin-bottom:16px}
+.claim-sub{margin-top:10px}.claim-sub summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--text-dim);padding:6px 2px}.claim-sub summary:hover{color:var(--hl-teal)}
 .sec-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
 .sec-lbl{font-size:12px;color:var(--text-muted)}
 .sec-note{font-size:11px;color:var(--text-muted)}
@@ -242,7 +248,7 @@ var css=getComputedStyle(document.documentElement);
 function cv(n){return css.getPropertyValue(n).trim();}
 var COL={up:cv('--up'),down:cv('--down'),text:cv('--text'),dim:cv('--text-dim'),muted:cv('--text-muted'),
   teal:cv('--hl-teal'),foreign:cv('--s-foreign'),inst:cv('--s-inst'),indiv:cv('--s-indiv'),
-  grid:'rgba(151,252,228,.07)',zero:'rgba(151,252,228,.30)'};
+  grid:'rgba(151,252,228,.13)',zero:'rgba(151,252,228,.30)'};
 // 기관 세부 6색: 검증 통과(인접 CVD ΔE≥8.4) 순서 고정
 var C6=['#3987e5','#d95926','#199e70','#c98500','#d55181','#9085e9'];
 // 종목 색: 삼성전자=파랑(우선주는 같은 색상 밝은 단계), SK하이닉스=주황, 기타=무채(‘Other’), 금감원 실측점=틸
@@ -254,6 +260,9 @@ var CS={samsung:'#9085e9',hynix:'#d55181',other:'#9db3b0',kospi:'#97FCE4',kosdaq
 // ---- 파생 시리즈 ----------------------------------------------------------
 S.ratio_credit_deposit=D.map(function(_,i){var a=S.credit_total[i],b=S.deposit[i];
   return (a==null||b==null||!b)?null:Math.round(a/b*10000)/100;});
+// 외국인 보유 삼성·하이닉스 ÷ 코스피 시총 (%)
+['005930','000660'].forEach(function(c){S['s'+c+'_fo_in_mcap']=D.map(function(_,i){var a=S['s'+c+'_fo_val'][i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});});
+S.sh_fo_in_mcap=D.map(function(_,i){var a=S.sh_fo_val[i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});
 
 // ---- 잠정 날짜 -----------------------------------------------------------
 var PROV={};
@@ -267,7 +276,8 @@ var FMT={
   eok2:function(v){return nf(v,Math.abs(v)<100?1:0)+'억';},
   ct:function(v){return nf(Math.round(v))+'계약';},
   pct:function(v){return nf(v,2)+'%';},
-  idx:function(v){return nf(v,2);}
+  idx:function(v){return nf(v,2);},
+  shr:function(v){return nf(v/1e8,2)+'억주';}
 };
 var TICK={
   jo:function(v){return nf(v/10000,Math.abs(v)<200000?1:0)+'조';},
@@ -275,7 +285,8 @@ var TICK={
   eok2:function(v){return nf(v)+'억';},
   ct:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,1)+'만':nf(v);},
   pct:function(v){return nf(v,1)+'%';},
-  idx:function(v){return nf(v);}
+  idx:function(v){return nf(v);},
+  shr:function(v){return nf(v/1e8,1)+'억';}
 };
 function sg(f,v){return (v>0?'+':'')+f(v);}
 function cls(v){return v>0?'pos':(v<0?'neg':'');}
@@ -340,20 +351,11 @@ var PANELS=[
     {label:'신용÷예탁금',type:'line',unit:'pct',series:[{k:'ratio_credit_deposit',name:'신용융자 ÷ 예탁금',color:COL.teal}]},
     {label:'파생 예수금',type:'line',unit:'jo',series:[{k:'deriv_deposit',name:'장내파생 거래예수금',color:COL.teal}]}
   ]},
-  {id:'futures',title:'외국인 코스피200 선물',src:'다음 금융(KRX) · 전 월물 합계',asof:'futures',views:[
-    {label:'누적 순매수',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인 누적',color:COL.foreign}]},
-    {label:'일별',type:'bar',unit:'ct',series:[{k:'fut_foreign',name:'외국인 순매수',sign:true}]},
-    {label:'투자자별 누적',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인',color:COL.foreign},{k:'fut_inst',name:'기관',color:COL.inst},{k:'fut_indiv',name:'개인',color:COL.indiv}]},
-    {label:'미결제약정',type:'line',unit:'ct',series:[{k:'fut_oi',name:'미결제약정(전 월물)',color:COL.teal}]}
-  ]},
-  {id:'kospi',title:'코스피 투자자별 순매수',src:'다음 금융(KRX)',asof:'investor',views:invViews('kospi')},
-  {id:'kosdaq',title:'코스닥 투자자별 순매수',src:'다음 금융(KRX)',asof:'investor',views:invViews('kosdaq')},
   {id:'forced',title:'미수금 · 반대매매',src:'금융투자협회',asof:'funds',views:[
-    {label:'반대매매',type:'bar',unit:'eok2',series:[{k:'forced_sale',name:'반대매매 금액',color:COL.teal}]},
     {label:'반대매매 비중',type:'line',unit:'pct',series:[{k:'forced_ratio',name:'미수금 대비 반대매매 비중',color:COL.teal}]},
+    {label:'반대매매',type:'bar',unit:'eok2',series:[{k:'forced_sale',name:'반대매매 금액',color:COL.teal}]},
     {label:'미수금',type:'line',unit:'eok',series:[{k:'unpaid',name:'위탁매매 미수금',color:COL.teal}]}
   ]},
-  {id:'inst',title:'기관 세부 누적 순매수',src:'다음 금융(KRX)',asof:'investor',views:[instView('kospi','코스피'),instView('kosdaq','코스닥')]},
   {id:'vkospi',title:'VKOSPI · 삼성전자/하이닉스 주가 YoY',src:'KRX 파생상품지수 · 왼쪽 VKOSPI / 오른쪽 YoY%',asof:'index',views:[
     {label:'VKOSPI + YoY',type:'line',unit:'idx',unit2:'pct',note:(S.vkospi.some(function(v){return v!=null;})?'오른쪽 축 = 전년 같은 날 대비 주가 상승률':'VKOSPI 는 KRX 파생상품지수 승인 후 표시'),series:[
       {k:'vkospi',name:'VKOSPI',color:COL.teal},
@@ -362,12 +364,26 @@ var PANELS=[
     {label:'YoY만',type:'line',unit:'pct',zero:true,series:[
       {k:'yoy_005930',name:'삼성전자',short:'삼성',color:'#9085e9',signed:true},{k:'yoy_000660',name:'SK하이닉스',short:'하이닉스',color:'#d55181',signed:true}]}
   ]},
+  {id:'futures',title:'외국인 코스피200 선물',src:'다음 금융(KRX) · 전 월물 합계',asof:'futures',views:[
+    {label:'누적 순매수',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인 누적',color:COL.foreign}]},
+    {label:'일별',type:'bar',unit:'ct',series:[{k:'fut_foreign',name:'외국인 순매수',sign:true}]},
+    {label:'투자자별 누적',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인',color:COL.foreign},{k:'fut_inst',name:'기관',color:COL.inst},{k:'fut_indiv',name:'개인',color:COL.indiv}]},
+    {label:'미결제약정',type:'line',unit:'ct',series:[{k:'fut_oi',name:'미결제약정(전 월물)',color:COL.teal}]}
+  ]},
+  {id:'kospi',title:'코스피 투자자별 순매수',src:'다음 금융(KRX)',asof:'investor',views:invViews('kospi')},
+  {id:'kosdaq',title:'코스닥 투자자별 순매수',src:'다음 금융(KRX)',asof:'investor',views:invViews('kosdaq')},
+  {id:'inst',title:'기관 세부 누적 순매수',src:'다음 금융(KRX)',asof:'investor',views:[instView('kospi','코스피'),instView('kosdaq','코스닥')]},
   {id:'index',title:'지수',src:'다음 금융',asof:'index',views:[
     {label:'코스피',type:'line',unit:'idx',series:[{k:'idx_kospi',name:'코스피',color:COL.teal}]},
     {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
     {label:'K200 선물',type:'line',unit:'idx',series:[{k:'fut_price',name:'코스피200 선물(최다 거래 월물)',color:COL.teal}]}
   ]},
   // ---- 외국인 보유 · 삼성/하이닉스 탭 ----
+  {id:'shtop',tab:'foreign',top:true,title:'외국인의 삼성전자·SK하이닉스 — 보유액 · 코스피 시총 대비 · 보유 주식 수',src:'보유주식 수(다음, KRX)×종가 · 범례를 눌러 삼성/하이닉스를 켜고 끔 · 코스피는 오른쪽 위 버튼',asof:'stock',views:[
+    {label:'보유액',type:'line',unit:'jo',series:[{k:'sh_fo_val',name:'삼성+하이닉스',short:'합계',color:CS.total},{k:'s005930_fo_val',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_val',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
+    {label:'코스피 시총 대비',type:'line',unit:'pct',note:'외국인 보유액 ÷ 코스피 시총',series:[{k:'sh_fo_in_mcap',name:'삼성+하이닉스',short:'합계',color:CS.total},{k:'s005930_fo_in_mcap',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_in_mcap',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
+    {label:'보유 주식 수',type:'line',unit:'shr',unit2:'shr',note:'주가 효과 제외 — 장외 이동·DR 예탁 포함',series:[{k:'s005930_fo_shares',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_shares',name:'SK하이닉스',short:'하이닉스',color:CS.hynix,axis:'y1',unit:'shr'}]}
+  ]},
   {id:'mkthold',tab:'foreign',title:'시장 전체 외국인 보유액 (코스피+코스닥)',src:'금투협(KRX) 일별 실측 · 금감원 월말',asof:'fo_market',views:[
     {label:'보유액',type:'stack',unit:'jo',series:[
       {k:'fo_kospi',name:'코스피',color:CS.kospi},{k:'fo_kosdaq',name:'코스닥',color:CS.kosdaq},
@@ -436,7 +452,7 @@ var endLabels={id:'endLabels',afterDatasetsDraw:function(ch,args,o){
   c.restore();}};
 Chart.register(crosshair,endLabels);
 Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif';
-Chart.defaults.color=COL.muted;
+Chart.defaults.color=COL.dim;Chart.defaults.font.size=12;
 
 // ---- 카드 ---------------------------------------------------------------
 var CARDS=[];
@@ -450,8 +466,9 @@ function labelOf(sp){return sp.short||sp.name;}
 function labelPad(view){measureCtx.font=LABEL_FONT;var w=0;
   view.series.forEach(function(sp){if(!sp.points) w=Math.max(w,measureCtx.measureText(labelOf(sp)).width);});
   return Math.ceil(w)+22;}
-function datasets(view){
-  return view.series.map(function(sp,j){
+function ovOn(card,view){return !!card&&card.ov&&card.p.id!=='index'&&!view.series.some(function(sp){return sp.axis==='y1';});}
+function datasets(view,card){
+  var out=view.series.map(function(sp,j){
     var data=slice(sp.k,isCum(view,sp),view.base);
     if(view.type==='bar'){
       return {type:'bar',label:sp.name,data:data,borderWidth:0,borderRadius:2,borderSkipped:'start',
@@ -467,17 +484,20 @@ function datasets(view){
     if(sp.axis==='y1') o.yAxisID='y1';
     return o;
   });
+  if(ovOn(card,view)) out.push({type:'line',label:'코스피',isOv:true,data:slice('idx_kospi',false),borderColor:'rgba(157,179,176,.6)',backgroundColor:'rgba(157,179,176,.6)',
+    borderWidth:1.2,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,yAxisID:'y1',order:9});
+  return out;
 }
 
 function config(card){
   var view=card.p.views[card.v],unit=view.unit;
   var lines=view.series.filter(function(sp){return !sp.points;}).length;
-  var hasY1=view.series.some(function(sp){return sp.axis==='y1';});
+  var OVN=ovOn(card,view),hasY1=OVN||view.series.some(function(sp){return sp.axis==='y1';});
   var direct=view.series.length>1&&lines<=4&&view.type!=='bar'&&!hasY1;
   var anyCum=view.series.some(function(sp){return isCum(view,sp);});
   function signedOf(sp){return isCum(view,sp)||view.type==='bar'||!!sp.signed;}
   return {
-    data:{labels:D.slice(W.i0,W.i1+1),datasets:datasets(view)},
+    data:{labels:D.slice(W.i0,W.i1+1),datasets:datasets(view,card)},
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,normalized:true,
       interaction:{mode:'index',intersect:false},
@@ -492,8 +512,8 @@ function config(card){
           filter:function(it){return it.raw!=null;},
           callbacks:{
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
-            label:function(it){var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
-            labelColor:function(it){var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
+            label:function(it){if(it.dataset.isOv) return ' 코스피  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
+            labelColor:function(it){if(it.dataset.isOv) return {borderColor:'#9db3b0',backgroundColor:'#9db3b0',borderRadius:2};var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
               if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
             footer:function(items){
@@ -506,14 +526,14 @@ function config(card){
       },
       scales:{
         x:{grid:{display:false},border:{color:'rgba(151,252,228,.14)'},
-          ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:7,font:{size:10.5},
+          ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:7,font:{size:12},
             callback:function(v){var s=this.getLabelForValue(v);return (W.i1-W.i0>140)?s.slice(2,7).replace('-','.'):dshort(s);}}},
         y:{stacked:view.type==='stack',beginAtZero:!!(anyCum||view.type==='bar'||view.type==='stack'||view.zero),
           border:{display:false},
           grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;},drawTicks:false},
-          ticks:{color:COL.muted,font:{size:10.5},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}},
+          ticks:{color:COL.muted,font:{size:12},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}},
         y1:hasY1?{position:'right',border:{display:false},grid:{display:false},
-          ticks:{color:COL.muted,font:{size:10.5},padding:4,maxTicksLimit:6,callback:function(v){return TICK[view.unit2||'pct'](v);}}}:{display:false}
+          ticks:{color:COL.muted,font:{size:12},padding:4,maxTicksLimit:6,callback:function(v){return TICK[OVN?'idx':(view.unit2||'pct')](v);}}}:{display:false}
       }
     }
   };
@@ -535,6 +555,9 @@ function buildCard(p){
       b.onclick=function(){card.v=i;ls('view.'+p.id,i);rebuild(card);};seg.appendChild(b);});
     tools.appendChild(seg);card.seg=seg;
   }
+  card.ov=ls('ov.'+p.id)!=='0';
+  if(p.id!=='index'){var ob=el('button','tbl-btn'+(card.ov?' on':''),'코스피');ob.type='button';ob.title='코스피를 회색 선(오른쪽 축)으로 겹치기';
+    ob.onclick=function(){card.ov=!card.ov;ls('ov.'+p.id,card.ov?'1':'0');ob.classList.toggle('on',card.ov);rebuild(card);};tools.appendChild(ob);}
   var tb=el('button','tbl-btn','표');tb.type='button';tb.title='현재 기간의 값을 표로 보기';
   tb.onclick=function(){card.table=!card.table;tb.classList.toggle('on',card.table);renderTable(card);};
   tools.appendChild(tb);
@@ -543,7 +566,7 @@ function buildCard(p){
   var box=el('div','chart-box');var cvs=document.createElement('canvas');cvs.setAttribute('role','img');box.appendChild(cvs);
   root.appendChild(box);card.canvas=cvs;
   card.tbl=el('div','tbl-wrap');card.tbl.hidden=true;root.appendChild(card.tbl);
-  document.getElementById(p.tab==='foreign'?'grid2':'grid').appendChild(root);
+  document.getElementById(p.top?'grid2top':(p.tab==='foreign'?'grid2':'grid')).appendChild(root);
   CARDS.push(card);rebuild(card);
 }
 
@@ -572,14 +595,14 @@ function rebuild(card){
 function updateSub(card){
   var view=card.p.views[card.v],a=F.asof[card.p.asof]||{},d=a.date;
   var prov=d&&(a.prov||[]).indexOf(d)>=0;
-  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt'}[view.unit];
+  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
   card.sub.innerHTML=card.p.src+' · '+unitName+(d?' · '+dshort(d)+' 기준':'')+(prov?'<span class="prov-tag">잠정</span>':'');
 }
 
 function updateCard(card){
   var view=card.p.views[card.v],ch=card.chart;
   ch.data.labels=D.slice(W.i0,W.i1+1);
-  var fresh=datasets(view);
+  var fresh=datasets(view,card);
   ch.data.datasets.forEach(function(ds,i){ds.data=fresh[i].data;if(view.type==='bar') ds.backgroundColor=fresh[i].backgroundColor;});
   ch.update('none');
   if(card.cumNote) card.cumNote.textContent=cumText(view);
@@ -667,30 +690,44 @@ function renderClaim(){
   if(iB<0){box.hidden=true;return;}
   var A0=ix('2024-10-31'),A1=ix('2024-12-31'),A2=ix('2025-12-31');
   var iP=-1,hP=-Infinity;for(t=A2+1;t<=iB;t++) if(S.fo_total[t]!=null&&S.fo_total[t]>hP){hP=S.fo_total[t];iP=t;}
-  var cols=[A0,A1,A2,iP,iB],heads=['지수 2,500 무렵','연말 2,400 무렵','2026년 시작','2026 보유액 고점','최신'];
+  var AH=ix('2025-06-30');
+  // 표시 열(Jae 10/18): 24.10.31 빼고 25.06.30 추가. A0 는 아래 주장별 대조 ①② 계산에만 쓴다
+  var cols=[A1,AH,A2,iP,iB],heads=['연말 2,400 무렵','25년 상반기 말','2026년 시작','2026 보유액 고점','최신'];
   var J=FMT.jo,P=function(x){return x==null?'–':nf(x,2)+'%';};
   function v(k,i,f){var x=S[k][i];return x==null?'–':(f||J)(x);}
   function fssAt(i){for(var j=i;j>=0;j--) if(S.fo_total_fss[j]!=null) return {v:S.fo_total_fss[j],d:D[j]};return null;}
-  var rows=[
-    ['코스피 지수',function(i){return v('idx_kospi',i,FMT.idx);}],
-    ['코스피 시총',function(i){return v('mcap_kospi',i);}],
-    ['외국인 보유 · 코스피',function(i){return v('fo_kospi',i);}],
-    ['외국인 보유 · 코스닥',function(i){return v('fo_kosdaq',i);}],
-    ['외국인 보유 · 코스피+코스닥',function(i){return v('fo_total',i);},1],
+  var SHR=function(x){return x==null?'–':nf(x/1e8,2)+'억주';};
+  function tbl(rows){var t='<div class="table-scroll"><table class="ct"><thead><tr><th></th>'+cols.map(function(i,c){
+      return '<th>'+(i<0?'–':dyy(D[i]))+'<span>'+heads[c]+'</span></th>';}).join('')+'</tr></thead><tbody>';
+    rows.forEach(function(r){t+='<tr'+(r[2]?' class="hl"':'')+'><td>'+r[0]+'</td>'+cols.map(function(i){return '<td>'+(i<0?'–':r[1](i))+'</td>';}).join('')+'</tr>';});
+    return t+'</tbody></table></div>';}
+  // 맨 위(접지 않음) — Jae 10/18 지정
+  var main=[
+    ['코스피 지수 · 시총',function(i){return v('idx_kospi',i,FMT.idx)+' <span class="dim">·</span> '+v('mcap_kospi',i);}],
+    ['외국인 보유 · 코스피',function(i){return v('fo_kospi',i);},1],
+    ['외국인 보유 · 삼성전자 / SK하이닉스',function(i){return v('s005930_fo_val',i)+' <span class="dim">/</span> '+v('s000660_fo_val',i);}],
+    ['외국인 코스피 보유 중 삼성+하이닉스 비중',function(i){return P(S.sh_in_fo_kospi[i])+' <span class="dim">('+v('sh_fo_val',i)+')</span>';},1]
+  ];
+  var kq=[
+    ['코스닥 지수 · 시총',function(i){return v('idx_kosdaq',i,FMT.idx)+' <span class="dim">·</span> '+v('mcap_kosdaq',i);}],
+    ['외국인 보유 · 코스닥',function(i){return v('fo_kosdaq',i);}]
+  ];
+  var tot=[
+    ['코스피+코스닥 합산 시총',function(i){return v('mcap_total',i);}],
+    ['코스피+코스닥 합산 외국인 보유',function(i){return v('fo_total',i);},1],
+    ['외국인 보유 비중 · 코스피+코스닥 합산',function(i){return P(S.fo_pct_total[i]);}]
+  ];
+  var etc=[
     ['외국인 비중 · 코스피',function(i){return P(S.fo_pct_kospi[i]);}],
     ['(참고) 금감원 월말 · 결제 기준',function(i){var r=fssAt(i);if(!r) return '–';
       return J(r.v)+' <span class="dim">('+r.d.slice(2,7).replace('-','.')+'말)</span>';}],
     ['삼성전자 시총 · 코스피 비중',function(i){return v('s005930_mcap',i)+' · '+P(S.share_samsung[i]);}],
     ['SK하이닉스 시총 · 코스피 비중',function(i){return v('s000660_mcap',i)+' · '+P(S.share_hynix[i]);}],
-    ['외국인 지분율(주식 수) 삼성 · 하이닉스',function(i){return P(S.s005930_fo_rate[i])+' · '+P(S.s000660_fo_rate[i]);}],
-    ['외국인 보유 · 삼성전자',function(i){return v('s005930_fo_val',i);}],
-    ['외국인 보유 · SK하이닉스',function(i){return v('s000660_fo_val',i);}],
-    ['외국인 보유 · 삼성+하이닉스',function(i){return v('sh_fo_val',i)+' <span class="dim">(코스피 외국인의 '+P(S.sh_in_fo_kospi[i])+')</span>';},1]
+    ['외국인 지분율(주식 수) 삼성 · 하이닉스',function(i){return P(S.s005930_fo_rate[i])+' · '+P(S.s000660_fo_rate[i]);}]
   ];
-  var h='<div class="table-scroll"><table class="ct"><thead><tr><th></th>'+cols.map(function(i,c){
-    return '<th>'+(i<0?'–':dyy(D[i]))+'<span>'+heads[c]+'</span></th>';}).join('')+'</tr></thead><tbody>';
-  rows.forEach(function(r){h+='<tr'+(r[2]?' class="hl"':'')+'><td>'+r[0]+'</td>'+cols.map(function(i){return '<td>'+(i<0?'–':r[1](i))+'</td>';}).join('')+'</tr>';});
-  h+='</tbody></table></div>';
+  function dt(id,title,body,def){var o=!!def;try{var x=localStorage.getItem('krflow.claim.'+id);if(x!==null) o=x==='1';}catch(e){}
+    return '<details class="claim-sub" data-k="'+id+'"'+(o?' open':'')+'><summary>'+title+'</summary>'+body+'</details>';}
+  var h=tbl(main)+dt('tot','합계 (코스피+코스닥)',tbl(tot),true)+dt('kq','코스닥',tbl(kq))+dt('etc','기타 — 외국인 비중·금감원·종목 시총·지분율',tbl(etc));
 
   // ---- 주장별 대조 ----
   function sumR(k,a,b){var s=0;for(var i=a+1;i<=b;i++) if(S[k][i]!=null) s+=S[k][i];return s;}   // (a,b]
@@ -725,8 +762,9 @@ function renderClaim(){
      dyy(D[iP])+' → '+dyy(D[iB])+': 시장 전체 <b>'+sg(J,dTot)+'</b> = 순매수 '+sg(J,nbP)+' + 주가 <b>'+sg(J,prP)+'</b><br>'+
      '삼성+하이닉스 <b>'+sg(J,dSH)+'</b> = 매매(보유주식 수) '+sg(J,trSH)+' + 주가 <b>'+sg(J,prSH)+'</b>']
   ];
-  h+='<div class="verdict">'+q.map(function(r){return '<div class="q">'+r[0]+'</div><div>'+r[1]+'</div>';}).join('')+'</div>';
-  document.getElementById('claim-body').innerHTML=h;
+  h+=dt('vd','주장별 대조 ①~⑤','<div class="verdict">'+q.map(function(r){return '<div class="q">'+r[0]+'</div><div>'+r[1]+'</div>';}).join('')+'</div>');
+  var cb=document.getElementById('claim-body');cb.innerHTML=h;
+  Array.prototype.forEach.call(cb.querySelectorAll('details.claim-sub'),function(d){d.addEventListener('toggle',function(){try{localStorage.setItem('krflow.claim.'+d.dataset.k,d.open?'1':'0');}catch(e){}});});
 }
 
 // ---- 섹터 수급 탭 (네이버 업종 78개 × KRX 주체별) -----------------------------------
@@ -841,25 +879,35 @@ function renderDetail(){
   SEC.det=new Chart(document.getElementById('sec-det'),{type:'line',data:{labels:labels,datasets:lineDs(n)},options:{responsive:true,maintainAspectRatio:false,animation:false,
     interaction:{mode:'index',intersect:false},layout:{padding:{right:labelPad({series:[{name:'외국인'}]})}},
     plugins:{legend:{display:false},endLabels:{on:true},tooltip:{callbacks:{title:function(it){return it.length?dlong(it[0].label):'';},label:function(it){return ' '+it.dataset.label+' '+sg(eokF,it.raw);}}}},
-    scales:{x:{grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:6,font:{size:10.5},callback:function(v){var s=this.getLabelForValue(v);return (b-a>140)?s.slice(2,7).replace('-','.'):dshort(s);}}},
-      y:{beginAtZero:true,grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:10.5},callback:function(v){return TICK.eok(v);}}}}}});
+    scales:{x:{grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:6,font:{size:12},callback:function(v){var s=this.getLabelForValue(v);return (b-a>140)?s.slice(2,7).replace('-','.'):dshort(s);}}},
+      y:{beginAtZero:true,grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;}},ticks:{color:COL.muted,font:{size:12},callback:function(v){return TICK.eok(v);}}}}}});
   document.getElementById('sec-detail-sub').textContent=n+' · 기간 누적 순매수(억원) · 상위 종목은 '+INV_NAME[SEC.inv]+' 기준';
 }
 function renderSector(){if(!SF||TAB!=='sector') return;drawHeat();drawRank();renderDetail();}
 window.addEventListener('resize',function(){if(TAB==='sector') drawHeat();});
 
 // ---- 탭 -------------------------------------------------------------------
-var TAB=ls('tab')||'market';
+var TAB=ls('tab')||'risk';
 function setTab(t){
   TAB=t;ls('tab',t);
   document.getElementById('tab-market').hidden=t!=='market';
   document.getElementById('tab-foreign').hidden=t!=='foreign';
   document.getElementById('tab-sector').hidden=t!=='sector';
-  Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-tab]'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  document.getElementById('tab-macro').hidden=t!=='macro';
+  document.getElementById('tab-risk').hidden=t!=='risk';
+  document.getElementById('tab-econ').hidden=t!=='econ';
+  var FL=['market','foreign','sector'].indexOf(t)>=0;if(FL) ls('flowsub',t);
+  document.querySelector('.range-bar').hidden=!FL;document.getElementById('subnav-row').hidden=!FL;
+  Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-top]'),function(b){var on=b.getAttribute('data-top')===(FL?'flow':t);b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  if(t==='econ'&&window.ECON) window.ECON.show();
+  if(t==='risk'&&window.RISK) window.RISK.show();
+  if(t==='macro'&&window.MACRO) window.MACRO.show();
+  Array.prototype.forEach.call(document.querySelectorAll('#subtabs .nav-link[data-tab]'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
   CARDS.forEach(function(c){if((c.p.tab||'market')===t&&c.chart) c.chart.resize();});
   if(t==='sector'){renderSector();setTimeout(renderSector,60);}
 }
-Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-tab]'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
+Array.prototype.forEach.call(document.querySelectorAll('#subtabs .nav-link[data-tab]'),function(b){b.onclick=function(){setTab(b.getAttribute('data-tab'));};});
+Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-top]'),function(b){b.onclick=function(){var t=b.getAttribute('data-top');setTab(t==='flow'?(ls('flowsub')||'market'):t);};});
 
 // ---- 기간 슬라이더 + 개요 스파크라인 --------------------------------------
 var r0=document.getElementById('r0'),r1=document.getElementById('r1'),ov=document.getElementById('overview');
@@ -957,8 +1005,8 @@ function onOrBefore(s){return isB(s)?s:prevB(s);}
 PANELS.forEach(buildCard);
 renderClaim();
 initSector();
-setTab(['foreign','sector'].indexOf(TAB)>=0?TAB:'market');
-var pre=ls('preset');var P=PRESETS.filter(function(p){return p[0]===pre;})[0]||PRESETS[3];
+setTab(['market','foreign','sector','risk','econ','macro'].indexOf(TAB)>=0?TAB:'risk');
+var pre=ls('preset');var P=PRESETS.filter(function(p){return p[0]===pre;})[0]||PRESETS[2];  // 기본 6M(Jae 10/19)
 setWindow(idxMonthsBack(P[1]),N-1,P[0]);
 })();
 """
@@ -970,7 +1018,7 @@ HTML = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="dark" />
 <meta name="theme-color" content="#061E20" />
-<title>국내 증시 수급</title>
+<title>리스크·매크로·수급</title>
 <meta name="description" content="신용거래융자·투자자예탁금·반대매매·외국인 코스피200 선물·코스피/코스닥 투자자별 순매수를 매일 자동 갱신하는 대시보드." />
 <style>__CSS__</style>
 </head>
@@ -978,11 +1026,17 @@ HTML = r"""<!DOCTYPE html>
 <div class="container">
 <header>
   <div class="brand"><span class="logo-dot" aria-hidden="true"></span>
-    <div><h1>국내 증시 수급</h1><div class="sub">신용·예탁금 · 반대매매 · 외국인 선물 · 투자자별 순매수</div></div></div>
+    <div><h1>리스크 · 매크로 · 수급</h1><div class="sub">회사채·데이터센터 채권 · 경제지표 · 미 금리·텀프리미엄·BEI · 국내 수급</div></div></div>
   <div class="stamp"><div id="gen"></div><div class="chips" id="chips"></div></div>
 </header>
 <div class="stale" id="stale" hidden></div>
 <div class="top-nav-row"><nav class="top-nav" id="tabs" aria-label="보기 전환">
+  <button class="nav-link" data-top="risk" type="button">리스크</button>
+  <button class="nav-link" data-top="flow" type="button">수급</button>
+  <button class="nav-link" data-top="macro" type="button">매크로</button>
+  <button class="nav-link" data-top="econ" type="button">경제지표</button>
+</nav></div>
+<div class="top-nav-row" id="subnav-row" hidden><nav class="top-nav sub-nav" id="subtabs" aria-label="수급 보기">
   <button class="nav-link active" data-tab="market" type="button">시장 수급</button>
   <button class="nav-link" data-tab="foreign" type="button">외국인 보유 · 삼성/하이닉스</button>
   <button class="nav-link" data-tab="sector" type="button">섹터 수급</button>
@@ -1004,11 +1058,13 @@ HTML = r"""<!DOCTYPE html>
   </div>
 </div></div>
 
+__MACROHTML__
 <div id="tab-market">
 <div class="tiles" id="tiles"></div>
 <div class="grid" id="grid"></div>
 </div>
 <div id="tab-foreign" hidden>
+<div id="grid2top" class="grid2top"></div>
 <section class="card claim" id="claim">
   <div class="card-head"><div><div class="card-title">주장 검증 — "지수 2,500 때 외국인 700조 → 3배 → 2026년 200조 매도는 10%"</div>
   <div class="card-sub">고정 기준일 비교(위 기간 바와 무관) · 매일 자동 재계산 · 시장 전체는 금투협 일별 실측, 삼성전자는 보통주</div></div></div>
@@ -1045,6 +1101,7 @@ HTML = r"""<!DOCTYPE html>
     <li><b>신용거래융자·투자자예탁금·미수금·반대매매</b> — 금융투자협회 <a href="https://freesis.kofia.or.kr/" rel="noopener">FreeSIS</a>. 기준일 T의 값은 <b>다음 영업일(T+1)</b>에 공표돼 다른 항목보다 하루 늦다.</li>
     <li><b>투자자별 순매수·코스피200 선물·지수</b> — 다음 금융(원천 KRX). 장 마감 10분 뒤 <b>잠정치</b>를 받고, 18:30 이후 다시 받아 <b>확정치</b>로 덮어쓴다.</li>
     <li>맥미니 launchd 가 10분마다 '새 값이 나올 차례인 출처'만 확인하고, 값이 바뀌었을 때만 이 페이지를 다시 굽는다. 매일 아침 최근 15일을 다시 받아 출처의 정정분도 반영한다.</li>
+    <li><b>매크로 탭</b> — 미 재무부 명목·실질 커브(BEI = 명목 − 실질), NY Fed ACM 텀프리미엄(1영업일 지연), Yahoo(Brent BZ=F·원/달러 KRW=X 일봉), Kalshi 연준 결정 시장, CNBC 시세(타일의 '실시간' 줄만, 비공식). 날짜축은 미 채권시장 영업일이고, 코스피 겹치기는 그 날짜 이전 마지막 국내 종가. 1년 백분위는 최근 252개 관측치 기준. 색 신호는 일부러 끄고 회색으로 둔다(기준은 직접 정함).</li>
   </ul>
   <div class="foot-h">지표 정의</div>
   <ul>
@@ -1067,17 +1124,34 @@ HTML = r"""<!DOCTYPE html>
 <script>window.__FLOWS__ = __DATA__; window.__HOL__ = __HOLDATA__;</script>
 <script>__CHARTJS__</script>
 <script>__APP__</script>
+<script>window.__MACRO__ = __MACRODATA__;</script>
+<script>__MACROJS__</script>
+<script>__FSJS__</script>
+<script>__ECONJS__</script>
+<script>window.__RISK__ = __RISKDATA__;</script>
+<script>__RISKJS__</script>
+<script>window.__SEIBRO__ = __SEIBRODATA__;</script>
+<script>__SEIBROJS__</script>
 </body>
 </html>
 """
 
 
 def build(flows: dict, hol: dict) -> str:
-    return (HTML.replace("__CSS__", CSS)
+    return (HTML.replace("__CSS__", CSS + render_macro.MACRO_CSS)
+            .replace("__MACROHTML__", render_macro.macro_html())
             .replace("__DATA__", js_safe_json(flows))
             .replace("__HOLDATA__", js_safe_json({"holidays": hol["holidays"]}))
             .replace("__CHARTJS__", script_safe(VENDOR_PATH.read_text(encoding="utf-8")))
-            .replace("__APP__", script_safe(JS)))
+            .replace("__APP__", script_safe(JS))
+            .replace("__MACRODATA__", js_safe_json(json.loads(render_macro.macro_data_json())))
+            .replace("__MACROJS__", script_safe(render_macro.MACRO_JS))
+            .replace("__FSJS__", script_safe(render_macro.FS_JS))
+            .replace("__ECONJS__", script_safe(render_macro.ECON_JS))
+            .replace("__RISKDATA__", js_safe_json(json.loads(render_macro.risk_data_json())))
+            .replace("__RISKJS__", script_safe(render_macro.RISK_JS))
+            .replace("__SEIBRODATA__", js_safe_json(json.loads(render_macro.seibro_data_json())))
+            .replace("__SEIBROJS__", script_safe(render_macro.SEIBRO_JS)))
 
 
 def main() -> int:

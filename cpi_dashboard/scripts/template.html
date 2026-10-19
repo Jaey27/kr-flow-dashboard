@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>미국 CPI 세부</title>
+<style>
+:root{
+  --bg:#0b1a1f; --card:#11242b; --card2:#162e36; --line:#21414b; --text:#dce8ec; --muted:#86a2ab; --dim:#5d7880;
+  --accent:#2ec4b6; --up:#ff6b6b; --down:#4dabf7; --warn:#ffb347; --good:#51cf66;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1320px;margin:0 auto;padding:16px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px;margin-bottom:12px}
+h1{font-size:22px;margin:0} .sub{color:var(--muted);font-size:12.5px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text)}
+.bar{position:sticky;top:0;z-index:20;background:rgba(11,26,31,.96);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:transparent;border:0;color:var(--muted);padding:5px 10px;cursor:pointer;font:inherit;font-size:12.5px}
+.seg button.on{background:var(--accent);color:#06221f;font-weight:700}
+.lbl{color:var(--dim);font-size:12px;margin-right:4px}
+.range{position:relative;width:260px;height:22px}
+.range input{position:absolute;left:0;top:0;width:100%;pointer-events:none;-webkit-appearance:none;appearance:none;background:transparent;height:22px;margin:0}
+.range input::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #06221f;cursor:pointer}
+.range input::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #06221f;cursor:pointer}
+.range .track{position:absolute;left:0;right:0;top:9px;height:4px;background:var(--line);border-radius:2px}
+.range .sel{position:absolute;top:9px;height:4px;background:var(--accent);border-radius:2px}
+input.ym{width:78px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 6px;font:inherit;font-size:12.5px}
+.btn{background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 10px;cursor:pointer;font:inherit;font-size:12.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2{font-size:16px;margin:0 0 2px} .card .desc{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kpi .t{color:var(--muted);font-size:12px} .kpi .v{font-size:22px;font-weight:800}
+.kpi .s{font-size:12px;color:var(--muted)}
+.pos{color:var(--up)} .neg{color:var(--down)} .warn{color:var(--warn)}
+.cv{position:relative;height:340px} .cv.sm{height:260px} .cv.tall{height:520px}
+.toggles{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.tg{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
+.tg.on{color:var(--text);border-color:var(--accent)} .tg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+details{margin-top:8px} summary{cursor:pointer;color:var(--muted);font-size:12.5px} details .body{color:var(--text);font-size:13px;padding:8px 2px 2px;line-height:1.65}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px} @media(max-width:900px){.grid2{grid-template-columns:1fr}.range{width:180px}}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table.hm{border-collapse:separate;border-spacing:0;font-size:12px;min-width:100%}
+table.hm th,table.hm td{padding:4px 6px;white-space:nowrap;text-align:right;border-bottom:1px solid #1a333b}
+table.hm thead th{position:sticky;top:0;background:var(--card2);color:var(--muted);font-weight:600;z-index:2}
+table.hm th.nm,table.hm td.nm{position:sticky;left:0;background:var(--card);text-align:left;z-index:1;min-width:210px;max-width:260px}
+table.hm thead th.nm{z-index:3;background:var(--card2)}
+table.hm tr.grp td{background:#0f2026;color:var(--accent);font-weight:700;text-align:left}
+table.hm tr.sub td{background:#0f2026;color:var(--muted);font-weight:600;text-align:left}
+table.hm tr.item{cursor:pointer} table.hm tr.item:hover td{background:#183740} table.hm tr.item.sel td.nm{box-shadow:inset 3px 0 0 var(--accent)}
+table.hm td.w{color:var(--dim)}
+table.hm tr.agg td{font-weight:700}
+.cell{display:inline-block;min-width:44px;border-radius:4px;padding:1px 4px;position:relative}
+.flag{font-size:10px;margin-left:2px}
+.dt{display:none} .dt.open{display:table-row} .dt td{white-space:normal;text-align:left;color:var(--muted);font-size:12.5px;background:#0d1d22;line-height:1.6}
+.caret{display:inline-block;width:14px;color:var(--dim);cursor:pointer}
+.ext{font-size:11px;margin-left:4px;color:var(--dim)}
+.legend-note{font-size:12px;color:var(--muted);margin-top:6px}
+.lst{margin:0;padding-left:18px} .lst li{margin:3px 0}
+.badge{display:inline-block;border-radius:4px;padding:0 5px;font-size:11px;font-weight:700}
+.b-up{background:#5a1f24;color:#ffb3b3} .b-dn{background:#173a5a;color:#a5d8ff} .b-rv{background:#2b3d1c;color:#b2f2bb} .b-ps{background:#5a3b12;color:#ffd8a8}
+select{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:3px 6px;font:inherit;font-size:12.5px}
+footer{color:var(--dim);font-size:12px;padding:10px 0 30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>미국 CPI 세부</h1>
+    <div class="sub">헤드라인·근원 CPI와 세부 항목 기여도 · 추세 변곡과 일회성 구분용</div>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+
+<div class="bar">
+  <div><span class="lbl">기간</span><span class="seg" id="presets"></span></div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="range"><div class="track"></div><div class="sel" id="rsel"></div>
+      <input type="range" id="r0"><input type="range" id="r1"></div>
+    <input class="ym" id="t0" placeholder="2021-10"> ~ <input class="ym" id="t1" placeholder="2026-09">
+    <button class="btn" id="tapply">적용</button>
+  </div>
+  <div><span class="lbl">지표</span><span class="seg" id="metric"></span></div>
+  <div><span class="lbl">기여도 기준</span><span class="seg" id="base"></span></div>
+</div>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="card">
+  <h2>헤드라인 vs 근원 CPI</h2>
+  <div class="desc" id="mainDesc"></div>
+  <div class="toggles" id="mainToggles"></div>
+  <div class="cv"><canvas id="cMain"></canvas></div>
+  <div class="legend-note">◇ 컨센서스(전월비·전년비 모드) · FOMC 세로선은 위 'FOMC' 칩을 눌러 켭니다(<span class="pos">인상</span> / <span class="neg">인하</span> / 회색 동결) · 주황 점선 ※: 데이터 주석('데이터 주석' 칩으로 켜기)</div>
+  <details><summary>주석·계산 방법 보기</summary><div class="body" id="notesBody"></div></details>
+</div>
+
+<div class="card">
+  <h2 id="ctTitle">기여도 분해</h2>
+  <div class="desc" id="ctDesc"></div>
+  <div class="cv"><canvas id="cContrib"></canvas></div>
+  <details><summary>버킷 설명 보기</summary><div class="body" id="bucketBody"></div></details>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2 id="wfTitle">항목별 기여도</h2>
+    <div class="desc" id="wfDesc"></div>
+    <div class="cv tall"><canvas id="cWater"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>일회성 점검</h2>
+    <div class="desc">전월비가 직전 12개월 평균에서 2표준편차 넘게 벗어나면 '급등/급락', 그다음 달에 평균 근처로 돌아오면 '되돌림(일회성 가능성)', 계속 1표준편차 넘게 유지되면 '지속(추세 가능성)'으로 표시합니다.</div>
+    <div id="flagList"></div>
+    <h2 style="margin-top:14px">확산도</h2>
+    <div class="desc">주요 근원 항목(가중치 기준) 중 전월비가 오른 비중과 연율 3%를 넘은 비중. 일부 항목만 튄 건지, 넓게 번지는지 봅니다.</div>
+    <div class="cv sm"><canvas id="cDiff"></canvas></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>세부 항목</h2>
+  <div class="desc" id="hmDesc"></div>
+  <details id="hmDet"><summary>표 펼치기 (집계 8개 + 세부 항목 31개)</summary>
+  <div class="toggles"><span class="tg" id="tgCells">셀 값: 상승률</span><span class="tg" id="tgDesc">설명 모두 펼치기</span></div>
+  <div class="tbl-wrap" id="hmWrap"><table class="hm" id="hm"></table></div></details>
+</div>
+
+<div class="card" id="detailCard">
+  <h2 id="dtTitle">항목 상세</h2>
+  <div class="desc">
+    <span class="lbl">항목</span><select id="dtSel"></select>
+    <span class="lbl" style="margin-left:10px">비교</span><select id="dtCmp"></select> <span class="lbl">항목을 고르면 상위 묶음으로 자동 지정</span>
+  </div>
+  <div class="cv"><canvas id="cDetail"></canvas></div>
+  <div class="legend-note" id="dtNote"></div>
+  <div id="dtOer" class="desc" style="display:none;margin:8px 0 6px;line-height:1.55"></div>
+  <details><summary>항목 설명 보기</summary><div class="body" id="dtBody"></div></details>
+</div>
+
+<footer id="foot"></footer>
+</div>
+
+<script>/*__CHARTJS__*/</script>
+<script>
+const D = /*__DATA__*/;
+const M = D.months, N = M.length;
+const META = Object.fromEntries(D.meta.map(m => [m.code, m]));
+const ITEMS = D.meta.filter(m => m.type === 'item');
+const BK = Object.fromEntries(D.buckets.map(b => [b.key, b]));
+const st = {i0: Math.max(0, M.indexOf(D.view_start)), i1: N - 1, metric: 'mom', base: 'h',
+  mainOn: new Set(['SA0', 'SA0L1E']), fomc: 'off', notes: false, cellMode: 'value', item: 'SEHC', cmp: ''};
+
+const MET = {mom: '전월비 (SA)', yoy: '전년비 (NSA)', ann3: '3개월 연율', ann6: '6개월 연율'};
+const TARGET = {mom: 100 * (Math.pow(1.02, 1 / 12) - 1), yoy: 2, ann3: 2, ann6: 2};
+const fmt = (v, d = 2) => v == null ? '–' : (v > 0 ? '+' : '') + v.toFixed(d);
+const lab = ym => ym.slice(2, 4) + '.' + ym.slice(5);
+const blsUrl = c => META[c] && (META[c].type === 'derived' || META[c].derived) ? null :
+  `https://data.bls.gov/timeseries/${META[c] && META[c].sa === false ? 'CUUR0000' : 'CUSR0000'}${c}`;
+const ser = (c, k) => (D.series[c] || {})[k] || [];
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- 헤더 칩 ---------- */
+function kstRelease(dstr) {
+  // 미 동부 8:30 → KST (서머타임: 3월 둘째 일요일 ~ 11월 첫째 일요일)
+  const [y, m, d] = dstr.split('-').map(Number);
+  const nth = (mon, n) => { const f = new Date(Date.UTC(y, mon - 1, 1)).getUTCDay(); return 1 + ((7 - f) % 7) + 7 * (n - 1); };
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  const dstStart = new Date(Date.UTC(y, 2, nth(3, 2))), dstEnd = new Date(Date.UTC(y, 10, nth(11, 1)));
+  const dst = dt >= dstStart && dt < dstEnd;
+  return `${m}/${d} ${dst ? '21:30' : '22:30'} KST`;
+}
+(function chips() {
+  const today = new Date().toISOString().slice(0, 10);
+  const next = D.schedule.find(s => s > today);
+  const lm = D.bls_last_modified ? new Date(D.bls_last_modified) : null;
+  const lmK = lm ? lm.toLocaleString('ko-KR', {timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'}) : '–';
+  const ext = Object.values(D.ext).map(e => e.latest).sort()[0];
+  document.getElementById('chips').innerHTML =
+    `<span class="chip">최신 지표월 <b>${D.latest.replace('-', '년 ')}월</b></span>` +
+    `<span class="chip">BLS 갱신 <b>${lmK}</b></span>` +
+    `<span class="chip">연은 지표 <b>${ext || '–'}</b></span>` +
+    (next ? `<span class="chip">다음 발표 <b>${kstRelease(next)}</b></span>` : '') +
+    `<span class="chip">생성 ${new Date(D.generated_at).toLocaleString('ko-KR', {timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}</span>`;
+})();
+
+/* ---------- 기간 바 ---------- */
+const r0 = document.getElementById('r0'), r1 = document.getElementById('r1');
+[r0, r1].forEach(r => { r.min = 0; r.max = N - 1; r.step = 1; });
+function syncBar() {
+  r0.value = st.i0; r1.value = st.i1;
+  document.getElementById('t0').value = M[st.i0]; document.getElementById('t1').value = M[st.i1];
+  const s = document.getElementById('rsel');
+  s.style.left = (st.i0 / (N - 1) * 100) + '%'; s.style.width = ((st.i1 - st.i0) / (N - 1) * 100) + '%';
+  document.querySelectorAll('#presets button').forEach(b => b.classList.toggle('on', +b.dataset.n === st.i1 - st.i0 + 1 && st.i1 === N - 1));
+}
+r0.oninput = () => { st.i0 = Math.min(+r0.value, st.i1 - 2); render(); };
+r1.oninput = () => { st.i1 = Math.max(+r1.value, st.i0 + 2); render(); };
+document.getElementById('tapply').onclick = () => {
+  const a = M.indexOf(document.getElementById('t0').value.trim()), b = M.indexOf(document.getElementById('t1').value.trim());
+  if (a < 0 || b < 0 || b - a < 2) { alert('YYYY-MM 형식, 데이터 범위 ' + M[0] + ' ~ ' + M[N - 1] + ' 안에서 입력하세요.'); return; }
+  st.i0 = a; st.i1 = b; render();
+};
+[['6M', 6], ['1Y', 12], ['2Y', 24], ['3Y', 36], ['5Y', 60]].forEach(([t, n]) => {
+  const b = document.createElement('button'); b.textContent = t; b.dataset.n = n;
+  b.onclick = () => { st.i1 = N - 1; st.i0 = Math.max(0, N - n); render(); };
+  document.getElementById('presets').appendChild(b);
+});
+function seg(id, opts, key) {
+  const el = document.getElementById(id);
+  opts.forEach(([v, t]) => {
+    const b = document.createElement('button'); b.textContent = t; b.dataset.v = v;
+    b.onclick = () => { st[key] = v; render(); };
+    el.appendChild(b);
+  });
+}
+seg('metric', [['mom', '전월비'], ['yoy', '전년비'], ['ann3', '3개월 연율'], ['ann6', '6개월 연율']], 'metric');
+seg('base', [['h', '헤드라인'], ['c', '근원']], 'base');
+
+/* ---------- 차트 공통 ---------- */
+Chart.defaults.animation = false; Chart.defaults.color = '#86a2ab'; Chart.defaults.borderColor = '#1d3a43';
+Chart.defaults.font.family = getComputedStyle(document.body).fontFamily; Chart.defaults.font.size = 11.5;
+const charts = {};
+function mk(id, cfg) { if (charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); return charts[id]; }
+
+// 세로 마커(FOMC·주석) 플러그인
+const markerPlugin = {
+  id: 'markers',
+  afterDatasetsDraw(ch, _, opts) {
+    const ms = (opts && opts.list) || []; if (!ms.length) return;
+    const {ctx, chartArea: a, scales: {x}} = ch;
+    ctx.save();
+    ms.forEach(m => {
+      const px = x.getPixelForValue(m.pos); if (px < a.left - 1 || px > a.right + 1) return;
+      ctx.strokeStyle = m.color; ctx.lineWidth = m.w || 1; ctx.setLineDash(m.dash || []);
+      ctx.beginPath(); ctx.moveTo(px, a.top); ctx.lineTo(px, a.bottom); ctx.stroke();
+      if (m.label) { ctx.setLineDash([]); ctx.fillStyle = m.color; ctx.font = '10.5px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(m.label, px, a.top + 10 + (m.row || 0) * 12); }
+    });
+    ctx.restore();
+  }
+};
+Chart.register(markerPlugin);
+
+function fomcMarkers(i0, i1) {
+  const out = [];
+  D.fomc.forEach(f => {
+    const ym = f.date.slice(0, 7), k = M.indexOf(ym); if (k < 0) return;
+    const day = +f.date.slice(8, 10), pos = k - i0 + (day - 15) / 31;
+    const chg = Math.round((f.rate - (f.prev ?? f.rate)) * 100);
+    if (st.fomc === 'off' || (chg === 0 && st.fomc !== 'all')) return;
+    out.push({pos, color: chg > 0 ? '#ff6b6b' : chg < 0 ? '#4dabf7' : 'rgba(134,162,171,.35)', dash: chg === 0 ? [2, 3] : [5, 3],
+      label: chg ? (chg > 0 ? '+' : '') + chg : '', w: chg ? 1.2 : 1, row: out.filter(o => o.label).length % 2});
+  });
+  if (st.notes) D.notes.forEach((n, j) => { const k = M.indexOf(n.month); if (k >= i0 && k <= i1) out.push({pos: k - i0, color: '#ffb347', dash: [2, 2], label: '※' + (j + 1), row: 2}); });
+  return out;
+}
+const tipNum = (d = 2) => ({callbacks: {label: c => `${c.dataset.label}: ${c.parsed.y == null ? '–' : fmt(c.parsed.y, d)}`}});
+
+/* ---------- 지표 계산 (기여도 연율 모드: 이동평균×12) ---------- */
+function contrib(code, metric, base) {
+  const key = (metric === 'yoy' ? 'yoy_' : 'mom_') + base;
+  const src = code === 'RESID' ? D.resid[key] : (D.contrib[code] || {})[key] || [];
+  if (metric === 'mom' || metric === 'yoy') return src;
+  const n = metric === 'ann3' ? 3 : 6;
+  return src.map((_, k) => { const w = src.slice(Math.max(0, k - n + 1), k + 1).filter(v => v != null); return w.length === n ? w.reduce((a, b) => a + b, 0) / n * 12 : null; });
+}
+
+/* ---------- KPI ---------- */
+function kpis() {
+  const k = st.i1, ym = M[k], c = D.consensus[ym] || {};
+  const card = (t, v, sub, cls = '') => `<div class="kpi"><div class="t">${t}</div><div class="v ${cls}">${v}</div><div class="s">${sub}</div></div>`;
+  const surp = (o, a) => o && o.f != null && a != null ? `예상 ${o.f.toFixed(1)} → ${(a - o.f) >= 0.05 ? '<span class="pos">상회</span>' : (a - o.f) <= -0.05 ? '<span class="neg">하회</span>' : '부합'}` : '컨센서스 없음';
+  const v = (c0, m) => ser(c0, m)[k];
+  const hm = v('SA0', 'mom'), cm = v('SA0L1E', 'mom');
+  document.getElementById('kpis').innerHTML =
+    card(`헤드라인 전월비 · ${lab(ym)}`, fmt(hm) + '%', surp(c.h_mom, hm == null ? null : +hm.toFixed(1))) +
+    card('헤드라인 전년비', fmt(v('SA0', 'yoy')) + '%', surp(c.h_yoy, v('SA0', 'yoy') == null ? null : +v('SA0', 'yoy').toFixed(1))) +
+    card('근원 전월비', fmt(cm) + '%', surp(c.c_mom, cm == null ? null : +cm.toFixed(1))) +
+    card('근원 전년비', fmt(v('SA0L1E', 'yoy')) + '%', surp(c.c_yoy, v('SA0L1E', 'yoy') == null ? null : +v('SA0L1E', 'yoy').toFixed(1))) +
+    // 메인 4개(Jae 10/18) 외 나머지는 접기 — 열림 상태는 기간을 바꿔 다시 그려도 유지
+    `<details class="kpi-more" style="grid-column:1/-1"${window.__kpiMore ? ' open' : ''} ontoggle="window.__kpiMore=this.open"><summary style="cursor:pointer;font-size:12px;color:#8aa;padding:4px 2px">더 보기 — 근원 3·6개월 연율 · 슈퍼코어 · 주거비</summary><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:8px">` +
+    card('근원 3개월 / 6개월 연율', fmt(v('SA0L1E', 'ann3'), 1) + ' / ' + fmt(v('SA0L1E', 'ann6'), 1), '전년비보다 빠르게 변곡을 보여줌') +
+    card('슈퍼코어 전월비 / 3개월 연율', fmt(v('SUPERCORE', 'mom')) + ' / ' + fmt(v('SUPERCORE', 'ann3'), 1), '주거 제외 근원 서비스') +
+    card('주거비 전월비 (자가주거비)', fmt(v('SAH1', 'mom')) + ' (' + fmt(v('SEHC', 'mom')) + ')', '집세 ' + fmt(v('SEHA', 'mom'))) +
+    `</div></details>`;
+}
+
+/* ---------- 메인 라인 ---------- */
+const MAIN_LINES = [
+  ['SA0', '전체 CPI', '#ffffff', 2.4], ['SA0L1E', '근원 CPI', '#2ec4b6', 2.4],
+  ['SACL1E', '근원 상품', '#5aa9e6', 1.5], ['SASLE', '근원 서비스', '#c77dff', 1.5], ['SAH1', '주거비', '#e76f51', 1.5],
+  ['SUPERCORE', '슈퍼코어', '#f78c6b', 1.5], ['COREGX_VEH', '차량 제외 근원 상품', '#74c0fc', 1.2], ['SHELTER_XL', '숙박 제외 주거비', '#ffa94d', 1.2],
+  ['ext:median', '클리블랜드 중위', '#94d82d', 1.2], ['ext:trim', '절사평균', '#c0eb75', 1.2], ['ext:sticky', '애틀랜타 sticky', '#ffd43b', 1.2], ['ext:core_sticky_xs', '근원 sticky(주거 제외)', '#fab005', 1.2],
+];
+(function mainToggles() {
+  const el = document.getElementById('mainToggles');
+  MAIN_LINES.forEach(([c, t, col]) => {
+    const s = document.createElement('span'); s.className = 'tg'; s.dataset.c = c;
+    s.innerHTML = `<i style="background:${col}"></i>${t}`;
+    if (c.startsWith('ext:')) { const e = D.ext[c.slice(4)]; if (e) s.innerHTML += ` <a class="ext" href="${e.url}" target="_blank" title="출처">↗</a>`; }
+    s.onclick = ev => { if (ev.target.tagName === 'A') return; st.mainOn.has(c) ? st.mainOn.delete(c) : st.mainOn.add(c); render(); };
+    el.appendChild(s);
+  });
+  const h = document.createElement('span'); h.className = 'tg'; h.id = 'tgHold';
+  h.onclick = () => { st.fomc = {off: 'move', move: 'all', all: 'off'}[st.fomc]; render(); }; el.appendChild(h);
+  const n = document.createElement('span'); n.className = 'tg'; n.id = 'tgNotes'; n.textContent = '데이터 주석 ※';
+  n.onclick = () => { st.notes = !st.notes; render(); }; el.appendChild(n);
+})();
+function mainChart() {
+  const {i0, i1, metric} = st, labels = M.slice(i0, i1 + 1).map(lab);
+  const ds = [];
+  MAIN_LINES.forEach(([c, t, col, w]) => {
+    if (!st.mainOn.has(c)) return;
+    const arr = c.startsWith('ext:') ? (D.ext[c.slice(4)] || {})[metric] || [] : ser(c, metric);
+    ds.push({type: 'line', label: t, data: arr.slice(i0, i1 + 1), borderColor: col, backgroundColor: col, borderWidth: w, pointRadius: 0, pointHoverRadius: 3, spanGaps: false, tension: 0.15});
+  });
+  if (metric === 'mom' || metric === 'yoy') {
+    [['SA0', 'h_', '#ffffff', '전체 컨센서스'], ['SA0L1E', 'c_', '#2ec4b6', '근원 컨센서스']].forEach(([c, p, col, t]) => {
+      if (!st.mainOn.has(c)) return;
+      ds.push({type: 'line', label: t, data: M.slice(i0, i1 + 1).map(ym => ((D.consensus[ym] || {})[p + metric] || {}).f ?? null),
+        borderColor: col, backgroundColor: 'transparent', showLine: false, pointStyle: 'rectRot', pointRadius: 4, borderWidth: 1.2});
+    });
+  }
+  ds.push({type: 'line', label: '목표 2% 환산', data: labels.map(() => TARGET[metric]), borderColor: 'rgba(81,207,102,.45)', borderDash: [6, 4], borderWidth: 1, pointRadius: 0});
+  mk('cMain', {data: {labels, datasets: ds}, options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false},
+    plugins: {legend: {labels: {boxWidth: 10, filter: i => true}}, tooltip: tipNum(metric === 'mom' ? 2 : 1), markers: {list: fomcMarkers(i0, i1)}},
+    scales: {y: {ticks: {callback: v => +(+v).toFixed(2) + '%'}}}}});
+  document.getElementById('mainDesc').textContent = `${MET[metric]} · ${M[i0]} ~ ${M[i1]}` + (metric.startsWith('ann') ? ' · 연율 = 최근 3·6개월 상승을 1년치로 환산' : '');
+  document.querySelectorAll('#mainToggles .tg').forEach(t => t.classList.toggle('on', t.id === 'tgHold' ? st.fomc !== 'off' : t.id === 'tgNotes' ? st.notes : st.mainOn.has(t.dataset.c)));
+  document.getElementById('tgHold').textContent = 'FOMC: ' + {off: '끔', move: '인상·인하', all: '전체(동결 포함)'}[st.fomc];
+}
+
+/* ---------- 버킷 기여도 ---------- */
+function bucketSeries(bk, metric, base) {
+  const its = ITEMS.filter(m => m.bucket === bk);
+  const arrs = its.map(m => contrib(m.code, metric, base));
+  return M.map((_, k) => { const v = arrs.map(a => a[k]); return v.every(x => x == null) ? null : v.reduce((a, b) => a + (b || 0), 0); });
+}
+function contribChart() {
+  const {i0, i1, metric, base} = st, labels = M.slice(i0, i1 + 1).map(lab);
+  const bks = D.buckets.filter(b => base === 'h' || !['food', 'energy'].includes(b.key));
+  const ds = bks.map(b => ({type: 'bar', label: b.ko, data: bucketSeries(b.key, metric, base).slice(i0, i1 + 1), backgroundColor: b.color, stack: 's', borderWidth: 0}));
+  ds.push({type: 'bar', label: '기타(잔여)', data: contrib('RESID', metric, base).slice(i0, i1 + 1), backgroundColor: '#495057', stack: 's'});
+  const tot = base === 'h' ? 'SA0' : 'SA0L1E';
+  ds.unshift({type: 'line', label: (base === 'h' ? '전체' : '근원') + ' CPI', data: ser(tot, metric).slice(i0, i1 + 1), borderColor: '#fff', borderWidth: 2, pointRadius: 1.5, backgroundColor: '#fff'});
+  mk('cContrib', {data: {labels, datasets: ds}, options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false},
+    plugins: {legend: {labels: {boxWidth: 10}}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${fmt(c.parsed.y, 3)}${c.dataset.type === 'line' ? '%' : '%p'}`}}, markers: {list: fomcMarkers(i0, i1)}},
+    scales: {x: {stacked: true}, y: {stacked: true, ticks: {callback: v => +(+v).toFixed(2) + ''}}}}});
+  document.getElementById('ctTitle').textContent = `기여도 분해 — ${base === 'h' ? '헤드라인' : '근원'} CPI ${MET[metric]}`;
+  document.getElementById('ctDesc').textContent = (metric.startsWith('ann') ? '연율 모드는 전월비 기여도의 이동평균×12로 근사합니다. ' : '') +
+    '막대 합 = 발표치(흰 선). 항목 기여도 = 전월 가중치 × 상승률. 버킷을 클릭하면 범례에서 끄고 켤 수 있습니다.';
+}
+
+/* ---------- 마지막 달 항목별 기여도 ---------- */
+function waterfall() {
+  const {i1, metric, base} = st, k = i1, kp = Math.max(0, i1 - 1);
+  const pool = ITEMS.filter(m => base === 'h' || !['food', 'energy'].includes(m.bucket));
+  const rows = pool.map(m => ({m, v: contrib(m.code, metric, base)[k], p: contrib(m.code, metric, base)[kp]})).filter(r => r.v != null);
+  rows.push({m: {ko: '기타(잔여)', bucket: null}, v: contrib('RESID', metric, base)[k], p: contrib('RESID', metric, base)[kp]});
+  rows.sort((a, b) => (b.v ?? 0) - (a.v ?? 0));
+  mk('cWater', {type: 'bar', data: {labels: rows.map(r => r.m.ko), datasets: [
+      {label: lab(M[k]), data: rows.map(r => r.v), backgroundColor: rows.map(r => (r.v ?? 0) >= 0 ? (r.m.bucket ? BK[r.m.bucket].color : '#868e96') : '#4dabf7'), borderWidth: 0},
+      {label: lab(M[kp]) + ' (직전)', data: rows.map(r => r.p), backgroundColor: 'rgba(255,255,255,.14)', borderWidth: 0}]},
+    options: {indexAxis: 'y', maintainAspectRatio: false, plugins: {legend: {labels: {boxWidth: 10}}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${fmt(c.parsed.x, 3)}%p`}}},
+      scales: {y: {ticks: {autoSkip: false, font: {size: 11}}}, x: {ticks: {callback: v => v}}},
+      onClick: (e, els) => { if (els.length) { const r = rows[els[0].index]; if (r.m.code) goItem(r.m.code); } }}});
+  document.getElementById('wfTitle').textContent = `항목별 기여도 — ${M[k]}`;
+  document.getElementById('wfDesc').textContent = `기간 바의 마지막 달 기준 · ${base === 'h' ? '헤드라인' : '근원'} ${MET[metric]} · 단위 %p · 회색 막대는 직전 달 · 막대를 누르면 항목 상세로 이동`;
+}
+
+/* ---------- 일회성 목록 ---------- */
+function flagList() {
+  const k = st.i1, out = [];
+  const pool = [...ITEMS, ...D.meta.filter(m => m.type === 'child' || m.type === 'derived' || ['SA0L1E', 'SAH1', 'SASLE', 'SACL1E'].includes(m.code))];
+  pool.forEach(m => {
+    const f = D.flags[m.code]; if (!f) return;
+    const s = f.st[k], sp = f.st[k - 1], z = f.z[k];
+    if (!s && !sp) return;
+    let txt = '', cls = '';
+    const mm = ser(m.code, 'mom')[k];
+    if (s === 'spike_up' || s === 'spike_down') { cls = s === 'spike_up' ? 'b-up' : 'b-dn'; txt = `${s === 'spike_up' ? '급등' : '급락'} z=${z.toFixed(1)} · 전월비 ${fmt(mm)}% → 다음 달 되돌림 여부 확인`; }
+    else if (s === 'revert') { cls = 'b-rv'; txt = `직전 달 이상치가 되돌림 (z=${z.toFixed(1)}) → 일회성 가능성`; }
+    else if (s === 'persist') { cls = 'b-ps'; txt = `2개월 연속 높음 (z=${z.toFixed(1)}) → 추세 가능성`; }
+    else return;
+    out.push({m, cls, txt, abs: Math.abs(z || 0)});
+  });
+  out.sort((a, b) => b.abs - a.abs);
+  const lbl = {'b-up': '급등', 'b-dn': '급락', 'b-rv': '되돌림', 'b-ps': '지속'};
+  document.getElementById('flagList').innerHTML = out.length ? '<ul class="lst">' + out.map(o =>
+    `<li><span class="badge ${o.cls}">${lbl[o.cls]}</span> <a href="#" data-c="${o.m.code}" class="fl">${o.m.ko}</a> — ${o.txt}</li>`).join('') + '</ul>'
+    : `<div class="desc">${M[k]} 기준 2표준편차를 넘은 항목이 없습니다.</div>`;
+  document.querySelectorAll('.fl').forEach(a => a.onclick = e => { e.preventDefault(); goItem(a.dataset.c); });
+}
+
+/* ---------- 확산도 ---------- */
+function diffChart() {
+  const {i0, i1} = st;
+  mk('cDiff', {type: 'line', data: {labels: M.slice(i0, i1 + 1).map(lab), datasets: [
+      {label: '상승 항목 비중', data: D.diffusion.up.slice(i0, i1 + 1), borderColor: '#2ec4b6', pointRadius: 0, borderWidth: 1.8},
+      {label: '연율 3% 초과 비중', data: D.diffusion.hot.slice(i0, i1 + 1), borderColor: '#ff6b6b', pointRadius: 0, borderWidth: 1.8}]},
+    options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false}, plugins: {legend: {labels: {boxWidth: 10}}, tooltip: tipNum(0), markers: {list: fomcMarkers(i0, i1)}},
+      scales: {y: {min: 0, max: 100, ticks: {callback: v => v + '%'}}}}});
+}
+
+/* ---------- 히트맵 표 ---------- */
+let descAll = false;
+document.getElementById('tgCells').onclick = () => { st.cellMode = st.cellMode === 'value' ? 'contrib' : 'value'; render(); };
+document.getElementById('tgDesc').onclick = () => { descAll = !descAll; document.querySelectorAll('tr.dt').forEach(r => r.classList.toggle('open', descAll)); document.getElementById('tgDesc').classList.toggle('on', descAll); };
+function cellColor(v, metric, contribMode) {
+  if (v == null) return 'transparent';
+  const t = contribMode ? 0 : TARGET[metric], span = contribMode ? 0.06 : (metric === 'mom' ? 0.5 : 4);
+  const x = Math.max(-1, Math.min(1, (v - t) / span));
+  return x >= 0 ? `rgba(255,107,107,${0.12 + 0.6 * x})` : `rgba(77,171,247,${0.12 + 0.6 * -x})`;
+}
+function heatmap() {
+  const {i0, i1, metric, base} = st, cm = st.cellMode === 'contrib';
+  const cols = []; for (let k = Math.max(i0, i1 - 23); k <= i1; k++) cols.push(k);
+  const fl = {spike_up: '▲', spike_down: '▼', revert: '↩', persist: '→'};
+  const wcore = ser('SA0L1E', 'w')[i1];
+  let h = `<thead><tr><th class="nm">항목</th><th title="${base === 'h' ? '전체' : '근원'} CPI 안 비중">비중</th>` + cols.map(k => `<th>${lab(M[k])}</th>`).join('') + '</tr></thead><tbody>';
+  const row = (m, cls = 'item', indent = '') => {
+    const ws = ser(m.code, 'w')[i1];
+    const wv = ws == null ? '–' : (base === 'h' ? ws : (['food', 'energy'].includes(m.bucket) ? null : ws / wcore * 100));
+    const vals = cm && m.type === 'item' ? contrib(m.code, metric, base) : ser(m.code, metric);
+    const f = D.flags[m.code] || {st: []};
+    const url = blsUrl(m.code);
+    let r = `<tr class="${cls}${st.item === m.code ? ' sel' : ''}" data-c="${m.code}"><td class="nm">${indent}<span class="caret" data-t="${m.code}">${m.desc ? '▸' : ''}</span>${m.ko}` +
+      (url ? ` <a class="ext" href="${url}" target="_blank" title="BLS 원자료">↗</a>` : '') + (m.sa === false ? ' <span class="ext" title="계절조정 시리즈 없음">NSA</span>' : '') + `</td>` +
+      `<td class="w">${wv == null ? '–' : typeof wv === 'number' ? wv.toFixed(1) : wv}</td>`;
+    cols.forEach(k => {
+      const v = vals[k], s = metric === 'mom' && !cm ? f.st[k] : null;
+      r += `<td><span class="cell" style="background:${cellColor(v, metric, cm && m.type === 'item')}">${v == null ? '–' : (cm && m.type === 'item' ? fmt(v, 3) : fmt(v, metric === 'mom' ? 2 : 1))}${s ? `<span class="flag">${fl[s]}</span>` : ''}</span></td>`;
+    });
+    r += '</tr>';
+    if (m.desc) r += `<tr class="dt${descAll ? ' open' : ''}" data-for="${m.code}"><td colspan="${cols.length + 2}">${m.desc}${m.formula ? ' (계산: ' + m.formula + ')' : ''}</td></tr>`;
+    return r;
+  };
+  const span = cols.length + 2;
+  // 집계 행
+  h += `<tr class="grp"><td colspan="${span}">집계</td></tr>`;
+  ['SA0', 'SA0L1E', 'SACL1E', 'SASLE', 'SAH1', 'SUPERCORE', 'COREGX_VEH', 'SHELTER_XL'].forEach(c => h += row(META[c], 'item agg'));
+  // 상품 / 서비스
+  [['goods', '상품'], ['services', '서비스']].forEach(([kind, kt]) => {
+    h += `<tr class="grp"><td colspan="${span}">${kt}</td></tr>`;
+    D.buckets.forEach(b => {
+      const its = ITEMS.filter(m => m.kind === kind && m.bucket === b.key);
+      if (!its.length) return;
+      if (base === 'c' && ['food', 'energy'].includes(b.key) && cm) return;
+      h += `<tr class="sub"><td colspan="${span}"><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${b.color};margin-right:6px"></i>${b.ko}</td></tr>`;
+      its.forEach(m => {
+        h += row(m);
+        D.meta.filter(c => c.type === 'child' && c.parent === m.code).forEach(c => h += row(c, 'item', '&nbsp;&nbsp;'));
+      });
+    });
+  });
+  h += '</tbody>';
+  const t = document.getElementById('hm'); t.innerHTML = h;
+  const wrap = document.getElementById('hmWrap'); wrap.scrollLeft = wrap.scrollWidth;  // 최신 달이 보이도록
+  document.getElementById('hmDet').ontoggle = () => { wrap.scrollLeft = wrap.scrollWidth; };
+  t.querySelectorAll('tr.item').forEach(tr => tr.onclick = e => {
+    if (e.target.tagName === 'A') return;
+    if (e.target.classList.contains('caret')) { const d = t.querySelector(`tr.dt[data-for="${e.target.dataset.t}"]`); if (d) d.classList.toggle('open'); return; }
+    goItem(tr.dataset.c);
+  });
+  document.getElementById('hmDesc').innerHTML = `${MET[metric]} · 최근 ${cols.length}개월(기간 바 마지막 달 기준, 최대 24개월) · 색: ${cm ? '기여도 +/−' : '2% 목표 환산치보다 높으면 빨강, 낮으면 파랑'} · ▲▼ 급등·급락, ↩ 되돌림, → 지속(전월비 모드) · ▸ 누르면 설명, 행을 누르면 상세 차트`;
+  document.getElementById('tgCells').textContent = '셀 값: ' + (cm ? `기여도(%p, ${base === 'h' ? '헤드라인' : '근원'})` : '상승률(%)');
+  document.getElementById('tgCells').classList.toggle('on', cm);
+}
+
+/* ---------- 항목 상세 ---------- */
+// 항목을 고르면 비교 대상을 상위 묶음으로 자동 지정
+const BUCKET_AGG = {food: 'SAF1', energy: 'SA0E', core_goods: 'SACL1E', shelter: 'SAH1', core_svc: 'SUPERCORE'};
+const AGG_PARENT = {SA0: 'SA0L1E', SA0L1E: 'SA0', SAF1: 'SA0', SA0E: 'SA0', SACL1E: 'SA0L1E', SASLE: 'SA0L1E', SAH1: 'SA0L1E',
+  SUPERCORE: 'SASLE', COREGX_VEH: 'SACL1E', SHELTER_XL: 'SAH1'};
+function pairOf(c) {
+  const m = META[c]; if (!m) return '';
+  if (m.type === 'child') return m.parent;
+  if (m.type === 'item') return BUCKET_AGG[m.bucket] || '';
+  return AGG_PARENT[c] || '';
+}
+function goItem(c) {
+  st.item = c; st.cmp = pairOf(c); render();
+  document.getElementById('detailCard').scrollIntoView({behavior: 'smooth'});
+}
+const DETAIL_CODES = [...['SA0', 'SA0L1E', 'SAF1', 'SA0E', 'SACL1E', 'SASLE', 'SAH1', 'SUPERCORE', 'COREGX_VEH', 'SHELTER_XL'].map(c => META[c]), ...ITEMS, ...D.meta.filter(m => m.type === 'child')];
+(function fillSel() {
+  const a = document.getElementById('dtSel'), b = document.getElementById('dtCmp');
+  b.innerHTML = '<option value="">(없음)</option>';
+  DETAIL_CODES.forEach(m => { a.add(new Option(m.ko, m.code)); b.add(new Option(m.ko, m.code)); });
+  a.onchange = () => { st.item = a.value; st.cmp = pairOf(a.value); render(); };
+  b.onchange = () => { st.cmp = b.value; render(); };
+})();
+function detail() {
+  const {i0, i1, metric} = st, c = st.item, m = META[c], labels = M.slice(i0, i1 + 1).map(lab);
+  document.getElementById('dtSel').value = c; document.getElementById('dtCmp').value = st.cmp || '';
+  const nm = m.ko.replace(/^└\s*/, '');
+  const sl = (code, k) => ser(code, k).slice(i0, i1 + 1);
+  const ds = [];
+  if (metric === 'mom') {
+    const mom = sl(c, 'mom'), sts = (D.flags[c] || {st: []}).st.slice(i0, i1 + 1);
+    ds.push({type: 'bar', label: nm + ' 전월비', data: mom, yAxisID: 'y1', order: 3,
+      backgroundColor: mom.map(v => (v ?? 0) >= 0 ? 'rgba(255,107,107,.55)' : 'rgba(77,171,247,.55)')});
+    // 일회성 플래그: 막대 끝에 노란 삼각형 (▲급등 ▼급락)
+    ds.push({type: 'line', label: '일회성 플래그 (직전 12개월 대비 2σ 이상)', yAxisID: 'y1', showLine: false, order: 1,
+      data: mom.map((v, k) => sts[k] && sts[k].startsWith('spike') ? v : null),
+      pointStyle: 'triangle', rotation: sts.map(x => x === 'spike_down' ? 180 : 0),
+      pointRadius: 6, backgroundColor: '#ffe066', borderColor: '#ffe066', hidden: true});  // 기본 꺼짐 — 범례 클릭으로 켬
+  }
+  if (metric === 'yoy') {
+    ds.push({type: 'line', label: nm + ' 전년비', data: sl(c, 'yoy'), borderColor: '#ffffff', borderWidth: 2.4, pointRadius: 0, yAxisID: 'y'});
+  } else {
+    ds.push({type: 'line', label: nm + ' 3개월 연율', data: sl(c, 'ann3'), borderColor: '#2ec4b6', borderWidth: 2.2, pointRadius: 0, yAxisID: 'y'});
+    ds.push({type: 'line', label: nm + ' 6개월 연율', data: sl(c, 'ann6'), borderColor: '#2ec4b6', borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, yAxisID: 'y'});
+  }
+  if (st.cmp && st.cmp !== c && META[st.cmp]) {
+    const k = metric === 'yoy' ? 'yoy' : metric === 'ann6' ? 'ann6' : 'ann3';
+    ds.push({type: 'line', label: META[st.cmp].ko.replace(/^└\s*/, '') + ' ' + {yoy: '전년비', ann3: '3개월 연율', ann6: '6개월 연율'}[k] + ' (비교)',
+      data: sl(st.cmp, k), borderColor: 'rgba(255,169,77,.9)', borderWidth: 1.8, pointRadius: 0, yAxisID: 'y'});
+  }
+  const scales = {y: {position: 'left', title: {display: true, text: metric === 'yoy' ? '전년비 %' : '연율 %'}, ticks: {callback: v => +(+v).toFixed(1)}}};
+  if (metric === 'mom') scales.y1 = {position: 'right', grid: {drawOnChartArea: false}, title: {display: true, text: '전월비 %'}, ticks: {callback: v => +(+v).toFixed(2)}};
+  mk('cDetail', {data: {labels, datasets: ds}, options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false},
+    plugins: {legend: {labels: {boxWidth: 10}}, tooltip: tipNum(2), markers: {list: fomcMarkers(i0, i1)}}, scales}});
+  document.getElementById('dtNote').textContent = {
+    mom: '막대: 전월비(오른쪽 축) · 실선/점선: 3·6개월 연율(왼쪽 축) · 노란 삼각형: 일회성 플래그(기본 꺼짐, 범례 클릭) · 주황선: 비교 항목 3개월 연율',
+    yoy: '흰 선: 전년비 · 주황선: 비교 항목 전년비',
+    ann3: '실선/점선: 3·6개월 연율 · 주황선: 비교 항목 3개월 연율',
+    ann6: '실선/점선: 3·6개월 연율 · 주황선: 비교 항목 6개월 연율'}[metric] + ' · 지표는 상단 바에서 바꿉니다.';
+  const url = blsUrl(c);
+  document.getElementById('dtTitle').innerHTML = `항목 상세 — ${m.ko}` + (url ? ` <a class="ext" href="${url}" target="_blank">BLS ↗</a>` : '');
+  const oer = document.getElementById('dtOer');
+  oer.style.display = (c === 'SEHC' || st.cmp === 'SEHC') ? '' : 'none';
+  oer.innerHTML = '<b>4월 자가주거비 급등(전월비 +0.53%)은 셧다운 일회성</b>: 2025년 10월 임대료를 조사 못 해 그 표본 그룹 값을 2025년 4월 값으로 복사(10월 OER 보합) → 2026년 4월 같은 그룹 재조사 때 12개월치 상승이 한 달에 몰림. BLS 대체 추정으로는 4월 전월비가 0.27~0.59%p 과대. ' +
+    '10월(같은 그룹 재조사)은 실측한 4월 값과 비교하므로 같은 왜곡이 반복될 근거는 없음(해석 — BLS는 10월 언급 없음, 2026년 10월 셧다운 보도도 없음). ' +
+    '<a class="ext" href="https://www.bls.gov/opub/mlr/2026/article/counterfactual-imputation-approaches-for-the-housing-component-of-the-october-2025-cpi.htm" target="_blank">BLS MLR ↗</a>';
+  const housing = ['SEHC', 'SEHA', 'SAH1', 'SHELTER_XL'].includes(c) || ['SEHC', 'SEHA'].includes(st.cmp);
+  document.getElementById('dtBody').innerHTML = (m.desc || '집계 항목입니다.') +
+    (st.cmp && META[st.cmp].desc ? `<br><br><b>${META[st.cmp].ko}</b>: ${META[st.cmp].desc}` : '') +
+    (housing ? `<br><br><b>주거비 표본 일정</b>: BLS는 주거 표본을 6개 그룹으로 나눠 그룹마다 6개월에 한 번 임대료를 조사합니다. 2025년 10월 셧다운으로 그달 그룹이 조사되지 못해 2025년 4월 임대료를 그대로 복사했고(10월 지수 보합), 이 왜곡은 2026년 4월 재조사 때 해소됐습니다. 같은 그룹은 2026년 10월에 다시 조사됩니다. 따라서 4월·10월 주거비 변화에는 표본 그룹 효과가 섞일 수 있습니다.` : '');
+}
+
+/* ---------- 주석·출처 ---------- */
+document.getElementById('notesBody').innerHTML = '<ul class="lst">' + D.notes.map((n, j) => `<li>※${j + 1} ${n.month}: ${n.text}</li>`).join('') + '</ul>' +
+  `<ul class="lst"><li>전월비는 계절조정(SA), 전년비는 원계열(NSA). 계절조정 시리즈가 없는 항목은 원계열로 표시(NSA 표기).</li>
+  <li>3·6개월 연율 = 최근 3·6개월 SA 지수 변화를 1년으로 환산. 전월비보다 덜 출렁이고 전년비보다 빨리 꺾입니다.</li>
+  <li>가중치 = BLS 상대중요도. 매년 1월 값을 기준으로 월별 가격 변화만큼 갱신(BLS 방식).</li>
+  <li>기여도(전월비) = 전월 가중치 × 전월비. 근원 기준은 근원 CPI 안 비중으로 환산. 전년비 기여도는 12개월 전 가중치 기준 근사.</li>
+  <li>슈퍼코어·차량 제외 근원 상품·숙박 제외 주거비·기타 교통서비스는 BLS 시리즈를 가중치로 차감해 직접 계산한 값입니다.</li>
+  <li>일회성 판정은 통계적 신호일 뿐이며, 원인(요금 개편·표본 교체·계절조정 문제 등)은 뉴스로 확인해야 합니다.</li></ul>`;
+document.getElementById('bucketBody').innerHTML = '<ul class="lst">' + D.buckets.map(b => `<li><b style="color:${b.color}">${b.ko}</b> — ${b.desc}</li>`).join('') + '<li><b>기타(잔여)</b> — 발표치에서 주요 항목 기여도 합을 뺀 나머지. 대시보드에 없는 소항목과 가중치 근사 오차.</li></ul>';
+document.getElementById('foot').innerHTML = `출처: <a href="https://www.bls.gov/news.release/cpi.nr0.htm" target="_blank">BLS CPI 보도자료</a> ·
+  <a href="https://www.bls.gov/news.release/cpi.t02.htm" target="_blank">표 2 (세부 항목)</a> · <a href="https://www.bls.gov/cpi/tables/relative-importance/" target="_blank">상대중요도</a> ·
+  <a href="https://www.bls.gov/schedule/news_release/cpi.htm" target="_blank">발표 일정</a> · <a href="https://www.clevelandfed.org/indicators-and-data/median-cpi" target="_blank">클리블랜드 연은</a> ·
+  <a href="https://www.atlantafed.org/research-and-data/data/sticky-price-cpi" target="_blank">애틀랜타 연은</a> · 컨센서스·FOMC: <a href="https://www.tradingview.com/economic-calendar/" target="_blank">트레이딩뷰 경제 캘린더</a>`;
+
+function render() {
+  syncBar();
+  document.querySelectorAll('#metric button').forEach(b => b.classList.toggle('on', b.dataset.v === st.metric));
+  document.querySelectorAll('#base button').forEach(b => b.classList.toggle('on', b.dataset.v === st.base));
+  kpis(); mainChart(); contribChart(); waterfall(); flagList(); diffChart(); heatmap(); detail();
+}
+render();
+</script>
+</body>
+</html>

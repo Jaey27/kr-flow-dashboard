@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>금리 원인 분해</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f6f6f3; --surface: #ffffff; --surface-2: #f0f0ec; --text: #1b1c1e; --muted: #5f6168;
+    --faint: #8a8c92; --line: #e2e2dc; --accent: #1f5bd8; --up: #c0392b; --down: #1f6fbf;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121315; --surface: #1a1b1e; --surface-2: #232428; --text: #ebebee; --muted: #a6a8ae;
+      --faint: #7c7f86; --line: #2d2f34; --accent: #7ea4ff; --up: #ff7b6b; --down: #6fb0ff;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121315; --surface: #1a1b1e; --surface-2: #232428; --text: #ebebee; --muted: #a6a8ae;
+    --faint: #7c7f86; --line: #2d2f34; --accent: #7ea4ff; --up: #ff7b6b; --down: #6fb0ff; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.55 system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px 64px; }
+  header { padding: 28px 0 8px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 32px 0 6px; }
+  .sub, .note { color: var(--muted); font-size: 13px; margin: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .today { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: 16px; align-items: start; }
+  .big { font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .big small { font-size: 15px; font-weight: 500; color: var(--muted); }
+  .facts { color: var(--muted); font-size: 13px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .tag { display: inline-block; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--text); color: var(--bg); font-size: 14px; }
+  .subtag { color: var(--muted); font-size: 13px; margin-left: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border-radius: 6px; padding: 3px 8px; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+  .react { margin-top: 10px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pos { color: var(--up); } .neg { color: var(--down); }
+  .chart-box { position: relative; height: 340px; }
+  .chart-box.short { height: 260px; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+  td.l, th.l { text-align: left; }
+  .ev { font-size: 11px; color: var(--accent); margin-left: 4px; }
+  .method li { margin: 4px 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  @media (max-width: 640px) {
+    .today { grid-template-columns: 1fr; }
+    .chart-box { height: 300px; }
+    h1 { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>금리 원인 분해</h1>
+    <p class="sub" id="sub"></p>
+  </header>
+
+  <div class="card today" id="today"></div>
+
+  <h2>기간별로 보면 — 금리 변화가 무엇과 같이 움직였나</h2>
+  <p class="note">막대 하나 = 그 기간 10년물 변화(bp)의 합을 원인별로 나눈 것. 오른쪽 숫자 = 실제 합계.</p>
+  <div class="card"><div class="chart-box short"><canvas id="windows"></canvas></div><div class="legend" id="legend1"></div></div>
+
+  <h2>일별 분해 (최근 <span id="nDays"></span>영업일)</h2>
+  <p class="note">막대 = 원인별 기여(bp), 점선 = 실제 10년물 변화. 막대를 누르면 그날 내역이 위 카드에 나옴.</p>
+  <div class="card"><div class="chart-box"><canvas id="daily"></canvas></div><div class="legend" id="legend2"></div></div>
+
+  <h2>최근 20영업일</h2>
+  <div class="card table-wrap"><table id="recent"></table></div>
+
+  <h2>판정별로 시장은 어떻게 반응했나 (최근 1년)</h2>
+  <p class="note">같은 날 미국 반응, 한국은 다음 거래일. 표본이 작은 판정은 '방향 감' 정도로만.</p>
+  <div class="card table-wrap"><table id="stats"></table></div>
+
+  <h2>읽는 법과 한계</h2>
+  <div class="card method">
+    <ul>
+      <li><b>사실</b>: Δ10Y = Δ실질금리 + ΔBEI(기대인플레). 미 재무부 고시 금리라 bp 단위가 정수로 나옴.</li>
+      <li><b>지정학·유가 / AI(주가 동행)</b>: 최근 <span id="regw"></span>영업일 회귀(Δ10Y ~ 브렌트% + SMH−RSP%p)의 계수 × 그날 값. 계수는 전날까지의 데이터로만 추정함. <b>인과가 아니라 '같이 움직인 몫'</b>임.</li>
+      <li><b>나머지</b>(회귀로 설명 안 된 몫)는 그날 일정으로 배정: CPI·PPI·PCE 발표일 → 물가지표, FOMC·고용 → 연준·고용, AI 대형 회사채 발행일 → AI(조달), 그 외 → 기타(텀프리미엄·수급·재정·글로벌 장기물 등).</li>
+      <li><b>AI(조달)</b>은 config.py의 AI_ISSUANCE_DATES에 적은 날만 잡힘. 대형 딜이 나올 때마다 날짜를 추가해야 함. 안 적은 날의 조달 효과는 '기타'에 섞여 있음.</li>
+      <li><b>판정 라벨</b>은 규칙 기반이고 임계값(config.py TH)은 AI 참고 제안임. 무엇을 변곡 신호로 볼지는 직접 정하고 숫자를 고칠 것.</li>
+      <li>미 채권 휴장일(콜럼버스데이·재향군인의날)은 재무부 금리가 없어 판정하지 않음. 그날 주가 변화는 다음 채권 영업일 구간에 합쳐짐.</li>
+    </ul>
+    <p class="note" id="thnote"></p>
+  </div>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const WD = "일월화수목금토";
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const parseD = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const md = (s) => { const d = parseD(s); return `${d.getMonth() + 1}/${d.getDate()}(${WD[d.getDay()]})`; };
+const f = (v, nd = 1, unit = "") => (v === null || v === undefined || Number.isNaN(v)) ? "–" : `${v > 0 ? "+" : ""}${v.toFixed(nd)}${unit}`;
+const cls = (v) => v > 0 ? "pos" : v < 0 ? "neg" : "";
+
+document.getElementById("sub").textContent = `미 재무부 금리 · 최근 미국 세션 ${md(D.rows[D.rows.length - 1].date)} · 생성 ${D.generated}`;
+document.getElementById("nDays").textContent = D.chartDays;
+document.getElementById("regw").textContent = D.regWindow;
+document.getElementById("thnote").textContent = "현재 판정 임계값(AI 참고): " + Object.entries(D.th).map(([k, v]) => `${k}=${v}`).join(", ");
+
+function legend(id) {
+  document.getElementById(id).innerHTML = D.buckets.map((b) => `<span><i class="dot" style="background:${b.color}"></i>${esc(b.name)}</span>`).join("");
+}
+legend("legend1"); legend("legend2");
+
+function showDay(r) {
+  const chips = D.buckets.map((b) => {
+    const v = r["c_" + b.key];
+    return v === null ? "" : `<span class="chip"><i class="dot" style="background:${b.color}"></i>${esc(b.name)} <b class="${cls(v)}">${f(v)}</b></span>`;
+  }).join("");
+  document.getElementById("today").innerHTML = `
+    <div>
+      <div class="sub">미국 ${md(r.date)} 10년물</div>
+      <div class="big ${cls(r.d_y10)}">${f(r.d_y10, 0)}<small> bp → ${r.y10.toFixed(2)}%</small></div>
+      <div class="facts">실질 ${f(r.d_real10, 0)} · BEI ${f(r.d_bei10, 0)}<br>2Y ${f(r.d_y2, 0)} · 30Y ${f(r.d_y30, 0)}</div>
+    </div>
+    <div>
+      <span class="tag">${esc(r.tag)}</span><span class="subtag">${esc(r.subtag)}</span>
+      ${r.events.length ? `<span class="ev">일정: ${esc(r.events.join("·"))}</span>` : ""}
+      <div class="chips">${chips}</div>
+      <div class="react">브렌트 <b class="${cls(r.r_brent)}">${f(r.r_brent, 1, "%")}</b> · SMH−RSP <b class="${cls(r.r_ai_rel)}">${f(r.r_ai_rel, 1, "%p")}</b>
+        · SPY ${f(r.r_spy, 1, "%")} · 코스피 익일 <b class="${cls(r.next_kospi)}">${f(r.next_kospi, 1, "%")}</b> · 하이닉스 익일 ${f(r.next_hynix, 1, "%")}</div>
+    </div>`;
+}
+showDay(D.rows[D.rows.length - 1]);
+
+Chart.defaults.color = css("--muted");
+Chart.defaults.borderColor = css("--line");
+Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+
+// 기간별
+const win = D.summaries;
+new Chart(document.getElementById("windows"), {
+  type: "bar",
+  data: {
+    labels: win.map((w) => `${w.label} (${f(w.d10, 0)}bp)`),
+    datasets: D.buckets.map((b) => ({ label: b.name, data: win.map((w) => w[b.key]), backgroundColor: b.color, stack: "s" })),
+  },
+  options: {
+    indexAxis: "y", maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${f(c.raw)}bp` } } },
+    scales: { x: { stacked: true, title: { display: true, text: "bp" } }, y: { stacked: true } },
+  },
+});
+
+// 일별
+const rows = D.rows.slice(-D.chartDays);
+new Chart(document.getElementById("daily"), {
+  data: {
+    labels: rows.map((r) => md(r.date)),
+    datasets: [
+      { type: "line", label: "실제 Δ10Y", data: rows.map((r) => r.d_y10), borderColor: css("--text"), borderDash: [4, 3], pointRadius: 2, borderWidth: 1.5, order: 0 },
+      ...D.buckets.map((b) => ({ type: "bar", label: b.name, data: rows.map((r) => r["c_" + b.key]), backgroundColor: b.color, stack: "s", order: 1 })),
+    ],
+  },
+  options: {
+    maintainAspectRatio: false,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: {
+        title: (items) => { const r = rows[items[0].dataIndex]; return `${md(r.date)} · ${r.tag}`; },
+        label: (c) => `${c.dataset.label}: ${f(c.raw)}bp`,
+      } },
+    },
+    scales: { x: { stacked: true, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } }, y: { stacked: true, title: { display: true, text: "bp" } } },
+    onClick: (e, els) => { if (els.length) showDay(rows[els[0].index]); },
+  },
+});
+
+// 최근 20일 표
+const recent = D.rows.slice(-20).reverse();
+document.getElementById("recent").innerHTML =
+  `<thead><tr><th class="l">날짜</th><th>10Y</th><th>Δ10Y</th><th>실질</th><th>BEI</th><th>Δ2Y</th><th>Δ30Y</th><th>브렌트</th><th>SMH−RSP</th><th class="l">판정</th>` +
+  D.buckets.map((b) => `<th title="${esc(b.name)}"><i class="dot" style="background:${b.color};display:inline-block"></i></th>`).join("") +
+  `<th>코스피 익일</th></tr></thead><tbody>` +
+  recent.map((r) => `<tr><td class="l">${md(r.date)}${r.events.length ? `<span class="ev">${esc(r.events.join("·"))}</span>` : ""}</td>
+    <td>${r.y10.toFixed(2)}</td><td class="${cls(r.d_y10)}">${f(r.d_y10, 0)}</td><td>${f(r.d_real10, 0)}</td><td>${f(r.d_bei10, 0)}</td>
+    <td>${f(r.d_y2, 0)}</td><td>${f(r.d_y30, 0)}</td><td>${f(r.r_brent, 1, "%")}</td><td>${f(r.r_ai_rel, 1)}</td>
+    <td class="l">${esc(r.tag)}</td>` +
+    D.buckets.map((b) => `<td>${f(r["c_" + b.key])}</td>`).join("") +
+    `<td class="${cls(r.next_kospi)}">${f(r.next_kospi, 1, "%")}</td></tr>`).join("") + `</tbody>`;
+
+// 판정별 반응
+document.getElementById("stats").innerHTML =
+  `<thead><tr><th class="l">판정</th><th>일수</th><th>평균 Δ10Y</th><th>SMH</th><th>RSP</th><th>SMH−RSP</th><th>코스피 익일</th><th>하이닉스 익일</th></tr></thead><tbody>` +
+  D.stats.map((s) => `<tr><td class="l">${esc(s.tag)}</td><td>${s.n}</td><td>${f(s.d10)}</td><td>${f(s.smh, 2, "%")}</td><td>${f(s.rsp, 2, "%")}</td>
+    <td>${f(s.ai_rel, 2)}</td><td class="${cls(s.kospi)}">${f(s.kospi, 2, "%")}</td><td>${f(s.hynix, 2, "%")}</td></tr>`).join("") + `</tbody>`;
+</script>
+</body>
+</html>
