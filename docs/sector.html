@@ -11,8 +11,8 @@
 :root{
   --hl-teal:#97FCE4; --hl-teal-dim:#50D2C1; --hl-teal-soft:rgba(151,252,228,.12);
   --hl-teal-border:rgba(151,252,228,.25);
-  --bg-0:#061E20; --surface:rgba(15,53,55,.55);
-  --text:#E8FFFA; --text-dim:#7FA8A4; --text-muted:#4F7773;
+  --bg-0:#061E20; --surface:rgba(9,34,36,.94);
+  --text:#F2FFFC; --text-dim:#B4D6D1; --text-muted:#8FB3AE;
   --up:#F87171; --down:#60A5FA; --warn:#FBBF24;
   --s-foreign:#3987e5; --s-inst:#d95926; --s-indiv:#199e70;
   --shadow:0 4px 30px rgba(0,0,0,.4);
@@ -61,7 +61,11 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 a.nav-link{text-decoration:none}
 .nav-link.active{color:var(--bg-0);background:var(--hl-teal);box-shadow:0 0 14px rgba(151,252,228,.28);font-weight:600}
 .nav-link:focus-visible{outline:2px solid var(--hl-teal);outline-offset:2px}
+.sub-nav .nav-link{font-size:12px;padding:4px 12px}
+#tabs .nav-link{font-size:14px;font-weight:700;padding:7px 18px}
 .claim{margin-bottom:16px}
+.grid2top .card{margin-bottom:16px}
+.claim-sub{margin-top:10px}.claim-sub summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--text-dim);padding:6px 2px}.claim-sub summary:hover{color:var(--hl-teal)}
 .sec-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
 .sec-lbl{font-size:12px;color:var(--text-muted)}
 .sec-note{font-size:11px;color:var(--text-muted)}
