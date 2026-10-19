@@ -157,13 +157,13 @@ MACRO_HTML = r"""
   <div class="range-dates"><input id="rk-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2025-06-01, 250601, 6/1)"><span>~</span><input id="rk-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="rk-rlab"></span></div>
   <span class="asof" id="rk-asof"></span></div>
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
-<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 스프레드 — 공식 OAS · AI vs 비AI</div>
+<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 스프레드 — AI vs 비AI + 국채</div>
   <div class="card-sub" id="rk-hy-sub"></div></div><div class="card-tools"><div class="seg" id="rk-hv"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
   <div class="mx-note" id="rk-hy-contrib"></div>
   <details class="claim-sub" id="rk-hy-ai"></details>
   <div class="mx-note"><b>등급 경계</b>: 투자등급(IG) = S&amp;P·Fitch AAA~<b>BBB-</b> / Moody's Aaa~<b>Baa3</b>. 하이일드(HY) = <b>BB+</b>~D / <b>Ba1</b>~C. BB+는 하이일드 맨 위 — 예: SoftBank BB+(HY 맨 위), Hut 8 River Bend BBB-(IG 맨 아래), CoreWeave B+(HY), Oracle BBB-(IG 경계). BBB-→BB+로 떨어지면(fallen angel) IG만 살 수 있는 기관의 강제 매도로 스프레드가 튄다.<br>
-  <b>데이터</b>: 공식 OAS = ICE BofA 지수(FRED, T+1). AI = HYG가 보유한 AI 채권 20개의 FINRA 일별 수익률로 복원(오늘 HYG 비중 고정). 과거엔 이 채권들이 대부분 미발행이라, 그날 값이 있는 채권이 AI 묶음 비중의 40% 이상인 날만 그림. 비AI = (HY 전체 − AI 비중×AI) ÷ (1 − AI 비중) 추정 — OAS와 국채 대비 스프레드를 섞은 근사.</div></section>
+  <b>용어</b>: 스프레드 = 회사채가 같은 만기 미국 국채보다 더 주는 금리(가산금리, bp=0.01%p). 높을수록 시장이 부도 위험을 크게 본다는 뜻. 공식 지수 = ICE BofA 회사채 지수의 가산금리(조기상환 같은 옵션 효과를 뺀 값, FRED에서 받음).<br><b>HY 중 AI − 같은 만기 국채 (FINRA 복원)</b>: iShares 하이일드 ETF(HYG)가 들고 있는 AI 관련 채권 20개를 골라, 채권마다 FINRA에 찍힌 일별 수익률에서 같은 만기 국채 금리를 뺀 뒤 HYG 안 비중(오늘 기준 고정)으로 가중평균. 과거엔 이 채권들이 대부분 미발행이라, 그날 값이 있는 채권이 AI 묶음 비중의 40% 이상인 날만 그림.<br><b>맨 위 최신값(AI·비AI·투자등급)</b>: iShares HYG·LQD가 매일 공개하는 보유채권 파일에서 채권별 수익률 − 같은 만기 국채로 직접 계산. 비AI 선 = (하이일드 전체 − AI 비중×AI) ÷ (1 − AI 비중)으로 추정한 근사치.</div></section>
 
 <section class="card"><div class="card-head"><div><div class="card-title">발행사 크레딧 한 장 — 최고 YTM 채권 · CDS</div>
   <div class="card-sub">▼ = 액면가(100) 아래 · 1M Δ = 21거래일 가격 변화 · G-spread = YTM − 같은 만기 국채(근사) · CDS = DTCC 공개 체결(5Y, 2031-12 만기) · 등급에 마우스를 올리면 원문</div></div></div>
@@ -479,28 +479,30 @@ var HL=R.hysplit||{},HK=Object.keys(HL).filter(function(k){return k.charAt(0)!==
 (function(){if(!HX) return;
   var ai=(HX.ai_top||[]).map(function(a){return '<tr><td class="l">'+esc(a.name)+'</td><td>'+nf(a.w,2)+'%</td><td>'+(a.px<100?'<span class="rk-below">▼</span>':'')+nf(a.px,2)+'</td><td>'+nf(a.ytw,2)+'%</td><td class="l">'+esc(a.mat)+'</td></tr>';}).join('');
   document.getElementById('rk-hy-ai').innerHTML='<summary>AI 관련으로 분류한 HYG 보유 채권 '+HX.hy_ai.n+'개 (비중 '+nf(HX.ai_weight_pct,1)+'%) — CoreWeave · AI 데이터센터·컴퓨트 SPV · SoftBank</summary><div style="overflow-x:auto"><table class="mx-tbl rk-fit"><thead><tr><th class="l">채권</th><th>HYG 비중</th><th>가격</th><th>YTW</th><th class="l">만기</th></tr></thead><tbody>'+ai+'</tbody></table></div>';
-  document.getElementById('rk-hy-sub').innerHTML='최신 '+md(HX.asof)+': 하이일드 <b>'+nf(HX.hy.g_bp,0)+'</b> (AI <b>'+nf(HX.hy_ai.g_bp,0)+'</b> · 비AI <b>'+nf(HX.hy_nonai.g_bp,0)+'</b>) · 투자등급 <b>'+nf(HX.ig.g_bp,0)+'</b> · HY−IG <b>'+nf(HX.hy.g_bp-HX.ig.g_bp,0)+'</b>bp · 공식 OAS HYG '+nf(HX.hyg_oas,0)+' / LQD '+nf(HX.lqd_oas,0)+'bp · 보유종목 원장 '+HK.length+'일째';
+  document.getElementById('rk-hy-sub').innerHTML='최신 '+md(HX.asof)+': 하이일드 <b>'+nf(HX.hy.g_bp,0)+'</b> (AI <b>'+nf(HX.hy_ai.g_bp,0)+'</b> · 비AI <b>'+nf(HX.hy_nonai.g_bp,0)+'</b>) · 투자등급 <b>'+nf(HX.ig.g_bp,0)+'</b> · 하이일드−투자등급 <b>'+nf(HX.hy.g_bp-HX.ig.g_bp,0)+'</b>bp (모두 국채 대비 가산금리, iShares HYG·LQD 보유채권으로 직접 계산) · 보유종목 원장 '+HK.length+'일째';
 })();
 var HV=ls('hv2')==null?2:+ls('hv2'),FR=(R.fred||{}).series||{};
 function frs(k){return FR[k]||[];}
 function drawHY(){
-  segs('rk-hv',[[2,'AI vs 비AI'],[0,'공식 OAS (ICE BofA)'],[1,'HY − IG']],HV,function(i){HV=i;ls('hv2',i);drawHY();});
-  var w=HX?HX.ai_weight_pct/100:0.039,aiH=Object.keys(HAI).sort().filter(function(k){return HAI[k][1]>=40;}).map(function(k){return [k,HAI[k][0]];});
+  segs('rk-hv',[[2,'AI vs 비AI + 국채'],[0,'공식 지수 (ICE BofA)'],[1,'하이일드 − 투자등급']],HV,function(i){HV=i;ls('hv2',i);drawHY();});
+  var w=HX?HX.ai_weight_pct/100:0.039,aiK=Object.keys(HAI).sort().filter(function(k){return HAI[k][1]>=40;}),aiH=aiK.map(function(k){return [k,HAI[k][0]];}),
+      aiY=aiK.filter(function(k){return HAI[k][2]!=null;}).map(function(k){return [k,HAI[k][2]];}),aiU=aiK.filter(function(k){return HAI[k][3]!=null;}).map(function(k){return [k,HAI[k][3]];});
   var hyM={};frs('hy').forEach(function(r){hyM[r[0]]=r[1];});
   // 비AI 추정 = (HY 전체 − AI 비중 × AI) ÷ (1 − AI 비중). HY 전체는 공식 OAS, AI는 FINRA 복원 — 정의가 달라 근사
   var non=aiH.filter(function(r){return hyM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((hyM[r[0]]-w*r[1])/(1-w)*10)/10];});
   var nonM={};non.forEach(function(r){nonM[r[0]]=r[1];});
   var L;
-  if(HV===0) L=[{n:'하이일드 전체',s:frs('hy'),c:'#F2FFFC'},{n:'BB',s:frs('bb'),c:'#3987e5'},{n:'B',s:frs('b'),c:'#d4a72c'},{n:'CCC',s:frs('ccc'),c:'#d55181',hide:true},{n:'투자등급',s:frs('ig'),c:'#2aa58a'}];
-  else if(HV===1) L=[{n:'HY − IG (OAS)',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
-  else L=[{n:'하이일드 전체 (OAS)',s:frs('hy'),c:'#F2FFFC'},{n:'HY 중 AI (FINRA 복원)',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
+  if(HV===0) L=[{n:'하이일드 전체',s:frs('hy'),c:'#F2FFFC'},{n:'BB등급',s:frs('bb'),c:'#3987e5'},{n:'B등급',s:frs('b'),c:'#d4a72c'},{n:'CCC등급',s:frs('ccc'),c:'#d55181',hide:true},{n:'투자등급',s:frs('ig'),c:'#2aa58a'}];
+  else if(HV===1) L=[{n:'하이일드 − 투자등급',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
+  else L=[{n:'하이일드 전체 (국채 대비)',s:frs('hy'),c:'#F2FFFC'},{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
+          {n:'AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3'},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3'},
           {n:'AI − 비AI',s:aiH.filter(function(r){return nonM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-nonM[r[0]])*10)/10];}),c:'rgba(232,130,58,.45)',hide:true}];
   if(CH.hy) CH.hy.destroy();CH.hy=lineChart(document.getElementById('rk-hyc'),L,{fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});
   // AI 기여도: 기간 중 HY 변화 vs AI 비중 × AI 변화
   var lo=RD[RW.i0],hi=RD[RW.i1],hs=frs('hy').filter(function(r){return r[0]>=lo&&r[0]<=hi;}),as=aiH.filter(function(r){return r[0]>=lo&&r[0]<=hi;});
   var el2=document.getElementById('rk-hy-contrib');
   if(hs.length>1&&as.length>1){var dH=hs[hs.length-1][1]-hs[0][1],dA=as[as.length-1][1]-as[0][1];
-    el2.innerHTML='<b>기간 기여 ('+md(hs[0][0])+'→'+md(hs[hs.length-1][0])+')</b>: 하이일드 OAS '+sg(dH,0)+'bp 중 AI 기여 ≈ AI 비중 '+nf(w*100,1)+'% × AI 변화 '+sg(dA,0)+'bp = <b>'+sg(w*dA,0)+'bp</b> → 나머지 '+sg(dH-w*dA,0)+'bp는 비AI 몫 (근사)';}
+    el2.innerHTML='<b>기간 기여 ('+md(hs[0][0])+'→'+md(hs[hs.length-1][0])+')</b>: 하이일드 스프레드 '+sg(dH,0)+'bp 중 AI 기여 ≈ AI 비중 '+nf(w*100,1)+'% × AI 변화 '+sg(dA,0)+'bp = <b>'+sg(w*dA,0)+'bp</b> → 나머지 '+sg(dH-w*dA,0)+'bp는 비AI 몫 (근사)';}
   else el2.textContent='';
 }
 
@@ -566,12 +568,12 @@ function lineChart(cv,list,o){
   var ds={};list.forEach(function(x){x.s.forEach(function(r){ds[r[0]]=1;});});
   var lo=RD[RW.i0],hi=RD[RW.i1],L=Object.keys(ds).filter(function(d){return d>=lo&&d<=hi;}).sort();
   var sets=list.map(function(x,j){var m={};x.s.forEach(function(r){m[r[0]]=r[1];});
-    return {label:x.n,data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide};});
+    return {label:x.n,data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide,yAxisID:x.ax||'y'};});
   (o.stocks||[]).forEach(function(tk,j){var px=((R.stocks||{})[tk])||[];var m={};px.forEach(function(r){m[r[0]]=r[1];});
     var b=null;for(var i=0;i<L.length;i++){if(m[L[i]]!=null){b=m[L[i]];break;}}if(b==null) return;
     var last=null;sets.push({label:tk+' 주가',isStock:true,data:L.map(function(d){if(m[d]!=null) last=m[d];return last==null?null:Math.round(last/b*1000)/10;}),
       borderColor:SC[j%SC.length],backgroundColor:SC[j%SC.length],borderWidth:1.4,borderDash:[2,3],pointRadius:0,tension:0,spanGaps:true,yAxisID:'y2',hidden:true});});
-  if(o.par) sets.push({label:'액면가 100',data:L.map(function(){return 100;}),borderColor:'rgba(232,255,250,.35)',borderDash:[4,4],borderWidth:1,pointRadius:0,pointHoverRadius:0});
+  if(o.par) sets.push({label:'액면가 100',data:L.map(function(){return 100;}),borderColor:'rgba(232,255,250,.35)',borderDash:[4,4],borderWidth:1,pointRadius:0,pointHoverRadius:0,yAxisID:'y'});
   // 끝 라벨(이름 + 마지막 값) — 겹치면 아래로 밀어냄
   var endLab={id:'endLab',afterDatasetsDraw:function(ch){if(!o.end) return;var c=ch.ctx,ca=ch.chartArea,it=[];
     ch.data.datasets.forEach(function(d,i){if(!ch.isDatasetVisible(i)||d.label==='액면가 100') return;var me=ch.getDatasetMeta(i);for(var k=d.data.length-1;k>=0;k--) if(d.data[k]!=null&&me.data[k]){it.push({y:me.data[k].y,t:d.label+' '+o.fmt(d.data[k]),c:d.borderColor});break;}});
@@ -580,8 +582,9 @@ function lineChart(cv,list,o){
   var NICE=[10,25,50,75,100,150,200,300,500,750,1000,1500,2000];
   return new Chart(cv,{type:'line',plugins:[endLab],data:{labels:L,datasets:sets},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},layout:{padding:{right:o.end?130:4}},
     plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:3,font:{size:12.5}}},tooltip:{backgroundColor:'rgba(6,30,32,.95)',borderColor:'rgba(151,252,228,.25)',borderWidth:1,titleColor:COL.text,bodyColor:COL.text,
-      filter:function(it){return it.raw!=null&&it.dataset.label!=='액면가 100';},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(it.dataset.isStock?nf(it.raw,1)+' (기간 시작=100)':o.fmt(it.raw));}}}},
+      filter:function(it){return it.raw!=null&&it.dataset.label!=='액면가 100';},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(it.dataset.isStock?nf(it.raw,1)+' (기간 시작=100)':it.dataset.yAxisID==='y3'?nf(it.raw,2)+'%':o.fmt(it.raw));}}}},
     scales:{x:{grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:8,font:{size:12},callback:function(v){var s=this.getLabelForValue(v);return s.slice(2,7).replace('-','.');}}},
+      y3:{display:'auto',position:'right',grid:{display:false},border:{display:false},title:{display:true,text:'금리 %',color:COL.muted,font:{size:11}},ticks:{color:COL.muted,font:{size:11},maxTicksLimit:6,callback:function(v){return nf(v,1)+'%';}}},
       y2:{display:'auto',position:'right',grid:{display:false},border:{display:false},title:{display:true,text:'주가 (기간 시작=100)',color:COL.muted,font:{size:11}},ticks:{color:COL.muted,font:{size:11},maxTicksLimit:6}},
       y:{type:o.log?'logarithmic':'linear',afterBuildTicks:function(ax){if(o.log) ax.ticks=NICE.filter(function(v){return v>=ax.min&&v<=ax.max;}).map(function(v){return {value:v};});},grid:{color:COL.grid},border:{display:false},title:{display:!!o.ytitle,text:o.ytitle||'',color:COL.muted,font:{size:11}},ticks:{color:COL.muted,font:{size:12},maxTicksLimit:o.log?20:7,callback:function(v){return o.log?(NICE.indexOf(Math.round(v))>=0?o.tick(v):''):o.tick(v);}}}}}});
 }

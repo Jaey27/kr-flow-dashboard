@@ -20,6 +20,8 @@ printf '%s\n%s\n' "$$" "$(sysctl -n kern.boottime 2>/dev/null)" >"$LOCK_DIR/pid"
 trap 'rm -rf "$LOCK_DIR"' EXIT HUP INT TERM
 
 step(){ echo "=== $(date '+%H:%M:%S') $*" >>"$LOG"; "$@" >>"$LOG" 2>&1 || echo "[WARN] 실패: $*" >>"$LOG"; }
+
+# 편집은 다른 곳(Windows·웹 Claude)에서 GitHub로 push → 맥미니는 실행 전에 받아서 새 코드로 굽는다(코드만 받고, docs/data 는 맥미니가 주인)
 step git pull -q --rebase --autostash origin "$(git rev-parse --abbrev-ref HEAD)"
 
 step "$PY" scripts/macro_data.py                 # 미 금리·BEI·TP·원달러·Brent·Kalshi·FedWatch·금리분해·발표일정
@@ -28,11 +30,12 @@ step "$PY" scripts/hy_split.py --fred            # ICE BofA OAS (FRED, UA=curl)
 step "$PY" scripts/risk_breadth.py               # FINRA 공식 API 시장 등락 (.env FINRA_CLIENT/SECRET)
 step "$PY" scripts/risk_history.py cds           # DTCC CDS (일자 캐시)
 step "$PY" scripts/risk_history.py stocks        # 관련 회사 주가 (Yahoo)
-# FINRA 웹 채권 일별 — 아침(12시 전) 실행에서만. 막히면 data/risk/FINRA_BLOCKED 남기고 자동 중단
+# FINRA 웹 채권 일별 — 아침(12시 전) 실행에서만(Jae 10/19: 조회 횟수 줄이기). 막히면 data/risk/FINRA_BLOCKED 남기고 자동 중단
 if [ "$(date +%H)" -lt 12 ]; then
   step "$PY" scripts/risk_history.py finra
-  step "$PY" scripts/hy_split.py --backfill-ai
+  step "$PY" scripts/hy_split.py --backfill-ai     # AI 채권 스프레드 복원(위 FINRA 결과 사용)
 fi
+step "$PY" scripts/fss_fetch.py                  # 금감원 외국인 증권투자 동향(월간, KDI 게재본) — 빠진 달만 추가
 step "$PY" scripts/seibro_flow.py                # SEIBro 한국인 미국주식 결제·보관 + 종목 TOP50(일자 캐시)
 step "$PY" cpi_dashboard/scripts/run_cpi.py --no-send   # CPI(발표일에만 재빌드)
 [ -f cpi_dashboard/cpi.html ] && cp cpi_dashboard/cpi.html docs/cpi.html

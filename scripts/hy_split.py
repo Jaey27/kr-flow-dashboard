@@ -142,16 +142,19 @@ def backfill_ai() -> None:
     days = sorted(d for d in curves if d >= (date.today() - timedelta(days=731)).isoformat())
     last, hist = {}, {}
     for d in days:
-        num_, den = 0.0, 0.0
+        num_, den, wy, wu = 0.0, 0.0, 0.0, 0.0
         for cu, s_ in series.items():
             if d in s_:
                 last[cu] = (d, s_[d])
             if cu in last and (datetime.fromisoformat(d) - datetime.fromisoformat(last[cu][0])).days <= 7:
                 yrs = max((mats[cu] - date.fromisoformat(d)).days / 365.25, 1 / 12)
-                num_ += ws[cu] * (last[cu][1] - interp(curves[d], yrs)) * 100
+                u = interp(curves[d], yrs)
+                num_ += ws[cu] * (last[cu][1] - u) * 100
+                wy += ws[cu] * last[cu][1]
+                wu += ws[cu] * u
                 den += ws[cu]
-        if den:
-            hist[d] = [round(num_ / den, 1), round(den / w_tot * 100, 1)]
+        if den:  # [스프레드 bp, 커버리지 %, AI 채권 수익률 %, 같은 만기 국채 금리 %]
+            hist[d] = [round(num_ / den, 1), round(den / w_tot * 100, 1), round(wy / den, 3), round(wu / den, 3)]
     led["_ai_hist"] = hist
     OUT.write_text(json.dumps(dict(sorted(led.items())), ensure_ascii=False, indent=0), encoding="utf-8")
     print(f"[hy] AI 복원 {len(hist)}일 · 최신 {max(hist)} {hist[max(hist)]}")
