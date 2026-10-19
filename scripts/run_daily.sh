@@ -43,7 +43,5 @@ step "$PY" scripts/risk_data.py
 step "$PY" scripts/render.py --docs
 step "$PY" scripts/render_sector.py --docs
 if [ "${KRFLOW_PUBLISH:-auto}" != "0" ]; then step bash scripts/publish.sh; fi
-# PLAYBOOK 아티팩트의 매크로/시황 탭(dash.html) 교체 — 아침 실행에서만(.env PLAYBOOK_URL 없으면 건너뜀)
-if [ "$(date +%H)" -lt 12 ]; then step bash scripts/playbook_publish.sh; fi
 find "$LOG_DIR" -name 'daily_*.log' -type f -mtime +60 -delete 2>/dev/null || true
 exit 0
