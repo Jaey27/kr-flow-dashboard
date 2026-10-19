@@ -1676,7 +1676,8 @@ function drawCDS(){segs('rk-cg',CG.map(function(g,i){return [i,g[0]];}),ST.ci,fu
     return cmp?{n:CNAME[tk]||tk,s:med5(i.cds_series),c:CCOL[tk],hide:tk==='SBG'||tk==='SPCX'}:{n:tk,s:i.cds_series};}).filter(Boolean);
   if(CH.cds) CH.cds.destroy();
   if(!L.length){document.getElementById('rk-cds-sub2').textContent='CDS 시계열 없음 — scripts/risk_history.py cds 실행 필요';return;}
-  CH.cds=lineChart(document.getElementById('rk-cds'),L,cmp?{log:true,end:true,bw:2.2,ytitle:'bp (로그)',fmt:function(v){return nf(v,0);},tick:function(v){return nf(v,0);}}:{pts:true,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});}
+  var stk={stocks:CG[ST.ci][1]};  // 회사 주가(기간 시작=100, 오른쪽 축) — 기본 꺼짐, 범례 클릭으로 켬
+  CH.cds=lineChart(document.getElementById('rk-cds'),L,Object.assign(stk,cmp?{log:true,end:true,bw:2.2,ytitle:'bp (로그)',fmt:function(v){return nf(v,0);},tick:function(v){return nf(v,0);}}:{pts:true,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}}));}
 var BV=+(ls('bv')||0);
 function bser(set,cat,f){var a=((R.breadth||{}).sets||{})[set];a=a&&a[cat];if(!a) return [];var out=[],w=[];a.forEach(function(r){w.push(f(r));if(w.length>5) w.shift();out.push([r[0],Math.round(w.reduce(function(s,v){return s+v;},0)/w.length*10)/10]);});return out;}
 // r = [날짜, 상승, 하락, 보합, 52주 신고가, 52주 신저가, 거래]
