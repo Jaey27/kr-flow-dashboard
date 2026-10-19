@@ -157,6 +157,12 @@ MACRO_HTML = r"""
   <div class="range-dates"><input id="rk-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2025-06-01, 250601, 6/1)"><span>~</span><input id="rk-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="rk-rlab"></span></div>
   <span class="asof" id="rk-asof"></span></div>
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
+<section class="card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
+  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-grp"></div><div class="seg" id="rk-ism"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-iss"></canvas></div></section>
+<section class="card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
+  <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
 <section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 스프레드 — AI vs 비AI + 국채</div>
   <div class="card-sub" id="rk-hy-sub"></div></div><div class="card-tools"><div class="seg" id="rk-hv"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
@@ -174,12 +180,6 @@ MACRO_HTML = r"""
   <div class="mx-box" style="height:320px"><canvas id="rk-dc"></canvas></div><div id="rk-dc-tbl" style="margin-top:10px"></div></section>
 <section class="card"><div class="card-head"><div><div class="card-title">백커 익스포저 — 데이터센터 SPV 채권 ÷ 백커 회사채·장기차입</div>
   <div class="card-sub">최신 10-Q·10-K(XBRL) 기준 · SPV 채권은 대부분 백커 장부 밖(공시로 확인된 것만 Fact) · 스폰서 비율이 100% 넘는 건 SPV 발행이 기준일 이후라서</div></div></div><div id="rk-exp"></div></section>
-<section class="card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
-  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-grp"></div><div class="seg" id="rk-ism"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-iss"></canvas></div></section>
-<section class="card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
-  <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
 <section class="card" id="rk-breadth-card"><div class="card-head"><div><div class="card-title">회사채 시장 등락 (FINRA 공식 API)</div>
   <div class="card-sub">TRACE Market Breadth · 5거래일 평균 · 공모 vs 144A · 하이일드 하락 비율이 오르거나 52주 신저가가 신고가보다 많아지면 크레딧 스트레스</div></div><div class="card-tools"><div class="seg" id="rk-bv"></div></div></div>
   <div class="mx-box" style="height:280px"><canvas id="rk-br"></canvas></div></section>

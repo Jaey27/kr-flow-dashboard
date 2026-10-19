@@ -51,6 +51,11 @@ class KRX:
                 return None
             row[f"{mk}_mcap"] = round(sum(int(x["MKTCAP"]) for x in items) / EOK, 1)
             row[f"{mk}_n"] = len(items)
+            # 등락 종목 수(ADR 원자료) — 전일 대비 가격(CMPPREVDD_PRC) 부호
+            chg = [float(str(x.get("CMPPREVDD_PRC") or 0).replace(",", "")) for x in items]
+            row[f"{mk}_adv"] = sum(1 for c in chg if c > 0)
+            row[f"{mk}_dec"] = sum(1 for c in chg if c < 0)
+            row[f"{mk}_unch"] = len(chg) - row[f"{mk}_adv"] - row[f"{mk}_dec"]
             for x in items:
                 if x["ISU_CD"] in WATCH:
                     c = x["ISU_CD"]

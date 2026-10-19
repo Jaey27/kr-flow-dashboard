@@ -42,6 +42,7 @@ RECENT_DAYS = 15                        # --auto/--full 에서 다시 받는 최
 RETRY_MIN = {"daum": 30, "freesis": 10, "krx": 20, "krxinv": 30, "vkospi": 20}  # 공표 대기·누락 보충 시 재조회 최소 간격(분)
 KRXINV_AT = dt.time(18, 40)             # KRX 투자자별 확정(18시경) 뒤에 다시 받아 확정 처리
 KRXINV_PROV_MIN = 15                    # 장 마감 15분 뒤 잠정치를 먼저 받는다
+ADR_N = 20                              # ADR 기간(영업일)
 KRXINV_PER_RUN = 15                     # 한 번 실행에 받는 최대 일수(백필은 scripts/backfill_krx_inv.py)
 KRX_OPEN_AT = dt.time(8, 10)            # KRX Open API: 기준일 D 의 값은 D+1 오전 8시 전후에 열린다
 KRX_GIVE_UP_DAYS = 7                    # 이만큼 지나도 비어 있으면 그 날짜는 포기(무한 재시도 방지)
@@ -394,6 +395,20 @@ def assemble(now: dt.datetime) -> dict:
             p0 = px[c][keys[j]] if j >= 0 and keys[j] >= (dt.date.fromisoformat(ref) - dt.timedelta(days=7)).isoformat() else None
             out.append(round((p1 / p0 - 1) * 100, 1) if p1 and p0 else None)
         S[f"yoy_{c}"] = out
+
+    # ADR(등락비율) = 최근 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 × 100 (KRX 종목별 시세)
+    kr = load_ledger("krx_mcap")["rows"]
+    for mk in ("kospi", "kosdaq"):
+        kd = [d for d in sorted(kr) if kr[d].get(f"{mk}_adv") is not None]
+        adr = {}
+        for j in range(ADR_N - 1, len(kd)):
+            w = kd[j - ADR_N + 1:j + 1]
+            dec = sum(kr[d][f"{mk}_dec"] for d in w)
+            if dec:
+                adr[kd[j]] = round(sum(kr[d][f"{mk}_adv"] for d in w) / dec * 100, 2)
+        S[f"adr_{mk}"] = [adr.get(d) for d in dates]
+        S[f"adv_{mk}"] = [kr.get(d, {}).get(f"{mk}_adv") for d in dates]
+        S[f"dec_{mk}"] = [kr.get(d, {}).get(f"{mk}_dec") for d in dates]
 
     # 외국인 보유·시총 비중 (삼성전자·하이닉스 실측 + 금감원 월말 + 일별 추정)
     hold_meta = holdings.build(dates, S)

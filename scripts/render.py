@@ -277,7 +277,8 @@ var FMT={
   ct:function(v){return nf(Math.round(v))+'계약';},
   pct:function(v){return nf(v,2)+'%';},
   idx:function(v){return nf(v,2);},
-  shr:function(v){return nf(v/1e8,2)+'억주';}
+  shr:function(v){return nf(v/1e8,2)+'억주';},
+  cnt:function(v){return nf(Math.round(v))+'개';}
 };
 var TICK={
   jo:function(v){return nf(v/10000,Math.abs(v)<200000?1:0)+'조';},
@@ -286,7 +287,8 @@ var TICK={
   ct:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,1)+'만':nf(v);},
   pct:function(v){return nf(v,1)+'%';},
   idx:function(v){return nf(v);},
-  shr:function(v){return nf(v/1e8,1)+'억';}
+  shr:function(v){return nf(v/1e8,1)+'억';},
+  cnt:function(v){return nf(v);}
 };
 function sg(f,v){return (v>0?'+':'')+f(v);}
 function cls(v){return v>0?'pos':(v<0?'neg':'');}
@@ -378,6 +380,12 @@ var PANELS=[
     {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
     {label:'K200 선물',type:'line',unit:'idx',series:[{k:'fut_price',name:'코스피200 선물(최다 거래 월물)',color:COL.teal}]}
   ]},
+  {id:'adr',title:'ADR (등락비율 · 20일)',src:'KRX 종목별 시세 · 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 · 120 이상 과매수 / 80 이하 과매도',asof:'mcap',views:[
+    {label:'코스피·코스닥',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kospi',name:'코스피 ADR',short:'코스피',color:COL.foreign},{k:'adr_kosdaq',name:'코스닥 ADR',short:'코스닥',color:COL.inst}]},
+    {label:'코스피',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kospi',name:'코스피 ADR',color:COL.teal}]},
+    {label:'코스닥',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kosdaq',name:'코스닥 ADR',color:COL.teal}]},
+    {label:'일별 상승·하락',type:'line',unit:'cnt',series:[{k:'adv_kospi',name:'코스피 상승',short:'코스피↑',color:'#f0756a'},{k:'dec_kospi',name:'코스피 하락',short:'코스피↓',color:'#78aaff'},{k:'adv_kosdaq',name:'코스닥 상승',short:'코스닥↑',color:'#f5b3ab'},{k:'dec_kosdaq',name:'코스닥 하락',short:'코스닥↓',color:'#b9d0ff'}]}
+  ]},
   // ---- 외국인 보유 · 삼성/하이닉스 탭 ----
   {id:'shtop',tab:'foreign',top:true,title:'외국인의 삼성전자·SK하이닉스 — 보유액 · 코스피 시총 대비 · 보유 주식 수',src:'보유주식 수(다음, KRX)×종가 · 범례를 눌러 삼성/하이닉스를 켜고 끔 · 코스피는 오른쪽 위 버튼',asof:'stock',views:[
     {label:'보유액',type:'line',unit:'jo',series:[{k:'sh_fo_val',name:'삼성+하이닉스',short:'합계',color:CS.total},{k:'s005930_fo_val',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_val',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
@@ -450,7 +458,17 @@ var endLabels={id:'endLabels',afterDatasetsDraw:function(ch,args,o){
   items.forEach(function(it){var x=ca.right+8;c.fillStyle=it.color;c.beginPath();c.arc(x+3,it.y,3.5,0,Math.PI*2);c.fill();
     c.fillStyle=COL.dim;c.fillText(it.name,x+11,it.y);});
   c.restore();}};
-Chart.register(crosshair,endLabels);
+// 기준선·구간 음영 (view.bands: [{v,label,color,above|below}]) — ADR 과매수/과매도 등
+var bands={id:'bands',beforeDatasetsDraw:function(ch,args,o){
+  if(!o||!o.list||!ch.scales.y) return;
+  var c=ch.ctx,ca=ch.chartArea,y=ch.scales.y;c.save();
+  o.list.forEach(function(b){var py=y.getPixelForValue(b.v);if(py<ca.top-1||py>ca.bottom+1) return;
+    c.fillStyle=b.fill;if(b.above) c.fillRect(ca.left,ca.top,ca.right-ca.left,py-ca.top);else c.fillRect(ca.left,py,ca.right-ca.left,ca.bottom-py);
+    c.strokeStyle=b.color;c.lineWidth=1;c.setLineDash([4,4]);c.beginPath();c.moveTo(ca.left,py);c.lineTo(ca.right,py);c.stroke();c.setLineDash([]);
+    c.font='600 11px '+getComputedStyle(document.body).fontFamily;c.fillStyle=b.color;c.textBaseline=b.above?'bottom':'top';
+    c.fillText(b.label+' '+b.v,ca.left+6,b.above?py-3:py+3);});
+  c.restore();}};
+Chart.register(crosshair,endLabels,bands);
 Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif';
 Chart.defaults.color=COL.dim;Chart.defaults.font.size=12;
 
@@ -505,6 +523,7 @@ function config(card){
       plugins:{
         legend:{display:false},
         endLabels:{on:direct},
+        bands:{list:view.bands||null},
         tooltip:{backgroundColor:'rgba(6,30,32,.95)',borderColor:'rgba(151,252,228,.25)',borderWidth:1,
           titleColor:COL.text,bodyColor:COL.text,footerColor:COL.dim,padding:10,cornerRadius:10,
           titleFont:{weight:'600',size:12},bodyFont:{size:12},footerFont:{size:11,weight:'400'},
@@ -595,7 +614,7 @@ function rebuild(card){
 function updateSub(card){
   var view=card.p.views[card.v],a=F.asof[card.p.asof]||{},d=a.date;
   var prov=d&&(a.prov||[]).indexOf(d)>=0;
-  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
+  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
   card.sub.innerHTML=card.p.src+' · '+unitName+(d?' · '+dshort(d)+' 기준':'')+(prov?'<span class="prov-tag">잠정</span>':'');
 }
 
