@@ -479,6 +479,11 @@ var CARDS=[];
 function hexA(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
 
 function isCum(view,sp){return sp.cum!=null?sp.cum:!!view.cum;}
+function shTxt(sp,i){var m=/^(s(\d{6})|sh)_eff_trade$/.exec(sp.k);if(!m) return '';
+  function d(c){var a=S['s'+c+'_fo_shares'];if(!a) return null;var b=null;for(var j=W.i0;j<=i;j++) if(a[j]!=null){b=a[j];break;}var e=null;for(j=i;j>=W.i0;j--) if(a[j]!=null){e=a[j];break;}return b==null||e==null?null:e-b;}
+  function t(v){return v==null?'–':(v>0?'+':v<0?'−':'')+Math.abs(Math.round(v/1e4)).toLocaleString('ko-KR')+'만주';}
+  if(m[2]) return ' (누적 '+t(d(m[2]))+')';
+  return ' (누적 삼성 '+t(d('005930'))+' · 하이닉스 '+t(d('000660'))+')';}
 function cumText(view){return view.base?'· 기준 '+dyy(D[W.i0])+' 종가 = 0':'· 누적 기준일 '+dyy(D[W.i0]);}
 var LABEL_FONT='600 10.5px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif';
 var measureCtx=document.createElement('canvas').getContext('2d');
@@ -533,7 +538,7 @@ function config(card){
           filter:function(it){return it.raw!=null;},
           callbacks:{
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
-            label:function(it){if(it.dataset.isOv) return ' 코스피  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw));},
+            label:function(it){if(it.dataset.isOv) return ' 코스피  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw))+shTxt(sp,W.i0+it.dataIndex);},
             labelColor:function(it){if(it.dataset.isOv) return {borderColor:'#9db3b0',backgroundColor:'#9db3b0',borderRadius:2};var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
               if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
