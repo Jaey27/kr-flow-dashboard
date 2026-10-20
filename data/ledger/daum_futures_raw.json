@@ -1,8 +1,6 @@
 {
- "fetched_at": "2026-10-20T15:43:12+09:00",
- "prov": [
-  "2026-10-20"
- ],
+ "fetched_at": "2026-10-20T18:33:27+09:00",
+ "prov": [],
  "rows": {
   "2024-10-02": {
    "KR4101VC0004": {
@@ -28774,57 +28772,57 @@
   },
   "2026-10-20": {
    "KR4A016C0004": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
-    "oi": 146947,
-    "price": 862.1,
-    "vol": 142847
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
+    "oi": 145866,
+    "price": 861.05,
+    "vol": 146483
    },
    "KR4A01730006": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 5289,
-    "price": 879.2,
-    "vol": 30
+    "price": 849.25,
+    "vol": 101
    },
    "KR4A01760003": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 2239,
     "price": 876.0,
     "vol": 0
    },
    "KR4A01790000": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 217,
     "price": 908.7,
     "vol": 0
    },
    "KR4A017C0003": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 2613,
     "price": 916.1,
     "vol": 0
    },
    "KR4A01860001": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 1,
     "price": 926.55,
     "vol": 0
    },
    "KR4A018C0002": {
-    "foreign": -2416,
-    "indiv": 205,
-    "inst": 2198,
+    "foreign": -1544,
+    "indiv": 616,
+    "inst": 898,
     "oi": 167,
     "price": 941.5,
     "vol": 0
