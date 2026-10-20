@@ -163,6 +163,10 @@ MACRO_HTML = r"""
 <section class="card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
   <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
+<section class="card" id="rk-vol-card"><div class="card-head"><div><div class="card-title">하이퍼스케일러 CDS 주간 거래 (DTCC 공개 체결)</div>
+  <div class="card-sub" id="rk-vol-sub">신규 체결(NEWT) · 모든 만기 · 주간 합계 · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-vv"></div></div></div>
+  <div class="mx-box" style="height:280px"><canvas id="rk-vol"></canvas></div>
+  <div class="mx-note">공개 체결은 큰 거래를 '5,000,000+'처럼 상한으로 가려서 내보낸다 → 명목 합계는 <b>최소</b>(하한)이고, 추이는 <b>건수</b>가 더 깨끗하다. Morgan Stanley 집계(주간 수십억 달러)와 절대 수준은 다르다. 출처: DTCC SEC 단일종목 CDS 공개 체결.</div></section>
 <section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 스프레드 — AI vs 비AI + 국채</div>
   <div class="card-sub" id="rk-hy-sub"></div></div><div class="card-tools"><div class="seg" id="rk-hv"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
@@ -614,10 +618,28 @@ function drawCDS(){segs('rk-cg',CG.map(function(g,i){return [i,g[0]];}),ST.ci,fu
   var cmp=ST.ci===0;
   var L=CG[ST.ci][1].map(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0];if(!(i&&i.cds_series&&i.cds_series.length)) return null;
     return cmp?{n:CNAME[tk]||tk,s:med5(i.cds_series),c:CCOL[tk],hide:tk==='SBG'||tk==='SPCX'}:{n:tk,s:i.cds_series};}).filter(Boolean);
+  if((cmp||ST.ci===2)&&CDX.length) L.push({n:'북미 IG CDX',s:cmp?med5(CDX):CDX,c:'#ffffff'});
   if(CH.cds) CH.cds.destroy();
   if(!L.length){document.getElementById('rk-cds-sub2').textContent='CDS 시계열 없음 — scripts/risk_history.py cds 실행 필요';return;}
   var stk={stocks:CG[ST.ci][1]};  // 회사 주가(기간 시작=100, 오른쪽 축) — 기본 꺼짐, 범례 클릭으로 켬
   CH.cds=lineChart(document.getElementById('rk-cds'),L,Object.assign(stk,cmp?{log:true,end:true,bw:2.2,ytitle:'bp (로그)',fmt:function(v){return nf(v,0);},tick:function(v){return nf(v,0);}}:{pts:true,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}}));}
+// 북미 IG CDX 5Y(on-the-run) 일별 체결 중앙값 bp — DTCC CFTC 지수 CDS 공개 체결
+var CDX=((R.cdsvol||{}).days||[]).filter(function(r){return r[2]!=null;}).map(function(r){return [r[0],r[2]];});
+var VV=+(ls('vv')||0);
+function wk(d){var t=new Date(d+'T00:00:00Z'),w=(t.getUTCDay()+6)%7;t.setUTCDate(t.getUTCDate()-w);return t.toISOString().slice(0,10);}
+function drawVol(){var V=R.cdsvol;if(!V||!V.days) return;
+  segs('rk-vv',[[0,'건수'],[1,'최소 거래액 ($M)']],VV,function(i){VV=i;ls('vv',i);drawVol();});
+  var lo=RD[RW.i0],hi=RD[RW.i1],W={},ks=[];
+  V.days.forEach(function(r){if(r[0]<lo||r[0]>hi) return;var k=wk(r[0]);if(!W[k]){W[k]={};ks.push(k);}
+    Object.keys(r[1]).forEach(function(tk){W[k][tk]=(W[k][tk]||0)+r[1][tk][VV];});});
+  var sets=V.names.map(function(tk){return {type:'bar',label:CNAME[tk]||tk,data:ks.map(function(k){var v=W[k][tk];return v==null?0:Math.round(v*10)/10;}),backgroundColor:CCOL[tk],stack:'v'};});
+  var tot=ks.map(function(k){return Object.keys(W[k]).reduce(function(a,t){return a+W[k][t];},0);});
+  var li=ks.length-1;document.getElementById('rk-vol-sub').textContent='신규 체결(NEWT) · 모든 만기 · 주간(월요일 시작) 합계 · 위 기간 바'+(li>=0?' · 최근 주('+ks[li]+') '+(VV?'$'+nf(tot[li],0)+'M 이상':nf(tot[li],0)+'건')+(li>=4?' · 4주 전 '+(VV?'$'+nf(tot[li-4],0)+'M':nf(tot[li-4],0)+'건'):''):'');
+  if(CH.vol) CH.vol.destroy();
+  CH.vol=new Chart(document.getElementById('rk-vol'),{type:'bar',data:{labels:ks,datasets:sets},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8}},tooltip:{callbacks:{title:function(it){return it[0].label+' 주';},footer:function(it){return '합계 '+(VV?'$'+nf(tot[it[0].dataIndex],0)+'M 이상':nf(tot[it[0].dataIndex],0)+'건');}}}},
+    scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:8,callback:function(v){var s=this.getLabelForValue(v);return s.slice(2,7).replace('-','.');}}},
+      y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted},title:{display:true,text:VV?'$M (하한)':'건',color:COL.muted}}}}});}
 var BV=+(ls('bv')||0);
 function bser(set,cat,f){var a=((R.breadth||{}).sets||{})[set];a=a&&a[cat];if(!a) return [];var out=[],w=[];a.forEach(function(r){w.push(f(r));if(w.length>5) w.shift();out.push([r[0],Math.round(w.reduce(function(s,v){return s+v;},0)/w.length*10)/10]);});return out;}
 // r = [날짜, 상승, 하락, 보합, 52주 신고가, 52주 신저가, 거래]
@@ -626,7 +648,7 @@ var BVS=[['하락 비율 %',function(r){return r[2]/Math.max(1,r[1]+r[2])*100;},
 function drawBreadth(){if(!R.breadth) return;segs('rk-bv',BVS.map(function(v,i){return [i,v[0]];}),BV,function(i){BV=i;ls('bv',i);drawBreadth();});
   var v=BVS[BV],L=[{n:'하이일드 (144A)',s:bser('a144','high yield',v[1])},{n:'하이일드 (공모)',s:bser('pub','high yield',v[1])},{n:'투자등급 (공모)',s:bser('pub','investment grade',v[1])},{n:'투자등급 (144A)',s:bser('a144','investment grade',v[1]),hide:true}];
   if(CH.br) CH.br.destroy();CH.br=lineChart(document.getElementById('rk-br'),L,{fmt:v[2],tick:v[2]});}
-function draw(){drawHY();drawDC();drawIss();drawCDS();drawBreadth();}
+function draw(){drawHY();drawDC();drawIss();drawCDS();drawVol();drawBreadth();}
 
 // ---- 부채 구조(참고) ----
 var dh='';Object.keys(R.debt).forEach(function(k){var t=R.debt[k];

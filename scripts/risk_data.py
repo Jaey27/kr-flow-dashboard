@@ -80,6 +80,16 @@ def norm_backer(t):
     return m.group(0) if m else None
 
 
+def _cdsvol() -> dict | None:
+    """하이퍼스케일러 CDS 일별 신규 체결 [건수, 명목 $M 하한, 상한 가림 건수] + 북미 IG CDX 5Y bp (risk_history.py cdsvol)"""
+    p = SRC / "cds_vol.json"
+    if not p.exists():
+        return None
+    v = json.loads(p.read_text(encoding="utf-8"))
+    return {"names": v.get("names"), "fetched": v.get("fetched"),
+            "days": [[d, x.get("vol") or {}, (x.get("cdxig") or {}).get("bp")] for d, x in sorted(v["days"].items())]}
+
+
 def clean_cds(rows: list) -> list:
     """upfront 역산은 부호를 몰라 가끔 반대쪽 해가 섞인다 → 직전 5개 중앙값 대비 0.5배 미만·2배 초과 점은 뺀다."""
     out = []
@@ -181,6 +191,7 @@ def main() -> int:
         "fred": json.loads((SRC / "fred_credit.json").read_text(encoding="utf-8")) if (SRC / "fred_credit.json").exists() else None,
         "hysplit": json.loads((SRC / "hy_split_ledger.json").read_text(encoding="utf-8")) if (SRC / "hy_split_ledger.json").exists() else None,
         "debt": {k: {"fields": v["fields"], "rows": v["rows"]} for k, v in seed.get("neocloud_issuance", {}).items()},
+        "cdsvol": _cdsvol(),
         "cds_src": cds.get("source"), "cds_method": cds.get("method"), "cds_caveat": cds.get("caveat"),
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

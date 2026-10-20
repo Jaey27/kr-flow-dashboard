@@ -2,6 +2,7 @@
 
     python scripts/risk_history.py finra   # FINRA TRACE 일별 가격·YTM (최근 1년) → data/risk/finra_eod_1y.json
     python scripts/risk_history.py cds     # DTCC 공개 CDS 체결(5Y on-the-run) 일별 → data/risk/cds_hist.json (일자별 캐시)
+    python scripts/risk_history.py cdsvol  # 하이퍼스케일러 CDS 거래 건수·명목(상한 가림 → 하한) + 북미 IG CDX 5Y 스프레드 → data/risk/cds_vol.json
 
 CDS 5Y 기준 만기는 롤(3/20·9/20)에 맞춰 바꾼다: ~2026-03-19 → 2030-12-20, 2026-03-20~09-19 → 2031-06-20, 2026-09-20~ → 2031-12-20.
 호가(Spread-Leg 1)가 찍힌 체결은 그대로, upfront 체결은 flat hazard(R=40%, r=3.7%)로 역산한다. upfront 부호가 없어서
@@ -205,6 +206,94 @@ def run_cds() -> None:
     (RISK / "cds_hist.json").write_text(json.dumps({"start": str(START), "fetched": dt.datetime.now().isoformat(timespec="minutes"), "days": res}), encoding="utf-8")
 
 
+# ---- CDS 거래량(하이퍼스케일러) + 북미 IG CDX ----------------------------------
+# SEC(단일종목) 파일: 신규 체결(NEWT) 건수와 명목. 큰 거래는 '5,000,000+'처럼 상한으로 가려 공개된다 → 명목 합계는 '최소'(하한).
+# CFTC(지수) 파일: CDX.NA.IG on-the-run 5Y 신규 체결 스프레드 중앙값(bp). 10/16 약 62bp(Bloomberg 차트 10월 수준과 일치 확인).
+VOLG = ["ORCL", "META", "GOOGL", "AMZN", "MSFT", "CRWV"]
+S3 = "https://kgc0418-tdw-data-0.s3.amazonaws.com"
+
+
+def _rows(url: str):
+    r = httpx.get(url, headers=UA, timeout=60)
+    time.sleep(1.0)
+    if r.status_code != 200:
+        return None
+    z = zipfile.ZipFile(io.BytesIO(r.content))
+    out = []
+    for n in z.namelist():
+        out += list(csv.DictReader(io.StringIO(z.read(n).decode("utf-8", "replace"))))
+    return out
+
+
+def otr5(d: dt.date) -> str:
+    """on-the-run 5Y 만기(롤 3/20·9/20): 9/20~3/19 거래 → (해+5 또는 +6)-12-20, 3/20~9/19 → (해+5)-06-20."""
+    if d >= dt.date(d.year, 9, 20):
+        return f"{d.year + 5}-12-20"
+    if d >= dt.date(d.year, 3, 20):
+        return f"{d.year + 5}-06-20"
+    return f"{d.year + 4}-12-20"
+
+
+def vol_day(d: dt.date) -> dict | None:
+    cache = RISK / "cdsvol_cache" / f"{d}.json"
+    if cache.exists():
+        return json.loads(cache.read_text(encoding="utf-8"))
+    sec = _rows(f"{S3}/sec/eod/SEC_CUMULATIVE_CREDITS_{d:%Y_%m_%d}.zip")
+    cftc = _rows(f"{S3}/cftc/eod/CFTC_CUMULATIVE_CREDITS_{d:%Y_%m_%d}.zip")
+    if sec is None and cftc is None:
+        if d < dt.date.today() - dt.timedelta(days=3):  # 오래된 날 = 휴장일 → 빈 캐시
+            cache.parent.mkdir(parents=True, exist_ok=True)
+            cache.write_text("{}", encoding="utf-8")
+        return None
+    if sec is None or cftc is None:  # 한쪽만 올라온 날은 다음 실행에 다시
+        return None
+    vol = {}
+    for row in sec:
+        if row.get("Action type") != "NEWT" or row.get("Notional currency-Leg 1") != "USD":
+            continue
+        nm = row.get("Underlying Asset Name", "")
+        g = next((g for g in VOLG if re.search(GROUPS[g], nm, re.I)), None)
+        if not g:
+            continue
+        a = row.get("Notional amount-Leg 1", "")
+        v = vol.setdefault(g, [0, 0.0, 0])
+        v[0] += 1
+        v[1] += num(a) or 0
+        v[2] += 1 if a.endswith("+") else 0
+    vol = {g: [v[0], round(v[1] / 1e6, 1), v[2]] for g, v in vol.items()}  # [건수, 명목 $M(하한), 상한 가림 건수]
+    mat, sp, n_all = otr5(d), [], 0
+    for row in cftc:
+        if (row.get("UPI Underlier Name") or "") != "CDX.NA.IG" or row.get("Action type") != "NEWT":
+            continue
+        n_all += 1
+        if row.get("Expiration Date") != mat:
+            continue
+        x = num(row.get("Spread-Leg 1"))
+        if x is not None and x > 0:
+            sp.append(x * 1e4 if x < 1 else x)
+    out = {"vol": vol, "cdxig": {"bp": round(st.median(sp), 1), "n": len(sp), "all": n_all} if sp else None}
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    cache.write_text(json.dumps(out), encoding="utf-8")
+    return out
+
+
+def run_cdsvol() -> None:
+    d, res = START, {}
+    while d <= dt.date.today():
+        if d.weekday() < 5:
+            try:
+                x = vol_day(d)
+                if x:
+                    res[str(d)] = x
+                    c = x.get("cdxig") or {}
+                    print(f"[cdsvol] {d} 건수 {sum(v[0] for v in x['vol'].values())} · IG CDX {c.get('bp')}bp", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[cdsvol] {d} 실패 {e}", flush=True)
+        d += dt.timedelta(days=1)
+    (RISK / "cds_vol.json").write_text(json.dumps({"start": str(START), "fetched": dt.datetime.now().isoformat(timespec="minutes"),
+                                                   "names": VOLG, "days": res}), encoding="utf-8")
+
+
 # ---- 관련 회사 주가(Yahoo, 제한 없음) ------------------------------------
 STOCKS = {"META": "META", "ORCL": "ORCL", "MSFT": "MSFT", "GOOGL": "GOOGL", "AMZN": "AMZN", "CRWV": "CRWV", "NBIS": "NBIS",
           "HUT": "HUT", "SPCX": "SPCX", "SBG": "9984.T", "NVDA": "NVDA", "WULF": "WULF", "CIFR": "CIFR", "APLD": "APLD", "GLXY": "GLXY", "CORZ": "CORZ", "CLSK": "CLSK"}
@@ -228,4 +317,4 @@ def run_stocks() -> None:
 
 
 if __name__ == "__main__":
-    {"finra": run_finra, "cds": run_cds, "stocks": run_stocks}[sys.argv[1]]()
+    {"finra": run_finra, "cds": run_cds, "cdsvol": run_cdsvol, "stocks": run_stocks}[sys.argv[1]]()

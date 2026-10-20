@@ -29,6 +29,7 @@ step "$PY" scripts/hy_split.py                   # HYG/LQD 보유종목 AI/비AI
 step "$PY" scripts/hy_split.py --fred            # ICE BofA OAS (FRED, UA=curl)
 step "$PY" scripts/risk_breadth.py               # FINRA 공식 API 시장 등락 (.env FINRA_CLIENT/SECRET)
 step "$PY" scripts/risk_history.py cds           # DTCC CDS (일자 캐시)
+step "$PY" scripts/risk_history.py cdsvol        # 하이퍼스케일러 CDS 거래 건수·명목 하한 + 북미 IG CDX (일자 캐시, 첫 실행만 2년치 ~20분)
 step "$PY" scripts/risk_history.py stocks        # 관련 회사 주가 (Yahoo)
 # FINRA 웹 채권 일별 — 아침(12시 전) 실행에서만(Jae 10/19: 조회 횟수 줄이기). 막히면 data/risk/FINRA_BLOCKED 남기고 자동 중단
 if [ "$(date +%H)" -lt 12 ]; then
