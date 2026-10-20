@@ -14,6 +14,7 @@ from pathlib import Path
 
 import render_macro
 import render_buyback
+import render_shlong
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "flows.json"
@@ -1157,6 +1158,8 @@ __BBHTML__
 <script>window.__SEIBRO__ = __SEIBRODATA__;</script>
 <script>__SEIBROJS__</script>
 <script>window.__BUYBACK__ = __BBDATA__;</script>
+<script>window.__SLONG__ = __SLDATA__;</script>
+<script>__SLJS__</script>
 <script>__BBJS__</script>
 </body>
 </html>
@@ -1168,6 +1171,8 @@ def build(flows: dict, hol: dict) -> str:
             .replace("__BBHTML__", render_buyback.BB_HTML)
             .replace("__BBDATA__", js_safe_json(json.loads(render_buyback.bb_data_json())))
             .replace("__BBJS__", script_safe(render_buyback.BB_JS))
+            .replace("__SLDATA__", js_safe_json(json.loads(render_shlong.sl_data_json())))
+            .replace("__SLJS__", script_safe(render_shlong.SL_JS))
             .replace("__MACROHTML__", render_macro.macro_html())
             .replace("__DATA__", js_safe_json(flows))
             .replace("__HOLDATA__", js_safe_json({"holidays": hol["holidays"]}))

@@ -23,3 +23,5 @@ logs/
 rates/data/
 rates/output/
 data/buyback.json
+data/stock_long.json
+data/stock_long_cache.json

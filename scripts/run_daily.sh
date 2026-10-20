@@ -39,6 +39,7 @@ step "$PY" scripts/fss_fetch.py                  # 금감원 외국인 증권투
 step "$PY" scripts/seibro_flow.py                # SEIBro 한국인 미국주식 결제·보관 + 종목 TOP50(일자 캐시)
 step "$PY" cpi_dashboard/scripts/run_cpi.py --no-send   # CPI(발표일에만 재빌드)
 [ -f cpi_dashboard/cpi.html ] && cp cpi_dashboard/cpi.html docs/cpi.html
+step "$PY" scripts/stock_long.py                 # 삼성·하이닉스 외국인 보유 5년(네이버 보유율·종가 + 다음 보유주식 수) — 외국인 보유 탭 카드
 step "$PY" scripts/buyback_fetch.py               # 자사주 매입(buyback-dashboard 공개 리포 data/buyback.json) — 수급 탭 「자사주 매입」
 step "$PY" scripts/risk_data.py
 step "$PY" scripts/render.py --docs
