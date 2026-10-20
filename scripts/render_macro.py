@@ -495,7 +495,7 @@ function drawHY(){
   if(HV===0) L=[{n:'하이일드 전체',s:frs('hy'),c:'#F2FFFC'},{n:'BB등급',s:frs('bb'),c:'#3987e5'},{n:'B등급',s:frs('b'),c:'#d4a72c'},{n:'CCC등급',s:frs('ccc'),c:'#d55181',hide:true},{n:'투자등급',s:frs('ig'),c:'#2aa58a'}];
   else if(HV===1) L=[{n:'하이일드 − 투자등급',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
   else L=[{n:'하이일드 전체 (국채 대비)',s:frs('hy'),c:'#F2FFFC'},{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
-          {n:'AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3'},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3'},
+          {n:'HY 중 AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3'},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3'},
           {n:'AI − 비AI',s:aiH.filter(function(r){return nonM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-nonM[r[0]])*10)/10];}),c:'rgba(232,130,58,.45)',hide:true}];
   if(CH.hy) CH.hy.destroy();CH.hy=lineChart(document.getElementById('rk-hyc'),L,{fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});
   // AI 기여도: 기간 중 HY 변화 vs AI 비중 × AI 변화
