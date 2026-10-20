@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 import render_macro
+import render_buyback
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "flows.json"
@@ -911,16 +912,18 @@ function setTab(t){
   TAB=t;ls('tab',t);
   document.getElementById('tab-market').hidden=t!=='market';
   document.getElementById('tab-foreign').hidden=t!=='foreign';
+  var bbt=document.getElementById('tab-buyback');if(bbt) bbt.hidden=t!=='buyback';
   document.getElementById('tab-sector').hidden=t!=='sector';
   document.getElementById('tab-macro').hidden=t!=='macro';
   document.getElementById('tab-risk').hidden=t!=='risk';
   document.getElementById('tab-econ').hidden=t!=='econ';
-  var FL=['market','foreign','sector'].indexOf(t)>=0;if(FL) ls('flowsub',t);
-  document.querySelector('.range-bar').hidden=!FL;document.getElementById('subnav-row').hidden=!FL;
+  var FL=['market','foreign','sector','buyback'].indexOf(t)>=0;if(FL) ls('flowsub',t);
+  document.querySelector('.range-bar').hidden=!FL||t==='buyback';document.getElementById('subnav-row').hidden=!FL;
   Array.prototype.forEach.call(document.querySelectorAll('#tabs .nav-link[data-top]'),function(b){var on=b.getAttribute('data-top')===(FL?'flow':t);b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
   if(t==='econ'&&window.ECON) window.ECON.show();
   if(t==='risk'&&window.RISK) window.RISK.show();
   if(t==='macro'&&window.MACRO) window.MACRO.show();
+  if(t==='buyback'&&window.BUYBACK) window.BUYBACK.show();
   Array.prototype.forEach.call(document.querySelectorAll('#subtabs .nav-link[data-tab]'),function(b){var on=b.getAttribute('data-tab')===t;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
   CARDS.forEach(function(c){if((c.p.tab||'market')===t&&c.chart) c.chart.resize();});
   if(t==='sector'){renderSector();setTimeout(renderSector,60);}
@@ -1057,6 +1060,7 @@ HTML = r"""<!DOCTYPE html>
 </nav></div>
 <div class="top-nav-row" id="subnav-row" hidden><nav class="top-nav sub-nav" id="subtabs" aria-label="수급 보기">
   <button class="nav-link active" data-tab="market" type="button">시장 수급</button>
+  <button class="nav-link" data-tab="buyback" type="button">자사주 매입</button>
   <button class="nav-link" data-tab="foreign" type="button">외국인 보유 · 삼성/하이닉스</button>
   <button class="nav-link" data-tab="sector" type="button">섹터 수급</button>
   <a class="nav-link" href="sector.html">섹터 일·주간 ↗</a>
@@ -1082,6 +1086,7 @@ __MACROHTML__
 <div class="tiles" id="tiles"></div>
 <div class="grid" id="grid"></div>
 </div>
+__BBHTML__
 <div id="tab-foreign" hidden>
 <div id="grid2top" class="grid2top"></div>
 <section class="card claim" id="claim">
@@ -1151,13 +1156,18 @@ __MACROHTML__
 <script>__RISKJS__</script>
 <script>window.__SEIBRO__ = __SEIBRODATA__;</script>
 <script>__SEIBROJS__</script>
+<script>window.__BUYBACK__ = __BBDATA__;</script>
+<script>__BBJS__</script>
 </body>
 </html>
 """
 
 
 def build(flows: dict, hol: dict) -> str:
-    return (HTML.replace("__CSS__", CSS + render_macro.MACRO_CSS)
+    return (HTML.replace("__CSS__", CSS + render_macro.MACRO_CSS + render_buyback.BB_CSS)
+            .replace("__BBHTML__", render_buyback.BB_HTML)
+            .replace("__BBDATA__", js_safe_json(json.loads(render_buyback.bb_data_json())))
+            .replace("__BBJS__", script_safe(render_buyback.BB_JS))
             .replace("__MACROHTML__", render_macro.macro_html())
             .replace("__DATA__", js_safe_json(flows))
             .replace("__HOLDATA__", js_safe_json({"holidays": hol["holidays"]}))
