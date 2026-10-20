@@ -491,6 +491,8 @@ function labelOf(sp){return sp.short||sp.name;}
 function labelPad(view){measureCtx.font=LABEL_FONT;var w=0;
   view.series.forEach(function(sp){if(!sp.points) w=Math.max(w,measureCtx.measureText(labelOf(sp)).width);});
   return Math.ceil(w)+22;}
+// 겹치기 지수: 보기 이름이 '코스닥'(코스피 언급 없음)이면 코스닥, 아니면 코스피 (Jae 10/21)
+function ovKD(view){return /코스닥/.test(view.label||'')&&!/코스피/.test(view.label||'');}
 function ovOn(card,view){return !!card&&card.ov&&card.p.id!=='index'&&!view.series.some(function(sp){return sp.axis==='y1';});}
 function datasets(view,card){
   var out=view.series.map(function(sp,j){
@@ -509,7 +511,7 @@ function datasets(view,card){
     if(sp.axis==='y1') o.yAxisID='y1';
     return o;
   });
-  if(ovOn(card,view)) out.push({type:'line',label:'코스피',isOv:true,data:slice('idx_kospi',false),borderColor:'rgba(157,179,176,.6)',backgroundColor:'rgba(157,179,176,.6)',
+  if(ovOn(card,view)) out.push({type:'line',label:ovKD(view)?'코스닥':'코스피',isOv:true,data:slice(ovKD(view)?'idx_kosdaq':'idx_kospi',false),borderColor:'rgba(157,179,176,.6)',backgroundColor:'rgba(157,179,176,.6)',
     borderWidth:1.2,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,yAxisID:'y1',order:9});
   return out;
 }
@@ -538,7 +540,7 @@ function config(card){
           filter:function(it){return it.raw!=null;},
           callbacks:{
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
-            label:function(it){if(it.dataset.isOv) return ' 코스피  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw))+shTxt(sp,W.i0+it.dataIndex);},
+            label:function(it){if(it.dataset.isOv) return ' '+it.dataset.label+'  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw))+shTxt(sp,W.i0+it.dataIndex);},
             labelColor:function(it){if(it.dataset.isOv) return {borderColor:'#9db3b0',backgroundColor:'#9db3b0',borderRadius:2};var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
               if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
@@ -583,7 +585,7 @@ function buildCard(p){
   }
   card.ov=ls('ov.'+p.id)!=='0';
   if(p.id!=='index'){var ob=el('button','tbl-btn'+(card.ov?' on':''),'코스피');ob.type='button';ob.title='코스피를 회색 선(오른쪽 축)으로 겹치기';
-    ob.onclick=function(){card.ov=!card.ov;ls('ov.'+p.id,card.ov?'1':'0');ob.classList.toggle('on',card.ov);rebuild(card);};tools.appendChild(ob);}
+    ob.onclick=function(){card.ov=!card.ov;ls('ov.'+p.id,card.ov?'1':'0');ob.classList.toggle('on',card.ov);rebuild(card);};tools.appendChild(ob);card.ob=ob;}
   var tb=el('button','tbl-btn','표');tb.type='button';tb.title='현재 기간의 값을 표로 보기';
   tb.onclick=function(){card.table=!card.table;tb.classList.toggle('on',card.table);renderTable(card);};
   tools.appendChild(tb);
@@ -598,6 +600,7 @@ function buildCard(p){
 
 function rebuild(card){
   var view=card.p.views[card.v];
+  if(card.ob){card.ob.textContent=ovKD(view)?'코스닥':'코스피';card.ob.title=card.ob.textContent+'를 회색 선(오른쪽 축)으로 겹치기';}
   if(card.seg) Array.prototype.forEach.call(card.seg.children,function(b,i){b.classList.toggle('on',i===card.v);b.setAttribute('aria-selected',i===card.v);});
   if(card.chart) card.chart.destroy();
   var cfg=config(card);cfg.type=view.type==='bar'?'bar':'line';

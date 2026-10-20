@@ -95,12 +95,13 @@ MACRO_CSS = r"""
 .mx-sum{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}.mx-sum span{font-size:12.5px;padding:4px 10px;border-radius:8px;background:rgba(157,179,176,.10);font-variant-numeric:tabular-nums}
 .ov-btn{padding:3px 10px;border-radius:999px;font-size:11.5px;color:var(--text-dim);background:rgba(151,252,228,.04);border:1px solid rgba(151,252,228,.12);cursor:pointer}.ov-btn.on{color:var(--bg-0);background:#9db3b0;border-color:#9db3b0;font-weight:700}
 .rk-below{color:var(--down);font-size:10px;margin-right:3px}.rk-fit td,.rk-fit th{white-space:normal!important;vertical-align:top}.rk-fit .rk-wrap{min-width:160px;max-width:none}.rk-src{font-size:10.5px;color:var(--hl-teal);text-decoration:none;font-weight:500;white-space:nowrap}.rk-src:hover,.rk-name:hover{text-decoration:underline}.rk-name{color:var(--text);text-decoration:none}
-.rk-grow td{background:rgba(151,252,228,.06);color:var(--hl-teal);font-weight:700;font-size:11.5px}.rk-tag{font-size:10px;padding:0 5px;border-radius:4px;background:rgba(157,179,176,.15);color:var(--text-muted)}.rk-wrap{white-space:normal!important;min-width:180px;max-width:300px}.rk-hy{grid-template-columns:repeat(6,1fr)}@media (max-width:1100px){.rk-hy{grid-template-columns:repeat(3,1fr)}}#tab-risk .card-tools{max-width:100%;min-width:0;flex-wrap:wrap}#tab-risk .card-tools .seg{flex-wrap:wrap;border-radius:14px}#tab-risk .card-head > div:first-child{min-width:0}#rk-grp,#rk-ism,#rk-cg,#rk-dcm,#rk-dcg{max-width:100%;overflow-x:auto}@media (max-width:560px){.rk-hy{grid-template-columns:1fr 1fr}}
+.rk-grow td{background:rgba(151,252,228,.06);color:var(--hl-teal);font-weight:700;font-size:11.5px}.rk-sub{font-size:11px;color:var(--text-muted);font-weight:400}.rk-tag{font-size:10px;padding:0 5px;border-radius:4px;background:rgba(157,179,176,.15);color:var(--text-muted)}.rk-wrap{white-space:normal!important;min-width:180px;max-width:300px}.rk-hy{grid-template-columns:repeat(6,1fr)}@media (max-width:1100px){.rk-hy{grid-template-columns:repeat(3,1fr)}}#tab-risk .card-tools{max-width:100%;min-width:0;flex-wrap:wrap}#tab-risk .card-tools .seg{flex-wrap:wrap;border-radius:14px}#tab-risk .card-head > div:first-child{min-width:0}#rk-grp,#rk-ism,#rk-cg,#rk-dcm,#rk-dcg{max-width:100%;overflow-x:auto}@media (max-width:560px){.rk-hy{grid-template-columns:1fr 1fr}}
 .ec-tbl td.next{color:var(--hl-teal);font-weight:700}
 
 /* 전체화면(차트 카드) — iOS 는 요소 Fullscreen API 가 없어 CSS 오버레이로 처리 */
 .fs-btn{padding:3px 9px;border-radius:999px;font-size:13px;line-height:1.2;color:var(--text-dim);background:rgba(151,252,228,.04);border:1px solid rgba(151,252,228,.12);cursor:pointer}
 .fs-btn:hover{color:var(--hl-teal)}
+.card.fs .cl-btn{display:none}
 .card.fs{position:fixed!important;inset:0;z-index:1000;margin:0!important;border-radius:0;overflow:auto;background:#061E20;
   padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
 .card.fs .chart-box,.card.fs .mx-box,.card.fs .rank-box{height:calc(100dvh - 150px)!important;min-height:220px}
@@ -157,7 +158,7 @@ MACRO_HTML = r"""
   <div class="range-dates"><input id="rk-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2025-06-01, 250601, 6/1)"><span>~</span><input id="rk-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="rk-rlab"></span></div>
   <span class="asof" id="rk-asof"></span></div>
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
-<section class="card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
+<section class="card" id="rk-iss-card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
   <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-grp"></div><div class="seg" id="rk-ism"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-iss"></canvas></div></section>
 <section class="card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
@@ -410,10 +411,10 @@ FS_JS = r"""
 'use strict';
 // 차트가 있는 모든 카드에 ⛶ 버튼. 섹터 탭처럼 나중에 그려지는 카드도 잡으려고 MutationObserver 로 다시 훑는다.
 var SEL='.chart-box,.mx-box,.rank-box,.heat-box';
-function close(c){c.classList.remove('fs');document.body.classList.remove('fs-lock');var b=c.querySelector('.fs-btn');if(b){b.textContent='⛶';b.title='전체화면';}
+function close(c){c.classList.remove('fs');document.body.classList.remove('fs-lock');var b=c.querySelector('.fs-btn:not(.cl-btn)');if(b){b.textContent='⛶';b.title='전체화면';}
   setTimeout(function(){window.dispatchEvent(new Event('resize'));},30);}
 function open(c){var o=document.querySelector('.card.fs');if(o) close(o);c.classList.add('fs');document.body.classList.add('fs-lock');
-  var b=c.querySelector('.fs-btn');if(b){b.textContent='✕';b.title='닫기 (Esc)';}c.scrollTop=0;
+  var b=c.querySelector('.fs-btn:not(.cl-btn)');if(b){b.textContent='✕';b.title='닫기 (Esc)';}c.scrollTop=0;
   setTimeout(function(){window.dispatchEvent(new Event('resize'));},30);}
 function scan(){Array.prototype.forEach.call(document.querySelectorAll('section.card'),function(c){
   if(c.dataset.fs||!c.querySelector(SEL)) return;var hd=c.querySelector('.card-head');if(!hd) return;c.dataset.fs='1';
@@ -428,7 +429,7 @@ function cl(c,on){c.classList.toggle('cl',on);var b=c.querySelector('.cl-btn');i
 function scanCl(){Array.prototype.forEach.call(document.querySelectorAll('section.card'),function(c){
   if(c.dataset.cl) return;var hd=c.querySelector(':scope > .card-head');if(!hd) return;c.dataset.cl='1';
   var tl=hd.querySelector(':scope > .card-tools');if(!tl){tl=document.createElement('div');tl.className='card-tools';hd.appendChild(tl);}
-  var b=document.createElement('button');b.type='button';b.className='fs-btn cl-btn';b.textContent='▾';b.title='접기';b.onclick=function(){cl(c,!c.classList.contains('cl'));};tl.appendChild(b);
+  var b=document.createElement('button');b.type='button';b.className='fs-btn cl-btn';b.textContent='▾';b.title='접기';b.onclick=function(){if(c.classList.contains('fs')){close(c);return;}cl(c,!c.classList.contains('cl'));};tl.appendChild(b);
   var on=null;try{on=localStorage.getItem(ckey(c));}catch(e){}if(on===null) on=DEFCL.indexOf(c.id)>=0?'1':'0';if(on==='1') cl(c,true);});}
 scanCl();new MutationObserver(function(){setTimeout(scanCl,120);}).observe(document.body,{childList:true,subtree:true});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=document.querySelector('.card.fs');if(o) close(o);}});
@@ -515,6 +516,7 @@ var h='<div style="overflow-x:auto"><table class="mx-tbl rk-tbl"><thead><tr><th 
 R.issuers.forEach(function(i){var b=i.bond,r=i.rating,c=i.cds;
   var rt='<span title="'+esc('Moody\'s '+(r.m||'–')+' / S&P '+(r.sp||'–')+' / Fitch '+(r.f||'–')+(r.act?' · '+r.act:'')+(r.note?' · '+r.note:''))+'">'+short(r.m)+' / '+short(r.sp)+' / '+short(r.f)+'</span>';
   var bd=cp(b.coupon)+' '+(b.maturity?b.maturity.slice(0,4):'')+(b.conv?' 전환사채':'')+(b.is144a?' <span class="rk-tag">144A</span>':'');
+  var sh=i.share;if(sh&&(sh.amt||sh.total)) bd+='<br><span class="rk-sub" title="'+esc((sh.basis||'')+(sh.note?' · '+sh.note:''))+'">'+(sh.pct!=null?'회사 전체 부채의 '+nf(sh.pct,1)+'% · ':'')+'$'+(sh.amt?nf(sh.amt/1e9,2)+'B':'–')+' / $'+(sh.total?nf(sh.total/1e9,1)+'B':'미확인')+'</span>';
   var px=b.price!=null?(b.price<100?'<span class="rk-below" title="액면가(100) 아래">▼</span>':'')+nf(b.price,2):'–';
   h+='<tr><td class="l"><b>'+i.tk+'</b>'+(r.src&&/^http/.test(r.src)?' <a class="rk-src" href="'+esc(String(r.src).split(' ')[0])+'" target="_blank" rel="noopener">등급↗</a>':'')+(c&&c.news&&/http/.test(c.news)?' <a class="rk-src" href="'+esc((String(c.news).match(/https?:\/\/\S+/)||[''])[0])+'" target="_blank" rel="noopener">CDS↗</a>':'')+'</td><td class="l">'+rt+'</td><td class="l" title="'+esc((b.cusip||'')+' · '+(b.basis||''))+'">'+bd+'</td><td>'+px+'</td><td>'+sg(chg(i.series,21),2)+'</td><td>'+nf(b.ytm,2)+'%</td><td>'+(b.g!=null?nf(b.g,0):'–')+'</td>'+
     '<td title="'+esc(c&&c.news?c.news:'')+'">'+(c?esc(c.txt)+(c.ccy?' '+c.ccy:''):'미확인')+'</td><td>'+md(b.asof)+'</td></tr>';});

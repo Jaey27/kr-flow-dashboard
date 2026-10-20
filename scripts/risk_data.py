@@ -80,6 +80,17 @@ def norm_backer(t):
     return m.group(0) if m else None
 
 
+def _share(tk: str) -> dict | None:
+    """최고 YTM 채권 발행액 ÷ 회사 총 부채(회사채+장기차입) — data/manual/bond_share.json (출처 포함, 수동 조사)"""
+    p = ROOT / "data" / "manual" / "bond_share.json"
+    if not p.exists():
+        return None
+    x = (json.loads(p.read_text(encoding="utf-8")).get("issuers") or {}).get(tk) or {}
+    a, t = x.get("bond_amount_usd"), x.get("total_debt_usd")
+    return {"amt": a, "total": t, "pct": round(a / t * 100, 1) if a and t else None,
+            "basis": x.get("total_basis"), "src": x.get("total_src"), "note": x.get("note")}
+
+
 def _cdsvol() -> dict | None:
     """하이퍼스케일러 CDS 일별 신규 체결 [건수, 명목 $M 하한, 상한 가림 건수] + 북미 IG CDX 5Y bp (risk_history.py cdsvol)"""
     p = SRC / "cds_vol.json"
@@ -127,6 +138,7 @@ def main() -> int:
                      "amount": hb.get("amount_usd", t.get("amount_usd")), "price": hb.get("price_inst_median"), "ytm": hb.get("yield_inst_median"),
                      "g": hb.get("g_spread_bp_approx"), "asof": hb.get("asof"), "basis": hb.get("basis"), "note": hb.get("note"),
                      "is144a": t.get("is_144a"), "conv": tk == "NBIS"},
+            "share": _share(tk),
             "cds": cds_of(cds, tk),
             "series": eod_series(eod, EOD_KEY.get(tk, tk)),
             "cds_series": clean_cds([[d, v[tk]["bp"], v[tk]["kind"][0]] for d, v in sorted(cdsd.items()) if tk in v]),
