@@ -5,7 +5,7 @@
 #  (CLI 헤드리스 claude -p 에는 Artifact 도구가 없어서 게시는 앱 세션이 맡는다 — 10/19 맥미니 시험)
 #
 #  하는 일: 아침 run_daily 가 끝났는지 확인 → 오늘 data 로 render.py 를 따로 돌려 logs/playbook/dash.html 생성
-#  출력 마지막 줄: READY <파일> <bytes> <generated_at>  또는  SKIP <이유>
+#  출력: (px.json 성공 시) PX <파일> 한 줄 → 마지막 줄 READY <파일> <bytes> <generated_at>  또는  SKIP <이유>
 # ---------------------------------------------------------------------------
 set -uo pipefail
 cd "$(dirname "$0")/.."
@@ -26,6 +26,12 @@ LOG="$ROOT/logs/daily_$(date +%Y%m%d).log"
 
 "$PY" scripts/render.py --out "$OUT" >/dev/null 2>&1 || { echo "SKIP render.py 실패"; exit 1; }
 [ -s "$OUT" ] || { echo "SKIP 출력 파일 없음"; exit 1; }
+# 이벤트 리스트 수익률용 주가(px.json, 10/20 추가). 실패해도 dash.html 게시는 그대로 진행(페이지는 내장/직전 주가로 표시)
+if "$PY" scripts/playbook_px.py --out "$OUT_DIR/px.json" >/dev/null 2>&1 && [ -s "$OUT_DIR/px.json" ]; then
+  echo "PX $OUT_DIR/px.json"
+else
+  echo "PX-FAIL playbook_px.py 실패(px.json 은 이번엔 넘기지 않음)"
+fi
 SIZE=$(wc -c <"$OUT" | tr -d ' ')
 GEN=$(grep -o '"generated_at": *"[^"]*"' "$OUT" | head -1 | cut -d'"' -f4)
 WARN=$(grep -c '^\[WARN\]' "$LOG" 2>/dev/null || true)
