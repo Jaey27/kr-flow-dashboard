@@ -96,7 +96,7 @@ def bucket(rows, asof, pts):
             "n": out["n"], "mv_bn": round(out["mv"] / 1e9, 2)}
 
 
-FRED_IDS = {"hy": "BAMLH0A0HYM2", "ig": "BAMLC0A0CM", "bb": "BAMLH0A1HYBB", "b": "BAMLH0A2HYB", "ccc": "BAMLH0A3HYC"}
+FRED_IDS = {"hy": "BAMLH0A0HYM2", "ig": "BAMLC0A0CM", "bb": "BAMLH0A1HYBB", "b": "BAMLH0A2HYB", "ccc": "BAMLH0A3HYC", "bbb": "BAMLC0A4CBBB"}  # FRED 는 ICE BofA 등급별을 최근 3년만 공개
 
 
 def fetch_fred() -> None:
