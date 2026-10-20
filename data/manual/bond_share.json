@@ -1,0 +1,96 @@
+{
+ "asof": "2026-10-20",
+ "issuers": {
+  "ORCL": {
+   "bond_amount_usd": 2750000000.0,
+   "bond_src": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526037840/d23732d8k.htm",
+   "total_debt_usd": 125337000000.0,
+   "total_basis": "known",
+   "total_src": "known (risk_seed/dc_more)",
+   "note": "Issued amount $2,750,000,000 6.850% Notes due 2066 (8-K 2026-02-04, settled 2026-02-04). CUSIP 68389XEC5 confirmed in pricing term sheet FWP https://www.sec.gov/Archives/edgar/data/1341439/000119312526033882/d44245dfwp.htm . Outstanding assumed = issued (no repurchase found; not separately itemized in 10-Q 8/31/26).",
+   "pct_of_total": 2.19
+  },
+  "META": {
+   "bond_amount_usd": 2500000000.0,
+   "bond_src": "https://www.sec.gov/Archives/edgar/data/1326801/000119312523134410/d468942d8k.htm",
+   "total_debt_usd": 83664000000.0,
+   "total_basis": "known",
+   "total_src": "known (risk_seed/dc_more)",
+   "note": "Issued $2,500,000,000 5.600% Senior Notes due 2053 on 2023-05-03. Outstanding assumed = issued (no repurchase found). 10-Q 6/30/26 states $84.00B aggregate principal of Notes outstanding (vs known carrying $83.664B).",
+   "pct_of_total": 2.99
+  },
+  "AMZN": {
+   "bond_amount_usd": 3000000000.0,
+   "bond_src": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926027729/tm266670d8_8k.htm",
+   "total_debt_usd": 132224000000.0,
+   "total_basis": "known",
+   "total_src": "known (risk_seed/dc_more)",
+   "note": "Issued $3,000,000,000 6.050% notes due 2076 (8-K 2026-03-13, underwriting agmt 2026-03-10). Outstanding assumed = issued.",
+   "pct_of_total": 2.27
+  },
+  "MSFT": {
+   "bond_amount_usd": 3750000000.0,
+   "bond_src": "https://www.sec.gov/Archives/edgar/data/789019/000119312520157234/d829164d8k.htm",
+   "total_debt_usd": 40294000000.0,
+   "total_basis": "known",
+   "total_src": "known (risk_seed/dc_more)",
+   "note": "Issued $3,750,000,000 2.675% Notes due 2060 on 2020-06-01 via exchange offer. FY26 10-K debt table shows '2020 issuance' bucket face value $10,111M unchanged FY25->FY26, so no retirement evident; outstanding assumed = issued. 10-K: https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+   "pct_of_total": 9.31
+  },
+  "GOOGL": {
+   "bond_amount_usd": 2750000000.0,
+   "bond_src": "https://www.sec.gov/Archives/edgar/data/1652044/000119312525269979/d56115d8k.htm",
+   "total_debt_usd": 100164000000.0,
+   "total_basis": "known",
+   "total_src": "known (risk_seed/dc_more)",
+   "note": "Issued $2,750,000,000 5.700% notes due 2075 (8-K 2025-11-06). Outstanding assumed = issued.",
+   "pct_of_total": 2.75
+  },
+  "SBG": {
+   "bond_amount_usd": 4500000000.0,
+   "bond_src": "https://group.softbank/en/news/press/20260924",
+   "total_debt_usd": 75325000000.0,
+   "total_basis": "SoftBank Group Corp. (parent/standalone) interest-bearing debt JPY 12,232.0B as of 2026-06-30 (Q1 FY2026 Consolidated Financial Report, printed p.23), converted at JPY 162.39/USD (period-end rate, Note 6 of same report). Consolidated interest-bearing debt = JPY 7,559,173M current + JPY 19,085,685M non-current = JPY 26,644.9B = $164.08B (Note 4, printed p.55).",
+   "total_src": "https://group.softbank/media/Project/sbg/sbg/pdf/ir/financials/financial_reports/financial-report_q1fy2026_01_en.pdf",
+   "total_debt_consolidated_usd": 164080000000.0,
+   "note": "Bond: USD 4,500M 9.750% due 2034-04-01, expected issue date 2026-09-29 (press release gives JPY 712.4B, implied 158.3 JPY/USD). Denominator is 6/30/26, i.e. BEFORE this bond (and the rest of the ~$11.1B Sep-2026 package, plus $10B July 2026 subsidiary bridge draw) -> share is overstated vs a pro forma base. Bond = 6.0% of parent debt, 2.7% of consolidated. Consolidated includes non-recourse debt of SoftBank Corp./Arm/SVF etc.",
+   "pct_of_total": 5.97
+  },
+  "CRWV": {
+   "bond_amount_usd": 2750000000.0,
+   "bond_src": "known (risk_seed/dc_more)",
+   "total_debt_usd": 35551000000.0,
+   "total_basis": "10-Q 6/30/26 Note 10 Debt: principal recourse $31,832M + non-recourse $3,719M = $35,551M (= XBRL DebtInstrumentCarryingAmount 2026-06-30). Net of discount/issuance costs: $31,405M + $3,663M = $35,068M. Excludes finance leases.",
+   "total_src": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/crwv-20260630.htm",
+   "note": "10-Q table confirms '2031 9.75% Senior Notes' $2,750M. After 6/30: $4.2B 2.875% Convertible Notes due 2033 issued 2026-09-22 (8-K https://www.sec.gov/Archives/edgar/data/1769628/000176962826000432/crwv-20260917.htm), new $2.6B DDTL 5.5 facility 2026-08-07 (draws unknown), 8-K also references 8.500% senior notes due 2032 (likely the EUR 2032 notes - unverified). Pro forma total >= $39.75B -> share ~6.9%.",
+   "pct_of_total": 7.74
+  },
+  "NBIS": {
+   "bond_amount_usd": 2300000000.0,
+   "bond_src": "known (risk_seed/dc_more)",
+   "total_debt_usd": 15038500000.0,
+   "total_basis": "PRO FORMA principal: 6/30/26 convertible principal $10,041.8M (6-K Ex.99.2 Note 12) + Aug-24-2026 issuance $5,750M (0.50% 2030 $3.45B + 4.50% 2034 $2.3B) - $800M original principal of 2029/2031 notes exchanged for shares + $46.7M 'Debt, current' (balance sheet) = $15,038.5M. Reported 6/30/26 carrying debt = $46.7M + $8,499.0M = $8,545.7M.",
+   "total_src": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm ; issuance: https://www.sec.gov/Archives/edgar/data/1513845/000110465926100347/tm2623863d1_ex99-1.htm",
+   "note": "4.50% 2034 is a CONVERTIBLE senior note ($2.3B incl. $300M greenshoe), closed 2026-08-24, after the latest balance sheet - hence pro forma denominator. Pro forma is my arithmetic (not company-reported); exchanged $800M may differ slightly from accreted amounts. vs reported 6/30 principal alone ($10.09B) the share would be 22.8%.",
+   "pct_of_total": 15.29
+  },
+  "HUT": {
+   "bond_amount_usd": 3250000000.0,
+   "bond_src": "known (risk_seed/dc_more)",
+   "total_debt_usd": 7738407000.0,
+   "total_basis": "10-Q 6/30/26 Note 9 'Total principal and other financial liability balances' $7,738.407M (XBRL DebtInstrumentCarryingAmount $7,735.104M excludes $3.3M other financial liability).",
+   "total_src": "https://www.sec.gov/Archives/edgar/data/1964789/000110465926090025/hut-20260630x10q.htm",
+   "note": "River Bend Notes 6.192% due 2042-11-15 issued 2026-04-30 by Hut 8 DC LLC, an indirect wholly owned subsidiary -> CONSOLIDATED in Hut 8 Corp. totals; secured by Hut 8 DC assets (project financing, lease to Fluidstack with Google backstop). Total also includes Beacon Point Notes 6.129% 2042 $4,250M. New $1.07B revolver 2026-09-24 had $0 drawn at closing.",
+   "pct_of_total": 42.0
+  },
+  "SPCX": {
+   "bond_amount_usd": 3500000000.0,
+   "bond_src": "known (risk_seed/dc_more)",
+   "total_debt_usd": 38433000000.0,
+   "total_basis": "10-Q 6/30/26 Note 9 Debt: total debt principal $38,433M (SpaceX Notes $25,000M + X 2027/2030 Notes $27M + Other financings $13,406M); net $38,285M; excl. finance leases $1,079M.",
+   "total_src": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+   "note": "SpaceX is now SEC-registered (IPO June 2026, CIK 1181412, files 10-Q) - so audited/reviewed figures exist; not private. 6.65% 2056 is one of 5 tranches of the $25B June-2026 SpaceX Notes. 'Other financings' include failed sale-leaseback AI infra obligations. Cursor acquisition (8/14/26) was stock-based.",
+   "pct_of_total": 9.11
+  }
+ }
+}
