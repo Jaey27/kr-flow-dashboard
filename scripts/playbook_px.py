@@ -7,6 +7,8 @@
 - 종목은 페이지 내장 PX 와 같은 8개. 늘리려면 페이지 PX(이름·통화)도 같이 넣어야 한다.
 - Yahoo chart API 일봉(range=2y), adjclose 우선(없으면 close). 429면 query2로 바꿔 재시도.
 - 하나라도 실패하면 그 종목은 빼고 meta.failed 에 적는다. 전부 실패하면 파일을 쓰지 않고 exit 1.
+- KOSPI(^KS11)·KOSDAQ(^KQ11)은 Yahoo 가 최근 며칠을 null 로 비워 두는 일이 있다(10/23 실측: 10/21·10/22 null → 페이지가 10/20 에서 멈춤).
+  그래서 대시보드가 쌓는 다음 지수 원장(data/ledger/daum_index.json, 장중 당일·잠정 행 제외)으로 빈 날짜를 채운다(겹치는 날은 다음 값, 10/20 값 일치 확인).
 """
 from __future__ import annotations
 
@@ -19,6 +21,8 @@ from pathlib import Path
 
 import httpx
 
+LEDGER = Path(__file__).resolve().parent.parent / "data" / "ledger" / "daum_index.json"
+DAUM_KEY = {"^KS11": "kospi", "^KQ11": "kosdaq"}
 SYMS = ["^IXIC", "^GSPC", "^KS11", "^KQ11", "NVDA", "005930.KS", "000660.KS", "^TNX"]
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"}
 KST = timezone(timedelta(hours=9))
@@ -56,6 +60,30 @@ def fetch(sym: str, rng: str) -> dict:
     return {"dates": ds, "close": [out[d] for d in ds]}
 
 
+def fill_daum(series: dict, failed: list) -> None:
+    """KOSPI·KOSDAQ 를 다음 지수 원장으로 보강. Yahoo 가 아예 실패했으면 원장만으로 만든다."""
+    try:
+        led = json.loads(LEDGER.read_text(encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[px] 다음 지수 원장 읽기 실패 {e}", file=sys.stderr)
+        return
+    prov = set(led.get("prov") or [])
+    for sym, key in DAUM_KEY.items():
+        daum = {d: float(r[key]) for d, r in (led.get("rows") or {}).items() if d not in prov and isinstance(r.get(key), (int, float))}
+        if not daum:
+            continue
+        cur = series.get(sym)
+        start = cur["dates"][0] if cur else (datetime.now(KST).date() - timedelta(days=730)).isoformat()
+        m = dict(zip(cur["dates"], cur["close"])) if cur else {}
+        m.update({d: round(v, 4) for d, v in daum.items() if d >= start})
+        ds = sorted(m)
+        if len(ds) < 50:
+            continue
+        series[sym] = {"dates": ds, "close": [m[d] for d in ds]}
+        if not cur:
+            failed[:] = [f for f in failed if not f.startswith(sym + ":")]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="logs/playbook/px.json")
@@ -68,6 +96,7 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — 종목 하나 실패는 건너뛰고 기록
             failed.append(f"{s}: {str(e)[:80]}")
         time.sleep(0.4)
+    fill_daum(series, failed)
     if not series:
         print("FAIL 전 종목 실패", failed, file=sys.stderr)
         return 1
