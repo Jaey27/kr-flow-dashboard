@@ -382,7 +382,7 @@ var PANELS=[
     {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
     {label:'K200 선물',type:'line',unit:'idx',series:[{k:'fut_price',name:'코스피200 선물(최다 거래 월물)',color:COL.teal}]}
   ]},
-  {id:'adr',title:'ADR (등락비율 · 20일)',src:'KRX 종목별 시세 · 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 · 120 이상 과매수 / 80 이하 과매도',asof:'mcap',views:[
+  {id:'adr',title:'ADR (등락비율 · 20일)',src:'KRX 종목별 시세(오늘은 네이버 실시간 잠정) · 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 · 120 이상 과매수 / 80 이하 과매도',asof:'mcap',views:[
     {label:'코스피·코스닥',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kospi',name:'코스피 ADR',short:'코스피',color:COL.foreign},{k:'adr_kosdaq',name:'코스닥 ADR',short:'코스닥',color:COL.inst}]},
     {label:'코스피',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kospi',name:'코스피 ADR',color:COL.teal}]},
     {label:'코스닥',type:'line',unit:'idx',bands:[{v:120,label:'과매수',color:'rgba(240,117,106,.9)',fill:'rgba(240,117,106,.08)',above:true},{v:80,label:'과매도',color:'rgba(120,170,255,.9)',fill:'rgba(120,170,255,.08)'}],series:[{k:'adr_kosdaq',name:'코스닥 ADR',color:COL.teal}]},
@@ -624,6 +624,7 @@ function rebuild(card){
 function updateSub(card){
   var view=card.p.views[card.v],a=F.asof[card.p.asof]||{},d=a.date;
   var prov=d&&(a.prov||[]).indexOf(d)>=0;
+  if(card.p.id==='adr'&&F.asof.adr_prov){d=F.asof.adr_prov.date;prov=true;}  // 오늘은 네이버 실시간 상승·하락 종목 수(다음 날 KRX로 교체)
   var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
   card.sub.innerHTML=card.p.src+' · '+unitName+(d?' · '+dshort(d)+' 기준':'')+(prov?'<span class="prov-tag">잠정</span>':'');
 }

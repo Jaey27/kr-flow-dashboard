@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "sources"))
 
-from common import (DATA, HOLIDAY_COVER_TO, is_bday, last_bday_on_or_before, load_ledger, log,  # noqa: E402
+from common import (request_json, session, DATA, HOLIDAY_COVER_TO, is_bday, last_bday_on_or_before, load_ledger, log,  # noqa: E402
                     market_close, merge_rows, now_kst, prev_bday, save_json, save_ledger)
 import daum as daum_src  # noqa: E402
 import freesis as freesis_src  # noqa: E402
@@ -397,7 +397,22 @@ def assemble(now: dt.datetime) -> dict:
         S[f"yoy_{c}"] = out
 
     # ADR(등락비율) = 최근 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 × 100 (KRX 종목별 시세)
-    kr = load_ledger("krx_mcap")["rows"]
+    kr = dict(load_ledger("krx_mcap")["rows"])
+    # ★ 오늘(KRX 종목별 시세는 다음 날 아침 공개)은 네이버 실시간 상승·하락 종목 수로 잠정 ADR — 다음 날 KRX 값이 들어오면 자동 교체
+    adr_prov = None
+    _n = now
+    if dates and dates[-1] not in kr and dates[-1] == _n.date().isoformat() and _n.hour >= 9:  # 네이버 값은 '오늘' 장중·마감 숫자
+        try:
+            pr = {}
+            for mk, code in (("kospi", "KOSPI"), ("kosdaq", "KOSDAQ")):
+                u = request_json(session(referer="https://m.stock.naver.com/"), "GET", f"https://m.stock.naver.com/api/index/{code}/integration")["upDownStockInfo"]
+                n = lambda k: int(str(u.get(k) or 0).replace(",", ""))  # noqa: E731  '1,391' 처럼 쉼표가 온다
+                pr[f"{mk}_adv"] = n("riseCount") + n("upperCount")
+                pr[f"{mk}_dec"] = n("fallCount") + n("lowerCount")
+            kr[dates[-1]] = pr
+            adr_prov = dates[-1]
+        except Exception as e:  # noqa: BLE001
+            log(f"ADR 잠정(네이버) 실패: {e}")
     for mk in ("kospi", "kosdaq"):
         kd = [d for d in sorted(kr) if kr[d].get(f"{mk}_adv") is not None]
         adr = {}
@@ -414,6 +429,8 @@ def assemble(now: dt.datetime) -> dict:
     hold_meta = holdings.build(dates, S)
 
     asof = {}
+    if adr_prov:
+        asof["adr_prov"] = {"date": adr_prov, "src": "네이버 실시간 상승·하락 종목 수(잠정)"}
     for n_ in ("krx_mcap", "daum_stock_005930", "naver_stock_005930", "freesis_kospi_market"):
         L[n_] = load_ledger(n_)
     for key, ledger in (("credit", "freesis_credit"), ("funds", "freesis_funds"),
