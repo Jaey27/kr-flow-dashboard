@@ -147,7 +147,7 @@ def cds_day(d: dt.date) -> dict | None:
             cache.parent.mkdir(parents=True, exist_ok=True)
             cache.write_text("{}", encoding="utf-8")
         return None
-    mat = on_the_run(d)
+    mat = otr5(d)  # 10/23: on_the_run 은 2025-03-20 이전 만기가 틀렸음(2030-06-20 → 실제 2029-12-20)
     got: dict[str, list] = {}
     z = zipfile.ZipFile(io.BytesIO(r.content))
     for n in z.namelist():
@@ -164,7 +164,10 @@ def cds_day(d: dt.date) -> dict | None:
                 continue
             Ns = row.get("Notional amount-Leg 1", "")
             N, up, c = num(Ns), num(row.get("Other payment amount")), num(row.get("Fixed rate-Leg 1"))
-            if Ns.endswith("+") or not N or up is None or c is None:
+            # ★ 10/23: 큰 체결은 명목이 '5,000,000+'로 가려진다. 예전엔 통째로 뺐는데, 그러면 작은 체결 1건이
+            #   값을 정해 버렸다(META 10/21: 정정 붙은 2M 체결 1건 → 137bp, 가려진 11건은 97~116bp). 이제 상한 금액을 명목으로 넣는다
+            #   (실제 명목이 더 크면 값이 쿠폰 쪽으로 조금 당겨지는 근사) → 중앙값이 한 체결에 끌려가지 않음.
+            if not N or up is None or c is None:
                 continue
             T = (dt.date.fromisoformat(mat) - d).days / 365.25
             hi, lo = implied(up / N, c, T) * 1e4, implied(-up / N, c, T) * 1e4
@@ -185,7 +188,18 @@ def cds_day(d: dt.date) -> dict | None:
 LAST: dict = {}
 
 
+CDS_CACHE_VER = "2"  # 10/23: 상한 가림 체결 포함 + otr5 만기 → 예전 캐시는 한 번 지우고 다시 계산(맥미니 첫 실행 ~10분)
+
+
 def run_cds() -> None:
+    cd = RISK / "cds_cache"
+    vf = cd / "VERSION"
+    if cd.exists() and (not vf.exists() or vf.read_text().strip() != CDS_CACHE_VER):
+        for f in cd.glob("*.json"):
+            f.unlink()
+        print(f"[cds] 캐시 버전 {CDS_CACHE_VER} — 예전 일자 캐시를 지우고 다시 계산", flush=True)
+    cd.mkdir(parents=True, exist_ok=True)
+    vf.write_text(CDS_CACHE_VER)
     d, res = START, {}
     while d <= dt.date.today():
         if d.weekday() < 5:
