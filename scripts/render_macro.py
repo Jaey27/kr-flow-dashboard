@@ -151,7 +151,12 @@ MACRO_HTML = r"""
 <section class="card"><div class="card-head"><div><div class="card-title">CPI 세부 (근원 30항목 기여도 · 3/6개월 연율)</div>
   <div class="card-sub">BLS 원자료 · 월 1회 갱신 · <a href="cpi.html" target="_blank" rel="noopener" style="color:var(--hl-teal)">새 창 ↗</a></div></div></div>
   <iframe id="ec-cpi" title="CPI 세부" style="width:100%;height:1400px;border:0;border-radius:12px;background:#061E20"></iframe></section>
-<section class="card"><div class="card-title">PPI · 소매판매 · PCE · 고용</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가 (지금은 위 일정표만)</div></section>
+<section class="card" id="ec-ppi-card"><div class="card-head"><div><div class="card-title">PPI 세부 — 최종수요 · 원자재→중간재→최종재→CPI · 유통마진</div>
+  <div class="card-sub" id="ec-ppi-sub">BLS 원자료 · 월 1회 갱신</div></div><div class="card-tools"><div class="seg" id="ec-ppi-v"></div></div></div>
+  <div id="ec-ppi-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-ppi-c"></canvas></div>
+  <div class="mx-note" id="ec-ppi-note"></div></section>
+<script>window.__PPI__ = __PPIDATA__;</script>
+<section class="card"><div class="card-title">소매판매 · 고용 · PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가 (소매판매는 Census 키 등록 후)</div></section>
 </div>
 <div id="tab-risk" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="rk-presets"></div>
@@ -455,7 +460,34 @@ h+='</tbody></table></div>';
 document.getElementById('ec-cal').innerHTML=h;
 var fr=document.getElementById('ec-cpi'),loaded=false;
 fr.addEventListener('load',function(){try{var b=fr.contentDocument.documentElement;fr.style.height=Math.max(600,b.scrollHeight+20)+'px';}catch(e){}});
-window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}}};
+// ---- PPI 세부 (scripts/ppi_data.py → data/ppi.json) ----
+var P=window.__PPI__,PV=0,PCH=null;try{PV=+(localStorage.getItem('krflow.ec.ppiv')||0);}catch(e){}
+function pf(v,d){if(v==null) return '–';var t=Number(v).toFixed(d==null?2:d);if(/^-0\.0+$/.test(t)) t=t.slice(1);return (+t>0?'+':'')+t+'%';}
+function ppiTable(){var i=P.months.length-1,h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">'+P.latest+' (계절조정 MoM · 원계열 YoY)</th><th>MoM</th><th>직전 MoM</th><th>YoY</th><th>3개월 연율</th></tr></thead><tbody>';
+  P.head.forEach(function(r){var sub=/^ /.test(r.ko);h+='<tr><td class="l" style="'+(sub?'padding-left:22px;color:var(--text-dim)':'font-weight:700')+'">'+r.ko.trim()+'</td><td><b>'+pf(r.mom[i])+'</b></td><td>'+pf(r.mom[i-1])+'</td><td>'+pf(r.yoy[i],1)+'</td><td>'+pf(r.ann3[i],1)+'</td></tr>';});
+  document.getElementById('ec-ppi-tbl').innerHTML=h+'</tbody></table></div>';}
+function ppiDraw(){if(!P) return;var css=getComputedStyle(document.documentElement),cv=function(n){return css.getPropertyValue(n).trim();};
+  var C={dim:cv('--text-dim'),muted:cv('--text-muted'),grid:'rgba(151,252,228,.13)'},L=P.months.slice(-24),n=L.length,cut=function(a){return a.slice(-n);};
+  var sb=document.getElementById('ec-ppi-v');sb.innerHTML='';[['MoM·YoY 추이',0],['파이프라인 YoY',1],['유통마진 MoM',2]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===PV) b.className='on';b.onclick=function(){PV=x[1];try{localStorage.setItem('krflow.ec.ppiv',PV);}catch(e){}ppiDraw();};sb.appendChild(b);});
+  var ds,y2=false,note;
+  if(PV===0){var H=P.head[0],K=P.head[1];y2=true;
+    ds=[{type:'bar',label:'헤드라인 MoM',data:cut(H.mom),backgroundColor:'rgba(232,130,58,.7)',yAxisID:'y'},{type:'bar',label:'근원(식품·에너지 제외) MoM',data:cut(K.mom),backgroundColor:'rgba(57,135,229,.7)',yAxisID:'y'},
+        {type:'line',label:'헤드라인 YoY',data:cut(H.yoy),borderColor:'#e8823a',pointRadius:0,borderWidth:2,yAxisID:'y2'},{type:'line',label:'근원 YoY',data:cut(K.yoy),borderColor:'#3987e5',pointRadius:0,borderWidth:2,yAxisID:'y2'}];
+    note='막대 = 전월 대비(계절조정, 왼쪽 축) · 선 = 전년 대비(원계열, 오른쪽 축). 근원 = 최종수요에서 식품·에너지 제외(WPSFD49104).';}
+  else if(PV===1){var col=['#d55181','#e8823a','#d4a72c','#2aa58a','#F2FFFC'];
+    ds=P.pipe.map(function(r,j){return {type:'line',label:r.ko,data:cut(r.yoy),borderColor:col[j%col.length],backgroundColor:col[j%col.length],pointRadius:0,borderWidth:j===P.pipe.length-1?2.6:1.8};});
+    note='원자재 → 중간재 → 최종재 → 소비자물가 순서로 YoY. 위 단계가 오르고 아래 단계가 따라오지 않으면 「아직 전이 안 됨」(기업이 떠안거나 시차). 마지막 선 = CPI 근원상품(SACL1E).';}
+  else{ds=P.margin.map(function(r,j){return {type:'bar',label:r.ko,data:cut(r.mom),backgroundColor:j?'rgba(42,165,138,.7)':'rgba(212,167,44,.75)'};});
+    note='무역서비스 PPI = 도·소매 유통마진(판매가 − 매입가). 오르면 유통업체가 마진을 넓힌 것(물가 전가), 내리면 떠안은 것.';}
+  document.getElementById('ec-ppi-sub').textContent='BLS wp.data.22.FD-ID · 기준월 '+P.latest+' · 원자료 갱신 '+(P.bls_last_modified||'').replace(' GMT','').slice(5,16);
+  document.getElementById('ec-ppi-note').textContent=note;
+  if(PCH) PCH.destroy();
+  PCH=new Chart(document.getElementById('ec-ppi-c'),{type:'bar',data:{labels:L.map(function(m){return m.slice(2).replace('-','.');}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+pf(it.raw);}}}},
+    scales:{x:{grid:{display:false},ticks:{color:C.muted,maxRotation:0,autoSkip:true,maxTicksLimit:12}},y:{grid:{color:C.grid},ticks:{color:C.muted,callback:function(v){return v+'%';}}},
+      y2:{display:y2,position:'right',grid:{display:false},ticks:{color:C.muted,callback:function(v){return v+'%';}}}}}});}
+if(P){ppiTable();}else{document.getElementById('ec-ppi-tbl').innerHTML='<div class="card-sub">PPI 데이터 없음 — scripts/ppi_data.py 실행 필요</div>';}
+window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);}};
 if(!document.getElementById('tab-econ').hidden) window.ECON.show();
 })();
 
@@ -766,8 +798,13 @@ def seibro_data_json() -> str:
     return p.read_text(encoding="utf-8") if p.exists() else "null"
 
 
+def _ppi_json() -> str:
+    p = ROOT / "data" / "ppi.json"
+    return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
+
+
 def macro_html() -> str:
-    return MACRO_HTML.replace("__LINKS__", _links_html())
+    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json())
 
 
 def macro_data_json() -> str:
