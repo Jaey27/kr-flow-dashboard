@@ -166,7 +166,11 @@ MACRO_HTML = r"""
   <div id="ec-em-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-em-c"></canvas></div>
   <div class="mx-note" id="ec-em-note"></div></section>
 <script>window.__EMP__ = __EMPDATA__;</script>
-<section class="card"><div class="card-title">PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가 (CPI·PPI로 근원 PCE 추정 → 실제값과 대조)</div></section>
+<section class="card" id="ec-pc-card"><div class="card-head"><div><div class="card-title">PCE — CPI·PPI로 근원 PCE 추정 · 실제값 대조</div>
+  <div class="card-sub" id="ec-pc-sub">BEA · 월 1회</div></div><div class="card-tools"><div class="seg" id="ec-pc-v"></div></div></div>
+  <div id="ec-pc-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-pc-c"></canvas></div>
+  <div class="mx-note" id="ec-pc-note"></div></section>
+<script>window.__PCE__ = __PCEDATA__;</script>
 </div>
 <div id="tab-risk" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="rk-presets"></div>
@@ -561,7 +565,34 @@ function emDraw(){if(!EM) return;var css=getComputedStyle(document.documentEleme
     scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}},
       y2:{display:y2,position:'right',grid:{display:false},ticks:{color:C.muted}}}}});}
 if(EM){emTable();}else{document.getElementById('ec-em-tbl').innerHTML='<div class="card-sub">고용 데이터 없음 — scripts/emp_data.py 실행 필요</div>';}
-window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);if(EM) setTimeout(emDraw,50);}};
+// ---- PCE 추정·대조 (scripts/pce_data.py → data/pce.json) ----
+var PC=window.__PCE__,PCV=0,PCH2=null;try{PCV=+(localStorage.getItem('krflow.ec.pcv')||0);}catch(e){}
+function pcTable(){var M=PC.months,la=M.indexOf(PC.last_actual),nm=null;for(var j=M.length-1;j>=0;j--) if(PC.core.now_mom[j]!=null){nm=j;break;}
+  var h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">PCE 물가</th><th>최근 실제 '+PC.last_actual.slice(2).replace('-','.')+' MoM</th><th>YoY</th><th>'+(nm!=null?'추정 '+M[nm].slice(2).replace('-','.')+' MoM':'추정')+'</th><th>추정 YoY</th><th>1개월 앞 오차(최근 12개월)</th></tr></thead><tbody>';
+  [['core','근원 PCE (식품·에너지 제외)'],['head','헤드라인 PCE']].forEach(function(k,j){var x=PC[k[0]];h+='<tr><td class="l" style="font-weight:700">'+k[1]+'</td><td>'+pf(x.act_mom[la])+'</td><td>'+pf(x.act_yoy[la],2)+'</td><td><b>'+(nm!=null?pf(x.now_mom[nm]):'–')+'</b></td><td><b>'+(nm!=null?pf(x.now_yoy[nm],2):'–')+'</b></td><td>평균 ±'+x.bt_mae.toFixed(2)+'%p · R² '+x.r2+'</td></tr>';});
+  var lg=Object.keys(PC.log||{}).sort().map(function(m){var c=(PC.log[m]||{}).core;if(!c) return null;return m.slice(2).replace('-','.')+' 첫 추정 '+pf(c.first)+(c.actual!=null?' → 실제 '+pf(c.actual)+' (오차 '+(c.err_first>0?'+':'')+c.err_first.toFixed(2)+'%p)':' (실제 발표 전)');}).filter(Boolean);
+  document.getElementById('ec-pc-tbl').innerHTML=h+'</tbody></table></div><div class="card-sub" style="margin-top:4px">추정 기록(근원): '+(lg.length?lg.join(' · '):'–')+'</div>';}
+function pcDraw(){if(!PC) return;var css=getComputedStyle(document.documentElement),cv=function(n){return css.getPropertyValue(n).trim();};
+  var C={dim:cv('--text-dim'),muted:cv('--text-muted'),grid:'rgba(151,252,228,.13)'},n=24,L=PC.months.slice(-n),cut=function(a){return a.slice(-n);};
+  var sb=document.getElementById('ec-pc-v');sb.innerHTML='';[['근원: 실제 vs 예측',0],['헤드라인: 실제 vs 예측',1],['추정치 쪼개기',2]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===PCV) b.className='on';b.onclick=function(){PCV=x[1];try{localStorage.setItem('krflow.ec.pcv',PCV);}catch(e){}pcDraw();};sb.appendChild(b);});
+  var type='bar',labels=L.map(function(m){return m.slice(2).replace('-','.');}),ds,idx='x',note;
+  if(PCV<2){var x=PC[PCV?'head':'core'];
+    ds=[{label:'실제 MoM',data:cut(x.act_mom),backgroundColor:'rgba(42,165,138,.7)'},{type:'line',label:'1개월 앞 예측(그달 직전까지로만 맞춤)',data:cut(x.bt_mom),borderColor:'#e8823a',pointRadius:3,borderWidth:0,showLine:false},
+        {type:'line',label:'회귀 적합값',data:cut(x.fit_mom),borderColor:'rgba(242,255,252,.55)',pointRadius:0,borderWidth:1.4},{type:'bar',label:'추정(실제 발표 전)',data:cut(x.now_mom),backgroundColor:'rgba(232,130,58,.45)',borderColor:'#e8823a',borderWidth:1.5}];
+    note='막대 = 실제 PCE MoM(BEA), 주황 점 = 그달 직전까지의 데이터로만 다시 맞춘 1개월 앞 예측, 흰 선 = 전체 표본 적합값, 주황 테두리 막대 = 아직 발표 전인 달의 추정. 회귀 표본 '+PC.start+'~'+PC.last_actual+'('+x.n+'개월).';}
+  else{var k='core',x=PC.core,nm=Object.keys(x.nowx||{}).sort().pop();idx='y';
+    if(!nm){labels=['추정할 달 없음'];ds=[{label:'',data:[0]}];note='CPI·PPI가 나왔는데 PCE가 아직 안 나온 달이 없음.';}
+    else{var parts=[['상수(평균적인 차이)',x.coef.const]];Object.keys(x.nowx[nm]).forEach(function(c){parts.push([PC.ko[c]+' '+pf(x.nowx[nm][c]),x.coef[c]*x.nowx[nm][c]]);});
+      labels=parts.map(function(p){return p[0];});ds=[{label:nm+' 근원 PCE 추정 '+pf(x.now_mom[PC.months.indexOf(nm)])+' 의 구성(%p)',data:parts.map(function(p){return Math.round(p[1]*1000)/1000;}),backgroundColor:parts.map(function(p){return p[1]>=0?'rgba(240,117,106,.75)':'rgba(120,170,255,.75)';})}];
+      note='추정 = 상수 + Σ(계수 × 그달 CPI·PPI MoM). 계수가 곧 근원 PCE 안에서 각 항목이 차지하는 무게(대략). 주거비 계수가 CPI보다 작고 의료·금융은 PPI로 들어가는 것이 CPI와 PCE의 차이.';}}
+  document.getElementById('ec-pc-sub').textContent='BEA(FRED PCEPI·PCEPILFE) 실제 '+PC.last_actual+'까지 · CPI·PPI 브릿지 회귀 · 받은 날 '+PC.fetched;
+  document.getElementById('ec-pc-note').textContent=note;
+  if(PCH2) PCH2.destroy();
+  PCH2=new Chart(document.getElementById('ec-pc-c'),{type:type,data:{labels:labels,datasets:ds},options:{indexAxis:idx,responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(PCV===2?(it.raw>0?'+':'')+Number(it.raw).toFixed(3)+'%p':pf(it.raw));}}}},
+    scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}}}}});}
+if(PC){pcTable();}else{document.getElementById('ec-pc-tbl').innerHTML='<div class="card-sub">PCE 데이터 없음 — scripts/pce_data.py 실행 필요</div>';}
+window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);if(EM) setTimeout(emDraw,50);if(PC) setTimeout(pcDraw,60);}};
 if(!document.getElementById('tab-econ').hidden) window.ECON.show();
 })();
 
@@ -881,6 +912,11 @@ def seibro_data_json() -> str:
     return p.read_text(encoding="utf-8") if p.exists() else "null"
 
 
+def _pce_json() -> str:
+    p = ROOT / "data" / "pce.json"
+    return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
+
+
 def _emp_json() -> str:
     p = ROOT / "data" / "emp.json"
     return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
@@ -897,7 +933,7 @@ def _ppi_json() -> str:
 
 
 def macro_html() -> str:
-    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json()).replace("__EMPDATA__", _emp_json())
+    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json()).replace("__EMPDATA__", _emp_json()).replace("__PCEDATA__", _pce_json())
 
 
 def macro_data_json() -> str:
