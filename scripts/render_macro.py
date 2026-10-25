@@ -161,7 +161,12 @@ MACRO_HTML = r"""
   <div id="ec-rt-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-rt-c"></canvas></div>
   <div class="mx-note" id="ec-rt-note"></div></section>
 <script>window.__RETAIL__ = __RETAILDATA__;</script>
-<section class="card"><div class="card-title">고용 · PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가</div></section>
+<section class="card" id="ec-em-card"><div class="card-head"><div><div class="card-title">고용 세부 — 비농업 고용 · 실업률 · 임금 · 업종</div>
+  <div class="card-sub" id="ec-em-sub">BLS · 월 1회 갱신</div></div><div class="card-tools"><div class="seg" id="ec-em-v"></div></div></div>
+  <div id="ec-em-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-em-c"></canvas></div>
+  <div class="mx-note" id="ec-em-note"></div></section>
+<script>window.__EMP__ = __EMPDATA__;</script>
+<section class="card"><div class="card-title">PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가 (CPI·PPI로 근원 PCE 추정 → 실제값과 대조)</div></section>
 </div>
 <div id="tab-risk" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="rk-presets"></div>
@@ -516,7 +521,47 @@ function rtDraw(){if(!RT) return;var css=getComputedStyle(document.documentEleme
     plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(RV===1?(it.raw>0?'+':'')+Number(it.raw).toFixed(2)+'%p':pf(it.raw));}}}},
     scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}}}}});}
 if(RT){rtTable();}else{document.getElementById('ec-rt-tbl').innerHTML='<div class="card-sub">소매판매 데이터 없음 — scripts/retail_data.py 실행 필요(.env CENSUS_KEY)</div>';}
-window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);}};
+// ---- 고용 세부 (scripts/emp_data.py → data/emp.json) ----
+var EM=window.__EMP__,EV=0,ECH=null;try{EV=+(localStorage.getItem('krflow.ec.emv')||0);}catch(e){}
+function man(v){return v==null?'–':(v>0?'+':v<0?'−':'')+(Math.abs(v)/10).toFixed(1)+'만';}
+function emTable(){var i=EM.months.length-1,c=EM.cps,pr=EM.prelim.indexOf(EM.latest)>=0?' <span class="prov-tag">잠정</span>':'';
+  var row=function(k,a,b,cc,dd,bold){return '<tr><td class="l" style="'+(bold?'font-weight:700':'padding-left:22px;color:var(--text-dim)')+'">'+k+'</td><td><b>'+a+'</b></td><td>'+b+'</td><td>'+cc+'</td><td>'+dd+'</td></tr>';};
+  var lv=function(a,d){return a[i]==null?'–':Number(a[i]).toFixed(d==null?1:d)+'%';},lp=function(a,d){return a[i-1]==null?'–':Number(a[i-1]).toFixed(d==null?1:d)+'%';},dl=function(a){return a[i]==null||a[i-1]==null?'–':((a[i]-a[i-1])>0?'+':'')+(a[i]-a[i-1]).toFixed(1)+'%p';};
+  var h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">'+EM.latest+pr+'</th><th>이번 달</th><th>직전 달</th><th>3개월 평균 / 변화</th><th>비고</th></tr></thead><tbody>';
+  var rv=EM.revision&&EM.revision.rows&&EM.revision.rows.length?'직전 2개월 수정 '+man(EM.revision.sum)+' 명':'수정치: 다음 발표부터 기록';
+  h+=row('비농업 고용 증감',man(EM.nfp[i])+' 명',man(EM.nfp[i-1])+' 명',man(EM.nfp_avg3[i])+' 명',rv,true);
+  h+=row('민간 고용 증감',man(EM.private[i])+' 명',man(EM.private[i-1])+' 명','','',false);
+  h+=row('실업률',lv(c.ur),lp(c.ur),dl(c.ur),'U-6(광의) '+lv(c.u6)+' ('+dl(c.u6)+')',true);
+  h+=row('경제활동참가율',lv(c.lfpr),lp(c.lfpr),dl(c.lfpr),'',false);
+  h+=row('핵심연령(25~54) 고용률',lv(c.epop),lp(c.epop),dl(c.epop),'실업률보다 노동시장 체력을 덜 왜곡',false);
+  h+=row('시간당 임금 MoM',pf(EM.ahe_mom[i]),pf(EM.ahe_mom[i-1]),'YoY '+pf(EM.ahe_yoy[i],1),'',true);
+  h+=row('실질 시간당 임금 YoY',pf(EM.real_yoy[i],1),pf(EM.real_yoy[i-1],1),'','명목 임금 − 물가(1982-84 달러)',false);
+  h+=row('주당 근로시간',EM.hours[i]==null?'–':EM.hours[i].toFixed(1)+'시간',EM.hours[i-1]==null?'–':EM.hours[i-1].toFixed(1)+'시간','','',false);
+  document.getElementById('ec-em-tbl').innerHTML=h+'</tbody></table></div>';}
+function emDraw(){if(!EM) return;var css=getComputedStyle(document.documentElement),cv=function(n){return css.getPropertyValue(n).trim();};
+  var C={dim:cv('--text-dim'),muted:cv('--text-muted'),grid:'rgba(151,252,228,.13)'},n=24,L=EM.months.slice(-n),cut=function(a){return a.slice(-n);},i=EM.months.length-1;
+  var sb=document.getElementById('ec-em-v');sb.innerHTML='';[['고용 증감',0],['실업률·U-6',1],['임금 YoY',2],['업종별(최근월)',3]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===EV) b.className='on';b.onclick=function(){EV=x[1];try{localStorage.setItem('krflow.ec.emv',EV);}catch(e){}emDraw();};sb.appendChild(b);});
+  var type='bar',labels=L.map(function(m){return m.slice(2).replace('-','.');}),ds,idx='x',note,fmt=function(v){return man(v)+' 명';},y2=false;
+  if(EV===0){ds=[{label:'비농업 고용 증감',data:cut(EM.nfp),backgroundColor:cut(EM.nfp).map(function(v){return (v||0)>=0?'rgba(42,165,138,.75)':'rgba(240,117,106,.75)';})},{type:'line',label:'3개월 평균',data:cut(EM.nfp_avg3),borderColor:'#F2FFFC',pointRadius:0,borderWidth:2},{type:'line',label:'민간',data:cut(EM.private),borderColor:'#3987e5',pointRadius:2,borderWidth:1.4}];
+    note='막대 = 전월 대비 고용 증감(천 명 → 만 명 표시). 최근 두 달은 잠정이라 다음 두 번의 발표에서 수정된다.';}
+  else if(EV===1){type='line';fmt=function(v){return v==null?'–':v.toFixed(1)+'%';};y2=true;
+    ds=[{label:'실업률',data:cut(EM.cps.ur),borderColor:'#e8823a',pointRadius:2,borderWidth:2.2,yAxisID:'y'},{label:'U-6(광의 실업률)',data:cut(EM.cps.u6),borderColor:'#d55181',pointRadius:0,borderWidth:1.6,yAxisID:'y2'},{label:'핵심연령 고용률',data:cut(EM.cps.epop),borderColor:'#2aa58a',pointRadius:0,borderWidth:1.6,yAxisID:'y2',hidden:true}];
+    note='왼쪽 축 = 실업률, 오른쪽 축 = U-6(시간제 원하는 사람·구직 단념자 포함)·핵심연령 고용률(범례로 켬). 출처 FRED(BLS 가계조사).';}
+  else if(EV===2){type='line';fmt=function(v){return pf(v,2);};
+    ds=[{label:'시간당 임금 YoY(명목)',data:cut(EM.ahe_yoy),borderColor:'#e8823a',pointRadius:0,borderWidth:2},{label:'실질 시간당 임금 YoY',data:cut(EM.real_yoy),borderColor:'#F2FFFC',pointRadius:0,borderWidth:2},{type:'bar',label:'시간당 임금 MoM',data:cut(EM.ahe_mom),backgroundColor:'rgba(57,135,229,.5)'}];
+    note='실질 임금 YoY가 0 아래로 내려가면 물가가 임금보다 빨리 올라 실질 구매력이 줄어드는 것 → 소비 둔화 경로.';}
+  else{var is=EM.ind.filter(function(r){return r.code!=='CES0500000001';});idx='y';labels=is.map(function(r){return r.ko.trim();});
+    ds=[{label:EM.latest+' 증감',data:is.map(function(r){return r.chg[i];}),backgroundColor:is.map(function(r){return (r.chg[i]||0)>=0?'rgba(42,165,138,.75)':'rgba(240,117,106,.75)';})},{label:'3개월 평균',data:is.map(function(r){var a=r.chg.slice(-3);return a.indexOf(null)>=0?null:Math.round((a[0]+a[1]+a[2])/3*10)/10;}),backgroundColor:'rgba(157,179,176,.45)'}];
+    note='업종별 고용 증감(계절조정). 임시직(temp help)은 경기 선행 성격 — 줄면 기업이 먼저 사람을 덜 쓰기 시작한 것.';}
+  document.getElementById('ec-em-sub').textContent='BLS 사업체조사(CES) + FRED 가계조사 · 기준월 '+EM.latest+(EM.prelim.length?' (잠정 '+EM.prelim.map(function(m){return m.slice(5);}).join('·')+'월)':'')+' · 받은 날 '+EM.fetched;
+  document.getElementById('ec-em-note').textContent=note;
+  if(ECH) ECH.destroy();
+  ECH=new Chart(document.getElementById('ec-em-c'),{type:type,data:{labels:labels,datasets:ds},options:{indexAxis:idx,responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+fmt(it.raw);}}}},
+    scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}},
+      y2:{display:y2,position:'right',grid:{display:false},ticks:{color:C.muted}}}}});}
+if(EM){emTable();}else{document.getElementById('ec-em-tbl').innerHTML='<div class="card-sub">고용 데이터 없음 — scripts/emp_data.py 실행 필요</div>';}
+window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);if(EM) setTimeout(emDraw,50);}};
 if(!document.getElementById('tab-econ').hidden) window.ECON.show();
 })();
 
@@ -836,6 +881,11 @@ def seibro_data_json() -> str:
     return p.read_text(encoding="utf-8") if p.exists() else "null"
 
 
+def _emp_json() -> str:
+    p = ROOT / "data" / "emp.json"
+    return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
+
+
 def _retail_json() -> str:
     p = ROOT / "data" / "retail.json"
     return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
@@ -847,7 +897,7 @@ def _ppi_json() -> str:
 
 
 def macro_html() -> str:
-    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json())
+    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json()).replace("__EMPDATA__", _emp_json())
 
 
 def macro_data_json() -> str:

@@ -29,3 +29,6 @@ data/ppi.json
 data/ppi_cache.txt
 data/retail.json
 data/retail_vintage.json
+data/emp.json
+data/emp_vintage.json
+data/emp_cache/

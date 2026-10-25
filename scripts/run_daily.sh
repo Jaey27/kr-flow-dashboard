@@ -37,6 +37,7 @@ step "$PY" scripts/seibro_flow.py                # SEIBro 한국인 미국주식
 step "$PY" cpi_dashboard/scripts/run_cpi.py --no-send   # CPI(발표일에만 재빌드)
 [ -f cpi_dashboard/cpi.html ] && cp cpi_dashboard/cpi.html docs/cpi.html
 step "$PY" scripts/retail_data.py               # 소매판매 세부(Census MARTS, .env CENSUS_KEY) — 경제지표 탭
+step "$PY" scripts/emp_data.py                  # 고용 세부(BLS CES 플랫파일 + FRED 실업률 등) — 경제지표 탭
 step "$PY" scripts/ppi_data.py                  # PPI 세부(BLS wp.data.22.FD-ID, Last-Modified 같으면 재다운로드 안 함) — 경제지표 탭
 step "$PY" scripts/stock_long.py                 # 삼성·하이닉스 외국인 보유 5년(네이버 보유율·종가 + 다음 보유주식 수) — 외국인 보유 탭 카드
 step "$PY" scripts/buyback_fetch.py               # 자사주 매입(buyback-dashboard 공개 리포 data/buyback.json) — 수급 탭 「자사주 매입」
