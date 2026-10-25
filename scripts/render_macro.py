@@ -156,7 +156,12 @@ MACRO_HTML = r"""
   <div id="ec-ppi-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-ppi-c"></canvas></div>
   <div class="mx-note" id="ec-ppi-note"></div></section>
 <script>window.__PPI__ = __PPIDATA__;</script>
-<section class="card"><div class="card-title">소매판매 · 고용 · PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가 (소매판매는 Census 키 등록 후)</div></section>
+<section class="card" id="ec-rt-card"><div class="card-head"><div><div class="card-title">소매판매 세부 — 헤드라인·컨트롤그룹 · 업종 기여 · 주유소 가격 vs 물량</div>
+  <div class="card-sub" id="ec-rt-sub">Census MARTS · 월 1회 갱신</div></div><div class="card-tools"><div class="seg" id="ec-rt-v"></div></div></div>
+  <div id="ec-rt-tbl"></div><div class="mx-box" style="height:320px;margin-top:10px"><canvas id="ec-rt-c"></canvas></div>
+  <div class="mx-note" id="ec-rt-note"></div></section>
+<script>window.__RETAIL__ = __RETAILDATA__;</script>
+<section class="card"><div class="card-title">고용 · PCE</div><div class="card-sub" style="margin-top:6px">다음 단계에서 추가</div></section>
 </div>
 <div id="tab-risk" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="rk-presets"></div>
@@ -487,7 +492,31 @@ function ppiDraw(){if(!P) return;var css=getComputedStyle(document.documentEleme
     scales:{x:{grid:{display:false},ticks:{color:C.muted,maxRotation:0,autoSkip:true,maxTicksLimit:12}},y:{grid:{color:C.grid},ticks:{color:C.muted,callback:function(v){return v+'%';}}},
       y2:{display:y2,position:'right',grid:{display:false},ticks:{color:C.muted,callback:function(v){return v+'%';}}}}}});}
 if(P){ppiTable();}else{document.getElementById('ec-ppi-tbl').innerHTML='<div class="card-sub">PPI 데이터 없음 — scripts/ppi_data.py 실행 필요</div>';}
-window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);}};
+// ---- 소매판매 세부 (scripts/retail_data.py → data/retail.json) ----
+var RT=window.__RETAIL__,RV=0,RCH=null;try{RV=+(localStorage.getItem('krflow.ec.rtv')||0);}catch(e){}
+function rtTable(){var i=RT.months.length-1,h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">'+RT.latest+' (계절조정 판매액 기준)</th><th>MoM</th><th>직전 MoM</th><th>YoY</th><th>3개월 연율</th></tr></thead><tbody>';
+  RT.head.forEach(function(r,j){h+='<tr><td class="l" style="'+(j===0||j===4?'font-weight:700':'padding-left:22px;color:var(--text-dim)')+'">'+r.ko+(j===4?' <span class="rk-sub">(전체 − 자동차·건축자재·주유소·음식점)</span>':'')+'</td><td><b>'+pf(r.mom[i])+'</b></td><td>'+pf(r.mom[i-1])+'</td><td>'+pf(r.yoy[i],1)+'</td><td>'+pf(r.ann3[i],1)+'</td></tr>';});
+  var rv=RT.revision&&RT.revision.rows&&RT.revision.rows.length?'수정: '+RT.revision.rows.map(function(x){return x.month.slice(2).replace('-','.')+' '+pf(x.prev)+' → '+pf(x.now);}).join(', '):'';
+  document.getElementById('ec-rt-tbl').innerHTML=h+'</tbody></table></div>'+(rv?'<div class="card-sub" style="margin-top:4px">'+rv+'</div>':'');}
+function rtDraw(){if(!RT) return;var css=getComputedStyle(document.documentElement),cv=function(n){return css.getPropertyValue(n).trim();};
+  var C={dim:cv('--text-dim'),muted:cv('--text-muted'),grid:'rgba(151,252,228,.13)'},n=24,L=RT.months.slice(-n),cut=function(a){return a.slice(-n);},i=RT.months.length-1;
+  var sb=document.getElementById('ec-rt-v');sb.innerHTML='';[['MoM 추이',0],['업종 기여(최근월)',1],['주유소 가격 vs 물량',2]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===RV) b.className='on';b.onclick=function(){RV=x[1];try{localStorage.setItem('krflow.ec.rtv',RV);}catch(e){}rtDraw();};sb.appendChild(b);});
+  var type='bar',labels=L.map(function(m){return m.slice(2).replace('-','.');}),ds,idx='x',note;
+  if(RV===0){ds=[{label:'헤드라인',data:cut(RT.head[0].mom),backgroundColor:'rgba(232,130,58,.7)'},{label:'컨트롤그룹',data:cut(RT.head[4].mom),backgroundColor:'rgba(57,135,229,.75)'},{type:'line',label:'주유소 제외',data:cut(RT.head[2].mom),borderColor:'#2aa58a',pointRadius:2,borderWidth:1.6}];
+    note='헤드라인과 컨트롤그룹(GDP 소비 계산에 들어가는 묶음)이 갈리면 자동차·주유소·음식점 같은 변동 큰 항목이 헤드라인을 끌고 간 것.';}
+  else if(RV===1){var cs=RT.cats.slice().sort(function(a,b){return (b.contrib[i]||0)-(a.contrib[i]||0);});idx='y';labels=cs.map(function(c){return c.ko+' ('+c.share+'%)';});
+    ds=[{label:RT.latest+' 전체 MoM 기여(%p)',data:cs.map(function(c){return c.contrib[i];}),backgroundColor:cs.map(function(c){return (c.contrib[i]||0)>=0?'rgba(240,117,106,.75)':'rgba(120,170,255,.75)';})}];
+    note='막대 = 업종 증가액 ÷ 전월 전체 판매액(%p). 13개 업종 합 = 헤드라인 MoM '+pf(RT.head[0].mom[i])+'. 괄호 = 전체에서 차지하는 비중.';}
+  else{var G=RT.gas||{};type='line';ds=[{type:'bar',label:'주유소 판매액 MoM',data:cut(G.sales_mom||[]),backgroundColor:'rgba(212,167,44,.7)'},{label:'CPI 자동차 연료 MoM(가격)',data:cut(G.cpi_mom||[]),borderColor:'#d55181',pointRadius:2,borderWidth:1.8},{label:'물량 역산 MoM',data:cut(G.vol_mom||[]),borderColor:'#F2FFFC',pointRadius:2,borderWidth:2.2}];
+    note='물량 역산 = 판매액 ÷ 기름값. 판매액이 늘어도 물량이 줄면 「기름값이 끌어올린 매출」. 주유소 매출엔 편의점 상품이 섞여 있어 근사(EIA 휘발유 공급량과 교차 확인 필요).';}
+  document.getElementById('ec-rt-sub').textContent='Census MARTS 계절조정 · 기준월 '+RT.latest+' · 받은 날 '+RT.fetched;
+  document.getElementById('ec-rt-note').textContent=note;
+  if(RCH) RCH.destroy();
+  RCH=new Chart(document.getElementById('ec-rt-c'),{type:type,data:{labels:labels,datasets:ds},options:{indexAxis:idx,responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(RV===1?(it.raw>0?'+':'')+Number(it.raw).toFixed(2)+'%p':pf(it.raw));}}}},
+    scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}}}}});}
+if(RT){rtTable();}else{document.getElementById('ec-rt-tbl').innerHTML='<div class="card-sub">소매판매 데이터 없음 — scripts/retail_data.py 실행 필요(.env CENSUS_KEY)</div>';}
+window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);}};
 if(!document.getElementById('tab-econ').hidden) window.ECON.show();
 })();
 
@@ -807,13 +836,18 @@ def seibro_data_json() -> str:
     return p.read_text(encoding="utf-8") if p.exists() else "null"
 
 
+def _retail_json() -> str:
+    p = ROOT / "data" / "retail.json"
+    return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
+
+
 def _ppi_json() -> str:
     p = ROOT / "data" / "ppi.json"
     return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
 
 
 def macro_html() -> str:
-    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json())
+    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json())
 
 
 def macro_data_json() -> str:

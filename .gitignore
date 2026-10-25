@@ -27,3 +27,5 @@ data/stock_long.json
 data/stock_long_cache.json
 data/ppi.json
 data/ppi_cache.txt
+data/retail.json
+data/retail_vintage.json
