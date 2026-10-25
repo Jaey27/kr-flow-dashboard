@@ -532,7 +532,16 @@ function drawHY(){
   if(HV===0){var bbbM={};frs('bbb').forEach(function(r){bbbM[r[0]]=r[1];});
     L=[{n:'CCC등급',s:frs('ccc'),c:'#d55181'},{n:'B등급',s:frs('b'),c:'#d4a72c'},{n:'BB등급',s:frs('bb'),c:'#3987e5'},{n:'BBB등급',s:frs('bbb'),c:'#e8823a'},
        {n:'CCC − BBB (양극화 폭)',s:frs('ccc').filter(function(r){return bbbM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-bbbM[r[0]])*10)/10];}),c:'#F2FFFC',hide:true},
-       {n:'하이일드 전체',s:frs('hy'),c:'#9db3b0',hide:true},{n:'투자등급',s:frs('ig'),c:'#2aa58a',hide:true}];}
+       {n:'하이일드 전체',s:frs('hy'),c:'#9db3b0',hide:true},{n:'투자등급',s:frs('ig'),c:'#2aa58a',hide:true}];
+    // 올해 고점 점선(Jae 10/25: '올해 고점을 넘으면 문제') — 등급별, 기간 전체에 같은 값
+    var Y0=new Date().getFullYear()+'-01-01',YH={};
+    [['ccc','CCC','#d55181'],['b','B','#d4a72c'],['bb','BB','#3987e5'],['bbb','BBB','#e8823a'],['hy','하이일드 전체','#9db3b0']].forEach(function(g){var a=frs(g[0]).filter(function(r){return r[0]>=Y0&&r[1]!=null;});if(!a.length) return;
+      var mx=a.reduce(function(p,r){return r[1]>p[1]?r:p;});YH[g[0]]=mx;var all=frs(g[0]);
+      L.push({n:g[1]+' 올해 고점 '+nf(mx[1],0)+' ('+md(mx[0])+')',s:all.map(function(r){return [r[0],mx[1]];}),c:g[2],dash:[5,4],hide:g[0]==='hy'});});
+    var lastOf=function(k){var a=frs(k);return a.length?a[a.length-1]:null;},sm=[];
+    [['hy','하이일드 전체'],['ccc','CCC'],['b','B'],['bb','BB'],['bbb','BBB']].forEach(function(g){var l=lastOf(g[0]),h=YH[g[0]];if(!l||!h) return;var d=l[1]-h[1];
+      sm.push(g[1]+' <b>'+nf(l[1],0)+'</b>'+(d>=0?(h[0]===l[0]?' <b class="mx-up">올해 최고</b>':' <b class="mx-up">고점 +'+nf(d,0)+'</b>'):' (고점까지 '+nf(-d,0)+')'));});
+    document.getElementById('rk-hy-sub').innerHTML='ICE BofA OAS(bp) '+md((lastOf('hy')||[])[0])+' · '+sm.join(' · ')+' · 점선 = 올해 고점';}
   else if(HV===1) L=[{n:'하이일드 − 투자등급',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
   else L=[{n:'하이일드 전체 (국채 대비)',s:frs('hy'),c:'#F2FFFC',hide:true},{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
           {n:'HY 중 AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3',hide:true},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3',hide:true},
@@ -609,7 +618,7 @@ function lineChart(cv,list,o){
   var ds={};list.forEach(function(x){x.s.forEach(function(r){ds[r[0]]=1;});});
   var lo=RD[RW.i0],hi=RD[RW.i1],L=Object.keys(ds).filter(function(d){return d>=lo&&d<=hi;}).sort();
   var sets=list.map(function(x,j){var m={};x.s.forEach(function(r){m[r[0]]=r[1];});
-    return {label:x.n,data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide,yAxisID:x.ax||'y'};});
+    return {label:x.n,borderDash:x.dash||[],data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide,yAxisID:x.ax||'y'};});
   (o.stocks||[]).forEach(function(tk,j){var px=((R.stocks||{})[tk])||[];var m={};px.forEach(function(r){m[r[0]]=r[1];});
     var b=null;for(var i=0;i<L.length;i++){if(m[L[i]]!=null){b=m[L[i]];break;}}if(b==null) return;
     var last=null;sets.push({label:tk+' 주가',isStock:true,data:L.map(function(d){if(m[d]!=null) last=m[d];return last==null?null:Math.round(last/b*1000)/10;}),
