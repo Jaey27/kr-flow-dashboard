@@ -45,6 +45,7 @@ MACRO_CSS = r"""
 .mx-bar .lbl{font-size:12px;color:var(--text-dim)}
 .mx-bar label{font-size:12px;color:var(--text-dim);display:inline-flex;gap:6px;align-items:center;cursor:pointer}
 .mx-bar .asof{margin-left:auto;font-size:11px;color:var(--text-muted)}
+.rk-grp{font-size:12.5px;font-weight:800;color:var(--hl-teal);letter-spacing:.01em;margin:18px 2px 8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.14)}
 .mx-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
 @media (max-width:1100px){.mx-tiles{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:560px){.mx-tiles{grid-template-columns:1fr 1fr}}
@@ -177,36 +178,47 @@ MACRO_HTML = r"""
   <div class="range-dates"><input id="rk-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2025-06-01, 250601, 6/1)"><span>~</span><input id="rk-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="rk-rlab"></span></div>
   <span class="asof" id="rk-asof"></span></div>
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
-<section class="card" id="rk-iss-card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
-  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-grp"></div><div class="seg" id="rk-ism"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-iss"></canvas></div></section>
-<section class="card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
-  <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
-<section class="card" id="rk-vol-card"><div class="card-head"><div><div class="card-title">하이퍼스케일러 CDS 주간 거래 (DTCC 공개 체결)</div>
-  <div class="card-sub" id="rk-vol-sub">신규 체결(NEWT) · 모든 만기 · 주간 합계 · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-vv"></div></div></div>
-  <div class="mx-box" style="height:280px"><canvas id="rk-vol"></canvas></div>
-  <div class="mx-note">공개 체결은 큰 거래를 '5,000,000+'처럼 상한으로 가려서 내보낸다 → 명목 합계는 <b>최소</b>(하한)이고, 추이는 <b>건수</b>가 더 깨끗하다. Morgan Stanley 집계(주간 수십억 달러)와 절대 수준은 다르다. 출처: DTCC SEC 단일종목 CDS 공개 체결.</div></section>
-<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 스프레드 — AI vs 비AI + 국채</div>
-  <div class="card-sub" id="rk-hy-sub"></div></div><div class="card-tools"><div class="seg" id="rk-hv"></div></div></div>
+<div class="mx-tiles" id="rk-sum"></div>
+<div class="rk-grp">① 크레딧 시장 전체 — 스프레드가 올해 고점을 넘는가</div>
+<section class="card" id="rk-hy0-card"><div class="card-head"><div><div class="card-title">하이일드 등급별 스프레드 — ICE BofA OAS · 로그축 · 점선 = 올해 고점</div>
+  <div class="card-sub" id="rk-hy0-sub"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-hyc0"></canvas></div>
+  <div class="mx-note">CCC만 혼자 벌어지면 '약한 고리'부터 깨지는 국면, BB·BBB까지 같이 오르면 시장 전체 위험회피. 범례로 켜기: CCC − BBB(양극화 폭)·하이일드 전체·투자등급. 출처 FRED(ICE BofA, 최근 3년만 공개).</div></section>
+<section class="card" id="rk-hy1-card"><div class="card-head"><div><div class="card-title">하이일드 − 투자등급 — 위험 프리미엄 폭</div>
+  <div class="card-sub" id="rk-hy1-sub"></div></div></div>
+  <div class="mx-box" style="height:220px"><canvas id="rk-hyc1"></canvas></div></section>
+<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 안의 AI vs 비AI — iShares HYG 보유채권 직접 계산</div>
+  <div class="card-sub" id="rk-hy-sub"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
   <div class="mx-note" id="rk-hy-contrib"></div>
   <details class="claim-sub" id="rk-hy-ai"></details>
   <div class="mx-note"><b>등급 경계</b>: 투자등급(IG) = S&amp;P·Fitch AAA~<b>BBB-</b> / Moody's Aaa~<b>Baa3</b>. 하이일드(HY) = <b>BB+</b>~D / <b>Ba1</b>~C. BB+는 하이일드 맨 위 — 예: SoftBank BB+(HY 맨 위), Hut 8 River Bend BBB-(IG 맨 아래), CoreWeave B+(HY), Oracle BBB-(IG 경계). BBB-→BB+로 떨어지면(fallen angel) IG만 살 수 있는 기관의 강제 매도로 스프레드가 튄다.<br>
   <b>용어</b>: 스프레드 = 회사채가 같은 만기 미국 국채보다 더 주는 금리(가산금리, bp=0.01%p). 높을수록 시장이 부도 위험을 크게 본다는 뜻. 공식 지수 = ICE BofA 회사채 지수의 가산금리(조기상환 같은 옵션 효과를 뺀 값, FRED에서 받음).<br><b>HY 중 AI − 같은 만기 국채 (FINRA 복원)</b>: iShares 하이일드 ETF(HYG)가 들고 있는 AI 관련 채권 20개를 골라, 채권마다 FINRA에 찍힌 일별 수익률에서 같은 만기 국채 금리를 뺀 뒤 HYG 안 비중(오늘 기준 고정)으로 가중평균. 과거엔 이 채권들이 대부분 미발행이라, 그날 값이 있는 채권이 AI 묶음 비중의 40% 이상인 날만 그림.<br><b>맨 위 최신값(AI·비AI·투자등급)</b>: iShares HYG·LQD가 매일 공개하는 보유채권 파일에서 채권별 수익률 − 같은 만기 국채로 직접 계산. 비AI 선 = (하이일드 전체 − AI 비중×AI) ÷ (1 − AI 비중)으로 추정한 근사치.</div></section>
-
+<div class="rk-grp">② AI 인프라 발행사 — CDS·채권</div>
+<section class="card" id="rk-cds-card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
+  <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
 <section class="card"><div class="card-head"><div><div class="card-title">발행사 크레딧 한 장 — 최고 YTM 채권 · CDS</div>
   <div class="card-sub">▼ = 액면가(100) 아래 · 1M Δ = 21거래일 가격 변화 · G-spread = YTM − 같은 만기 국채(근사) · CDS = DTCC 공개 체결(5Y, 2031-12 만기) · 등급에 마우스를 올리면 원문</div></div></div>
   <div id="rk-tbl"></div>
   <div class="mx-note">가격 하락 상당 부분은 금리(10Y 5.09%, 30Y 5.43%) 몫이다. MSFT·GOOGL·AMZN의 '최고 YTM'은 초장기·저쿠폰 듀레이션 효과라 크레딧 신호가 아니다 → 크레딧만 보려면 G-spread·CDS 열을 본다. NBIS는 전환사채라 YTM이 전환옵션을 무시한 값.</div></section>
-<section class="card"><div class="card-head"><div><div class="card-title">데이터센터 프로젝트 채권</div>
-  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바 · 144A 라인 · 백커 대비 = 채권 규모 ÷ 임차·보증 주체 전체 회사채·장기차입</div></div><div class="card-tools"><div class="seg" id="rk-dcg"></div><div class="seg" id="rk-dcm"></div></div></div>
-  <div class="mx-box" style="height:320px"><canvas id="rk-dc"></canvas></div><div id="rk-dc-tbl" style="margin-top:10px"></div></section>
-<section class="card"><div class="card-head"><div><div class="card-title">백커 익스포저 — 데이터센터 SPV 채권 ÷ 백커 회사채·장기차입</div>
-  <div class="card-sub">최신 10-Q·10-K(XBRL) 기준 · SPV 채권은 대부분 백커 장부 밖(공시로 확인된 것만 Fact) · 스폰서 비율이 100% 넘는 건 SPV 발행이 기준일 이후라서</div></div></div><div id="rk-exp"></div></section>
+<section class="card" id="rk-iss-card"><div class="card-head"><div><div class="card-title">발행사별 최고 YTM 채권 가격</div>
+  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-grp"></div><div class="seg" id="rk-ism"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-iss"></canvas></div></section>
+<section class="card" id="rk-vol-card"><div class="card-head"><div><div class="card-title">하이퍼스케일러 CDS 주간 거래 (DTCC 공개 체결)</div>
+  <div class="card-sub" id="rk-vol-sub">신규 체결(NEWT) · 모든 만기 · 주간 합계 · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-vv"></div></div></div>
+  <div class="mx-box" style="height:280px"><canvas id="rk-vol"></canvas></div>
+  <div class="mx-note">공개 체결은 큰 거래를 '5,000,000+'처럼 상한으로 가려서 내보낸다 → 명목 합계는 <b>최소</b>(하한)이고, 추이는 <b>건수</b>가 더 깨끗하다. Morgan Stanley 집계(주간 수십억 달러)와 절대 수준은 다르다. 출처: DTCC SEC 단일종목 CDS 공개 체결.</div></section>
+<div class="rk-grp">③ 시장 체력 · 참고</div>
 <section class="card" id="rk-breadth-card"><div class="card-head"><div><div class="card-title">회사채 시장 등락 (FINRA 공식 API)</div>
   <div class="card-sub">TRACE Market Breadth · 5거래일 평균 · 공모 vs 144A · 하이일드 하락 비율이 오르거나 52주 신저가가 신고가보다 많아지면 크레딧 스트레스</div></div><div class="card-tools"><div class="seg" id="rk-bv"></div></div></div>
   <div class="mx-box" style="height:280px"><canvas id="rk-br"></canvas></div></section>
+<details class="card mx-links" id="rk-dc-det"><summary>데이터센터 프로젝트 채권 · 백커 익스포저 — SPV 채권 가격과 임차·보증 주체 대비 규모 (눌러서 펼치기)</summary>
+<div style="padding:0 4px 10px"><section class="card"><div class="card-head"><div><div class="card-title">데이터센터 프로젝트 채권</div>
+  <div class="card-sub">FINRA TRACE 일별 종가(T-1) · 위 기간 바 · 144A 라인 · 백커 대비 = 채권 규모 ÷ 임차·보증 주체 전체 회사채·장기차입</div></div><div class="card-tools"><div class="seg" id="rk-dcg"></div><div class="seg" id="rk-dcm"></div></div></div>
+  <div class="mx-box" style="height:320px"><canvas id="rk-dc"></canvas></div><div id="rk-dc-tbl" style="margin-top:10px"></div></section>
+<section class="card"><div class="card-head"><div><div class="card-title">백커 익스포저 — 데이터센터 SPV 채권 ÷ 백커 회사채·장기차입</div>
+  <div class="card-sub">최신 10-Q·10-K(XBRL) 기준 · SPV 채권은 대부분 백커 장부 밖(공시로 확인된 것만 Fact) · 스폰서 비율이 100% 넘는 건 SPV 발행이 기준일 이후라서</div></div></div><div id="rk-exp"></div></section></div></details>
 <details class="card mx-links"><summary>부채 구조 (참고) — CRWV·NBIS·HUT 발행 이력, GPU 담보 여부 · SEC 공시 원문</summary>
   <div style="padding:0 16px 14px" id="rk-debt"></div></details>
 </div>
@@ -626,14 +638,13 @@ var HL=R.hysplit||{},HK=Object.keys(HL).filter(function(k){return k.charAt(0)!==
 var HV=ls('hv2')==null?2:+ls('hv2'),FR=(R.fred||{}).series||{};
 function frs(k){return FR[k]||[];}
 function drawHY(){
-  segs('rk-hv',[[2,'AI vs 비AI + 국채'],[0,'공식 지수 (ICE BofA)'],[1,'하이일드 − 투자등급']],HV,function(i){HV=i;ls('hv2',i);drawHY();});
   var w=HX?HX.ai_weight_pct/100:0.039,aiK=Object.keys(HAI).sort().filter(function(k){return HAI[k][1]>=40;}),aiH=aiK.map(function(k){return [k,HAI[k][0]];}),
       aiY=aiK.filter(function(k){return HAI[k][2]!=null;}).map(function(k){return [k,HAI[k][2]];}),aiU=aiK.filter(function(k){return HAI[k][3]!=null;}).map(function(k){return [k,HAI[k][3]];});
   var hyM={};frs('hy').forEach(function(r){hyM[r[0]]=r[1];});
   // 비AI 추정 = (HY 전체 − AI 비중 × AI) ÷ (1 − AI 비중). HY 전체는 공식 OAS, AI는 FINRA 복원 — 정의가 달라 근사
   var non=aiH.filter(function(r){return hyM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((hyM[r[0]]-w*r[1])/(1-w)*10)/10];});
   var nonM={};non.forEach(function(r){nonM[r[0]]=r[1];});
-  var L;
+  [0,1,2].forEach(function(HV){var L;
   if(HV===0){var bbbM={};frs('bbb').forEach(function(r){bbbM[r[0]]=r[1];});
     L=[{n:'CCC등급',s:frs('ccc'),c:'#d55181'},{n:'B등급',s:frs('b'),c:'#d4a72c'},{n:'BB등급',s:frs('bb'),c:'#3987e5'},{n:'BBB등급',s:frs('bbb'),c:'#e8823a'},
        {n:'CCC − BBB (양극화 폭)',s:frs('ccc').filter(function(r){return bbbM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-bbbM[r[0]])*10)/10];}),c:'#F2FFFC',hide:true},
@@ -646,12 +657,17 @@ function drawHY(){
     var lastOf=function(k){var a=frs(k);return a.length?a[a.length-1]:null;},sm=[];
     [['hy','하이일드 전체'],['ccc','CCC'],['b','B'],['bb','BB'],['bbb','BBB']].forEach(function(g){var l=lastOf(g[0]),h=YH[g[0]];if(!l||!h) return;var d=l[1]-h[1];
       sm.push(g[1]+' <b>'+nf(l[1],0)+'</b>'+(d>=0?(h[0]===l[0]?' <b class="mx-up">올해 최고</b>':' <b class="mx-up">고점 +'+nf(d,0)+'</b>'):' (고점까지 '+nf(-d,0)+')'));});
-    document.getElementById('rk-hy-sub').innerHTML='ICE BofA OAS(bp) '+md((lastOf('hy')||[])[0])+' · '+sm.join(' · ')+' · 점선 = 올해 고점';}
+    document.getElementById('rk-hy0-sub').innerHTML='ICE BofA OAS(bp) '+md((lastOf('hy')||[])[0])+' · '+sm.join(' · ')+' · 점선 = 올해 고점';}
   else if(HV===1) L=[{n:'하이일드 − 투자등급',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
   else L=[{n:'하이일드 전체 (국채 대비)',s:frs('hy'),c:'#F2FFFC',hide:true},{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
           {n:'HY 중 AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3',hide:true},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3',hide:true},
           {n:'AI − 비AI',s:aiH.filter(function(r){return nonM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-nonM[r[0]])*10)/10];}),c:'rgba(232,130,58,.45)',hide:true}];
-  if(CH.hy) CH.hy.destroy();CH.hy=lineChart(document.getElementById('rk-hyc'),L,{fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});
+  var id=['rk-hyc0','rk-hyc1','rk-hyc'][HV],ck=['hy0','hy1','hy'][HV];if(CH[ck]) CH[ck].destroy();
+  CH[ck]=lineChart(document.getElementById(id),L,{log:HV===0,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});
+  if(HV===1&&L[0]&&L[0].s.length){var g=L[0].s,lg=g[g.length-1],Y0=new Date().getFullYear()+'-01-01',yy=g.filter(function(r){return r[0]>=Y0;}),mx=yy.reduce(function(p,r){return r[1]>p[1]?r:p;},yy[0]||lg),mn=yy.reduce(function(p,r){return r[1]<p[1]?r:p;},yy[0]||lg);
+    document.getElementById('rk-hy1-sub').innerHTML='최신 '+md(lg[0])+' <b>'+nf(lg[1],0)+'bp</b> · 올해 저점 '+nf(mn[1],0)+' ('+md(mn[0])+') · 올해 고점 '+nf(mx[1],0)+' ('+md(mx[0])+') · 폭이 넓어지면 투자자가 위험한 채권에 더 큰 보상을 요구 = 위험회피';}
+  });
+
   // AI 기여도: 기간 중 HY 변화 vs AI 비중 × AI 변화
   var lo=RD[RW.i0],hi=RD[RW.i1],hs=frs('hy').filter(function(r){return r[0]>=lo&&r[0]<=hi;}),as=aiH.filter(function(r){return r[0]>=lo&&r[0]<=hi;});
   var el2=document.getElementById('rk-hy-contrib');
@@ -800,7 +816,25 @@ var BVS=[['하락 비율 %',function(r){return r[2]/Math.max(1,r[1]+r[2])*100;},
 function drawBreadth(){if(!R.breadth) return;segs('rk-bv',BVS.map(function(v,i){return [i,v[0]];}),BV,function(i){BV=i;ls('bv',i);drawBreadth();});
   var v=BVS[BV],L=[{n:'하이일드 (144A)',s:bser('a144','high yield',v[1])},{n:'하이일드 (공모)',s:bser('pub','high yield',v[1])},{n:'투자등급 (공모)',s:bser('pub','investment grade',v[1])},{n:'투자등급 (144A)',s:bser('a144','investment grade',v[1]),hide:true}];
   if(CH.br) CH.br.destroy();CH.br=lineChart(document.getElementById('rk-br'),L,{fmt:v[2],tick:v[2]});}
-function draw(){drawHY();drawDC();drawIss();drawCDS();drawVol();drawBreadth();}
+
+// ---- 맨 위 요약 타일(10/27): 숫자 하나씩 + 상태 ----
+function drawSum(){var el=document.getElementById('rk-sum');if(!el) return;var Y0=new Date().getFullYear()+'-01-01',t=[];
+  function last(a){return a&&a.length?a[a.length-1]:null;}
+  function ytd(a){var y=(a||[]).filter(function(r){return r[0]>=Y0&&r[1]!=null;});return y.length?y.reduce(function(p,r){return r[1]>p[1]?r:p;}):null;}
+  function back(a,n){if(!a||a.length<2) return null;return a[Math.max(0,a.length-1-n)][1];}
+  function tile(k,v,d,go,cls){return '<div class="mx-t"'+(go?' data-go="'+go+'"':'')+(cls?' style="border-left-color:'+cls+'"':'')+'><div class="k">'+k+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div></div>';}
+  [['hy','하이일드 OAS'],['ccc','CCC OAS'],['bbb','BBB OAS']].forEach(function(g){var a=frs(g[0]),l=last(a),h=ytd(a);if(!l) return;var gap=h?l[1]-h[1]:null,hot=gap!=null&&gap>=0;
+    t.push(tile(g[1]+' · '+md(l[0]),nf(l[1],0)+'bp',(h?(hot?'<b class="mx-up">올해 고점'+(h[0]===l[0]?' 경신':' +'+nf(gap,0))+'</b>':'올해 고점 '+nf(h[1],0)+'까지 '+nf(-gap,0)):'')+' · 20D '+sg(l[1]-back(a,20),0),'rk-hy0-card',hot?'#f0756a':''));});
+  var cv=((R.cdsvol||{}).days||[]).filter(function(r){return r[2]!=null;}).map(function(r){return [r[0],r[2]];}),cl=last(cv);
+  if(cl) t.push(tile('북미 IG CDX 5Y · '+md(cl[0]),nf(cl[1],0)+'bp','20일 전 대비 '+sg(cl[1]-back(cv,20),0)+'bp','rk-cds-card'));
+  ['META','ORCL','CRWV'].forEach(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0];if(!i) return;var c=i.cds_series||[],l=last(c);
+    if(l) t.push(tile(tk+' CDS 5Y · '+md(l[0]),nf(l[1],0)+'bp',(c.length>20?'20건 전 대비 '+sg(l[1]-back(c,20),0)+'bp · ':'')+'DTCC 체결','rk-cds-card'));});
+  var cw=R.issuers.filter(function(x){return x.tk==='CRWV';})[0];
+  if(cw&&cw.bond.price!=null) t.push(tile('CRWV 9.75% 2031 · '+md(cw.bond.asof),nf(cw.bond.price,2)+(cw.bond.fwb?' <span class="rk-tag">FWB</span>':''),'YTM '+nf(cw.bond.ytm,2)+'% · 1M '+sg(chg(cw.series,21),2),'rk-iss-card'));
+  el.innerHTML=t.join('');}
+document.getElementById('rk-sum').addEventListener('click',function(e){var x=e.target.closest('[data-go]');if(!x) return;var c=document.getElementById(x.getAttribute('data-go'));if(c){c.scrollIntoView({behavior:'smooth',block:'start'});c.classList.add('mx-flash');setTimeout(function(){c.classList.remove('mx-flash');},1200);}});
+var dcd=document.getElementById('rk-dc-det');if(dcd) dcd.addEventListener('toggle',function(){if(dcd.open) setTimeout(drawDC,40);});
+function draw(){drawHY();if(!dcd||dcd.open) drawDC();drawIss();drawCDS();drawVol();drawBreadth();drawSum();}
 
 // ---- 부채 구조(참고) ----
 var dh='';Object.keys(R.debt).forEach(function(k){var t=R.debt[k];
