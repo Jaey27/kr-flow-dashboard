@@ -44,6 +44,7 @@ step "$PY" scripts/risk_history.py cds           # DTCC CDS (09:15 게시분)
 step "$PY" scripts/risk_history.py cdsvol        # CDS 거래 건수 + 북미 IG CDX
 step "$PY" scripts/risk_history.py stocks        # 관련 회사 주가 (Yahoo)
 step "$PY" scripts/hy_split.py --fred            # ICE BofA OAS
+step "$PY" scripts/crwv_fwb.py                 # CRWV 9.75% 2031 프랑크푸르트 시세 1회(FINRA 빈 날 메우기, Jae 10/26)
 step "$PY" scripts/risk_data.py
 step "$PY" scripts/render.py --docs
 if [ "${KRFLOW_PUBLISH:-auto}" != "0" ]; then step bash scripts/publish.sh; fi

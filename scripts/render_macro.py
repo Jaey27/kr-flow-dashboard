@@ -667,6 +667,7 @@ R.issuers.forEach(function(i){var b=i.bond,r=i.rating,c=i.cds;
   var bd=cp(b.coupon)+' '+(b.maturity?b.maturity.slice(0,4):'')+(b.conv?' 전환사채':'')+(b.is144a?' <span class="rk-tag">144A</span>':'');
   var sh=i.share;if(sh&&(sh.amt||sh.total)) bd+='<br><span class="rk-sub" title="'+esc((sh.basis||'')+(sh.note?' · '+sh.note:''))+'">'+(sh.pct!=null?'회사 전체 부채의 '+nf(sh.pct,1)+'% · ':'')+'$'+(sh.amt?nf(sh.amt/1e9,2)+'B':'–')+' / $'+(sh.total?nf(sh.total/1e9,1)+'B':'미확인')+'</span>';
   var px=b.price!=null?(b.price<100?'<span class="rk-below" title="액면가(100) 아래">▼</span>':'')+nf(b.price,2):'–';
+  if(b.fwb) px+=' <span class="rk-tag" title="'+esc(b.basis||'')+'">FWB</span>';
   h+='<tr><td class="l"><b>'+i.tk+'</b>'+(r.src&&/^http/.test(r.src)?' <a class="rk-src" href="'+esc(String(r.src).split(' ')[0])+'" target="_blank" rel="noopener">등급↗</a>':'')+(c&&c.news&&/http/.test(c.news)?' <a class="rk-src" href="'+esc((String(c.news).match(/https?:\/\/\S+/)||[''])[0])+'" target="_blank" rel="noopener">CDS↗</a>':'')+'</td><td class="l">'+rt+'</td><td class="l" title="'+esc((b.cusip||'')+' · '+(b.basis||''))+'">'+bd+'</td><td>'+px+'</td><td>'+sg(chg(i.series,21),2)+'</td><td>'+nf(b.ytm,2)+'%</td><td>'+(b.g!=null?nf(b.g,0):'–')+'</td>'+
     '<td title="'+esc(c&&c.news?c.news:'')+'">'+(c?esc(c.txt)+(c.ccy?' '+c.ccy:''):'미확인')+'</td><td>'+md(b.asof)+'</td></tr>';});
 document.getElementById('rk-tbl').innerHTML=h+'</tbody></table></div>';

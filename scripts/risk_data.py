@@ -158,11 +158,25 @@ def main() -> int:
                    "price": b.get("price"), "ytm": b.get("yield"), "asof": b.get("asof"), "series": eod_series(eod, b["key"]),
                    "backer": norm_backer(b.get("backer_ticker")), "backer_raw": b.get("backer_ticker"), "added": True, "gpu": b.get("gpu_backed"),
                    "src": [u for u in (b.get("sources") or []) if str(u).startswith("http") and " " not in str(u)]})
+    # ★ CRWV 한정(Jae 10/26): FINRA 일별이 아직 없는 날은 같은 채권 RegS판의 프랑크푸르트(FWB) 시세로 메운다(scripts/crwv_fwb.py).
+    #   호가 성격이라 체결가와 1~2포인트 차이 가능 → 그날 FINRA 가 들어오면 FINRA 가 우선(FINRA 마지막 날 이후만 붙임).
+    fwb = SRC / "crwv_fwb.json"
+    FWB_DAYS: set = set()
+    if fwb.exists():
+        rows = json.loads(fwb.read_text(encoding="utf-8")).get("rows") or {}
+        for i in issuers:
+            if i["tk"] == "CRWV":
+                last = i["series"][-1][0] if i["series"] else ""
+                for d in sorted(rows):
+                    if d > last:
+                        i["series"].append([d, rows[d][0], rows[d][1]])
+                        FWB_DAYS.add(d)
     # 표 값: 스냅샷(체결 중앙값)보다 FINRA 일별 종가가 더 최근이면 그걸로 바꾼다 → 매일 실행 시 표도 갱신
     def fresh(rec, ser):
         if ser and (not rec.get("asof") or ser[-1][0] > rec["asof"]):
             rec["asof"], rec["price"], rec["ytm"] = ser[-1][0], ser[-1][1], ser[-1][2]
-            rec["basis"] = "FINRA 일별 종가(EOD)"
+            rec["basis"] = "FINRA 일별 종가(EOD)" if ser[-1][0] not in FWB_DAYS else "프랑크푸르트(FWB) 시세 — RegS판, 호가 성격(체결가 아님), FINRA 들어오면 교체"
+            rec["fwb"] = ser[-1][0] in FWB_DAYS
     for i in issuers:
         fresh(i["bond"], i["series"])
     for d in dc:
