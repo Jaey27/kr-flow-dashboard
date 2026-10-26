@@ -32,6 +32,11 @@ step "$PY" scripts/risk_history.py cds           # DTCC CDS (일자 캐시)
 step "$PY" scripts/risk_history.py cdsvol        # 하이퍼스케일러 CDS 거래 건수·명목 하한 + 북미 IG CDX (일자 캐시, 첫 실행만 2년치 ~20분)
 step "$PY" scripts/risk_history.py stocks        # 관련 회사 주가 (Yahoo)
 # FINRA 웹 채권 일별은 09:30 run_risk.sh 로 옮김(10/23) — 06:50엔 전날 미국분이 아직 안 올라옴(10/20 확인: FINRA 08~09시, DTCC 09:15 KST)
+# 저녁(19:00) 실행: FINRA 최신 체결이 직전 미국 영업일보다 오래됐을 때만 한 번 더(10/26 Jae, 날짜 기준 재시도)
+if [ "$(date +%H)" -ge 12 ] && "$PY" scripts/risk_fresh.py --need finra; then
+  step "$PY" scripts/risk_history.py finra
+  step "$PY" scripts/hy_split.py --backfill-ai
+fi
 step "$PY" scripts/fss_fetch.py                  # 금감원 외국인 증권투자 동향(월간, KDI 게재본) — 빠진 달만 추가
 step "$PY" scripts/seibro_flow.py                # SEIBro 한국인 미국주식 결제·보관 + 종목 TOP50(일자 캐시)
 step "$PY" cpi_dashboard/scripts/run_cpi.py --no-send   # CPI(발표일에만 재빌드)
