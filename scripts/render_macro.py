@@ -179,22 +179,7 @@ MACRO_HTML = r"""
   <span class="asof" id="rk-asof"></span></div>
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
 <div class="mx-tiles" id="rk-sum"></div>
-<div class="rk-grp">① 크레딧 시장 전체 — 스프레드가 올해 고점을 넘는가</div>
-<section class="card" id="rk-hy0-card"><div class="card-head"><div><div class="card-title">하이일드 등급별 스프레드 — ICE BofA OAS · 로그축 · 점선 = 올해 고점</div>
-  <div class="card-sub" id="rk-hy0-sub"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-hyc0"></canvas></div>
-  <div class="mx-note">CCC만 혼자 벌어지면 '약한 고리'부터 깨지는 국면, BB·BBB까지 같이 오르면 시장 전체 위험회피. 범례로 켜기: CCC − BBB(양극화 폭)·하이일드 전체·투자등급. 출처 FRED(ICE BofA, 최근 3년만 공개).</div></section>
-<section class="card" id="rk-hy1-card"><div class="card-head"><div><div class="card-title">하이일드 − 투자등급 — 위험 프리미엄 폭</div>
-  <div class="card-sub" id="rk-hy1-sub"></div></div></div>
-  <div class="mx-box" style="height:220px"><canvas id="rk-hyc1"></canvas></div></section>
-<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 안의 AI vs 비AI — iShares HYG 보유채권 직접 계산</div>
-  <div class="card-sub" id="rk-hy-sub"></div></div></div>
-  <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
-  <div class="mx-note" id="rk-hy-contrib"></div>
-  <details class="claim-sub" id="rk-hy-ai"></details>
-  <div class="mx-note"><b>등급 경계</b>: 투자등급(IG) = S&amp;P·Fitch AAA~<b>BBB-</b> / Moody's Aaa~<b>Baa3</b>. 하이일드(HY) = <b>BB+</b>~D / <b>Ba1</b>~C. BB+는 하이일드 맨 위 — 예: SoftBank BB+(HY 맨 위), Hut 8 River Bend BBB-(IG 맨 아래), CoreWeave B+(HY), Oracle BBB-(IG 경계). BBB-→BB+로 떨어지면(fallen angel) IG만 살 수 있는 기관의 강제 매도로 스프레드가 튄다.<br>
-  <b>용어</b>: 스프레드 = 회사채가 같은 만기 미국 국채보다 더 주는 금리(가산금리, bp=0.01%p). 높을수록 시장이 부도 위험을 크게 본다는 뜻. 공식 지수 = ICE BofA 회사채 지수의 가산금리(조기상환 같은 옵션 효과를 뺀 값, FRED에서 받음).<br><b>HY 중 AI − 같은 만기 국채 (FINRA 복원)</b>: iShares 하이일드 ETF(HYG)가 들고 있는 AI 관련 채권 20개를 골라, 채권마다 FINRA에 찍힌 일별 수익률에서 같은 만기 국채 금리를 뺀 뒤 HYG 안 비중(오늘 기준 고정)으로 가중평균. 과거엔 이 채권들이 대부분 미발행이라, 그날 값이 있는 채권이 AI 묶음 비중의 40% 이상인 날만 그림.<br><b>맨 위 최신값(AI·비AI·투자등급)</b>: iShares HYG·LQD가 매일 공개하는 보유채권 파일에서 채권별 수익률 − 같은 만기 국채로 직접 계산. 비AI 선 = (하이일드 전체 − AI 비중×AI) ÷ (1 − AI 비중)으로 추정한 근사치.</div></section>
-<div class="rk-grp">② AI 인프라 발행사 — CDS·채권</div>
+<div class="rk-grp">① AI 인프라 발행사 — CDS·채권</div>
 <section class="card" id="rk-cds-card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
   <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
@@ -209,6 +194,21 @@ MACRO_HTML = r"""
   <div class="card-sub" id="rk-vol-sub">신규 체결(NEWT) · 모든 만기 · 주간 합계 · 위 기간 바</div></div><div class="card-tools"><div class="seg" id="rk-vv"></div></div></div>
   <div class="mx-box" style="height:280px"><canvas id="rk-vol"></canvas></div>
   <div class="mx-note">공개 체결은 큰 거래를 '5,000,000+'처럼 상한으로 가려서 내보낸다 → 명목 합계는 <b>최소</b>(하한)이고, 추이는 <b>건수</b>가 더 깨끗하다. Morgan Stanley 집계(주간 수십억 달러)와 절대 수준은 다르다. 출처: DTCC SEC 단일종목 CDS 공개 체결.</div></section>
+<div class="rk-grp">② 크레딧 시장 전체 — 스프레드가 올해 고점을 넘는가</div>
+<section class="card" id="rk-hy0-card"><div class="card-head"><div><div class="card-title">하이일드 등급별 스프레드 — ICE BofA OAS · 로그축 · 점선 = 올해 고점</div>
+  <div class="card-sub" id="rk-hy0-sub"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-hyc0"></canvas></div>
+  <div class="mx-note">CCC만 혼자 벌어지면 '약한 고리'부터 깨지는 국면, BB·BBB까지 같이 오르면 시장 전체 위험회피. 범례로 켜기: CCC − BBB(양극화 폭)·하이일드 전체·투자등급. 출처 FRED(ICE BofA, 최근 3년만 공개).</div></section>
+<section class="card" id="rk-hy1-card"><div class="card-head"><div><div class="card-title">하이일드 − 투자등급 — 위험 프리미엄 폭</div>
+  <div class="card-sub" id="rk-hy1-sub"></div></div></div>
+  <div class="mx-box" style="height:220px"><canvas id="rk-hyc1"></canvas></div></section>
+<section class="card" id="rk-hy-card"><div class="card-head"><div><div class="card-title">하이일드 안의 AI vs 비AI — iShares HYG 보유채권 직접 계산</div>
+  <div class="card-sub" id="rk-hy-sub"></div></div></div>
+  <div class="mx-box" style="height:300px"><canvas id="rk-hyc"></canvas></div>
+  <div class="mx-note" id="rk-hy-contrib"></div>
+  <details class="claim-sub" id="rk-hy-ai"></details>
+  <div class="mx-note"><b>등급 경계</b>: 투자등급(IG) = S&amp;P·Fitch AAA~<b>BBB-</b> / Moody's Aaa~<b>Baa3</b>. 하이일드(HY) = <b>BB+</b>~D / <b>Ba1</b>~C. BB+는 하이일드 맨 위 — 예: SoftBank BB+(HY 맨 위), Hut 8 River Bend BBB-(IG 맨 아래), CoreWeave B+(HY), Oracle BBB-(IG 경계). BBB-→BB+로 떨어지면(fallen angel) IG만 살 수 있는 기관의 강제 매도로 스프레드가 튄다.<br>
+  <b>용어</b>: 스프레드 = 회사채가 같은 만기 미국 국채보다 더 주는 금리(가산금리, bp=0.01%p). 높을수록 시장이 부도 위험을 크게 본다는 뜻. 공식 지수 = ICE BofA 회사채 지수의 가산금리(조기상환 같은 옵션 효과를 뺀 값, FRED에서 받음).<br><b>HY 중 AI − 같은 만기 국채 (FINRA 복원)</b>: iShares 하이일드 ETF(HYG)가 들고 있는 AI 관련 채권 20개를 골라, 채권마다 FINRA에 찍힌 일별 수익률에서 같은 만기 국채 금리를 뺀 뒤 HYG 안 비중(오늘 기준 고정)으로 가중평균. 과거엔 이 채권들이 대부분 미발행이라, 그날 값이 있는 채권이 AI 묶음 비중의 40% 이상인 날만 그림.<br><b>맨 위 최신값(AI·비AI·투자등급)</b>: iShares HYG·LQD가 매일 공개하는 보유채권 파일에서 채권별 수익률 − 같은 만기 국채로 직접 계산. 비AI 선 = (하이일드 전체 − AI 비중×AI) ÷ (1 − AI 비중)으로 추정한 근사치.</div></section>
 <div class="rk-grp">③ 시장 체력 · 참고</div>
 <section class="card" id="rk-breadth-card"><div class="card-head"><div><div class="card-title">회사채 시장 등락 (FINRA 공식 API)</div>
   <div class="card-sub">TRACE Market Breadth · 5거래일 평균 · 공모 vs 144A · 하이일드 하락 비율이 오르거나 52주 신저가가 신고가보다 많아지면 크레딧 스트레스</div></div><div class="card-tools"><div class="seg" id="rk-bv"></div></div></div>
@@ -659,9 +659,8 @@ function drawHY(){
       sm.push(g[1]+' <b>'+nf(l[1],0)+'</b>'+(d>=0?(h[0]===l[0]?' <b class="mx-up">올해 최고</b>':' <b class="mx-up">고점 +'+nf(d,0)+'</b>'):' (고점까지 '+nf(-d,0)+')'));});
     document.getElementById('rk-hy0-sub').innerHTML='ICE BofA OAS(bp) '+md((lastOf('hy')||[])[0])+' · '+sm.join(' · ')+' · 점선 = 올해 고점';}
   else if(HV===1) L=[{n:'하이일드 − 투자등급',s:frs('hy').filter(function(r){return true;}).map(function(r){var ig=(frs('ig').filter(function(x){return x[0]===r[0];})[0]||[])[1];return [r[0],ig==null?null:Math.round((r[1]-ig)*10)/10];}).filter(function(r){return r[1]!=null;}),c:'#F2FFFC'}];
-  else L=[{n:'하이일드 전체 (국채 대비)',s:frs('hy'),c:'#F2FFFC',hide:true},{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI (추정)',s:non,c:'#3987e5'},
-          {n:'HY 중 AI 채권 수익률 (%)',s:aiY,c:'rgba(232,130,58,.55)',ax:'y3',hide:true},{n:'같은 만기 국채 금리 (%)',s:aiU,c:'rgba(200,214,212,.7)',ax:'y3',hide:true},
-          {n:'AI − 비AI',s:aiH.filter(function(r){return nonM[r[0]]!=null;}).map(function(r){return [r[0],Math.round((r[1]-nonM[r[0]])*10)/10];}),c:'rgba(232,130,58,.45)',hide:true}];
+  // 10/27 Jae: 두 선만 비교(나머지 4개 선은 뺌 — AI−비AI 폭은 아래 '기여' 문장에)
+  else L=[{n:'HY 중 AI − 같은 만기 국채',s:aiH,c:'#e8823a'},{n:'HY 중 비AI − 같은 만기 국채 (추정)',s:non,c:'#3987e5'}];
   var id=['rk-hyc0','rk-hyc1','rk-hyc'][HV],ck=['hy0','hy1','hy'][HV];if(CH[ck]) CH[ck].destroy();
   CH[ck]=lineChart(document.getElementById(id),L,{log:HV===0,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}});
   if(HV===1&&L[0]&&L[0].s.length){var g=L[0].s,lg=g[g.length-1],Y0=new Date().getFullYear()+'-01-01',yy=g.filter(function(r){return r[0]>=Y0;}),mx=yy.reduce(function(p,r){return r[1]>p[1]?r:p;},yy[0]||lg),mn=yy.reduce(function(p,r){return r[1]<p[1]?r:p;},yy[0]||lg);
@@ -777,18 +776,20 @@ function drawIss(){segs('rk-grp',R.groups.map(function(g,i){return [i,g[0]];}),S
   var L=grp[1].map(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0];
     return i?{n:tk+' '+cp(i.bond.coupon)+' '+(i.bond.maturity||'').slice(0,4),s:pick(i.series,m.col)}:null;}).filter(Boolean);
   if(CH.iss) CH.iss.destroy();CH.iss=lineChart(document.getElementById('rk-iss'),L,Object.assign({stocks:grp[1]},m));}
-var CG=[['비교 · 로그 · 5거래일 중앙값',['ORCL','CRWV','META','GOOGL','MSFT','AMZN','SBG','SPCX']],['고위험',['CRWV','SBG','ORCL','SPCX']],['하이퍼스케일러',['META','AMZN','GOOGL','MSFT']]];
-var CNAME={ORCL:'Oracle',CRWV:'CoreWeave',META:'Meta',GOOGL:'Alphabet',MSFT:'Microsoft',AMZN:'Amazon',SBG:'SoftBank',SPCX:'SpaceX'};
-var CCOL={ORCL:'#3987e5',CRWV:'#e8823a',META:'#2aa58a',GOOGL:'#a463d6',MSFT:'#d4a72c',AMZN:'#d55181',SBG:'#9db3b0',SPCX:'#6cc3c1'};
+var CG=[['비교 · 로그 · 5거래일 중앙값',['ORCL','CRWV','META','GOOGL','MSFT','AMZN','SBG','SPCX']],['고위험',['CRWV','SBG','ORCL','SPCX']],['M7 + AI 반도체',['META','AMZN','GOOGL','MSFT','AAPL','TSLA','NVDA','AMD','AVGO']]];
+var CNAME={AAPL:'Apple',TSLA:'Tesla',NVDA:'Nvidia',AMD:'AMD',AVGO:'Broadcom',ORCL:'Oracle',CRWV:'CoreWeave',META:'Meta',GOOGL:'Alphabet',MSFT:'Microsoft',AMZN:'Amazon',SBG:'SoftBank',SPCX:'SpaceX'};
+var CCOL={AAPL:'#c8d6d4',TSLA:'#f0756a',NVDA:'#7cc44a',AMD:'#e05a9a',AVGO:'#5fb0e8',ORCL:'#3987e5',CRWV:'#e8823a',META:'#2aa58a',GOOGL:'#a463d6',MSFT:'#d4a72c',AMZN:'#d55181',SBG:'#9db3b0',SPCX:'#6cc3c1'};
 // 체결 있는 날만 있는 시계열 → 날짜축 전체로 앞값 채우기 → 직전 5개 관측의 중앙값
 function med5(ser){var out=[],w=[];RD.forEach(function(d){var m=null;for(var k=0;k<ser.length;k++){if(ser[k][0]<=d) m=ser[k][1];else break;}if(m==null) return;w.push(m);if(w.length>5) w.shift();var s=w.slice().sort(function(a,b){return a-b;});out.push([d,s[Math.floor(s.length/2)]]);});return out;}
 function drawCDS(){segs('rk-cg',CG.map(function(g,i){return [i,g[0]];}),ST.ci,function(i){ST.ci=i;ls('ci',i);drawCDS();});
   var cmp=ST.ci===0;
-  var L=CG[ST.ci][1].map(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0];if(!(i&&i.cds_series&&i.cds_series.length)) return null;
+  var CM=R.cds_more||{},miss=[];
+  var L=CG[ST.ci][1].map(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0]||(CM[tk]?{cds_series:CM[tk]}:null);if(!(i&&i.cds_series&&i.cds_series.length)){if(CM[tk]) miss.push(CNAME[tk]||tk);return null;}
     return cmp?{n:CNAME[tk]||tk,s:med5(i.cds_series),c:CCOL[tk],hide:tk==='SBG'||tk==='SPCX'}:{n:tk,s:i.cds_series};}).filter(Boolean);
   if((cmp||ST.ci===2)&&CDX.length) L.push({n:'북미 IG CDX',s:cmp?med5(CDX):CDX,c:'#ffffff'});
   if(CH.cds) CH.cds.destroy();
   if(!L.length){document.getElementById('rk-cds-sub2').textContent='CDS 시계열 없음 — scripts/risk_history.py cds 실행 필요';return;}
+  document.getElementById('rk-cds-sub2').textContent=miss.length?'공개 체결 없음: '+miss.join(', '):'';
   var stk={stocks:CG[ST.ci][1]};  // 회사 주가(기간 시작=100, 오른쪽 축) — 기본 꺼짐, 범례 클릭으로 켬
   CH.cds=lineChart(document.getElementById('rk-cds'),L,Object.assign(stk,cmp?{log:true,end:true,bw:2.2,ytitle:'bp (로그)',fmt:function(v){return nf(v,0);},tick:function(v){return nf(v,0);}}:{pts:true,fmt:function(v){return nf(v,0)+'bp';},tick:function(v){return nf(v,0);}}));}
 // 북미 IG CDX 5Y(on-the-run) 일별 체결 중앙값 bp — DTCC CFTC 지수 CDS 공개 체결

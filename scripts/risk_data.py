@@ -206,6 +206,8 @@ def main() -> int:
                "jnk_oas": cc.get("JNK_OAS_bp"), "lqd_oas": cc.get("LQD_OAS_bp"), "lqd_asof": cc.get("LQD_asof"), "url": rec.get("url"), "jnk_url": cc.get("JNK_url")},
         "groups": GROUPS,
         "issuers": issuers,
+        # 발행사 표에 없는 CDS 전용 종목(10/27): 차트에만
+        "cds_more": {tk: clean_cds([[d, v[tk]["bp"], v[tk]["kind"][0]] for d, v in sorted(cdsd.items()) if tk in v]) for tk in ("AAPL", "TSLA", "NVDA", "AMD", "AVGO")},
         "dc": dc,
         "exposure": {k: {"sum_usd": v.get("sum_usd"), "sum_pct": v.get("sum_pct"), "n": len(v.get("bonds", [])),
                          "total": (backers.get(k) or {}).get("total_debt_usd"), "period": (backers.get(k) or {}).get("period_end"),

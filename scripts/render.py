@@ -378,8 +378,8 @@ var PANELS=[
   {id:'kosdaq',title:'코스닥 투자자별 순매수',src:'다음 금융(KRX)',asof:'investor',views:invViews('kosdaq')},
   {id:'inst',title:'기관 세부 누적 순매수',src:'다음 금융(KRX)',asof:'investor',views:[instView('kospi','코스피'),instView('kosdaq','코스닥')]},
   {id:'index',title:'지수',src:'다음 금융',asof:'index',views:[
-    {label:'코스피',type:'line',unit:'idx',series:[{k:'idx_kospi',name:'코스피',color:COL.teal}]},
-    {label:'코스닥',type:'line',unit:'idx',series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal}]},
+    {label:'코스피',type:'line',unit:'idx',unit2:'jo',low2:true,series:[{k:'idx_kospi',name:'코스피',color:COL.teal},{k:'val_kospi',name:'거래대금',color:'rgba(151,252,228,.22)',axis:'y1',unit:'jo',bar:true}]},
+    {label:'코스닥',type:'line',unit:'idx',unit2:'jo',low2:true,series:[{k:'idx_kosdaq',name:'코스닥',color:COL.teal},{k:'val_kosdaq',name:'거래대금',color:'rgba(151,252,228,.22)',axis:'y1',unit:'jo',bar:true}]},
     {label:'K200 선물',type:'line',unit:'idx',series:[{k:'fut_price',name:'코스피200 선물(최다 거래 월물)',color:COL.teal}]}
   ]},
   {id:'adr',title:'ADR (등락비율 · 20일)',src:'KRX 종목별 시세(오늘은 네이버 실시간 잠정) · 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 · 120 이상 과매수 / 80 이하 과매도',asof:'mcap',views:[
@@ -497,6 +497,8 @@ function ovOn(card,view){return !!card&&card.ov&&card.p.id!=='index'&&!view.seri
 function datasets(view,card){
   var out=view.series.map(function(sp,j){
     var data=slice(sp.k,isCum(view,sp),view.base);
+    // 선 보기 안의 막대(지수 + 거래대금, 10/27): 오른쪽 축, 차트 아래 1/3에 깔림(low2)
+    if(sp.bar) return {type:'bar',label:sp.name,data:data,yAxisID:'y1',order:10,borderWidth:0,categoryPercentage:1,barPercentage:.9,backgroundColor:sp.color};
     if(view.type==='bar'){
       return {type:'bar',label:sp.name,data:data,borderWidth:0,borderRadius:2,borderSkipped:'start',
         categoryPercentage:1,barPercentage:.82,
@@ -542,7 +544,7 @@ function config(card){
             title:function(items){if(!items.length) return '';var d=items[0].label;return dlong(d)+(PROV[d]?' · 잠정':'');},
             label:function(it){if(it.dataset.isOv) return ' '+it.dataset.label+'  '+FMT.idx(it.raw);var sp=view.series[it.datasetIndex],f=FMT[sp.unit||unit];return ' '+it.dataset.label+'  '+(signedOf(sp)?sg(f,it.raw):f(it.raw))+shTxt(sp,W.i0+it.dataIndex);},
             labelColor:function(it){if(it.dataset.isOv) return {borderColor:'#9db3b0',backgroundColor:'#9db3b0',borderRadius:2};var c=it.dataset.type==='bar'?(it.raw>=0?COL.up:COL.down):it.dataset.borderColor;
-              if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=COL.teal;
+              if(it.dataset.type==='bar'&&!view.series[it.datasetIndex].sign) c=view.series[it.datasetIndex].bar?'rgba(151,252,228,.5)':COL.teal;
               return {borderColor:c,backgroundColor:c,borderRadius:2};},
             footer:function(items){
               if(!anyCum||!items.length) return '';
@@ -560,7 +562,7 @@ function config(card){
           border:{display:false},
           grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;},drawTicks:false},
           ticks:{color:COL.muted,font:{size:12},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}},
-        y1:hasY1?{position:'right',border:{display:false},grid:{display:false},
+        y1:hasY1?{position:'right',border:{display:false},grid:{display:false},beginAtZero:!!view.low2,afterDataLimits:view.low2?function(ax){ax.min=0;ax.max=ax.max*3;}:undefined,
           ticks:{color:COL.muted,font:{size:12},padding:4,maxTicksLimit:6,callback:function(v){return TICK[OVN?'idx':(view.unit2||'pct')](v);}}}:{display:false}
       }
     }

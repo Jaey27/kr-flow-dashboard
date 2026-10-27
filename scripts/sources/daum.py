@@ -79,7 +79,7 @@ class Daum:
             d = _day(x["date"])
             if d < start.isoformat():
                 break
-            out[d] = x["tradePrice"]
+            out[d] = {"close": x["tradePrice"], "val": x.get("accTradePrice")}  # val 단위 백만원(10/27 코스피 16,417,010 = 16.4조)
         return out
 
     # ---- 종목별: 외국인 보유주식 수·지분율, 외국인/기관 순매수 수량, 종가·평균가 ----------

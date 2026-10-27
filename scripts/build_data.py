@@ -88,11 +88,16 @@ def fetch_daum(start: dt.date, now: dt.datetime) -> bool:
         log(f"daum investor {market}: {len(rows)}행 (잠정 {sorted(prov) or '-'})")
 
     idx_rows = {}
-    for market in ("KOSPI", "KOSDAQ"):
-        for day, v in d.index(market, start).items():
-            idx_rows.setdefault(day, {})[market.lower()] = v
-    idx_rows, prov = daum_window_rows(idx_rows, now)
     led = load_ledger("daum_index")
+    # 거래대금(10/27 추가): 예전 행에 없으면 한 번만 처음부터 다시 받는다(지수 2개 × 3쪽)
+    istart = HISTORY_START if any("kospi_val" not in r for r in led["rows"].values()) else start
+    for market in ("KOSPI", "KOSDAQ"):
+        for day, v in d.index(market, istart).items():
+            r = idx_rows.setdefault(day, {})
+            r[market.lower()] = v["close"]
+            if v["val"] is not None:
+                r[market.lower() + "_val"] = round(v["val"] / 100)  # 억원
+    idx_rows, prov = daum_window_rows(idx_rows, now)
     changed |= merge_rows(led, idx_rows, prov)
     led["fetched_at"] = now.isoformat(timespec="seconds")
     save_ledger("daum_index", led)
@@ -370,6 +375,7 @@ def assemble(now: dt.datetime) -> dict:
         for f in fields:
             S[f"{mk}_{f}"] = col(f"daum_investor_{mk}", f, 1, 1)
         S[f"idx_{mk}"] = col("daum_index", mk)
+        S[f"val_{mk}"] = col("daum_index", f"{mk}_val")  # 거래대금(억원)
     # 선물 (계약)
     for f in ("foreign", "inst", "indiv", "oi", "price"):
         S[f"fut_{f}"] = col("daum_futures", f)

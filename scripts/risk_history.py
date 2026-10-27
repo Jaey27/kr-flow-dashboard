@@ -102,7 +102,9 @@ def run_finra() -> None:
 
 # ---- DTCC CDS ------------------------------------------------------------
 GROUPS = {"ORCL": r"ORACLE CORP|^Oracle Corp", "SPCX": r"SPACE EXPLORATION", "CRWV": r"^COREWEAVE", "GOOGL": r"ALPHABET",
-          "META": r"META PLATFORMS", "AMZN": r"^AMAZON\.COM", "MSFT": r"MICROSOFT", "SBG": r"SOFTBANK GROUP", "NBIS": r"NEBIUS", "HUT": r"HUT 8"}
+          "META": r"META PLATFORMS", "AMZN": r"^AMAZON\.COM", "MSFT": r"MICROSOFT", "SBG": r"SOFTBANK GROUP", "NBIS": r"NEBIUS", "HUT": r"HUT 8",
+          # 10/27 Jae: M7 나머지 + AI 반도체. AAPL 은 DTCC 공개 체결이 거의 없음(10/16~23 0건)
+          "AAPL": r"^APPLE INC", "TSLA": r"^TESLA", "NVDA": r"^NVIDIA", "AMD": r"^ADVANCED MICRO DEVICES", "AVGO": r"^BROADCOM"}
 HIGH = {"CRWV", "ORCL", "SPCX", "SBG", "NBIS", "HUT"}
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/130.0"}
 
@@ -188,7 +190,7 @@ def cds_day(d: dt.date) -> dict | None:
 LAST: dict = {}
 
 
-CDS_CACHE_VER = "2"  # 10/23: 상한 가림 체결 포함 + otr5 만기 → 예전 캐시는 한 번 지우고 다시 계산(맥미니 첫 실행 ~10분)
+CDS_CACHE_VER = "3"  # 10/27: 종목 5개 추가 → 다시 계산(맥미니 첫 실행 ~20분). 이전:  10/23: 상한 가림 체결 포함 + otr5 만기 → 예전 캐시는 한 번 지우고 다시 계산(맥미니 첫 실행 ~10분)
 
 
 def run_cds() -> None:
@@ -310,7 +312,7 @@ def run_cdsvol() -> None:
 
 # ---- 관련 회사 주가(Yahoo, 제한 없음) ------------------------------------
 STOCKS = {"META": "META", "ORCL": "ORCL", "MSFT": "MSFT", "GOOGL": "GOOGL", "AMZN": "AMZN", "CRWV": "CRWV", "NBIS": "NBIS",
-          "HUT": "HUT", "SPCX": "SPCX", "SBG": "9984.T", "NVDA": "NVDA", "WULF": "WULF", "CIFR": "CIFR", "APLD": "APLD", "GLXY": "GLXY", "CORZ": "CORZ", "CLSK": "CLSK"}
+          "HUT": "HUT", "SPCX": "SPCX", "SBG": "9984.T", "NVDA": "NVDA", "AAPL": "AAPL", "TSLA": "TSLA", "AMD": "AMD", "AVGO": "AVGO", "WULF": "WULF", "CIFR": "CIFR", "APLD": "APLD", "GLXY": "GLXY", "CORZ": "CORZ", "CLSK": "CLSK"}
 
 
 def run_stocks() -> None:
