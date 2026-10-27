@@ -2,7 +2,7 @@
 
     python scripts/retail_data.py
 
-- 원천: Census MARTS(월간 소매판매 속보) API — .env 의 CENSUS_KEY. 계절조정 판매액(SM, 백만달러).
+- 원천: Census MARTS(월간 소매판매 속보) API — .env 의 CENSUS_KEY. 계절조정 판매액(SM, 백만달러). 키가 없으면 FRED 의 같은 시리즈.
 - MoM·YoY·기여도는 판매액으로 직접 계산(보도자료 0.1% 반올림보다 자세함). YoY 도 계절조정 기준.
 - 컨트롤그룹 = 전체(44X72) − 자동차·부품(441) − 건축자재(444) − 주유소(447) − 음식점(722)  (GDP 소비 계산에 쓰는 묶음)
 - 주유소 물량 역산 = 주유소 판매액 MoM ÷ CPI 자동차 연료(SETB) MoM (cpi_dashboard/data/cpi.json). 편의점 상품이 섞여 있어 근사.
@@ -30,15 +30,40 @@ CATS = [("441", "자동차·부품"), ("447", "주유소"), ("722", "음식점·
         ("442", "가구"), ("451", "스포츠·취미·서적"), ("453", "기타 소매")]
 
 
-def key() -> str:
-    for line in (ROOT / ".env").read_text(encoding="utf-8").splitlines():
+def key() -> str | None:
+    env = ROOT / ".env"
+    for line in (env.read_text(encoding="utf-8").splitlines() if env.exists() else []):
         if line.startswith("CENSUS_KEY="):
-            return line.split("=", 1)[1].strip()
-    raise SystemExit("[retail] .env 에 CENSUS_KEY 없음")
+            return line.split("=", 1)[1].strip() or None
+    return None
+
+
+# 키가 없으면 FRED 로 같은 MARTS 숫자를 받는다(10/27 대조: 2026-09 17개 항목 Census 와 전부 일치). FRED 는 UA=curl 필요
+FRED_ID = {"44X72": "RSAFS", "44Y72": "RSFSXMV", "44Z72": "MARTSSM44Z72USS", "44W72": "MARTSSM44W72USS", "441": "RSMVPD", "447": "RSGASS",
+           "722": "RSFSDP", "454": "RSNSR", "452": "RSGMS", "445": "RSDBS", "444": "RSBMGESD", "446": "RSHPCS", "448": "RSCCAS",
+           "443": "RSEAS", "442": "RSFHFS", "451": "RSSGHBMS", "453": "RSMSR"}
+
+
+def fetch_fred(start: str) -> dict[str, dict[str, float]]:
+    out: dict[str, dict[str, float]] = {}
+    for c, sid in FRED_ID.items():
+        req = urllib.request.Request(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}&cosd={start}-01", headers={"User-Agent": "curl/8.4.0"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            for line in r.read().decode("utf-8").splitlines()[1:]:
+                d, _, v = line.partition(",")
+                try:
+                    out.setdefault(c, {})[d[:7]] = float(v)
+                except ValueError:
+                    pass
+    return out
 
 
 def fetch(start: str) -> dict[str, dict[str, float]]:
-    q = urllib.parse.urlencode({"get": "cell_value,data_type_code,category_code,seasonally_adj", "time": f"from {start}", "key": key()})
+    k = key()
+    if not k:
+        print("[retail] .env 에 CENSUS_KEY 없음 → FRED 로 받음")
+        return fetch_fred(start)
+    q = urllib.parse.urlencode({"get": "cell_value,data_type_code,category_code,seasonally_adj", "time": f"from {start}", "key": k})
     with urllib.request.urlopen(urllib.request.Request(f"{API}?{q}", headers={"User-Agent": "kr-flow-dashboard"}), timeout=120) as r:
         rows = json.loads(r.read().decode("utf-8"))
     h = rows[0]
@@ -81,7 +106,7 @@ def main() -> int:
         p = allm[i - 1] if i else None
         return round((a[m] - a[p]) / t[p] * 100, 3) if p and m in a and p in a and p in t else None
 
-    out = {"src": API + " (계절조정 판매액)", "months": months, "latest": months[-1], "fetched": date.today().isoformat(),
+    out = {"src": (API if key() else "FRED(Census MARTS 재게시)") + " (계절조정 판매액)", "months": months, "latest": months[-1], "fetched": date.today().isoformat(),
            "head": [{"code": c, "ko": k, "mom": [mom(c, m) for m in months], "yoy": [yoy(c, m) for m in months], "ann3": [ann3(c, m) for m in months]} for c, k in HEAD],
            "cats": [{"code": c, "ko": k, "mom": [mom(c, m) for m in months], "yoy": [yoy(c, m) for m in months],
                      "contrib": [contrib(c, m) for m in months], "share": round(S[c][months[-1]] / S["44X72"][months[-1]] * 100, 1)} for c, k in CATS if c in S]}

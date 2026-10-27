@@ -225,7 +225,7 @@ def run_cds() -> None:
 # ---- CDS 거래량(하이퍼스케일러) + 북미 IG CDX ----------------------------------
 # SEC(단일종목) 파일: 신규 체결(NEWT) 건수와 명목. 큰 거래는 '5,000,000+'처럼 상한으로 가려 공개된다 → 명목 합계는 '최소'(하한).
 # CFTC(지수) 파일: CDX.NA.IG on-the-run 5Y 신규 체결 스프레드 중앙값(bp). 10/16 약 62bp(Bloomberg 차트 10월 수준과 일치 확인).
-VOLG = ["ORCL", "META", "GOOGL", "AMZN", "MSFT", "CRWV"]
+VOLG = ["ORCL", "META", "GOOGL", "AMZN", "MSFT", "CRWV", "NVDA", "AVGO", "AMD"]  # 10/27 Jae: AI 반도체 3개 추가
 S3 = "https://kgc0418-tdw-data-0.s3.amazonaws.com"
 
 
@@ -293,7 +293,18 @@ def vol_day(d: dt.date) -> dict | None:
     return out
 
 
+CDSVOL_CACHE_VER = "2"  # 10/27: VOLG 에 NVDA·AVGO·AMD 추가 → 예전 일자 캐시는 지우고 다시(맥미니 첫 실행 ~20분)
+
+
 def run_cdsvol() -> None:
+    cd = RISK / "cdsvol_cache"
+    vf = cd / "VERSION"
+    if cd.exists() and (not vf.exists() or vf.read_text().strip() != CDSVOL_CACHE_VER):
+        for f in cd.glob("*.json"):
+            f.unlink()
+        print(f"[cdsvol] 캐시 버전 {CDSVOL_CACHE_VER} — 예전 일자 캐시를 지우고 다시 계산", flush=True)
+    cd.mkdir(parents=True, exist_ok=True)
+    vf.write_text(CDSVOL_CACHE_VER)
     d, res = START, {}
     while d <= dt.date.today():
         if d.weekday() < 5:
