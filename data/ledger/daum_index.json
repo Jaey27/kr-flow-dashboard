@@ -1,2014 +1,3018 @@
 {
- "fetched_at": "2026-10-27T18:30:45+09:00",
+ "fetched_at": "2026-10-28T07:21:17+09:00",
  "prov": [],
  "rows": {
   "2024-10-02": {
    "kosdaq": 762.13,
-   "kospi": 2561.69
+   "kosdaq_val": 54992,
+   "kospi": 2561.69,
+   "kospi_val": 96079
   },
   "2024-10-04": {
    "kosdaq": 768.98,
-   "kospi": 2569.71
+   "kosdaq_val": 54271,
+   "kospi": 2569.71,
+   "kospi_val": 100166
   },
   "2024-10-07": {
    "kosdaq": 781.01,
-   "kospi": 2610.38
+   "kosdaq_val": 54915,
+   "kospi": 2610.38,
+   "kospi_val": 103789
   },
   "2024-10-08": {
    "kosdaq": 778.24,
-   "kospi": 2594.36
+   "kosdaq_val": 67525,
+   "kospi": 2594.36,
+   "kospi_val": 91683
   },
   "2024-10-10": {
    "kosdaq": 775.48,
-   "kospi": 2599.16
+   "kosdaq_val": 57588,
+   "kospi": 2599.16,
+   "kospi_val": 138676
   },
   "2024-10-11": {
    "kosdaq": 770.98,
-   "kospi": 2596.91
+   "kosdaq_val": 66555,
+   "kospi": 2596.91,
+   "kospi_val": 95484
   },
   "2024-10-14": {
    "kosdaq": 770.26,
-   "kospi": 2623.29
+   "kosdaq_val": 58340,
+   "kospi": 2623.29,
+   "kospi_val": 85254
   },
   "2024-10-15": {
    "kosdaq": 773.81,
-   "kospi": 2633.45
+   "kosdaq_val": 70262,
+   "kospi": 2633.45,
+   "kospi_val": 100544
   },
   "2024-10-16": {
    "kosdaq": 765.79,
-   "kospi": 2610.36
+   "kosdaq_val": 69984,
+   "kospi": 2610.36,
+   "kospi_val": 100531
   },
   "2024-10-17": {
    "kosdaq": 765.06,
-   "kospi": 2609.3
+   "kosdaq_val": 62980,
+   "kospi": 2609.3,
+   "kospi_val": 99536
   },
   "2024-10-18": {
    "kosdaq": 753.22,
-   "kospi": 2593.82
+   "kosdaq_val": 73449,
+   "kospi": 2593.82,
+   "kospi_val": 82749
   },
   "2024-10-21": {
    "kosdaq": 759.95,
-   "kospi": 2604.92
+   "kosdaq_val": 62765,
+   "kospi": 2604.92,
+   "kospi_val": 77572
   },
   "2024-10-22": {
    "kosdaq": 738.34,
-   "kospi": 2570.7
+   "kosdaq_val": 74583,
+   "kospi": 2570.7,
+   "kospi_val": 89581
   },
   "2024-10-23": {
    "kosdaq": 745.19,
-   "kospi": 2599.62
+   "kosdaq_val": 67633,
+   "kospi": 2599.62,
+   "kospi_val": 94302
   },
   "2024-10-24": {
    "kosdaq": 734.59,
-   "kospi": 2581.03
+   "kosdaq_val": 57379,
+   "kospi": 2581.03,
+   "kospi_val": 97339
   },
   "2024-10-25": {
    "kosdaq": 727.41,
-   "kospi": 2583.27
+   "kosdaq_val": 55518,
+   "kospi": 2583.27,
+   "kospi_val": 102869
   },
   "2024-10-28": {
    "kosdaq": 740.48,
-   "kospi": 2612.43
+   "kosdaq_val": 49845,
+   "kospi": 2612.43,
+   "kospi_val": 91330
   },
   "2024-10-29": {
    "kosdaq": 744.18,
-   "kospi": 2617.8
+   "kosdaq_val": 53343,
+   "kospi": 2617.8,
+   "kospi_val": 93412
   },
   "2024-10-30": {
    "kosdaq": 738.19,
-   "kospi": 2593.79
+   "kosdaq_val": 47204,
+   "kospi": 2593.79,
+   "kospi_val": 90670
   },
   "2024-10-31": {
    "kosdaq": 743.06,
-   "kospi": 2556.15
+   "kosdaq_val": 56836,
+   "kospi": 2556.15,
+   "kospi_val": 109807
   },
   "2024-11-01": {
    "kosdaq": 729.05,
-   "kospi": 2542.36
+   "kosdaq_val": 54525,
+   "kospi": 2542.36,
+   "kospi_val": 79443
   },
   "2024-11-04": {
    "kosdaq": 754.08,
-   "kospi": 2588.97
+   "kosdaq_val": 62724,
+   "kospi": 2588.97,
+   "kospi_val": 80647
   },
   "2024-11-05": {
    "kosdaq": 751.81,
-   "kospi": 2576.88
+   "kosdaq_val": 53513,
+   "kospi": 2576.88,
+   "kospi_val": 77160
   },
   "2024-11-06": {
    "kosdaq": 743.31,
-   "kospi": 2563.51
+   "kosdaq_val": 76314,
+   "kospi": 2563.51,
+   "kospi_val": 117919
   },
   "2024-11-07": {
    "kosdaq": 733.52,
-   "kospi": 2564.63
+   "kosdaq_val": 65992,
+   "kospi": 2564.63,
+   "kospi_val": 108097
   },
   "2024-11-08": {
    "kosdaq": 743.38,
-   "kospi": 2561.15
+   "kosdaq_val": 72064,
+   "kospi": 2561.15,
+   "kospi_val": 99212
   },
   "2024-11-11": {
    "kosdaq": 728.84,
-   "kospi": 2531.66
+   "kosdaq_val": 69233,
+   "kospi": 2531.66,
+   "kospi_val": 112902
   },
   "2024-11-12": {
    "kosdaq": 710.52,
-   "kospi": 2482.57
+   "kosdaq_val": 74123,
+   "kospi": 2482.57,
+   "kospi_val": 128480
   },
   "2024-11-13": {
    "kosdaq": 689.65,
-   "kospi": 2417.08
+   "kosdaq_val": 69922,
+   "kospi": 2417.08,
+   "kospi_val": 112084
   },
   "2024-11-14": {
    "kosdaq": 681.56,
-   "kospi": 2418.86
+   "kosdaq_val": 68602,
+   "kospi": 2418.86,
+   "kospi_val": 130174
   },
   "2024-11-15": {
    "kosdaq": 685.42,
-   "kospi": 2416.86
+   "kosdaq_val": 65024,
+   "kospi": 2416.86,
+   "kospi_val": 123658
   },
   "2024-11-18": {
    "kosdaq": 689.55,
-   "kospi": 2469.07
+   "kosdaq_val": 74232,
+   "kospi": 2469.07,
+   "kospi_val": 106213
   },
   "2024-11-19": {
    "kosdaq": 686.12,
-   "kospi": 2471.95
+   "kosdaq_val": 72367,
+   "kospi": 2471.95,
+   "kospi_val": 90859
   },
   "2024-11-20": {
    "kosdaq": 682.91,
-   "kospi": 2482.29
+   "kosdaq_val": 78518,
+   "kospi": 2482.29,
+   "kospi_val": 78201
   },
   "2024-11-21": {
    "kosdaq": 680.67,
-   "kospi": 2480.63
+   "kosdaq_val": 85220,
+   "kospi": 2480.63,
+   "kospi_val": 83564
   },
   "2024-11-22": {
    "kosdaq": 677.01,
-   "kospi": 2501.24
+   "kosdaq_val": 79967,
+   "kospi": 2501.24,
+   "kospi_val": 80172
   },
   "2024-11-25": {
    "kosdaq": 696.83,
-   "kospi": 2534.34
+   "kosdaq_val": 69064,
+   "kospi": 2534.34,
+   "kospi_val": 134952
   },
   "2024-11-26": {
    "kosdaq": 693.15,
-   "kospi": 2520.36
+   "kosdaq_val": 67295,
+   "kospi": 2520.36,
+   "kospi_val": 87099
   },
   "2024-11-27": {
    "kosdaq": 692.0,
-   "kospi": 2503.06
+   "kosdaq_val": 72764,
+   "kospi": 2503.06,
+   "kospi_val": 85860
   },
   "2024-11-28": {
    "kosdaq": 694.39,
-   "kospi": 2504.67
+   "kosdaq_val": 69341,
+   "kospi": 2504.67,
+   "kospi_val": 75728
   },
   "2024-11-29": {
    "kosdaq": 678.19,
-   "kospi": 2455.91
+   "kosdaq_val": 62952,
+   "kospi": 2455.91,
+   "kospi_val": 91065
   },
   "2024-12-02": {
    "kosdaq": 675.84,
-   "kospi": 2454.48
+   "kosdaq_val": 63533,
+   "kospi": 2454.48,
+   "kospi_val": 75917
   },
   "2024-12-03": {
    "kosdaq": 690.8,
-   "kospi": 2500.1
+   "kosdaq_val": 62355,
+   "kospi": 2500.1,
+   "kospi_val": 91452
   },
   "2024-12-04": {
    "kosdaq": 677.15,
-   "kospi": 2464.0
+   "kosdaq_val": 64028,
+   "kospi": 2464.0,
+   "kospi_val": 132969
   },
   "2024-12-05": {
    "kosdaq": 670.94,
-   "kospi": 2441.85
+   "kosdaq_val": 59923,
+   "kospi": 2441.85,
+   "kospi_val": 97207
   },
   "2024-12-06": {
    "kosdaq": 661.33,
-   "kospi": 2428.16
+   "kosdaq_val": 67913,
+   "kospi": 2428.16,
+   "kospi_val": 107269
   },
   "2024-12-09": {
    "kosdaq": 627.01,
-   "kospi": 2360.58
+   "kosdaq_val": 65119,
+   "kospi": 2360.58,
+   "kospi_val": 100045
   },
   "2024-12-10": {
    "kosdaq": 661.59,
-   "kospi": 2417.84
+   "kosdaq_val": 74975,
+   "kospi": 2417.84,
+   "kospi_val": 93038
   },
   "2024-12-11": {
    "kosdaq": 675.92,
-   "kospi": 2442.51
+   "kosdaq_val": 63928,
+   "kospi": 2442.51,
+   "kospi_val": 77459
   },
   "2024-12-12": {
    "kosdaq": 683.35,
-   "kospi": 2482.12
+   "kosdaq_val": 82353,
+   "kospi": 2482.12,
+   "kospi_val": 122591
   },
   "2024-12-13": {
    "kosdaq": 693.73,
-   "kospi": 2494.46
+   "kosdaq_val": 67870,
+   "kospi": 2494.46,
+   "kospi_val": 88495
   },
   "2024-12-16": {
    "kosdaq": 698.53,
-   "kospi": 2488.97
+   "kosdaq_val": 69844,
+   "kospi": 2488.97,
+   "kospi_val": 84664
   },
   "2024-12-17": {
    "kosdaq": 694.47,
-   "kospi": 2456.81
+   "kosdaq_val": 72011,
+   "kospi": 2456.81,
+   "kospi_val": 92848
   },
   "2024-12-18": {
    "kosdaq": 697.57,
-   "kospi": 2484.43
+   "kosdaq_val": 72456,
+   "kospi": 2484.43,
+   "kospi_val": 83386
   },
   "2024-12-19": {
    "kosdaq": 684.36,
-   "kospi": 2435.93
+   "kosdaq_val": 65369,
+   "kospi": 2435.93,
+   "kospi_val": 84438
   },
   "2024-12-20": {
    "kosdaq": 668.31,
-   "kospi": 2404.15
+   "kosdaq_val": 65135,
+   "kospi": 2404.15,
+   "kospi_val": 93473
   },
   "2024-12-23": {
    "kosdaq": 679.24,
-   "kospi": 2442.01
+   "kosdaq_val": 53447,
+   "kospi": 2442.01,
+   "kospi_val": 73755
   },
   "2024-12-24": {
    "kosdaq": 680.11,
-   "kospi": 2440.52
+   "kosdaq_val": 60702,
+   "kospi": 2440.52,
+   "kospi_val": 67408
   },
   "2024-12-26": {
    "kosdaq": 675.64,
-   "kospi": 2429.67
+   "kosdaq_val": 67047,
+   "kospi": 2429.67,
+   "kospi_val": 64104
   },
   "2024-12-27": {
    "kosdaq": 665.97,
-   "kospi": 2404.77
+   "kosdaq_val": 62290,
+   "kospi": 2404.77,
+   "kospi_val": 63396
   },
   "2024-12-30": {
    "kosdaq": 678.19,
-   "kospi": 2399.49
+   "kosdaq_val": 48469,
+   "kospi": 2399.49,
+   "kospi_val": 53155
   },
   "2025-01-02": {
    "kosdaq": 686.63,
-   "kospi": 2398.94
+   "kosdaq_val": 59124,
+   "kospi": 2398.94,
+   "kospi_val": 69586
   },
   "2025-01-03": {
    "kosdaq": 705.76,
-   "kospi": 2441.92
+   "kosdaq_val": 79882,
+   "kospi": 2441.92,
+   "kospi_val": 82301
   },
   "2025-01-06": {
    "kosdaq": 717.96,
-   "kospi": 2488.64
+   "kosdaq_val": 82581,
+   "kospi": 2488.64,
+   "kospi_val": 81423
   },
   "2025-01-07": {
    "kosdaq": 718.29,
-   "kospi": 2492.1
+   "kosdaq_val": 81749,
+   "kospi": 2492.1,
+   "kospi_val": 94060
   },
   "2025-01-08": {
    "kosdaq": 719.63,
-   "kospi": 2521.05
+   "kosdaq_val": 69132,
+   "kospi": 2521.05,
+   "kospi_val": 103911
   },
   "2025-01-09": {
    "kosdaq": 723.52,
-   "kospi": 2521.9
+   "kosdaq_val": 75022,
+   "kospi": 2521.9,
+   "kospi_val": 115245
   },
   "2025-01-10": {
    "kosdaq": 717.89,
-   "kospi": 2515.78
+   "kosdaq_val": 66012,
+   "kospi": 2515.78,
+   "kospi_val": 96910
   },
   "2025-01-13": {
    "kosdaq": 708.21,
-   "kospi": 2489.56
+   "kosdaq_val": 56390,
+   "kospi": 2489.56,
+   "kospi_val": 90491
   },
   "2025-01-14": {
    "kosdaq": 718.04,
-   "kospi": 2497.4
+   "kosdaq_val": 68011,
+   "kospi": 2497.4,
+   "kospi_val": 81992
   },
   "2025-01-15": {
    "kosdaq": 711.61,
-   "kospi": 2496.81
+   "kosdaq_val": 65959,
+   "kospi": 2496.81,
+   "kospi_val": 91762
   },
   "2025-01-16": {
    "kosdaq": 724.24,
-   "kospi": 2527.49
+   "kosdaq_val": 66839,
+   "kospi": 2527.49,
+   "kospi_val": 94323
   },
   "2025-01-17": {
    "kosdaq": 724.69,
-   "kospi": 2523.55
+   "kosdaq_val": 69929,
+   "kospi": 2523.55,
+   "kospi_val": 100118
   },
   "2025-01-20": {
    "kosdaq": 727.66,
-   "kospi": 2520.05
+   "kosdaq_val": 63395,
+   "kospi": 2520.05,
+   "kospi_val": 86635
   },
   "2025-01-21": {
    "kosdaq": 726.07,
-   "kospi": 2518.03
+   "kosdaq_val": 71322,
+   "kospi": 2518.03,
+   "kospi_val": 93236
   },
   "2025-01-22": {
    "kosdaq": 732.31,
-   "kospi": 2547.06
+   "kosdaq_val": 74753,
+   "kospi": 2547.06,
+   "kospi_val": 110745
   },
   "2025-01-23": {
    "kosdaq": 724.01,
-   "kospi": 2515.49
+   "kosdaq_val": 70152,
+   "kospi": 2515.49,
+   "kospi_val": 99078
   },
   "2025-01-24": {
    "kosdaq": 728.74,
-   "kospi": 2536.8
+   "kosdaq_val": 63438,
+   "kospi": 2536.8,
+   "kospi_val": 101793
   },
   "2025-01-31": {
    "kosdaq": 728.29,
-   "kospi": 2517.37
+   "kosdaq_val": 65317,
+   "kospi": 2517.37,
+   "kospi_val": 137594
   },
   "2025-02-03": {
    "kosdaq": 703.8,
-   "kospi": 2453.95
+   "kosdaq_val": 74406,
+   "kospi": 2453.95,
+   "kospi_val": 116500
   },
   "2025-02-04": {
    "kosdaq": 719.92,
-   "kospi": 2481.69
+   "kosdaq_val": 84175,
+   "kospi": 2481.69,
+   "kospi_val": 110009
   },
   "2025-02-05": {
    "kosdaq": 730.98,
-   "kospi": 2509.27
+   "kosdaq_val": 80976,
+   "kospi": 2509.27,
+   "kospi_val": 99496
   },
   "2025-02-06": {
    "kosdaq": 740.32,
-   "kospi": 2536.75
+   "kosdaq_val": 85157,
+   "kospi": 2536.75,
+   "kospi_val": 118630
   },
   "2025-02-07": {
    "kosdaq": 742.9,
-   "kospi": 2521.92
+   "kosdaq_val": 99294,
+   "kospi": 2521.92,
+   "kospi_val": 102401
   },
   "2025-02-10": {
    "kosdaq": 749.67,
-   "kospi": 2521.27
+   "kosdaq_val": 108166,
+   "kospi": 2521.27,
+   "kospi_val": 105825
   },
   "2025-02-11": {
    "kosdaq": 749.59,
-   "kospi": 2539.05
+   "kosdaq_val": 100139,
+   "kospi": 2539.05,
+   "kospi_val": 110232
   },
   "2025-02-12": {
    "kosdaq": 745.18,
-   "kospi": 2548.39
+   "kosdaq_val": 86113,
+   "kospi": 2548.39,
+   "kospi_val": 136690
   },
   "2025-02-13": {
    "kosdaq": 749.28,
-   "kospi": 2583.17
+   "kosdaq_val": 83917,
+   "kospi": 2583.17,
+   "kospi_val": 171042
   },
   "2025-02-14": {
    "kosdaq": 756.32,
-   "kospi": 2591.05
+   "kosdaq_val": 100850,
+   "kospi": 2591.05,
+   "kospi_val": 139176
   },
   "2025-02-17": {
    "kosdaq": 768.48,
-   "kospi": 2610.42
+   "kosdaq_val": 93130,
+   "kospi": 2610.42,
+   "kospi_val": 110173
   },
   "2025-02-18": {
    "kosdaq": 773.65,
-   "kospi": 2626.81
+   "kosdaq_val": 101212,
+   "kospi": 2626.81,
+   "kospi_val": 126182
   },
   "2025-02-19": {
    "kosdaq": 778.27,
-   "kospi": 2671.52
+   "kosdaq_val": 109133,
+   "kospi": 2671.52,
+   "kospi_val": 148516
   },
   "2025-02-20": {
    "kosdaq": 768.27,
-   "kospi": 2654.06
+   "kosdaq_val": 104155,
+   "kospi": 2654.06,
+   "kospi_val": 145512
   },
   "2025-02-21": {
    "kosdaq": 774.65,
-   "kospi": 2654.58
+   "kosdaq_val": 81826,
+   "kospi": 2654.58,
+   "kospi_val": 113811
   },
   "2025-02-24": {
    "kosdaq": 773.33,
-   "kospi": 2645.27
+   "kosdaq_val": 79245,
+   "kospi": 2645.27,
+   "kospi_val": 108021
   },
   "2025-02-25": {
    "kosdaq": 769.43,
-   "kospi": 2630.29
+   "kosdaq_val": 87573,
+   "kospi": 2630.29,
+   "kospi_val": 105085
   },
   "2025-02-26": {
    "kosdaq": 771.41,
-   "kospi": 2641.09
+   "kosdaq_val": 79698,
+   "kospi": 2641.09,
+   "kospi_val": 112187
   },
   "2025-02-27": {
    "kosdaq": 770.85,
-   "kospi": 2621.75
+   "kosdaq_val": 74697,
+   "kospi": 2621.75,
+   "kospi_val": 108021
   },
   "2025-02-28": {
    "kosdaq": 743.96,
-   "kospi": 2532.78
+   "kosdaq_val": 77898,
+   "kospi": 2532.78,
+   "kospi_val": 156372
   },
   "2025-03-04": {
    "kosdaq": 737.9,
-   "kospi": 2528.92
+   "kosdaq_val": 54939,
+   "kospi": 2528.92,
+   "kospi_val": 131154
   },
   "2025-03-05": {
    "kosdaq": 746.95,
-   "kospi": 2558.13
+   "kosdaq_val": 64661,
+   "kospi": 2558.13,
+   "kospi_val": 130216
   },
   "2025-03-06": {
    "kosdaq": 734.92,
-   "kospi": 2576.16
+   "kosdaq_val": 75053,
+   "kospi": 2576.16,
+   "kospi_val": 113197
   },
   "2025-03-07": {
    "kosdaq": 727.7,
-   "kospi": 2563.48
+   "kosdaq_val": 71836,
+   "kospi": 2563.48,
+   "kospi_val": 121552
   },
   "2025-03-10": {
    "kosdaq": 725.82,
-   "kospi": 2570.39
+   "kosdaq_val": 58346,
+   "kospi": 2570.39,
+   "kospi_val": 98814
   },
   "2025-03-11": {
    "kosdaq": 721.5,
-   "kospi": 2537.6
+   "kosdaq_val": 71498,
+   "kospi": 2537.6,
+   "kospi_val": 109175
   },
   "2025-03-12": {
    "kosdaq": 729.49,
-   "kospi": 2574.82
+   "kosdaq_val": 65581,
+   "kospi": 2574.82,
+   "kospi_val": 122848
   },
   "2025-03-13": {
    "kosdaq": 722.8,
-   "kospi": 2573.64
+   "kosdaq_val": 74855,
+   "kospi": 2573.64,
+   "kospi_val": 131129
   },
   "2025-03-14": {
    "kosdaq": 734.26,
-   "kospi": 2566.36
+   "kosdaq_val": 64931,
+   "kospi": 2566.36,
+   "kospi_val": 99418
   },
   "2025-03-17": {
    "kosdaq": 743.51,
-   "kospi": 2610.69
+   "kosdaq_val": 71124,
+   "kospi": 2610.69,
+   "kospi_val": 119951
   },
   "2025-03-18": {
    "kosdaq": 745.54,
-   "kospi": 2612.34
+   "kosdaq_val": 67800,
+   "kospi": 2612.34,
+   "kospi_val": 120346
   },
   "2025-03-19": {
    "kosdaq": 738.35,
-   "kospi": 2628.62
+   "kosdaq_val": 69431,
+   "kospi": 2628.62,
+   "kospi_val": 118415
   },
   "2025-03-20": {
    "kosdaq": 725.15,
-   "kospi": 2637.1
+   "kosdaq_val": 83384,
+   "kospi": 2637.1,
+   "kospi_val": 119893
   },
   "2025-03-21": {
    "kosdaq": 719.41,
-   "kospi": 2643.13
+   "kosdaq_val": 76729,
+   "kospi": 2643.13,
+   "kospi_val": 141881
   },
   "2025-03-24": {
    "kosdaq": 720.22,
-   "kospi": 2632.07
+   "kosdaq_val": 53100,
+   "kospi": 2632.07,
+   "kospi_val": 69241
   },
   "2025-03-25": {
    "kosdaq": 711.26,
-   "kospi": 2615.81
+   "kosdaq_val": 60166,
+   "kospi": 2615.81,
+   "kospi_val": 83051
   },
   "2025-03-26": {
    "kosdaq": 716.48,
-   "kospi": 2643.94
+   "kosdaq_val": 53683,
+   "kospi": 2643.94,
+   "kospi_val": 76553
   },
   "2025-03-27": {
    "kosdaq": 707.49,
-   "kospi": 2607.15
+   "kosdaq_val": 56580,
+   "kospi": 2607.15,
+   "kospi_val": 76762
   },
   "2025-03-28": {
    "kosdaq": 693.76,
-   "kospi": 2557.98
+   "kosdaq_val": 53255,
+   "kospi": 2557.98,
+   "kospi_val": 71504
   },
   "2025-03-31": {
    "kosdaq": 672.85,
-   "kospi": 2481.12
+   "kosdaq_val": 50257,
+   "kospi": 2481.12,
+   "kospi_val": 82364
   },
   "2025-04-01": {
    "kosdaq": 691.45,
-   "kospi": 2521.39
+   "kosdaq_val": 53797,
+   "kospi": 2521.39,
+   "kospi_val": 69394
   },
   "2025-04-02": {
    "kosdaq": 684.85,
-   "kospi": 2505.86
+   "kosdaq_val": 64004,
+   "kospi": 2505.86,
+   "kospi_val": 73161
   },
   "2025-04-03": {
    "kosdaq": 683.49,
-   "kospi": 2486.7
+   "kosdaq_val": 57956,
+   "kospi": 2486.7,
+   "kospi_val": 82675
   },
   "2025-04-04": {
    "kosdaq": 687.39,
-   "kospi": 2465.42
+   "kosdaq_val": 77679,
+   "kospi": 2465.42,
+   "kospi_val": 107428
   },
   "2025-04-07": {
    "kosdaq": 651.3,
-   "kospi": 2328.2
+   "kosdaq_val": 62822,
+   "kospi": 2328.2,
+   "kospi_val": 105055
   },
   "2025-04-08": {
    "kosdaq": 658.45,
-   "kospi": 2334.23
+   "kosdaq_val": 61177,
+   "kospi": 2334.23,
+   "kospi_val": 91225
   },
   "2025-04-09": {
    "kosdaq": 643.39,
-   "kospi": 2293.7
+   "kosdaq_val": 56264,
+   "kospi": 2293.7,
+   "kospi_val": 95603
   },
   "2025-04-10": {
    "kosdaq": 681.79,
-   "kospi": 2445.06
+   "kosdaq_val": 60089,
+   "kospi": 2445.06,
+   "kospi_val": 110554
   },
   "2025-04-11": {
    "kosdaq": 695.59,
-   "kospi": 2432.72
+   "kosdaq_val": 66250,
+   "kospi": 2432.72,
+   "kospi_val": 76871
   },
   "2025-04-14": {
    "kosdaq": 708.98,
-   "kospi": 2455.89
+   "kosdaq_val": 66403,
+   "kospi": 2455.89,
+   "kospi_val": 66878
   },
   "2025-04-15": {
    "kosdaq": 711.92,
-   "kospi": 2477.41
+   "kosdaq_val": 68787,
+   "kospi": 2477.41,
+   "kospi_val": 65108
   },
   "2025-04-16": {
    "kosdaq": 699.11,
-   "kospi": 2447.43
+   "kosdaq_val": 67408,
+   "kospi": 2447.43,
+   "kospi_val": 67257
   },
   "2025-04-17": {
    "kosdaq": 711.75,
-   "kospi": 2470.41
+   "kosdaq_val": 62490,
+   "kospi": 2470.41,
+   "kospi_val": 66063
   },
   "2025-04-18": {
    "kosdaq": 717.77,
-   "kospi": 2483.42
+   "kosdaq_val": 72166,
+   "kospi": 2483.42,
+   "kospi_val": 56496
   },
   "2025-04-21": {
    "kosdaq": 715.45,
-   "kospi": 2488.42
+   "kosdaq_val": 63349,
+   "kospi": 2488.42,
+   "kospi_val": 52397
   },
   "2025-04-22": {
    "kosdaq": 716.12,
-   "kospi": 2486.64
+   "kosdaq_val": 73156,
+   "kospi": 2486.64,
+   "kospi_val": 61825
   },
   "2025-04-23": {
    "kosdaq": 726.08,
-   "kospi": 2525.56
+   "kosdaq_val": 66783,
+   "kospi": 2525.56,
+   "kospi_val": 77642
   },
   "2025-04-24": {
    "kosdaq": 726.08,
-   "kospi": 2522.33
+   "kosdaq_val": 59791,
+   "kospi": 2522.33,
+   "kospi_val": 72723
   },
   "2025-04-25": {
    "kosdaq": 729.69,
-   "kospi": 2546.3
+   "kosdaq_val": 56226,
+   "kospi": 2546.3,
+   "kospi_val": 87606
   },
   "2025-04-28": {
    "kosdaq": 719.41,
-   "kospi": 2548.86
+   "kosdaq_val": 60878,
+   "kospi": 2548.86,
+   "kospi_val": 78034
   },
   "2025-04-29": {
    "kosdaq": 726.46,
-   "kospi": 2565.42
+   "kosdaq_val": 56093,
+   "kospi": 2565.42,
+   "kospi_val": 92152
   },
   "2025-04-30": {
    "kosdaq": 717.24,
-   "kospi": 2556.61
+   "kosdaq_val": 55272,
+   "kospi": 2556.61,
+   "kospi_val": 84356
   },
   "2025-05-02": {
    "kosdaq": 721.86,
-   "kospi": 2559.79
+   "kosdaq_val": 46237,
+   "kospi": 2559.79,
+   "kospi_val": 83274
   },
   "2025-05-07": {
    "kosdaq": 722.81,
-   "kospi": 2573.8
+   "kosdaq_val": 55701,
+   "kospi": 2573.8,
+   "kospi_val": 89354
   },
   "2025-05-08": {
    "kosdaq": 729.59,
-   "kospi": 2579.48
+   "kosdaq_val": 62850,
+   "kospi": 2579.48,
+   "kospi_val": 102701
   },
   "2025-05-09": {
    "kosdaq": 722.52,
-   "kospi": 2577.27
+   "kosdaq_val": 74696,
+   "kospi": 2577.27,
+   "kospi_val": 80349
   },
   "2025-05-12": {
    "kosdaq": 725.4,
-   "kospi": 2607.33
+   "kosdaq_val": 70459,
+   "kospi": 2607.33,
+   "kospi_val": 85275
   },
   "2025-05-13": {
    "kosdaq": 731.88,
-   "kospi": 2608.42
+   "kosdaq_val": 70615,
+   "kospi": 2608.42,
+   "kospi_val": 87461
   },
   "2025-05-14": {
    "kosdaq": 739.05,
-   "kospi": 2640.57
+   "kosdaq_val": 74060,
+   "kospi": 2640.57,
+   "kospi_val": 88932
   },
   "2025-05-15": {
    "kosdaq": 733.23,
-   "kospi": 2621.36
+   "kosdaq_val": 78730,
+   "kospi": 2621.36,
+   "kospi_val": 72540
   },
   "2025-05-16": {
    "kosdaq": 725.07,
-   "kospi": 2626.87
+   "kosdaq_val": 74370,
+   "kospi": 2626.87,
+   "kospi_val": 80250
   },
   "2025-05-19": {
    "kosdaq": 713.75,
-   "kospi": 2603.42
+   "kosdaq_val": 69714,
+   "kospi": 2603.42,
+   "kospi_val": 67524
   },
   "2025-05-20": {
    "kosdaq": 715.55,
-   "kospi": 2601.8
+   "kosdaq_val": 70340,
+   "kospi": 2601.8,
+   "kospi_val": 76614
   },
   "2025-05-21": {
    "kosdaq": 723.62,
-   "kospi": 2625.58
+   "kosdaq_val": 64462,
+   "kospi": 2625.58,
+   "kospi_val": 74411
   },
   "2025-05-22": {
    "kosdaq": 717.67,
-   "kospi": 2593.67
+   "kosdaq_val": 58745,
+   "kospi": 2593.67,
+   "kospi_val": 89655
   },
   "2025-05-23": {
    "kosdaq": 715.98,
-   "kospi": 2592.09
+   "kosdaq_val": 58173,
+   "kospi": 2592.09,
+   "kospi_val": 86597
   },
   "2025-05-26": {
    "kosdaq": 725.27,
-   "kospi": 2644.4
+   "kosdaq_val": 54043,
+   "kospi": 2644.4,
+   "kospi_val": 83428
   },
   "2025-05-27": {
    "kosdaq": 727.11,
-   "kospi": 2637.22
+   "kosdaq_val": 60683,
+   "kospi": 2637.22,
+   "kospi_val": 79088
   },
   "2025-05-28": {
    "kosdaq": 728.79,
-   "kospi": 2670.15
+   "kosdaq_val": 68159,
+   "kospi": 2670.15,
+   "kospi_val": 112388
   },
   "2025-05-29": {
    "kosdaq": 736.29,
-   "kospi": 2720.64
+   "kosdaq_val": 53695,
+   "kospi": 2720.64,
+   "kospi_val": 108956
   },
   "2025-05-30": {
    "kosdaq": 734.35,
-   "kospi": 2697.67
+   "kosdaq_val": 53511,
+   "kospi": 2697.67,
+   "kospi_val": 148036
   },
   "2025-06-02": {
    "kosdaq": 740.29,
-   "kospi": 2698.97
+   "kosdaq_val": 57614,
+   "kospi": 2698.97,
+   "kospi_val": 80629
   },
   "2025-06-04": {
    "kosdaq": 750.21,
-   "kospi": 2770.84
+   "kosdaq_val": 67751,
+   "kospi": 2770.84,
+   "kospi_val": 121064
   },
   "2025-06-05": {
    "kosdaq": 756.23,
-   "kospi": 2812.05
+   "kosdaq_val": 74623,
+   "kospi": 2812.05,
+   "kospi_val": 132930
   },
   "2025-06-09": {
    "kosdaq": 764.21,
-   "kospi": 2855.77
+   "kosdaq_val": 75955,
+   "kospi": 2855.77,
+   "kospi_val": 140303
   },
   "2025-06-10": {
    "kosdaq": 771.2,
-   "kospi": 2871.85
+   "kosdaq_val": 71214,
+   "kospi": 2871.85,
+   "kospi_val": 142898
   },
   "2025-06-11": {
    "kosdaq": 786.29,
-   "kospi": 2907.04
+   "kosdaq_val": 77997,
+   "kospi": 2907.04,
+   "kospi_val": 124750
   },
   "2025-06-12": {
    "kosdaq": 789.45,
-   "kospi": 2920.03
+   "kosdaq_val": 76688,
+   "kospi": 2920.03,
+   "kospi_val": 173447
   },
   "2025-06-13": {
    "kosdaq": 768.86,
-   "kospi": 2894.62
+   "kosdaq_val": 78589,
+   "kospi": 2894.62,
+   "kospi_val": 174628
   },
   "2025-06-16": {
    "kosdaq": 777.26,
-   "kospi": 2946.66
+   "kosdaq_val": 68981,
+   "kospi": 2946.66,
+   "kospi_val": 144011
   },
   "2025-06-17": {
    "kosdaq": 775.65,
-   "kospi": 2950.3
+   "kosdaq_val": 74293,
+   "kospi": 2950.3,
+   "kospi_val": 179159
   },
   "2025-06-18": {
    "kosdaq": 779.73,
-   "kospi": 2972.19
+   "kosdaq_val": 71055,
+   "kospi": 2972.19,
+   "kospi_val": 146683
   },
   "2025-06-19": {
    "kosdaq": 782.51,
-   "kospi": 2977.74
+   "kosdaq_val": 76094,
+   "kospi": 2977.74,
+   "kospi_val": 137866
   },
   "2025-06-20": {
    "kosdaq": 791.53,
-   "kospi": 3021.84
+   "kosdaq_val": 78587,
+   "kospi": 3021.84,
+   "kospi_val": 179748
   },
   "2025-06-23": {
    "kosdaq": 784.79,
-   "kospi": 3014.47
+   "kosdaq_val": 75543,
+   "kospi": 3014.47,
+   "kospi_val": 178798
   },
   "2025-06-24": {
    "kosdaq": 800.93,
-   "kospi": 3103.64
+   "kosdaq_val": 83375,
+   "kospi": 3103.64,
+   "kospi_val": 191073
   },
   "2025-06-25": {
    "kosdaq": 798.21,
-   "kospi": 3108.25
+   "kosdaq_val": 70180,
+   "kospi": 3108.25,
+   "kospi_val": 196626
   },
   "2025-06-26": {
    "kosdaq": 787.95,
-   "kospi": 3079.56
+   "kosdaq_val": 62386,
+   "kospi": 3079.56,
+   "kospi_val": 170306
   },
   "2025-06-27": {
    "kosdaq": 781.56,
-   "kospi": 3055.94
+   "kosdaq_val": 56285,
+   "kospi": 3055.94,
+   "kospi_val": 139703
   },
   "2025-06-30": {
    "kosdaq": 781.5,
-   "kospi": 3071.7
+   "kosdaq_val": 62963,
+   "kospi": 3071.7,
+   "kospi_val": 133338
   },
   "2025-07-01": {
    "kosdaq": 783.67,
-   "kospi": 3089.65
+   "kosdaq_val": 60917,
+   "kospi": 3089.65,
+   "kospi_val": 151848
   },
   "2025-07-02": {
    "kosdaq": 782.17,
-   "kospi": 3075.06
+   "kosdaq_val": 54366,
+   "kospi": 3075.06,
+   "kospi_val": 148299
   },
   "2025-07-03": {
    "kosdaq": 793.33,
-   "kospi": 3116.27
+   "kosdaq_val": 58259,
+   "kospi": 3116.27,
+   "kospi_val": 148832
   },
   "2025-07-04": {
    "kosdaq": 775.8,
-   "kospi": 3054.28
+   "kosdaq_val": 60368,
+   "kospi": 3054.28,
+   "kospi_val": 135712
   },
   "2025-07-07": {
    "kosdaq": 778.46,
-   "kospi": 3059.47
+   "kosdaq_val": 58159,
+   "kospi": 3059.47,
+   "kospi_val": 102045
   },
   "2025-07-08": {
    "kosdaq": 784.24,
-   "kospi": 3114.95
+   "kosdaq_val": 53677,
+   "kospi": 3114.95,
+   "kospi_val": 134914
   },
   "2025-07-09": {
    "kosdaq": 790.36,
-   "kospi": 3133.74
+   "kosdaq_val": 56355,
+   "kospi": 3133.74,
+   "kospi_val": 126549
   },
   "2025-07-10": {
    "kosdaq": 797.7,
-   "kospi": 3183.23
+   "kosdaq_val": 66023,
+   "kospi": 3183.23,
+   "kospi_val": 141248
   },
   "2025-07-11": {
    "kosdaq": 800.47,
-   "kospi": 3175.77
+   "kosdaq_val": 71330,
+   "kospi": 3175.77,
+   "kospi_val": 133421
   },
   "2025-07-14": {
    "kosdaq": 799.37,
-   "kospi": 3202.03
+   "kosdaq_val": 61495,
+   "kospi": 3202.03,
+   "kospi_val": 115656
   },
   "2025-07-15": {
    "kosdaq": 812.88,
-   "kospi": 3215.28
+   "kosdaq_val": 74881,
+   "kospi": 3215.28,
+   "kospi_val": 122388
   },
   "2025-07-16": {
    "kosdaq": 812.23,
-   "kospi": 3186.38
+   "kosdaq_val": 70947,
+   "kospi": 3186.38,
+   "kospi_val": 113288
   },
   "2025-07-17": {
    "kosdaq": 818.27,
-   "kospi": 3192.29
+   "kosdaq_val": 61214,
+   "kospi": 3192.29,
+   "kospi_val": 153654
   },
   "2025-07-18": {
    "kosdaq": 820.67,
-   "kospi": 3188.07
+   "kosdaq_val": 59985,
+   "kospi": 3188.07,
+   "kospi_val": 119392
   },
   "2025-07-21": {
    "kosdaq": 821.69,
-   "kospi": 3210.81
+   "kosdaq_val": 52495,
+   "kospi": 3210.81,
+   "kospi_val": 106623
   },
   "2025-07-22": {
    "kosdaq": 812.97,
-   "kospi": 3169.94
+   "kosdaq_val": 61917,
+   "kospi": 3169.94,
+   "kospi_val": 116047
   },
   "2025-07-23": {
    "kosdaq": 813.56,
-   "kospi": 3183.77
+   "kosdaq_val": 55929,
+   "kospi": 3183.77,
+   "kospi_val": 122014
   },
   "2025-07-24": {
    "kosdaq": 809.89,
-   "kospi": 3190.45
+   "kosdaq_val": 61142,
+   "kospi": 3190.45,
+   "kospi_val": 129932
   },
   "2025-07-25": {
    "kosdaq": 806.95,
-   "kospi": 3196.05
+   "kosdaq_val": 52091,
+   "kospi": 3196.05,
+   "kospi_val": 98222
   },
   "2025-07-28": {
    "kosdaq": 804.4,
-   "kospi": 3209.52
+   "kosdaq_val": 52791,
+   "kospi": 3209.52,
+   "kospi_val": 138729
   },
   "2025-07-29": {
    "kosdaq": 804.45,
-   "kospi": 3230.57
+   "kosdaq_val": 51162,
+   "kospi": 3230.57,
+   "kospi_val": 127692
   },
   "2025-07-30": {
    "kosdaq": 803.67,
-   "kospi": 3254.47
+   "kosdaq_val": 52189,
+   "kospi": 3254.47,
+   "kospi_val": 129685
   },
   "2025-07-31": {
    "kosdaq": 805.24,
-   "kospi": 3245.44
+   "kosdaq_val": 50664,
+   "kospi": 3245.44,
+   "kospi_val": 164556
   },
   "2025-08-01": {
    "kosdaq": 772.79,
-   "kospi": 3119.41
+   "kosdaq_val": 47509,
+   "kospi": 3119.41,
+   "kospi_val": 152812
   },
   "2025-08-04": {
    "kosdaq": 784.06,
-   "kospi": 3147.75
+   "kosdaq_val": 40479,
+   "kospi": 3147.75,
+   "kospi_val": 97247
   },
   "2025-08-05": {
    "kosdaq": 798.6,
-   "kospi": 3198.0
+   "kosdaq_val": 48124,
+   "kospi": 3198.0,
+   "kospi_val": 109502
   },
   "2025-08-06": {
    "kosdaq": 803.49,
-   "kospi": 3198.14
+   "kosdaq_val": 47759,
+   "kospi": 3198.14,
+   "kospi_val": 111283
   },
   "2025-08-07": {
    "kosdaq": 805.81,
-   "kospi": 3227.68
+   "kosdaq_val": 48040,
+   "kospi": 3227.68,
+   "kospi_val": 112014
   },
   "2025-08-08": {
    "kosdaq": 809.27,
-   "kospi": 3210.01
+   "kosdaq_val": 51648,
+   "kospi": 3210.01,
+   "kospi_val": 114011
   },
   "2025-08-11": {
    "kosdaq": 811.85,
-   "kospi": 3206.77
+   "kosdaq_val": 53012,
+   "kospi": 3206.77,
+   "kospi_val": 103389
   },
   "2025-08-12": {
    "kosdaq": 807.19,
-   "kospi": 3189.91
+   "kosdaq_val": 59462,
+   "kospi": 3189.91,
+   "kospi_val": 101654
   },
   "2025-08-13": {
    "kosdaq": 814.1,
-   "kospi": 3224.37
+   "kosdaq_val": 57683,
+   "kospi": 3224.37,
+   "kospi_val": 103521
   },
   "2025-08-14": {
    "kosdaq": 815.26,
-   "kospi": 3225.66
+   "kosdaq_val": 58170,
+   "kospi": 3225.66,
+   "kospi_val": 100022
   },
   "2025-08-18": {
    "kosdaq": 798.05,
-   "kospi": 3177.28
+   "kosdaq_val": 49363,
+   "kospi": 3177.28,
+   "kospi_val": 89419
   },
   "2025-08-19": {
    "kosdaq": 787.96,
-   "kospi": 3151.56
+   "kosdaq_val": 56599,
+   "kospi": 3151.56,
+   "kospi_val": 86242
   },
   "2025-08-20": {
    "kosdaq": 777.61,
-   "kospi": 3130.09
+   "kosdaq_val": 50281,
+   "kospi": 3130.09,
+   "kospi_val": 117736
   },
   "2025-08-21": {
    "kosdaq": 777.24,
-   "kospi": 3141.74
+   "kosdaq_val": 46626,
+   "kospi": 3141.74,
+   "kospi_val": 108933
   },
   "2025-08-22": {
    "kosdaq": 782.51,
-   "kospi": 3168.73
+   "kosdaq_val": 46330,
+   "kospi": 3168.73,
+   "kospi_val": 83375
   },
   "2025-08-25": {
    "kosdaq": 798.02,
-   "kospi": 3209.86
+   "kosdaq_val": 48824,
+   "kospi": 3209.86,
+   "kospi_val": 80917
   },
   "2025-08-26": {
    "kosdaq": 801.66,
-   "kospi": 3179.36
+   "kosdaq_val": 52269,
+   "kospi": 3179.36,
+   "kospi_val": 129549
   },
   "2025-08-27": {
    "kosdaq": 801.72,
-   "kospi": 3187.16
+   "kosdaq_val": 47234,
+   "kospi": 3187.16,
+   "kospi_val": 88519
   },
   "2025-08-28": {
    "kosdaq": 798.43,
-   "kospi": 3196.32
+   "kosdaq_val": 46842,
+   "kospi": 3196.32,
+   "kospi_val": 98758
   },
   "2025-08-29": {
    "kosdaq": 796.91,
-   "kospi": 3186.01
+   "kosdaq_val": 50429,
+   "kospi": 3186.01,
+   "kospi_val": 89693
   },
   "2025-09-01": {
    "kosdaq": 785.0,
-   "kospi": 3142.93
+   "kosdaq_val": 60017,
+   "kospi": 3142.93,
+   "kospi_val": 80032
   },
   "2025-09-02": {
    "kosdaq": 794.0,
-   "kospi": 3172.35
+   "kosdaq_val": 64359,
+   "kospi": 3172.35,
+   "kospi_val": 86765
   },
   "2025-09-03": {
    "kosdaq": 796.81,
-   "kospi": 3184.42
+   "kosdaq_val": 55325,
+   "kospi": 3184.42,
+   "kospi_val": 88119
   },
   "2025-09-04": {
    "kosdaq": 805.42,
-   "kospi": 3200.83
+   "kosdaq_val": 59902,
+   "kospi": 3200.83,
+   "kospi_val": 79779
   },
   "2025-09-05": {
    "kosdaq": 811.4,
-   "kospi": 3205.12
+   "kosdaq_val": 58504,
+   "kospi": 3205.12,
+   "kospi_val": 109420
   },
   "2025-09-08": {
    "kosdaq": 818.6,
-   "kospi": 3219.59
+   "kosdaq_val": 57900,
+   "kospi": 3219.59,
+   "kospi_val": 82178
   },
   "2025-09-09": {
    "kosdaq": 824.82,
-   "kospi": 3260.05
+   "kosdaq_val": 74851,
+   "kospi": 3260.05,
+   "kospi_val": 106286
   },
   "2025-09-10": {
    "kosdaq": 833.0,
-   "kospi": 3314.53
+   "kosdaq_val": 76636,
+   "kospi": 3314.53,
+   "kospi_val": 137035
   },
   "2025-09-11": {
    "kosdaq": 834.76,
-   "kospi": 3344.2
+   "kosdaq_val": 79118,
+   "kospi": 3344.2,
+   "kospi_val": 149470
   },
   "2025-09-12": {
    "kosdaq": 847.08,
-   "kospi": 3395.54
+   "kosdaq_val": 82893,
+   "kospi": 3395.54,
+   "kospi_val": 139323
   },
   "2025-09-15": {
    "kosdaq": 852.69,
-   "kospi": 3407.31
+   "kosdaq_val": 80821,
+   "kospi": 3407.31,
+   "kospi_val": 127927
   },
   "2025-09-16": {
    "kosdaq": 851.84,
-   "kospi": 3449.62
+   "kosdaq_val": 77893,
+   "kospi": 3449.62,
+   "kospi_val": 140589
   },
   "2025-09-17": {
    "kosdaq": 845.53,
-   "kospi": 3413.4
+   "kosdaq_val": 69990,
+   "kospi": 3413.4,
+   "kospi_val": 116116
   },
   "2025-09-18": {
    "kosdaq": 857.11,
-   "kospi": 3461.3
+   "kosdaq_val": 82208,
+   "kospi": 3461.3,
+   "kospi_val": 124091
   },
   "2025-09-19": {
    "kosdaq": 863.11,
-   "kospi": 3445.24
+   "kosdaq_val": 108645,
+   "kospi": 3445.24,
+   "kospi_val": 151113
   },
   "2025-09-22": {
    "kosdaq": 874.36,
-   "kospi": 3468.65
+   "kosdaq_val": 98414,
+   "kospi": 3468.65,
+   "kospi_val": 119962
   },
   "2025-09-23": {
    "kosdaq": 872.21,
-   "kospi": 3486.19
+   "kosdaq_val": 101048,
+   "kospi": 3486.19,
+   "kospi_val": 121524
   },
   "2025-09-24": {
    "kosdaq": 860.94,
-   "kospi": 3472.14
+   "kosdaq_val": 101194,
+   "kospi": 3472.14,
+   "kospi_val": 118070
   },
   "2025-09-25": {
    "kosdaq": 852.48,
-   "kospi": 3471.11
+   "kosdaq_val": 90355,
+   "kospi": 3471.11,
+   "kospi_val": 126408
   },
   "2025-09-26": {
    "kosdaq": 835.19,
-   "kospi": 3386.05
+   "kosdaq_val": 79798,
+   "kospi": 3386.05,
+   "kospi_val": 126062
   },
   "2025-09-29": {
    "kosdaq": 846.71,
-   "kospi": 3431.21
+   "kosdaq_val": 63007,
+   "kospi": 3431.21,
+   "kospi_val": 100089
   },
   "2025-09-30": {
    "kosdaq": 841.99,
-   "kospi": 3424.6
+   "kosdaq_val": 69217,
+   "kospi": 3424.6,
+   "kospi_val": 111574
   },
   "2025-10-01": {
    "kosdaq": 845.34,
-   "kospi": 3455.83
+   "kosdaq_val": 63441,
+   "kospi": 3455.83,
+   "kospi_val": 123446
   },
   "2025-10-02": {
    "kosdaq": 854.25,
-   "kospi": 3549.21
+   "kosdaq_val": 72286,
+   "kospi": 3549.21,
+   "kospi_val": 194561
   },
   "2025-10-10": {
    "kosdaq": 859.49,
-   "kospi": 3610.6
+   "kosdaq_val": 86492,
+   "kospi": 3610.6,
+   "kospi_val": 196008
   },
   "2025-10-13": {
    "kosdaq": 860.49,
-   "kospi": 3584.55
+   "kosdaq_val": 81620,
+   "kospi": 3584.55,
+   "kospi_val": 142709
   },
   "2025-10-14": {
    "kosdaq": 847.96,
-   "kospi": 3561.81
+   "kosdaq_val": 111391,
+   "kospi": 3561.81,
+   "kospi_val": 189264
   },
   "2025-10-15": {
    "kosdaq": 864.72,
-   "kospi": 3657.28
+   "kosdaq_val": 88690,
+   "kospi": 3657.28,
+   "kospi_val": 138799
   },
   "2025-10-16": {
    "kosdaq": 865.41,
-   "kospi": 3748.37
+   "kosdaq_val": 94417,
+   "kospi": 3748.37,
+   "kospi_val": 176648
   },
   "2025-10-17": {
    "kosdaq": 859.54,
-   "kospi": 3748.89
+   "kosdaq_val": 95558,
+   "kospi": 3748.89,
+   "kospi_val": 172687
   },
   "2025-10-20": {
    "kosdaq": 875.77,
-   "kospi": 3814.69
+   "kosdaq_val": 91076,
+   "kospi": 3814.69,
+   "kospi_val": 141906
   },
   "2025-10-21": {
    "kosdaq": 872.5,
-   "kospi": 3823.84
+   "kosdaq_val": 102310,
+   "kospi": 3823.84,
+   "kospi_val": 193735
   },
   "2025-10-22": {
    "kosdaq": 879.15,
-   "kospi": 3883.68
+   "kosdaq_val": 83282,
+   "kospi": 3883.68,
+   "kospi_val": 154512
   },
   "2025-10-23": {
    "kosdaq": 872.03,
-   "kospi": 3845.56
+   "kosdaq_val": 78019,
+   "kospi": 3845.56,
+   "kospi_val": 162557
   },
   "2025-10-24": {
    "kosdaq": 883.08,
-   "kospi": 3941.59
+   "kosdaq_val": 90118,
+   "kospi": 3941.59,
+   "kospi_val": 178008
   },
   "2025-10-27": {
    "kosdaq": 902.7,
-   "kospi": 4042.83
+   "kosdaq_val": 99040,
+   "kospi": 4042.83,
+   "kospi_val": 201228
   },
   "2025-10-28": {
    "kosdaq": 903.3,
-   "kospi": 4010.41
+   "kosdaq_val": 82863,
+   "kospi": 4010.41,
+   "kospi_val": 197199
   },
   "2025-10-29": {
    "kosdaq": 901.59,
-   "kospi": 4081.15
+   "kosdaq_val": 92681,
+   "kospi": 4081.15,
+   "kospi_val": 220332
   },
   "2025-10-30": {
    "kosdaq": 890.86,
-   "kospi": 4086.89
+   "kosdaq_val": 91706,
+   "kospi": 4086.89,
+   "kospi_val": 241983
   },
   "2025-10-31": {
    "kosdaq": 900.42,
-   "kospi": 4107.5
+   "kosdaq_val": 94269,
+   "kospi": 4107.5,
+   "kospi_val": 229504
   },
   "2025-11-03": {
    "kosdaq": 914.55,
-   "kospi": 4221.87
+   "kosdaq_val": 128417,
+   "kospi": 4221.87,
+   "kospi_val": 227287
   },
   "2025-11-04": {
    "kosdaq": 926.57,
-   "kospi": 4121.74
+   "kosdaq_val": 121328,
+   "kospi": 4121.74,
+   "kospi_val": 207857
   },
   "2025-11-05": {
    "kosdaq": 901.89,
-   "kospi": 4004.42
+   "kosdaq_val": 109633,
+   "kospi": 4004.42,
+   "kospi_val": 291862
   },
   "2025-11-06": {
    "kosdaq": 898.17,
-   "kospi": 4026.45
+   "kosdaq_val": 110662,
+   "kospi": 4026.45,
+   "kospi_val": 214839
   },
   "2025-11-07": {
    "kosdaq": 876.81,
-   "kospi": 3953.76
+   "kosdaq_val": 96768,
+   "kospi": 3953.76,
+   "kospi_val": 187943
   },
   "2025-11-10": {
    "kosdaq": 888.35,
-   "kospi": 4073.24
+   "kosdaq_val": 81923,
+   "kospi": 4073.24,
+   "kospi_val": 166857
   },
   "2025-11-11": {
    "kosdaq": 884.27,
-   "kospi": 4106.39
+   "kosdaq_val": 104017,
+   "kospi": 4106.39,
+   "kospi_val": 201188
   },
   "2025-11-12": {
    "kosdaq": 906.51,
-   "kospi": 4150.39
+   "kosdaq_val": 92904,
+   "kospi": 4150.39,
+   "kospi_val": 156707
   },
   "2025-11-13": {
    "kosdaq": 918.37,
-   "kospi": 4170.63
+   "kosdaq_val": 96367,
+   "kospi": 4170.63,
+   "kospi_val": 175170
   },
   "2025-11-14": {
    "kosdaq": 897.9,
-   "kospi": 4011.57
+   "kosdaq_val": 106319,
+   "kospi": 4011.57,
+   "kospi_val": 179686
   },
   "2025-11-17": {
    "kosdaq": 902.67,
-   "kospi": 4089.25
+   "kosdaq_val": 81852,
+   "kospi": 4089.25,
+   "kospi_val": 143530
   },
   "2025-11-18": {
    "kosdaq": 878.7,
-   "kospi": 3953.62
+   "kosdaq_val": 94146,
+   "kospi": 3953.62,
+   "kospi_val": 140775
   },
   "2025-11-19": {
    "kosdaq": 871.32,
-   "kospi": 3929.51
+   "kosdaq_val": 79053,
+   "kospi": 3929.51,
+   "kospi_val": 145869
   },
   "2025-11-20": {
    "kosdaq": 891.94,
-   "kospi": 4004.85
+   "kosdaq_val": 78836,
+   "kospi": 4004.85,
+   "kospi_val": 151436
   },
   "2025-11-21": {
    "kosdaq": 863.95,
-   "kospi": 3853.26
+   "kosdaq_val": 81746,
+   "kospi": 3853.26,
+   "kospi_val": 141669
   },
   "2025-11-24": {
    "kosdaq": 856.44,
-   "kospi": 3846.06
+   "kosdaq_val": 76173,
+   "kospi": 3846.06,
+   "kospi_val": 214113
   },
   "2025-11-25": {
    "kosdaq": 856.03,
-   "kospi": 3857.78
+   "kosdaq_val": 75606,
+   "kospi": 3857.78,
+   "kospi_val": 132758
   },
   "2025-11-26": {
    "kosdaq": 877.32,
-   "kospi": 3960.87
+   "kosdaq_val": 76551,
+   "kospi": 3960.87,
+   "kospi_val": 157777
   },
   "2025-11-27": {
    "kosdaq": 880.06,
-   "kospi": 3986.91
+   "kosdaq_val": 86103,
+   "kospi": 3986.91,
+   "kospi_val": 130090
   },
   "2025-11-28": {
    "kosdaq": 912.67,
-   "kospi": 3926.59
+   "kosdaq_val": 117496,
+   "kospi": 3926.59,
+   "kospi_val": 119273
   },
   "2025-12-01": {
    "kosdaq": 922.38,
-   "kospi": 3920.37
+   "kosdaq_val": 118161,
+   "kospi": 3920.37,
+   "kospi_val": 118056
   },
   "2025-12-02": {
    "kosdaq": 928.42,
-   "kospi": 3994.93
+   "kosdaq_val": 101753,
+   "kospi": 3994.93,
+   "kospi_val": 124392
   },
   "2025-12-03": {
    "kosdaq": 932.01,
-   "kospi": 4036.3
+   "kosdaq_val": 98309,
+   "kospi": 4036.3,
+   "kospi_val": 133757
   },
   "2025-12-04": {
    "kosdaq": 929.83,
-   "kospi": 4028.51
+   "kosdaq_val": 123719,
+   "kospi": 4028.51,
+   "kospi_val": 137162
   },
   "2025-12-05": {
    "kosdaq": 924.74,
-   "kospi": 4100.05
+   "kosdaq_val": 127789,
+   "kospi": 4100.05,
+   "kospi_val": 163088
   },
   "2025-12-08": {
    "kosdaq": 927.79,
-   "kospi": 4154.85
+   "kosdaq_val": 118444,
+   "kospi": 4154.85,
+   "kospi_val": 152078
   },
   "2025-12-09": {
    "kosdaq": 931.35,
-   "kospi": 4143.55
+   "kosdaq_val": 101186,
+   "kospi": 4143.55,
+   "kospi_val": 133288
   },
   "2025-12-10": {
    "kosdaq": 935.0,
-   "kospi": 4135.0
+   "kosdaq_val": 102402,
+   "kospi": 4135.0,
+   "kospi_val": 126258
   },
   "2025-12-11": {
    "kosdaq": 934.64,
-   "kospi": 4110.62
+   "kosdaq_val": 109444,
+   "kospi": 4110.62,
+   "kospi_val": 203084
   },
   "2025-12-12": {
    "kosdaq": 937.34,
-   "kospi": 4167.16
+   "kosdaq_val": 125488,
+   "kospi": 4167.16,
+   "kospi_val": 165458
   },
   "2025-12-15": {
    "kosdaq": 938.83,
-   "kospi": 4090.59
+   "kosdaq_val": 113426,
+   "kospi": 4090.59,
+   "kospi_val": 154383
   },
   "2025-12-16": {
    "kosdaq": 916.11,
-   "kospi": 3999.13
+   "kosdaq_val": 131983,
+   "kospi": 3999.13,
+   "kospi_val": 165256
   },
   "2025-12-17": {
    "kosdaq": 911.07,
-   "kospi": 4056.41
+   "kosdaq_val": 122258,
+   "kospi": 4056.41,
+   "kospi_val": 129683
   },
   "2025-12-18": {
    "kosdaq": 901.33,
-   "kospi": 3994.51
+   "kosdaq_val": 100916,
+   "kospi": 3994.51,
+   "kospi_val": 130776
   },
   "2025-12-19": {
    "kosdaq": 915.27,
-   "kospi": 4020.55
+   "kosdaq_val": 115197,
+   "kospi": 4020.55,
+   "kospi_val": 164704
   },
   "2025-12-22": {
    "kosdaq": 929.14,
-   "kospi": 4105.93
+   "kosdaq_val": 124262,
+   "kospi": 4105.93,
+   "kospi_val": 130137
   },
   "2025-12-23": {
    "kosdaq": 919.56,
-   "kospi": 4117.32
+   "kosdaq_val": 119741,
+   "kospi": 4117.32,
+   "kospi_val": 134607
   },
   "2025-12-24": {
    "kosdaq": 915.2,
-   "kospi": 4108.62
+   "kosdaq_val": 114506,
+   "kospi": 4108.62,
+   "kospi_val": 121150
   },
   "2025-12-26": {
    "kosdaq": 919.67,
-   "kospi": 4129.68
+   "kosdaq_val": 113483,
+   "kospi": 4129.68,
+   "kospi_val": 162736
   },
   "2025-12-29": {
    "kosdaq": 932.59,
-   "kospi": 4220.56
+   "kosdaq_val": 118537,
+   "kospi": 4220.56,
+   "kospi_val": 145352
   },
   "2025-12-30": {
    "kosdaq": 925.47,
-   "kospi": 4214.17
+   "kosdaq_val": 105571,
+   "kospi": 4214.17,
+   "kospi_val": 132135
   },
   "2026-01-02": {
    "kosdaq": 945.57,
-   "kospi": 4309.63
+   "kosdaq_val": 107818,
+   "kospi": 4309.63,
+   "kospi_val": 175218
   },
   "2026-01-05": {
    "kosdaq": 957.5,
-   "kospi": 4457.52
+   "kosdaq_val": 120621,
+   "kospi": 4457.52,
+   "kospi_val": 227838
   },
   "2026-01-06": {
    "kosdaq": 955.97,
-   "kospi": 4525.48
+   "kosdaq_val": 104540,
+   "kospi": 4525.48,
+   "kospi_val": 255182
   },
   "2026-01-07": {
    "kosdaq": 947.39,
-   "kospi": 4551.06
+   "kosdaq_val": 114465,
+   "kospi": 4551.06,
+   "kospi_val": 291399
   },
   "2026-01-08": {
    "kosdaq": 944.06,
-   "kospi": 4552.37
+   "kosdaq_val": 100980,
+   "kospi": 4552.37,
+   "kospi_val": 274770
   },
   "2026-01-09": {
    "kosdaq": 947.92,
-   "kospi": 4586.32
+   "kosdaq_val": 90330,
+   "kospi": 4586.32,
+   "kospi_val": 234788
   },
   "2026-01-12": {
    "kosdaq": 949.81,
-   "kospi": 4624.79
+   "kosdaq_val": 103146,
+   "kospi": 4624.79,
+   "kospi_val": 230738
   },
   "2026-01-13": {
    "kosdaq": 948.98,
-   "kospi": 4692.64
+   "kosdaq_val": 101899,
+   "kospi": 4692.64,
+   "kospi_val": 252406
   },
   "2026-01-14": {
    "kosdaq": 942.18,
-   "kospi": 4723.1
+   "kosdaq_val": 88553,
+   "kospi": 4723.1,
+   "kospi_val": 242175
   },
   "2026-01-15": {
    "kosdaq": 951.16,
-   "kospi": 4797.55
+   "kosdaq_val": 107313,
+   "kospi": 4797.55,
+   "kospi_val": 238261
   },
   "2026-01-16": {
    "kosdaq": 954.59,
-   "kospi": 4840.74
+   "kosdaq_val": 142456,
+   "kospi": 4840.74,
+   "kospi_val": 269482
   },
   "2026-01-19": {
    "kosdaq": 968.36,
-   "kospi": 4904.66
+   "kosdaq_val": 131033,
+   "kospi": 4904.66,
+   "kospi_val": 252147
   },
   "2026-01-20": {
    "kosdaq": 976.37,
-   "kospi": 4885.75
+   "kosdaq_val": 153182,
+   "kospi": 4885.75,
+   "kospi_val": 271488
   },
   "2026-01-21": {
    "kosdaq": 951.29,
-   "kospi": 4909.93
+   "kosdaq_val": 209025,
+   "kospi": 4909.93,
+   "kospi_val": 300930
   },
   "2026-01-22": {
    "kosdaq": 970.35,
-   "kospi": 4952.53
+   "kosdaq_val": 165835,
+   "kospi": 4952.53,
+   "kospi_val": 329196
   },
   "2026-01-23": {
    "kosdaq": 993.93,
-   "kospi": 4990.07
+   "kosdaq_val": 172273,
+   "kospi": 4990.07,
+   "kospi_val": 300171
   },
   "2026-01-26": {
    "kosdaq": 1064.41,
-   "kospi": 4949.59
+   "kosdaq_val": 253341,
+   "kospi": 4949.59,
+   "kospi_val": 228430
   },
   "2026-01-27": {
    "kosdaq": 1082.59,
-   "kospi": 5084.85
+   "kosdaq_val": 176916,
+   "kospi": 5084.85,
+   "kospi_val": 284964
   },
   "2026-01-28": {
    "kosdaq": 1133.52,
-   "kospi": 5170.81
+   "kosdaq_val": 232378,
+   "kospi": 5170.81,
+   "kospi_val": 308565
   },
   "2026-01-29": {
    "kosdaq": 1164.41,
-   "kospi": 5221.25
+   "kosdaq_val": 226766,
+   "kospi": 5221.25,
+   "kospi_val": 358702
   },
   "2026-01-30": {
    "kosdaq": 1149.44,
-   "kospi": 5224.36
+   "kosdaq_val": 228700,
+   "kospi": 5224.36,
+   "kospi_val": 354934
   },
   "2026-02-02": {
    "kosdaq": 1098.36,
-   "kospi": 4949.67
+   "kosdaq_val": 174928,
+   "kospi": 4949.67,
+   "kospi_val": 320906
   },
   "2026-02-03": {
    "kosdaq": 1144.33,
-   "kospi": 5288.08
+   "kosdaq_val": 148088,
+   "kospi": 5288.08,
+   "kospi_val": 300160
   },
   "2026-02-04": {
    "kosdaq": 1149.43,
-   "kospi": 5371.1
+   "kosdaq_val": 136767,
+   "kospi": 5371.1,
+   "kospi_val": 304335
   },
   "2026-02-05": {
    "kosdaq": 1108.41,
-   "kospi": 5163.57
+   "kosdaq_val": 141226,
+   "kospi": 5163.57,
+   "kospi_val": 323856
   },
   "2026-02-06": {
    "kosdaq": 1080.77,
-   "kospi": 5089.14
+   "kosdaq_val": 142411,
+   "kospi": 5089.14,
+   "kospi_val": 299123
   },
   "2026-02-09": {
    "kosdaq": 1127.55,
-   "kospi": 5298.04
+   "kosdaq_val": 125006,
+   "kospi": 5298.04,
+   "kospi_val": 264541
   },
   "2026-02-10": {
    "kosdaq": 1115.2,
-   "kospi": 5301.69
+   "kosdaq_val": 121192,
+   "kospi": 5301.69,
+   "kospi_val": 232759
   },
   "2026-02-11": {
    "kosdaq": 1114.87,
-   "kospi": 5354.49
+   "kosdaq_val": 111892,
+   "kospi": 5354.49,
+   "kospi_val": 256259
   },
   "2026-02-12": {
    "kosdaq": 1125.99,
-   "kospi": 5522.27
+   "kosdaq_val": 127918,
+   "kospi": 5522.27,
+   "kospi_val": 323226
   },
   "2026-02-13": {
    "kosdaq": 1106.08,
-   "kospi": 5507.01
+   "kosdaq_val": 112512,
+   "kospi": 5507.01,
+   "kospi_val": 308210
   },
   "2026-02-19": {
    "kosdaq": 1160.71,
-   "kospi": 5677.25
+   "kosdaq_val": 144236,
+   "kospi": 5677.25,
+   "kospi_val": 289460
   },
   "2026-02-20": {
    "kosdaq": 1154.0,
-   "kospi": 5808.53
+   "kosdaq_val": 124053,
+   "kospi": 5808.53,
+   "kospi_val": 331197
   },
   "2026-02-23": {
    "kosdaq": 1151.99,
-   "kospi": 5846.09
+   "kosdaq_val": 144444,
+   "kospi": 5846.09,
+   "kospi_val": 320441
   },
   "2026-02-24": {
    "kosdaq": 1165.0,
-   "kospi": 5969.64
+   "kosdaq_val": 137199,
+   "kospi": 5969.64,
+   "kospi_val": 313727
   },
   "2026-02-25": {
    "kosdaq": 1165.25,
-   "kospi": 6083.86
+   "kosdaq_val": 134561,
+   "kospi": 6083.86,
+   "kospi_val": 352846
   },
   "2026-02-26": {
    "kosdaq": 1188.15,
-   "kospi": 6307.27
+   "kosdaq_val": 179735,
+   "kospi": 6307.27,
+   "kospi_val": 389300
   },
   "2026-02-27": {
    "kosdaq": 1192.78,
-   "kospi": 6244.13
+   "kosdaq_val": 148466,
+   "kospi": 6244.13,
+   "kospi_val": 549393
   },
   "2026-03-03": {
    "kosdaq": 1137.7,
-   "kospi": 5791.91
+   "kosdaq_val": 168966,
+   "kospi": 5791.91,
+   "kospi_val": 528006
   },
   "2026-03-04": {
    "kosdaq": 978.44,
-   "kospi": 5093.54
+   "kosdaq_val": 165871,
+   "kospi": 5093.54,
+   "kospi_val": 628827
   },
   "2026-03-05": {
    "kosdaq": 1116.41,
-   "kospi": 5583.9
+   "kosdaq_val": 155949,
+   "kospi": 5583.9,
+   "kospi_val": 453090
   },
   "2026-03-06": {
    "kosdaq": 1154.67,
-   "kospi": 5584.87
+   "kosdaq_val": 144915,
+   "kospi": 5584.87,
+   "kospi_val": 314025
   },
   "2026-03-09": {
    "kosdaq": 1102.28,
-   "kospi": 5251.87
+   "kosdaq_val": 123830,
+   "kospi": 5251.87,
+   "kospi_val": 331639
   },
   "2026-03-10": {
    "kosdaq": 1137.68,
-   "kospi": 5532.59
+   "kosdaq_val": 150616,
+   "kospi": 5532.59,
+   "kospi_val": 287133
   },
   "2026-03-11": {
    "kosdaq": 1136.83,
-   "kospi": 5609.95
+   "kosdaq_val": 165925,
+   "kospi": 5609.95,
+   "kospi_val": 266192
   },
   "2026-03-12": {
    "kosdaq": 1148.4,
-   "kospi": 5583.25
+   "kosdaq_val": 140194,
+   "kospi": 5583.25,
+   "kospi_val": 236982
   },
   "2026-03-13": {
    "kosdaq": 1152.96,
-   "kospi": 5487.24
+   "kosdaq_val": 143969,
+   "kospi": 5487.24,
+   "kospi_val": 237197
   },
   "2026-03-16": {
    "kosdaq": 1138.29,
-   "kospi": 5549.85
+   "kosdaq_val": 134392,
+   "kospi": 5549.85,
+   "kospi_val": 217603
   },
   "2026-03-17": {
    "kosdaq": 1136.94,
-   "kospi": 5640.48
+   "kosdaq_val": 129340,
+   "kospi": 5640.48,
+   "kospi_val": 223038
   },
   "2026-03-18": {
    "kosdaq": 1164.38,
-   "kospi": 5925.03
+   "kosdaq_val": 144333,
+   "kospi": 5925.03,
+   "kospi_val": 268518
   },
   "2026-03-19": {
    "kosdaq": 1143.48,
-   "kospi": 5763.22
+   "kosdaq_val": 118029,
+   "kospi": 5763.22,
+   "kospi_val": 229947
   },
   "2026-03-20": {
    "kosdaq": 1161.52,
-   "kospi": 5781.2
+   "kosdaq_val": 141433,
+   "kospi": 5781.2,
+   "kospi_val": 340259
   },
   "2026-03-23": {
    "kosdaq": 1096.89,
-   "kospi": 5405.75
+   "kosdaq_val": 111007,
+   "kospi": 5405.75,
+   "kospi_val": 272432
   },
   "2026-03-24": {
    "kosdaq": 1121.44,
-   "kospi": 5553.92
+   "kosdaq_val": 124596,
+   "kospi": 5553.92,
+   "kospi_val": 249324
   },
   "2026-03-25": {
    "kosdaq": 1159.55,
-   "kospi": 5642.21
+   "kosdaq_val": 139724,
+   "kospi": 5642.21,
+   "kospi_val": 246421
   },
   "2026-03-26": {
    "kosdaq": 1136.64,
-   "kospi": 5460.46
+   "kosdaq_val": 138227,
+   "kospi": 5460.46,
+   "kospi_val": 256153
   },
   "2026-03-27": {
    "kosdaq": 1141.51,
-   "kospi": 5438.87
+   "kosdaq_val": 125237,
+   "kospi": 5438.87,
+   "kospi_val": 236593
   },
   "2026-03-30": {
    "kosdaq": 1107.05,
-   "kospi": 5277.3
+   "kosdaq_val": 98968,
+   "kospi": 5277.3,
+   "kospi_val": 208275
   },
   "2026-03-31": {
    "kosdaq": 1052.39,
-   "kospi": 5052.46
+   "kosdaq_val": 113674,
+   "kospi": 5052.46,
+   "kospi_val": 298377
   },
   "2026-04-01": {
    "kosdaq": 1116.18,
-   "kospi": 5478.7
+   "kosdaq_val": 112430,
+   "kospi": 5478.7,
+   "kospi_val": 289024
   },
   "2026-04-02": {
    "kosdaq": 1056.34,
-   "kospi": 5234.05
+   "kosdaq_val": 156902,
+   "kospi": 5234.05,
+   "kospi_val": 332901
   },
   "2026-04-03": {
    "kosdaq": 1063.75,
-   "kospi": 5377.3
+   "kosdaq_val": 99333,
+   "kospi": 5377.3,
+   "kospi_val": 222346
   },
   "2026-04-06": {
    "kosdaq": 1047.37,
-   "kospi": 5450.33
+   "kosdaq_val": 100995,
+   "kospi": 5450.33,
+   "kospi_val": 217612
   },
   "2026-04-07": {
    "kosdaq": 1036.73,
-   "kospi": 5494.78
+   "kosdaq_val": 101001,
+   "kospi": 5494.78,
+   "kospi_val": 237194
   },
   "2026-04-08": {
    "kosdaq": 1089.85,
-   "kospi": 5872.34
+   "kosdaq_val": 130914,
+   "kospi": 5872.34,
+   "kospi_val": 363070
   },
   "2026-04-09": {
    "kosdaq": 1076.0,
-   "kospi": 5778.01
+   "kosdaq_val": 99271,
+   "kospi": 5778.01,
+   "kospi_val": 334734
   },
   "2026-04-10": {
    "kosdaq": 1093.63,
-   "kospi": 5858.87
+   "kosdaq_val": 133619,
+   "kospi": 5858.87,
+   "kospi_val": 237461
   },
   "2026-04-13": {
    "kosdaq": 1099.84,
-   "kospi": 5808.62
+   "kosdaq_val": 117891,
+   "kospi": 5808.62,
+   "kospi_val": 214566
   },
   "2026-04-14": {
    "kosdaq": 1121.88,
-   "kospi": 5967.75
+   "kosdaq_val": 144850,
+   "kospi": 5967.75,
+   "kospi_val": 271286
   },
   "2026-04-15": {
    "kosdaq": 1152.43,
-   "kospi": 6091.39
+   "kosdaq_val": 158901,
+   "kospi": 6091.39,
+   "kospi_val": 316156
   },
   "2026-04-16": {
    "kosdaq": 1162.97,
-   "kospi": 6226.05
+   "kosdaq_val": 168470,
+   "kospi": 6226.05,
+   "kospi_val": 270468
   },
   "2026-04-17": {
    "kosdaq": 1170.04,
-   "kospi": 6191.92
+   "kosdaq_val": 158804,
+   "kospi": 6191.92,
+   "kospi_val": 246196
   },
   "2026-04-20": {
    "kosdaq": 1174.85,
-   "kospi": 6219.09
+   "kosdaq_val": 144868,
+   "kospi": 6219.09,
+   "kospi_val": 235765
   },
   "2026-04-21": {
    "kosdaq": 1179.03,
-   "kospi": 6388.47
+   "kosdaq_val": 159942,
+   "kospi": 6388.47,
+   "kospi_val": 311060
   },
   "2026-04-22": {
    "kosdaq": 1181.12,
-   "kospi": 6417.93
+   "kosdaq_val": 147131,
+   "kospi": 6417.93,
+   "kospi_val": 310291
   },
   "2026-04-23": {
    "kosdaq": 1174.31,
-   "kospi": 6475.81
+   "kosdaq_val": 162664,
+   "kospi": 6475.81,
+   "kospi_val": 406042
   },
   "2026-04-24": {
    "kosdaq": 1203.84,
-   "kospi": 6475.63
+   "kosdaq_val": 173936,
+   "kospi": 6475.63,
+   "kospi_val": 302029
   },
   "2026-04-27": {
    "kosdaq": 1226.18,
-   "kospi": 6615.03
+   "kosdaq_val": 176004,
+   "kospi": 6615.03,
+   "kospi_val": 334103
   },
   "2026-04-28": {
    "kosdaq": 1215.58,
-   "kospi": 6641.02
+   "kosdaq_val": 138722,
+   "kospi": 6641.02,
+   "kospi_val": 376227
   },
   "2026-04-29": {
    "kosdaq": 1220.26,
-   "kospi": 6690.9
+   "kosdaq_val": 157920,
+   "kospi": 6690.9,
+   "kospi_val": 314533
   },
   "2026-04-30": {
    "kosdaq": 1192.35,
-   "kospi": 6598.87
+   "kosdaq_val": 152903,
+   "kospi": 6598.87,
+   "kospi_val": 358086
   },
   "2026-05-04": {
    "kosdaq": 1213.74,
-   "kospi": 6936.99
+   "kosdaq_val": 160391,
+   "kospi": 6936.99,
+   "kospi_val": 426960
   },
   "2026-05-06": {
    "kosdaq": 1210.17,
-   "kospi": 7384.56
+   "kosdaq_val": 180481,
+   "kospi": 7384.56,
+   "kospi_val": 600004
   },
   "2026-05-07": {
    "kosdaq": 1199.18,
-   "kospi": 7490.05
+   "kosdaq_val": 170225,
+   "kospi": 7490.05,
+   "kospi_val": 511125
   },
   "2026-05-08": {
    "kosdaq": 1207.72,
-   "kospi": 7498.0
+   "kosdaq_val": 164305,
+   "kospi": 7498.0,
+   "kospi_val": 407927
   },
   "2026-05-11": {
    "kosdaq": 1207.34,
-   "kospi": 7822.24
+   "kosdaq_val": 193582,
+   "kospi": 7822.24,
+   "kospi_val": 518434
   },
   "2026-05-12": {
    "kosdaq": 1179.29,
-   "kospi": 7643.15
+   "kosdaq_val": 213161,
+   "kospi": 7643.15,
+   "kospi_val": 671146
   },
   "2026-05-13": {
    "kosdaq": 1176.93,
-   "kospi": 7844.01
+   "kosdaq_val": 145088,
+   "kospi": 7844.01,
+   "kospi_val": 504640
   },
   "2026-05-14": {
    "kosdaq": 1191.09,
-   "kospi": 7981.41
+   "kosdaq_val": 138405,
+   "kospi": 7981.41,
+   "kospi_val": 516969
   },
   "2026-05-15": {
    "kosdaq": 1129.82,
-   "kospi": 7493.18
+   "kosdaq_val": 178866,
+   "kospi": 7493.18,
+   "kospi_val": 595485
   },
   "2026-05-18": {
    "kosdaq": 1111.09,
-   "kospi": 7516.04
+   "kosdaq_val": 144749,
+   "kospi": 7516.04,
+   "kospi_val": 446092
   },
   "2026-05-19": {
    "kosdaq": 1084.36,
-   "kospi": 7271.66
+   "kosdaq_val": 138122,
+   "kospi": 7271.66,
+   "kospi_val": 379610
   },
   "2026-05-20": {
    "kosdaq": 1056.07,
-   "kospi": 7208.95
+   "kosdaq_val": 130490,
+   "kospi": 7208.95,
+   "kospi_val": 404010
   },
   "2026-05-21": {
    "kosdaq": 1105.97,
-   "kospi": 7815.59
+   "kosdaq_val": 126815,
+   "kospi": 7815.59,
+   "kospi_val": 431871
   },
   "2026-05-22": {
    "kosdaq": 1161.13,
-   "kospi": 7847.71
+   "kosdaq_val": 152269,
+   "kospi": 7847.71,
+   "kospi_val": 312294
   },
   "2026-05-26": {
    "kosdaq": 1172.52,
-   "kospi": 8047.51
+   "kosdaq_val": 162487,
+   "kospi": 8047.51,
+   "kospi_val": 408027
   },
   "2026-05-27": {
    "kosdaq": 1133.13,
-   "kospi": 8228.7
+   "kosdaq_val": 152784,
+   "kospi": 8228.7,
+   "kospi_val": 568321
   },
   "2026-05-28": {
    "kosdaq": 1104.36,
-   "kospi": 8185.29
+   "kosdaq_val": 128175,
+   "kospi": 8185.29,
+   "kospi_val": 532418
   },
   "2026-05-29": {
    "kosdaq": 1074.8,
-   "kospi": 8476.15
+   "kosdaq_val": 121509,
+   "kospi": 8476.15,
+   "kospi_val": 803325
   },
   "2026-06-01": {
    "kosdaq": 1050.03,
-   "kospi": 8788.38
+   "kosdaq_val": 122377,
+   "kospi": 8788.38,
+   "kospi_val": 743300
   },
   "2026-06-02": {
    "kosdaq": 1026.03,
-   "kospi": 8801.49
+   "kosdaq_val": 112234,
+   "kospi": 8801.49,
+   "kospi_val": 691097
   },
   "2026-06-04": {
    "kosdaq": 1049.73,
-   "kospi": 8639.41
+   "kosdaq_val": 110543,
+   "kospi": 8639.41,
+   "kospi_val": 476386
   },
   "2026-06-05": {
    "kosdaq": 1002.44,
-   "kospi": 8160.59
+   "kosdaq_val": 107026,
+   "kospi": 8160.59,
+   "kospi_val": 485195
   },
   "2026-06-08": {
    "kosdaq": 911.39,
-   "kospi": 7484.41
+   "kosdaq_val": 89293,
+   "kospi": 7484.41,
+   "kospi_val": 483389
   },
   "2026-06-09": {
    "kosdaq": 967.81,
-   "kospi": 8096.93
+   "kosdaq_val": 102546,
+   "kospi": 8096.93,
+   "kospi_val": 467154
   },
   "2026-06-10": {
    "kosdaq": 951.63,
-   "kospi": 7730.82
+   "kosdaq_val": 91485,
+   "kospi": 7730.82,
+   "kospi_val": 399448
   },
   "2026-06-11": {
    "kosdaq": 996.93,
-   "kospi": 7763.95
+   "kosdaq_val": 137056,
+   "kospi": 7763.95,
+   "kospi_val": 464008
   },
   "2026-06-12": {
    "kosdaq": 1029.05,
-   "kospi": 8123.62
+   "kosdaq_val": 167122,
+   "kospi": 8123.62,
+   "kospi_val": 522576
   },
   "2026-06-15": {
    "kosdaq": 1034.03,
-   "kospi": 8545.98
+   "kosdaq_val": 115023,
+   "kospi": 8545.98,
+   "kospi_val": 399922
   },
   "2026-06-16": {
    "kosdaq": 1018.68,
-   "kospi": 8726.6
+   "kosdaq_val": 90246,
+   "kospi": 8726.6,
+   "kospi_val": 405685
   },
   "2026-06-17": {
    "kosdaq": 1031.96,
-   "kospi": 8864.24
+   "kosdaq_val": 97373,
+   "kospi": 8864.24,
+   "kospi_val": 358460
   },
   "2026-06-18": {
    "kosdaq": 1000.93,
-   "kospi": 9063.84
+   "kosdaq_val": 91124,
+   "kospi": 9063.84,
+   "kospi_val": 507803
   },
   "2026-06-19": {
    "kosdaq": 966.59,
-   "kospi": 9052.42
+   "kosdaq_val": 107046,
+   "kospi": 9052.42,
+   "kospi_val": 672552
   },
   "2026-06-22": {
    "kosdaq": 968.4,
-   "kospi": 9114.55
+   "kosdaq_val": 91223,
+   "kospi": 9114.55,
+   "kospi_val": 419095
   },
   "2026-06-23": {
    "kosdaq": 891.52,
-   "kospi": 8203.84
+   "kosdaq_val": 86555,
+   "kospi": 8203.84,
+   "kospi_val": 614286
   },
   "2026-06-24": {
    "kosdaq": 909.31,
-   "kospi": 8471.02
+   "kosdaq_val": 70489,
+   "kospi": 8471.02,
+   "kospi_val": 554991
   },
   "2026-06-25": {
    "kosdaq": 887.81,
-   "kospi": 8930.3
+   "kosdaq_val": 70594,
+   "kospi": 8930.3,
+   "kospi_val": 519737
   },
   "2026-06-26": {
    "kosdaq": 851.37,
-   "kospi": 8411.21
+   "kosdaq_val": 82466,
+   "kospi": 8411.21,
+   "kospi_val": 539975
   },
   "2026-06-29": {
    "kosdaq": 920.57,
-   "kospi": 8394.65
+   "kosdaq_val": 81363,
+   "kospi": 8394.65,
+   "kospi_val": 426845
   },
   "2026-06-30": {
    "kosdaq": 916.18,
-   "kospi": 8476.48
+   "kosdaq_val": 79528,
+   "kospi": 8476.48,
+   "kospi_val": 420994
   },
   "2026-07-01": {
    "kosdaq": 929.35,
-   "kospi": 8303.41
+   "kosdaq_val": 118122,
+   "kospi": 8303.41,
+   "kospi_val": 399987
   },
   "2026-07-02": {
    "kosdaq": 866.72,
-   "kospi": 7648.09
+   "kosdaq_val": 79838,
+   "kospi": 7648.09,
+   "kospi_val": 499009
   },
   "2026-07-03": {
    "kosdaq": 868.41,
-   "kospi": 8088.34
+   "kosdaq_val": 68852,
+   "kospi": 8088.34,
+   "kospi_val": 454921
   },
   "2026-07-06": {
    "kosdaq": 847.07,
-   "kospi": 8051.33
+   "kosdaq_val": 61568,
+   "kospi": 8051.33,
+   "kospi_val": 320028
   },
   "2026-07-07": {
    "kosdaq": 831.23,
-   "kospi": 7656.31
+   "kosdaq_val": 63313,
+   "kospi": 7656.31,
+   "kospi_val": 407174
   },
   "2026-07-08": {
    "kosdaq": 785.0,
-   "kospi": 7246.79
+   "kosdaq_val": 61436,
+   "kospi": 7246.79,
+   "kospi_val": 424654
   },
   "2026-07-09": {
    "kosdaq": 794.0,
-   "kospi": 7291.91
+   "kosdaq_val": 59008,
+   "kospi": 7291.91,
+   "kospi_val": 395567
   },
   "2026-07-10": {
    "kosdaq": 837.43,
-   "kospi": 7475.94
+   "kosdaq_val": 69030,
+   "kospi": 7475.94,
+   "kospi_val": 315770
   },
   "2026-07-13": {
    "kosdaq": 799.36,
-   "kospi": 6806.93
+   "kosdaq_val": 74203,
+   "kospi": 6806.93,
+   "kospi_val": 401438
   },
   "2026-07-14": {
    "kosdaq": 783.98,
-   "kospi": 6856.83
+   "kosdaq_val": 67350,
+   "kospi": 6856.83,
+   "kospi_val": 466980
   },
   "2026-07-15": {
    "kosdaq": 829.43,
-   "kospi": 7284.41
+   "kosdaq_val": 63924,
+   "kospi": 7284.41,
+   "kospi_val": 344883
   },
   "2026-07-16": {
    "kosdaq": 791.84,
-   "kospi": 6820.6
+   "kosdaq_val": 47204,
+   "kospi": 6820.6,
+   "kospi_val": 298207
   },
   "2026-07-20": {
    "kosdaq": 749.64,
-   "kospi": 6516.27
+   "kosdaq_val": 48323,
+   "kospi": 6516.27,
+   "kospi_val": 296906
   },
   "2026-07-21": {
    "kosdaq": 753.34,
-   "kospi": 6747.95
+   "kosdaq_val": 46210,
+   "kospi": 6747.95,
+   "kospi_val": 248107
   },
   "2026-07-22": {
    "kosdaq": 751.09,
-   "kospi": 6797.7
+   "kosdaq_val": 54214,
+   "kospi": 6797.7,
+   "kospi_val": 285741
   },
   "2026-07-23": {
    "kosdaq": 790.28,
-   "kospi": 7096.89
+   "kosdaq_val": 54694,
+   "kospi": 7096.89,
+   "kospi_val": 268561
   },
   "2026-07-24": {
    "kosdaq": 748.22,
-   "kospi": 6690.62
+   "kosdaq_val": 51770,
+   "kospi": 6690.62,
+   "kospi_val": 309920
   },
   "2026-07-27": {
    "kosdaq": 764.86,
-   "kospi": 6755.75
+   "kosdaq_val": 44616,
+   "kospi": 6755.75,
+   "kospi_val": 242947
   },
   "2026-07-28": {
    "kosdaq": 705.85,
-   "kospi": 6023.66
+   "kosdaq_val": 47703,
+   "kospi": 6023.66,
+   "kospi_val": 360739
   },
   "2026-07-29": {
    "kosdaq": 662.68,
-   "kospi": 5663.24
+   "kosdaq_val": 64884,
+   "kospi": 5663.24,
+   "kospi_val": 492174
   },
   "2026-07-30": {
    "kosdaq": 644.78,
-   "kospi": 5593.56
+   "kosdaq_val": 44929,
+   "kospi": 5593.56,
+   "kospi_val": 383209
   },
   "2026-07-31": {
    "kosdaq": 719.76,
-   "kospi": 6595.45
+   "kosdaq_val": 54357,
+   "kospi": 6595.45,
+   "kospi_val": 495677
   },
   "2026-08-03": {
    "kosdaq": 737.35,
-   "kospi": 6257.45
+   "kosdaq_val": 54628,
+   "kospi": 6257.45,
+   "kospi_val": 263346
   },
   "2026-08-04": {
    "kosdaq": 780.72,
-   "kospi": 6358.95
+   "kosdaq_val": 58630,
+   "kospi": 6358.95,
+   "kospi_val": 282108
   },
   "2026-08-05": {
    "kosdaq": 799.59,
-   "kospi": 6598.26
+   "kosdaq_val": 63827,
+   "kospi": 6598.26,
+   "kospi_val": 256578
   },
   "2026-08-06": {
    "kosdaq": 801.67,
-   "kospi": 6296.38
+   "kosdaq_val": 61410,
+   "kospi": 6296.38,
+   "kospi_val": 264521
   },
   "2026-08-07": {
    "kosdaq": 798.81,
-   "kospi": 6258.77
+   "kosdaq_val": 52690,
+   "kospi": 6258.77,
+   "kospi_val": 247305
   },
   "2026-08-10": {
    "kosdaq": 854.47,
-   "kospi": 6299.66
+   "kosdaq_val": 71234,
+   "kospi": 6299.66,
+   "kospi_val": 190121
   },
   "2026-08-11": {
    "kosdaq": 857.84,
-   "kospi": 6345.53
+   "kosdaq_val": 67942,
+   "kospi": 6345.53,
+   "kospi_val": 219607
   },
   "2026-08-12": {
    "kosdaq": 858.91,
-   "kospi": 6579.04
+   "kosdaq_val": 65704,
+   "kospi": 6579.04,
+   "kospi_val": 270995
   },
   "2026-08-13": {
    "kosdaq": 861.37,
-   "kospi": 6813.34
+   "kosdaq_val": 75916,
+   "kospi": 6813.34,
+   "kospi_val": 348331
   },
   "2026-08-14": {
    "kosdaq": 864.65,
-   "kospi": 6977.94
+   "kosdaq_val": 75587,
+   "kospi": 6977.94,
+   "kospi_val": 271968
   },
   "2026-08-18": {
    "kosdaq": 834.2,
-   "kospi": 6869.83
+   "kosdaq_val": 81176,
+   "kospi": 6869.83,
+   "kospi_val": 299056
   },
   "2026-08-19": {
    "kosdaq": 824.46,
-   "kospi": 6471.17
+   "kosdaq_val": 61903,
+   "kospi": 6471.17,
+   "kospi_val": 231171
   },
   "2026-08-20": {
    "kosdaq": 840.89,
-   "kospi": 6852.58
+   "kosdaq_val": 57181,
+   "kospi": 6852.58,
+   "kospi_val": 282145
   },
   "2026-08-21": {
    "kosdaq": 801.94,
-   "kospi": 6912.95
+   "kosdaq_val": 54518,
+   "kospi": 6912.95,
+   "kospi_val": 288978
   },
   "2026-08-24": {
    "kosdaq": 813.33,
-   "kospi": 6696.96
+   "kosdaq_val": 44865,
+   "kospi": 6696.96,
+   "kospi_val": 261641
   },
   "2026-08-25": {
    "kosdaq": 827.15,
-   "kospi": 6742.74
+   "kosdaq_val": 47222,
+   "kospi": 6742.74,
+   "kospi_val": 240912
   },
   "2026-08-26": {
    "kosdaq": 826.87,
-   "kospi": 6808.21
+   "kosdaq_val": 44613,
+   "kospi": 6808.21,
+   "kospi_val": 229193
   },
   "2026-08-27": {
    "kosdaq": 837.65,
-   "kospi": 6912.37
+   "kosdaq_val": 54720,
+   "kospi": 6912.37,
+   "kospi_val": 229436
   },
   "2026-08-28": {
    "kosdaq": 838.41,
-   "kospi": 6788.88
+   "kosdaq_val": 49774,
+   "kospi": 6788.88,
+   "kospi_val": 216374
   },
   "2026-08-31": {
    "kosdaq": 834.29,
-   "kospi": 6820.02
+   "kosdaq_val": 53834,
+   "kospi": 6820.02,
+   "kospi_val": 275420
   },
   "2026-09-01": {
    "kosdaq": 821.25,
-   "kospi": 6835.8
+   "kosdaq_val": 46579,
+   "kospi": 6835.8,
+   "kospi_val": 192034
   },
   "2026-09-02": {
    "kosdaq": 803.98,
-   "kospi": 6562.72
+   "kosdaq_val": 54558,
+   "kospi": 6562.72,
+   "kospi_val": 187768
   },
   "2026-09-03": {
    "kosdaq": 790.21,
-   "kospi": 6579.48
+   "kosdaq_val": 49287,
+   "kospi": 6579.48,
+   "kospi_val": 221650
   },
   "2026-09-04": {
    "kosdaq": 813.5,
-   "kospi": 6687.21
+   "kosdaq_val": 66955,
+   "kospi": 6687.21,
+   "kospi_val": 177236
   },
   "2026-09-07": {
    "kosdaq": 822.19,
-   "kospi": 6995.39
+   "kosdaq_val": 63255,
+   "kospi": 6995.39,
+   "kospi_val": 217623
   },
   "2026-09-08": {
    "kosdaq": 811.88,
-   "kospi": 6954.52
+   "kosdaq_val": 81523,
+   "kospi": 6954.52,
+   "kospi_val": 261878
   },
   "2026-09-09": {
    "kosdaq": 830.37,
-   "kospi": 7051.64
+   "kosdaq_val": 76684,
+   "kospi": 7051.64,
+   "kospi_val": 226258
   },
   "2026-09-10": {
    "kosdaq": 836.92,
-   "kospi": 7033.92
+   "kosdaq_val": 114237,
+   "kospi": 7033.92,
+   "kospi_val": 289279
   },
   "2026-09-11": {
    "kosdaq": 820.64,
-   "kospi": 6909.91
+   "kosdaq_val": 64144,
+   "kospi": 6909.91,
+   "kospi_val": 196741
   },
   "2026-09-14": {
    "kosdaq": 806.79,
-   "kospi": 6684.37
+   "kosdaq_val": 60411,
+   "kospi": 6684.37,
+   "kospi_val": 215844
   },
   "2026-09-15": {
    "kosdaq": 812.41,
-   "kospi": 6627.26
+   "kosdaq_val": 65243,
+   "kospi": 6627.26,
+   "kospi_val": 171256
   },
   "2026-09-16": {
    "kosdaq": 815.98,
-   "kospi": 6717.97
+   "kosdaq_val": 65733,
+   "kospi": 6717.97,
+   "kospi_val": 166858
   },
   "2026-09-17": {
    "kosdaq": 822.18,
-   "kospi": 6715.41
+   "kosdaq_val": 60805,
+   "kospi": 6715.41,
+   "kospi_val": 171440
   },
   "2026-09-18": {
    "kosdaq": 827.12,
-   "kospi": 6894.23
+   "kosdaq_val": 75909,
+   "kospi": 6894.23,
+   "kospi_val": 281050
   },
   "2026-09-21": {
    "kosdaq": 836.27,
-   "kospi": 7007.72
+   "kosdaq_val": 81334,
+   "kospi": 7007.72,
+   "kospi_val": 208112
   },
   "2026-09-22": {
    "kosdaq": 834.38,
-   "kospi": 7017.91
+   "kosdaq_val": 85000,
+   "kospi": 7017.91,
+   "kospi_val": 235941
   },
   "2026-09-23": {
    "kosdaq": 844.48,
-   "kospi": 7080.92
+   "kosdaq_val": 80869,
+   "kospi": 7080.92,
+   "kospi_val": 226227
   },
   "2026-09-28": {
    "kosdaq": 846.58,
-   "kospi": 6889.74
+   "kosdaq_val": 63348,
+   "kospi": 6889.74,
+   "kospi_val": 230487
   },
   "2026-09-29": {
    "kosdaq": 849.8,
-   "kospi": 6870.81
+   "kosdaq_val": 80360,
+   "kospi": 6870.81,
+   "kospi_val": 189635
   },
   "2026-09-30": {
    "kosdaq": 855.91,
-   "kospi": 6838.04
+   "kosdaq_val": 77718,
+   "kospi": 6838.04,
+   "kospi_val": 204772
   },
   "2026-10-01": {
    "kosdaq": 894.29,
-   "kospi": 6971.35
+   "kosdaq_val": 88845,
+   "kospi": 6971.35,
+   "kospi_val": 181657
   },
   "2026-10-02": {
    "kosdaq": 893.29,
-   "kospi": 7003.74
+   "kosdaq_val": 88469,
+   "kospi": 7003.74,
+   "kospi_val": 159811
   },
   "2026-10-06": {
    "kosdaq": 919.92,
-   "kospi": 6941.39
+   "kosdaq_val": 93449,
+   "kospi": 6941.39,
+   "kospi_val": 200779
   },
   "2026-10-07": {
    "kosdaq": 898.43,
-   "kospi": 6803.9
+   "kosdaq_val": 83348,
+   "kospi": 6803.9,
+   "kospi_val": 205765
   },
   "2026-10-08": {
    "kosdaq": 892.27,
-   "kospi": 6625.93
+   "kosdaq_val": 80604,
+   "kospi": 6625.93,
+   "kospi_val": 243763
   },
   "2026-10-12": {
    "kosdaq": 849.19,
-   "kospi": 6384.24
+   "kosdaq_val": 68114,
+   "kospi": 6384.24,
+   "kospi_val": 228711
   },
   "2026-10-13": {
    "kosdaq": 837.03,
-   "kospi": 6035.35
+   "kosdaq_val": 72411,
+   "kospi": 6035.35,
+   "kospi_val": 284523
   },
   "2026-10-14": {
    "kosdaq": 823.88,
-   "kospi": 6008.81
+   "kosdaq_val": 61651,
+   "kospi": 6008.81,
+   "kospi_val": 213902
   },
   "2026-10-15": {
    "kosdaq": 760.82,
-   "kospi": 5554.22
+   "kosdaq_val": 70329,
+   "kospi": 5554.22,
+   "kospi_val": 286399
   },
   "2026-10-16": {
    "kosdaq": 794.78,
-   "kospi": 5668.05
+   "kosdaq_val": 60259,
+   "kospi": 5668.05,
+   "kospi_val": 209454
   },
   "2026-10-19": {
    "kosdaq": 808.89,
-   "kospi": 5768.01
+   "kosdaq_val": 50316,
+   "kospi": 5768.01,
+   "kospi_val": 200056
   },
   "2026-10-20": {
    "kosdaq": 781.97,
-   "kospi": 5552.74
+   "kosdaq_val": 53812,
+   "kospi": 5552.74,
+   "kospi_val": 170549
   },
   "2026-10-21": {
    "kosdaq": 792.76,
-   "kospi": 5735.66
+   "kosdaq_val": 52820,
+   "kospi": 5735.66,
+   "kospi_val": 184414
   },
   "2026-10-22": {
    "kosdaq": 764.1,
-   "kospi": 5533.77
+   "kosdaq_val": 69086,
+   "kospi": 5533.77,
+   "kospi_val": 149157
   },
   "2026-10-23": {
    "kosdaq": 751.69,
-   "kospi": 5550.3
+   "kosdaq_val": 58080,
+   "kospi": 5550.3,
+   "kospi_val": 173743
   },
   "2026-10-26": {
    "kosdaq": 727.21,
-   "kospi": 5469.47
+   "kosdaq_val": 47811,
+   "kospi": 5469.47,
+   "kospi_val": 129912
   },
   "2026-10-27": {
    "kosdaq": 743.83,
-   "kospi": 5638.34
+   "kosdaq_val": 60312,
+   "kospi": 5638.34,
+   "kospi_val": 164170
   }
  }
 }

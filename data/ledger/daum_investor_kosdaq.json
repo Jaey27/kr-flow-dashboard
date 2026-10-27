@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-27T18:30:45+09:00",
+ "fetched_at": "2026-10-28T07:21:17+09:00",
  "prov": [],
  "rows": {
   "2024-10-02": {
@@ -7018,13 +7018,13 @@
   },
   "2026-10-27": {
    "bank": -15.04,
-   "etc_corp": -41.8,
+   "etc_corp": -30.71,
    "etc_fin": -10.2,
-   "etc_foreign": -55.35,
-   "fin_invest": 265.8,
-   "foreign": 232.21,
-   "indiv": -1695.65,
-   "inst": 1505.23,
+   "etc_foreign": -53.23,
+   "fin_invest": 270.17,
+   "foreign": 254.66,
+   "indiv": -1733.55,
+   "inst": 1509.6,
    "insurance": 50.32,
    "pension": 431.34,
    "private_fund": 120.21,
