@@ -3,12 +3,16 @@
   "core": {
    "first": 0.347,
    "made": "2026-10-26",
-   "latest": 0.347
+   "latest": 0.347,
+   "actual": 0.317,
+   "err_first": 0.03
   },
   "head": {
    "first": 0.526,
    "made": "2026-10-26",
-   "latest": 0.526
+   "latest": 0.526,
+   "actual": 0.491,
+   "err_first": 0.035
   }
  }
 }
