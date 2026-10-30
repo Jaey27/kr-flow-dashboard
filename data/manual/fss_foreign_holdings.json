@@ -1,6 +1,6 @@
 {
  "note": "금감원 월말 외국인 상장주식(코스피+코스닥) 보유액·시총 대비 비중·월간 순매수. 결제 기준이라 거래일 기준 KRX/금투협 집계와 다르고, 시총 비중의 분모도 달라 금투협 비중(%)과 직접 비교하지 않는다. 시장별 순매수는 보도 인용. 매월 보도자료가 나오면 한 줄 추가.",
- "collected": "2026-10-13",
+ "collected": "2026-10-30",
  "rows": [
   {
    "month": "2024-09",
@@ -289,6 +289,17 @@
    "published": "2026-09-18",
    "source": "금융감독원 '외국인 증권투자 동향' (KDI 경제정보센터 게재본)",
    "news": "https://biz.sbs.co.kr/amp/article/20000335413"
+  },
+  {
+   "month": "2026-09",
+   "holding_jo": 2296.0,
+   "share_pct": 34.8,
+   "net_buy_jo": -19.116,
+   "net_buy_kospi_jo": null,
+   "net_buy_kosdaq_jo": null,
+   "url": "https://eiec.kdi.re.kr/policy/materialView.do?num=288831",
+   "published": "2026-10-30",
+   "source": "금융감독원 '외국인 증권투자 동향' (KDI 경제정보센터 게재본, 자동 수집)"
   }
  ]
 }
