@@ -23,6 +23,10 @@ import json
 from common import DATA, load_ledger
 
 STOCKS = ("005930", "000660")
+# 해외 DR 신주(장에서 산 게 아닌 외국인 보유 증가) — 보유주식 수 그래프·매매 효과에서 빼고 따로 둔다(11/01 Jae)
+#   SK하이닉스: Nasdaq SKHY ADR 원주 17,790,000주(제3자배정, Citibank 예탁, 2026-07-14 납입, 7-15 ADR 발행)
+#   다음 외국인 보유주식 수에는 2026-07-16 값부터 잡힘(보유주식 수는 전 거래일 매매까지 반영). DART 20260715000004·20260713000324
+DR_NEW = {"000660": [("2026-07-16", 17_790_000)]}
 FSS_PATH = DATA / "manual" / "fss_foreign_holdings.json"
 MILLION_TO_EOK = 0.01   # 백만원 -> 억원
 
@@ -101,25 +105,29 @@ def build(dates: list[str], S: dict) -> dict:
                     if b.get(f) is not None:
                         arr[i] = round(b[f] * vw / 1e8, 1)
                 nq[i] = b.get("foreign")
-        # 분해 (직전 값이 있는 날만)
-        eff_t, eff_p, dh = none(), none(), none()
+        # DR 신주 제외 보유주식 수
+        adj = [sum(q for d0, q in DR_NEW.get(c, []) if d >= d0) for d in dates]
+        fo_x = [None if v is None else v - adj[i] for i, v in enumerate(fo_sh)]
+        # 분해 (직전 값이 있는 날만): 보유액 변화 = 매매(DR 제외 주식 수 변화) + 주가 + DR 신주 편입
+        eff_t, eff_p, eff_dr, dh = none(), none(), none(), none()
         prev = None
         for i in range(n):
             if fo_sh[i] is None or px_arr[i] is None:
                 continue
             if prev is not None:
-                eff_t[i] = round((fo_sh[i] - fo_sh[prev]) * px_arr[i] / 1e8, 1)
+                eff_t[i] = round((fo_x[i] - fo_x[prev]) * px_arr[i] / 1e8, 1)
                 eff_p[i] = round(fo_sh[prev] * (px_arr[i] - px_arr[prev]) / 1e8, 1)
-                dh[i] = round(eff_t[i] + eff_p[i], 1)
+                eff_dr[i] = round((adj[i] - adj[prev]) * px_arr[i] / 1e8, 1)
+                dh[i] = round(eff_t[i] + eff_p[i] + eff_dr[i], 1)
             prev = i
-        S.update({f"s{c}_mcap": mcap, f"s{c}_fo_val": fo_val, f"s{c}_fo_rate": fo_rate, f"s{c}_fo_shares": fo_sh,
+        S.update({f"s{c}_mcap": mcap, f"s{c}_fo_val": fo_val, f"s{c}_fo_rate": fo_rate, f"s{c}_fo_shares": fo_sh, f"s{c}_fo_shares_x": fo_x, f"s{c}_eff_dr": eff_dr,
                   f"s{c}_net_foreign": nf, f"s{c}_net_inst": ni, f"s{c}_net_indiv": npv, f"s{c}_net_foreign_qty": nq,
                   f"s{c}_eff_trade": eff_t, f"s{c}_eff_price": eff_p, f"s{c}_dH": dh})
 
     sh = STOCKS
     S["sh_mcap"] = add(*(S[f"s{c}_mcap"] for c in sh))
     S["sh_fo_val"] = add(*(S[f"s{c}_fo_val"] for c in sh))
-    for f in ("net_foreign", "eff_trade", "eff_price", "dH"):
+    for f in ("net_foreign", "eff_trade", "eff_price", "eff_dr", "dH"):
         S[f"sh_{f}"] = add(*(S[f"s{c}_{f}"] for c in sh))
     S["share_samsung"] = pct(S["s005930_mcap"], S["mcap_kospi"])
     S["share_hynix"] = pct(S["s000660_mcap"], S["mcap_kospi"])

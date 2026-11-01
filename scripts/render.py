@@ -395,7 +395,7 @@ var PANELS=[
   {id:'shtop',tab:'foreign',top:true,title:'외국인의 삼성전자·SK하이닉스 — 보유액 · 코스피 시총 대비 · 보유 주식 수',src:'보유주식 수(다음, KRX)×종가 · 범례를 눌러 삼성/하이닉스를 켜고 끔 · 코스피는 오른쪽 위 버튼',asof:'stock',views:[
     {label:'보유액',type:'line',unit:'jo',series:[{k:'sh_fo_val',name:'삼성+하이닉스',short:'합계',color:CS.total},{k:'s005930_fo_val',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_val',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
     {label:'코스피 시총 대비',type:'line',unit:'pct',note:'외국인 보유액 ÷ 코스피 시총',series:[{k:'sh_fo_in_mcap',name:'삼성+하이닉스',short:'합계',color:CS.total},{k:'s005930_fo_in_mcap',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_in_mcap',name:'SK하이닉스',short:'하이닉스',color:CS.hynix}]},
-    {label:'보유 주식 수',type:'line',unit:'shr',unit2:'shr',note:'주가 효과 제외 — 장외 이동·DR 예탁 포함',series:[{k:'s005930_fo_shares',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_shares',name:'SK하이닉스',short:'하이닉스',color:CS.hynix,axis:'y1',unit:'shr'}]}
+    {label:'보유 주식 수',type:'line',unit:'shr',unit2:'shr',note:'주가 효과 제외 · 전 거래일 매매까지 반영(하루 늦음) · 하이닉스는 2026-07 ADR 신주 1,779만 주 제외(점선 = 원자료)',series:[{k:'s005930_fo_shares',name:'삼성전자',short:'삼성',color:CS.samsung},{k:'s000660_fo_shares_x',name:'SK하이닉스 (ADR 신주 제외)',short:'하이닉스',color:CS.hynix,axis:'y1',unit:'shr'},{k:'s000660_fo_shares',name:'SK하이닉스 원자료(ADR 포함)',short:'하이닉스 원자료',color:'rgba(213,81,129,.45)',axis:'y1',unit:'shr',dash:true}]}
   ]},
   {id:'mkthold',tab:'foreign',title:'시장 전체 외국인 보유액 (코스피+코스닥)',src:'금투협(KRX) 일별 실측 · 금감원 월말',asof:'fo_market',views:[
     {label:'보유액',type:'stack',unit:'jo',series:[
@@ -411,10 +411,11 @@ var PANELS=[
       {k:'fo_dH_total',name:'보유액 변화',short:'보유액 변화',color:CS.total},
       {k:'fo_net_total',name:'매매(외국인 순매수)',short:'매매',color:CS.trade},
       {k:'fo_eff_price_total',name:'주가 효과',short:'주가',color:CS.price}]},
-    {label:'삼성+하이닉스',type:'line',cum:true,base:true,unit:'jo',note:'매매 = 보유주식 수 변화 × 주가(장외·DR 예탁 포함)',series:[
+    {label:'삼성+하이닉스',type:'line',cum:true,base:true,unit:'jo',note:'매매 = 보유주식 수 변화 × 주가(장외 이동 포함, 하이닉스 ADR 신주는 따로)',series:[
       {k:'sh_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
       {k:'sh_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
-      {k:'sh_eff_price',name:'주가 효과',short:'주가',color:CS.price}]},
+      {k:'sh_eff_price',name:'주가 효과',short:'주가',color:CS.price},
+      {k:'sh_eff_dr',name:'ADR 신주 편입(장 밖)',short:'ADR 신주',color:'#d4a72c'}]},
     {label:'삼성전자',type:'line',cum:true,base:true,unit:'jo',series:[
       {k:'s005930_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
       {k:'s005930_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
@@ -422,7 +423,8 @@ var PANELS=[
     {label:'SK하이닉스',type:'line',cum:true,base:true,unit:'jo',series:[
       {k:'s000660_dH',name:'보유액 변화',short:'보유액 변화',color:CS.total},
       {k:'s000660_eff_trade',name:'매매(보유주식 수 변화)',short:'매매',color:CS.trade},
-      {k:'s000660_eff_price',name:'주가 효과',short:'주가',color:CS.price}]}
+      {k:'s000660_eff_price',name:'주가 효과',short:'주가',color:CS.price},
+      {k:'s000660_eff_dr',name:'ADR 신주 편입(장 밖)',short:'ADR 신주',color:'#d4a72c'}]}
   ]},
   {id:'shhold',tab:'foreign',title:'삼성전자·SK하이닉스 외국인 보유',src:'보유주식 수(다음, KRX 기준)×종가(KRX) · 삼성전자는 보통주',asof:'stock',views:[
     {label:'보유액',type:'stack',unit:'jo',series:[
@@ -482,8 +484,9 @@ var CARDS=[];
 function hexA(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
 
 function isCum(view,sp){return sp.cum!=null?sp.cum:!!view.cum;}
+function foSh(c){return S['s'+c+'_fo_shares_x']||S['s'+c+'_fo_shares'];}  // DR 신주 제외 우선
 function shTxt(sp,i){var m=/^(s(\d{6})|sh)_eff_trade$/.exec(sp.k);if(!m) return '';
-  function d(c){var a=S['s'+c+'_fo_shares'];if(!a) return null;var b=null;for(var j=W.i0;j<=i;j++) if(a[j]!=null){b=a[j];break;}var e=null;for(j=i;j>=W.i0;j--) if(a[j]!=null){e=a[j];break;}return b==null||e==null?null:e-b;}
+  function d(c){var a=foSh(c);if(!a) return null;var b=null;for(var j=W.i0;j<=i;j++) if(a[j]!=null){b=a[j];break;}var e=null;for(j=i;j>=W.i0;j--) if(a[j]!=null){e=a[j];break;}return b==null||e==null?null:e-b;}
   function t(v){return v==null?'–':(v>0?'+':v<0?'−':'')+Math.abs(Math.round(v/1e4)).toLocaleString('ko-KR')+'만주';}
   if(m[2]) return ' (누적 '+t(d(m[2]))+')';
   return ' (누적 삼성 '+t(d('005930'))+' · 하이닉스 '+t(d('000660'))+')';}
@@ -690,7 +693,7 @@ function renderTiles(){
 }
 
 function rateTile(code,label){
-  var a=S['s'+code+'_fo_rate'],sh=S['s'+code+'_fo_shares'],li=lastNN(a,W.i0,W.i1),fi=firstNN(a,W.i0,W.i1);
+  var a=S['s'+code+'_fo_rate'],sh=foSh(code),li=lastNN(a,W.i0,W.i1),fi=firstNN(a,W.i0,W.i1);
   if(li<0||fi<0) return {k:label,v:'–',s:''};
   var dp=a[li]-a[fi],dsh=(sh[li]/sh[fi]-1)*100,pf=function(x){return nf(x,1)+'%';};
   return {k:label+' · '+dshort(D[li]),v:FMT.pct(a[li]),
@@ -773,8 +776,8 @@ function renderClaim(){
   var hA=S.fo_total[A2],hB=S.fo_total[iB];
   var f0=fssAt(A0);
   var near=Math.abs(S.fo_total[A0]-7e6)<Math.abs(S.sh_fo_val[A0]-7e6)?'시장 전체 보유액':'삼성+하이닉스 보유액';
-  function shareChg(c){var a=S['s'+c+'_fo_shares'];return (a[iB]/a[A2]-1)*100;}
-  function qtyChg(c){var a=S['s'+c+'_fo_shares'];return sumR('s'+c+'_net_foreign_qty',A2,iB)/a[A2]*100;}
+  function shareChg(c){var a=foSh(c);return (a[iB]/a[A2]-1)*100;}
+  function qtyChg(c){var a=foSh(c);return sumR('s'+c+'_net_foreign_qty',A2,iB)/a[A2]*100;}
   var w=0,wb=0;['005930','000660'].forEach(function(c){var vv=S['s'+c+'_fo_val'][A2];w+=shareChg(c)*vv;wb+=vv;});
   // 고점 이후 분해
   var dTot=sumR('fo_dH_total',iP,iB),nbP=sumR('fo_net_total',iP,iB),prP=sumR('fo_eff_price_total',iP,iB);
