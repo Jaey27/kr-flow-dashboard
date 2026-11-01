@@ -25,8 +25,11 @@ from common import DATA, load_ledger
 STOCKS = ("005930", "000660")
 # 해외 DR 신주(장에서 산 게 아닌 외국인 보유 증가) — 보유주식 수 그래프·매매 효과에서 빼고 따로 둔다(11/01 Jae)
 #   SK하이닉스: Nasdaq SKHY ADR 원주 17,790,000주(제3자배정, Citibank 예탁, 2026-07-14 납입, 7-15 ADR 발행)
-#   다음 외국인 보유주식 수에는 2026-07-16 값부터 잡힘(보유주식 수는 전 거래일 매매까지 반영). DART 20260715000004·20260713000324
-DR_NEW = {"000660": [("2026-07-16", 17_790_000)]}
+#   다음 원자료로는 2026-07-16 값부터 잡힘 → 하루 당긴 매매일 기준으로는 2026-07-15(ADR 발행일). DART 20260715000004·20260713000324
+DR_NEW = {"000660": [("2026-07-15", 17_790_000)]}
+# ★ 다음 외국인 보유주식 수·지분율은 '전 거래일 매매까지' 반영된 값이다(11/01 확인: 보유 변화와 장내 순매수의 상관이
+#   같은 날 0.14~0.37, 하루 앞 0.73~0.99, 2024-10~2026-10 내내 일정). → 다음 거래일 값을 그날(매매일) 값으로 당겨 쓴다.
+#   그래서 가장 최근 날은 다음 거래일 데이터가 올 때까지 비어 있다.
 FSS_PATH = DATA / "manual" / "fss_foreign_holdings.json"
 MILLION_TO_EOK = 0.01   # 백만원 -> 억원
 
@@ -81,6 +84,8 @@ def build(dates: list[str], S: dict) -> dict:
     # ---- 종목별 -----------------------------------------------------------------
     for c in STOCKS:
         dr = load_ledger(f"daum_stock_{c}")["rows"]
+        dk = sorted(dr)
+        fo_next = {dk[j]: dr[dk[j + 1]] for j in range(len(dk) - 1)}  # 매매일 → 다음 거래일 보유 값
         nr = load_ledger(f"naver_stock_{c}")["rows"]
         mcap, fo_val, fo_rate, fo_sh, px_arr = none(), none(), none(), none(), none()
         nf, ni, npv, nq = none(), none(), none(), none()
@@ -95,10 +100,11 @@ def build(dates: list[str], S: dict) -> dict:
                 mcap[i] = k[f"s{c}_mcap"]
             elif close and last_shares:
                 mcap[i] = round(close * last_shares / 1e8, 1)
-            if a and a.get("fo_shares") and close:
-                fo_sh[i] = a["fo_shares"]
-                fo_rate[i] = round(a["fo_rate"], 3)
-                fo_val[i] = round(a["fo_shares"] * close / 1e8, 1)
+            fa = fo_next.get(d)
+            if fa and fa.get("fo_shares") and close:
+                fo_sh[i] = fa["fo_shares"]
+                fo_rate[i] = round(fa["fo_rate"], 3)
+                fo_val[i] = round(fa["fo_shares"] * close / 1e8, 1)
             vw = (a or {}).get("vwap") or close
             if b and vw:
                 for arr, f in ((nf, "foreign"), (ni, "organ"), (npv, "indiv")):
