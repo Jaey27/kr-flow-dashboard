@@ -23,6 +23,8 @@ step(){ echo "=== $(date '+%H:%M:%S') $*" >>"$LOG"; "$@" >>"$LOG" 2>&1 || echo "
 
 # 편집은 다른 곳(Windows·웹 Claude)에서 GitHub로 push → 맥미니는 실행 전에 받아서 새 코드로 굽는다(코드만 받고, docs/data 는 맥미니가 주인)
 step git pull -q --rebase --autostash origin "$(git rev-parse --abbrev-ref HEAD)"
+# 새 코드로 flows.json 도 다시 조립(아래 render.py 가 새 화면 코드 + 옛 flows.json 으로 굽지 않게 — 11/01 보유 주식 수 빈 차트). exit 3(변경 없음)은 정상
+step "$PY" scripts/build_data.py --auto
 
 step "$PY" scripts/macro_data.py                 # 미 금리·BEI·TP·원달러·Brent·Kalshi·FedWatch·금리분해·발표일정
 step "$PY" scripts/hy_split.py                   # HYG/LQD 보유종목 AI/비AI 원장(하루 1행)

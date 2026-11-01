@@ -34,6 +34,9 @@ import naver as naver_src  # noqa: E402
 # --------------------------------------------------------------------------
 # 설정 — 갱신 시각 근거는 README.md '갱신 시각' 절
 # --------------------------------------------------------------------------
+# flows.json 을 만드는 계산(assemble·holdings)이 바뀌면 올린다 → 새 수집이 없어도(주말) 다음 실행에서 다시 조립한다
+#   (11/01: 화면 코드만 새것이고 flows.json 이 옛것이라 '보유 주식 수' 차트가 비었던 일 재발 방지)
+FLOWS_SCHEMA = "2026-11-01.hold-dr-shift"
 HISTORY_START = dt.date(2024, 10, 1)   # 슬라이더로 볼 수 있는 가장 이른 날(기본 화면은 최근 1년)
 CLOSE_GRACE_MIN = 10                    # 장 마감 후 이만큼 지나야 당일 수급을 '잠정'으로 받는다
 FINAL_AT = dt.time(18, 30)              # 이 시각 이후 받은 당일 수급은 '확정'으로 본다(KRX 18시 확정)
@@ -464,6 +467,7 @@ def assemble(now: dt.datetime) -> dict:
         "holdings": hold_meta,
         "sector": sector_flow.build(dates),
         "holiday_cover_to": HOLIDAY_COVER_TO,
+        "schema": FLOWS_SCHEMA,
     }
 
 
@@ -512,7 +516,13 @@ def main() -> int:
                 tries[name] = now.isoformat(timespec="seconds")
                 jobs.append((name, HISTORY_START if (why == "원장 비어 있음" or name == "krx") else recent, why))
 
-    if not jobs:
+    try:
+        stale = json.loads(FLOWS_PATH.read_text(encoding="utf-8")).get("schema") != FLOWS_SCHEMA
+    except Exception:  # noqa: BLE001
+        stale = True
+    if not jobs and stale:
+        log(f"flows.json 계산 버전이 {FLOWS_SCHEMA} 가 아님 → 수집 없이 다시 조립")
+    if not jobs and not stale:
         save_json(STATE_PATH, state)
         return 3  # 조용히 종료(로그도 남기지 않는다 — run.sh 가 5분마다 부른다)
 

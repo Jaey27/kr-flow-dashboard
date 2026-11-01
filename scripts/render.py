@@ -317,6 +317,7 @@ function firstNN(a,from,to){for(var i=from;i<=to;i++) if(a[i]!=null) return i;re
 // cum: 기간 시작일부터 누적. base: 시작일 '종가'를 0 으로 두고 그 다음 날부터 누적(잔고 변화 분해용 — 잔고 Δ 와 같은 기준)
 function slice(k,cum,base){
   var a=S[k],out=[],i;
+  if(!a){for(i=W.i0;i<=W.i1;i++) out.push(null);return out;}  // 계열이 아직 없는 데이터(옛 flows.json)여도 카드가 죽지 않게
   if(!cum){for(i=W.i0;i<=W.i1;i++) out.push(a[i]);return out;}
   var li=lastNN(a,W.i0,W.i1),acc=0;
   for(i=W.i0;i<=W.i1;i++){if(i>li){out.push(null);continue;}
