@@ -115,6 +115,9 @@ a.nav-link{text-decoration:none}
   .sec3>div{border-left:none}.sec3 .c::before{content:attr(data-h);display:block;font-size:10.5px;color:var(--text-muted);font-weight:700;margin-bottom:3px}}
 .heat-box{position:relative;overflow:hidden}
 #sec-heat{display:block;width:100%}
+.hw-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 2px}
+.hw-rng{height:24px;margin:2px 0 8px}.hw-rng input{height:22px}.hw-rng input::-webkit-slider-runnable-track{height:22px}.hw-rng input::-webkit-slider-thumb{height:22px;width:10px}.hw-rng input::-moz-range-thumb{height:20px;width:8px}
+.hw-track{position:absolute;left:0;right:0;top:8px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)}.hw-track i{position:absolute;top:0;bottom:0;border-radius:3px;background:rgba(151,252,228,.35)}
 .heat-tip{position:absolute;pointer-events:none;background:rgba(6,30,32,.96);border:1px solid rgba(151,252,228,.25);border-radius:9px;
   padding:7px 9px;font-size:11.5px;line-height:1.5;color:var(--text);white-space:nowrap;z-index:5;font-variant-numeric:tabular-nums}
 .rank-box{position:relative}
@@ -800,7 +803,17 @@ function renderClaim(){
 }
 
 // ---- 섹터 수급 탭 (네이버 업종 78개 × KRX 주체별) -----------------------------------
-var SF=F.sector, SEC={inv:'foreign',sort:'trade',rows:20,pick:'',win:'5',minis:[],rank:null,det:null};
+var SF=F.sector, SEC={inv:'foreign',sort:'trade',rows:20,pick:'',win:'5',minis:[],rank:null,det:null,hw:null,hwl:'상단 기간'};
+// 히트맵 전용 기간(11/01): 버튼(최근 N거래일) 또는 슬라이더. '상단 기간'이면 위 기간 바를 그대로 따름
+var HWP=[['1주',5],['2주',10],['3주',15],['1M',21],['상단 기간',0]];
+// 슬라이더 범위 = 상단 기간(위 바로 큰 범위를 고르고, 여기서 그 안을 좁힘)
+function hwDom(){var a=Math.max(W.i0,D.indexOf(SF.first)),b=W.i1,l=D.indexOf(SF.last);if(l>=0&&l<b) b=l;return {a:a,b:Math.max(a,b)};}
+function hwBack(n){var dm=hwDom(),b=dm.b,a=b,k=1;while(a>dm.a&&k<n){a--;if(SF.trade[SF.names[0]][a]!=null) k++;}return {a:a,b:b};}
+function hwin(){var dm=hwDom(),p=HWP.filter(function(x){return x[0]===SEC.hwl;})[0];
+  if(p) return p[1]?hwBack(p[1]):dm;
+  var h=SEC.hw||dm,a=Math.min(Math.max(h.a,dm.a),dm.b),b=Math.min(Math.max(h.b,a),dm.b);return {a:a,b:b};}
+function hwPreset(lab){var p=HWP.filter(function(x){return x[0]===lab;})[0]||HWP[4];SEC.hwl=p[0];SEC.hw=null;ls('sec.hw',p[0]);drawHeat();}
+
 var INV_NAME={foreign:'외국인',inst:'기관',indiv:'개인'}, INV_COL={foreign:COL.foreign,inst:COL.inst,indiv:COL.indiv};
 function eokF(v){return FMT.eok(v);}
 function secSum(arr,a,b){var s=0;for(var i=a;i<=b;i++) if(arr[i]!=null) s+=arr[i];return s;}
@@ -825,23 +838,23 @@ function renderLatest(){
   document.getElementById('sec-latest').innerHTML=h+'</div>';
   document.getElementById('sec-latest-sub').textContent=dlong(L.date)+' 확정 · KRX · 괄호는 업종 안 비중 · 종목명은 네이버 증권 링크';
 }
-function secOrder(){
-  var a=W.i0,b=W.i1,inv=SEC.inv;
+function secOrder(a,b){
+  if(a==null){a=W.i0;b=W.i1;}var inv=SEC.inv;
   var arr=SF.names.map(function(n){return {n:n,net:secSum(SF.net[inv][n],a,b),tr:secSum(SF.trade[n],a,b)};});
   arr.sort(SEC.sort==='net'?function(x,y){return y.net-x.net;}:function(x,y){return y.tr-x.tr;});
   return arr;
 }
 function heatCols(){
-  var cols=[],span=W.i1-W.i0+1,any=SF.trade[SF.names[0]];
-  if(span<=130){for(var i=W.i0;i<=W.i1;i++) if(any[i]!=null) cols.push({a:i,b:i,l:D[i]});return {cols:cols,weekly:false};}
+  var hw=hwin(),cols=[],span=hw.b-hw.a+1,any=SF.trade[SF.names[0]];
+  if(span<=130){for(var i=hw.a;i<=hw.b;i++) if(any[i]!=null) cols.push({a:i,b:i,l:D[i]});return {cols:cols,weekly:false};}
   var cur=null;
-  for(i=W.i0;i<=W.i1;i++){if(any[i]==null) continue;var d=new Date(D[i]+'T00:00:00Z'),wk=Math.floor((d.getTime()/864e5+3)/7);
+  for(i=hw.a;i<=hw.b;i++){if(any[i]==null) continue;var d=new Date(D[i]+'T00:00:00Z'),wk=Math.floor((d.getTime()/864e5+3)/7);
     if(!cur||cur.wk!==wk){cur={a:i,b:i,wk:wk,l:D[i]};cols.push(cur);} else cur.b=i;}
   return {cols:cols,weekly:true};
 }
 function drawHeat(){
   var cv=document.getElementById('sec-heat'),box=cv.parentNode,inv=SEC.inv;if(!box.clientWidth) return;
-  var ord=secOrder();if(SEC.sort==='net'&&SEC.rows<ord.length){ord=ord.slice(0,10).concat(ord.slice(-10));} else ord=ord.slice(0,SEC.rows);
+  var hw=hwin();hwPaint(hw);var ord=secOrder(hw.a,hw.b);if(SEC.sort==='net'&&SEC.rows<ord.length){ord=ord.slice(0,10).concat(ord.slice(-10));} else ord=ord.slice(0,SEC.rows);
   var hc=heatCols(),cols=hc.cols,narrow=box.clientWidth<560,LW=narrow?92:138,CH=narrow?14:16,TOP=4,BOT=20;
   var W2=box.clientWidth,H=TOP+ord.length*CH+BOT,dpr=window.devicePixelRatio||1;
   cv.width=W2*dpr;cv.height=H*dpr;cv.style.height=H+'px';var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W2,H);
@@ -853,13 +866,26 @@ function drawHeat(){
     var name=o.n;while(c.measureText(name).width>LW-8&&name.length>2) name=name.slice(0,-1);if(name!==o.n) name+='…';c.fillText(name,LW-6,y+CH/2);
     vals[r].forEach(function(v,j){if(v==null) return;var t=Math.min(1,Math.abs(v)/sc),a=0.08+0.92*Math.pow(t,0.7);
       c.fillStyle=v>=0?'rgba(248,113,113,'+a+')':'rgba(96,165,250,'+a+')';c.fillRect(LW+j*cw+0.5,y+0.5,Math.max(1,cw-1),CH-1);});});
-  c.fillStyle=COL.muted;c.textAlign='center';c.font='10px -apple-system,sans-serif';
-  var step=Math.max(1,Math.ceil(cols.length/(narrow?4:8)));
-  for(var j=0;j<cols.length;j+=step){c.fillText(cols[j].l.slice(2).replace(/-/g,'.'),LW+j*cw+cw/2,H-BOT/2);}
+  c.fillStyle=COL.muted;c.textAlign='center';c.font='10px -apple-system,sans-serif';if(cols.length<=15&&cw<34) c.font='9px -apple-system,sans-serif';
+  var step=Math.max(1,Math.ceil(cols.length/(narrow?4:8)));if(cols.length<=15) step=1;  // 3주 이하면 날짜 전부
+  for(var j=0;j<cols.length;j+=step){c.fillText(cols.length<=15?cols[j].l.slice(5).replace('-','.'):cols[j].l.slice(2).replace(/-/g,'.'),LW+j*cw+cw/2,H-BOT/2);}
   SEC.heat={ord:ord,cols:cols,vals:vals,LW:LW,CH:CH,TOP:TOP,cw:cw,weekly:hc.weekly};
   document.getElementById('sec-heat-sub').textContent=INV_NAME[inv]+' · '+(hc.weekly?'주 단위 합계':'일별')+' · 색 진하기 = 95% 분위 기준 · 억원';
   document.getElementById('sec-heat-note').textContent=SEC.sort==='net'&&SEC.rows<99?'· 기간 순매수 상위 10 / 하위 10':'· 기간 거래대금 순';
 }
+function hwPaint(hw){var dm=hwDom(),r0=document.getElementById('sec-h0'),r1=document.getElementById('sec-h1');if(!r0) return;
+  r0.min=r1.min=dm.a;r0.max=r1.max=dm.b;r0.value=hw.a;r1.value=hw.b;var n=dm.b-dm.a||1,f=document.getElementById('sec-hw-fill');
+  f.style.left=((hw.a-dm.a)/n*100)+'%';f.style.right=((dm.b-hw.b)/n*100)+'%';
+  var k=0;for(var i=hw.a;i<=hw.b;i++) if(SF.trade[SF.names[0]][i]!=null) k++;
+  document.getElementById('sec-hw-lab').innerHTML=dyy(D[hw.a])+' ~ '+dyy(D[hw.b])+'<span>'+k+'거래일'+(SEC.hwl==='상단 기간'?' · 상단 기간 전체':'')+'</span>';
+  Array.prototype.forEach.call(document.getElementById('sec-hw').children,function(b){b.classList.toggle('on',b.textContent===SEC.hwl);});}
+(function(){var bx=document.getElementById('sec-hw');if(!bx||!SF) return;
+  HWP.forEach(function(p){var b=el('button',null,p[0]);b.type='button';b.onclick=function(){hwPreset(p[0]);};bx.appendChild(b);});
+  var r0=document.getElementById('sec-h0'),r1=document.getElementById('sec-h1');
+  function mv(e){var a=+r0.value,b=+r1.value;if(a>b){if(e.target===r0) a=b;else b=a;}SEC.hw={a:a,b:b};SEC.hwl='';drawHeat();}
+  r0.addEventListener('input',mv);r1.addEventListener('input',mv);
+  var sv=ls('sec.hw');if(sv&&HWP.some(function(x){return x[0]===sv;})) SEC.hwl=sv;
+})();
 (function(){var cv=document.getElementById('sec-heat'),tip=document.getElementById('sec-tip');if(!cv) return;
   cv.addEventListener('mousemove',function(e){var H=SEC.heat;if(!H) return;var r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
     var ri=Math.floor((y-H.TOP)/H.CH),ci=Math.floor((x-H.LW)/H.cw);
@@ -1118,6 +1144,8 @@ __BBHTML__
   <div class="card-sub" id="sec-heat-sub"></div></div>
   <div class="card-tools"><div class="seg" id="sec-sort"></div><div class="seg" id="sec-rows"></div></div></div>
   <div class="legend"><span><i style="background:var(--up)"></i> 순매수</span><span><i style="background:var(--down)"></i> 순매도</span><span class="note" id="sec-heat-note"></span></div>
+  <div class="hw-bar"><span class="sec-lbl">기간</span><div class="seg" id="sec-hw"></div><span class="range-label" id="sec-hw-lab"></span></div>
+  <div class="rng hw-rng"><div class="hw-track"><i id="sec-hw-fill"></i></div><input type="range" id="sec-h0" min="0" step="1" aria-label="히트맵 시작일"><input type="range" id="sec-h1" min="0" step="1" aria-label="히트맵 종료일"></div>
   <div class="heat-box"><canvas id="sec-heat"></canvas><div class="heat-tip" id="sec-tip" hidden></div></div></section>
 <div class="grid">
 <section class="card" id="sec-rank-card"><div class="card-head"><div><div class="card-title">기간 누적 순매수 — 섹터 순위</div>
