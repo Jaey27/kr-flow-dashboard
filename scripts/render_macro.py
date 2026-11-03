@@ -51,6 +51,10 @@ MACRO_CSS = r"""
 .ec-learn>summary span{font-weight:400;font-size:11.5px;color:var(--text-muted);margin-left:6px}
 .ec-lb{padding:0 16px 14px;font-size:13px;line-height:1.7;color:var(--text-dim)}
 .ec-lb h4{margin:14px 0 4px;font-size:13px;color:var(--text);font-weight:800}.ec-lb p{margin:0}.ec-lb ul{margin:0;padding-left:18px}.ec-lb li{margin:2px 0}.ec-lb b{color:var(--text)}
+.fund-cal td{vertical-align:top;line-height:1.35;cursor:pointer}.fund-cal td.l{cursor:default}.fund-cal td:hover{outline:1px solid rgba(151,252,228,.35)}
+.fund-cal .b{color:#e8823a;font-weight:700}.fund-cal .e{color:#9085e9;font-weight:700}.fund-cal .c{color:var(--text-dim)}.fund-cal .x{color:var(--text-muted);font-size:10.5px}
+.fund-cal th.now{color:var(--hl-teal)}.fund-det{margin-top:8px;padding:10px 12px;border:1px solid rgba(151,252,228,.16);border-radius:10px;font-size:12.5px;line-height:1.6}
+.fund-det a{color:var(--hl-teal)}.rk-st{display:inline-block;padding:0 6px;border-radius:6px;font-size:11px;font-weight:700}
 .rk-grp{font-size:12.5px;font-weight:800;color:var(--hl-teal);letter-spacing:.01em;margin:18px 2px 8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.14)}
 .mx-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
 @media (max-width:1100px){.mx-tiles{grid-template-columns:repeat(3,1fr)}}
@@ -194,6 +198,15 @@ MACRO_HTML = r"""
 <div class="rng" style="margin:-4px 0 14px"><div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:rgba(151,252,228,.12)"></div><input type="range" id="rk-r0" min="0" step="1" aria-label="시작일"><input type="range" id="rk-r1" min="0" step="1" aria-label="종료일"></div>
 <div class="mx-tiles" id="rk-sum"></div>
 <div class="rk-grp">① AI 인프라 발행사 — CDS·채권</div>
+<section class="card" id="rk-fund-card"><div class="card-head"><div><div class="card-title">빅테크 자금 조달 → 분기별 공모 발행액 vs Capex</div>
+  <div class="card-sub" id="rk-fund-sub"></div></div></div>
+  <div class="mx-box" style="height:240px"><canvas id="rk-fund-c"></canvas></div>
+  <div style="overflow-x:auto"><table class="mx-tbl fund-cal" id="rk-fund-cal"></table></div>
+  <div class="fund-det" id="rk-fund-det" hidden></div>
+  <div class="rk-sub" style="margin:12px 2px 4px;font-weight:700;color:var(--text)">최근 30일 → 확정 · 가격 확정 · 예정</div>
+  <div style="overflow-x:auto"><table class="mx-tbl" id="rk-fund-rec"></table></div>
+  <div class="mx-note">채권 = SEC 최종 설명서(424B) 트랜치 합계(외화는 발행일 환율). 사모·대출은 안 들어감 → 칸 아래 작은 글씨 「CF」가 현금흐름표 장기 차입 수령액(사모 포함). 증자 = 현금흐름표 보통주·전환우선주·IPO 수령액(ATM 포함, 분기 $2B 미만은 직원 주식으로 보고 제외), 10-Q 전 분기는 설명서 기준. Capex = 현금흐름표 유형자산 취득. 분기 = 회계분기가 끝나는 달(ORCL은 2·5·8·11월 끝). 칸을 누르면 그 분기 공모 목록. 예정 = SEC 예비 설명서만 있음, 추진·가격 확정 = 뉴스(노션 텔레그램 클리핑, data/manual/funding_news.json).</div></section>
+<script>window.__FUND__ = __FUNDDATA__;</script>
 <section class="card" id="rk-cds-card"><div class="card-head"><div><div class="card-title">CDS 5Y 추이</div>
   <div class="card-sub" id="rk-cds-sub2">DTCC 공개 체결(on-the-run 5Y, 3·9월 롤) · '비교' = 체결일 값을 앞으로 채운 뒤 5거래일 중앙값·로그축(SoftBank·SpaceX는 범례 클릭으로 켬) · 그룹 보기 점 = 체결 있던 날. 호가 없는 날은 upfront 역산(R=40%) — 수준보다 방향을 볼 것. NBIS·HUT는 체결 없음</div></div><div class="card-tools"><div class="seg" id="rk-cg"></div></div></div>
   <div class="mx-box" style="height:300px"><canvas id="rk-cds"></canvas></div></section>
@@ -849,7 +862,54 @@ function drawSum(){var el=document.getElementById('rk-sum');if(!el) return;var Y
   el.innerHTML=t.join('');}
 document.getElementById('rk-sum').addEventListener('click',function(e){var x=e.target.closest('[data-go]');if(!x) return;var c=document.getElementById(x.getAttribute('data-go'));if(c){c.scrollIntoView({behavior:'smooth',block:'start'});c.classList.add('mx-flash');setTimeout(function(){c.classList.remove('mx-flash');},1200);}});
 var dcd=document.getElementById('rk-dc-det');if(dcd) dcd.addEventListener('toggle',function(){if(dcd.open) setTimeout(drawDC,40);});
-function draw(){drawHY();if(!dcd||dcd.open) drawDC();drawIss();drawCDS();drawVol();drawBreadth();drawSum();}
+
+// ---- 빅테크 자금 조달(11/04): 분기 합계 차트 + 회사×분기 달력 + 최근 30일 -------------------------
+var FD=window.__FUND__;
+function fq(q){return q.slice(2,4)+'.'+q.slice(5)+'Q';}
+function fb(v){return v==null?'–':(v===0?'0':'$'+nf(v,1)+'B');}
+function drawFund(){if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-sub');if(s0) s0.textContent='데이터 없음 → scripts/funding_data.py 실행 필요';return;}
+  var Q=FD.quarters,O=FD.order.filter(function(t){return FD.cos[t];}),C=FD.cos,now=Q[Q.length-1];
+  var tb=Q.map(function(q){return O.reduce(function(a,t){var c=C[t].cells[q];return a+(c?c.bond||0:0);},0);}),
+      te=Q.map(function(q){return O.reduce(function(a,t){var c=C[t].cells[q];return a+(c?c.eq||0:0);},0);}),
+      tc=Q.map(function(q){var n=0,v=0;O.forEach(function(t){var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});  // 누적만 있는 칸(SPCX 1H)은 합계에서 뺌
+  var lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
+  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA 합계 · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' vs Capex '+fb(tc[lt])+(ratio!=null?' (조달 ÷ Capex '+ratio+'%)':'')+' · '+fq(now)+'는 진행 중(Capex 미공시) · 받은 날 '+FD.fetched;
+  if(CH.fund) CH.fund.destroy();
+  CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:[
+      {type:'bar',label:'회사채 공모',data:tb.map(function(v){return Math.round(v*10)/10;}),backgroundColor:'rgba(232,130,58,.75)',stack:'f'},
+      {type:'bar',label:'유상증자',data:te.map(function(v){return Math.round(v*10)/10;}),backgroundColor:'rgba(144,133,233,.75)',stack:'f'},
+      {type:'line',label:'Capex 합계',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+fb(it.raw);}}}},
+      scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return '$'+v+'B';}}}}}});
+  // 달력
+  var mx=0;O.forEach(function(t){Q.forEach(function(q){var c=C[t].cells[q];if(c) mx=Math.max(mx,(c.bond||0)+(c.eq||0));});});
+  var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
+  O.forEach(function(t){h+='<tr><td class="l"><b>'+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
+    Q.forEach(function(q){var c=C[t].cells[q];
+      if(!c){h+='<td class="x">'+(t==='SPCX'?'상장 전':'–')+'</td>';return;}
+      var f=(c.bond||0)+(c.eq||0),a=mx?0.04+0.3*f/mx:0;
+      h+='<td data-t="'+t+'" data-q="'+q+'" style="background:rgba(232,130,58,'+(f?a.toFixed(3):0)+')">'+
+        (c.bond?'<span class="b">채 '+fb(c.bond)+'</span><br>':'')+(c.eq?'<span class="e">증 '+fb(c.eq)+'</span><br>':'')+(!f?'<span class="x">발행 없음</span><br>':'')+
+        '<span class="c">capex '+(c.capex==null?'–':fb(c.capex))+(c.span==='h'?' (1H)':'')+'</span>'+
+        (c.debt_cf!=null&&Math.abs(c.debt_cf-(c.bond||0))>=1?'<br><span class="x">CF '+fb(c.debt_cf)+'</span>':'')+'</td>';});
+    h+='</tr>';});
+  var tbl=document.getElementById('rk-fund-cal');tbl.innerHTML=h+'</tbody>';
+  tbl.onclick=function(e){var td=e.target.closest('td[data-t]');var det=document.getElementById('rk-fund-det');if(!td){return;}
+    var c=C[td.dataset.t].cells[td.dataset.q];
+    det.hidden=false;det.innerHTML='<b>'+td.dataset.t+' '+fq(td.dataset.q)+'</b> · 채권 '+fb(c.bond)+' · 증자 '+fb(c.eq)+' ('+c.eq_src+') · capex '+fb(c.capex)+(c.debt_cf!=null?' · 현금흐름표 장기 차입 '+fb(c.debt_cf):'')+'<br>'+
+      (c.deals.length?c.deals.map(function(d){return md(d.date)+' '+d.type+' '+(d.usd!=null?fb(d.usd):'')+(d.n?' ('+d.n+'개 트랜치)':'')+(d.kind?' · '+d.kind:'')+' · <a href="'+d.url+'" target="_blank" rel="noopener">원문 ↗</a>';}).join('<br>'):'SEC 공모 서류 없음');};
+  // 최근 30일
+  var ST={'확정':'#2aa58a','가격 확정':'#3987e5','예정':'#d4a72c','추진':'#d4a72c','추진(사모)':'#d55181'};
+  var r='<thead><tr><th class="l">날짜</th><th class="l">회사</th><th class="l">종류</th><th class="l">상태</th><th>금액</th><th class="l">내용</th><th class="l">출처</th></tr></thead><tbody>';
+  (FD.recent||[]).forEach(function(d){var info=d.note||'';
+    if(!info&&d.tr&&d.tr.length) info=d.tr.length+'개 트랜치 · 쿠폰 '+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort()[0]+'~'+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort().slice(-1)[0]+' · 만기 '+d.tr.map(function(x){return x.due;}).sort()[0]+'~'+d.tr.map(function(x){return x.due;}).sort().slice(-1)[0];
+    if(!info&&d.eq) info=d.eq.kind+(d.eq.shares?' '+nf(d.eq.shares/1e6,1)+'백만 주':'')+(d.eq.px?' × $'+nf(d.eq.px,2):'');
+    if(!info&&d.status==='예정') info='SEC 예비 설명서(금액·쿠폰 미기재)';
+    r+='<tr><td class="l">'+md(d.date)+'</td><td class="l"><b>'+d.tk+'</b></td><td class="l">'+d.type+'</td><td class="l"><span class="rk-st" style="background:'+(ST[d.status]||'#555')+'33;color:'+(ST[d.status]||'#ccc')+'">'+d.status+'</span></td><td>'+(d.usd!=null?fb(d.usd):'–')+'</td><td class="l" style="white-space:normal;min-width:260px">'+info+'</td><td class="l"><a href="'+d.url+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">'+d.src+' ↗</a>'+(d.sec?' · <a href="'+d.sec+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">SEC ↗</a>':'')+(d.notion?' · <a href="'+d.notion+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">노션 ↗</a>':'')+'</td></tr>';});
+  document.getElementById('rk-fund-rec').innerHTML=r+'</tbody>';
+}
+function draw(){drawHY();if(!dcd||dcd.open) drawDC();drawIss();drawCDS();drawVol();drawBreadth();drawSum();drawFund();}
 
 // ---- 부채 구조(참고) ----
 var dh='';Object.keys(R.debt).forEach(function(k){var t=R.debt[k];
@@ -962,6 +1022,11 @@ def seibro_data_json() -> str:
     return p.read_text(encoding="utf-8") if p.exists() else "null"
 
 
+def _fund_json() -> str:
+    p = ROOT / "data" / "funding.json"
+    return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
+
+
 def _pce_json() -> str:
     p = ROOT / "data" / "pce.json"
     return p.read_text(encoding="utf-8").replace("</", "<\\/") if p.exists() else "null"
@@ -983,7 +1048,7 @@ def _ppi_json() -> str:
 
 
 def macro_html() -> str:
-    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json()).replace("__EMPDATA__", _emp_json()).replace("__PCEDATA__", _pce_json())
+    return MACRO_HTML.replace("__LINKS__", _links_html()).replace("__PPIDATA__", _ppi_json()).replace("__RETAILDATA__", _retail_json()).replace("__EMPDATA__", _emp_json()).replace("__PCEDATA__", _pce_json()).replace("__FUNDDATA__", _fund_json())
 
 
 def macro_data_json() -> str:

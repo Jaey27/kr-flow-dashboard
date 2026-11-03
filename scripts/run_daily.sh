@@ -50,6 +50,7 @@ step "$PY" scripts/pce_data.py                  # PCE 추정(CPI·PPI 브릿지)
 step "$PY" scripts/stock_long.py                 # 삼성·하이닉스 외국인 보유 5년(네이버 보유율·종가 + 다음 보유주식 수) — 외국인 보유 탭 카드
 step "$PY" scripts/buyback_fetch.py               # 자사주 매입(buyback-dashboard 공개 리포 data/buyback.json) — 수급 탭 「자사주 매입」
 step "$PY" scripts/crwv_fwb.py                 # CRWV 9.75% 2031 프랑크푸르트 시세 1회(FINRA 빈 날 메우기)
+step "$PY" scripts/funding_data.py               # 빅테크 자금 조달(SEC XBRL·424B 설명서 + data/manual/funding_news.json) → 리스크 탭 ①
 step "$PY" scripts/risk_data.py
 step "$PY" scripts/render.py --docs
 step "$PY" scripts/render_sector.py --docs
