@@ -168,7 +168,7 @@ def parse_pros(text: str) -> dict:
         tr.append(k)
     eq = None
     if not tr:
-        dep = re.search(r"([\d,]{6,})\s+(?:Series [A-Z] )?Depositary Shares", text[:6000], re.I)
+        dep = re.search(r"([\d,]{6,})\s+(?:Series [A-Z] )?Depositary Shares", text[:1200], re.I)  # 표지 제목에 있을 때만(보통주 설명서 본문의 언급은 무시)
         com = re.search(r"(?:offering|offer)\s+([\d,]{6,})\s+shares of (?:our |its )?(?:Class [A-C] )?common stock", text[:12000], re.I) or \
             re.search(r"([\d,]{6,})\s+Shares\s+(?:of\s+)?(?:Class [A-C] )?Common Stock", text[:6000], re.I)
         upto = re.search(r"Up to \$([\d,]{9,})\s+(?:of\s+)?(?:Alphabet Inc\.\s+)?(?:Class [A-C] )?Common Stock", text[:3000], re.I)
@@ -276,8 +276,10 @@ def main() -> int:
                 c["bond"] = round(c["bond"] + (r["usd"] or 0), 2)
             elif c["eq_src"] == "설명서" and r["equity"] and r["equity"].get("kind") != "ATM 한도" and r["equity"].get("usd"):
                 c["eq"] = round(c["eq"] + r["equity"]["usd"], 2)
-            c["deals"].append({"date": r["date"], "type": r["type"], "usd": r["usd"] if r["type"] == "채권" else (r["equity"] or {}).get("usd"),
-                               "n": len(r["tr"]), "kind": (r["equity"] or {}).get("kind"), "url": r["url"]})
+            if (r["equity"] or {}).get("kind") == "ATM 한도" and any((d.get("eq") or {}).get("kind") == "ATM 한도" and (d.get("eq") or {}).get("usd") == r["equity"]["usd"] for d in c["deals"]):
+                continue  # 같은 ATM 한도 보충 설명서
+            c["deals"].append({"date": r["date"], "type": r["type"], "status": "확정", "usd": r["usd"] if r["type"] == "채권" else (r["equity"] or {}).get("usd"),
+                               "n": len(r["tr"]), "kind": (r["equity"] or {}).get("kind"), "url": r["url"], "tr": r["tr"], "eq": r["equity"]})
         for k in cells:
             quarters.add(k)
         cos[tk] = {"name": CO[tk][1], "cells": cells, "last_10q": max(ends) if ends else None}
@@ -295,16 +297,17 @@ def main() -> int:
             if q > (max(c["cells"]) if c["cells"] else q) or q not in c["cells"]:
                 if q >= "2025Q1" and q <= cur_q and (not c["last_10q"] or q > qlabel(c["last_10q"])):
                     c["cells"].setdefault(q, {"q": q, "capex": None, "debt_cf": None, "eq_cf": None, "eq": 0.0, "eq_src": "설명서", "bond": 0.0, "span": "q", "deals": []})
-    for n in news:                  # 가격이 확정된 뉴스(최종 설명서 전)는 그 분기 칸에 '뉴스'로 더함
-        if not str(n.get("status", "")).startswith("가격 확정") or not n.get("usd"):
+    for n in news:                  # 뉴스(최종 설명서 전): 가격 확정 → *_px, 추진·예정 → *_plan 으로 그 분기 칸에 따로 둔다(차트 점선)
+        st = str(n.get("status", ""))
+        if not n.get("usd") or not (st.startswith("가격 확정") or st.startswith("추진") or st.startswith("예정")):
             continue
         c = cos.get(n["tk"], {}).get("cells", {})
         q = deal_quarter(n["tk"], n["date"], sorted(e for e in [cos[n["tk"]]["last_10q"]] if e))
         if q in c and c[q]["capex"] is None:
-            c[q]["bond" if n["type"] == "채권" else "eq"] = round(c[q]["bond" if n["type"] == "채권" else "eq"] + n["usd"], 2)
-            c[q]["deals"].append({"date": n["date"], "type": n["type"], "usd": n["usd"], "n": len(n.get("tr") or []), "kind": "뉴스", "url": n["url"]})
-            if n["type"] != "채권":
-                c[q]["eq_src"] = "뉴스"
+            k = ("bond" if n["type"] == "채권" else "eq") + ("_px" if st.startswith("가격 확정") else "_plan")
+            c[q][k] = round(c[q].get(k, 0.0) + n["usd"], 2)
+            c[q]["deals"].append({"date": n["date"], "type": n["type"], "usd": n["usd"], "n": len(n.get("tr") or []), "kind": "뉴스", "status": st, "url": n["url"],
+                                  "tr": n.get("tr") or [], "eq": n.get("eq"), "note": n.get("note")})
     for n in news:
         if (today - D(n["date"])).days > 31:
             continue

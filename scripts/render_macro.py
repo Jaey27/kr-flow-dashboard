@@ -52,7 +52,7 @@ MACRO_CSS = r"""
 .ec-lb{padding:0 16px 14px;font-size:13px;line-height:1.7;color:var(--text-dim)}
 .ec-lb h4{margin:14px 0 4px;font-size:13px;color:var(--text);font-weight:800}.ec-lb p{margin:0}.ec-lb ul{margin:0;padding-left:18px}.ec-lb li{margin:2px 0}.ec-lb b{color:var(--text)}
 .fund-cal td{vertical-align:top;line-height:1.35;cursor:pointer}.fund-cal td.l{cursor:default}.fund-cal td:hover{outline:1px solid rgba(151,252,228,.35)}
-.fund-cal .b{color:#e8823a;font-weight:700}.fund-cal .e{color:#9085e9;font-weight:700}.fund-cal .c{color:var(--text-dim)}.fund-cal .x{color:var(--text-muted);font-size:10.5px}
+.fund-cal .b{color:#ffb070;font-weight:700}.fund-cal .e{color:#c7b8ff;font-weight:700}.fund-cal .px{font-style:italic;text-decoration:underline dashed}.fund-cal .plan{font-weight:500;opacity:.8;text-decoration:underline dotted}.fund-cal span[data-k]{cursor:pointer}.fund-cal .c{color:var(--text-dim)}.fund-cal .x{color:var(--text-muted);font-size:10.5px}
 .fund-cal th.now{color:var(--hl-teal)}.fund-det{margin-top:8px;padding:10px 12px;border:1px solid rgba(151,252,228,.16);border-radius:10px;font-size:12.5px;line-height:1.6}
 .fund-det a{color:var(--hl-teal)}.rk-st{display:inline-block;padding:0 6px;border-radius:6px;font-size:11px;font-weight:700}
 .rk-grp{font-size:12.5px;font-weight:800;color:var(--hl-teal);letter-spacing:.01em;margin:18px 2px 8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.14)}
@@ -113,7 +113,7 @@ MACRO_CSS = r"""
 .fs-btn{padding:3px 9px;border-radius:999px;font-size:13px;line-height:1.2;color:var(--text-dim);background:rgba(151,252,228,.04);border:1px solid rgba(151,252,228,.12);cursor:pointer}
 .fs-btn:hover{color:var(--hl-teal)}
 .card.fs .cl-btn{display:none}
-.card.fs{position:fixed!important;inset:0;z-index:1000;margin:0!important;border-radius:0;overflow:auto;background:#061E20;
+.card.fs{position:fixed!important;inset:0;z-index:1000;margin:0!important;border-radius:0;overflow:auto;background:#000;
   padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
 .card.fs .chart-box,.card.fs .mx-box,.card.fs .rank-box{height:calc(100dvh - 150px)!important;min-height:220px}
 body.fs-lock{overflow:hidden}
@@ -199,7 +199,7 @@ MACRO_HTML = r"""
 <div class="mx-tiles" id="rk-sum"></div>
 <div class="rk-grp">① AI 인프라 발행사 — CDS·채권</div>
 <section class="card" id="rk-fund-card"><div class="card-head"><div><div class="card-title">빅테크 자금 조달 → 분기별 공모 발행액 vs Capex</div>
-  <div class="card-sub" id="rk-fund-sub"></div></div></div>
+  <div class="card-sub" id="rk-fund-sub"></div></div><div class="card-tools"><div class="seg" id="rk-fund-v"></div></div></div>
   <div class="mx-box" style="height:240px"><canvas id="rk-fund-c"></canvas></div>
   <div style="overflow-x:auto"><table class="mx-tbl fund-cal" id="rk-fund-cal"></table></div>
   <div class="fund-det" id="rk-fund-det" hidden></div>
@@ -867,46 +867,68 @@ var dcd=document.getElementById('rk-dc-det');if(dcd) dcd.addEventListener('toggl
 var FD=window.__FUND__;
 function fq(q){return q.slice(2,4)+'.'+q.slice(5)+'Q';}
 function fb(v){return v==null?'–':(v===0?'0':'$'+nf(v,1)+'B');}
-function drawFund(){if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-sub');if(s0) s0.textContent='데이터 없음 → scripts/funding_data.py 실행 필요';return;}
+// 이 카드 전용 회사 색(11/04 Jae: GOOGL·AMZN 잘 안 보임 → 서로 먼 색으로)
+var FCOL={META:'#4c8dff',MSFT:'#ffd23f',GOOGL:'#2ee59d',AMZN:'#ff8a1f',ORCL:'#ff4d5e',SPCX:'#c77dff',TSLA:'#3fd5ff'};
+var CURN={'$':'달러(미국)','US$':'달러(미국)','€':'유로','£':'파운드(영국)','C$':'캐나다 달러','A$':'호주 달러','CHF':'스위스 프랑','¥':'엔(일본)','JPY':'엔(일본)'};
+function fA(c,v){var u=c==='¥'||c==='JPY';return c+nf(v/(u?1e9:1e9),u?0:2)+'B';}
+function trHtml(tr){if(!tr||!tr.length) return '';
+  var fx=tr.filter(function(x){return /%/.test(x.cpn)&&x.usd;}),w=fx.reduce(function(a,x){return a+x.usd;},0),wa=w?fx.reduce(function(a,x){return a+parseFloat(x.cpn)*x.usd;},0)/w:null;
+  var dues=tr.map(function(x){return +x.due;}),cur=tr.map(function(x){return x.cur;}).filter(function(v,i,a){return a.indexOf(v)===i;});
+  var h=(tr.length>1&&wa!=null?'<div style="margin:2px 0 4px"><b>가중평균 쿠폰 '+nf(wa,2)+'%</b> (고정금리 '+fx.length+'개, 달러 환산 금액 가중) · 만기 '+Math.min.apply(null,dues)+'~'+Math.max.apply(null,dues)+' · '+cur.map(function(c){return CURN[c.trim()]||c;}).join('·')+'</div>':'');
+  h+='<table class="mx-tbl" style="margin-top:2px;width:auto"><thead><tr><th class="l">통화(시장)</th><th>금액</th><th>달러 환산</th><th>쿠폰</th><th>만기</th></tr></thead><tbody>'+
+    tr.map(function(x){var c=x.cur.trim();return '<tr><td class="l">'+(CURN[c]||c)+'</td><td>'+fA(c,x.amt)+'</td><td>'+(x.usd!=null?fb(x.usd):'–')+'</td><td>'+(x.cpn==='floatingrate'?'변동금리':x.cpn)+'</td><td>'+x.due+'</td></tr>';}).join('')+'</tbody></table>';
+  return h;}
+function eqHtml(e){if(!e) return '';return '<div>'+(e.kind||'증자')+(e.shares?' · '+nf(e.shares/1e6,1)+'백만 주':'')+(e.px?' × 주당 $'+nf(e.px,2):'')+(e.usd!=null?' = <b>'+fb(e.usd)+'</b>':'')+(e.kind==='전환우선주'?' (의무전환 우선주 예탁주)':'')+(/선도/.test(e.kind||'')?' (선도매도: 대금은 정산 때 들어옴)':'')+(e.kind==='ATM 한도'?' (시장가 수시 매각 한도, 실제 판매는 10-Q 현금흐름표)':'')+'</div>';}
+var FV=ls('fundv')||'all';
+function drawFund(){segs('rk-fund-v',[['all','모두'],['b','채권만'],['e','증자만']],FV,function(v){FV=v;ls('fundv',v);drawFund();});
+  if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-sub');if(s0) s0.textContent='데이터 없음 → scripts/funding_data.py 실행 필요';return;}
   var Q=FD.quarters,O=FD.order.filter(function(t){return FD.cos[t];}),C=FD.cos,now=Q[Q.length-1];
-  var tb=Q.map(function(q){return O.reduce(function(a,t){var c=C[t].cells[q];return a+(c?c.bond||0:0);},0);}),
-      te=Q.map(function(q){return O.reduce(function(a,t){var c=C[t].cells[q];return a+(c?c.eq||0:0);},0);}),
-      tc=Q.map(function(q){var n=0,v=0;O.forEach(function(t){var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});  // 누적만 있는 칸(SPCX 1H)은 합계에서 뺌
-  var lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
-  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA 합계 · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' vs Capex '+fb(tc[lt])+(ratio!=null?' (조달 ÷ Capex '+ratio+'%)':'')+' · '+fq(now)+'는 진행 중(Capex 미공시) · 받은 날 '+FD.fetched;
-  // 회사별 막대(채권+증자) + 켜진 회사만 더한 Capex 선. 범례 클릭 = 회사 켜고 끄기(Capex 선도 다시 계산)
+  function g(t,q,k){var c=C[t].cells[q];return c&&c[k]?c[k]:0;}
+  var tb=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'bond');},0);}),te=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'eq');},0);});
   var FOFF={};try{FOFF=JSON.parse(localStorage.getItem('krflow.rk.fundoff')||'{}');}catch(e){}
   function capexLine(){return Q.map(function(q){var n=0,v=0;O.forEach(function(t){if(FOFF[t]) return;var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});}
-  var ds=O.map(function(t){return {type:'bar',label:t,tk:t,data:Q.map(function(q){var c=C[t].cells[q];return c?Math.round(((c.bond||0)+(c.eq||0))*10)/10:0;}),
-      backgroundColor:(CCOL[t]||'#9db3b0')+'cc',borderColor:CCOL[t]||'#9db3b0',borderWidth:0,stack:'f',hidden:!!FOFF[t]};});
-  ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:capexLine(),borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:true});
+  var tc=capexLine(),lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
+  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
+  var ds=[],K=[['bond','채권','b',''],['bond_px','채권 가격 확정','b','px'],['bond_plan','채권 추진','b','plan'],['eq','증자','e',''],['eq_px','증자 가격 확정','e','px'],['eq_plan','증자 추진','e','plan']];
+  O.forEach(function(t){var col=FCOL[t]||'#9db3b0';K.forEach(function(k){if(FV!=='all'&&k[2]!==FV) return;var data=Q.map(function(q){var v=g(t,q,k[0]);return v?Math.round(v*10)/10:null;});if(!data.some(function(v){return v;})) return;
+    ds.push({type:'bar',label:t+' '+k[1],tk:t,kk:k[0],dash:k[3],data:data,stack:'f',hidden:!!FOFF[t],borderWidth:0,
+      backgroundColor:k[3]==='plan'?'rgba(0,0,0,0)':(k[3]==='px'?col+'88':(k[2]==='e'?col+'99':col)),borderColor:col});});});
+  ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:true});
+  var dashPlug={id:'fdash',afterDatasetsDraw:function(ch){var cx=ch.ctx;ch.data.datasets.forEach(function(d,i){if(!d.dash||!ch.isDatasetVisible(i)) return;
+    ch.getDatasetMeta(i).data.forEach(function(el,j){if(d.data[j]==null) return;var p=el.getProps(['x','y','base','width'],true);cx.save();cx.setLineDash([4,3]);cx.lineWidth=1.6;cx.strokeStyle=d.borderColor;
+      cx.strokeRect(p.x-p.width/2+0.8,Math.min(p.y,p.base)+0.8,p.width-1.6,Math.abs(p.base-p.y)-1.6);cx.restore();});});}};
   if(CH.fund) CH.fund.destroy();
-  CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:ds},
+  CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:ds},plugins:[dashPlug],
     options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8},
-          onClick:function(e,it,lg){var ch=lg.chart,d=ch.data.datasets[it.datasetIndex];if(d.isCap){ch.setDatasetVisibility(it.datasetIndex,!ch.isDatasetVisible(it.datasetIndex));ch.update();return;}
-            FOFF[d.tk]=!FOFF[d.tk];if(!FOFF[d.tk]) delete FOFF[d.tk];try{localStorage.setItem('krflow.rk.fundoff',JSON.stringify(FOFF));}catch(x){}
-            ch.setDatasetVisibility(it.datasetIndex,!FOFF[d.tk]);ch.data.datasets[ch.data.datasets.length-1].data=capexLine();ch.update();}},
-        tooltip:{filter:function(it){return it.raw!=null&&(it.dataset.isCap||it.raw>0);},callbacks:{label:function(it){var d=it.dataset;if(d.isCap) return ' '+d.label+'  '+fb(it.raw);
-          var c=C[d.tk].cells[Q[it.dataIndex]]||{};return ' '+d.tk+'  '+fb(it.raw)+' (채권 '+fb(c.bond||0)+' · 증자 '+fb(c.eq||0)+' · capex '+fb(c.capex)+')';}}}},
+      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8,
+          generateLabels:function(ch){var L=O.map(function(t){return {text:t,fillStyle:FCOL[t],strokeStyle:FCOL[t],lineWidth:0,hidden:!!FOFF[t],tk:t,fontColor:COL.dim};});
+            L.push({text:'Capex 합계',fillStyle:'#F2FFFC',strokeStyle:'#F2FFFC',lineWidth:0,hidden:!ch.isDatasetVisible(ch.data.datasets.length-1),cap:true,fontColor:COL.dim});return L;}},
+          onClick:function(e,it,lg){var ch=lg.chart;if(it.cap){var i=ch.data.datasets.length-1;ch.setDatasetVisibility(i,!ch.isDatasetVisible(i));ch.update();return;}
+            FOFF[it.tk]=!FOFF[it.tk];if(!FOFF[it.tk]) delete FOFF[it.tk];try{localStorage.setItem('krflow.rk.fundoff',JSON.stringify(FOFF));}catch(x){}
+            ch.data.datasets.forEach(function(d,i){if(d.tk===it.tk) ch.setDatasetVisibility(i,!FOFF[it.tk]);});ch.data.datasets[ch.data.datasets.length-1].data=capexLine();ch.update();}},
+        tooltip:{filter:function(it){return it.raw!=null&&it.raw!==0;},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+fb(it.raw);}}}},
       scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return '$'+v+'B';}}}}}});
   // 달력
-  var mx=0;O.forEach(function(t){Q.forEach(function(q){var c=C[t].cells[q];if(c) mx=Math.max(mx,(c.bond||0)+(c.eq||0));});});
+  var mx=0;O.forEach(function(t){Q.forEach(function(q){mx=Math.max(mx,g(t,q,'bond')+g(t,q,'eq'));});});
   var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
-  O.forEach(function(t){h+='<tr><td class="l"><b style="color:'+(CCOL[t]||'#ccc')+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
+  O.forEach(function(t){h+='<tr><td class="l"><b style="color:'+FCOL[t]+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
     Q.forEach(function(q){var c=C[t].cells[q];
       if(!c){h+='<td class="x">'+(t==='SPCX'?'상장 전':'–')+'</td>';return;}
-      var f=(c.bond||0)+(c.eq||0),a=mx?0.04+0.3*f/mx:0;
-      h+='<td data-t="'+t+'" data-q="'+q+'" style="background:rgba(232,130,58,'+(f?a.toFixed(3):0)+')">'+
-        (c.bond?'<span class="b">채 '+fb(c.bond)+'</span><br>':'')+(c.eq?'<span class="e">증 '+fb(c.eq)+'</span><br>':'')+(!f?'<span class="x">발행 없음</span><br>':'')+
-        '<span class="c">capex '+(c.capex==null?'–':fb(c.capex))+(c.span==='h'?' (1H)':'')+'</span>'+
+      var f=g(t,q,'bond')+g(t,q,'eq'),pend=g(t,q,'bond_px')+g(t,q,'eq_px')+g(t,q,'bond_plan')+g(t,q,'eq_plan'),a=mx?0.05+0.3*f/mx:0;
+      var line=function(k,lab,cls,sfx){var v=g(t,q,k);return v?'<span class="'+cls+'" data-k="'+k+'">'+lab+' '+fb(v)+(sfx||'')+'</span><br>':'';};
+      h+='<td data-t="'+t+'" data-q="'+q+'" style="background:rgba(255,255,255,'+(f?a.toFixed(3):0)+')">'+line('bond','채권','b')+line('eq','증자','e')+
+        line('bond_px','채권','b px',' 가격 확정')+line('eq_px','증자','e px',' 가격 확정')+line('bond_plan','채권','b plan',' 추진')+line('eq_plan','증자','e plan',' 추진')+
+        (!f&&!pend?'<span class="x">발행 없음</span><br>':'')+'<span class="c">capex '+(c.capex==null?'–':fb(c.capex))+(c.span==='h'?' (1H)':'')+'</span>'+
         (c.debt_cf!=null&&Math.abs(c.debt_cf-(c.bond||0))>=1?'<br><span class="x">CF '+fb(c.debt_cf)+'</span>':'')+'</td>';});
     h+='</tr>';});
   var tbl=document.getElementById('rk-fund-cal');tbl.innerHTML=h+'</tbody>';
-  tbl.onclick=function(e){var td=e.target.closest('td[data-t]');var det=document.getElementById('rk-fund-det');if(!td){return;}
-    var c=C[td.dataset.t].cells[td.dataset.q];
-    det.hidden=false;det.innerHTML='<b>'+td.dataset.t+' '+fq(td.dataset.q)+'</b> · 채권 '+fb(c.bond)+' · 증자 '+fb(c.eq)+' ('+c.eq_src+') · capex '+fb(c.capex)+(c.debt_cf!=null?' · 현금흐름표 장기 차입 '+fb(c.debt_cf):'')+'<br>'+
-      (c.deals.length?c.deals.map(function(d){return md(d.date)+' '+d.type+' '+(d.usd!=null?fb(d.usd):'')+(d.n?' ('+d.n+'개 트랜치)':'')+(d.kind?' · '+d.kind:'')+' · <a href="'+d.url+'" target="_blank" rel="noopener">원문 ↗</a>';}).join('<br>'):'SEC 공모 서류 없음');};
+  tbl.onclick=function(e){var td=e.target.closest('td[data-t]');if(!td) return;var sp=e.target.closest('span[data-k]'),only=sp?(/^bond/.test(sp.dataset.k)?'채권':'증자'):null;
+    var det=document.getElementById('rk-fund-det'),c=C[td.dataset.t].cells[td.dataset.q];
+    var ls=c.deals.filter(function(d){return !only||d.type===only;});
+    det.hidden=false;det.innerHTML='<b style="color:'+FCOL[td.dataset.t]+'">'+td.dataset.t+' '+fq(td.dataset.q)+'</b>'+(only?' · '+only+'만':'')+' · 채권 '+fb(c.bond)+' · 증자 '+fb(c.eq)+' ('+c.eq_src+') · capex '+fb(c.capex)+(c.debt_cf!=null?' · 현금흐름표 장기 차입 '+fb(c.debt_cf):'')+
+      (ls.length?ls.map(function(d){return '<div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.1)"><b>'+md(d.date)+' '+d.type+' '+(d.usd!=null?fb(d.usd):'')+'</b> · '+(d.status||'확정')+(d.n?' · '+d.n+'개 트랜치':'')+' · <a href="'+d.url+'" target="_blank" rel="noopener">원문 ↗</a>'+
+          (d.note?'<div class="x">'+d.note+'</div>':'')+(d.type==='채권'?trHtml(d.tr):eqHtml(d.eq||{kind:d.kind,usd:d.usd}))+'</div>';}).join('')
+        :'<div style="margin-top:6px">'+(c.eq&&c.eq_src==='현금흐름표'&&(!only||only==='증자')?'증자 '+fb(c.eq)+'는 10-Q 현금흐름표 수령액(ATM 시장가 판매 포함)이라 건별 가격 없음':'SEC 공모 서류 없음')+'</div>');};
   // 최근 30일
   var ST={'확정':'#2aa58a','가격 확정':'#3987e5','예정':'#d4a72c','추진':'#d4a72c','추진(사모)':'#d55181'};
   var r='<thead><tr><th class="l">날짜</th><th class="l">회사</th><th class="l">종류</th><th class="l">상태</th><th>금액</th><th class="l">내용</th><th class="l">출처</th></tr></thead><tbody>';

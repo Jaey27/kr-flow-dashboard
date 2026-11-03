@@ -43,7 +43,7 @@ CSS = r"""
 :root{
   --hl-teal:#97FCE4; --hl-teal-dim:#50D2C1; --hl-teal-soft:rgba(151,252,228,.12);
   --hl-teal-border:rgba(151,252,228,.25);
-  --bg-0:#061E20; --surface:rgba(9,34,36,.94);
+  --bg-0:#000000; --surface:#0b1212;  /* 11/04 Jae: 배경 검정 */
   --text:#F2FFFC; --text-dim:#B4D6D1; --text-muted:#8FB3AE;
   --up:#F87171; --down:#60A5FA; --warn:#FBBF24;
   --s-foreign:#3987e5; --s-inst:#d95926; --s-indiv:#199e70;
@@ -52,14 +52,12 @@ CSS = r"""
 *{box-sizing:border-box;margin:0;padding:0}
 body,.notice,footer,.tile .s,.card-sub{word-break:keep-all;overflow-wrap:anywhere}
 html,body{
-  background:radial-gradient(ellipse at top,#0F3537 0%,#061E20 60%,#03100F 100%);
-  background-color:#061E20;background-attachment:fixed;color:var(--text);
+  background:#000;background-color:#000;color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
   min-height:100vh;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;scrollbar-gutter:stable;
 }
 body::before{content:'';position:fixed;inset:0;
-  background:radial-gradient(circle at 20% 10%,rgba(151,252,228,.08),transparent 40%),
-             radial-gradient(circle at 80% 90%,rgba(80,210,193,.06),transparent 50%);
+  background:none;
   pointer-events:none;z-index:0}
 .container{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:30px 24px 48px}
 @media (max-width:520px){.container{padding:18px 14px 36px}}
@@ -1081,7 +1079,7 @@ HTML = r"""<!DOCTYPE html>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#061E20" />
+<meta name="theme-color" content="#000000" />
 <title>리스크·매크로·수급</title>
 <meta name="description" content="신용거래융자·투자자예탁금·반대매매·외국인 코스피200 선물·코스피/코스닥 투자자별 순매수를 매일 자동 갱신하는 대시보드." />
 <style>__CSS__</style>
