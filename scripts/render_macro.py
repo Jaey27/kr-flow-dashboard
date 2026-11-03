@@ -874,18 +874,26 @@ function drawFund(){if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-su
       tc=Q.map(function(q){var n=0,v=0;O.forEach(function(t){var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});  // 누적만 있는 칸(SPCX 1H)은 합계에서 뺌
   var lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
   document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA 합계 · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' vs Capex '+fb(tc[lt])+(ratio!=null?' (조달 ÷ Capex '+ratio+'%)':'')+' · '+fq(now)+'는 진행 중(Capex 미공시) · 받은 날 '+FD.fetched;
+  // 회사별 막대(채권+증자) + 켜진 회사만 더한 Capex 선. 범례 클릭 = 회사 켜고 끄기(Capex 선도 다시 계산)
+  var FOFF={};try{FOFF=JSON.parse(localStorage.getItem('krflow.rk.fundoff')||'{}');}catch(e){}
+  function capexLine(){return Q.map(function(q){var n=0,v=0;O.forEach(function(t){if(FOFF[t]) return;var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});}
+  var ds=O.map(function(t){return {type:'bar',label:t,tk:t,data:Q.map(function(q){var c=C[t].cells[q];return c?Math.round(((c.bond||0)+(c.eq||0))*10)/10:0;}),
+      backgroundColor:(CCOL[t]||'#9db3b0')+'cc',borderColor:CCOL[t]||'#9db3b0',borderWidth:0,stack:'f',hidden:!!FOFF[t]};});
+  ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:capexLine(),borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:true});
   if(CH.fund) CH.fund.destroy();
-  CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:[
-      {type:'bar',label:'회사채 공모',data:tb.map(function(v){return Math.round(v*10)/10;}),backgroundColor:'rgba(232,130,58,.75)',stack:'f'},
-      {type:'bar',label:'유상증자',data:te.map(function(v){return Math.round(v*10)/10;}),backgroundColor:'rgba(144,133,233,.75)',stack:'f'},
-      {type:'line',label:'Capex 합계',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false}]},
+  CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:ds},
     options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+fb(it.raw);}}}},
+      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8},
+          onClick:function(e,it,lg){var ch=lg.chart,d=ch.data.datasets[it.datasetIndex];if(d.isCap){ch.setDatasetVisibility(it.datasetIndex,!ch.isDatasetVisible(it.datasetIndex));ch.update();return;}
+            FOFF[d.tk]=!FOFF[d.tk];if(!FOFF[d.tk]) delete FOFF[d.tk];try{localStorage.setItem('krflow.rk.fundoff',JSON.stringify(FOFF));}catch(x){}
+            ch.setDatasetVisibility(it.datasetIndex,!FOFF[d.tk]);ch.data.datasets[ch.data.datasets.length-1].data=capexLine();ch.update();}},
+        tooltip:{filter:function(it){return it.raw!=null&&(it.dataset.isCap||it.raw>0);},callbacks:{label:function(it){var d=it.dataset;if(d.isCap) return ' '+d.label+'  '+fb(it.raw);
+          var c=C[d.tk].cells[Q[it.dataIndex]]||{};return ' '+d.tk+'  '+fb(it.raw)+' (채권 '+fb(c.bond||0)+' · 증자 '+fb(c.eq||0)+' · capex '+fb(c.capex)+')';}}}},
       scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return '$'+v+'B';}}}}}});
   // 달력
   var mx=0;O.forEach(function(t){Q.forEach(function(q){var c=C[t].cells[q];if(c) mx=Math.max(mx,(c.bond||0)+(c.eq||0));});});
   var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
-  O.forEach(function(t){h+='<tr><td class="l"><b>'+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
+  O.forEach(function(t){h+='<tr><td class="l"><b style="color:'+(CCOL[t]||'#ccc')+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
     Q.forEach(function(q){var c=C[t].cells[q];
       if(!c){h+='<td class="x">'+(t==='SPCX'?'상장 전':'–')+'</td>';return;}
       var f=(c.bond||0)+(c.eq||0),a=mx?0.04+0.3*f/mx:0;
