@@ -76,16 +76,14 @@
   "notion": "https://app.notion.com/p/40d51e86376a815a973ff5702392c4c7"
  },
  {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "tk": "META",
   "type": "채권",
-  "status": "추진",
-  "usd": 5.0,
-  "note": "첫 유로화 채권(6개 트랜치, 최장 약 38년) 11/4 이후 예정. 달러채 $15B(11/3 가격 확정)와 합쳐 최소 $20B 목표 → 유로 최소 약 $5B로 잡음(Semafor는 최대 $15B 보도)",
-  "src": "뉴스(Semafor)",
-  "url": "https://semafor.com/article/11/03/2026/tech-companies-rummage-for-cash-to-fund-the-ai-buildout",
-  "notion": "https://app.notion.com/p/40d51e86376a8173a3b5d3cf6db96aed",
-  "separate": true
+  "status": "가격 확정",
+  "note": "WSJ 11/4 아침: €8.25B(약 $9.2B) 추진 보도 → 같은 날 €9.0B로 늘려 가격 확정(SEC FWP). 6개 트랜치 2031·2033·2035·2038·2044·2065, 쿠폰 4.30~6.40%, Bund+129~276bp. 달러채 $15B 포함 이틀간 약 $25B",
+  "src": "뉴스(WSJ)",
+  "url": "https://www.wsj.com/business/meta-seeks-to-raise-9-2-billion-in-debut-euro-bond-sale-317db009",
+  "notion": "https://app.notion.com/p/40d51e86376a8173a3b5d3cf6db96aed"
  },
  {
   "date": "2026-10-26",

@@ -435,6 +435,20 @@
    "https://www.investing.com/news/stock-market-news/meta-raises-15-billionin-fivepart-us-bond-sale-4996872",
    "https://thenextweb.com/news/meta-15b-bond-sale-higher-yields-euro-debut"
   ],
-  "amount_note": "확정분은 달러 $15B 5개 트랜치(2031~2056). 첫 유로채(6개 트랜치, ~38년)는 11/4 이후 발행 예정으로 가격결정 미확인. 합산 목표 '최소 $20B'"
+  "amount_note": "확정분은 달러 $15B 5개 트랜치(2031~2056). 다음 날 첫 유로채 €9.0B 별도 가격 확정"
+ },
+ {
+  "date": "2026-11-04",
+  "tk": "META",
+  "type": "채권",
+  "buyers": "유로 투자자(첫 유로화 발행). 주문 규모·매수자 실명 미확인. CreditSights: 유로 투자자의 테크 분산 기회지만 향후 테크 발행 증가·더 나은 가격에 대비해 여력 남기라고 권고",
+  "buyers_src": [
+   "https://www.wsj.com/business/meta-seeks-to-raise-9-2-billion-in-debut-euro-bond-sale-317db009"
+  ],
+  "purpose": "일반 기업 목적(WSJ·설명서). 전날 달러채 $15B에 이은 추가 조달",
+  "purpose_src": [
+   "https://www.wsj.com/business/meta-seeks-to-raise-9-2-billion-in-debut-euro-bond-sale-317db009"
+  ],
+  "amount_note": "추진 €8.25B → 가격 확정 €9.0B(증액)"
  }
 ]

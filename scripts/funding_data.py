@@ -381,7 +381,10 @@ def main() -> int:
         st = str(n.get("status", ""))
         c = cos.get(n["tk"], {}).get("cells", {})
         hit = [d for cell in c.values() for d in cell["deals"] if d["type"] == n["type"] and near(d["date"], n["date"], 3) and d.get("src", "").startswith("SEC")]
-        if n.get("separate"):   # 같은 날 SEC 건과 별개인 뉴스(예: META 유로 트랜치)
+        if hit:   # 가장 가까운 날짜의 SEC 건에만 붙임(예: META 11/3 달러채 vs 11/4 유로채)
+            m = min(abs((D(d["date"]) - D(n["date"])).days) for d in hit)
+            hit = [d for d in hit if abs((D(d["date"]) - D(n["date"])).days) == m]
+        if n.get("separate"):   # 같은 날 SEC 건과 별개인 뉴스
             hit = []
         if hit:
             for d in hit:
@@ -405,10 +408,12 @@ def main() -> int:
         c[q]["deals"].append({"date": n["date"], "tk": n["tk"], "type": n["type"], "status": st, "usd": n.get("usd"), "n": len(n.get("tr") or []), "kind": "뉴스",
                               "url": n["url"], "src": n.get("src", "뉴스"), "tr": n.get("tr") or [], "eq": n.get("eq"), "note": n.get("note"), "notion": n.get("notion")})
     # 건별 매수자·목적(조사 파일 data/manual/funding_context.json): 같은 회사·유형·±3일 건에 붙임
-    for x in ctx:
-        for cell in cos.get(x["tk"], {}).get("cells", {}).values():
+    for c in cos.values():   # 같은 회사·유형·±3일 안에서 날짜가 가장 가까운 조사 1건
+        for cell in c["cells"].values():
             for d in cell["deals"]:
-                if d["type"] == x["type"] and near(d["date"], x["date"], 3):
+                xs = [x for x in ctx if x["tk"] == d["tk"] and x["type"] == d["type"] and near(d["date"], x["date"], 3)]
+                if xs:
+                    x = min(xs, key=lambda x: abs((D(d["date"]) - D(x["date"])).days))
                     d["ctx"] = {k: x.get(k) for k in ("buyers", "buyers_src", "purpose", "purpose_src", "amount_note")}
     for c in cos.values():
         for cell in c["cells"].values():
