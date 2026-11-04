@@ -879,8 +879,8 @@ function trHtml(tr){if(!tr||!tr.length) return '';
     tr.map(function(x){var c=x.cur.trim();return '<tr><td class="l">'+(CURN[c]||c)+'</td><td>'+fA(c,x.amt)+'</td><td>'+(x.usd!=null?fb(x.usd):'–')+'</td><td>'+(x.cpn==='floatingrate'?'변동금리':x.cpn)+'</td><td>'+x.due+'</td>'+(tr.some(function(y){return y.spread;})?'<td>'+(x.spread?x.spread+'bp':'–')+'</td>':'')+'</tr>';}).join('')+'</tbody></table>';
   return h;}
 function lnk(t,u){return u?'<a href="'+u+'" target="_blank" rel="noopener">'+t+'</a>':t;}
-function ctxHtml(d){var h='',x=d.ctx||{};
-  if(x.buyers&&x.buyers!=='미확인') h+='<div><b>매수자</b> '+lnk(x.buyers,(x.buyers_src||[])[0])+'</div>';
+function ctxHtml(d,seen){var h='',x=d.ctx||{},key=JSON.stringify(x);if(seen&&x.buyers!=null){if(seen[key]) x={};else seen[key]=1;}
+  if(x.buyers) h+='<div><b>매수자·수요</b> '+lnk(x.buyers,(x.buyers_src||[])[0])+'</div>';
   var pur=x.purpose?lnk(x.purpose,(x.purpose_src||[])[0]):(d.use?lnk((d.use.tags||[]).join('·')||'설명서 기재',d.url)+' <span class="x">(설명서 Use of Proceeds: '+d.use.text.slice(0,140)+'…)</span>':'');
   if(pur) h+='<div><b>목적</b> '+pur+'</div>';
   if(x.amount_note) h+='<div class="x">'+x.amount_note+'</div>';
@@ -935,18 +935,18 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['b','채권만'],['e','�
     var det=document.getElementById('rk-fund-det'),c=C[td.dataset.t].cells[td.dataset.q];
     var ls=c.deals.filter(function(d){return !only||d.type===only;});
     det.hidden=false;det.innerHTML='<b style="color:'+FCOL[td.dataset.t]+'">'+td.dataset.t+' '+fq(td.dataset.q)+'</b>'+(only?' · '+only+'만':'')+' · 채권 '+fb(c.bond)+' · 증자 '+fb(c.eq)+' ('+c.eq_src+') · capex '+fb(c.capex)+(c.fcf!=null?' · FCF '+(c.fcf<0?'−'+fb(-c.fcf):fb(c.fcf))+' (영업현금 '+fb(c.ocf)+' − capex)':'')+(c.debt_cf!=null?' · 현금흐름표 장기 차입(사모·대출 포함) '+fb(c.debt_cf):'')+
-      (ls.length?ls.map(function(d){return '<div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.1)"><a href="'+d.url+'" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none"><b>'+md(d.date)+' '+d.type+' '+(d.usd!=null?fb(d.usd):'')+'</b> · '+(d.status||'확정')+(d.n?' · '+d.n+'개 트랜치':'')+' · '+(d.src||'원문')+' ↗</a>'+
-          ctxHtml(d)+(d.type==='채권'?trHtml(d.tr):eqHtml(d.eq||{kind:d.kind,usd:d.usd}))+'</div>';}).join('')
+      (ls.length?(function(){var seen={};return ls.map(function(d){return '<div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(151,252,228,.1)"><a href="'+d.url+'" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none"><b>'+md(d.date)+' '+d.type+' '+(d.usd!=null?fb(d.usd):'')+'</b> · '+(d.status||'확정')+(d.n?' · '+d.n+'개 트랜치':'')+' · '+(d.src||'원문')+' ↗</a>'+
+          ctxHtml(d,seen)+(d.type==='채권'?trHtml(d.tr):eqHtml(d.eq||{kind:d.kind,usd:d.usd}))+'</div>';}).join('');})()
         :'<div style="margin-top:6px">'+(c.eq&&c.eq_src==='현금흐름표'&&(!only||only==='증자')?'증자 '+fb(c.eq)+'는 10-Q 현금흐름표 수령액(ATM 시장가 판매 포함)이라 건별 가격 없음':'SEC 공모 서류 없음')+'</div>');};
   // 최근 30일
   var ST={'확정':'#2aa58a','가격 확정':'#3987e5','예정':'#d4a72c','추진':'#d4a72c','추진(사모)':'#d55181'};
   var r='<thead><tr><th class="l">날짜</th><th class="l">회사</th><th class="l">종류</th><th class="l">상태</th><th>금액</th><th class="l">내용</th><th class="l">출처</th></tr></thead><tbody>';
-  (FD.recent||[]).forEach(function(d){var info=d.note||'';
+  var RSEEN={};(FD.recent||[]).forEach(function(d){var info=d.note||'';var cx=d.ctx||{},ck=JSON.stringify(cx);if(RSEEN[ck]) cx={};else RSEEN[ck]=1;
     if(!info&&d.tr&&d.tr.length===1&&/~/.test(d.tr[0].cpn)) info='쿠폰 '+d.tr[0].cpn+' · 만기 '+d.tr[0].due+' (트랜치별 금액은 원문)';
     if(!info&&d.tr&&d.tr.length) info=d.tr.length+'개 트랜치 · 쿠폰 '+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort()[0]+'~'+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort().slice(-1)[0]+' · 만기 '+d.tr.map(function(x){return x.due;}).sort()[0]+'~'+d.tr.map(function(x){return x.due;}).sort().slice(-1)[0];
     if(!info&&d.eq) info=d.eq.kind+(d.eq.shares?' '+nf(d.eq.shares/1e6,1)+'백만 주':'')+(d.eq.px?' × $'+nf(d.eq.px,2):'');
     if(!info&&d.status==='예정') info='SEC 예비 설명서(금액·쿠폰 미기재)';
-    r+='<tr><td class="l">'+md(d.date)+'</td><td class="l"><b>'+d.tk+'</b></td><td class="l">'+d.type+'</td><td class="l"><span class="rk-st" style="background:'+(ST[d.status]||'#555')+'33;color:'+(ST[d.status]||'#ccc')+'">'+d.status+'</span></td><td>'+(d.usd!=null?fb(d.usd):'–')+'</td><td class="l" style="white-space:normal;min-width:260px">'+info+'</td><td class="l"><a href="'+d.url+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">'+d.src+' ↗</a>'+(d.sec?' · <a href="'+d.sec+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">SEC ↗</a>':'')+(d.notion?' · <a href="'+d.notion+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">노션 ↗</a>':'')+'</td></tr>';});
+    r+='<tr><td class="l">'+md(d.date)+'</td><td class="l"><b>'+d.tk+'</b></td><td class="l">'+d.type+'</td><td class="l"><span class="rk-st" style="background:'+(ST[d.status]||'#555')+'33;color:'+(ST[d.status]||'#ccc')+'">'+d.status+'</span></td><td>'+(d.usd!=null?fb(d.usd):'–')+'</td><td class="l" style="white-space:normal;min-width:260px">'+info+(cx.buyers?'<div class="x">매수자·수요: '+lnk(cx.buyers,(cx.buyers_src||[])[0])+'</div>':'')+(cx.purpose?'<div class="x">목적: '+lnk(cx.purpose,(cx.purpose_src||[])[0])+'</div>':'')+'</td><td class="l"><a href="'+d.url+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">'+d.src+' ↗</a>'+(d.sec?' · <a href="'+d.sec+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">SEC ↗</a>':'')+(d.notion?' · <a href="'+d.notion+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">노션 ↗</a>':'')+'</td></tr>';});
   document.getElementById('rk-fund-rec').innerHTML=r+'</tbody>';
 }
 function draw(){drawHY();if(!dcd||dcd.open) drawDC();drawIss();drawCDS();drawVol();drawBreadth();drawSum();drawFund();}

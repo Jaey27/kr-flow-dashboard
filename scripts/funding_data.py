@@ -381,6 +381,8 @@ def main() -> int:
         st = str(n.get("status", ""))
         c = cos.get(n["tk"], {}).get("cells", {})
         hit = [d for cell in c.values() for d in cell["deals"] if d["type"] == n["type"] and near(d["date"], n["date"], 3) and d.get("src", "").startswith("SEC")]
+        if n.get("separate"):   # 같은 날 SEC 건과 별개인 뉴스(예: META 유로 트랜치)
+            hit = []
         if hit:
             for d in hit:
                 d.setdefault("news", []).append({"note": n.get("note"), "url": n["url"], "src": n.get("src"), "notion": n.get("notion")})
