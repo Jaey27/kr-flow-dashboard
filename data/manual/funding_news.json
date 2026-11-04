@@ -107,5 +107,171 @@
   "src": "SEC FWP(10/26)",
   "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431036/d116268dfwp.htm",
   "separate": true
+ },
+ {
+  "date": "2026-02-10",
+  "tk": "GOOGL",
+  "type": "채권",
+  "status": "확정(비SEC)",
+  "usd": 3.9,
+  "note": "첫 스위스프랑채 CHF 3.055B(5개 트랜치 3~25년), SEC 미등록. 달러 환산은 추정 FX",
+  "src": "Cleary",
+  "url": "https://www.clearygottlieb.com/news-and-insights/news-listing/alphabet-in-record-inaugural-5-5-billion-and-chf-3-055-billion-bonds-issuances",
+  "separate": true
+ },
+ {
+  "date": "2026-08-19",
+  "tk": "GOOGL",
+  "type": "채권",
+  "status": "확정(비SEC)",
+  "usd": 3.9,
+  "note": "첫 호주달러(kangaroo) 채권 A$5.5B, 6개 시리즈, 주문 약 A$18B(호주 사상 최대 회사채). SEC 공모 서류에 없음",
+  "src": "Allens",
+  "url": "https://www.allens.com.au/insights-news/news/2026/08/Allens-advises-on-Alphabets-record-breaking-Australian-bond-issuance/",
+  "separate": true
+ },
+ {
+  "date": "2026-05-12",
+  "tk": "AMZN",
+  "type": "채권",
+  "status": "확정(비SEC)",
+  "usd": 3.6,
+  "note": "첫 스위스프랑채 CHF 2.82B, 6개 트랜치 2029~2051(BNP·DB·JPM). SEC 공모 서류에 없음",
+  "src": "Homburger",
+  "url": "https://www.homburger.ch/en/news/homburger-advises-amazon-on-its-issuance-of-chf-2-82-bn-in-inaugural-six-tranche-chf-offering",
+  "separate": true
+ },
+ {
+  "date": "2026-09-15",
+  "tk": "AMZN",
+  "type": "채권",
+  "status": "확정(사모 대출)",
+  "usd": 17.5,
+  "note": "무담보 delayed-draw term loan $17.5B(SOFR+0.625~0.875%, 2029-09 만기, Citi 주관). 6월 체결, 9월 전액 인출 → 인출 분기에 넣음(일자는 근사)",
+  "src": "3Q26 10-Q",
+  "url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000040/amzn-20260930.htm",
+  "separate": true
+ },
+ {
+  "date": "2026-10-30",
+  "tk": "AMZN",
+  "type": "채권",
+  "status": "추진",
+  "usd": 80.0,
+  "note": "AI 하드웨어 담보 대출 한도 최대 약 $80B, 2027 1Q~2028 3Q에 회사 재량 인출(3Q26 10-Q 공개, 대주 미공개). 최대치라 실제 인출은 더 작을 수 있음",
+  "src": "3Q26 10-Q",
+  "url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000040/amzn-20260930.htm",
+  "separate": true,
+  "q": "2027Q1"
+ },
+ {
+  "date": "2026-03-15",
+  "tk": "SPCX",
+  "type": "채권",
+  "status": "확정(사모 대출)",
+  "usd": 20.0,
+  "note": "브리지론 $20B(GS·BofA·Citi·JPM·MS, 2027-09 만기), xAI·X 고금리 부채 $17.5B 상환용. 3월(일자 미확인)",
+  "src": "TNW",
+  "url": "https://thenextweb.com/news/spacex-bridge-loan-musk-debt-refinancing-ipo",
+  "separate": true
+ },
+ {
+  "date": "2026-09-29",
+  "tk": "TSLA",
+  "type": "채권",
+  "status": "미인출 한도",
+  "usd": 30.0,
+  "note": "무담보 한도 $30B(3년 DDTL $20B + 5년 revolver $8B + 364일 $2B), 미인출·올해 사용 계획 없음 → 막대 제외",
+  "src": "Not a Tesla App",
+  "url": "https://www.notateslaapp.com/news/4750/tesla-secures-30-billion-in-loans-to-fund-future-projects",
+  "separate": true
+ },
+ {
+  "date": "2025-10-16",
+  "tk": "META",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 27.3,
+  "note": "Hyperion(루이지애나) SPV Beignet Investor 채권 $27.3B(6.581%, 2049). Blue Owl 80%/Meta 20% JV, PIMCO 약 $18B 인수. Meta는 임차인+잔존가치보증. 일자는 10월 중순 근사",
+  "src": "IFR",
+  "url": "https://www.ifre.com/ifr-awards/2327933/financing-package-blue-owl-capitalbeignet-investors-us27.3bn-23.6-year-bond",
+  "separate": true
+ },
+ {
+  "date": "2026-07-24",
+  "tk": "META",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 12.55,
+  "note": "El Paso SPV Sopaipilla Investor 채권 약 $12.5B(7.534%, 2048). BlackRock(GIP·HPS) 80%/Meta 20%, Meta 20년 리스 기반. IG인데 정크급 금리",
+  "src": "BGOV",
+  "url": "https://news.bgov.com/esg/blackrock-dodges-ai-bond-trading-flop-after-offering-junk-yields",
+  "separate": true
+ },
+ {
+  "date": "2026-06-05",
+  "tk": "GOOGL",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 35.0,
+  "note": "Compute SPV가 Google TPU 약 1GW를 사서 Anthropic에 리스, 대주 Apollo·Blackstone. Google은 금융보증(리스 전체 디폴트 시 최대 $44B 의무, FT)",
+  "src": "The Decoder",
+  "url": "https://the-decoder.com/google-moves-billions-in-anthropic-chip-risk-off-its-balance-sheet/",
+  "separate": true
+ },
+ {
+  "date": "2025-05-22",
+  "tk": "ORCL",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 9.4,
+  "note": "Stargate Abilene: Crusoe·Blue Owl·Primary Digital JV 대출 $7.1B+$2.3B(JPM 주관). ORCL은 15년 임차인",
+  "src": "Bloomberg",
+  "url": "https://www.bloomberg.com/news/articles/2025-05-22/jpmorgan-leads-7-1-billion-loan-for-blue-owl-tied-data-center",
+  "separate": true
+ },
+ {
+  "date": "2025-10-23",
+  "tk": "ORCL",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 38.0,
+  "note": "Vantage 텍사스 $23.25B + 위스콘신 $14.75B term loan(JPM·MUFG). ORCL 임차(Stargate)",
+  "src": "Sherwood",
+  "url": "https://sherwood.news/tech/banks-prepare-record-usd38-billion-debt-financing-to-fund-oracle-tied-data/",
+  "separate": true
+ },
+ {
+  "date": "2025-11-15",
+  "tk": "ORCL",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 18.0,
+  "note": "New Mexico Project Jupiter 은행 대출 약 $18B(약 20개 기관). 26.9월 대출가 89~91센트, ORCL이 불가항력 통지. 일자는 근사",
+  "src": "Octus",
+  "url": "https://octus.com/resources/articles/banks-prep-series-of-multibillion-dollar-debt-offerings-for-oracle/",
+  "separate": true
+ },
+ {
+  "date": "2026-04-21",
+  "tk": "ORCL",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 14.0,
+  "note": "Michigan 캠퍼스 프로젝트 채권 약 $14B(7.5%, 19.5년, Related Digital·Blackstone). PIMCO 약 $10B. 캠퍼스 담보, ORCL 본체 신용 아님",
+  "src": "TNW",
+  "url": "https://thenextweb.com/news/oracle-data-centre-16-billion-financing-stargate",
+  "separate": true
+ },
+ {
+  "date": "2026-04-15",
+  "tk": "MSFT",
+  "type": "채권",
+  "status": "연계(SPV)",
+  "usd": 4.6,
+  "note": "Blackstone QTS 채권 $4.6B(약 5.7%, 주문 약 $12.5B), MSFT용 컴퓨트 시설. 4월(일자 미확인)",
+  "src": "Briefs",
+  "url": "https://www.briefs.co/news/data-center-bonds-tied-to-microsoft-draw-billions-with-junk/",
+  "separate": true
  }
 ]

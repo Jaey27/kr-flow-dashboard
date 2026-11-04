@@ -399,14 +399,18 @@ def main() -> int:
                     k = ("bond" if n["type"] == "채권" else "eq") + "_px"
                     cell[k] = round(cell.get(k, 0.0) + n["usd"], 2)
             continue
-        q = n.get("q") or deal_quarter(n["tk"], n["date"], sorted(e for e in [cos.get(n["tk"], {}).get("last_10q")] if e))
+        q = n.get("q") or deal_quarter(n["tk"], n["date"], sorted(cl["end"] for cl in c.values() if cl.get("end")))
         if q not in c and n.get("q") and q > cur_q:   # 다음 분기 이후 계획(예: META 1Q27 ATM) → 빈 칸을 만듦
             c[q] = {"q": q, "capex": None, "fcf": None, "ocf": None, "debt_cf": None, "eq_cf": None, "eq": 0.0, "eq_src": "설명서", "bond": 0.0, "span": "q", "deals": []}
             quarters.add(q)
         if q not in c:
             continue
         kt = "bond" if n["type"] == "채권" else "eq"
-        if n.get("usd") and "사모" in st:   # 사모·리스·대출(SEC 공모 서류 없음) → 점선 테두리 막대
+        if "한도" in st:   # 미인출 대출 한도 → 막대 없이 목록·상세만
+            pass
+        elif n.get("usd") and "연계" in st:   # 회사가 차주가 아닌 SPV·JV 부채(회사는 임차인·보증) → 칸에 글자만
+            c[q][kt + "_link"] = round(c[q].get(kt + "_link", 0.0) + n["usd"], 2)
+        elif n.get("usd") and "사모" in st:   # 사모·리스·대출(SEC 공모 서류 없음) → 점선 테두리 막대
             c[q][kt + "_pvt"] = round(c[q].get(kt + "_pvt", 0.0) + n["usd"], 2)
         elif n.get("usd") and "비SEC" in st:   # SEC 미등록 공모(예: 스위스프랑채) → 일반 막대
             c[q][kt] = round(c[q].get(kt, 0.0) + n["usd"], 2)
