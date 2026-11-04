@@ -891,7 +891,7 @@ function eqHtml(e){if(!e) return '';return '<div>'+(e.kind||'증자')+(e.shares?
 var FV=ls('fundv')||'all';
 function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','채권만'],['e','증자만']],FV,function(v){FV=v;ls('fundv',v);drawFund();});
   if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-sub');if(s0) s0.textContent='데이터 없음 → scripts/funding_data.py 실행 필요';return;}
-  var Q=FD.quarters,O=FD.order.filter(function(t){return FD.cos[t];}),C=FD.cos,now=Q[Q.length-1];
+  var Q=FD.quarters,O=FD.order.filter(function(t){return FD.cos[t];}),C=FD.cos,now=FD.cur||Q[Q.length-1];
   function g(t,q,k){var c=C[t].cells[q];return c&&c[k]?c[k]:0;}
   var FOFF={};try{FOFF=JSON.parse(localStorage.getItem('krflow.rk.fundoff')||'{}');}catch(e){}
   var OV=O.filter(function(t){return !FOFF[t];});
@@ -900,16 +900,16 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','�
   function capexLine(){return sumLine('capex');}
   function hatch(col){var c=document.createElement('canvas');c.width=c.height=7;var x=c.getContext('2d');x.fillStyle=col+'33';x.fillRect(0,0,7,7);x.strokeStyle=col;x.lineWidth=1.6;
     x.beginPath();x.moveTo(0,7);x.lineTo(7,0);x.moveTo(-1,1);x.lineTo(1,-1);x.moveTo(6,8);x.lineTo(8,6);x.stroke();return x.createPattern(c,'repeat');}
-  var tc=capexLine(),lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
-  document.getElementById('rk-fund-sub').textContent=(OV.length?OV.join('·'):'선택된 회사 없음')+' · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+(FV==='all'?' · 분기마다 왼쪽 막대 = 채권(채움), 오른쪽 = 증자(빗금)':FV==='sum'?' · 막대 하나 = 채권(채움) + 증자(빗금) 합계 → Capex 선과 직접 비교':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
-  var ds=[],K=[['bond','채권','b',''],['bond_px','채권 가격 확정','b','px'],['bond_plan','채권 추진','b','plan'],['eq','증자','e',''],['eq_px','증자 가격 확정','e','px'],['eq_plan','증자 추진','e','plan']];
+  var tc=capexLine(),lt=Q.indexOf(now)-1,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
+  document.getElementById('rk-fund-sub').textContent=(OV.length?OV.join('·'):'선택된 회사 없음')+' · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+(FV==='all'?' · 분기마다 왼쪽 막대 = 채권(채움), 오른쪽 = 증자(빗금)':FV==='sum'?' · 막대 하나 = 채권(채움) + 증자(빗금) 합계 → Capex 선과 직접 비교':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진, 점 테두리 = 사모·리스(SEC 공모 아님) · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
+  var ds=[],K=[['bond','채권','b',''],['bond_px','채권 가격 확정','b','px'],['bond_plan','채권 추진','b','plan'],['bond_pvt','채권 사모·리스','b','pvt'],['eq','증자','e',''],['eq_px','증자 가격 확정','e','px'],['eq_plan','증자 추진','e','plan'],['eq_pvt','증자 사모','e','pvt']];
   O.forEach(function(t){var col=FCOL[t]||'#9db3b0';K.forEach(function(k){if(FV!=='all'&&FV!=='sum'&&k[2]!==FV) return;var data=Q.map(function(q){var v=g(t,q,k[0]);return v?Math.round(v*10)/10:null;});if(!data.some(function(v){return v;})) return;
     ds.push({type:'bar',label:t+' '+k[1],tk:t,kk:k[0],dash:k[3],data:data,stack:FV==='all'?k[2]:'f',hidden:!!FOFF[t],borderWidth:0,
-      backgroundColor:k[3]==='plan'?'rgba(0,0,0,0)':(k[2]==='e'?hatch(k[3]==='px'?col+'99':col):(k[3]==='px'?col+'88':col)),borderColor:col});});});
+      backgroundColor:k[3]==='plan'?'rgba(0,0,0,0)':(k[2]==='e'?hatch(k[3]==='px'?col+'99':k[3]==='pvt'?col+'55':col):(k[3]==='px'?col+'88':k[3]==='pvt'?col+'40':col)),borderColor:col});});});
   ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:'capex',stack:'L1',order:-1});
   ds.push({type:'line',label:'FCF 합계(켜진 회사)',data:sumLine('fcf'),borderColor:'#f0756a',backgroundColor:'#f0756a',borderDash:[6,4],pointRadius:3,borderWidth:2,spanGaps:false,isCap:'fcf',stack:'L2',order:-1});
   var dashPlug={id:'fdash',afterDatasetsDraw:function(ch){var cx=ch.ctx;ch.data.datasets.forEach(function(d,i){if(!d.dash||!ch.isDatasetVisible(i)) return;
-    ch.getDatasetMeta(i).data.forEach(function(el,j){if(d.data[j]==null) return;var p=el.getProps(['x','y','base','width'],true);cx.save();cx.setLineDash([4,3]);cx.lineWidth=1.6;cx.strokeStyle=d.borderColor;
+    ch.getDatasetMeta(i).data.forEach(function(el,j){if(d.data[j]==null) return;var p=el.getProps(['x','y','base','width'],true);cx.save();cx.setLineDash(d.dash==='pvt'?[1.5,2.5]:[4,3]);cx.lineWidth=d.dash==='pvt'?2:1.6;cx.strokeStyle=d.borderColor;
       cx.strokeRect(p.x-p.width/2+0.8,Math.min(p.y,p.base)+0.8,p.width-1.6,Math.abs(p.base-p.y)-1.6);cx.restore();});});}};
   if(CH.fund) CH.fund.destroy();
   CH.fund=new Chart(document.getElementById('rk-fund-c'),{data:{labels:Q.map(fq),datasets:ds},plugins:[dashPlug],
@@ -924,14 +924,14 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','�
       scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return (v<0?'−$'+(-v):'$'+v)+'B';}}}}}});
   // 달력
   var mx=0;OV.forEach(function(t){Q.forEach(function(q){mx=Math.max(mx,g(t,q,'bond')+g(t,q,'eq'));});});
-  var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
+  var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':q>now?' 계획':'')+'</th>';}).join('')+'</tr></thead><tbody>';
   OV.forEach(function(t){h+='<tr><td class="l"><b style="color:'+FCOL[t]+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
     Q.forEach(function(q){var c=C[t].cells[q];
       if(!c){h+='<td class="x">'+(t==='SPCX'?'상장 전':'–')+'</td>';return;}
-      var f=g(t,q,'bond')+g(t,q,'eq'),pend=g(t,q,'bond_px')+g(t,q,'eq_px')+g(t,q,'bond_plan')+g(t,q,'eq_plan'),a=mx?0.05+0.3*f/mx:0;
+      var f=g(t,q,'bond')+g(t,q,'eq'),pend=g(t,q,'bond_px')+g(t,q,'eq_px')+g(t,q,'bond_pvt')+g(t,q,'eq_pvt')+g(t,q,'bond_plan')+g(t,q,'eq_plan'),a=mx?0.05+0.3*f/mx:0;
       var line=function(k,lab,cls,sfx){var v=g(t,q,k);return v?'<span class="'+cls+'" data-k="'+k+'">'+lab+' '+fb(v)+(sfx||'')+'</span><br>':'';};
       h+='<td data-t="'+t+'" data-q="'+q+'" style="background:rgba(255,255,255,'+(f?a.toFixed(3):0)+')">'+line('bond','채권','b')+line('eq','증자','e')+
-        line('bond_px','채권','b px',' 가격 확정')+line('eq_px','증자','e px',' 가격 확정')+line('bond_plan','채권','b plan',' 추진')+line('eq_plan','증자','e plan',' 추진')+
+        line('bond_px','채권','b px',' 가격 확정')+line('eq_px','증자','e px',' 가격 확정')+line('bond_pvt','채권','b px',' 사모·리스')+line('eq_pvt','증자','e px',' 사모')+line('bond_plan','채권','b plan',' 추진')+line('eq_plan','증자','e plan',' 추진')+
         (!f&&!pend?'<span class="x">발행 없음</span><br>':'')+'<span class="c">capex '+(c.capex==null?'–':fb(c.capex))+(c.span==='h'?' (1H)':'')+'</span>'+
         (c.fcf!=null?'<br><span class="x" style="color:'+(c.fcf<0?'#f0756a':'var(--text-muted)')+'">FCF '+(c.fcf<0?'−'+fb(-c.fcf):fb(c.fcf))+'</span>':'')+'</td>';});
     h+='</tr>';});

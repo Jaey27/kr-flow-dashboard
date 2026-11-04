@@ -399,11 +399,19 @@ def main() -> int:
                     k = ("bond" if n["type"] == "채권" else "eq") + "_px"
                     cell[k] = round(cell.get(k, 0.0) + n["usd"], 2)
             continue
-        q = deal_quarter(n["tk"], n["date"], sorted(e for e in [cos.get(n["tk"], {}).get("last_10q")] if e))
+        q = n.get("q") or deal_quarter(n["tk"], n["date"], sorted(e for e in [cos.get(n["tk"], {}).get("last_10q")] if e))
+        if q not in c and n.get("q") and q > cur_q:   # 다음 분기 이후 계획(예: META 1Q27 ATM) → 빈 칸을 만듦
+            c[q] = {"q": q, "capex": None, "fcf": None, "ocf": None, "debt_cf": None, "eq_cf": None, "eq": 0.0, "eq_src": "설명서", "bond": 0.0, "span": "q", "deals": []}
+            quarters.add(q)
         if q not in c:
             continue
-        if n.get("usd") and c[q]["capex"] is None and (st.startswith("가격 확정") or st.startswith("추진")):
-            k = ("bond" if n["type"] == "채권" else "eq") + ("_px" if st.startswith("가격 확정") else "_plan")
+        kt = "bond" if n["type"] == "채권" else "eq"
+        if n.get("usd") and "사모" in st:   # 사모·리스·대출(SEC 공모 서류 없음) → 점선 테두리 막대
+            c[q][kt + "_pvt"] = round(c[q].get(kt + "_pvt", 0.0) + n["usd"], 2)
+        elif n.get("usd") and "비SEC" in st:   # SEC 미등록 공모(예: 스위스프랑채) → 일반 막대
+            c[q][kt] = round(c[q].get(kt, 0.0) + n["usd"], 2)
+        elif n.get("usd") and c[q]["capex"] is None and (st.startswith("가격 확정") or st.startswith("추진")):
+            k = kt + ("_px" if st.startswith("가격 확정") else "_plan")
             c[q][k] = round(c[q].get(k, 0.0) + n["usd"], 2)
         c[q]["deals"].append({"date": n["date"], "tk": n["tk"], "type": n["type"], "status": st, "usd": n.get("usd"), "n": len(n.get("tr") or []), "kind": "뉴스",
                               "url": n["url"], "src": n.get("src", "뉴스"), "tr": n.get("tr") or [], "eq": n.get("eq"), "note": n.get("note"), "notion": n.get("notion")})
@@ -422,7 +430,7 @@ def main() -> int:
                     recent.append(d)
     recent.sort(key=lambda d: d["date"], reverse=True)
     qs = sorted(q for q in quarters if q >= "2025Q1")
-    OUT.write_text(json.dumps({"fetched": today.isoformat(), "quarters": qs, "order": list(CO), "cos": cos, "recent": recent,
+    OUT.write_text(json.dumps({"fetched": today.isoformat(), "cur": cur_q, "quarters": qs, "order": list(CO), "cos": cos, "recent": recent,
                                "notes": {"eq_min": EQ_MIN / 1e9}}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"[funding] {OUT} · 분기 {qs[0] if qs else '-'}~{qs[-1] if qs else '-'} · 최근 30일 {len(recent)}건", flush=True)
     return 0

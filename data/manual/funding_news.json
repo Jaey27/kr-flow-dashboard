@@ -95,5 +95,17 @@
   "src": "뉴스(Semafor)",
   "url": "https://www.semafor.com/article/10/22/2026/spacex-40b-debt-deal-will-cost-it-as-ai-fears-spread",
   "notion": "https://app.notion.com/p/40151e86376a81e29236cc0ebc111274"
+ },
+ {
+  "date": "2026-10-26",
+  "q": "2027Q1",
+  "tk": "META",
+  "type": "증자",
+  "status": "추진",
+  "usd": 60.0,
+  "note": "C주 상장 뒤 ATM(시장가 분할 매도) 최대 $60B, 1Q27 시작 예정(회사 FWP). 10/26 공모 $37.5B와 합쳐 계획 총 $97.5B",
+  "src": "SEC FWP(10/26)",
+  "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431036/d116268dfwp.htm",
+  "separate": true
  }
 ]
