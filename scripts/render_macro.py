@@ -895,14 +895,18 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['b','채권만'],['e','�
   function g(t,q,k){var c=C[t].cells[q];return c&&c[k]?c[k]:0;}
   var tb=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'bond');},0);}),te=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'eq');},0);});
   var FOFF={};try{FOFF=JSON.parse(localStorage.getItem('krflow.rk.fundoff')||'{}');}catch(e){}
-  function capexLine(){return Q.map(function(q){var n=0,v=0;O.forEach(function(t){if(FOFF[t]) return;var c=C[t].cells[q];if(c&&c.capex!=null&&c.span!=='h'){v+=c.capex;n++;}});return n?Math.round(v*10)/10:null;});}
+  function sumLine(k){return Q.map(function(q){var n=0,v=0;O.forEach(function(t){if(FOFF[t]) return;var c=C[t].cells[q];if(c&&c[k]!=null&&c.span!=='h'){v+=c[k];n++;}});return n?Math.round(v*10)/10:null;});}
+  function capexLine(){return sumLine('capex');}
+  function hatch(col){var c=document.createElement('canvas');c.width=c.height=7;var x=c.getContext('2d');x.fillStyle=col+'33';x.fillRect(0,0,7,7);x.strokeStyle=col;x.lineWidth=1.6;
+    x.beginPath();x.moveTo(0,7);x.lineTo(7,0);x.moveTo(-1,1);x.lineTo(1,-1);x.moveTo(6,8);x.lineTo(8,6);x.stroke();return x.createPattern(c,'repeat');}
   var tc=capexLine(),lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
-  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
+  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+(FV==='all'?' · 분기마다 왼쪽 막대 = 채권(채움), 오른쪽 = 증자(빗금)':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
   var ds=[],K=[['bond','채권','b',''],['bond_px','채권 가격 확정','b','px'],['bond_plan','채권 추진','b','plan'],['eq','증자','e',''],['eq_px','증자 가격 확정','e','px'],['eq_plan','증자 추진','e','plan']];
   O.forEach(function(t){var col=FCOL[t]||'#9db3b0';K.forEach(function(k){if(FV!=='all'&&k[2]!==FV) return;var data=Q.map(function(q){var v=g(t,q,k[0]);return v?Math.round(v*10)/10:null;});if(!data.some(function(v){return v;})) return;
-    ds.push({type:'bar',label:t+' '+k[1],tk:t,kk:k[0],dash:k[3],data:data,stack:'f',hidden:!!FOFF[t],borderWidth:0,
-      backgroundColor:k[3]==='plan'?'rgba(0,0,0,0)':(k[3]==='px'?col+'88':(k[2]==='e'?col+'99':col)),borderColor:col});});});
-  ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:true});
+    ds.push({type:'bar',label:t+' '+k[1],tk:t,kk:k[0],dash:k[3],data:data,stack:FV==='all'?k[2]:'f',hidden:!!FOFF[t],borderWidth:0,
+      backgroundColor:k[3]==='plan'?'rgba(0,0,0,0)':(k[2]==='e'?hatch(k[3]==='px'?col+'99':col):(k[3]==='px'?col+'88':col)),borderColor:col});});});
+  ds.push({type:'line',label:'Capex 합계(켜진 회사)',data:tc,borderColor:'#F2FFFC',backgroundColor:'#F2FFFC',pointRadius:3,borderWidth:2,spanGaps:false,isCap:'capex',stack:'L1',order:-1});
+  ds.push({type:'line',label:'FCF 합계(켜진 회사)',data:sumLine('fcf'),borderColor:'#f0756a',backgroundColor:'#f0756a',borderDash:[6,4],pointRadius:3,borderWidth:2,spanGaps:false,isCap:'fcf',stack:'L2',order:-1});
   var dashPlug={id:'fdash',afterDatasetsDraw:function(ch){var cx=ch.ctx;ch.data.datasets.forEach(function(d,i){if(!d.dash||!ch.isDatasetVisible(i)) return;
     ch.getDatasetMeta(i).data.forEach(function(el,j){if(d.data[j]==null) return;var p=el.getProps(['x','y','base','width'],true);cx.save();cx.setLineDash([4,3]);cx.lineWidth=1.6;cx.strokeStyle=d.borderColor;
       cx.strokeRect(p.x-p.width/2+0.8,Math.min(p.y,p.base)+0.8,p.width-1.6,Math.abs(p.base-p.y)-1.6);cx.restore();});});}};
@@ -911,12 +915,12 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['b','채권만'],['e','�
     options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{labels:{color:COL.dim,boxWidth:12,boxHeight:8,
           generateLabels:function(ch){var L=O.map(function(t){return {text:t,fillStyle:FCOL[t],strokeStyle:FCOL[t],lineWidth:0,hidden:!!FOFF[t],tk:t,fontColor:COL.dim};});
-            L.push({text:'Capex 합계',fillStyle:'#F2FFFC',strokeStyle:'#F2FFFC',lineWidth:0,hidden:!ch.isDatasetVisible(ch.data.datasets.length-1),cap:true,fontColor:COL.dim});return L;}},
-          onClick:function(e,it,lg){var ch=lg.chart;if(it.cap){var i=ch.data.datasets.length-1;ch.setDatasetVisibility(i,!ch.isDatasetVisible(i));ch.update();return;}
+            ch.data.datasets.forEach(function(d,i){if(d.isCap) L.push({text:d.isCap==='fcf'?'FCF 합계':'Capex 합계',fillStyle:d.borderColor,strokeStyle:d.borderColor,lineWidth:0,hidden:!ch.isDatasetVisible(i),cap:i,fontColor:COL.dim});});return L;}},
+          onClick:function(e,it,lg){var ch=lg.chart;if(it.cap!=null){ch.setDatasetVisibility(it.cap,!ch.isDatasetVisible(it.cap));ch.update();return;}
             FOFF[it.tk]=!FOFF[it.tk];if(!FOFF[it.tk]) delete FOFF[it.tk];try{localStorage.setItem('krflow.rk.fundoff',JSON.stringify(FOFF));}catch(x){}
-            ch.data.datasets.forEach(function(d,i){if(d.tk===it.tk) ch.setDatasetVisibility(i,!FOFF[it.tk]);});ch.data.datasets[ch.data.datasets.length-1].data=capexLine();ch.update();}},
-        tooltip:{filter:function(it){return it.raw!=null&&it.raw!==0;},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+fb(it.raw);}}}},
-      scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return '$'+v+'B';}}}}}});
+            ch.data.datasets.forEach(function(d,i){if(d.tk===it.tk) ch.setDatasetVisibility(i,!FOFF[it.tk]);});ch.data.datasets.forEach(function(d){if(d.isCap) d.data=sumLine(d.isCap);});ch.update();}},
+        tooltip:{filter:function(it){return it.raw!=null&&it.raw!==0;},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(it.raw<0?'−'+fb(-it.raw):fb(it.raw));}}}},
+      scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return (v<0?'−$'+(-v):'$'+v)+'B';}}}}}});
   // 달력
   var mx=0;O.forEach(function(t){Q.forEach(function(q){mx=Math.max(mx,g(t,q,'bond')+g(t,q,'eq'));});});
   var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
