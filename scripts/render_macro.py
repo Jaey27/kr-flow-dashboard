@@ -893,14 +893,15 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','�
   if(!FD||!FD.cos) {var s0=document.getElementById('rk-fund-sub');if(s0) s0.textContent='데이터 없음 → scripts/funding_data.py 실행 필요';return;}
   var Q=FD.quarters,O=FD.order.filter(function(t){return FD.cos[t];}),C=FD.cos,now=Q[Q.length-1];
   function g(t,q,k){var c=C[t].cells[q];return c&&c[k]?c[k]:0;}
-  var tb=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'bond');},0);}),te=Q.map(function(q){return O.reduce(function(a,t){return a+g(t,q,'eq');},0);});
   var FOFF={};try{FOFF=JSON.parse(localStorage.getItem('krflow.rk.fundoff')||'{}');}catch(e){}
+  var OV=O.filter(function(t){return !FOFF[t];});
+  var tb=Q.map(function(q){return OV.reduce(function(a,t){return a+g(t,q,'bond');},0);}),te=Q.map(function(q){return OV.reduce(function(a,t){return a+g(t,q,'eq');},0);});
   function sumLine(k){return Q.map(function(q){var n=0,v=0;O.forEach(function(t){if(FOFF[t]) return;var c=C[t].cells[q];if(c&&c[k]!=null&&c.span!=='h'){v+=c[k];n++;}});return n?Math.round(v*10)/10:null;});}
   function capexLine(){return sumLine('capex');}
   function hatch(col){var c=document.createElement('canvas');c.width=c.height=7;var x=c.getContext('2d');x.fillStyle=col+'33';x.fillRect(0,0,7,7);x.strokeStyle=col;x.lineWidth=1.6;
     x.beginPath();x.moveTo(0,7);x.lineTo(7,0);x.moveTo(-1,1);x.lineTo(1,-1);x.moveTo(6,8);x.lineTo(8,6);x.stroke();return x.createPattern(c,'repeat');}
   var tc=capexLine(),lt=Q.length-2,ratio=tc[lt]?Math.round((tb[lt]+te[lt])/tc[lt]*100):null;
-  document.getElementById('rk-fund-sub').textContent='META·MSFT·GOOGL·AMZN·ORCL·SPCX·TSLA · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+(FV==='all'?' · 분기마다 왼쪽 막대 = 채권(채움), 오른쪽 = 증자(빗금)':FV==='sum'?' · 막대 하나 = 채권(채움) + 증자(빗금) 합계 → Capex 선과 직접 비교':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
+  document.getElementById('rk-fund-sub').textContent=(OV.length?OV.join('·'):'선택된 회사 없음')+' · '+fq(Q[lt])+' 조달 '+fb(Math.round((tb[lt]+te[lt])*10)/10)+' (채권 '+fb(Math.round(tb[lt]*10)/10)+' · 증자 '+fb(Math.round(te[lt]*10)/10)+') vs Capex '+fb(tc[lt])+(ratio!=null?' → '+ratio+'%':'')+(FV==='all'?' · 분기마다 왼쪽 막대 = 채권(채움), 오른쪽 = 증자(빗금)':FV==='sum'?' · 막대 하나 = 채권(채움) + 증자(빗금) 합계 → Capex 선과 직접 비교':'')+' · 색 채운 점선 = 가격 확정(뉴스), 빈 점선 = 추진 · '+fq(now)+' 진행 중 · 받은 날 '+FD.fetched;
   var ds=[],K=[['bond','채권','b',''],['bond_px','채권 가격 확정','b','px'],['bond_plan','채권 추진','b','plan'],['eq','증자','e',''],['eq_px','증자 가격 확정','e','px'],['eq_plan','증자 추진','e','plan']];
   O.forEach(function(t){var col=FCOL[t]||'#9db3b0';K.forEach(function(k){if(FV!=='all'&&FV!=='sum'&&k[2]!==FV) return;var data=Q.map(function(q){var v=g(t,q,k[0]);return v?Math.round(v*10)/10:null;});if(!data.some(function(v){return v;})) return;
     ds.push({type:'bar',label:t+' '+k[1],tk:t,kk:k[0],dash:k[3],data:data,stack:FV==='all'?k[2]:'f',hidden:!!FOFF[t],borderWidth:0,
@@ -918,13 +919,13 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','�
             ch.data.datasets.forEach(function(d,i){if(d.isCap) L.push({text:d.isCap==='fcf'?'FCF 합계':'Capex 합계',fillStyle:d.borderColor,strokeStyle:d.borderColor,lineWidth:0,hidden:!ch.isDatasetVisible(i),cap:i,fontColor:COL.dim});});return L;}},
           onClick:function(e,it,lg){var ch=lg.chart;if(it.cap!=null){ch.setDatasetVisibility(it.cap,!ch.isDatasetVisible(it.cap));ch.update();return;}
             FOFF[it.tk]=!FOFF[it.tk];if(!FOFF[it.tk]) delete FOFF[it.tk];try{localStorage.setItem('krflow.rk.fundoff',JSON.stringify(FOFF));}catch(x){}
-            ch.data.datasets.forEach(function(d,i){if(d.tk===it.tk) ch.setDatasetVisibility(i,!FOFF[it.tk]);});ch.data.datasets.forEach(function(d){if(d.isCap) d.data=sumLine(d.isCap);});ch.update();}},
+            drawFund();}},
         tooltip:{filter:function(it){return it.raw!=null&&it.raw!==0;},callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(it.raw<0?'−'+fb(-it.raw):fb(it.raw));}}}},
       scales:{x:{stacked:true,grid:{display:false},ticks:{color:COL.muted}},y:{stacked:true,grid:{color:COL.grid},ticks:{color:COL.muted,callback:function(v){return (v<0?'−$'+(-v):'$'+v)+'B';}}}}}});
   // 달력
-  var mx=0;O.forEach(function(t){Q.forEach(function(q){mx=Math.max(mx,g(t,q,'bond')+g(t,q,'eq'));});});
+  var mx=0;OV.forEach(function(t){Q.forEach(function(q){mx=Math.max(mx,g(t,q,'bond')+g(t,q,'eq'));});});
   var h='<thead><tr><th class="l">회사</th>'+Q.map(function(q){return '<th'+(q===now?' class="now"':'')+'>'+fq(q)+(q===now?' 진행':'')+'</th>';}).join('')+'</tr></thead><tbody>';
-  O.forEach(function(t){h+='<tr><td class="l"><b style="color:'+FCOL[t]+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
+  OV.forEach(function(t){h+='<tr><td class="l"><b style="color:'+FCOL[t]+'">● '+t+'</b><br><span class="x">'+C[t].name+(t==='ORCL'?' · 회계분기':'')+'</span></td>';
     Q.forEach(function(q){var c=C[t].cells[q];
       if(!c){h+='<td class="x">'+(t==='SPCX'?'상장 전':'–')+'</td>';return;}
       var f=g(t,q,'bond')+g(t,q,'eq'),pend=g(t,q,'bond_px')+g(t,q,'eq_px')+g(t,q,'bond_plan')+g(t,q,'eq_plan'),a=mx?0.05+0.3*f/mx:0;
@@ -945,7 +946,7 @@ function drawFund(){segs('rk-fund-v',[['all','모두'],['sum','합계'],['b','�
   // 최근 30일
   var ST={'확정':'#2aa58a','가격 확정':'#3987e5','예정':'#d4a72c','추진':'#d4a72c','추진(사모)':'#d55181'};
   var r='<thead><tr><th class="l">날짜</th><th class="l">회사</th><th class="l">종류</th><th class="l">상태</th><th>금액</th><th class="l">내용</th><th class="l">출처</th></tr></thead><tbody>';
-  var RSEEN={};(FD.recent||[]).forEach(function(d){var info=d.note||'';var cx=d.ctx||{},ck=JSON.stringify(cx);if(RSEEN[ck]) cx={};else RSEEN[ck]=1;
+  var RSEEN={};(FD.recent||[]).filter(function(d){return !FOFF[d.tk];}).forEach(function(d){var info=d.note||'';var cx=d.ctx||{},ck=JSON.stringify(cx);if(RSEEN[ck]) cx={};else RSEEN[ck]=1;
     if(!info&&d.tr&&d.tr.length===1&&/~/.test(d.tr[0].cpn)) info='쿠폰 '+d.tr[0].cpn+' · 만기 '+d.tr[0].due+' (트랜치별 금액은 원문)';
     if(!info&&d.tr&&d.tr.length) info=d.tr.length+'개 트랜치 · 쿠폰 '+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort()[0]+'~'+d.tr.map(function(x){return x.cpn;}).filter(function(x){return x!=='floatingrate';}).sort().slice(-1)[0]+' · 만기 '+d.tr.map(function(x){return x.due;}).sort()[0]+'~'+d.tr.map(function(x){return x.due;}).sort().slice(-1)[0];
     if(!info&&d.eq) info=d.eq.kind+(d.eq.shares?' '+nf(d.eq.shares/1e6,1)+'백만 주':'')+(d.eq.px?' × $'+nf(d.eq.px,2):'');
