@@ -498,7 +498,9 @@ function labelPad(view){measureCtx.font=LABEL_FONT;var w=0;
   return Math.ceil(w)+22;}
 // 겹치기 지수: 보기 이름이 '코스닥'(코스피 언급 없음)이면 코스닥, 아니면 코스피 (Jae 10/21)
 function ovKD(view){return /코스닥/.test(view.label||'')&&!/코스피/.test(view.label||'');}
-function ovOn(card,view){return !!card&&card.ov&&card.p.id!=='index'&&!view.series.some(function(sp){return sp.axis==='y1';});}
+function ovOn(card,view){return !!card&&card.ov&&card.p.id!=='index';}
+// 오른쪽 축을 이미 쓰는 보기(VKOSPI + YoY 등)면 코스피는 숨은 축 y2에 그림(값은 툴팁, 11/09)
+function ovY2(view){return view.series.some(function(sp){return sp.axis==='y1';});}
 function datasets(view,card){
   var out=view.series.map(function(sp,j){
     var data=slice(sp.k,isCum(view,sp),view.base);
@@ -519,14 +521,14 @@ function datasets(view,card){
     return o;
   });
   if(ovOn(card,view)) out.push({type:'line',label:ovKD(view)?'코스닥':'코스피',isOv:true,data:slice(ovKD(view)?'idx_kosdaq':'idx_kospi',false),borderColor:'rgba(157,179,176,.6)',backgroundColor:'rgba(157,179,176,.6)',
-    borderWidth:1.2,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,yAxisID:'y1',order:9});
+    borderWidth:1.2,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,yAxisID:ovY2(view)?'y2':'y1',order:9});
   return out;
 }
 
 function config(card){
   var view=card.p.views[card.v],unit=view.unit;
   var lines=view.series.filter(function(sp){return !sp.points;}).length;
-  var OVN=ovOn(card,view),hasY1=OVN||view.series.some(function(sp){return sp.axis==='y1';});
+  var OVN=ovOn(card,view)&&!ovY2(view),hasY1=OVN||view.series.some(function(sp){return sp.axis==='y1';});
   var direct=view.series.length>1&&lines<=4&&view.type!=='bar'&&!hasY1;
   var anyCum=view.series.some(function(sp){return isCum(view,sp);});
   function signedOf(sp){return isCum(view,sp)||view.type==='bar'||!!sp.signed;}
@@ -568,7 +570,8 @@ function config(card){
           grid:{color:function(c){return c.tick&&c.tick.value===0?COL.zero:COL.grid;},drawTicks:false},
           ticks:{color:COL.muted,font:{size:12},padding:6,maxTicksLimit:6,callback:function(v){return TICK[unit](v);}}},
         y1:hasY1?{position:'right',border:{display:false},grid:{display:false},beginAtZero:!!view.low2,afterDataLimits:view.low2?function(ax){ax.min=0;ax.max=ax.max*3;}:undefined,
-          ticks:{color:COL.muted,font:{size:12},padding:4,maxTicksLimit:6,callback:function(v){return TICK[OVN?'idx':(view.unit2||'pct')](v);}}}:{display:false}
+          ticks:{color:COL.muted,font:{size:12},padding:4,maxTicksLimit:6,callback:function(v){return TICK[OVN?'idx':(view.unit2||'pct')](v);}}}:{display:false},
+        y2:{display:false,grace:'5%'}
       }
     }
   };
