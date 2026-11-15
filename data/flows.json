@@ -567,10 +567,10 @@
  ],
  "expect": {
   "daum": "2026-11-13",
-  "freesis": "2026-11-12"
+  "freesis": "2026-11-13"
  },
  "futures_mismatch_days": 0,
- "generated_at": "2026-11-14T07:02:47+09:00",
+ "generated_at": "2026-11-16T00:07:00+09:00",
  "holdings": {
   "fss": [
    {
