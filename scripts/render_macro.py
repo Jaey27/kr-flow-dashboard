@@ -660,7 +660,12 @@ var HL=R.hysplit||{},HK=Object.keys(HL).filter(function(k){return k.charAt(0)!==
 (function(){if(!HX) return;
   var ai=(HX.ai_top||[]).map(function(a){return '<tr><td class="l">'+esc(a.name)+'</td><td>'+nf(a.w,2)+'%</td><td>'+(a.px<100?'<span class="rk-below">▼</span>':'')+nf(a.px,2)+'</td><td>'+nf(a.ytw,2)+'%</td><td class="l">'+esc(a.mat)+'</td></tr>';}).join('');
   document.getElementById('rk-hy-ai').innerHTML='<summary>AI 관련으로 분류한 HYG 보유 채권 '+HX.hy_ai.n+'개 (비중 '+nf(HX.ai_weight_pct,1)+'%) — CoreWeave · AI 데이터센터·컴퓨트 SPV · SoftBank</summary><div style="overflow-x:auto"><table class="mx-tbl rk-fit"><thead><tr><th class="l">채권</th><th>HYG 비중</th><th>가격</th><th>YTW</th><th class="l">만기</th></tr></thead><tbody>'+ai+'</tbody></table></div>';
-  document.getElementById('rk-hy-sub').innerHTML='최신 '+md(HX.asof)+': 하이일드 <b>'+nf(HX.hy.g_bp,0)+'</b> (AI <b>'+nf(HX.hy_ai.g_bp,0)+'</b> · 비AI <b>'+nf(HX.hy_nonai.g_bp,0)+'</b>) · 투자등급 <b>'+nf(HX.ig.g_bp,0)+'</b> · 하이일드−투자등급 <b>'+nf(HX.hy.g_bp-HX.ig.g_bp,0)+'</b>bp (모두 국채 대비 가산금리, iShares HYG·LQD 보유채권으로 직접 계산) · 보유종목 원장 '+HK.length+'일째';
+  document.getElementById('rk-hy-sub').innerHTML='최신 '+md(HX.asof)+': 하이일드 <b>'+nf(HX.hy.g_bp,0)+'</b> (AI <b>'+nf(HX.hy_ai.g_bp,0)+'</b> · 비AI <b>'+nf(HX.hy_nonai.g_bp,0)+'</b>) · 투자등급 <b>'+nf(HX.ig.g_bp,0)+'</b> · 하이일드−투자등급 <b>'+nf(HX.hy.g_bp-HX.ig.g_bp,0)+'</b>bp (모두 국채 대비 가산금리, iShares HYG·LQD 보유채권으로 직접 계산) · 보유종목 원장 '+HK.length+'일째'
+    // 11/22: 위 숫자(iShares 보유종목)와 아래 선(FINRA 거래 복원)은 소스가 달라 최신일이 어긋날 수 있다 → 어긋나거나 FINRA 수집이 멈췄으면 표시
+    +(function(){var aiL=Object.keys(HAI).filter(function(k){return HAI[k][1]>=40;}).sort().pop();
+      if(aiL&&aiL<HX.asof) return ' · <b class="mx-up">⚠ 아래 선은 '+md(aiL)+'까지</b> (FINRA 거래 자료가 덜 들어옴'+(R.finra_blocked?' · 수집 멈춤':'')+')';
+      if(R.finra_blocked) return ' · <b class="mx-up">⚠ FINRA 수집 멈춤</b> (아래 선의 최근 값은 앞값 채움일 수 있음)';
+      return '';})();
 })();
 var HV=ls('hv2')==null?2:+ls('hv2'),FR=(R.fred||{}).series||{};
 function frs(k){return FR[k]||[];}

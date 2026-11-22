@@ -75,12 +75,25 @@ def run_finra() -> None:
         return
     old = json.loads((RISK / "finra_eod_1y.json").read_text(encoding="utf-8"))["bonds"] if (RISK / "finra_eod_1y.json").exists() else {}
     res, fails = {}, 0
-    try:
-        c = finra_client()
-    except Exception as e:  # noqa: BLE001
-        BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 세션 실패 {e}", encoding="utf-8")
-        print(f"[finra] 세션 실패 → 멈춤 {e}", flush=True)
-        return
+    # 11/14 SSL 핸드셰이크 타임아웃 1번에 차단 표시가 남아 8일 멈췄다(11/22) → 네트워크 오류(타임아웃·연결 실패)만 60초 뒤 1회 재시도.
+    # 응답은 왔는데 세션이 안 잡히는 경우(거절 의심)는 재시도 없이 바로 멈춘다(우회 시도 없음).
+    c = None
+    for attempt in (1, 2):
+        try:
+            c = finra_client()
+            break
+        except httpx.TransportError as e:
+            if attempt == 1:
+                print(f"[finra] 세션 네트워크 오류 → 60초 뒤 1회 재시도 {e}", flush=True)
+                time.sleep(60)
+                continue
+            BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 세션 실패(재시도 포함 2회) {e}", encoding="utf-8")
+            print(f"[finra] 세션 실패 2회 → 멈춤 {e}", flush=True)
+            return
+        except Exception as e:  # noqa: BLE001
+            BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 세션 실패 {e}", encoding="utf-8")
+            print(f"[finra] 세션 실패 → 멈춤 {e}", flush=True)
+            return
     for k, cu in cusips().items():
         try:
             res[k] = {"cusip": cu, "eod": finra_eod(c, cu)}
