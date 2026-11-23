@@ -20,9 +20,9 @@ KST = timezone(timedelta(hours=9))
 
 ISSUERS = ["CRWV", "NBIS", "SBG", "ORCL", "SPCX", "HUT", "META", "AMZN", "GOOGL", "MSFT"]
 EOD_KEY = {"SBG": "SFTBY"}
-GROUPS = [("네오클라우드", ["CRWV", "NBIS", "HUT"]), ("하이퍼스케일러", ["ORCL", "META", "AMZN", "GOOGL", "MSFT"]),
-          ("SpaceX·SBG", ["SPCX", "SBG"]),
-          ("전체", ["CRWV", "NBIS", "HUT", "ORCL", "META", "AMZN", "GOOGL", "MSFT", "SPCX", "SBG"])]
+# 11/23 Jae: HUT 제외, 네오클라우드+고위험 = CRWV·NBIS·SPCX·SBG (SpaceX·SBG 그룹은 여기로 합침)
+GROUPS = [("네오클라우드+고위험", ["CRWV", "NBIS", "SPCX", "SBG"]), ("하이퍼스케일러", ["ORCL", "META", "AMZN", "GOOGL", "MSFT"]),
+          ("전체", ["CRWV", "NBIS", "SPCX", "SBG", "ORCL", "META", "AMZN", "GOOGL", "MSFT"])]
 
 
 def bond_terms(iss: dict, cusip: str) -> dict:
@@ -140,7 +140,7 @@ def main() -> int:
                      "is144a": t.get("is_144a"), "conv": tk == "NBIS"},
             "share": _share(tk),
             "cds": cds_of(cds, tk),
-            "series": eod_series(eod, EOD_KEY.get(tk, tk)),
+            "series": eod_series(eod, tk) or eod_series(eod, EOD_KEY.get(tk, tk)),  # 1년치 원장 키는 tk(SBG), 옛 스냅샷만 SFTBY
             "cds_series": clean_cds([[d, v[tk]["bp"], v[tk]["kind"][0]] for d, v in sorted(cdsd.items()) if tk in v]),
         })
     dc = []

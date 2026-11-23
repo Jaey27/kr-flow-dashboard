@@ -87,8 +87,9 @@ def run_finra() -> None:
                 print(f"[finra] 세션 네트워크 오류 → 60초 뒤 1회 재시도 {e}", flush=True)
                 time.sleep(60)
                 continue
-            BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 세션 실패(재시도 포함 2회) {e}", encoding="utf-8")
-            print(f"[finra] 세션 실패 2회 → 멈춤 {e}", flush=True)
+            # 11/23: 내 쪽 네트워크 오류(타임아웃·연결 실패)는 차단이 아니다 → 차단 표시를 남기지 않고 오늘만 건너뛴다(다음 실행에서 다시 시도).
+            #        11/14 타임아웃 1번으로 표시가 남아 11/23 까지 9일 멈췄던 일의 재발 방지. 거절 의심(아래 except)은 그대로 멈춘다.
+            print(f"[finra] 세션 네트워크 오류 2회 → 오늘은 건너뜀(차단 표시 없음) {e}", flush=True)
             return
         except Exception as e:  # noqa: BLE001
             BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 세션 실패 {e}", encoding="utf-8")
@@ -105,6 +106,9 @@ def run_finra() -> None:
             if k in old:
                 res[k] = old[k]
             if fails >= 3:
+                if isinstance(e, httpx.TransportError):  # 네트워크 오류 연속 → 오늘만 중단(차단 표시 없음)
+                    print("[finra] 네트워크 오류 연속 3회 → 오늘은 여기서 중단(차단 표시 없음)", flush=True)
+                    break
                 BLOCK.write_text(f"{dt.datetime.now():%Y-%m-%d %H:%M} 연속 실패 {fails}회: {e}", encoding="utf-8")
                 print("[finra] 연속 실패 → 차단 의심, 멈춤", flush=True)
                 break
