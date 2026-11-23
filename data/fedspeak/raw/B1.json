@@ -1,0 +1,1225 @@
+{
+ "collector": "B1",
+ "speakers_covered": [
+  "Jerome Powell",
+  "Kevin Warsh",
+  "Stephen Miran"
+ ],
+ "items": [
+  {
+   "date": "2026-01-05",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview with MNI",
+   "type": "interview",
+   "source_url": "https://www.mnimarkets.com/articles/mni-interview-feds-miran-sees-substantial-rate-cuts-in-2026-1767647426336",
+   "source_tier": "news_direct_quote",
+   "quote": "as long as we keep policy at what I think of as materially too tight, we're reducing my growth expectations in the future",
+   "summary": "Miran said the FOMC needs to cut substantially in 2026, that he wrote down 150 bp of cuts for the year in the December SEP (up from 100 bp), that underlying inflation is about 2.3% once shelter and portfolio-management distortions are removed, and that the labor market has weakened in large part because of Fed policy.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Says policy is materially too tight and wants 150 bp of cuts this year.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-06",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Fox Business 'Mornings with Maria'",
+   "type": "interview",
+   "source_url": "https://www.foxbusiness.com/media/fed-governor-stephen-miran-says-more-than-100-basis-points-cuts-justified-year",
+   "source_tier": "news_direct_quote",
+   "quote": "I think we've got to cut more than 100 basis points this year",
+   "summary": "Miran said policy is clearly restrictive and holding the economy back, that underlying inflation is within noise of target once housing and portfolio-management quirks are adjusted for, and that well over 100 bp of cuts will be justified in 2026.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicit call for more than 100 bp of cuts this year.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-08",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Bloomberg Television 'Surveillance'",
+   "type": "interview",
+   "source_url": "https://news.bloomberglaw.com/banking-law/feds-miran-wants-150-points-of-cuts-in-2026-to-boost-jobs-1",
+   "source_tier": "news_direct_quote",
+   "quote": "I'm looking for about a point and a half of cuts.",
+   "summary": "Miran said he is looking for about 150 bp of cuts in 2026 to support the labor market, described policy as restrictive and put underlying inflation at about 2.3%.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicit call for 150 bp of cuts this year.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-11",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "Video statement on DOJ grand jury subpoenas served on the Federal Reserve",
+   "type": "statement",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/powell20260111a.htm",
+   "source_tier": "official_text",
+   "quote": "The threat of criminal charges is a consequence of the Federal Reserve setting interest rates based on our best assessment of what will serve the public",
+   "summary": "Powell said the DOJ served the Fed with grand jury subpoenas threatening a criminal indictment over his June 2025 testimony on the building renovation, called the stated reasons pretexts, and framed it as pressure to set rates by presidential preference. He said he will keep doing the job. No statement on the rate path itself.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Political-pressure statement; nothing on the direction of rates.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Speech 'Regulations, the Supply Side, and Monetary Policy', Delphi Economic Forum, Athens",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/miran20260114a.htm",
+   "source_tier": "official_text",
+   "quote": "In recent quarters, policy has been tighter than it should have been to reflect significant deregulation lifting potential growth and reducing inflation.",
+   "summary": "Miran argued that US deregulation is a large positive productivity shock that lifts potential output more than actual output and pushes prices down (roughly half a percentage point a year on the price level through 2030 by his estimate), so the correct response is to cut rates. He said ignoring this would make policy needlessly contractionary and that deregulation is one factor supporting further easing.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Says policy has been too tight and that the correct response is to cut rates.",
+   "drivers": [
+    "other",
+    "inflation",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-28",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, January 27-28 meeting: opening statement",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260128.pdf",
+   "source_tier": "official_transcript",
+   "quote": "we see the current stance of monetary policy as appropriate to promote progress toward both our maximum-employment and 2 percent inflation goals",
+   "summary": "FOMC held at 3.50-3.75% after 75 bp of cuts over the previous three meetings (Miran and Waller dissented for a 25 bp cut). Powell said the rate is within a range of plausible neutral estimates, the labor market shows signs of stabilizing, core PCE is 3.0% mostly because of tariffs on goods, and the Committee is well positioned to decide the extent and timing of further adjustments meeting by meeting.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Hold described as appropriate, two-sided risks, no lean on timing of the next move.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-28",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, January 27-28 meeting: Q&A on the next move (cut timing, possibility of a hike)",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260128.pdf",
+   "source_tier": "official_transcript",
+   "quote": "it isn’t anybody’s base case right now—anybody’s base case—that the next move will be a rate hike",
+   "summary": "Asked whether the next move is necessarily down, Powell said upside inflation risks and downside employment risks have both diminished and declined to say they are fully balanced. He said tariff inflation peaking and coming down would tell the Fed it can loosen, as would renewed labor weakness; a hike is not off the table but is nobody's base case. He also said it is hard to call policy significantly restrictive (loosely neutral or somewhat restrictive) and that a good piece of normalization is done.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Easing still the conditional direction but no timing commitment and policy described as near neutral; balanced, so 0 rather than -1.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-28",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, January 27-28 meeting: Q&A on Fed independence and political pressure",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260128.pdf",
+   "source_tier": "official_transcript",
+   "quote": "monetary policy can be used through an election cycle to affect the economy in a way that will be politically worthwhile",
+   "summary": "Powell declined to add to his January 11 statement, to say whether the Fed had responded to the subpoenas, or to say whether he will stay on as a Governor. He explained why he attended the Supreme Court hearing in the Lisa Cook case, defended central bank independence as standard practice in advanced democracies, and advised his successor to stay out of elected politics.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Independence and political pressure only; no rate-path content in this exchange.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-28",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, January 27-28 meeting: Q&A on the fiscal path and long-term rates",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260128.pdf",
+   "source_tier": "official_transcript",
+   "quote": "The U.S. federal budget deficit is uncontroversially on an unsustainable path.",
+   "summary": "Asked about Japan's bond-market turmoil, Powell said the US deficit path is unsustainable and is not being addressed, though he did not connect it to a near-term market event. He said 10-year yields are driven more by assessments of the fiscal path and risk than by the overnight rate, so there is no tight link between Fed cuts and long rates. He declined to comment on the dollar and said gold and silver moves carry little macro message.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Fiscal and term-premium commentary; no stance on the policy rate path.",
+   "drivers": [
+    "fiscal_term_premium"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-28",
+   "time_et": "14:00",
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Dissent at the January 27-28 FOMC meeting (preferred a 25 bp cut; Waller dissented with him)",
+   "type": "dissent",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+   "source_tier": "official_text",
+   "quote": "who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting",
+   "summary": "The FOMC held the target range at 3.50-3.75%. Miran and Waller voted against, preferring a 25 bp cut. The quote is the Committee statement's wording of the dissent, not Miran's own words; no separate Miran dissent statement was found on the Board's site.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Formal dissent in favor of an immediate cut.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, CNBC 'Money Movers' (CNBC excerpts of unofficial transcript)",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/01/30/first-on-cnbc-excerpts-fed-governor-stephen-miran-speaks-with-cnbcs-money-movers-today.html",
+   "source_tier": "full_interview_transcript",
+   "quote": "It's an economy that can, that can have lower rates because it can have a stronger labor market than it has now.",
+   "summary": "Two days after dissenting, Miran said there is no inflation problem (market-based core ex housing at 2.2%), that the unemployment rate is about half a point too high, and that tariffs are not a significant driver of overall inflation. He praised Warsh's nomination and said the central bank should accommodate job reallocation caused by new technology.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Says the economy can and should have lower rates, right after a dissent for a cut.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-03",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Fox Business 'Mornings with Maria'",
+   "type": "interview",
+   "source_url": "https://www.foxbusiness.com/economy/feds-miran-maintains-call-aggressive-interest-rate-cuts-year",
+   "source_tier": "news_direct_quote",
+   "quote": "I'm probably looking for a little bit more than a point of interest rate cuts over the course of the year",
+   "summary": "Miran said the Fed is keeping rates too high mostly because of quirks in how inflation is measured rather than real price pressures, and that he will keep arguing for his view inside the Committee. He called Warsh a fantastic choice for Chair.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicit call for a little more than 100 bp of cuts in 2026.",
+   "drivers": [
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-09",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Conversation for WBUR podcast 'Is Business Broken?', WBUR CitySpace, Boston University",
+   "type": "panel_qa",
+   "source_url": "https://www.bu.edu/articles/2026/stephen-miran-visit-to-bu/",
+   "source_tier": "news_direct_quote",
+   "quote": "to me indicates that housing inflation is going to normalize, I think, pretty quickly this year",
+   "summary": "Miran argued that apparently elevated inflation reflects measurement problems, especially lagged housing costs, that tariffs are not a material driver of inflation, and that the Fed's job is stable prices rather than a lower price level. He said the Fed should stick to interest rate policy and not politicize itself. Earlier the same day at BU's Questrom School he argued that foreign exporters bear most of the tariff cost (Reuters).",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Argues the inflation obstacle to easing is a measurement artifact, but the university write-up carries no direct call for a cut on this occasion.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-11",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Remarks after the January jobs report, as reported by Bloomberg (venue not stated in the visible text)",
+   "type": "interview",
+   "source_url": "https://news.bgov.com/capital-markets/feds-miran-says-theres-still-a-variety-of-reasons-to-cut-rates",
+   "source_tier": "news_direct_quote",
+   "quote": "a variety of reasons why I want to see lower interest rates",
+   "summary": "Miran said the surprisingly strong January jobs data does not mean the Fed should hold off on further cuts, citing supply-side reforms such as deregulation and an expected slowdown in housing inflation. Only the opening paragraphs of the Bloomberg article are visible on this page.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Says he wants lower rates and that strong jobs data is no reason to delay cuts.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-12",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Conversation at the Federal Reserve Bank of Dallas Global Perspectives event",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-12/fed-policy-tighter-thought-inflation-not-problem-miran-says",
+   "source_tier": "news_direct_quote",
+   "quote": "As long as I remain unconcerned about inflation, I think it makes sense to continue trying to underwrite the labor market with looser monetary policy",
+   "summary": "Miran said the biggest risk to the economy is misjudging how tight policy is, that he has a hard time being concerned about inflation because very low shelter inflation offsets other components, and that supply is expanding faster than demand so the economy can grow without inflation.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicitly argues for looser policy now.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-19",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview with The Peg (The Blind Spot), conducted February 18 and published February 19",
+   "type": "interview",
+   "source_url": "https://the-blindspot.com/transcript-fed-governor-stephen-miran-talks-rates-stablecoins-and-ai/",
+   "source_tier": "full_interview_transcript",
+   "quote": "if I had to put down the dot today, I probably would have moved it back to where it was in September",
+   "summary": "Miran said that with data in hand he would move his end-2026 dot back to its September level (100 bp of cuts rather than the 150 bp he wrote in December) because the labor market came in a little better and goods inflation firmed. He still argued measured inflation is biased up by portfolio-management fees and lagged shelter, said AI on balance argues for looser policy but cannot be quantified, and said he prefers lowering reserve demand through regulatory changes and then shrinking the balance sheet without returning to scarce reserves, holding more bills and less duration.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "A less accommodative path than his December dot, but still well below the Committee median; a revision toward tighter from a dovish position, so -1.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "other"
+   ],
+   "tool": "both",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-26",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Fox Business 'Mornings with Maria'",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-26/feds-miran-four-quarter-point-cuts-still-warranted-year-no-all-clear",
+   "source_tier": "news_direct_quote",
+   "quote": "I definitely think the labor market can be supported by the Federal Reserve further",
+   "summary": "Miran said strong January job growth was a really good thing but it is way too early to sound an all clear on the labor market, and that the Fed should still cut a full percentage point this year through four quarter-point moves because inflation is no longer a problem.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicit call for four cuts this year.",
+   "drivers": [
+    "labor",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-04",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Bloomberg Television",
+   "type": "interview",
+   "source_url": "https://news.bloomberglaw.com/banking-law/feds-miran-says-he-still-wants-rate-cuts-despite-iran-war",
+   "source_tier": "news_direct_quote",
+   "quote": "I believe it's appropriate to continue acting",
+   "summary": "Miran said it is still appropriate to keep cutting rates and that the Middle East conflict has not changed his forecasts for the labor market or inflation. Reuters' account of the same interview adds that he sees limited evidence that oil feeds into core inflation and wants four quarter-point cuts this year to reach roughly neutral.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicit call to keep cutting despite the oil shock.",
+   "drivers": [
+    "labor",
+    "energy",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-06",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, CNBC 'Money Movers', after the February jobs report",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/03/06/fed-governor-miran-says-job-losses-in-february-add-to-the-case-for-more-interest-rate-cuts.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I think that the labor market can use more accommodation from monetary policy.",
+   "summary": "After payrolls fell by 92,000 in February, Miran said the Fed does not have an inflation problem, that a modestly restrictive stance is not appropriate and policy should be close to neutral, and that higher oil prices are a one-off shock to headline inflation. Asked whether he would dissent again he said he hoped the Committee would vote to cut.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicitly wants a cut at the next meeting.",
+   "drivers": [
+    "labor",
+    "energy",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-18",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, March 17-18 meeting: opening statement",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260318.pdf",
+   "source_tier": "official_transcript",
+   "quote": "In the near term, higher energy prices will push up overall inflation, but it is too soon to know the scope and duration of the potential effects on the economy.",
+   "summary": "FOMC held at 3.50-3.75% (Miran dissented for a 25 bp cut). Powell said the current stance is appropriate, the implications of the Middle East conflict are uncertain, and near-term inflation expectations have risen with oil. The SEP median funds rate was unchanged from December at 3.4% for end-2026 and 3.1% for end-2027; median 2026 PCE inflation 2.7% and GDP growth 2.4%.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Hold, attentive to both sides, median still shows one cut in 2026; no lean expressed.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "labor",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-18",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, March 17-18 meeting: Q&A on the next move (hike discussed, cuts conditional)",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260318.pdf",
+   "source_tier": "official_transcript",
+   "quote": "The vast majority of participants don’t see that as their base case, and, of course, we don’t take things off the table.",
+   "summary": "Powell confirmed that the possibility that the next move is an increase came up at the meeting, as in January, but said the vast majority do not see it as the base case. He said four or five participants moved from two cuts to one, that the rate forecast is conditional on tariff disinflation showing up mid-year (no progress, no cut), and that policy sits on the borderline between restrictive and not, which he called the right place. He added that the AI data-center buildout is probably pushing inflation up at the margin and raising the neutral rate in the near term.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Explicitly balances downside labor risk against upside inflation risk and says neither clearly dominates; hike talk acknowledged but not endorsed. Torn between 0 and +1, chose 0.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "tariffs_supply",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-18",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, March 17-18 meeting: Q&A on looking through the oil shock",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260318.pdf",
+   "source_tier": "official_transcript",
+   "quote": "we are very strongly committed to doing what it takes to keep inflation expectations anchored at 2 percent",
+   "summary": "Powell said the standard practice of looking through energy shocks depends on anchored expectations and, now, on the context of five years of above-target inflation, so it would not be approached lightly; the question does not arise until tariff disinflation is visible. He said repeated shocks (pandemic, tariffs, energy) are the kind of thing that can cause trouble for expectations. He declined to say what oil price would prompt a hike, and said the net effect of the oil shock is downward pressure on spending and employment and upward pressure on inflation.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Vigilant on expectations but no commitment to tighten and he notes the growth hit too; torn between 0 and +1, chose 0.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-18",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, March 17-18 meeting: Q&A on his own future and the DOJ investigation",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260318.pdf",
+   "source_tier": "official_transcript",
+   "quote": "I have no intention of leaving the Board until the investigation is well and truly over, with transparency and finality",
+   "summary": "Powell said that if his successor is not confirmed by the end of his term as Chair he would serve as Chair pro tem, that he will not leave the Board while the investigation is ongoing, and that he has not decided whether to stay on as a Governor afterwards. He said independence is what allows the Fed to do what is needed for price stability.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Personnel and independence; no rate-path content.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-18",
+   "time_et": "14:00",
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Dissent at the March 17-18 FOMC meeting (preferred a 25 bp cut; sole dissenter)",
+   "type": "dissent",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260318a.htm",
+   "source_tier": "official_text",
+   "quote": "Voting against this action was Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting.",
+   "summary": "The FOMC held at 3.50-3.75%. Miran was the only dissenter and preferred a 25 bp cut. The quote is the Committee statement's wording, not Miran's own words.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Formal dissent in favor of an immediate cut.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "Acceptance remarks, Paul A. Volcker Public Integrity Award, American Society for Public Administration (pre-recorded video)",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/powell20260321a.htm",
+   "source_tier": "official_text",
+   "quote": "we need independence to do what is right, and we need integrity to use that independence wisely",
+   "summary": "Short award remarks praising Volcker for holding firm against political pressure to bring inflation down in the early 1980s. No comment on current policy.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Official speech with no current monetary-policy content; included for coverage.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-23",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, Bloomberg Television",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-03-23/feds-miran-still-believes-fed-should-cut-interest-rates-bloomberg-tv",
+   "source_tier": "news_direct_quote",
+   "quote": "We should wait for all the information to come in before really changing our outlook",
+   "summary": "Miran said it is premature to judge how the jump in oil prices will look twelve months out, that an oil shock is traditionally looked through so his outlook for gradual rate cuts is unchanged, and that both inflation and unemployment risks have become more concerning because the oil shock is also a negative demand shock. He confirmed he trimmed his 2026 projection from six cuts to four at the March meeting.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Keeps his call for gradual cuts five days after dissenting; path trimmed to four cuts but direction unchanged.",
+   "drivers": [
+    "energy",
+    "labor",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-25",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Conversation at the Digital Asset Summit 2026, New York",
+   "type": "panel_qa",
+   "source_url": "https://news.bloomberglaw.com/banking-law/feds-miran-says-he-raised-rate-projection-due-to-inflation-data",
+   "source_tier": "news_direct_quote",
+   "quote": "I boosted my policy rate by half a percent, not due to oil and Iran, but due to the inflation data that we received",
+   "summary": "Miran said he raised his end-2026 rate projection by half a point at the March meeting because of disappointing inflation data since December, not because of oil, which puts his projection at about neutral. Bloomberg's video summary says he does not think policy needs to be 'slamming on the gas' but should not hold the economy back.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "A hawkish revision of his own path driven by inflation data, while still wanting policy at neutral (below the current rate). Revision toward tighter from a dovish position, so -1.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-26",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Speech 'Prospects for Shrinking the Fed's Balance Sheet', Economic Club of Miami",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/miran20260326a.htm",
+   "source_tier": "official_text",
+   "quote": "It is therefore likely that a resumption of balance sheet reduction warrants additional reductions in the federal funds rate relative to baseline projections.",
+   "summary": "Miran said he would like the balance sheet to shrink further, by roughly $1 trillion to $2 trillion, without returning to scarce reserves, by first lowering reserve demand (easing liquidity rules, destigmatizing the standing repo facility and discount window, and similar steps from a co-authored working paper). He said the preparatory steps would take well over a year, runoff should be slow and through maturities rather than sales, and because runoff is contractionary it would warrant a lower funds rate.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Wants a smaller balance sheet (tightening) but explicitly paired with a lower funds rate; no call for an immediate cut in this text, so -1 rather than -2.",
+   "drivers": [
+    "other",
+    "financial_stability_credit"
+   ],
+   "tool": "both",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "Moderated discussion, Harvard University Principles of Economics class (Ec 10b), Cambridge",
+   "type": "panel_qa",
+   "source_url": "https://www.newstribune.com/news/2026/mar/31/powell-says-fed-can-wait-and-see-how-war-affects/",
+   "source_tier": "news_direct_quote",
+   "quote": "We feel like our policy's in a good place for us to wait and see how that turns out",
+   "summary": "Powell told a Harvard class that policy is in a good place to wait and see how the Iran-war energy shock plays out, that there is tension between downside labor-market risk and upside inflation risk, and that longer-term inflation expectations appear well anchored. He said supply shocks are usually looked through but expectations must be monitored carefully because a series of shocks can raise them. Harvard's own write-ups add that he called the deficit path unsustainable and said the Fed is watching private credit closely without seeing a systemic threat.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Explicit wait-and-see with both risks named; no lean.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "labor",
+    "fiscal_term_premium",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Interview, CNBC 'Squawk on the Street'",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/03/30/fed-governor-miran-still-backs-cuts-says-interest-rates-could-be-about-a-point-lower-this-year.html",
+   "source_tier": "news_direct_quote",
+   "quote": "we could be about a point easier, gradually done over the course of a year",
+   "summary": "Miran said policymakers should disregard the energy price spike unless a wage-price spiral or rising inflation expectations appear, of which he sees no evidence, and that changing the policy rate now would not affect inflation over the next couple of months. He still thinks rates could be about a point lower over a year.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Explicitly backs about 100 bp of easing over the year and looking through the oil shock.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-13",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Conversation at the Symposium on Building the Financial System of the 21st Century, Washington",
+   "type": "panel_qa",
+   "source_url": "https://news.bloomberglaw.com/banking-law/feds-miran-sees-inflation-close-to-target-a-year-from-now",
+   "source_tier": "news_direct_quote",
+   "quote": "There's thus far no evidence that inflation expectations are higher",
+   "summary": "Miran said the Iran-war energy shock has not affected longer-run inflation expectations, that a wage-price spiral is very unlikely with the labor market cooling gradually, and that he expects inflation to be back near target in a year. Only the opening paragraphs of the Bloomberg article are visible; the text says 'Tuesday' although the page is timestamped Monday April 13, the date on the Fed calendar.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Argues for looking through the energy shock; no direct call for a cut in the visible text.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-16",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Conversation at the Washington Economic Festival: Global Macro Sessions",
+   "type": "panel_qa",
+   "source_url": "https://finance.yahoo.com/economy/article/feds-miran-says-inflation-picture-has-deteriorated--but-still-favors-multiple-rate-cuts-this-year-190100956.html",
+   "source_tier": "news_direct_quote",
+   "quote": "But given the risks to both sides, I said, OK, let's just go to neutral instead.",
+   "summary": "Miran said the composition of inflation had become less favorable even before the war, that he now sees three or four cuts this year rather than four, and that he moved from wanting rates slightly below neutral to wanting them at neutral, which he puts a full point below the current 3.50-3.75%. He said the energy shock raises the risk of higher inflation further out if it persists, but he still expects inflation near target in a year and still favors cutting now.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Still advocates cutting toward neutral now (about 100 bp lower), though he has trimmed his path and concedes higher inflation risk; the stance on the day remains an explicit call for cuts.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Kevin Warsh",
+   "role": "Fed Chair nominee",
+   "occasion": "Senate Banking Committee confirmation hearing: opening statement",
+   "type": "testimony",
+   "source_url": "https://prod.transcripts.cnn.com/show/sitroom/date/2026-04-21/segment/02",
+   "source_tier": "full_interview_transcript",
+   "quote": "I'm committed to ensuring that the conduct of monetary policy remains strictly independent.",
+   "summary": "In his opening statement Warsh called monetary policy independence essential, said it is not threatened when elected officials state views on rates, and said 'Inflation is the Fed's choice'. He said the Fed must stay in its lane, promised a reform-oriented Fed, and said US growth potential is rising. Source is CNN's rush transcript of the live hearing; the prepared text on banking.senate.gov could not be opened (bot protection).",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Opening statement sets out independence and reform themes without a signal on the rate path or balance sheet; those answers are scored in separate items.",
+   "drivers": [
+    "political",
+    "inflation"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Kevin Warsh",
+   "role": "Fed Chair nominee",
+   "occasion": "Senate Banking Committee confirmation hearing: Q&A on the rate path and forward guidance",
+   "type": "testimony",
+   "source_url": "https://prod.transcripts.cnn.com/show/sitroom/date/2026-04-21/segment/03",
+   "source_tier": "full_interview_transcript",
+   "quote": "I don't believe that I should be previewing for you what a future decision might be.",
+   "summary": "Asked whether cutting rates toward 1% would raise prices, Warsh refused to preview decisions and said he does not believe in forward guidance. He argued the supply side is changing dramatically and potential growth is rising quickly, which makes the coming policy choice difficult; he also said the Fed has a short window to bring inflation back down, that AI could over time make the inflation job easier, and that policy works with long and variable lags. He rejected Senator Kennedy's summary that AI means rates can be cut now.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Declines to signal direction; pairs a supply-side argument (room for lower rates) with a stated need to bring inflation down. No lean either way.",
+   "drivers": [
+    "inflation",
+    "growth",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Kevin Warsh",
+   "role": "Fed Chair nominee",
+   "occasion": "Senate Banking Committee confirmation hearing: Q&A on shrinking the balance sheet",
+   "type": "testimony",
+   "source_url": "https://finance.yahoo.com/economy/policy/articles/fed-chair-pick-warsh-makes-201332796.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I think interest rates could be lower, inflation could be better, and the economy could be stronger",
+   "summary": "Warsh said the large balance sheet has been unhelpful and is part of why the Fed is in the business of politics, and that he would work with the Treasury Secretary to make it smaller, slowly and deliberately and with clear communication. He said that with smaller holdings interest rates could be lower. In the hearing (CNN transcript) he also said the rate tool is fairer than the balance sheet, which disproportionately helps holders of financial assets, and called for a regime change in the conduct of policy, a new inflation framework and new communications.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Links a smaller balance sheet to a lower policy rate: balance-sheet tightening paired with a lower funds rate. No timing given, so -1 rather than -2.",
+   "drivers": [
+    "other",
+    "inflation",
+    "political"
+   ],
+   "tool": "both",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Kevin Warsh",
+   "role": "Fed Chair nominee",
+   "occasion": "Senate Banking Committee confirmation hearing: Q&A on commitments to the President",
+   "type": "testimony",
+   "source_url": "https://prod.transcripts.cnn.com/show/sitroom/date/2026-04-21/segment/03",
+   "source_tier": "full_interview_transcript",
+   "quote": "The president never once asked me to commit to any particular interest rate decision, period, and nor would I ever agree to do so if he had.",
+   "summary": "Under questioning from Senators Reed and Kennedy, Warsh said he made no commitment to cut rates, would be an independent actor and 'absolutely not' the President's sock puppet. He said the President's views on rates sound like those of every other president, and that humble central bankers should listen and then make their own decisions.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Independence and political pressure; no rate-path content.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-29",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, April 28-29 meeting: opening statement (last as Chair)",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260429.pdf",
+   "source_tier": "official_transcript",
+   "quote": "Inflation has moved up and is elevated, in part reflecting the recent increase in global energy prices.",
+   "summary": "FOMC held at 3.50-3.75% by 8-4: Miran dissented for a 25 bp cut; Hammack, Kashkari and Logan agreed with the hold but opposed keeping an easing bias in the statement. Powell said headline PCE inflation was 3.5% and core 3.2% in March, the stance is appropriate, and the Committee is attentive to both sides. He announced he will stay on as a Governor for a period to be determined after his term as Chair ends May 15 and will keep a low profile.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Statement text itself: hold is appropriate, both-sided risks; the tighter lean comes in the Q&A (separate item).",
+   "drivers": [
+    "energy",
+    "inflation",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-29",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, April 28-29 meeting: Q&A on the next move (bar for cuts, hikes)",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260429.pdf",
+   "source_tier": "official_transcript",
+   "quote": "I think we’d want to see the back side of that and progress on tariffs before we even thought about, about reducing rates.",
+   "summary": "Powell said the energy shock has not peaked and the Fed would want to see it fade and tariff inflation recede before even thinking about cuts. He said nobody is calling for a hike now, but if a hike is needed the Fed will signal it and do it. He put policy at the high end of neutral or mildly restrictive, said there is no case that it is meaningfully restrictive, and called that the right place to be while inflation is misbehaving and the labor market is stabilizing.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Pushes back on cuts, puts hikes on the table conditionally, inflation is the stated problem; no call to hike, so +1 not +2.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-29",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, April 28-29 meeting: Q&A on the easing bias in the statement",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260429.pdf",
+   "source_tier": "official_transcript",
+   "quote": "the center is moving toward a more neutral place",
+   "summary": "Powell said the number of participants who could support changing the guidance to a neutral stance (hike as likely as cut) rose over the intermeeting period and it is now a much closer call than in March. A majority, including him, saw no need to rush because the next 30 to 60 days could change the picture, but he said the change could come as soon as the next meeting and that the Fed would move to a neutral bias before any hiking bias.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "He personally kept the easing-bias language and argued for waiting, while acknowledging the drift to neutral; torn between 0 and +1, chose 0.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-29",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Chair",
+   "occasion": "FOMC press conference, April 28-29 meeting: Q&A on Fed independence and his decision to stay on the Board",
+   "type": "press_conference",
+   "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260429.pdf",
+   "source_tier": "official_transcript",
+   "quote": "I worry that these attacks are battering the institution",
+   "summary": "Powell said the Administration's legal actions against the Fed are unprecedented, that independence is at risk, and that this is why he is staying on the Board; he noted the US Attorney closed the criminal investigation the previous Friday. He said he will not act as a shadow chair, took Warsh at his word on resisting political pressure, and said removing Reserve Bank presidents over policy views would be the beginning of the end of independent monetary policy. He said markets still price in Fed credibility on 2% inflation.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Independence and personnel; no rate-path content in these exchanges.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-29",
+   "time_et": "14:00",
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Dissent at the April 28-29 FOMC meeting (preferred a 25 bp cut)",
+   "type": "dissent",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+   "source_tier": "official_text",
+   "quote": "Voting against this action were Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting",
+   "summary": "The FOMC held at 3.50-3.75% by 8-4. Miran again preferred a 25 bp cut, while Hammack, Kashkari and Logan dissented in the other direction over the statement's easing bias. The quote is the Committee statement's wording, not Miran's own words.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Formal dissent in favor of an immediate cut, his third of the year.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Resignation letter to the President (released by the Board)",
+   "type": "statement",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/files/other20260514b1.pdf",
+   "source_tier": "official_text",
+   "quote": "it will run unemployment higher than it has to, fighting fake rather than real inflation",
+   "summary": "Miran resigned effective upon or shortly before Kevin Warsh's swearing-in. He restated his case that lower immigration-driven population growth and deregulation are disinflationary and point to lower rates, that policy must be forward-looking, and that measurement biases (portfolio management fees, software quality adjustment) overstate inflation, which in effect lowers the Fed's inflation target. Only the first page of the scanned letter is machine-readable.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Restates the argument for lower rates in general terms; no explicit call for a cut at a specific meeting in the letter, so -1.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-15",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Statement with Vice Chair for Supervision Bowman on the Board vote naming Powell chair pro tempore",
+   "type": "statement",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/bowman-miran-statement-20260515.htm",
+   "source_tier": "official_text",
+   "quote": "Given that we do not support an unlimited timeframe for temporary chair designation, we cannot support this action.",
+   "summary": "Bowman and Miran said they support Powell serving temporarily as chair until Warsh is sworn in but opposed an open-ended designation, arguing it should be limited to a week (up to a month) and then be subject to another Board vote or presidential action.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Board governance dispute; no monetary-policy content.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-15",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Stephen Miran",
+   "role": "Fed Governor",
+   "occasion": "Exit interview with CNBC (published the day after his resignation)",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/05/15/stephen-miran-exits-the-fed-how-he-set-the-stage-for-kevin-warsh.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I still think it's important to frontload those cuts, because I still don't think that we should be exerting restraints in the labor market.",
+   "summary": "Miran said that if he wrote a dot today he might have one fewer cut than in the March SEP, that is 75 bp rather than 100 bp of cuts this year, because of cuts already made and because the data has made him a little more concerned about inflation. He still wants those cuts front-loaded, says deregulation is disinflationary, and argues monetary policy cannot offset one-time price changes from tariffs or oil.",
+   "score": -2,
+   "score_basis": "own_stance",
+   "score_note": "Still wants cuts and wants them front-loaded, although he trimmed the amount and acknowledged more inflation concern.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-22",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Kevin Warsh",
+   "role": "Fed Chair",
+   "occasion": "Remarks at swearing-in ceremony, White House East Room (first remarks as Chair)",
+   "type": "speech",
+   "source_url": "https://www.foxbusiness.com/economy/kevin-warsh-sworn-federal-reserve-chair-president-trump",
+   "source_tier": "news_direct_quote",
+   "quote": "When we pursue those aims with wisdom and clarity, independence and resolve, inflation can be lower, growth stronger, real take-home pay higher",
+   "summary": "After taking the oath, Warsh said the mandate is price stability and maximum employment and that he will lead a reform-oriented Fed, learning from past successes and mistakes and escaping static frameworks and models. He gave no indication of the rate path or balance-sheet plans.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Ceremonial remarks restating the mandate and reform agenda; no stance on rates or the balance sheet.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-31",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jerome Powell",
+   "role": "Fed Governor (former Chair)",
+   "occasion": "Acceptance remarks, 2026 John F. Kennedy Profile in Courage Award, JFK Library Foundation, Boston",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/powell20260531a.htm",
+   "source_tier": "official_text",
+   "quote": "If any administration finds a way to remove Fed officials over policy differences, then future administrations will do so as well.",
+   "summary": "Powell, now a Governor, said the Fed has been undergoing a stress test, described the legal protections that insulate monetary policy from politics, and warned that removing Fed officials over policy differences would destroy the Fed's credibility. No comment on the rate path.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Official speech on institutions and independence; no current monetary-policy content.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  }
+ ],
+ "unverified": [
+  {
+   "date": "2026-01-14",
+   "speaker": "Stephen Miran",
+   "what": "Q&A after the Athens speech: wire headline (Newsquawk via StockNow feed) says he reiterated the need for 150 bp of cuts this year and called other inflation components 'just noise'. American Banker's paywalled piece shows only the quote 'I think that inflation is very much headed in the right direction.' Not added as a separate item because the speech text from the same occasion is already in the ledger.",
+   "url": "https://www.americanbanker.com/news/feds-miran-dismisses-inflation-fears-tied-to-powell-probe"
+  },
+  {
+   "date": "2026-02-09",
+   "speaker": "Stephen Miran",
+   "what": "Conversation at Boston University Questrom School (afternoon, separate from the WBUR podcast taping). Reuters via Kitco quotes him only on tariffs and the deficit; a wire headline says he also said rates should be much lower than current levels, but no page with a direct rate quote was found.",
+   "url": "https://www.kitco.com/news/off-the-wire/2026-02-09/feds-miran-says-data-suggests-americans-arent-shouldering-tariff-hit"
+  },
+  {
+   "date": "2026-04-21",
+   "speaker": "Kevin Warsh",
+   "what": "Prepared opening statement for the Senate Banking confirmation hearing (official PDF). The site returns 403 to scripts and a bot-protection challenge in the browser, so the text was not read; the opening statement item uses CNN's rush transcript of the delivered remarks instead.",
+   "url": "https://www.banking.senate.gov/imo/media/doc/warsh_testimony_4-21-26.pdf"
+  },
+  {
+   "date": "2026-04-21",
+   "speaker": "Kevin Warsh",
+   "what": "Later parts of the confirmation hearing not covered by the CNN transcript segments. Wire headlines (Newsquawk via StockNow feed) report him saying the balance sheet should be smaller and should not hold long-term Treasuries, that the balance sheet has played an unhelpful role and rates should be the dominant tool, that AI-related capex adds a few tenths to demand while the supply-side effect could be considerably bigger, and that the dollar is Treasury's business. CNBC's live blog has some direct quotes on communications ('Too many Fed officials, past and present, opine in advance about where they think interest rates should be') but not on these points.",
+   "url": "https://www.cnbc.com/2026/04/21/kevin-warsh-fed-confirmation-hearing-trump-live-updates.html"
+  },
+  {
+   "date": "2026-05-01",
+   "speaker": "Stephen Miran",
+   "what": "Fox interview at 08:00 EDT two days after his April dissent, seen only as a calendar-addition wire headline (Newsquawk via StockNow feed). No article or transcript found.",
+   "url": null
+  },
+  {
+   "date": "2026-05-08",
+   "speaker": "Stephen Miran",
+   "what": "Fox Business 'Mornings with Maria'. Wire headline says he thinks it is appropriate to cut interest rates; the Reuters piece carried by Kitco quotes him only on Powell staying on as a Governor ('it's important to make sure that it's a transition period'), so no direct rate quote could be verified.",
+   "url": "https://www.kitco.com/news/off-the-wire/2026-05-08/feds-miran-hopes-powell-staying-fed-transitional-fox-business"
+  },
+  {
+   "date": "2026-05-14",
+   "speaker": "Stephen Miran",
+   "what": "Bloomberg TV interview at 08:00 EDT on the day he resigned. Wire headline says he expects PCE inflation, housing in particular, to converge down and reiterated his rate-cut calls citing policy lags. No openable page with a direct quote found.",
+   "url": null
+  }
+ ],
+ "coverage_notes": "Window 2026-01-01 to 2026-05-31. POWELL: complete for official occasions. federalreserve.gov lists only three Powell texts in the window (Jan 11 statement, Mar 21 and May 31 award remarks) and the Board calendar adds one moderated discussion (Harvard, Mar 30), which is sourced to a news page because no official text exists. The three FOMC press conferences come from the official transcripts (one opening-statement item plus two or three Q&A items each). The balance sheet and AI-related credit did not come up as questions in any of the three press conferences; the only AI remarks were on jobs, productivity and (March) data-center construction pushing up inflation and the neutral rate at the margin, which is not a financing link, so no ai_financing tag was used anywhere in this file. There was no semiannual Monetary Policy Report testimony in the window: the Board's MPR page lists only a July 2026 report for 2026 and the testimony list has no Powell entry for January to May. WARSH: he made no public policy remarks as nominee before the April 21 Senate Banking hearing that I could find (the wire feed shows only third-party comments between January 30 and April 20), and no statement by him on nomination day was found. Hearing items rely on CNN's rush transcript (10:00-11:30 ET segments only) plus a Reuters article for the balance-sheet answer; the rest of the hearing is in the unverified list. After the May 22 swearing-in remarks there were no further Warsh remarks through May 31 on the Board calendar or speech list. MIRAN: both official speeches, all three FOMC dissents, the resignation letter and the May 15 statement with Bowman are from federalreserve.gov. No separate Miran dissent statement exists on the Board site, so dissent quotes are the Committee statement's wording, not his own words. Interviews and panel remarks are from news pages with direct quotations (CNBC, Fox Business, Reuters via Kitco or Yahoo, Bloomberg via Bloomberg Law/Bloomberg Government mirrors that show only the opening paragraphs, MNI, BU Today) and one full transcript (The Peg). Thin spots: late April to mid-May (May 1, May 8 and May 14 television interviews are unverified), and the Jan 30 CNBC page gives excerpts rather than a full transcript. SCORING NOTE for Miran: -2 whenever the page shows an explicit call for cuts on that day; -1 where the visible text is a revision toward fewer cuts or an argument about inflation measurement without an explicit cut call. His path shrank over the window (150 bp in early January, about 100 bp from mid-February, neutral rather than below neutral from March, three or four cuts in April, 75 bp in mid-May); the five-point scale does not capture that drift, so use the summaries if the trend matters. TIMES: time_et is filled only where the source page itself states a time (FOMC statements, 2:00 p.m.). Scheduled start times from the Board's speech list and calendar feed are given separately under scheduled_times and are not on the source pages. ACCESS: banking.senate.gov blocked both curl and the browser (bot challenge, not bypassed). Bloomberg and Reuters originals were not opened; syndicated copies were used. Machine check: every quote and source_url in this file was matched against the downloaded page with the project's own pipeline.check() and returned 'exact'. CONTEXT CHECK: the Board's May 22 release says the President nominated Warsh on March 4, 2026 (the formal transmission to the Senate; the public announcement was January 30) and that the Senate confirmed him to the Board on May 12 and as Chair on May 13. Miran's resignation letter is dated May 14 and was effective on or shortly before Warsh's swearing-in. On May 15 the Board named Powell chair pro tempore until Warsh was sworn in, with Bowman and Miran not supporting the open-ended designation. The April 29 vote was 8-4 with three hawkish dissents over the statement's easing bias (Hammack, Kashkari, Logan) in addition to Miran. Nothing else contradicted the brief's context section.",
+ "fomc_meetings": [
+  {
+   "date": "2026-01-28",
+   "decision": "hold",
+   "target_range": "3.50-3.75%",
+   "vote": "10-2",
+   "dissents": [
+    {
+     "name": "Stephen I. Miran",
+     "preferred": "lower the target range by 25 bp"
+    },
+    {
+     "name": "Christopher J. Waller",
+     "preferred": "lower the target range by 25 bp"
+    }
+   ],
+   "sep": false,
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm"
+  },
+  {
+   "date": "2026-03-18",
+   "decision": "hold",
+   "target_range": "3.50-3.75%",
+   "vote": "11-1",
+   "dissents": [
+    {
+     "name": "Stephen I. Miran",
+     "preferred": "lower the target range by 25 bp"
+    }
+   ],
+   "sep": true,
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260318a.htm"
+  },
+  {
+   "date": "2026-04-29",
+   "decision": "hold",
+   "target_range": "3.50-3.75%",
+   "vote": "8-4",
+   "dissents": [
+    {
+     "name": "Stephen I. Miran",
+     "preferred": "lower the target range by 25 bp"
+    },
+    {
+     "name": "Beth M. Hammack",
+     "preferred": "supported the hold but opposed including an easing bias in the statement"
+    },
+    {
+     "name": "Neel Kashkari",
+     "preferred": "supported the hold but opposed including an easing bias in the statement"
+    },
+    {
+     "name": "Lorie K. Logan",
+     "preferred": "supported the hold but opposed including an easing bias in the statement"
+    }
+   ],
+   "sep": false,
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm"
+  }
+ ],
+ "scheduled_times": [
+  {
+   "date": "2026-01-11",
+   "speaker": "Jerome Powell",
+   "time_et": "19:30",
+   "source": "federalreserve.gov speech list (ne-speeches.json)"
+  },
+  {
+   "date": "2026-01-14",
+   "speaker": "Stephen Miran",
+   "time_et": "10:30",
+   "source": "federalreserve.gov speech list"
+  },
+  {
+   "date": "2026-02-09",
+   "speaker": "Stephen Miran",
+   "time_et": "14:30 (BU Questrom) and 17:00 (WBUR podcast)",
+   "source": "federalreserve.gov calendar feed (calendar.json)"
+  },
+  {
+   "date": "2026-02-12",
+   "speaker": "Stephen Miran",
+   "time_et": "19:05",
+   "source": "federalreserve.gov calendar feed"
+  },
+  {
+   "date": "2026-03-21",
+   "speaker": "Jerome Powell",
+   "time_et": "13:30",
+   "source": "federalreserve.gov speech list"
+  },
+  {
+   "date": "2026-03-25",
+   "speaker": "Stephen Miran",
+   "time_et": "16:10",
+   "source": "federalreserve.gov calendar feed"
+  },
+  {
+   "date": "2026-03-26",
+   "speaker": "Stephen Miran",
+   "time_et": "18:30",
+   "source": "federalreserve.gov speech list"
+  },
+  {
+   "date": "2026-03-30",
+   "speaker": "Jerome Powell",
+   "time_et": "10:30",
+   "source": "federalreserve.gov calendar feed"
+  },
+  {
+   "date": "2026-04-13",
+   "speaker": "Stephen Miran",
+   "time_et": "18:20",
+   "source": "federalreserve.gov calendar feed"
+  },
+  {
+   "date": "2026-04-16",
+   "speaker": "Stephen Miran",
+   "time_et": "10:35",
+   "source": "federalreserve.gov calendar feed"
+  },
+  {
+   "date": "2026-04-21",
+   "speaker": "Kevin Warsh",
+   "time_et": "10:00 (hearing start; CNN transcript segments are stamped 10:00-11:30 ET)",
+   "source": "CNN transcript page headers"
+  },
+  {
+   "date": "2026-05-14",
+   "speaker": "Stephen Miran",
+   "time_et": "14:00 (Board release of the resignation letter)",
+   "source": "federalreserve.gov press release list (ne-press.json)"
+  },
+  {
+   "date": "2026-05-31",
+   "speaker": "Jerome Powell",
+   "time_et": "20:30",
+   "source": "federalreserve.gov speech list"
+  }
+ ]
+}

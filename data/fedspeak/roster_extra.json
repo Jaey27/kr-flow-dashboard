@@ -1,0 +1,46 @@
+{
+ "warsh": {
+  "name": "Kevin Warsh",
+  "kr": "워시",
+  "role": "의장(5/22~)",
+  "group": "board",
+  "v26": 1,
+  "v27": 1,
+  "since": "2026-05-22"
+ },
+ "powell": {
+  "name": "Jerome Powell",
+  "kr": "파월",
+  "role": "이사(5/15까지 의장)",
+  "group": "board",
+  "v26": 1,
+  "v27": 1
+ },
+ "miran": {
+  "name": "Stephen Miran",
+  "kr": "마이런",
+  "role": "이사(~5월)",
+  "group": "board",
+  "v26": 1,
+  "v27": 0,
+  "until": "2026-05-15"
+ },
+ "bostic": {
+  "name": "Raphael Bostic",
+  "kr": "보스틱",
+  "role": "애틀랜타(~2월)",
+  "group": "nonvoter",
+  "v26": 0,
+  "v27": 0,
+  "until": "2026-02-28"
+ },
+ "venable": {
+  "name": "Cheryl Venable",
+  "kr": "베너블",
+  "role": "애틀랜타(직무대행)",
+  "group": "nonvoter",
+  "v26": 0,
+  "v27": 1,
+  "since": "2026-03-01"
+ }
+}

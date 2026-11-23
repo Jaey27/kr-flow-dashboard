@@ -1,0 +1,419 @@
+# -*- coding: utf-8 -*-
+"""analysis.json (+ kr.json 한국어 요약) → fedspeak.html (단독 페이지, 데이터 내장)
+
+  python -X utf8 build_dashboard.py
+
+화면 규칙(Jae 11/23): 흰 배경 · 10 = 매파(진한 빨강), 5 = 중도, 0 = 비둘기파(진한 파랑) · 소수 첫째 자리
+ · 그룹별 글자색 · 범례를 눌러 선을 끄면 축이 남은 선에 맞춰짐 · 변곡 로그·하우스 콜·원장은 기본 접힘.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parents[2] / "data" / "fedspeak"  # 원장·덮어쓰기·요약(리포에 커밋)
+REPO = Path(__file__).resolve().parents[2]
+
+TEMPLATE = r"""<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>금리 발언 tracker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--text:#0b0b0b;--text-dim:#3f3e3b;--text-muted:#6f6e69;--line:rgba(0,0,0,.13);--hl:#0b0b0b;
+ --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;
+ --g-board:#5b3fb5;--g-v26:#0b7a3e;--g-v27:#b35c00;--g-nv:#6f6e69;--g-political:#b0307a;--g-investor:#00707d;--g-sellside:#8a6d00}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;font-size:13px;line-height:1.55}
+.wrap{max-width:1240px;margin:0 auto;padding-block:18px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:#fff}
+h1{font-size:19px;margin:0 0 2px;letter-spacing:-.02em}h2{font-size:15px;margin:0 0 4px}.sub{color:var(--text-dim);font-size:12px}.intro{font-size:13px;margin:2px 0 3px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px}
+.note{color:var(--text-muted);font-size:11.5px;margin:2px 0 8px}
+.guide{background:#faf9f6}.guide ul{margin:6px 0 0 18px;padding:0}.guide li{margin:3px 0;color:var(--text-dim)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:12px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.tile .k{font-size:11.5px;color:var(--text-muted)}.tile .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.tile .v.sm{font-size:17px;line-height:36px}.tile .d{font-size:11.5px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.btn{padding:3px 11px;border-radius:999px;font-size:11.5px;color:var(--text-dim);background:rgba(0,0,0,.03);border:1px solid var(--line);cursor:pointer;font-family:inherit}
+.btn.on{color:#fff;background:var(--hl);border-color:var(--hl);font-weight:700}
+.lg{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text);margin-right:4px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;cursor:pointer;user-select:none}
+.lg i{width:14px;height:3px;border-radius:2px;display:inline-block}.lg.sq i{width:9px;height:9px}
+.lg.off{opacity:.38;text-decoration:line-through}
+.lgsep{font-size:11px;color:var(--text-muted);margin:0 4px 0 8px}
+.ch{position:relative;height:320px}.ch.s{height:180px}
+select{background:#fff;color:var(--text);border:1px solid rgba(0,0,0,.25);border-radius:8px;padding:4px 8px;font:inherit;font-size:12px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th{font-size:11.5px;color:var(--text-dim);font-weight:700;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th small{display:block;font-weight:500;color:var(--text-muted);font-size:10.5px}
+td{padding:5px 8px;border-bottom:1px solid rgba(0,0,0,.07);text-align:right;font-size:12px}
+td:first-child,th:first-child{text-align:left;white-space:nowrap}.dim{color:var(--text-muted)}.lo{opacity:.5}
+.hm{overflow-x:auto}.hm table{width:auto;min-width:100%}.hm td{padding:0;border:none}
+.hm td.nm{padding:2px 8px 2px 0;font-size:12px;font-weight:700;line-height:1.2;max-width:132px;min-width:104px;white-space:normal;word-break:keep-all}.hm td.nm small{display:block;color:var(--text-muted);font-weight:400;font-size:10.5px}
+.hm td.c{width:19px;min-width:19px;height:21px;border:1px solid #fff;border-radius:4px;cursor:pointer;text-align:center;font-size:9.5px;font-weight:700}
+.hm td.c.e{background:#f6f5f2;cursor:default}.hm td.c.n{background:#fff;border:1px dashed #b9b8b3;color:#6f6e69}
+.hm th{padding:2px 0;text-align:left;font-size:10px;font-weight:500;color:var(--text-muted);border:none}
+.hm td.lv{padding-left:10px;font-weight:700}.hm tr.g td{padding-top:10px;font-size:11.5px;font-weight:700}
+.chip{display:inline-block;min-width:34px;text-align:center;padding:1px 7px;border-radius:999px;font-size:11.5px;font-weight:700}
+.item{padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)}.item .h{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.item .who{font-weight:700}.item .q{color:var(--text-dim);font-size:12px;margin-top:3px;border-left:2px solid var(--line);padding-left:8px}
+.item .s{margin-top:3px}.tag{font-size:10.5px;color:var(--text-muted);border:1px solid var(--line);border-radius:6px;padding:0 5px}
+.gtag{font-size:10.5px;border:1px solid currentColor;border-radius:6px;padding:0 5px;font-weight:700}
+a{color:#1c5cab;text-decoration:none}a:hover{text-decoration:underline}
+details>summary{cursor:pointer;font-weight:700;font-size:15px}details>summary small{font-weight:400;color:var(--text-muted);font-size:11.5px;margin-left:6px}
+details.in>summary{font-size:12.5px;color:var(--text-dim)}
+.scale{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--text-muted)}.scale i{width:18px;height:10px;border-radius:3px;display:inline-block}
+.lgx{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px 16px;margin-top:10px}.lgx div{font-size:12px;color:var(--text-dim);line-height:1.5}.lgx b{color:var(--text)}.lgx i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.range-bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin:14px -8px 0;padding:8px 8px 6px;background:linear-gradient(180deg,rgba(255,255,255,.97) 75%,rgba(255,255,255,0));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.range-inner{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 14px 8px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.range-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.seg{display:inline-flex;gap:3px;background:rgba(0,0,0,.03);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{padding:4px 11px;border-radius:999px;font-size:12px;font-weight:500;color:var(--text-dim);background:none;border:none;font-family:inherit;cursor:pointer;white-space:nowrap}
+.seg button.on{color:#fff;background:var(--hl);font-weight:700}
+.range-dates{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.range-dates>span{color:var(--text-muted);font-size:12px}
+.dinp{width:96px;background:#fff;color:var(--text);border:1px solid rgba(0,0,0,.25);border-radius:8px;padding:4px 7px;font:inherit;font-size:12px;font-variant-numeric:tabular-nums;text-align:center}
+.dinp:focus{outline:none;border-color:#0b0b0b}.dinp.bad{border-color:#d03b3b}
+.range-label{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.rng{position:relative;height:42px;margin-top:6px}
+.rng canvas{position:absolute;left:0;right:0;top:0;width:100%;height:30px;display:block}
+.rng input{position:absolute;left:0;right:0;top:0;width:100%;height:30px;margin:0;background:none;-webkit-appearance:none;appearance:none;pointer-events:none}
+.rng input::-webkit-slider-runnable-track{height:30px;background:none}.rng input::-moz-range-track{height:30px;background:none}
+.rng input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:12px;height:30px;border-radius:5px;background:#0b0b0b;border:2px solid #fff;box-shadow:0 0 6px rgba(0,0,0,.35);cursor:ew-resize}
+.rng input::-moz-range-thumb{pointer-events:auto;width:10px;height:28px;border-radius:5px;background:#0b0b0b;border:2px solid #fff;cursor:ew-resize}
+.rng-axis{position:absolute;left:0;right:0;top:31px;display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;pointer-events:none}
+@media(max-width:640px){.ch{height:260px}.tile .v{font-size:20px}}
+</style></head><body><div class="wrap">
+<h1>금리 발언 tracker</h1>
+<div class="intro">2026년 1월 이후 Fed 의장 · 대통령 · 재무장관 · Fed 위원 · 셀사이드 · 투자자의 발언을 종합. 전문은 아래 발언 원장 참고.</div>
+<div class="sub" id="hdr"></div>
+
+<div class="card guide"><h2>읽는 법</h2>
+<ul>
+<li><b>점수는 0~10.</b> 10에 가까울수록 매파(금리를 올리자), 0에 가까울수록 비둘기파(금리를 내리자), 5가 중도. 발언 하나는 0 / 2.5 / 5 / 7.5 / 10 다섯 단계로만 매기고, 인물 수준과 지수는 그 평균이라 소수가 나옴.</li>
+<li><b>색.</b> 빨강이 진할수록 매파, 파랑이 진할수록 비둘기파, 회색이 중도.
+ <span class="scale" style="margin-left:6px">0 <i style="background:#0d366b"></i><i style="background:#7f93ac"></i><i style="background:#f0efec;border:1px solid #d5d4cf"></i><i style="background:#c38280"></i><i style="background:#961414"></i> 10</span></li>
+<li><b>인물 수준</b> = 그 사람의 발언 점수를 최근 것일수록 크게 쳐서 낸 평균(30일 지나면 절반 무게). 새 발언이 없으면 마지막 값을 유지함.</li>
+<li><b>글자색 = 그룹.</b> <span id="glegend"></span></li>
+<li><b>범례를 누르면 그 선이 꺼짐.</b> 선이 줄면 세로축이 남은 선에 맞춰 자동으로 좁아짐. 금리·주가 같은 비교 지표는 켤 때마다 오른쪽에 자기 축이 따로 생김.</li>
+<li><b>넣은 기준.</b> 인용 문장이 출처 페이지에 글자 그대로 있는 발언만 넣음. 드러켄밀러는 Jae 노션 아카이브가 원장임. 변곡 로그·하우스 콜·발언 원장은 맨 아래에 접혀 있음.</li>
+<li><b>기간 막대.</b> 아래 막대의 양쪽 손잡이를 끌거나 날짜를 직접 넣으면 숫자 타일·차트·히트맵·목록이 그 기간으로 바뀜. 타일은 기간의 끝 날짜 기준이고, 백테스트 표도 그 기간 발언만으로 다시 계산함(주간 동행·선후행만 전체 기간 고정).</li>
+</ul></div>
+
+<div class="range-bar"><div class="range-inner">
+  <div class="range-top">
+    <div class="seg" id="presets" aria-label="기간 프리셋"></div>
+    <div class="range-dates"><input id="d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2026-06-01, 260601, 6/1)">
+      <span>~</span><input id="d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter">
+      <div class="range-label" id="range-label"></div></div>
+  </div>
+  <div class="rng">
+    <canvas id="overview" aria-hidden="true"></canvas>
+    <input type="range" id="r0" min="0" step="1" aria-label="시작일">
+    <input type="range" id="r1" min="0" step="1" aria-label="종료일">
+    <div class="rng-axis" id="rng-axis"></div>
+  </div>
+</div></div>
+
+<div class="tiles" id="tiles"></div>
+
+<div class="card"><h2>톤 지수와 시장 가격</h2>
+<div class="note">왼쪽 축 = 톤(0~10). 세로 점선 = FOMC 결정일. 비교 지표는 꺼진 것을 누르면 켜지고, 각자 오른쪽에 자기 축을 씀.</div>
+<div class="row" id="lg1"></div>
+<div class="row"><span class="dim" style="font-size:11.5px">인물 선 추가:</span><select id="psel"></select></div>
+<div class="ch"><canvas id="c1"></canvas></div>
+</div>
+
+<div class="card"><h2>누가 언제 어떤 톤이었나</h2>
+<div class="note">칸 = 그 주 발언의 평균 점수(숫자는 발언 건수, 색이 진할수록 강함). 점선 칸 = 금리 언급 없는 발언(신용·AI만). 빈 칸 = 확인된 발언 없음. 칸을 누르면 맨 아래 원장이 그 인물·그 주로 걸러져 열림. 맨 오른쪽 = 현재 수준.</div>
+<div class="hm" id="hm"></div></div>
+
+<div class="card"><h2>백테스트: 누구 발언에 시장이 같이 움직였나</h2>
+<div class="note" id="btnote"></div>
+<div class="row"><span class="btn on" data-bt="clean">지표 발표일·FOMC일 제외</span><span class="btn" data-bt="all">전체</span></div>
+<div style="overflow-x:auto"><table id="bt"></table></div>
+<details class="in" style="margin-top:10px"><summary>주간 선후행(톤 지수 변화 vs 금리 기대 변화)</summary><div style="overflow-x:auto"><table id="ll"></table></div>
+<div class="note">+주 = 톤이 그만큼 먼저 움직였을 때의 상관, −주 = 시장이 먼저. 순위상관(Spearman), 괄호는 주 수.</div></details>
+</div>
+
+<div class="card"><h2>발언이 내세운 근거 (연준 인사, 지난 30일 발언 중 비중)</h2>
+<div class="note">한 발언에 근거가 여러 개면 각각 셈. 선마다 뜻은 차트 아래에 있음.</div>
+<div class="row" id="lg3"></div><div class="ch s"><canvas id="c3"></canvas></div><div class="lgx" id="x3"></div></div>
+
+<div class="card"><h2>AI 투자·자금조달을 어떤 맥락으로 말했나 (월별 건수)</h2>
+<div class="note">AI 투자·자금조달을 언급한 발언을 다섯 가지 맥락으로 나눔. 분류는 인용을 읽고 직접 붙였고, 뜻은 차트 아래에 있음.</div>
+<div class="row"><span class="btn on" data-ai="all">셋 다</span><span class="btn" data-ai="fed">연준 인사</span><span class="btn" data-ai="political">트럼프·베센트</span><span class="btn" data-ai="street">투자자·셀사이드</span></div>
+<div class="row" id="lg4"></div><div class="row" id="lg4g"></div>
+<div class="ch s"><canvas id="c4"></canvas></div><div class="lgx" id="x4"></div><div id="ailist" style="margin-top:8px"></div></div>
+
+<div class="card"><details id="d-infl"><summary>변곡 로그<small>직전까지의 본인 수준보다 2.5점(한 단계) 이상 달라진 발언</small></summary><div id="infl" style="margin-top:8px"></div></details></div>
+<div class="card" id="calls-card"><details id="d-calls"><summary>하우스 콜·투자자</summary><div id="calls" style="margin-top:8px"></div></details></div>
+<div class="card"><details id="d-led"><summary>발언 원장<small id="led-n"></small></summary>
+<div class="row" style="margin-top:8px"><select id="f-g"></select><select id="f-k"></select><select id="f-d"></select><select id="f-m"></select><span class="btn" id="f-x">필터 지우기</span><span class="dim" id="f-n"></span></div>
+<div id="list"></div></details></div>
+
+<div class="card"><details class="in"><summary>방법과 한계</summary><div id="method" style="margin-top:8px;color:var(--text-dim)"></div></details></div>
+</div>
+<script>
+const D=__DATA__, KR=__KR__;
+const R=D.roster, dates=D.dates, N=dates.length, P=D.params;
+const G7={board:'이사회',v26:'투표권 총재(2026)',v27:'투표권 총재(2027)',nv:'비투표 총재',political:'정치',investor:'투자자·은행 CEO',sellside:'셀사이드'};
+const GO=Object.keys(G7);
+const gc=g=>'var(--g-'+({v26:'v26',v27:'v27',nv:'nv'}[g]||g)+')';
+const DRV={inflation:'인플레',labor:'고용',growth:'성장',financial_stability_credit:'금융안정·신용',ai_financing:'AI 자금조달',fiscal_term_premium:'재정·텀프리미엄',tariffs_supply:'관세·공급',energy:'에너지',political:'정치 압력',other:'기타'};
+const ROLE={stanley_druckenmiller:'듀케인 오피스',mohamed_elerian:'전 PIMCO CEO',jamie_dimon:'JPMorgan CEO',ray_dalio:'브리지워터 창업자',jeffrey_gundlach:'더블라인 CEO',larry_fink:'블랙록 CEO',david_solomon:'골드만삭스 CEO',ted_pick:'모건스탠리 CEO',howard_marks:'오크트리 공동창업',bill_ackman:'퍼싱스퀘어 대표',ken_griffin:'시타델 CEO',paul_tudor_jones:'튜더 창업자',michael_burry:'빅쇼트 투자자',marc_rowan:'아폴로 CEO',david_einhorn:'그린라이트 대표',david_tepper:'아팔루사 창업자'};
+const ssRole=n=>/Asset Management|Wealth|Investment Institute|PIMCO|BlackRock/.test(n)?'운용사':/rates sales/.test(n)?'채권 세일즈':'IB 리서치';
+const roleOf=k=>R[k]?R[k].role:(ROLE[k]||(k.startsWith('ss_')?ssRole(nm(k)):''));
+const NMK={marc_rowan:'로완',david_einhorn:'아인혼',jamie_dimon:'다이먼',ray_dalio:'달리오',jeffrey_gundlach:'건들락',bill_ackman:'애크먼',mohamed_elerian:'엘에리언',stanley_druckenmiller:'드러켄밀러',larry_fink:'핑크',howard_marks:'하워드 막스',david_solomon:'솔로몬',ted_pick:'테드 픽',paul_tudor_jones:'튜더 존스',ken_griffin:'그리핀',michael_burry:'버리',david_tepper:'테퍼'};
+const byKey={};D.items.forEach(it=>{(byKey[it.key]=byKey[it.key]||[]).push(it)});
+const byId={};D.items.forEach(i=>byId[i.id]=i);
+const nm=k=>{if(R[k])return R[k].kr;if(NMK[k])return NMK[k];const i=(byKey[k]||[])[0];return i?(i.disp||i.speaker):k;};
+const gOf=k=>byKey[k]?byKey[k][0].g7:'nv';
+const who=k=>'<span style="color:'+gc(gOf(k))+';font-weight:700">'+esc(nm(k))+'</span>';
+const f1=v=>v==null?'–':v.toFixed(1);
+const fs=v=>v==null?'–':(v>0?'+':'')+v.toFixed(1);
+function col(s){if(s==null)return '#f6f5f2';const t=Math.max(-1,Math.min(1,(s-5)/5)),m=[240,239,236],p=t>=0?[150,20,20]:[13,54,107],a=Math.abs(t);return 'rgb('+m.map((x,i)=>Math.round(x+(p[i]-x)*a)).join(',')+')';}
+const ink=s=>Math.abs(s-5)>=2.2?'#fff':'#0b0b0b';
+const chip=s=>s==null?'<span class="chip" style="background:#f0efec;color:#6f6e69">–</span>':'<span class="chip" style="background:'+col(s)+';color:'+ink(s)+'">'+s.toFixed(1)+'</span>';
+const lastv=a=>{if(!a)return [null,-1];for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return [a[i],i];return [null,-1]};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+// ---- 머리말·읽는 법·타일 ----
+document.getElementById('hdr').textContent=P.start+' ~ '+P.end+' · 원문에서 인용을 확인한 발언 '+P.n_usable+'건(점수 '+P.n_scored+'건) · 확인 못 해 뺀 것 '+P.n_unverified+'건';
+document.getElementById('glegend').innerHTML=GO.map(g=>'<span class="gtag" style="color:'+gc(g)+';margin-right:5px">'+G7[g]+'</span>').join('');
+let W={i0:0,i1:N-1};  // 기간 막대가 고른 구간(날짜 인덱스)
+const inW=d=>d>=dates[W.i0]&&d<=dates[W.i1];
+function lastAt(a,e){if(!a)return [null,-1];for(let j=Math.min(e,a.length-1);j>=0;j--)if(a[j]!=null)return [a[j],j];return [null,-1];}
+function drawTiles(){const I=D.index,M=D.market,e=W.i1,[v,i]=lastAt(I.voter26,e);const ago=i>=30?I.voter26[i-30]:null;
+ const [ch]=lastAt(I.chair,e),[v27]=lastAt(I.voter27,e),[zq]=lastAt(M.zq,e),[ef]=lastAt(M.effr,e),[fin]=lastAt(D.drivers.fin,e),[ai]=lastAt(D.drivers.ai,e);
+ const nh=i<0?null:I.n_hawk[i],nd=i<0?null:I.n_dove[i],nmid=i<0?null:I.n_mid[i],nv=i<0?null:I.n_voter26[i],nh0=i>=30?I.n_hawk[i-30]:null;
+ const kk=Object.keys(M).filter(k=>k.startsWith('k_hike_')).sort(),gap=(zq!=null&&ef!=null)?(zq-ef)*100:null;
+ const T=[['2026 투표권자 톤 (0~10)',f1(v),ago==null?'':'30일 전 '+f1(ago)+' → 변화 '+fs(v-ago),''],
+ ['투표권자 성향 분포',nv==null?'–':'매파 '+nh+' · 중도 '+nmid+' · 비둘기 '+nd,nv==null?'':'발언이 확인된 투표권자 '+nv+'명 기준. 수준 '+P.hawk_t+' 초과 = 매파 쪽, '+P.dove_t+' 미만 = 비둘기파 쪽'+(nh0==null?'':' · 30일 전 매파 '+nh0+'명'),'sm'],
+ ['의장('+(dates[e]<P.chair_switch[1]?'파월':'워시')+') 수준',f1(ch),'2027 투표권자 톤 '+f1(v27),''],
+ ['시장: 금리 기대(12/9 회의 뒤)',zq==null?'–':zq.toFixed(2)+'%',(gap==null?'':'지금 금리 '+ef.toFixed(2)+'% 대비 '+(gap>0?'+':'')+gap.toFixed(0)+'bp')+kk.map(k=>{const x=lastAt(M[k],e)[0];return x==null?'':' · '+k.slice(12,17).replace('-','/')+' 인상 '+x+'%'}).join(''),''],
+ ['금융안정·신용 근거 비중',fin==null?'–':fin.toFixed(0)+'%','지난 30일 연준 인사 발언 중 · AI 조달 위험·자본 경쟁 '+(ai==null?'–':ai.toFixed(0)+'%'),'']];
+ document.getElementById('tiles').innerHTML=T.map(t=>'<div class="tile"><div class="k">'+t[0]+'</div><div class="v '+t[3]+'">'+t[1]+'</div><div class="d">'+t[2]+'</div></div>').join('');
+ document.getElementById('hdr').textContent='수집 '+P.start+' ~ '+P.end+' · 원문에서 인용을 확인한 발언 '+P.n_usable+'건(점수 '+P.n_scored+'건) · 확인 못 해 뺀 것 '+P.n_unverified+'건 · 타일 기준일 '+dates[e];}
+
+// ---- 차트 공통 ----
+Chart.defaults.color='#52514e';Chart.defaults.font.size=11;Chart.defaults.borderColor='rgba(0,0,0,.07)';
+const fomc=Object.keys(D.releases).filter(d=>D.releases[d].includes('FOMC')&&d>=P.start&&d<=P.end);
+const vline={id:'vl',afterDraw(c){const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();g.setLineDash([3,3]);g.strokeStyle='rgba(0,0,0,.35)';g.fillStyle='#6f6e69';g.font='10px sans-serif';
+ fomc.forEach(d=>{const i=dates.indexOf(d);if(i<0)return;const px=x.getPixelForValue(i);g.beginPath();g.moveTo(px,a.top);g.lineTo(px,a.bottom);g.stroke();if(c.canvas.id==='c1')g.fillText('FOMC',px+3,a.top+9);});g.restore();}};
+const xax={ticks:{maxTicksLimit:11,callback:function(v){return dates[v].slice(2,7).replace('-','.')}},grid:{display:false}};
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const X=dates.map((_,i)=>i);
+// 범례: 누르면 그 계열을 끄고 켬. after()로 축 다시 맞춤
+function legend(el,chart,after,sq){const box=document.getElementById(el);
+ function draw(){box.innerHTML=chart.data.datasets.map((d,i)=>(d._person&&d.label==='(인물 선택)')?'':(d._sep?'<span class="lgsep">'+d._sep+'</span>':'')+'<span class="lg'+(sq?' sq':'')+(chart.isDatasetVisible(i)?'':' off')+'" data-i="'+i+'"><i style="background:'+d.borderColor+(d._dash?';background:repeating-linear-gradient(90deg,'+d.borderColor+' 0 4px,transparent 4px 6px)':'')+'"></i>'+d.label+'</span>').join('');
+  box.querySelectorAll('.lg').forEach(s=>s.onclick=()=>{const i=+s.dataset.i;chart.setDatasetVisibility(i,!chart.isDatasetVisible(i));if(after)after(chart);chart.update();draw();});}
+ draw();return draw;}
+// 한 축짜리 차트: 보이는 계열에 맞춰 세로축을 다시 잡음
+function fitY(chart,axis,lo,hi,pad,filter){let mn=Infinity,mx=-Infinity,nvis=0,nall=0;
+ chart.data.datasets.forEach((d,i)=>{if(filter&&!filter(d))return;nall++;if(!chart.isDatasetVisible(i))return;nvis++;d.data.forEach((v,ix)=>{if(v!=null&&ix>=W.i0&&ix<=W.i1){if(v<mn)mn=v;if(v>mx)mx=v;}});});
+ const s=chart.options.scales[axis];if(!nvis||nvis===nall||mn===Infinity){s.min=lo;s.max=hi;return;}
+ const p=Math.max(pad,(mx-mn)*0.15);s.min=Math.max(lo,Math.floor((mn-p)*2)/2);s.max=Math.min(hi,Math.ceil((mx+p)*2)/2);}
+
+// ---- 톤 지수 + 비교 지표 ----
+const TONE=[['voter26','2026 투표권자','--s1'],['chair','의장(5월까지 파월, 이후 워시)','--s2'],['voter27','2027 투표권자','--s3'],['political','트럼프·베센트','--s4']];
+const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',false,0]]
+ .concat(Object.keys(D.market).filter(k=>k.startsWith('k_hike_')).sort().map(k=>[k,'Kalshi '+k.slice(12,17).replace('-','/')+' 인상 확률(%)','#00707d',false,0]));
+const ds1=TONE.map(s=>({label:s[1],data:D.index[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y',_tone:true}));
+ds1.push({label:'(인물 선택)',data:X.map(()=>null),borderColor:'#d55181',backgroundColor:'#d55181',yAxisID:'y',_tone:true,hidden:true,_person:true});
+const sc1={x:xax,y:{min:0,max:10,position:'left',ticks:{maxTicksLimit:9,callback:v=>v},grid:{color:c=>c.tick.value===5?'rgba(0,0,0,.6)':'rgba(0,0,0,.07)'},title:{display:true,text:'← 비둘기파(0)      중도(5)      매파(10) →'}}};
+OV.forEach((o,j)=>{const id='o'+j;ds1.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[5,3],borderWidth:1.5,yAxisID:id,hidden:!o[3],_dash:true,_sep:j===0?'비교 지표':''});
+ sc1[id]={position:'right',display:!!o[3],grid:{display:false},ticks:{color:o[2],maxTicksLimit:6,callback:v=>o[4]?v.toFixed(o[4]):Math.round(v).toLocaleString()},border:{color:o[2]}};});
+const C1=new Chart(document.getElementById('c1'),{type:'line',plugins:[vline],data:{labels:X,datasets:ds1},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>t.length?dates[t[0].dataIndex]:'',label:t=>t.dataset.label+': '+(t.dataset._tone?t.raw.toFixed(1):(t.raw>=1000?Math.round(t.raw).toLocaleString():t.raw.toFixed(2)))}}},scales:sc1,elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
+function after1(c){fitY(c,'y',0,10,0.4,d=>d._tone&&!(d._person&&!c.isDatasetVisible(c.data.datasets.indexOf(d))));c.data.datasets.forEach((d,i)=>{if(!d._tone)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});}
+const redraw1=legend('lg1',C1,after1);
+(function(){const ks=Object.keys(D.levels).filter(k=>byKey[k]).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||byKey[b].length-byKey[a].length);
+ const sel=document.getElementById('psel');sel.innerHTML='<option value="">선택 안 함</option>'+ks.map(k=>'<option value="'+k+'">'+esc(nm(k))+' · '+G7[gOf(k)]+'</option>').join('');
+ sel.onchange=()=>{const i=C1.data.datasets.findIndex(d=>d._person),d=C1.data.datasets[i];if(!sel.value){C1.setDatasetVisibility(i,false);d.label='(인물 선택)';d.data=X.map(()=>null);}else{d.label=nm(sel.value);d.data=D.levels[sel.value];C1.setDatasetVisibility(i,true);}after1(C1);C1.update();redraw1();};})();
+
+// ---- 근거 비중 ----
+const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
+const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[vline],data:{labels:X,datasets:S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2])}))},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:t=>dates[t[0].dataIndex]}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
+legend('lg3',C3,c=>fitY(c,'y',0,100,3));
+const X3=['물가가 목표(2%)보다 높거나 더 오를 위험을 이유로 든 발언. 이 선이 높을수록 매파 논리가 주도한다는 뜻.',
+ '고용 둔화나 경기 약화를 이유로 든 발언. 이 선이 오르면 "더 올리면 안 된다"는 쪽 논리가 힘을 얻는 중.',
+ '신용 스프레드, 사모신용, 시장 기능, 자산가격을 정책 판단의 근거로 든 발언. 연준이 금리 결정에 금융시장 상태를 끌어들이기 시작했는지 보는 선.',
+ '금융안정·신용 가운데 AI 투자 자금조달(부채 의존, 스프레드 확대, 국채와의 자본 경쟁)을 직접 짚은 발언. AI 조달 문제가 반응함수에 들어오는지 보는 가장 직접적인 선.'];
+document.getElementById('x3').innerHTML=S3.map((s,i)=>'<div><i style="background:var('+s[2]+')"></i><b>'+s[1]+'</b><br>'+X3[i]+'</div>').join('');
+
+// ---- AI 발언 성격 ----
+const AIS=[['demand','수요 압력','#2a78d6'],['loose','조달 쉬움','#eb6834'],['crowding','자본 경쟁','#1baf7a'],['watch','조달 위험 주시','#eda100'],['calm','위험 일축','#e87ba4']];
+const X4=['AI capex가 수요와 물가를 밀어 올린다는 말. 금리를 올릴 이유로 쓰는 매파 논리.',
+ '금리를 올려도 AI 투자와 차입이 안 꺾인다는 말. 정책이 아직 덜 긴축적이라는 매파 논리.',
+ 'AI 차입이 국채 등과 돈을 두고 경쟁해 장기금리를 올린다는 말. 금리 상승을 연준이 아니라 수급 탓으로 보는 시각.',
+ '스프레드 확대, 구조화 금융, 부채 의존을 위험으로 언급한 말. 인상 속도 조절이나 중단 논리로 이어질 수 있는 싹.',
+ '문제 될 규모가 아니라고 선을 긋는 말. 위험을 알고도 정책을 바꿀 뜻이 없다는 신호.'];
+document.getElementById('x4').innerHTML=AIS.map((s,i)=>'<div><i style="background:'+s[2]+'"></i><b>'+s[1]+'</b><br>'+X4[i]+'</div>').join('');
+let C4,aicur='all',aiHidden={},aiGHidden={};const months0=[...new Set(dates.map(d=>d.slice(0,7)))];
+// 그룹은 채우는 방식으로 가름: 연준 = 꽉 채움, 트럼프·베센트 = 빗금, 투자자·셀사이드 = 반투명 + 테두리
+const AIG=[['fed','연준 인사'],['political','트럼프·베센트'],['street','투자자·셀사이드']];
+function hatch(c){const cv=document.createElement('canvas');cv.width=cv.height=8;const g=cv.getContext('2d');g.fillStyle=c+'33';g.fillRect(0,0,8,8);g.strokeStyle=c;g.lineWidth=2;g.beginPath();g.moveTo(-2,10);g.lineTo(10,-2);g.moveTo(-2,2);g.lineTo(2,-2);g.moveTo(6,10);g.lineTo(10,6);g.stroke();return g.createPattern(cv,'repeat');}
+function aiStyle(g,c){return g==='fed'?{backgroundColor:c,borderColor:c,borderWidth:0}:g==='political'?{backgroundColor:hatch(c),borderColor:c,borderWidth:1}:{backgroundColor:c+'40',borderColor:c,borderWidth:1.5};}
+function aiSwatch(g){return g==='fed'?'background:#6f6e69':g==='political'?'background:repeating-linear-gradient(45deg,#6f6e69 0 2px,#6f6e6933 2px 5px);border:1px solid #6f6e69':'background:#6f6e6940;border:1.5px solid #6f6e69';}
+function drawAI(){if(C4)C4.destroy();const months=months0.filter(x=>x>=dates[W.i0].slice(0,7)&&x<=dates[W.i1].slice(0,7));
+ const gs=aicur==='all'?AIG.map(a=>a[0]):[aicur],ds=[];
+ AIS.forEach(s=>gs.forEach(g=>{const m=(D.ai_month||{})[g]||{};ds.push(Object.assign({label:s[1],_g:g,_k:s[0],data:months.map(x=>(m[x]||{})[s[0]]||0),borderRadius:3,maxBarThickness:46,stack:'s',hidden:!!aiHidden[s[0]]||!!aiGHidden[g]},aiStyle(g,s[2])));}));
+ C4=new Chart(document.getElementById('c4'),{type:'bar',data:{labels:months.map(x=>x.slice(2).replace('-','.')),datasets:ds},
+  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw>0,callbacks:{label:t=>(gs.length>1?AIG.find(a=>a[0]===t.dataset._g)[1]+' · ':'')+t.dataset.label+': '+t.raw+'건'}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{precision:0,maxTicksLimit:6},title:{display:true,text:'건'}}}}});
+ const vis=()=>C4.data.datasets.forEach((d,i)=>C4.setDatasetVisibility(i,!aiHidden[d._k]&&!aiGHidden[d._g]));
+ const b1=document.getElementById('lg4'),b2=document.getElementById('lg4g');
+ const draw=()=>{b1.innerHTML=AIS.map(s=>'<span class="lg sq'+(aiHidden[s[0]]?' off':'')+'" data-k="'+s[0]+'"><i style="background:'+s[2]+'"></i>'+s[1]+'</span>').join('');
+  b2.innerHTML=gs.length>1?'<span class="lgsep">그룹</span>'+AIG.map(a=>'<span class="lg sq'+(aiGHidden[a[0]]?' off':'')+'" data-g="'+a[0]+'"><i style="'+aiSwatch(a[0])+';width:14px;height:11px;border-radius:2px"></i>'+a[1]+'</span>').join(''):'';
+  b1.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiHidden[e.dataset.k]=!aiHidden[e.dataset.k];vis();C4.update();draw();});
+  b2.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiGHidden[e.dataset.g]=!aiGHidden[e.dataset.g];vis();C4.update();draw();});};
+ draw();
+ const GG={fed:['board','voter','nonvoter'],political:['political'],street:['investor','sellside']};
+ const G=gs.filter(g=>!aiGHidden[g]).flatMap(g=>GG[g]);
+ const its=D.items.filter(i=>i.ai_side&&inW(i.date)&&G.includes(i.group)&&['watch','crowding','calm'].includes(i.ai_side)).sort((a,b)=>b.date.localeCompare(a.date));
+ const lab={};AIS.forEach(s=>lab[s[0]]=s[1]);
+ document.getElementById('ailist').innerHTML='<details class="in"><summary>조달 위험·자본 경쟁·일축 발언 '+its.length+'건 보기</summary>'+its.map(i=>itemHTML(i,'<span class="tag" style="color:#0b0b0b">'+lab[i.ai_side]+'</span>')).join('')+'</details>';}
+document.querySelectorAll('[data-ai]').forEach(b=>b.onclick=()=>{aicur=b.dataset.ai;document.querySelectorAll('[data-ai]').forEach(x=>x.classList.toggle('on',x===b));drawAI();});
+
+// ---- 히트맵 ----
+const wk=[];for(let i=0;i<N;i+=7)wk.push(i);
+let F={g:'',k:'',d:'',m:'',w:null};
+function drawHM(){const wks=wk.map((i,wi)=>[i,wi]).filter(x=>x[0]+6>=W.i0&&x[0]<=W.i1);let h='<table><tr><th></th>'+wks.map((x,j)=>{const m=dates[x[0]].slice(5,7),pm=j?dates[wks[j-1][0]].slice(5,7):'';return '<th>'+(m!==pm?(+m)+'월':'')+'</th>'}).join('')+'<th></th></tr>';
+ GO.forEach(g=>{let ks=Object.keys(byKey).filter(k=>gOf(k)===g&&(g==='investor'||byKey[k].some(i=>i.score!=null)));if(!ks.length)return;
+  if(R[ks[0]])ks.sort((a,b)=>Object.keys(R).indexOf(a)-Object.keys(R).indexOf(b));else ks.sort((a,b)=>(b==='stanley_druckenmiller')-(a==='stanley_druckenmiller')||byKey[b].length-byKey[a].length);
+  if(g==='sellside')ks=ks.filter(k=>byKey[k].filter(i=>i.score!=null).length>=2);
+  h+='<tr class="g"><td colspan="'+(wks.length+2)+'" style="color:'+gc(g)+'">'+G7[g]+'</td></tr>';
+  ks.forEach(k=>{h+='<tr><td class="nm" style="color:'+gc(g)+'">'+esc(nm(k))+(roleOf(k)?'<small>'+esc(roleOf(k))+'</small>':'')+'</td>';
+   wks.forEach(([i0,wi])=>{const a=dates[i0],b=dates[Math.min(N-1,i0+6)];const all=byKey[k].filter(i=>i.date>=a&&i.date<=b),its=all.filter(i=>i.score!=null);
+    if(!all.length){h+='<td class="c e"></td>';return;}
+    if(!its.length){h+='<td class="c n" data-k="'+k+'" data-w="'+wi+'" title="'+esc(nm(k))+' '+a.slice(5)+'~'+b.slice(5)+' · 금리 언급 없는 발언 '+all.length+'건">·</td>';return;}
+    const m=its.reduce((s,i)=>s+i.score,0)/its.length;
+    h+='<td class="c" style="background:'+col(m)+';color:'+ink(m)+'" data-k="'+k+'" data-w="'+wi+'" title="'+esc(nm(k))+' '+a.slice(5)+'~'+b.slice(5)+' · 평균 '+f1(m)+' · '+its.length+'건">'+(its.length>1?its.length:'')+'</td>';});
+   const [lv]=lastAt(D.levels[k],W.i1);h+='<td class="lv">'+(lv==null?'–':'<span class="chip" style="background:'+col(lv)+';color:'+ink(lv)+'">'+lv.toFixed(1)+'</span>')+'</td></tr>';});});
+ document.getElementById('hm').innerHTML=h+'</table>';
+ document.querySelectorAll('.hm td.c[data-k]').forEach(c=>c.onclick=()=>{F={g:'',k:c.dataset.k,d:'',m:'',w:+c.dataset.w};sync();render();const d=document.getElementById('d-led');d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});});}
+
+// ---- 백테스트 표 ----
+let btMode='clean';
+function cell(x){if(!x||x[0]==null)return '<td class="dim">–<small> ('+(x?x[2]:0)+')</small></td>';const strong=x[1]<0.1;return '<td'+(strong?' style="font-weight:700"':'')+'>'+(x[0]>0?'+':'')+x[0].toFixed(2)+'<small class="dim"> ('+x[2]+(x[1]<0.05?', p&lt;.05':x[1]<0.1?', p&lt;.1':'')+')</small></td>';}
+function rank(a){const s=a.map((v,i)=>[v,i]).sort((x,y)=>x[0]-y[0]),r=Array(a.length);let i=0;while(i<s.length){let j=i;while(j+1<s.length&&s[j+1][0]===s[i][0])j++;const rk=(i+j)/2+1;for(let k=i;k<=j;k++)r[s[k][1]]=rk;i=j+1;}return r;}
+function tP(t,df){const f=x=>Math.pow(1+x*x/df,-(df+1)/2),simp=(a,b,n)=>{const h=(b-a)/n;let s=f(a)+f(b);for(let i=1;i<n;i++)s+=f(a+i*h)*(i%2?4:2);return s*h/3;};const a=Math.abs(t);if(a>200)return 0;return Math.min(1,simp(a,a+300,3000)/simp(0,300,3000));}
+function sp(x,y){const xs=[],ys=[];x.forEach((v,i)=>{if(v!=null&&y[i]!=null){xs.push(v);ys.push(y[i]);}});const n=xs.length;if(n<P.min_n||new Set(xs).size<2||new Set(ys).size<2)return [null,null,n];
+ const rx=rank(xs),ry=rank(ys),mx=rx.reduce((a,b)=>a+b)/n,my=ry.reduce((a,b)=>a+b)/n;let sxy=0,sxx=0,syy=0;for(let i=0;i<n;i++){sxy+=(rx[i]-mx)*(ry[i]-my);sxx+=(rx[i]-mx)**2;syy+=(ry[i]-my)**2;}
+ const r=sxy/Math.sqrt(sxx*syy),t=Math.abs(r)>=0.9999?1e9:r*Math.sqrt((n-2)/(1-r*r));return [Math.round(r*100)/100,n>2?tP(t,n-2):1,n];}
+function drawBT(){const m=btMode,by={};D.events.filter(e=>inW(e.date)).forEach(e=>{(by[e.key]=by[e.key]||[]).push(e)});const wkm={};D.speaker_weekly.forEach(w=>wkm[w.key]=w);
+ let bs=0,bn=0,prev=null;D.market_tdays.forEach(d=>{if(!inW(d))return;const v=D.market.y2[dates.indexOf(d)];if(v!=null&&prev!=null){bs+=Math.abs(v-prev)*100;bn++;}if(v!=null)prev=v;});const base=bn?bs/bn:null;
+ const rows=Object.keys(by).map(k=>{const all=by[k],cl=all.filter(e=>!e.data_day&&!(e.fomc_day&&!['warsh','powell'].includes(e.key))),g=m==='clean'?cl:all,c=x=>g.map(e=>e[x]);
+  const hx=g.filter(e=>e.surprise!=null&&e.d_y2!=null&&e.surprise!==0&&e.d_y2!==0);
+  return {key:k,g7:all[0].g7,n:all.length,nn:g.length,mean:all.reduce((s,e)=>s+e.score,0)/all.length,a:sp(c('surprise'),c('d_dec')),b:sp(c('surprise'),c('d_dec2')),c:sp(c('surprise'),c('d_y2')),d:sp(c('score'),c('d_dec')),
+   hit:hx.length>=P.min_n?[hx.filter(e=>Math.sign(e.surprise)===Math.sign(e.d_y2)).length/hx.length*100,hx.length]:null,abs:g.length?g.reduce((s,e)=>s+Math.abs(e.d_y2||0),0)/g.length:null};}).filter(r=>r.n>=P.min_n).sort((a,b)=>b.nn-a.nn||b.n-a.n);
+ let h='<tr><th>인물</th><th>발언 수<small>'+(m==='clean'?'제외 후':'전체')+'</small></th><th>평균 점수<small>0~10</small></th><th>서프라이즈 ↔ 금리 기대<small>당일 변화, ρ (N)</small></th><th>서프라이즈 ↔ 금리 기대<small>2일 변화</small></th><th>서프라이즈 ↔ 2년물<small>당일 변화</small></th><th>점수 ↔ 금리 기대<small>수준 그대로</small></th><th>방향 적중<small>2년물, % (N)</small></th><th>발언일 |2년물 변화|<small>이 기간 평소 '+(base==null?'–':base.toFixed(1)+'bp')+'</small></th><th>주간 동행<small>전체 기간 고정</small></th></tr>';
+ rows.forEach(r=>{const w=wkm[r.key];
+  h+='<tr'+(r.nn<10?' class="lo"':'')+'><td>'+who(r.key)+' <span class="dim">'+esc(roleOf(r.key)||G7[r.g7])+'</span></td><td>'+r.nn+'</td><td>'+f1(r.mean)+'</td>'+cell(r.a)+cell(r.b)+cell(r.c)+cell(r.d)+'<td>'+(r.hit?r.hit[0].toFixed(0)+'%<small class="dim"> ('+r.hit[1]+')</small>':'<span class="dim">–</span>')+'</td><td>'+(r.abs==null?'–':r.abs.toFixed(1)+'bp')+'</td>'+(w?cell(w.same):'<td class="dim">–</td>')+'</tr>';});
+ document.getElementById('bt').innerHTML=h||'';if(!rows.length)document.getElementById('bt').innerHTML+='<tr><td colspan="10" class="dim">이 기간에 발언 '+P.min_n+'건 이상인 인물이 없음</td></tr>';}
+document.querySelectorAll('[data-bt]').forEach(b=>b.onclick=()=>{btMode=b.dataset.bt;document.querySelectorAll('[data-bt]').forEach(x=>x.classList.toggle('on',x===b));drawBT();});drawBT();
+document.getElementById('btnote').innerHTML='서프라이즈 = 그날 발언 점수 − 그 인물의 직전 수준. 금리 기대 = 연방기금 선물 2027년 1월물 내재 금리(12/9 회의 뒤 정책금리 기대). 시장 변화 = 발언일(ET '+P.cutoff_et+' 이후 발언은 다음 거래일)의 금리 기대·2년물 변화(bp). ρ가 +면 "평소보다 매파적으로 말한 날 금리 기대가 올랐다"는 뜻. 발언 '+P.min_n+'건 미만은 계산 안 함, 10건 미만은 흐리게. <b>같은 날 여러 명이 말하면 누구 때문인지 가를 수 없고, 표본이 작아 상관은 참고용임.</b>';
+(function(){const L=D.leadlag,names={voter26:'2026 투표권자',voter26_cw:'2026 투표권자(의장 3배)',chair:'의장',fed_all:'연준 전체',nonvoter:'비투표 총재',political:'트럼프·베센트'};
+ let h='<tr><th>묶음</th>'+[-3,-2,-1,0,1,2,3].map(l=>'<th>'+(l>0?'+':'')+l+'주</th>').join('')+'</tr>';
+ Object.keys(names).forEach(k=>{if(!L[k])return;h+='<tr><td>'+names[k]+'</td>'+[-3,-2,-1,0,1,2,3].map(l=>cell(L[k][String(l)])).join('')+'</tr>';});document.getElementById('ll').innerHTML=h;})();
+
+// ---- 발언 한 건 ----
+const TIER={official_text:'공식 원문',official_transcript:'공식 녹취',full_interview_transcript:'인터뷰 전문',news_direct_quote:'보도 속 직접 인용',jae_notion:'Jae 노션 아카이브'};
+function itemHTML(it,extra){const kr=KR[it.id]||it.summary_kr||it.summary||'',g=it.g7;
+ const src=it.source_tier==='jae_notion'?'<a href="'+esc(it.notion_url)+'" target="_blank" rel="noopener">Jae 노션 아카이브</a> · <a href="'+esc(it.source_url)+'" target="_blank" rel="noopener">원본</a>':'<a href="'+esc(it.source_url)+'" target="_blank" rel="noopener">원문</a> · '+(TIER[it.source_tier]||it.source_tier||'');
+ return '<div class="item"><div class="h"><span class="dim">'+it.date+'</span><span class="who" style="color:'+gc(g)+'">'+esc(nm(it.key))+'</span><span class="gtag" style="color:'+gc(g)+'">'+G7[g]+'</span><span class="dim">'+esc(it.firm&&it.disp?(it.speaker||ssRole(it.disp)):roleOf(it.key))+'</span>'+chip(it.score)+(extra||'')+(it.drivers||[]).map(d=>'<span class="tag">'+(DRV[d]||d)+'</span>').join('')+(it.call?'<span class="tag">'+esc(it.call)+'</span>':'')+(it.credit_view?'<span class="tag">신용: '+esc(it.credit_view)+'</span>':'')+'</div><div class="s">'+esc(kr)+'</div><div class="q">“'+esc(it.quote)+'”'+(it.ai_quote&&it.ai_quote!==it.quote?'<br>“'+esc(it.ai_quote)+'”':'')+'</div><div class="dim" style="font-size:11px;margin-top:2px">'+esc(it.occasion||'')+' · '+src+(it.verify==='near'?' · 인용 근사 일치':'')+'</div></div>';}
+
+// ---- 변곡 로그 ----
+function drawInfl(){const ev=D.events.filter(e=>inW(e.date)&&e.surprise!=null&&Math.abs(e.surprise)>=2.5&&['board','voter','nonvoter','political'].includes(e.group)).sort((a,b)=>b.date.localeCompare(a.date));
+ document.querySelector('#d-infl summary small').textContent='직전까지의 본인 수준보다 2.5점(한 단계) 이상 달라진 발언 · '+ev.length+'건';
+ document.getElementById('infl').innerHTML=ev.length?ev.map(e=>itemHTML(byId[e.id],'<span class="tag">직전 수준 대비 '+fs(e.surprise)+'</span><span class="tag">금리 기대 '+(e.d_dec==null?'–':(e.d_dec>0?'+':'')+e.d_dec.toFixed(1)+'bp')+' · 2년물 '+(e.d_y2==null?'–':(e.d_y2>0?'+':'')+e.d_y2.toFixed(0)+'bp')+'</span>')).join(''):'<div class="dim">해당 없음</div>';}
+
+// ---- 하우스 콜·투자자 ----
+(function(){let h='';const lc=[];Object.values((D.extra||{}).latest_calls||{}).forEach(a=>(a||[]).forEach(x=>lc.push(x)));
+ if(lc.length){h+='<div style="overflow-x:auto"><table><tr><th>하우스</th><th>기준일</th><th>다음 결정</th><th>2027 경로</th><th>출처</th></tr>'+lc.sort((a,b)=>String(b.as_of).localeCompare(String(a.as_of))).map(x=>'<tr><td style="color:'+gc('sellside')+';font-weight:700">'+esc(x.firm)+'</td><td>'+esc(x.as_of||'–')+'</td><td style="text-align:left">'+esc(x.next_move||'–')+'</td><td style="text-align:left">'+esc(x.path_2027||'–')+'</td><td>'+(x.source_url?'<a href="'+esc(x.source_url)+'" target="_blank" rel="noopener">링크</a>':'–')+'</td></tr>').join('')+'</table></div>';}
+ const cv=D.items.filter(i=>i.credit_view).sort((a,b)=>b.date.localeCompare(a.date));
+ if(cv.length){const CV={stress_rising:'스트레스 커짐',contained:'관리 가능',no_stress:'스트레스 없음',bubble_warning:'버블 경고',constructive:'긍정적'};const c={};cv.forEach(i=>c[i.credit_view]=(c[i.credit_view]||0)+1);
+  h+='<div class="note" style="margin-top:10px">투자자·은행 CEO의 신용·AI 자금조달 발언 '+cv.length+'건: '+Object.keys(c).map(k=>(CV[k]||k)+' '+c[k]).join(' · ')+'</div>'+cv.map(i=>itemHTML(i)).join('');}
+ if(!h)document.getElementById('calls-card').style.display='none';else document.getElementById('calls').innerHTML=h;})();
+
+// ---- 원장 ----
+function opts(id,arr,first){document.getElementById(id).innerHTML='<option value="">'+first+'</option>'+arr.map(a=>'<option value="'+a[0]+'">'+esc(a[1])+'</option>').join('');}
+opts('f-g',GO.filter(g=>D.items.some(i=>i.g7===g)).map(g=>[g,G7[g]]),'그룹 전체');
+opts('f-k',Object.keys(byKey).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||byKey[b].length-byKey[a].length).map(k=>[k,nm(k)+' ('+byKey[k].length+')']),'인물 전체');
+opts('f-d',Object.keys(DRV).filter(d=>D.items.some(i=>(i.drivers||[]).includes(d))).map(d=>[d,DRV[d]]),'근거 전체');
+opts('f-m',[...new Set(D.items.map(i=>i.date.slice(0,7)))].sort().reverse().map(m=>[m,m]),'월 전체');
+
+function sync(){['g','k','d','m'].forEach(x=>document.getElementById('f-'+x).value=F[x]);}
+['g','k','d','m'].forEach(x=>document.getElementById('f-'+x).onchange=e=>{F[x]=e.target.value;F.w=null;render();});
+document.getElementById('f-x').onclick=()=>{F={g:'',k:'',d:'',m:'',w:null};sync();render();};
+function render(){let a=D.items.filter(i=>inW(i.date)&&(!F.g||i.g7===F.g)&&(!F.k||i.key===F.k)&&(!F.d||(i.drivers||[]).includes(F.d))&&(!F.m||i.date.startsWith(F.m)));
+ if(F.w!=null){const s=dates[wk[F.w]],e=dates[Math.min(N-1,wk[F.w]+6)];a=a.filter(i=>i.date>=s&&i.date<=e);}
+ a.sort((x,y)=>y.date.localeCompare(x.date));document.getElementById('f-n').textContent=a.length+'건'+(a.length>200?' (최근 200건만 표시)':'');
+ document.getElementById('list').innerHTML=a.slice(0,200).map(i=>itemHTML(i)).join('')||'<div class="dim">해당 없음</div>';}
+
+// ---- 기간 막대 ----
+const r0=document.getElementById('r0'),r1=document.getElementById('r1');r0.max=r1.max=N-1;
+const PRESETS=[['1M',30],['3M',91],['6M',182],['전체',0]],pbox=document.getElementById('presets');
+PRESETS.forEach(p=>{const b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=()=>setWindow(p[1]?Math.max(0,N-1-p[1]):0,N-1,p[0]);pbox.appendChild(b);});
+function drawOverview(){const cv=document.getElementById('overview'),w=cv.clientWidth,h=30,r=window.devicePixelRatio||1;cv.width=w*r;cv.height=h*r;const g=cv.getContext('2d');g.scale(r,r);g.clearRect(0,0,w,h);
+ const x=i=>6+(w-12)*i/(N-1);g.fillStyle='#f4f3f0';g.fillRect(0,4,w,22);g.fillStyle='rgba(42,120,214,.16)';g.fillRect(x(W.i0),4,x(W.i1)-x(W.i0),22);
+ const line=(a,lo,hi,c)=>{g.beginPath();let on=false;a.forEach((v,i)=>{if(v==null)return;const y=25-(v-lo)/(hi-lo)*20;if(on)g.lineTo(x(i),y);else{g.moveTo(x(i),y);on=true;}});g.strokeStyle=c;g.lineWidth=1.2;g.stroke();};
+ const z=D.market.zq.filter(v=>v!=null);if(z.length)line(D.market.zq,Math.min(...z),Math.max(...z),'#9a9993');line(D.index.voter26,0,10,'#2a78d6');}
+function setWindow(a,b,preset){a=Math.max(0,Math.min(a,N-2));b=Math.max(a+7,Math.min(b,N-1));W.i0=a;W.i1=b;r0.value=a;r1.value=b;
+ [...pbox.children].forEach((btn,i)=>btn.classList.toggle('on',PRESETS[i][0]===preset));
+ document.getElementById('d0').value=dates[a].replace(/-/g,'.');document.getElementById('d1').value=dates[b].replace(/-/g,'.');
+ document.getElementById('range-label').textContent=(b-a+1)+'일';
+ drawOverview();drawTiles();
+ [C1,C3].forEach(c=>{c.options.scales.x.min=a;c.options.scales.x.max=b;});after1(C1);fitY(C3,'y',0,100,3);C1.update();C3.update();
+ drawHM();drawAI();drawInfl();drawBT();render();
+ const n=D.items.filter(i=>inW(i.date)).length;document.getElementById('led-n').textContent='이 기간 '+n+'건 · 그룹·인물·근거·월로 거르기';}
+function onSlide(e){let a=+r0.value,b=+r1.value;if(b-a<7){if(e.target===r0)a=Math.max(0,b-7);else b=Math.min(N-1,a+7);}setWindow(a,b,null);}
+r0.addEventListener('input',onSlide);r1.addEventListener('input',onSlide);
+function parseD(s,ref){s=s.trim();let m;if((m=s.match(/^(\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})$/)))return m[1]+'-'+m[2].padStart(2,'0')+'-'+m[3].padStart(2,'0');
+ if((m=s.match(/^(\d{2})(\d{2})(\d{2})$/)))return '20'+m[1]+'-'+m[2]+'-'+m[3];if((m=s.match(/^(\d{1,2})[\/.\-](\d{1,2})$/)))return ref.slice(0,4)+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0');return null;}
+['d0','d1'].forEach((id,j)=>{const el=document.getElementById(id);el.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const d=parseD(el.value,dates[j?W.i1:W.i0]);let i=d?dates.findIndex(x=>x>=d):-1;
+  if(d&&i<0&&d>dates[N-1])i=N-1;if(i<0){el.classList.add('bad');return;}el.classList.remove('bad');if(j)setWindow(Math.min(W.i0,i-7),i,null);else setWindow(i,Math.max(W.i1,i+7),null);el.blur();});});
+(function(){const ax=document.getElementById('rng-axis'),ms=[...new Set(dates.map(d=>d.slice(0,7)))];ax.innerHTML=ms.filter((_,i)=>i%Math.ceil(ms.length/8)===0).map(m=>'<span>'+m.slice(2).replace('-','.')+'</span>').join('');})();
+window.addEventListener('resize',drawOverview);
+setWindow(0,N-1,'전체');
+document.getElementById('method').innerHTML='<p><b>수집</b>: '+P.start+' 이후 공개 발언을 인물별로 모으고, 각 건마다 출처 페이지를 스크립트로 직접 받아 인용 문장이 글자 그대로 있는지 대조함. 대조에 실패한 건과 원문을 열 수 없던 건('+P.n_unverified+'건)은 지수·백테스트에서 뺌. 드러켄밀러는 Jae 노션 아카이브의 인터뷰 전문을 원장으로 삼아 그 사본과 대조함.</p><p><b>점수</b>: 그날 금리 경로에 대해 한 말만 채점. 10 곧 인상 필요·인상 소수의견 / 7.5 인플레 위험 우세·인상에 열림 / 5 동결 적절·양쪽 위험 / 2.5 성장·고용·금융안정 위험 우세·추가 인상 반대 / 0 곧 인하 필요. 연준 밖 인물은 "연준이 무엇을 해야 한다 / 할 것이다"를 같은 눈금으로 채점함. 통화정책 내용이 없는 발언은 점수 없이 원장에만 둠. 채점은 모델이 했고, 두 단계 사이에서 애매하면 5에 가까운 쪽으로 둠.</p><p><b>수준·지수</b>: 인물별로 발언 점수를 반감기 '+P.half_life_days+'일로 지수 가중 평균. 2026 투표권자 지수는 그 시점 재임 중인 투표권자의 단순 평균(마이런은 5월까지, 워시는 5/22부터). 의장 선은 5/15까지 파월, 5/22부터 워시.</p><p><b>백테스트 한계</b>: 인물별 발언 수가 적음. 발언 시각을 모르는 건은 당일 종가 변화에 붙였고, 지표 발표일에는 지표가 금리를 움직였을 가능성이 커서 따로 뺀 판을 기본으로 함. 상관은 인과가 아님.</p>';
+</script></body></html>"""
+
+
+def main() -> None:
+    a = json.loads((HERE / "analysis.json").read_text(encoding="utf-8"))
+    krp = HERE / "kr.json"
+    kr = json.loads(krp.read_text(encoding="utf-8")) if krp.exists() else {}
+    # 내장 데이터 다이어트: 화면에서 안 쓰는 칸 제거
+    for it in a["items"]:
+        for k in ("verify_note", "collector", "date_basis", "score_note", "raw_score", "summary" if (it["id"] in kr or it.get("summary_kr")) else "_"):
+            it.pop(k, None)
+    kr = {k: v for k, v in kr.items() if any(i["id"] == k for i in a["items"])}
+    dj, kj = json.dumps(a, ensure_ascii=False), json.dumps(kr, ensure_ascii=False)
+    # 1) 로컬 단독 파일(데이터 내장)
+    html = TEMPLATE.replace("__DATA__", dj.replace("</", "<\\/")).replace("__KR__", kj.replace("</", "<\\/"))
+    import sys
+    out = (REPO / "docs" / "fedspeak.html") if "--docs" in sys.argv else (HERE / "fedspeak.html")
+    out.write_text(html, encoding="utf-8")
+    # 2) 공유용 Artifact: 문서 뼈대 없이, 데이터는 옆 파일(data.json)에서 불러옴
+    if "--docs" in sys.argv:
+        print(f"{out} {len(html) / 1024:.0f}KB · 한국어 요약 {len(kr)}건")
+        return
+    art = HERE / "artifact"
+    art.mkdir(exist_ok=True)
+    t = TEMPLATE
+    head_end = t.index("<title>")
+    t = t[head_end:]
+    t = t.replace("</style></head><body>", "</style>").replace("</script></body></html>", "</script>")
+    t = t.replace("const D=__DATA__, KR=__KR__;",
+                  "fetch('data.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(function(J){const D=J.D,KR=J.K;")
+    t = t.replace("</script>", "}).catch(e=>{document.getElementById('hdr').textContent='데이터를 불러오지 못함 ('+e.message+'). 새로고침해 보세요.';});\n</script>", 1) if False else t
+    # 마지막 </script> 앞에서 fetch 블록을 닫는다
+    k = t.rindex("</script>")
+    t = t[:k] + "}).catch(e=>{document.getElementById('hdr').textContent='데이터를 불러오지 못함 ('+e.message+'). 새로고침해 보세요.';});\n" + t[k:]
+    (art / "index.html").write_text(t, encoding="utf-8")
+    (art / "data.json").write_text(json.dumps({"D": a, "K": kr}, ensure_ascii=False), encoding="utf-8")
+    print(f"{out.name} {len(html) / 1024:.0f}KB · artifact/index.html {len(t) / 1024:.0f}KB + data.json · 한국어 요약 {len(kr)}건")
+
+
+if __name__ == "__main__":
+    main()

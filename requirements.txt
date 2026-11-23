@@ -5,3 +5,6 @@ numpy>=1.26
 httpx>=0.27
 xlrd>=2.0
 openpyxl>=3.1
+# 금리 발언 tracker 주간 수집(scripts/fedspeak/pipeline.py verify)만 씀. 매일 실행엔 불필요
+beautifulsoup4>=4.12
+pymupdf>=1.24

@@ -1,0 +1,1231 @@
+{
+ "collector": "B6",
+ "speakers_covered": [
+  "Austan Goolsbee",
+  "Susan Collins",
+  "Tom Barkin",
+  "Raphael Bostic",
+  "Cheryl Venable"
+ ],
+ "items": [
+  {
+   "date": "2026-01-06",
+   "time_et": "08:25",
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Speech 'Tuning In: 2026 Outlook' (Richmond Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20260106",
+   "source_tier": "official_text",
+   "quote": "But going forward, policy will require finely tuned judgments balancing progress on each side of our mandate.",
+   "summary": "Barkin says the 175 basis points of cuts brought the funds rate within the range of neutral estimates and were a bit of insurance for the labor market. Both sides of the mandate bear watching: unemployment has ticked up and inflation has been above target for almost five years. He wants clean data after three months of missing or low-quality releases. He notes demand is narrow, resting on the AI ecosystem and wealthy consumers.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Two-sided risks, policy near neutral, no lean on the next move. Time from the Richmond Fed media advisory, not the speech page.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-09",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "Radio interview, WLRN 'The Florida Roundup' (recorded Friday Jan 9; WLRN write-up posted Jan 12)",
+   "type": "interview",
+   "source_url": "https://www.wlrn.org/business/2026-01-12/federal-reserve-inflation-jobs-interest-rates-bostic",
+   "source_tier": "news_direct_quote",
+   "quote": "Inflation is too high. We have to get it under control, and we need to be laser focused on making sure that everything we do is contributing to that,",
+   "summary": "Bostic says inflation remains the bigger concern of the two mandates: PCE inflation at 2.8 percent is 50 percent above target and he worries people will lose confidence the Fed will get to 2 percent. The job market is cooler but not necessarily weak. Reuters' account of the same interview adds that he doubts labor markets are heading toward greater weakness.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation risk clearly dominates and he stresses focus on it; no explicit call for a hike.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-13",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Remarks to the CFA Society Washington (Reuters via SRN News)",
+   "type": "panel_qa",
+   "source_url": "https://srnnews.com/feds-barkin-calls-december-inflation-data-encouraging/",
+   "source_tier": "news_direct_quote",
+   "quote": "Nobody wants inflation expectations to get embedded and nobody wants the labor market to deteriorate further,",
+   "summary": "Barkin calls December CPI encouraging because it did not rebound, and describes a delicate balance: inflation above target but not accelerating, unemployment not rising out of control. He sees no urgency, saying rate moves work with a 12-month lag and no single meeting matters that much. He declines to discuss the Powell subpoenas but says independent central banks deliver better outcomes.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Two-sided, no urgency in either direction.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "NPR Morning Edition interview with A Martinez (transcript)",
+   "type": "interview",
+   "source_url": "https://www.nprillinois.org/2026-01-14/chicago-fed-president-on-latest-inflation-numbers-and-trumps-attack-on-the-fed-chair",
+   "source_tier": "full_interview_transcript",
+   "quote": "So if that tariff inflation proves to be more lasting than we hope, that would be a serious issue that we'd have to think about.",
+   "summary": "Goolsbee says the CPI report 'didn't get worse' and that showing inflation is on a path back to 2 percent is the challenge of the next couple of months. He hopes tariff price effects are one-and-done. He does not discuss the rate path directly. He says Fed independence is critical for long-run inflation and calls Powell a first-ballot Hall of Fame chair after the Justice Department subpoenas.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "No direct rate guidance; inflation is the focus but he frames it as wait for evidence.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-15",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CNBC Squawk Box interview (Reuters via Kitco)",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-01-15/feds-goolsbee-tells-cnbc-getting-inflation-lower-feds-main-job",
+   "source_tier": "news_direct_quote",
+   "quote": "we have to have convincing evidence that we're on path back to 2% inflation.",
+   "summary": "Goolsbee says the job market still has strength and the most important task is getting inflation back to 2 percent. Rates can still go down a fair amount, with cuts possible this year, but only with convincing evidence inflation is heading to target.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Baseline is a lower rate path this year, conditional on inflation evidence; not a call for near-term cuts. Torn between -1 and 0.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-16",
+   "time_et": "10:50",
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Introductory remarks at 'Outlook 26: The New England Economic Forum', Foxborough (official PDF text)",
+   "type": "speech",
+   "source_url": "https://www.bostonfed.org/-/media/Documents/Speeches/PDF/collins/2026/20260116-text.pdf",
+   "source_tier": "official_text",
+   "quote": "While I won’t be addressing the economy or monetary policy in these brief comments",
+   "summary": "Collins introduces Fed Vice Chair for Supervision Michelle Bowman at a New England bankers' forum. She states she is not addressing the economy or monetary policy.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Official remarks with no monetary-policy content; listed for coverage.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-01-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "CNBC Squawk Box interview with Steve Liesman (one line quoted in a Reuters analysis via SRN News)",
+   "type": "interview",
+   "source_url": "https://srnnews.com/warsh-regime-change-faces-steep-hurdles-at-a-sprawling-us-central-bank/",
+   "source_tier": "news_direct_quote",
+   "quote": "When the economy grows the balance sheet needs to grow with it.",
+   "summary": "On the day Warsh was nominated, Bostic said the size of the Fed's balance sheet is about right and must grow with the economy, pushing back on Warsh's call to shrink the Fed's market footprint. The Atlanta Fed's listing says the interview also covered independence, inflation and interest rates, but no rate-path quote could be opened.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Only a balance-sheet quote is available; no rate-path statement in an openable source.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "balance_sheet",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-02",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "Moderated discussion with Dennis Lockhart, Rotary Club of Atlanta (Reuters via Kitco)",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-02/warsh-face-tall-task-fed-chief-bostic-says",
+   "source_tier": "news_direct_quote",
+   "quote": "So I think this is the time to be patient.",
+   "summary": "Bostic says that with the economy strong and the labor market stabilized, cutting rates would make it very unlikely inflation returns to target; Reuters reports he believes the Fed should not cut at all this year. He says Warsh faces a tall task in persuading the Committee and must build trust.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Opposes any cut in 2026 on inflation grounds; pushes back on cut talk but does not ask for a hike.",
+   "drivers": [
+    "inflation",
+    "growth",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-03",
+   "time_et": "08:00",
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Speech 'U.S. Economy: The Road Ahead' (Richmond Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20260203",
+   "source_tier": "official_text",
+   "quote": "But we know things change, and as they do, we remain ready to respond as appropriate.",
+   "summary": "Barkin describes the 175 basis points of cuts as insurance to support the labor market while the Fed completes the last mile on inflation, and says 'so far, so good'. The Fed stands ready to respond as conditions change. He again flags that demand is concentrated in the AI ecosystem and wealthy consumers, so an AI pullback could hit investment, stocks and consumption.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Hold with readiness to respond in either direction; no lean stated. Time from the Richmond Fed media advisory.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-13",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Yahoo Finance interview with Jennifer Schonberger after January CPI",
+   "type": "interview",
+   "source_url": "https://finance.yahoo.com/news/chicago-feds-goolsbee-says-interest-rates-could-fall-a-fair-bit-more-but-more-inflation-progress-is-needed-210239035.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I think rates can still keep going down a fair bit more, but we just need to see the progress on inflation,",
+   "summary": "Goolsbee wants more progress on inflation and a steady job market before supporting another cut. He says services inflation is not tamed and tends to be persistent, and that he does not know how restrictive policy is; the Fed should see improvement rather than count on it before cutting.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Path is lower by 'a fair bit', conditional on inflation progress; doubts about restrictiveness temper it. Torn between -1 and 0.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CNBC Squawk Box interview (Reuters via Kitco)",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-17/feds-goolsbee-several-rate-cuts-possible-year-if-inflation-gets-track",
+   "source_tier": "news_direct_quote",
+   "quote": "I still think there's several more rate cuts that can happen in 2026,",
+   "summary": "Goolsbee says several more cuts are possible in 2026 if data show inflation is on a path to 2 percent, 'but we've got to see it'. He discounts the cool January CPI because services inflation is not tamed and says inflation has stalled around 3 percent. He treats roughly 3 percent as a loose neutral target.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Expects several cuts this year toward about 3 percent, but conditional on inflation progress not yet seen.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-20",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "Moderated conversation, Birmingham Business Journal event, Birmingham, Alabama (Reuters via SRN News)",
+   "type": "panel_qa",
+   "source_url": "https://srnnews.com/feds-bostic-pretty-strong-gdp-growth-raises-inflation-concerns/",
+   "source_tier": "news_direct_quote",
+   "quote": "What that means is that we have to worry about the implications for prices on a strong economy,",
+   "summary": "Bostic says 2.2 percent full-year growth is a pretty strong number, above his 1.8 percent estimate of potential, and he expects 2.4 percent this year. With inflation around 3 percent, a long way from target, strong growth is a reason to worry about prices; Reuters characterizes this as an argument for not cutting rates. He also flags disruption from the Supreme Court tariff ruling.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Above-potential growth plus 3 percent inflation used as a case against cuts; no hike call.",
+   "drivers": [
+    "inflation",
+    "growth",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-23",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Comments to journalists ahead of NABE address (Reuters via Kitco, published Feb 24)",
+   "type": "other",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-24/feds-goolsbee-rate-cuts-appropriate-if-inflation-falls-too-soon-bet",
+   "source_tier": "news_direct_quote",
+   "quote": "I'm a little concerned about front loading that too much if there's not yet evidence that inflation is headed back to 2%",
+   "summary": "Goolsbee is optimistic several more cuts will be appropriate by end-2026 but says there is not yet evidence inflation is heading to 2 percent. He rejects cutting on the basis of expected productivity gains, saying the Greenspan analogy does not fit and policy could overheat the economy. He describes AI data-center demand overloading scarce labor in places like Cedar Rapids.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Easing baseline for year-end offset by an explicit warning against cutting now and against the productivity argument; torn between -1 and 0, chose 0.",
+   "drivers": [
+    "inflation",
+    "other",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Remarks at the 42nd Annual NABE Economic Policy Conference, Washington DC (Chicago Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.chicagofed.org/publications/speeches/2026/feb-24-nabe-economic-policy-conference",
+   "source_tier": "official_text",
+   "quote": "Before we cut rates more to stimulate the economy, let’s be sure inflation is heading back to 2%.",
+   "summary": "Goolsbee says progress on inflation stalled in 2025 at about 3 percent and that it is not obvious policy is even restrictive at that inflation rate. He remains optimistic there can be more rate cuts this year, but only after actual progress on inflation; front-loading too many cuts is not prudent. Services inflation running at 3.3 percent is hard to call transitory. He also argues AI data-center investment has been a smaller driver of GDP growth than portrayed.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Pushes back on near-term cuts and doubts policy is restrictive (+1), yet keeps a baseline of more cuts this year (-1); torn, chose 0.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "Reuters exit interview (Reuters story carried by Business Recorder)",
+   "type": "interview",
+   "source_url": "https://www.brecorder.com/news/40408776",
+   "source_tier": "news_direct_quote",
+   "quote": "if we are having structural change, then we really need to lean into that truth,",
+   "summary": "Bostic says AI may be raising structural unemployment, which the Fed cannot offset with lower rates; trying to do so risks both mandate measures moving the wrong way. Reuters presents this as his parting case that rates need not fall much further, if at all, and that the Fed should keep pressing on inflation about a point above target. He says last year's cuts were motivated by weakness in labor-market niches.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Argues against cutting to offset structural joblessness and for continued focus on inflation; no hike call.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": "09:00",
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Welcoming remarks, 2026 Technology-Enabled Disruption Conference, Boston (official PDF text)",
+   "type": "speech",
+   "source_url": "https://www.bostonfed.org/-/media/Documents/Speeches/PDF/collins/2026/20260224-text.pdf",
+   "source_tier": "official_text",
+   "quote": "Governor Chris Waller serves on the Board of Governors of the Federal Reserve System",
+   "summary": "Collins opens a Boston Fed conference on finance and payments technology and introduces Governor Waller. The remarks contain no statement on the policy rate or the outlook.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Official remarks with no monetary-policy content; listed for coverage.",
+   "drivers": [
+    "other"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Panel discussion (with Tom Barkin) at the Boston Fed Technology-Enabled Disruption Conference (Reuters via Kitco)",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-24/two-fed-officials-do-not-see-imminent-need-change-monetary-policy",
+   "source_tier": "news_direct_quote",
+   "quote": "I think that it's quite likely that it'll be appropriate to hold in the current range for some time,",
+   "summary": "Collins says policy is mildly restrictive or close to neutral and that holding the current range for some time is quite likely appropriate, with a patient, deliberate approach. To cut again she wants more confidence that disinflation resumes, which her default outlook places later this year. Barkin, on the same panel, called policy well positioned.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Extended hold with a conditional easing path later in the year; no lean for the near term.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Virtual panel with Susan Collins, moderated by Neil Irwin, Technology-Enabled Disruption Conference (Boston Fed write-up, posted Feb 25)",
+   "type": "panel_qa",
+   "source_url": "https://www.bostonfed.org/news-and-events/news/2026/02/fed-presidents-inflation-jobs-ai-tech-conference.aspx",
+   "source_tier": "news_direct_quote",
+   "quote": "Until you actually bring the inflation rate down, you’re going to see individual companies feeling like they need to push further.",
+   "summary": "Barkin says inflation is above target, consumers are pushing back on prices, and published inflation is a reference number in every pricing decision, so firms keep pushing until it comes down. He attributes the productivity pickup to automation investment and low turnover rather than AI. Reuters reports he called monetary policy well positioned for the risks.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Inflation concern without any stated lean on rates; Reuters has him calling policy well positioned.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-25",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Raphael Bostic",
+   "role": "President, Federal Reserve Bank of Atlanta (until 2026-02-28; non-voter in 2026)",
+   "occasion": "Farewell essay 'Farewell to the Best Job I've Ever Had' (Atlanta Fed, message from the president)",
+   "type": "essay",
+   "source_url": "https://www.atlantafed.org/news-and-events/messages-from-president/2026/02/25/farewell-to-the-best-job-ive-ever-had",
+   "source_tier": "official_text",
+   "quote": "Safeguarding our special status includes protecting the Fed's independence.",
+   "summary": "In his final essay Bostic reviews his tenure and warns that legal and rhetorical battles around the Fed are making people doubt its independence. He says outcomes are better with an independent central bank: lower inflation and more robust performance. No statement on the rate path.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Independence and farewell message; no rate-path content. Listed because it is the bank's official essay series and was wire-reported.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-26",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Fox News 'America Reports' interview (Reuters via Kitco)",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-02-26/feds-goolsbee-forecasts-several-more-rate-cuts-year-not-soon",
+   "source_tier": "news_direct_quote",
+   "quote": "I have some confidence rates can come down several more times this year in 2026,",
+   "summary": "Goolsbee says his forecast of several cuts later this year makes him one of the more optimistic policymakers, but he does not want to front-load cuts before there is evidence inflation is heading back to 2 percent.",
+   "score": -1,
+   "score_basis": "own_stance",
+   "score_note": "Forecasts several cuts in 2026 but not soon; conditional on inflation evidence. Torn between -1 and 0.",
+   "drivers": [
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-05",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Remarks accepting the Foreign Policy Association Medal, FPA Financial Services Dinner, New York (edited transcript on Chicago Fed site)",
+   "type": "speech",
+   "source_url": "https://www.chicagofed.org/publications/speeches/2026/mar-5-foreign-policy-association-financial-services-dinner",
+   "source_tier": "official_transcript",
+   "quote": "The world has learned the hard way over the last 113 years how important central bank independence is for keeping inflation under control.",
+   "summary": "Goolsbee defends the regional Reserve Bank structure and central bank independence, noting Reserve Bank presidents are not political appointees. There is no statement on the rate path.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Official remarks on independence and the Fed's structure; no rate-path content.",
+   "drivers": [
+    "political"
+   ],
+   "tool": "none",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-05",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Bloomberg Television interview (Reuters via Kitco)",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-03-05/feds-barkin-sticky-inflation-better-jobs-data-could-shift-risk-outlook",
+   "source_tier": "news_direct_quote",
+   "quote": "That certainly puts pause to any conclusion that we're done fighting this,",
+   "summary": "Barkin says last year's cuts rested on labor-market risks rising and inflation risks falling, and that data over the past couple of months suggest the balance has moved in the other direction. A couple of months of relatively high PCE inflation argue against concluding the inflation fight is over.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Says the risk balance has shifted toward inflation and away from the labor market, undercutting further cuts; no hike talk.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-06",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Bloomberg Television interview after the February jobs report (Reuters via SRN News)",
+   "type": "interview",
+   "source_url": "https://srnnews.com/fed-rate-cut-bets-rise-after-weak-jobs-data/",
+   "source_tier": "news_direct_quote",
+   "quote": "As we get more uncertainties, I kind of think that time at which it makes sense to act keeps getting pushed back.",
+   "summary": "On the day of a weak February jobs report, Goolsbee says he still hopes and expects inflation progress will let the Fed resume moving rates down toward a settling point below the current level by the end of the year, but mounting uncertainties keep pushing back the time to act. Chicago Fed's media list shows he also spoke to the NYT and WSJ that day about stagflation risks.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Keeps an eventual easing path but pushes its timing back; balanced on the day.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-06",
+   "time_et": "13:20",
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Speech 'Observations on the Economic Outlook, and Small Business', Springfield Regional Chamber Outlook 2026 (official PDF text)",
+   "type": "speech",
+   "source_url": "https://www.bostonfed.org/-/media/Documents/Speeches/PDF/collins/2026/20260306-text.pdf",
+   "source_tier": "official_text",
+   "quote": "in my view argues for maintaining policy rates at their current, mildly restrictive levels for some time",
+   "summary": "Collins sees a patient, deliberate approach as appropriate. Her baseline has a still-uncertain inflation picture with continued upside risks and a relatively stable labor market, which argues for holding rates at mildly restrictive levels for some time. Policy is well positioned to adjust as conditions evolve.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Extended hold; upside inflation risks mentioned but stance described as patient and adjustable; torn between 0 and +1, chose 0.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-23",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CNBC Squawk Box interview with Steve Liesman (CNBC article)",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/03/23/feds-goolsbee-says-hes-worried-about-inflation-in-fraught-but-intense-climate.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I remain fairly optimistic that by the end of '26 rates could go down, but I wanted to see proof that we're back on an inflation headed to 2%.",
+   "summary": "Goolsbee says he is more worried about inflation than unemployment and warns against repeating the 'team transitory' mistake. He agreed with the January and March holds. He is still fairly optimistic rates could fall by end-2026 but says the war throws a wrench into the plans and progress on inflation is needed. Reuters quotes him saying inflation has to be a little ahead of employment as a priority; Bloomberg's headline says he could see circumstances for a hike.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Inflation named as the greater risk (+1) while he keeps an end-2026 easing hope (-1); torn, chose 0.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-24",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "PBS NewsHour interview with Geoff Bennett (transcript)",
+   "type": "interview",
+   "source_url": "https://www.pbs.org/newshour/show/chicago-fed-president-breaks-down-economic-risks-of-iran-war",
+   "source_tier": "full_interview_transcript",
+   "quote": "For it to be realistic that rates would come down further this year, we have got to see progress in inflation, I think",
+   "summary": "Asked whether one cut this year is still realistic, Goolsbee says he does not know and it depends how long the conflict lasts. Stagflationary shocks are the worst case for a central bank because there is no obvious playbook. If inflation, already above target for five years, starts trending up again, the Fed will have to think through its options.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Cuts made conditional on inflation progress, stagflation framed as two-sided; no explicit tightening lean.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-27",
+   "time_et": "11:00",
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Speech 'Driving Through Economic Fog (Still)' (Richmond Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20260327",
+   "source_tier": "official_text",
+   "quote": "it felt prudent to hold rates and await more clarity on how we should be leaning to best support the economy going forward",
+   "summary": "Barkin says the funds rate sits at the higher end of the range of neutral and that holding in March was prudent given risks to both the labor market and inflation and a foggy outlook. Recent PCE data suggest progress on inflation may be at risk of stalling, and that was before the oil price spike; he will watch the shock's effect on inflation and inflation expectations.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Explicit two-sided risks and hold; inflation worry noted but no lean on direction. Time from the Richmond Fed media advisory.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-03-30",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Chicago magazine Q&A with Mark Bazer (May 2026 issue, posted March 30; interview date not stated)",
+   "type": "interview",
+   "source_url": "https://www.chicagotribune.com/2026/03/30/that-ends-in-tears/",
+   "source_tier": "full_interview_transcript",
+   "quote": "I’ve been uncomfortable with front-loading too many cuts and counting on inflation going back to 2 percent on its own",
+   "summary": "Goolsbee says inflation above 2 percent for nearly five years is not something to trifle with and weighs on rate decisions. He remains pretty optimistic rates could keep going down by the end of the year but is uncomfortable front-loading cuts. He warns that an administration ordering the central bank to cut regardless of conditions 'ends in tears', and says he respects Warsh.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Magazine lead time: text does not mention the Iran war, so it likely predates it. Easing hope and caution offset; torn between -1 and 0, chose 0.",
+   "drivers": [
+    "inflation",
+    "political",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-01",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Reuters interview (conducted Tuesday March 31, published April 1; via SRN News)",
+   "type": "interview",
+   "source_url": "https://srnnews.com/exclusive-feds-barkin-households-firms-still-see-oil-shock-through-a-short-term-lens/",
+   "source_tier": "news_direct_quote",
+   "quote": "The hike case would be around inflation expectations starting to finally move,",
+   "summary": "Barkin says households and firms still view the oil shock through a short-term lens; spending outside gasoline looks healthy. Scenarios could push the Fed in any direction: a hike would hinge on inflation expectations moving, which he does not see yet, while cuts would need inflation heading quickly to 2 percent or a weakening job market. Goods sellers have little pricing power left, services more.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Lays out both hike and cut cases and says expectations have not broken out; no lean.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-03",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CBS News interview with Aimee Picchi",
+   "type": "interview",
+   "source_url": "https://www.cbsnews.com/news/interest-rates-federal-reserve-austan-goolsbee-inflation-iran-war/",
+   "source_tier": "news_direct_quote",
+   "quote": "to me that starts pushing these decisions off to 2027 at the earliest,",
+   "summary": "Goolsbee says that before the war he believed rates could come down multiple times in 2026, but the energy shock complicates that: with no improvement in inflation, cut decisions get pushed to 2027 at the earliest. He worries sticker shock could weigh on consumers, the backbone of growth, and that uncertainty keeps the labor market in low-hire, low-fire mode.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Withdraws his own 2026 cut baseline because of inflation; pushback on cuts rather than a hike call.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "growth",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-06",
+   "time_et": "03:00",
+   "date_basis": "article",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "NPR 'The Indicator from Planet Money' joint interview with Beth Hammack (transcript; Reuters says taped April 1)",
+   "type": "interview",
+   "source_url": "https://www.npr.org/transcripts/nx-s1-5773393",
+   "source_tier": "full_interview_transcript",
+   "quote": "I was optimistic that we would get back to this path to 2% inflation, but yikes, it's going from orange to red lately.",
+   "summary": "Asked to color-code the economy, Goolsbee rates inflation at least orange and heading to red: tariff price increases did not fade and another stagflationary shock has landed on top. He rates the labor market yellow, low-hiring and low-firing but mostly stable, and is a little anxious about frothy asset prices. No direct rate guidance.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation risk clearly dominates his assessment; no explicit rate statement, so only +1.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "labor",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-07",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Moderated Q&A, Detroit Economic Club (Reuters via Kitco)",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-04-07/goolsbee-says-stagflationary-shock-iran-war-puts-fed-bind",
+   "source_tier": "news_direct_quote",
+   "quote": "I'm cautious - slash nervous - about it in the moment.",
+   "summary": "Goolsbee says the oil spike from the Iran war hit before tariff inflation had faded, leaving the Fed in a very uncomfortable spot with no obvious cookbook on whether to heat things up or cool things down. The worst outcome would be a stagflationary recession if consumers lose confidence. The job market is stable but not great.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Explicitly two-sided: says it is not obvious which way policy should move.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "tariffs_supply",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "AP interview at the Semafor World Economy conference, Washington (Reuters via Kitco)",
+   "type": "interview",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-04-14/feds-goolsbee-says-rate-cuts-may-need-wait-until-2027",
+   "source_tier": "news_direct_quote",
+   "quote": "There are circumstances where rates could go up,",
+   "summary": "Goolsbee says he had expected multiple cuts in 2026, but the longer inflation stays up the more that gets pushed out of 2026. Rates could go up in some circumstances; if the oil shock proves temporary and inflation heads back to 2 percent, decreases are on the table too.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Pushes cuts out to 2027 and acknowledges hikes are possible; still two-sided, so torn between 0 and +1, chose +1 because the shift is away from his earlier cut baseline and inflation is the stated reason.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-04-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Yahoo Finance interview with Brian Sozzi at the Semafor World Economy conference (video page transcript, auto-generated)",
+   "type": "interview",
+   "source_url": "https://finance.yahoo.com/video/feds-inflation-target-needs-to-stay-at-2-austan-goolsbee-says-143718510.html",
+   "source_tier": "full_interview_transcript",
+   "quote": "One normally doesn't tighten into the face of a supply shock.",
+   "summary": "Goolsbee loosely agrees with the market view that the Fed will not hike into an oil supply shock, but warns to watch second-round effects and inflation expectations, which could unanchor if gasoline stays near $5 for months. He says the 2 percent target must stay, that the longer the shock lasts the more it pushes cuts off, and that in stagflation neither raising, cutting nor holding solves the problem.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Not inclined to tighten into a supply shock, but cuts deferred; explicitly two-sided.",
+   "drivers": [
+    "energy",
+    "inflation",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-02",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Fox News 'The Journal Editorial Report' interview (Reuters via Yahoo Finance)",
+   "type": "interview",
+   "source_url": "https://finance.yahoo.com/economy/policy/articles/recent-inflation-data-bad-news-190611607.html",
+   "source_tier": "news_direct_quote",
+   "quote": "We have got to get some assurance that we are going back to the 2% inflation target,",
+   "summary": "Goolsbee calls the March PCE reading of 3.5 percent bad news and says the Fed must be cautious about cuts until inflation recedes. The composition of inflation does not look good, with services rising too. He says the split April decision shows the complications of forward guidance, and welcomes both Powell staying as governor and Warsh's arrival.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation dominates and he argues against cut guidance; no hike call.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-06",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Prepared comments for a Milken Institute Global Conference panel, Los Angeles (Reuters via Kitco)",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-05-06/feds-goolsbee-says-rising-productivity-could-restrain-inflation-or",
+   "source_tier": "news_direct_quote",
+   "quote": "In that case, the fundamentals suggest rates would need to rise.",
+   "summary": "Goolsbee says expected productivity gains can raise spending today and overheat the economy before the boom arrives, in which case rates would need to rise. The bigger the hype, the more rates would need to rise. Reuters frames this as a preview of a debate with incoming Chair Warsh.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Argues the AI productivity story points to tighter, not looser, policy; conditional reasoning, no meeting-specific call.",
+   "drivers": [
+    "growth",
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-06",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Video call with journalists after the Milken panel (Reuters via SRN News)",
+   "type": "other",
+   "source_url": "https://srnnews.com/feds-goolsbee-says-iran-war-impact-looking-more-like-an-inflationary-shock/",
+   "source_tier": "news_direct_quote",
+   "quote": "It has just been an inflationary shock. And the longer that continues, the more nervous that makes me.",
+   "summary": "Goolsbee says the Iran war has not so far been a stagflationary shock hitting jobs and prices together; it has simply been inflationary. Executives report supply-chain problems developing as input stocks run down and fuel costs feed into shipping.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Frames the shock as one-sided inflation risk; Reuters ties it to movement toward possible hikes, but he makes no explicit call.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-07",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Bloomberg News interview at the Boston Fed (Bloomberg story carried by The Boston Globe)",
+   "type": "interview",
+   "source_url": "https://www.bostonglobe.com/2026/05/07/business/fed-collins-fomc-dissenters-statement/",
+   "source_tier": "news_direct_quote",
+   "quote": "I do think that there are scenarios in which it would be important to strongly consider a hike,",
+   "summary": "Collins says she strongly supported the April hold but agreed with the dissenters that the statement should not presume the next move is a cut; she favors a more agnostic stance. Rates likely stay at mildly restrictive levels for longer with easing further down the road, yet a hike should be strongly considered in some scenarios, which is not her baseline. Her focus is the persistence of inflation; she sees it peaking slightly above 3.5 percent before easing to near 3 percent by year-end.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Sides with removing the easing bias and names hike scenarios; baseline is still a long hold.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-08",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Prepared remarks and panel, Hoover Institution Monetary Policy Conference 2026, Stanford (Chicago Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.chicagofed.org/publications/speeches/2026/may-8-hoover-institution-monetary-policy",
+   "source_tier": "official_text",
+   "quote": "The bigger the share of a productivity boom that is still on the way, the more likely rates will need to rise now.",
+   "summary": "Goolsbee argues the rate implication of a productivity boom depends on whether it is expected. An unexpected surge lowers inflation and justifies lower rates, as in the 1990s; an anticipated AI-driven surge pulls spending forward through wealth effects and data-center investment, raising the natural rate and pushing the ideal policy rate higher. Waiting for actual overheating before acting makes the problem worse.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Analytical case that expected AI productivity gains point to higher, not lower, rates; no explicit call for a hike at a given meeting.",
+   "drivers": [
+    "growth",
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-08",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CNBC interview after the April jobs report (Reuters via SRN News)",
+   "type": "interview",
+   "source_url": "https://srnnews.com/feds-goolsbee-tells-cnbc-that-job-market-is-holding-in/",
+   "source_tier": "news_direct_quote",
+   "quote": "inflation hasn’t been great, and it’s been going the wrong way lately",
+   "summary": "Goolsbee says the job market has been stable without being good and there is little evidence it is falling apart, while inflation has been going the wrong way lately and it is unclear how much higher price pressures will go. Bloomberg and Crain's headlines from the same day report him saying all interest-rate options are on the table.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Labor stable, inflation deteriorating: inflation side dominates. The 'all options on the table' line could not be opened in a quotable source.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-12",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Moderated discussion, Greater Rockford Chamber of Commerce luncheon (Reuters via Kitco)",
+   "type": "panel_qa",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-05-12/feds-goolsbee-says-latest-inflation-read-was-disappointing",
+   "source_tier": "news_direct_quote",
+   "quote": "One side of the mandate is going wrong",
+   "summary": "After April CPI of 3.8 percent, Goolsbee says inflation is going the wrong way beyond oil and tariff items and that services inflation was the unexpectedly disappointing part. The job market is basically stable while inflation is rising, so the Fed is not currently balancing two sides of the mandate. He again praises Powell. Reuters writes that he 'dissented' in April over the easing-bias language; the official statement lists only Miran, Hammack, Kashkari and Logan as dissenters.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation side singled out as the only problem; no explicit hike call in the quoted text.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-12",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Cheryl Venable",
+   "role": "Interim President, Federal Reserve Bank of Atlanta (from March 2026; non-voter in 2026)",
+   "occasion": "Quarterly essay 'Welcome to the Whirlwind' (Atlanta Fed, message from the interim president)",
+   "type": "essay",
+   "source_url": "https://www.atlantafed.org/news-and-events/messages-from-president/2026/05/12/welcome-to-the-whirlwind",
+   "source_tier": "official_text",
+   "quote": "I think the optimal policy approach in the face of risks to both sides of the dual mandate is to wait and see",
+   "summary": "Venable backs the April hold at 3.5 to 3.75 percent and calls policy mildly restrictive to neutral. With inflation well above target and oil-driven price pressure building, it is not the time to loosen; nor is it clear the Fed should react forcefully, since that could upset the labor market balance. A long conflict could squeeze spending and eventually jobs.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Rules out easing now but also declines to tighten; explicit wait-and-see with two-sided risks.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-13",
+   "time_et": "11:30",
+   "date_basis": "event",
+   "speaker": "Susan Collins",
+   "role": "President, Federal Reserve Bank of Boston (non-voter in 2026)",
+   "occasion": "Speech 'The U.S. Economy: Resilience Amid Risks and Uncertainty', Boston Economic Club (official PDF text)",
+   "type": "speech",
+   "source_url": "https://www.bostonfed.org/-/media/Documents/Speeches/PDF/collins/2026/20260513-text.pdf",
+   "source_tier": "official_text",
+   "quote": "I could envision a scenario in which some policy tightening is needed to ensure that inflation returns durably to 2 percent in a timely manner",
+   "summary": "Collins says it will likely be important to keep the slightly restrictive stance for some time and that more than five years of above-target inflation has reduced her patience for looking through another supply shock. She hopes normalization can resume later this year, but can envision a scenario requiring some tightening, although that is not her most likely outlook. Policy is well positioned for now.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Opens the door to a hike and says patience for looking through supply shocks is reduced; hike is a risk scenario, not her baseline.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "WBEZ Chicago radio interview (quoted in a Reuters story via SRN News)",
+   "type": "interview",
+   "source_url": "https://srnnews.com/feds-barkin-policy-in-good-place-to-respond-to-ongoing-shocks/",
+   "source_tier": "news_direct_quote",
+   "quote": "we have a pretty significant inflation problem developing, but the job market has been mostly stable",
+   "summary": "Goolsbee says a pretty significant inflation problem is developing while the job market is mostly stable, and that he is most attuned to the inflation side because progress stopped.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation side singled out; no explicit rate call in the quoted text.",
+   "drivers": [
+    "inflation",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-21",
+   "time_et": "12:20",
+   "date_basis": "event",
+   "speaker": "Tom Barkin",
+   "role": "President, Federal Reserve Bank of Richmond (non-voter in 2026, votes in 2027)",
+   "occasion": "Speech 'Navigating Supply Shocks' (Richmond Fed posted text)",
+   "type": "speech",
+   "source_url": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20260521",
+   "source_tier": "official_text",
+   "quote": "it’s worth asking whether the cumulative impact of so many waves risks loosening the anchor",
+   "summary": "Barkin explains the conventional case for looking through supply shocks but asks whether the Fed still has that luxury if shocks become more frequent. With inflation above 2 percent for over five years, he questions how secure the inflation expectations anchor is, while noting long-term measures remain anchored. The April hold made sense to buy time; rough seas could pressure either side of the mandate and the Fed is well positioned to respond.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Raises doubt about looking through supply shocks (hawkish tilt) but ends two-sided with no call to move; torn between 0 and +1, chose 0. Told Reuters he was not leaning toward one side of the mandate. Time from the Richmond Fed media advisory.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-27",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "Panel at the Bank of Japan IMES Conference 2026, Tokyo (excerpt of planned remarks on Chicago Fed site)",
+   "type": "panel_qa",
+   "source_url": "https://www.chicagofed.org/publications/speeches/2026/may-27-bank-of-japan",
+   "source_tier": "official_text",
+   "quote": "The bigger the hype about future productivity, the more rates may need to rise to prevent overheating.",
+   "summary": "Goolsbee repeats that unexpected productivity gains call for lower rates, but expected gains act like a wealth increase today and can overheat the economy before the boom arrives, in which case rates would likely need to rise. He says to watch stock-market wealth effects on consumption and valuation-driven capital investment.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Leans tighter on overheating risk from expected AI productivity; conditional, no meeting-specific call.",
+   "drivers": [
+    "growth",
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-05-27",
+   "time_et": "22:04",
+   "date_basis": "article",
+   "speaker": "Austan Goolsbee",
+   "role": "President, Federal Reserve Bank of Chicago (non-voter in 2026, votes in 2027)",
+   "occasion": "CNBC interview with Kaori Enjoji at the BOJ-IMES conference, Tokyo (CNBC article, published May 27 evening ET / May 28 Tokyo)",
+   "type": "interview",
+   "source_url": "https://www.cnbc.com/2026/05/28/goolsbee-iran-energy-inflation-asia-stagflation-shock-ai-artificial-intelligence-jobs.html",
+   "source_tier": "news_direct_quote",
+   "quote": "I don't regret dissenting at that meeting, because the inflation has not proved as temporary as was advertised at the beginning,",
+   "summary": "Goolsbee says energy inflation from the Iran war has lasted longer than futures implied and that he does not regret dissenting against the December 2025 cut. If inflation heads back to 2 percent, rates would ultimately settle well below today's level. He warns that AI-driven equity wealth and data-center investment can overheat the economy before productivity gains arrive.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation persistence and overheating risk dominate; long-run lower settling point is conditional.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  }
+ ],
+ "unverified": [
+  {
+   "date": "2026-01-09",
+   "speaker": "Tom Barkin",
+   "what": "Comments to reporters in suburban Baltimore after the December jobs report; Reuters copies quote him only on the low-hire labor market and housing supply, with no rate-path quote.",
+   "url": "https://srnnews.com/fed-seen-on-longer-rate-cut-pause-after-december-jobs-data/"
+  },
+  {
+   "date": "2026-01-14",
+   "speaker": "Raphael Bostic",
+   "what": "Moderated conversation at the Atlanta Business Chronicle 2026 Economic Outlook event (video only). Reuters quotes him only on Powell's video statement ('said all it needed to say'); no rate-path quote found.",
+   "url": "https://www.atlantafed.org/news-and-events/speeches/2026/01/14/bostic-speaks-at-annual-economic-outlook-event"
+  },
+  {
+   "date": "2026-02-05",
+   "speaker": "Raphael Bostic",
+   "what": "Moderated conversation at Clark Atlanta University (Atlanta Fed lists topics as macroeconomy and monetary policy); YouTube only.",
+   "url": "https://www.atlantafed.org/news-and-events/speeches/2026/02/05/president-bostic-speaks-at-clark-atlanta-university"
+  },
+  {
+   "date": "2026-02-06",
+   "speaker": "Raphael Bostic",
+   "what": "Bloomberg TV interview with Michael McKee on his tenure and the economy (Bloomberg video titled 'Bostic Discusses Inflation, Warsh, K-Shaped Economy'); paywalled.",
+   "url": "https://www.bloomberg.com/news/audio/2026-02-06/bloomberg-talks-raphael-bostic-podcast"
+  },
+  {
+   "date": "2026-02-06",
+   "speaker": "Raphael Bostic",
+   "what": "WABE 'Closer Look' live interview; the WABE pages describe the conversation but carry no policy quotes.",
+   "url": "https://www.wabe.org/outgoing-atlanta-fed-president-reflects-on-leadership-inflation-and-future-of-federal-reserve/"
+  },
+  {
+   "date": "2026-02-09",
+   "speaker": "Raphael Bostic",
+   "what": "Farm Journal Top Producer Summit, Nashville (monetary policy and agriculture); video only.",
+   "url": "https://www.atlantafed.org/news-and-events/speeches/2026/02/09/bostic-remarks-at-farm-journals-top-producer-summit"
+  },
+  {
+   "date": "2026-02-12",
+   "speaker": "Raphael Bostic",
+   "what": "AgriTalk podcast with Chip Flory on farming in the Southeast; audio only.",
+   "url": "https://www.atlantafed.org/news-and-events/media-interviews/2026/02/12/bostic-on-agritalk-podcast"
+  },
+  {
+   "date": "2026-02-19",
+   "speaker": "Austan Goolsbee",
+   "what": "Opening remarks at the Joint Conference on Financial Crises (Chicago Fed / Yale); event page has no text, video only.",
+   "url": "https://www.chicagofed.org/publications/speeches/2026/feb-19-joint-conference-financial-crises"
+  },
+  {
+   "date": "2026-02-24",
+   "speaker": "Austan Goolsbee",
+   "what": "Bloomberg Television interview with Michael McKee on inflation risk, tariffs and Powell; video behind paywall.",
+   "url": "https://www.bloomberg.com/news/videos/2026-02-24/fed-s-goolsbee-on-inflation-risk-tariffs-and-powell-video"
+  },
+  {
+   "date": "2026-02-24",
+   "speaker": "Raphael Bostic",
+   "what": "Marketplace interview with Kai Ryssdal looking back on his tenure; the Marketplace page is script-rendered (HTTP 202 to a plain fetch), so no machine-checkable quote.",
+   "url": "https://www.marketplace.org/story/2026/02/24/raphael-bostic-looks-back-on-nearly-nine-years-leading-the-atlanta-fed"
+  },
+  {
+   "date": "2026-03-02",
+   "speaker": "Austan Goolsbee",
+   "what": "'Trading Secrets' podcast with Jason Tartick; audio only.",
+   "url": "https://podcasts.apple.com/us/podcast/280-austan-goolsbee-chicago-fed-president-on-inflation/id1556286270?i=1000752473982"
+  },
+  {
+   "date": "2026-03-06",
+   "speaker": "Austan Goolsbee",
+   "what": "WSJ live-blog card 'Fed's Goolsbee warns on stagflation risks' (Nick Timiraos) and NYT interview (Colby Smith) on jobs-report day; both blocked or paywalled. The same day's Bloomberg TV interview is itemized.",
+   "url": "https://www.wsj.com/livecoverage/jobs-report-unemployment-stock-market-03-06-2026/card/fed-s-goolsbee-warns-on-stagflation-risks-NMlCBptdHUGIDhnnn5ZQ"
+  },
+  {
+   "date": "2026-03-23",
+   "speaker": "Austan Goolsbee",
+   "what": "Bloomberg headline 'Fed's Goolsbee Says He Could See Circumstances for Rate Hike' (from the CNBC interview that is itemized); the hike wording could not be opened in a quotable source.",
+   "url": "https://www.cnbc.com/video/2026/03/23/watch-cnbcs-full-interview-with-chicago-fed-president-austan-goolsbee.html"
+  },
+  {
+   "date": "2026-03-24",
+   "speaker": "Austan Goolsbee",
+   "what": "AP interview with Christopher Rugaber (mortgage rates, inflation); AP page returns 403.",
+   "url": "https://apnews.com/article/federal-reserve-mortgage-rates-inflation-1d97fb310d3632130919199952a71ffc"
+  },
+  {
+   "date": "2026-03-31",
+   "speaker": "Austan Goolsbee",
+   "what": "Opening remarks at the Economic Mobility Project virtual event 'Human Capital in a Time of Low Real Rates'; event page has no text.",
+   "url": "https://www.chicagofed.org/publications/speeches/2026/mar-31-economic-mobility-project"
+  },
+  {
+   "date": "2026-04-02",
+   "speaker": "Austan Goolsbee",
+   "what": "CNN interview with Brianna Keilar on the oil spike; video only.",
+   "url": "https://www.cnn.com/2026/04/02/world/video/ebof-austan-goolsbee-oil-prices-strait-of-hormuz"
+  },
+  {
+   "date": "2026-04-07",
+   "speaker": "Austan Goolsbee",
+   "what": "WJR-AM radio interview after the Detroit Economic Club event; Reuters paraphrases him saying debate at the FOMC table can be contentious. Audio only.",
+   "url": "https://podcasts.apple.com/us/podcast/focus-with-paul-w-smith-april-7-2026-full-show/id707508884?i=1000760100372"
+  },
+  {
+   "date": "2026-04-13",
+   "speaker": "Austan Goolsbee",
+   "what": "Fox News 'America Reports' on the Strait of Hormuz blockade; video page describes him cautioning about prolonged price hikes, no transcript.",
+   "url": "https://www.foxnews.com/video/6393034431112"
+  },
+  {
+   "date": "2026-04-15",
+   "speaker": "Austan Goolsbee",
+   "what": "Financial Times interview with Claire Jones and Sam Fleming; FT page blocked (403).",
+   "url": "https://www.ft.com/content/345e5dbc-d60a-4c78-a781-63c3b624a451"
+  },
+  {
+   "date": "2026-04-17",
+   "speaker": "Austan Goolsbee",
+   "what": "Noosphere conversation with Chuck Todd; YouTube video only.",
+   "url": "https://www.youtube.com/watch?v=OpP_6argasQ"
+  },
+  {
+   "date": "2026-05-08",
+   "speaker": "Austan Goolsbee",
+   "what": "Bloomberg / Crain's headline 'Goolsbee says all interest-rate options are on the table'; Crain's returns 403 and Bloomberg is paywalled.",
+   "url": "https://www.chicagobusiness.com/banking-finance/ccb-goolsbee-fed-interest-rates-20260508/"
+  },
+  {
+   "date": "2026-05-10",
+   "speaker": "Austan Goolsbee",
+   "what": "Financial Times podcast transcript 'Will AI help the Fed conquer inflation? With Austan Goolsbee' (title seen in Google News); FT blocked.",
+   "url": "https://www.ft.com/"
+  },
+  {
+   "date": "2026-05-13",
+   "speaker": "Susan Collins",
+   "what": "WSJ interview; Reuters headline 'Fed's Collins expects inflation pressures from Iran war to eventually subside, WSJ reports'. Both paywalled, no open copy found.",
+   "url": "https://www.wsj.com/"
+  },
+  {
+   "date": "2026-05-18",
+   "speaker": "Austan Goolsbee",
+   "what": "Fox Business 'The Claman Countdown' on Warsh's agenda; video titled 'This is the danger in periods where inflation is high and rising', no transcript.",
+   "url": "https://www.foxbusiness.com/video/6395964318112"
+  },
+  {
+   "date": "2026-05-28",
+   "speaker": "Austan Goolsbee",
+   "what": "WSJ headline 'Fed's Goolsbee Warns U.S. Economy Heading in Stagflationary Direction' (title seen in Google News); paywalled.",
+   "url": "https://www.wsj.com/"
+  }
+ ],
+ "coverage_notes": "Window 2026-01-01 to 2026-05-31. Sources: the four banks' own pages (Richmond speeches and media advisories; Boston speech PDFs and news write-ups; Chicago Fed speaking list plus the May 1 Wayback snapshot of its media-appearance list; Atlanta Fed speeches/interviews feed and president's essays), then wire copies found through the Kitco off-the-wire sitemap, the SRN News post search, Google News RSS title listings, Yahoo Finance, CNBC, CBS, PBS and NPR transcripts. investingLive was not used: its robots.txt disallows Claude agents. Thin spots. Collins: January and April have no policy remarks found (January has only a non-policy introduction); she appears to have spoken rarely as a non-voter. Barkin: April has only the Reuters interview published April 1 and May only the May 21 speech; no late-April or early-May appearances were found. Bostic: most January-February appearances are video or audio only, so 6 items against 7 unverified. Venable: one item, the May 12 essay; the Atlanta Fed feed lists no speeches or interviews by her from March to May and wire searches return nothing. Goolsbee: the Chicago Fed media list snapshot ends April 17, so May interviews were found through news listings only and some may be missing; about 16 TV, podcast and paywalled appearances are in the unverified list. Quote caveats. Kitco copies of Reuters stories from March onward contain zero-width characters inside sentences; quotes from Kitco were chosen from clean spans (the pipeline's normaliser also strips them). SRN News and the Boston Globe use curly apostrophes, quoted as on the page. Collins speech quotes are from the official PDF texts. The Yahoo Finance April 14 transcript is auto-generated. The Chicago magazine Q&A URL on the Chicago Fed list redirects to chicagotribune.com, which is the URL used. Dates. Bostic's WLRN interview is dated Jan 9 (spoken; the station write-up is Jan 12 and the Atlanta Fed lists it under Jan 12). The Indicator episode is dated April 6 (published; Reuters says taped April 1). Barkin's Reuters interview is dated April 1 (published; conducted March 31). Goolsbee's CNBC Tokyo interview is dated May 27 ET (May 28 in Tokyo). Barkin speech times come from Richmond Fed media advisories, not the speech pages. Scoring convention for Goolsbee in January-February: statements that affirm several cuts in 2026 conditional on inflation are scored -1; statements whose main message is 'not yet, policy may not even be restrictive' are scored 0. AI: Goolsbee, Barkin and Collins discuss AI investment, data-center demand and productivity as demand or overheating drivers; none links policy to AI debt financing or private credit in the pages opened, so this is tagged 'other' or 'growth', never 'ai_financing'. Context checks. The April 29 FOMC statement lists Miran (for a cut) and Hammack, Kashkari and Logan (against the easing bias) as dissenters, so three regional presidents dissented, not only Logan. A Reuters story of May 12 says Goolsbee 'dissented' in April; he was not a voter and is not on the official list. CBS describes Goolsbee as an alternate FOMC member in 2026. Venable's May 12 essay gives April CPI at 3.8 percent year over year and March PCE inflation was 3.5 percent."
+}

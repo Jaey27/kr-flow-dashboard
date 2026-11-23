@@ -1,0 +1,211 @@
+{
+ "collector": "A12",
+ "speakers_covered": [
+  "Stanley Druckenmiller"
+ ],
+ "items": [
+  {
+   "date": "2026-01-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "Morgan Stanley Hard Lessons Ep.4 (녹화 2026-01-30, 공개 2026-02-27) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "My guess is the Fed is certainly not gonna hike and probably gonna cut.",
+   "summary": "US economy already strong and getting stronger with fiscal stimulus; he guesses the Fed will not hike and will probably cut. Short bonds as a hedge: if the Fed cuts into a booming economy, inflation could take off.",
+   "summary_kr": "미국 경제는 이미 강하고 재정부양으로 더 강해질 것으로 봄. 연준은 인상은 확실히 안 하고 아마 인하할 것으로 추측함. 호황에 인하하면 인플레가 튈 수 있어 채권 숏을 헤지로 들고 있다고 밝힘.",
+   "score": -1,
+   "score_basis": "forecast",
+   "score_note": "연준이 인하할 것이라는 전망(probably). 본인이 인하를 지지한 것은 아님.",
+   "drivers": [
+    "growth",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "credit_view": null
+  },
+  {
+   "date": "2026-01-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "Morgan Stanley Hard Lessons Ep.4 (녹화 2026-01-30, 공개 2026-02-27) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "I couldn't think of anybody better prepared to be Fed Chair for what's ahead of us.",
+   "summary": "On Warsh's nomination the same day: an extraordinary talent who has 'been training for this for 25 years'. Also most excited about the Fed and Treasury (Warsh and Bessent) working together.",
+   "summary_kr": "Warsh 지명 당일 발언. 25년간 이 자리를 준비해 온 사람이라 평가하고, Warsh와 Bessent가 연준·재무부 공조를 해낼 것으로 낙관함. 금리 경로 언급은 없음.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "",
+   "drivers": [
+    "other"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "credit_view": null
+  },
+  {
+   "date": "2026-01-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "Morgan Stanley Hard Lessons Ep.4 (녹화 2026-01-30, 공개 2026-02-27) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "They're all preceded by asset bubbles.",
+   "summary": "Asked which 2026 risk he fears most, he picks narrative-driven bubbles: every really bad economic outcome was preceded by an asset bubble. But he adds 'I don't think we're there.'",
+   "summary_kr": "2026년 가장 두려운 위험으로 내러티브 버블을 꼽음. 대공황·금융위기 같은 큰 사고는 전부 자산 버블 뒤에 왔다고 봄. 다만 아직 그 단계는 아니라고 말함.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "",
+   "drivers": [
+    "financial_stability_credit"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "credit_view": "constructive"
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "TomorrowX Summit, Austin (2026-11-17) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.youtube.com/watch?v=6r3D-CMJkuI",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "The Fed is not cutting. They're hiking. We've had regime change at the Fed.",
+   "summary": "Almost none of the January portfolio remains. In January fed funds were 3.5% against 6% nominal growth, so policy was ridiculously loose; now the Fed is hiking under Warsh, who is unhappy about 15 years of free money and five years of above-target inflation. 'So we have monetary tightening going on.'",
+   "summary_kr": "1월 포트폴리오는 거의 안 남았다고 밝힘. 1월엔 기준금리 3.5%에 명목성장 6%라 정책이 터무니없이 느슨했는데, 지금은 Warsh 아래 연준이 인상 중이고 '레짐 체인지'라고 봄. 통화 긴축이 진행 중이라고 말함.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "긴축이 진행 중이라는 현상 진단. 특정 회의 전망은 없어 7.5.",
+   "drivers": [
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "credit_view": null
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "TomorrowX Summit, Austin (2026-11-17) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.youtube.com/watch?v=6r3D-CMJkuI",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "Credit spreads are widening.",
+   "summary": "Everything that made him bullish in January has flipped: commodities look to have topped (he is short copper), the advance-decline line peaked on August 14, credit spreads are widening. He is neither long nor short equities.",
+   "summary_kr": "1월에 강세였던 신호가 전부 뒤집혔다고 봄. 원자재는 고점을 친 듯해 구리 숏, 등락주선은 8/14 고점, 신용 스프레드는 벌어지는 중. 주식은 롱도 숏도 아님.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "",
+   "drivers": [
+    "financial_stability_credit"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "credit_view": "stress_rising"
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "TomorrowX Summit, Austin (2026-11-17) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.youtube.com/watch?v=6r3D-CMJkuI",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "I'm really alert to the fact that the second half of 27 could be economically disappointing.",
+   "summary": "With commodities weak and defensives leading cyclicals, he is alert to a disappointing second half of 2027 and is 'thinking about that in terms of interest rates'. In equities he looks for AI use cases rather than infrastructure.",
+   "summary_kr": "원자재 약세와 방어주 주도를 보며 2027년 하반기 경기 실망 가능성을 경계함. 이를 금리 쪽으로 생각 중이라고 말함. 주식은 AI 인프라가 아니라 use case를 본다고 밝힘.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "금리로 표현하겠다는 뜻이지만 연준 경로를 말한 것은 아니라 점수 없음.",
+   "drivers": [
+    "growth"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "credit_view": null
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "TomorrowX Summit, Austin (2026-11-17) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.youtube.com/watch?v=6r3D-CMJkuI",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "Politics, slash, the financing. Both concerning.",
+   "summary": "Completing the prompt 'The AI bear thesis that I respect the most is...', he answers politics and the financing, and says both are concerning.",
+   "summary_kr": "'가장 존중하는 AI 약세 논리는?'이라는 질문에 정치와 자금조달을 꼽고, 둘 다 우려스럽다고 답함.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "",
+   "drivers": [
+    "ai_financing"
+   ],
+   "tool": "none",
+   "ai_quote": "Politics, slash, the financing. Both concerning.",
+   "credit_view": "stress_rising",
+   "ai_side": "watch"
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Stanley Druckenmiller",
+   "role": "Duquesne Family Office",
+   "occasion": "TomorrowX Summit, Austin (2026-11-17) · Iliana Bouzali",
+   "type": "interview",
+   "source_url": "https://www.youtube.com/watch?v=6r3D-CMJkuI",
+   "notion_url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58",
+   "source_tier": "jae_notion",
+   "quote": "I do think sometime in the next 10 years we're going to get fiscal reform that will be engendered by a crisis in the financial markets.",
+   "summary": "On the deficit: 'slowly and then suddenly'. He worries the US will at some point look like France, and expects fiscal reform within ten years, forced by a financial-market crisis.",
+   "summary_kr": "재정적자는 '천천히, 그러다 한꺼번에' 터진다고 봄. 10년 안에 금융시장 위기가 재정 개혁을 강제할 것으로 예상함.",
+   "score": null,
+   "score_basis": "forecast",
+   "score_note": "",
+   "drivers": [
+    "fiscal_term_premium"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "credit_view": null
+  }
+ ],
+ "unverified": [
+  {
+   "date": "2026-08",
+   "speaker": "Stanley Druckenmiller",
+   "what": "노션 아카이브 4장: '재무부 국채 바이백 확대는 실수'(Bloomberg) — 텔레그램 요약 기준, 원문 미확인이라고 적혀 있음. 웹 수집분(8/24 WSJ 기고, CNBC 보도)과 같은 내용으로 보임.",
+   "url": "https://app.notion.com/p/41351e86376a81d1ba01d2269a2d0d58"
+  }
+ ],
+ "coverage_notes": "드러켄밀러는 Jae 노션 아카이브(스탠리 드러켄밀러 — 철학·생애·현재 view 아카이브)를 원장으로 함. 2026년 인터뷰 전문은 1/30 Hard Lessons와 11/17 TomorrowX 둘."
+}

@@ -1,0 +1,242 @@
+{
+ "ef4134946e": {
+  "score": 1,
+  "note": "조건부·확률 표현(base case, likely, if…expect)이고 시점이 없어 +2 → +1로 통일"
+ },
+ "bee4d6cf19": {
+  "score": 1,
+  "note": "조건부·확률 표현(base case, likely, if…expect)이고 시점이 없어 +2 → +1로 통일"
+ },
+ "63db663431": {
+  "score": 1,
+  "note": "조건부·확률 표현(base case, likely, if…expect)이고 시점이 없어 +2 → +1로 통일"
+ },
+ "6b982afcc5": {
+  "score": 1,
+  "note": "조건부·확률 표현(base case, likely, if…expect)이고 시점이 없어 +2 → +1로 통일"
+ },
+ "40d59c786c": {
+  "ai_side": "loose"
+ },
+ "8ec4a6c9d5": {
+  "ai_side": "demand"
+ },
+ "2ace64239b": {
+  "ai_side": "demand"
+ },
+ "4c4ff122d7": {
+  "ai_side": "watch"
+ },
+ "0b66411801": {
+  "ai_side": "loose"
+ },
+ "8523d3b21f": {
+  "ai_side": "demand"
+ },
+ "c269df6c76": {
+  "ai_side": "crowding"
+ },
+ "f5a4b44a9c": {
+  "ai_side": "watch"
+ },
+ "36742e7017": {
+  "ai_side": "demand"
+ },
+ "3a31251aa9": {
+  "ai_side": "calm"
+ },
+ "673744c30b": {
+  "ai_side": "loose"
+ },
+ "4e7a9c108a": {
+  "ai_side": "loose"
+ },
+ "768d0258bb": {
+  "ai_side": "watch"
+ },
+ "dec597a437": {
+  "ai_side": "watch"
+ },
+ "e4a6f96ce7": {
+  "ai_side": "calm"
+ },
+ "1758dda6ff": {
+  "ai_side": "crowding"
+ },
+ "29ae04ce2c": {
+  "ai_side": "watch"
+ },
+ "a77069ec14": {
+  "ai_side": "calm"
+ },
+ "f2a6f2a651": {
+  "ai_side": "watch"
+ },
+ "d641aa41d1": {
+  "ai_side": "watch"
+ },
+ "2358635a80": {
+  "ai_side": "crowding"
+ },
+ "350cfcb1ea": {
+  "ai_side": "demand"
+ },
+ "a702db37db": {
+  "ai_side": "crowding"
+ },
+ "2ccfb97e50": {
+  "ai_side": "loose"
+ },
+ "1514f1093b": {
+  "ai_side": "loose"
+ },
+ "60bed5f4c3": {
+  "ai_side": "watch"
+ },
+ "ca7069d074": {
+  "ai_side": "watch"
+ },
+ "8d9b51e5a9": {
+  "ai_side": "crowding"
+ },
+ "6aa9bf6c4a": {
+  "ai_side": "crowding"
+ },
+ "bd8cd856de": {
+  "ai_side": "watch"
+ },
+ "5dffa4ec07": {
+  "ai_side": "demand"
+ },
+ "4cf22dec45": {
+  "ai_side": "demand"
+ },
+ "d032a103d7": {
+  "ai_side": "demand"
+ },
+ "21508f06e4": {
+  "ai_side": "calm"
+ },
+ "b00f1b264a": {
+  "ai_side": "watch"
+ },
+ "23afa0c521": {
+  "ai_side": "watch"
+ },
+ "9a0b65cd81": {
+  "ai_side": "watch"
+ },
+ "cb6a3eb2fa": {
+  "ai_side": "watch"
+ },
+ "e0eec218e4": {
+  "ai_side": "watch"
+ },
+ "6794b90f9c": {
+  "ai_side": "crowding"
+ },
+ "3f32aa2ba8": {
+  "ai_side": "watch"
+ },
+ "9ca7e78a3b": {
+  "ai_side": "crowding"
+ },
+ "2eb85a55b1": {
+  "ai_side": "loose"
+ },
+ "8cd8102bc1": {
+  "ai_side": "watch"
+ },
+ "419f9a06b9": {
+  "ai_side": "calm"
+ },
+ "9f45e66ed3": {
+  "ai_side": "watch"
+ },
+ "358f43f54d": {
+  "ai_side": "watch"
+ },
+ "637e219696": {
+  "ai_side": "watch"
+ },
+ "1e0f027d00": {
+  "ai_side": "loose"
+ },
+ "c905409647": {
+  "ai_side": "demand"
+ },
+ "d4cfe3fce6": {
+  "drop": true,
+  "note": "같은 자리(11/17 TomorrowX) 발언은 노션 원장 항목으로 대체"
+ },
+ "f7c48e33a5": {
+  "ai_side": "watch"
+ },
+ "5673e13b00": {
+  "ai_side": "watch"
+ },
+ "f3250d96cb": {
+  "ai_side": "calm"
+ },
+ "7d6aefe8ee": {
+  "ai_side": "watch"
+ },
+ "5e17977497": {
+  "ai_side": "calm"
+ },
+ "de58f67fce": {
+  "ai_side": "crowding"
+ },
+ "947dc8852d": {
+  "ai_side": "watch"
+ },
+ "2d76bcee06": {
+  "ai_side": "watch"
+ },
+ "e1138cfbd9": {
+  "ai_side": "watch"
+ },
+ "72aac59591": {
+  "ai_side": "watch"
+ },
+ "b0a6b8eb14": {
+  "ai_side": "calm"
+ },
+ "a49258590b": {
+  "ai_side": "crowding"
+ },
+ "a02a7138a2": {
+  "ai_side": "calm"
+ },
+ "18a3d3de6f": {
+  "ai_side": "calm"
+ },
+ "cfa4b103f5": {
+  "ai_side": "calm"
+ },
+ "4f9a3d52ba": {
+  "ai_side": "crowding"
+ },
+ "ac8721644f": {
+  "ai_side": "watch"
+ },
+ "a07156c80e": {
+  "ai_side": "watch"
+ },
+ "3f3c1f552d": {
+  "score": -1,
+  "note": "재무부 게시 원문 기준. '연준이 늦추면 안 된다'는 언론 인용에만 있어 −2 → −1"
+ },
+ "9b888e59d4": {
+  "drop": true,
+  "note": "근거가 페이지 제목의 두 단어뿐이라 제외"
+ },
+ "08d089ce6f": {
+  "score": -1,
+  "note": "인하 지지는 유지하나 '정보를 다 보고 판단' 쪽이라 −1"
+ },
+ "e0b96b1ffe": {
+  "score": -1,
+  "note": "더 큰 인하 대신 '중립까지만'으로 물러섬 → −1"
+ }
+}

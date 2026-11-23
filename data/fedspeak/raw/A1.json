@@ -1,0 +1,639 @@
+{
+  "collector": "A1",
+  "speakers_covered": [
+    "Kevin Warsh",
+    "Jerome Powell"
+  ],
+  "items": [
+    {
+      "date": "2026-06-17",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, June 16-17 meeting: opening statement",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260617.pdf",
+      "source_tier": "official_transcript",
+      "quote": "This Committee will deliver price stability.",
+      "summary": "First press conference as Chair. FOMC held at 3.50-3.75% (12-0) and dropped forward guidance from a shortened statement. Warsh said inflation has run well ahead of 2% for more than five years, that the Committee is 'unambiguous and unanimous' on delivering price stability, and announced five task forces (communications, balance sheet, data, productivity and jobs, inflation frameworks). He did not submit an SEP dot; the SEP median funds rate was 3.8% for end-2026.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Hold, but the only risk he dwells on is inflation and the pledge is unconditional; no explicit hike signal, so +1 rather than +2.",
+      "drivers": [
+        "inflation",
+        "energy"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-06-17",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, June 16-17 meeting: Q&A on how restrictive policy is",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260617.pdf",
+      "source_tier": "official_transcript",
+      "quote": "I do see some restrictiveness on things like housing.",
+      "summary": "Asked twice whether the funds rate is restrictive, Warsh called the effect of policy 'uneven': somewhat restrictive for housing, but he said it is hard to use those words anywhere else, citing financial markets. He linked the unevenness to different transmission of the rate tool and the balance sheet tool, and said 'we've got some work to do on this price-stability front'.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Says policy is not restrictive outside housing, which leans tighter; no action signaled.",
+      "drivers": [
+        "inflation",
+        "financial_stability_credit"
+      ],
+      "tool": "both",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-06-17",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, June 16-17 meeting: Q&A on the next move",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260617.pdf",
+      "source_tier": "official_transcript",
+      "quote": "We’ll be meeting in six weeks, and we’ll take up the issue again.",
+      "summary": "Asked why the Fed did not tighten or threaten to, Warsh said that judgment was not expressed by any of the 19 participants, that only one proposal was on the table, and that he cannot give forward guidance. He declined to comment on two-year yields pricing more tightening and said dots were submitted 'with pencils'.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Explicit refusal to lean either way on the next meeting.",
+      "drivers": [
+        "inflation"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-01",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "ECB Forum on Central Banking, Sintra: policy panel with Lagarde, Bailey, Macklem (moderator Sara Eisen)",
+      "type": "panel_qa",
+      "source_url": "https://www.pbs.org/newshour/economy/federal-reserve-chair-warsh-emphasizes-political-independence-signals-focus-on-inflation",
+      "source_tier": "news_direct_quote",
+      "quote": "We're going to deliver price stability.",
+      "summary": "AP report of the panel (ECB programme lists it at 14:00 local; Reuters previewed a 9 a.m. EDT start). Warsh said anyone expecting the Fed to accept inflation above 2% would be disappointed, stressed independence, and declined to say what steps the Fed would take ('I'm not going to make a judgment now'). AP also reports he said signs of persistent inflation had moderated, citing lower inflation expectations.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Rules out tolerating above-2% inflation (pushes back on cut talk) but also says inflation-persistence risk has moderated and refuses any tactical signal; torn between 0 and +1, so 0.",
+      "drivers": [
+        "inflation",
+        "political"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-09",
+      "time_et": "15:00",
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "Fed press release announcing leadership and objectives of the five monetary policy task forces",
+      "type": "statement",
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm",
+      "source_tier": "official_text",
+      "quote": "The goal is straightforward: to ensure the Fed is best positioned to achieve our objectives in this consequential time.",
+      "summary": "Written statement by Warsh in the release naming the co-leads of the Communications, Balance Sheet Policy, Data, Productivity and Jobs, and Inflation Frameworks task forces. He calls the commitment to price stability and maximum employment unwavering. No statement on the rate path.",
+      "score": null,
+      "score_basis": "own_stance",
+      "score_note": "Framework and process only; no usable rate-path content.",
+      "drivers": [
+        "other"
+      ],
+      "tool": "none",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-14",
+      "time_et": "08:30",
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "Semiannual Monetary Policy Report, House Financial Services Committee",
+      "type": "testimony",
+      "source_url": "https://www.federalreserve.gov/newsevents/testimony/warsh20260714a.htm",
+      "source_tier": "official_text",
+      "quote": "The members of our Committee have no tolerance for persistently elevated inflation.",
+      "summary": "Prepared testimony: the June hold at 3.50-3.75% was focused on restoring price stability; activity is solid, the labor market broadly stable, and AI-driven business investment is the most striking feature of the economy. He described the five task forces, including a review of the ample-reserves regime. In Q&A (per Semafor, CNN and Bloomberg coverage) he said the soft June CPI did not mean 'mission accomplished', gave no rate signal, and said any balance-sheet change would be previewed well in advance.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Inflation is the dominant concern and he rejects reading the June CPI as mission accomplished; no explicit hike signal.",
+      "drivers": [
+        "inflation",
+        "growth"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-15",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "Semiannual Monetary Policy Report, Senate Banking Committee (Q&A)",
+      "type": "testimony",
+      "source_url": "https://wtop.com/business-finance/2026/07/fed-chair-warsh-sidesteps-senate-questions-on-inflation-ai-contact-with-trump/",
+      "source_tier": "news_direct_quote",
+      "quote": "these are all imperfect measures of the state of underlying inflation",
+      "summary": "AP report of the Senate hearing (prepared remarks identical to the House text on the Fed site). Warsh played down the cooler June inflation data as imperfect measures of underlying inflation, said a one-time price change from AI infrastructure investment is not necessarily inflationary because of a supply response, deferred the temporary-versus-permanent question to the task forces, and said he was chosen as 'an independent guy'. No rate signal.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Refuses to take comfort from better inflation prints and repeats the no-tolerance line, but also says AI-related price rises need not be inflationary; +1 for consistency with the identical prepared text the day before.",
+      "drivers": [
+        "inflation",
+        "political"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-29",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, July 28-29 meeting: opening statement",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260729.pdf",
+      "source_tier": "official_transcript",
+      "quote": "And where necessary and appropriate, we will not hesitate to act.",
+      "summary": "FOMC held at 3.50-3.75% by 9-3 (Hammack, Kashkari, Logan preferred +25bp). Warsh said there is 'no soft inflation target', that five-plus years of above-target inflation cannot be cured in nine weeks or by one month of price declines, and that nominal and real Treasury yields rose materially over the intermeeting period as markets reacted to data without Fed guidance. He listed four questions debated, including whether AI capex-driven chip price increases signal broader inflation and how much accommodation the balance sheet provides.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Hold, but the framing is entirely about inflation and readiness to act; no commitment to a hike.",
+      "drivers": [
+        "inflation",
+        "growth",
+        "tariffs_supply"
+      ],
+      "tool": "both",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-29",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, July 28-29 meeting: Q&A on why no hike and the reaction function",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260729.pdf",
+      "source_tier": "official_transcript",
+      "quote": "I wouldn’t characterize what we did as anything like a pause.",
+      "summary": "Warsh rejected the word 'pause', called it a period of 'watchful thinking, not watchful waiting', and said if inflation stays elevated through the forecast period interest rates 'could well be part of that solution'. He described his reaction function: with the labor market near equilibrium, a central banker who sees underlying inflation moving higher is more inclined to tighten. He said the cool June CPI mattered 'not much' to the decision.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Openly keeps a hike on the table and denies the hold is a pause, but stops short of saying a hike is needed.",
+      "drivers": [
+        "inflation"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-29",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, July 28-29 meeting: Q&A on balance sheet and transmission",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260729.pdf",
+      "source_tier": "official_transcript",
+      "quote": "The balance sheet probably works through some other channels",
+      "summary": "On transmission, Warsh said rates work through lending, credit, confidence and FX channels while the balance sheet works through signaling and portfolio balance, and that the Committee is keeping abreast of all tools. In the opening statement he framed the open question as how much accommodation the balance sheet is providing if rates are the primary instrument. No balance-sheet action was signaled; the statement kept the ample-reserves policy.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Hints the balance sheet is adding accommodation, but no action or timing; scored neutral.",
+      "drivers": [
+        "inflation",
+        "other"
+      ],
+      "tool": "balance_sheet",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-07-29",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, July 28-29 meeting: Q&A on market-led tightening",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260729.pdf",
+      "source_tier": "official_transcript",
+      "quote": "The markets have done quite a bit.",
+      "summary": "Asked why rates should not be higher with the funds rate about 75bp below the two-year yield, Warsh said rates are already higher than 42 days earlier because markets tightened both nominal and real yields on their own, that the Fed observes this without taking dictation, and that tighter financial conditions gave the Committee some comfort. He said the Fed will not be constrained by market pricing of a September hike.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Uses market-led tightening to explain holding; neither endorses nor pushes back on hike pricing.",
+      "drivers": [
+        "inflation",
+        "growth",
+        "other"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-08-28",
+      "time_et": "10:00",
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "Jackson Hole Economic Policy Symposium speech, 'In Our Time'",
+      "type": "speech",
+      "source_url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+      "source_tier": "official_text",
+      "quote": "We must be confident that underlying inflation is moving to our objective, clearly and at sufficient speed.",
+      "summary": "Warsh said the economy has strengthened, the labor market is consistent with full employment, and PCE inflation is 3.7% (six-month 4.1%), so the Fed's predominant focus should be prices. He said he would be hard pressed to call broad financial conditions restrictive (tight credit spreads, easy bank lending standards, strong issuance) and that summer inflation readings do not show underlying improvement. He set the standard quoted here, adding 'Otherwise, we have work to do', and said he is 'committed to a discipline, not to a decision'. He also argued against routine forward guidance and said unconventional tools should be used sparingly.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Sets a conditional bar that points to tightening and says conditions are not restrictive, but explicitly declines to commit to a decision.",
+      "drivers": [
+        "inflation",
+        "financial_stability_credit",
+        "growth",
+        "energy"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-08-31",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "G20 finance ministers and central bank governors meeting, Asheville: opening plenary remarks",
+      "type": "speech",
+      "source_url": "https://www.globalbankingandfinance.com/feds-warsh-past-global-savings-glut-turning-investment-surge/",
+      "source_tier": "news_direct_quote",
+      "quote": "If I were to try to characterize this moment, it would be one of a global investment surge",
+      "summary": "Reuters report of rare public remarks by a Fed chair at a G20 plenary. Warsh said the old 'global savings glut' has given way to a global investment surge, that secular stagnation no longer applies, and that the key question is underlying growth potential and productivity. No comment on the rate path in the quoted remarks.",
+      "score": null,
+      "score_basis": "own_stance",
+      "score_note": "Growth and productivity framing only; no usable rate-path content.",
+      "drivers": [
+        "growth"
+      ],
+      "tool": "none",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-09-16",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, September 15-16 meeting: opening statement",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+      "source_tier": "official_transcript",
+      "quote": "So we removed a dose of accommodation.",
+      "summary": "FOMC raised the target range 25bp to 3.75-4.00% by 12-0. Warsh said the economy is strengthening, the labor side of the mandate is in good shape, inflation is too high and has been for too long (PCE about 3.6% in August), and the Jackson Hole standard 'has not been satisfied'. He said the Committee widely shared his view that financial conditions were not restrictive. SEP median funds rate 4.1% for end-2026 and end-2027; he again submitted no projection.",
+      "score": 2,
+      "score_basis": "own_stance",
+      "score_note": "Announces and justifies a hike he voted for and says the standard for confidence on inflation is not met; no pre-commitment to more.",
+      "drivers": [
+        "inflation",
+        "financial_stability_credit",
+        "growth",
+        "energy"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-09-16",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, September 15-16 meeting: Q&A on whether more hikes follow",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+      "source_tier": "official_transcript",
+      "quote": "not going to prejudge any future decisions we make",
+      "summary": "Asked whether the hike starts a sequence, Warsh said he is 'not in the forward guidance business' and would not prejudge future decisions; the SEP forecasts are his colleagues', not his. He said the action 'starts to show we're serious' and that it was the Fed's own decision, not a market-led one.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Declines to signal either a follow-up hike or a stop.",
+      "drivers": [
+        "inflation"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-09-16",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, September 15-16 meeting: Q&A on restrictiveness and neutral",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+      "source_tier": "official_transcript",
+      "quote": "my colleagues were hard pressed to describe it that way, too",
+      "summary": "Asked whether rates are now restrictive, Warsh repeated that he was hard pressed to call financial conditions restrictive and said colleagues agreed; the hike removed a dose of accommodation so that financial and credit conditions are more consistent with the mandate. He said the neutral rate has no operational effect on decisions, and that he does not believe the Fed needs to harm the labor market to reach its objective.",
+      "score": 1,
+      "score_basis": "own_stance",
+      "score_note": "Describes pre-hike policy as accommodative and gives no sign that 3.75-4.00% is restrictive; leans tighter without committing.",
+      "drivers": [
+        "inflation",
+        "financial_stability_credit"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-09-16",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, September 15-16 meeting: Q&A on rising long-term yields and AI capex funding",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+      "source_tier": "official_transcript",
+      "quote": "the so-called hyperscalers are out in the market raising funding",
+      "summary": "Asked what higher long-term yields signal, Warsh gave three reasons: economic strength, competition for capital from the capex surge with hyperscalers raising funding, and geopolitics (energy and commodity prices, crack spreads). He said he wants bond prices to tell their own story.",
+      "score": null,
+      "score_basis": "own_stance",
+      "score_note": "Explains why yields rose; states no stance on the policy rate path.",
+      "drivers": [
+        "ai_financing",
+        "fiscal_term_premium",
+        "growth",
+        "energy"
+      ],
+      "tool": "none",
+      "ai_quote": "the competition for capital is real, and I think it partly explains the increase in yields"
+    },
+    {
+      "date": "2026-10-15",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "IMF-World Bank Annual Meetings, Bangkok: fireside chat with IMF Managing Director Georgieva",
+      "type": "interview",
+      "source_url": "https://www.koreatimes.co.kr/world/20261016/feds-warsh-sees-us-economic-tailwinds-mum-on-rate-path-view",
+      "source_tier": "news_direct_quote",
+      "quote": "I don't believe in saying now what I might do at the meetings that we have in the balance of this year.",
+      "summary": "Reuters report. Held Friday Oct 16 morning Bangkok time; first wire coverage is timestamped 03:51 UTC Oct 16 (23:51 ET Oct 15), so the US Eastern date is Oct 15 and the first US cash session after it is Oct 16. Warsh said the Fed 'removed a dose of accommodation about a month ago', described a synchronous global tightening with 'no free riders', said the US investment surge is broadening beyond AI, and refused to prejudge the October and December meetings. Reuters noted this left intact the expectation of no hike in October.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "No lean on the next move; restates past action only.",
+      "drivers": [
+        "inflation",
+        "growth"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-10-28",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, October 27-28 meeting: opening statement",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+      "source_tier": "official_transcript",
+      "quote": "The information we receive over the coming period will help us determine where we want policy to be.",
+      "summary": "FOMC held at 3.75-4.00% by 10-2 (Cook and Hammack preferred +25bp). Warsh said growth has strengthened, employment conditions are quite positive, and inflation is too high with energy prices up again. Since the September hike financial and credit conditions have tightened for some borrowers; he is 'unwilling and unable' to call them tight. He said the Committee has shown its willingness to act, and announced that from 2027 one of eight meetings (two in 2028) will be strategy-only with no rate vote.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Rhetoric still centers on inflation and readiness to act, but he chose to wait against two hawkish dissents and says tightening is working; torn between 0 and +1, so 0.",
+      "drivers": [
+        "inflation",
+        "financial_stability_credit",
+        "energy",
+        "growth"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-10-28",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, October 27-28 meeting: Q&A on a December hike",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+      "source_tier": "official_transcript",
+      "quote": "I also don’t believe in prejudging meetings.",
+      "summary": "Asked why not hike now and whether colleagues still back another hike this year, Warsh said quashing inflation is not about a fixed calendar date, that the 'new monetary medicine' is starting to work with inflation compensation and expectations moving the right way, and that there are 'no firm conclusions' on whether the current rate is the right one. He called the period ahead information rich and said the Committee will be better positioned in six weeks.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Leaves December open both ways and stresses signs that policy is working.",
+      "drivers": [
+        "inflation"
+      ],
+      "tool": "rates",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-10-28",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, October 27-28 meeting: Q&A on AI investment, credit conditions and rate sensitivity",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+      "source_tier": "official_transcript",
+      "quote": "You’ve seen credit spreads for certain assets widen out, gap out.",
+      "summary": "Asked whether AI-driven demand is insensitive to rates, Warsh said he was skeptical of that view: rates 'get in the cracks', and since early September investors inside and outside the technology complex have become more discriminating, with credit spreads on some assets gapping wider. He said capex strength is broadening beyond AI, most colleagues do not judge the economy to be running too hot, the goal is not to 'throw sand in the gears', and tighter financial conditions tell him policy is working.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Says the hike is biting on AI-related financing and is comfortable with that; does not call for more or for a stop.",
+      "drivers": [
+        "ai_financing",
+        "financial_stability_credit",
+        "growth",
+        "inflation"
+      ],
+      "tool": "rates",
+      "ai_quote": "Interest rates have had an effect."
+    },
+    {
+      "date": "2026-10-28",
+      "time_et": null,
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "FOMC press conference, October 27-28 meeting: Q&A on shrinking the balance sheet",
+      "type": "press_conference",
+      "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+      "source_tier": "official_transcript",
+      "quote": "will be fed into the FOMC probably early in the first quarter",
+      "summary": "Asked how further balance-sheet shrinkage would avoid disrupting foreign Treasury holders and dollar funding, Warsh said the question sits with the Balance Sheet Task Force, whose recommendations should reach the FOMC probably early in the first quarter of 2027, and that any change is unlikely to have a material effect on the current policy conjuncture.",
+      "score": 0,
+      "score_basis": "own_stance",
+      "score_note": "Rules out near-term balance-sheet tightening as a policy lever; neutral for the rate path.",
+      "drivers": [
+        "other"
+      ],
+      "tool": "balance_sheet",
+      "ai_quote": null
+    },
+    {
+      "date": "2026-11-16",
+      "time_et": "12:00",
+      "date_basis": "event",
+      "speaker": "Kevin Warsh",
+      "role": "Fed Chair",
+      "occasion": "Opening remarks, Productivity and Jobs Task Force Conference (Federal Reserve Board and San Francisco Fed)",
+      "type": "speech",
+      "source_url": "https://www.federalreserve.gov/newsevents/speech/warsh20261116a.htm",
+      "source_tier": "official_text",
+      "quote": "with important implications for monetary policy down the road",
+      "summary": "Warsh discussed 'super intelligence' as a new general-purpose technology and laid out three illustrative staff scenarios: broad productivity gains near full employment, growth with labor-market disruption, and a disappointment in which expected returns turn down after heavy capital investment and equity valuations fall, slowing the economy. He said these are not forecasts and gave no view on the current rate path or the December meeting.",
+      "score": null,
+      "score_basis": "own_stance",
+      "score_note": "Official speech with no statement on the current policy stance.",
+      "drivers": [
+        "growth",
+        "labor",
+        "other"
+      ],
+      "tool": "none",
+      "ai_quote": null
+    }
+  ],
+  "unverified": [
+    {
+      "date": "2026-07-01",
+      "speaker": "Kevin Warsh",
+      "what": "Sintra panel remarks on the balance sheet (it should be smaller, rates should be the main tool, any change decided collectively and well telegraphed). Only seen in Il Sole 24 Ore and Herald Corp coverage, whose quotes are translations rather than his English words; no transcript found.",
+      "url": "https://en.ilsole24ore.com/art/the-federal-reserve-will-remain-independent-AIj8RvxD"
+    },
+    {
+      "date": "2026-07-14",
+      "speaker": "Kevin Warsh",
+      "what": "House hearing Q&A: Bloomberg reports he 'made it clear the options to curb inflation include interest rates' and for the first time hinted at how the Fed may respond. Article body is paywalled; no direct quote on rates visible.",
+      "url": "https://news.bloomberglaw.com/daily-tax-report-international/warsh-says-inflation-mission-not-accomplished-hints-at-options"
+    },
+    {
+      "date": "2026-07-14",
+      "speaker": "Kevin Warsh",
+      "what": "House hearing Q&A direct quotes not used as a separate item (same occasion as the prepared testimony): 'That is not my view' on the June CPI meaning mission accomplished (Semafor), and 'no changes in balance sheet policy would happen without good advance notice' (CNN via KTVZ).",
+      "url": "https://semafor.com/article/07/14/2026/fed-chair-warsh-condemns-inflation-while-dodging-on-hikes"
+    },
+    {
+      "date": "2026-10-15",
+      "speaker": "Kevin Warsh",
+      "what": "Bangkok fireside chat: InvestingLive paraphrases him as calling the October and December meetings the 'crystallising moments' and saying AI will lift demand before supply. Full video exists (IMF, Bloomberg TV) but no transcript was found, so only wire-quoted sentences are used.",
+      "url": "https://investinglive.com/central-banks/warsh-won-t-prejudge-rest-of-2026-names-october-and-december-as-decision-points/"
+    },
+    {
+      "date": "2026-09-30",
+      "speaker": "Jerome Powell",
+      "what": "Fed inspector general report on the building renovation cleared Powell; coverage says Powell declined to comment. No monetary-policy content and no quote.",
+      "url": "https://www.axios.com/2026/09/30/fed-powell-ig-building"
+    }
+  ],
+  "coverage_notes": "Warsh: 23 items from 11 occasions (4 press conferences split into opening statement plus Q&A signals as instructed, 2 Fed speeches, House and Senate testimony, Sintra panel, G20 Asheville remarks, Bangkok IMF chat, 1 press-release statement). The Fed speech index (json/ne-speeches.json) and testimony index list only two Warsh speeches and one testimony since June; Reuters (Jul 1) confirms Sintra was his first public appearance after the June 17 press conference, so June has only the press conference. No Warsh media interview was found in any month; searches by month for August (pre-Jackson Hole), early October and November 17-23 returned nothing beyond the items here. He mentioned a central bank meeting in Basel in early September; it was closed-door and no remarks were found. Powell: 0 items. The Fed speech index has no Powell entry after his May 31 award remarks (20:30 EDT, one day before the window; federalreserve.gov/newsevents/speech/files/powell20260531a.pdf), and no interview, panel or statement on policy was found for June-November. He did not speak at the June 2 Brookings retrospective on his chairmanship (transcript checked). FOMC minutes show Powell voted with the majority at all four meetings (June hold, July hold, September +25bp, October hold); neither Warsh nor Powell dissented, so there are no dissent items. time_et: speech and testimony times are the Fed index listing times (ET); the July 9 time is the release time on the page; all others null. The Bangkok item is dated Oct 15 because the remarks were made before 23:51 ET on Oct 15 (Oct 16 morning local). Quote matching: press conference quotes are copied from the PDF text layer and use typographic apostrophes (U+2019); the Oct 28 opening-statement quote wraps across a line break in the PDF, all other PDF quotes sit on one line. The PBS page (Sintra) encodes the apostrophe in the quote as an HTML entity in raw source. Blackout dates come from the Atlanta Fed page because the Board calendar page does not list them and the Board blackout-calendar PDF returned 404. FOMC facts: the 2027 schedule released Nov 12 lists Jan 26-27 as the next meeting after December and makes Oct 26-27, 2027 a strategy-only meeting.",
+  "fomc_meetings": [
+    {
+      "date": "2026-06-17",
+      "decision": "hold",
+      "target_range": "3.50-3.75%",
+      "vote": "12-0",
+      "dissents": [],
+      "sep": true,
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm",
+      "blackout_start": "2026-06-06",
+      "blackout_end": "2026-06-18",
+      "blackout_source_url": "https://www.atlantafed.org/news-and-events/press-room/blackout-periods"
+    },
+    {
+      "date": "2026-07-29",
+      "decision": "hold",
+      "target_range": "3.50-3.75%",
+      "vote": "9-3",
+      "dissents": [
+        {
+          "name": "Beth M. Hammack",
+          "preferred": "+25bp"
+        },
+        {
+          "name": "Neel Kashkari",
+          "preferred": "+25bp"
+        },
+        {
+          "name": "Lorie K. Logan",
+          "preferred": "+25bp"
+        }
+      ],
+      "sep": false,
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm",
+      "blackout_start": "2026-07-18",
+      "blackout_end": "2026-07-30",
+      "blackout_source_url": "https://www.atlantafed.org/news-and-events/press-room/blackout-periods"
+    },
+    {
+      "date": "2026-09-16",
+      "decision": "+25bp",
+      "target_range": "3.75-4.00%",
+      "vote": "12-0",
+      "dissents": [],
+      "sep": true,
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "blackout_start": "2026-09-05",
+      "blackout_end": "2026-09-17",
+      "blackout_source_url": "https://www.atlantafed.org/news-and-events/press-room/blackout-periods"
+    },
+    {
+      "date": "2026-10-28",
+      "decision": "hold",
+      "target_range": "3.75-4.00%",
+      "vote": "10-2",
+      "dissents": [
+        {
+          "name": "Lisa D. Cook",
+          "preferred": "+25bp"
+        },
+        {
+          "name": "Beth M. Hammack",
+          "preferred": "+25bp"
+        }
+      ],
+      "sep": false,
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+      "blackout_start": "2026-10-17",
+      "blackout_end": "2026-10-29",
+      "blackout_source_url": "https://www.atlantafed.org/news-and-events/press-room/blackout-periods"
+    },
+    {
+      "date": "2026-12-09",
+      "decision": null,
+      "target_range": null,
+      "vote": null,
+      "dissents": null,
+      "sep": true,
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "blackout_start": "2026-11-28",
+      "blackout_end": "2026-12-10",
+      "blackout_source_url": "https://www.atlantafed.org/news-and-events/press-room/blackout-periods",
+      "note": "Upcoming meeting (Dec 8-9); the Fed calendar marks it as an SEP meeting. No decision yet."
+    }
+  ]
+}

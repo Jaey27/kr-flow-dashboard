@@ -41,6 +41,7 @@ LINKS = [
 
 MACRO_CSS = r"""
 #tab-macro .card{margin-bottom:16px}
+.mx-subnav{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px}.mx-subnav .nav-link{font-size:12.5px;padding:5px 14px}
 .mx-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
 .mx-bar .lbl{font-size:12px;color:var(--text-dim)}
 .mx-bar label{font-size:12px;color:var(--text-dim);display:inline-flex;gap:6px;align-items:center;cursor:pointer}
@@ -134,6 +135,10 @@ def _links_html() -> str:
 
 MACRO_HTML = r"""
 <div id="tab-macro" hidden>
+<!-- 매크로 안 하위 탭: 금리 발언 tracker(기본) | 금리·시장. tracker 는 docs/fedspeak.html(scripts/fedspeak/build.py --docs)을 iframe 으로 띄운다(흰 배경 단독 페이지, Jae 11/23) -->
+<div class="mx-subnav" role="tablist" aria-label="매크로 보기"><button class="nav-link active" type="button" data-mx="fed" role="tab">금리 발언 tracker</button><button class="nav-link" type="button" data-mx="rates" role="tab">금리·시장</button><a class="nav-link" href="fedspeak.html" target="_blank" rel="noopener">tracker 새 창 ↗</a></div>
+<div id="mx-fs"><iframe id="mx-fs-frame" title="금리 발언 tracker" loading="lazy" style="width:100%;height:calc(100vh - 140px);min-height:640px;border:0;border-radius:12px;background:#fff;display:block"></iframe></div>
+<div id="mx-main" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="mx-presets"></div>
   <div class="range-dates"><input id="mx-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2026-04-15, 260415, 4/15)"><span>~</span><input id="mx-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="mx-rlab"></span></div>
   <span class="asof" id="mx-asof"></span></div>
@@ -155,6 +160,7 @@ MACRO_HTML = r"""
 <div class="mx-grid" id="mx-grid"></div>
 <details class="card mx-links"><summary>링크 서랍 — 바이백·이격도·국채·정치 아티팩트 (매일 보는 것 아님)</summary>
   <div class="body">__LINKS__</div></details>
+</div><!-- /mx-main -->
 </div>
 <div id="tab-econ" hidden>
 <section class="card"><div class="card-head"><div><div class="card-title">발표 일정 — 발표 전후에만 본다</div>
@@ -256,7 +262,7 @@ MACRO_JS = r"""
 'use strict';
 var M=window.__MACRO__;
 var root=document.getElementById('tab-macro');
-if(!M){root.innerHTML='<section class="card mx-empty">매크로 데이터가 없습니다 — <code>python scripts/macro_data.py</code> 를 먼저 실행하세요.</section>';window.MACRO={show:function(){}};return;}
+if(!M){document.getElementById('mx-main').innerHTML='<section class="card mx-empty">매크로 데이터가 없습니다 — <code>python scripts/macro_data.py</code> 를 먼저 실행하세요.</section>';window.MACRO={show:function(){}};return;}
 var D=M.dates,S=M.series,N=D.length;
 var css=getComputedStyle(document.documentElement);function cv(n){return css.getPropertyValue(n).trim();}
 var COL={text:cv('--text'),dim:cv('--text-dim'),muted:cv('--text-muted'),teal:cv('--hl-teal'),grid:'rgba(151,252,228,.13)',ov:'rgba(200,215,212,.75)'};
@@ -464,6 +470,20 @@ renderTiles();renderVerdict();renderFW();renderFed();build();
 var pre=ls('preset');var pp=PR.filter(function(p){return p[0]===pre;})[0]||PR[2];setP(pp[1],pp[0]);
 window.MACRO={show:function(){drawOv();if(!SHOWN){SHOWN=true;CH.forEach(draw);drawDec();}else CH.forEach(function(c){c.ch&&c.ch.resize();});}};
 if(!root.hidden) window.MACRO.show();  // 앱 스크립트가 먼저 매크로 탭을 열었을 때
+})();
+// ---- 매크로 하위 탭: 금리 발언 tracker | 금리·시장 ----
+(function(){
+var root=document.getElementById('tab-macro'),fed=document.getElementById('mx-fs'),main=document.getElementById('mx-main'),fr=document.getElementById('mx-fs-frame');
+var base=window.MACRO&&window.MACRO.show?window.MACRO.show:function(){};
+function ls(k,v){try{if(v===undefined) return localStorage.getItem('krflow.'+k);localStorage.setItem('krflow.'+k,v);}catch(e){return null;}}
+var SUB=ls('mxsub')||'fed';
+function apply(){fed.hidden=SUB!=='fed';main.hidden=SUB!=='rates';
+  Array.prototype.forEach.call(document.querySelectorAll('.mx-subnav [data-mx]'),function(b){var on=b.getAttribute('data-mx')===SUB;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  if(root.hidden) return;
+  if(SUB==='fed'){if(!fr.getAttribute('src')) fr.setAttribute('src','fedspeak.html');}else base();}
+Array.prototype.forEach.call(document.querySelectorAll('.mx-subnav [data-mx]'),function(b){b.onclick=function(){SUB=b.getAttribute('data-mx');ls('mxsub',SUB);apply();};});
+window.MACRO={show:apply};
+apply();
 })();
 """
 

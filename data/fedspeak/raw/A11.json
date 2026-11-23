@@ -1,0 +1,69 @@
+{
+  "collector": "A11",
+  "speakers_covered": [
+    "Neel Kashkari",
+    "Lorie Logan",
+    "Anna Paulson"
+  ],
+  "items": [],
+  "unverified": [
+    {
+      "date": "2026-11-18",
+      "speaker": "Neel Kashkari",
+      "what": "FinRegLab AI Symposium, Washington (conversation with Catherine Rampell, scheduled 4:15 p.m. ET per the Newsquawk primer). Still no text page with a direct quotation: the Minneapolis Fed page is video only; Yahoo/Investing.com, investingLive and Newsquawk paraphrase; the two quoted fragments on the FXStreet page ('absolutely can impact investment levels', 'clearly missing on [the] inflation side') are wire-headline wording, not his words. I pulled the auto-generated YouTube captions of the official stream (7:10:01 to 7:40:17 of the Day 1 video) and saved that segment next to this file as A11_evidence_kashkari_finreglab_20261118_autocaptions.txt. Per the captions he said: 'I absolutely think interest rates work'; 'When these disconnects have happened in the past, financial markets have tended to be right'; 'financial markets are telling us, hey, you may need to be more aggressive with monetary policy than you currently appreciate in order to deliver on that'; 'it's clearly that we're missing on the inflation side of the mandate. And so that's what we're going to need to do.' He corrected the moderator ('we raised in September, but then we didn't raise October'), said data centers are largely debt financed so higher Treasury rates and spreads do restrain them, and said a collapse of AI circular financing would more likely trigger a recession than a financial-stability event (not his base case). No comment on December or on 25 versus 50bp. Implied score +1. A ready-made item is in candidate_item in case caption text is accepted through the manual-verify route.",
+      "url": "https://www.minneapolisfed.org/speeches/2026/neel-kashkari-at-the-finreglab-ai-symposium ; https://www.youtube.com/watch?v=dcFJQCV56oo ; https://www.fxstreet.com/news/feds-kashkari-markets-believe-central-bank-will-have-to-hike-more-than-officials-now-expect-202611182306 ; https://www.newsquawk.com/headlines/primer---todays-fedspeak-18th-november-2026-includes-daly-barr-williams-kashkari-fomc-meeting-minutes-are-also-released",
+      "candidate_item": {
+        "date": "2026-11-18",
+        "time_et": "16:15",
+        "date_basis": "event",
+        "speaker": "Neel Kashkari",
+        "role": "President, Federal Reserve Bank of Minneapolis (2026 FOMC voter)",
+        "occasion": "FinRegLab AI Symposium, Washington DC: conversation with Catherine Rampell",
+        "type": "panel_qa",
+        "source_url": "https://www.youtube.com/watch?v=dcFJQCV56oo",
+        "source_tier": "official_transcript",
+        "quote": "you may need to be more aggressive with monetary policy than you currently appreciate",
+        "summary": "Kashkari said the gap between the September projections and market pricing is one of the biggest such disconnects, that markets have tended to be right in past disconnects, and that he reads it as markets saying neutral is higher and rates will need to go higher to return inflation to 2 percent. He said the Fed is clearly missing on the inflation side of its mandate, demand and the labor market are surprisingly resilient, and interest rates do work on AI capex because data centers are largely debt financed. He gave no view on the size or timing of the December move.",
+        "score": 1,
+        "score_basis": "own_stance",
+        "score_note": "CANDIDATE ONLY, not machine-verifiable: the quote comes from YouTube auto-generated captions of the official event video (no text page exists), and in context he is voicing what markets are telling the Fed. He does not push back and says the Fed is missing on inflation, but makes no explicit call on December, so +1 rather than +2. [AI link: financing/capital] strict match.",
+        "drivers": [
+          "inflation",
+          "growth",
+          "ai_financing",
+          "labor",
+          "tariffs_supply",
+          "energy",
+          "financial_stability_credit"
+        ],
+        "tool": "rates",
+        "ai_quote": "these data centers are in part in large part being funded by debt investments"
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "speaker": "Neel Kashkari",
+      "what": "Newsquawk primer lists him moderating a panel at a Minneapolis Fed event at 10:40 a.m. EDT. No headline, wire story or bank page with any remark by him was found (the Newsquawk headline sitemap has no Kashkari entry between October 8 and November 18). Moderator role, so probably no policy content.",
+      "url": "https://www.newsquawk.com/headlines/primer---todays-fedspeak-includes-waller-kashkari-musalem"
+    },
+    {
+      "date": "2026-10-06",
+      "speaker": "Lorie Logan",
+      "what": "Newsquawk primer lists her moderating an event at the Dallas Fed at 7:00 p.m. EDT. No remarks were posted on the Dallas Fed speeches page and no wire headline followed. Moderator role, so probably no policy content.",
+      "url": "https://www.newsquawk.com/headlines/primer---todays-fedspeak-includes-williams-musalem-bowman-schmid-logan"
+    },
+    {
+      "date": "2026-10-01",
+      "speaker": "Anna Paulson",
+      "what": "District listening visit to Wellsboro and Tioga County, Pa. The local paper quotes her only on how regional conversations 'help inform my views about monetary policy, and I bring those perspectives to Federal Open Market Committee meetings'; nothing on inflation, rates or the outlook. Not an official speech and no policy stance, so no item.",
+      "url": "https://www.tiogapublishing.com/the_wellsboro_mansfield_gazette/news/local/partnerships-community-support-are-key-to-success-business-owners-tell-federal-reserve-bank-president/article_0f94406c-6ede-4030-a40e-0955bca60ae8.html"
+    },
+    {
+      "date": "2026-06-12",
+      "speaker": "Anna Paulson",
+      "what": "NJBIZ article 'Philadelphia Fed's Paulson Sees Resilience in South Jersey', listed on the Philadelphia Fed press-coverage page. A search snippet dates it June 12 and says it draws on a 'recent interview' after her late-May South Jersey visit. The page sits behind a bot check (HTTP 403) and has no archive copy, so it was not read; the date and the interview are from the snippet only. The one quote in the snippet is about the trip, not policy. This is the only trace of a June appearance.",
+      "url": "https://njbiz.com/philadelphia-fed-anna-paulson-south-jersey-economy/ ; https://www.philadelphiafed.org/about-us/media-appearances"
+    }
+  ],
+  "coverage_notes": "RESULT: no new verifiable items. The first-pass gaps for these three speakers are almost entirely real silences, not missed occasions. All 26 first-pass items for the three speakers already verify as exact in ledger.json. Evidence by speaker follows. KASHKARI: (1) The Minneapolis Fed publishes his full monthly schedule (https://www.minneapolisfed.org/about-us/leadership/presidents-schedule); the June, July, August and September 2026 PDFs were opened. Every public or media entry in them is already in A5: June 2 Bank of Korea panel, June 26 Bloomberg interview (Catarina Saraiva) and Aspen panel, June 29 NPR, August 5 CNBC Squawk Box, August 23 CBS Face the Nation, the Fox 'Sunday Morning Futures' interview, September 30 CFR. July has no interview, speech or public event at all (employee town halls, a Helena, Mont., business roundtable, internal calls), so he said nothing in public before the July 28-29 dissent. September has nothing before the Fox interview. The only other entry is a five-minute welcome at the bank's Bank Holding Company Executive Conference on August 25 (not published). The October and November schedules are not posted yet (404). (2) For October 2 to November 23 I used the Newsquawk headline sitemaps (all 7 files, about 30 Kashkari entries), the SRN News archive of Reuters stories (WordPress search API, all posts since June 1), month-by-month web searches, Bloomberg Law/BGOV and Kitco searches, and the CBS Face the Nation transcripts for October 4, 11, 18, 25 and November 1, 15 (the November 8 and 22 pages returned 404). Newsquawk's November 18 primer says his previous remarks were 'at the end of September, before the October FOMC'. So between the October 1 interviews and November 18 no policy remarks by him were reported: no reaction to the October 28 hold, and nothing on December until the FinRegLab conversation, which is video only (see unverified, with caption text). The Minneapolis Fed people page still lists only four events in the window and one essay (July 31). LOGAN: the Dallas Fed retrospective calendar (https://www.dallasfed.org/fed/leadership/logan/calendar, read through a page-summary tool because the raw HTML served only placeholder data; it runs to September 29) shows no interview entry in 2026 and no remarks, speech, panel or moderated conversation in August or September: only attendance at the Aspen Institute Program on the World Economy (August 23-24), Jackson Hole (August 28-29) and the North Capital Forum in Mexico City (September 27), plus business roundtables and a UT Austin class visit. The speeches page has nothing beyond the nine texts A5 opened (latest November 13); the releases page has only the July 31 dissent statement. Newsquawk and SRN show no Logan headline outside those occasions except an October 6 moderator slot. No Logan media interview was found in any month. PAULSON: the Philadelphia Fed speeches-and-essays page has nothing between May 19 (Atlanta Fed conference, outside the window) and August 4, and nothing between September 24 and November 10. Its press-coverage page lists, for the window, only NJBIZ (June, unreadable), Reuters and CNBC on August 4, CNBC on September 24 (a report on the fintech speech, same occasion as A4) and the Wellsboro local story (October 1 visit, no policy content). Newsquawk has no Paulson headline between May 29 and August 4 or between September 24 and November 10, and its November 10 primer says her previous remarks were in late September. The Lehigh Valley and Wilmington visit pages carry no dates and no policy remarks. The November 20 Newsquawk headline already in A4's unverified list (open to consecutive hikes) still has no direct-quote page; the CNBC November 20 article on Fed communication quotes only her November 19 speech, so the headline may be a late item from the November 19 Q&A (inference, not confirmed). TIME STAMPS for first-pass items that have time_et null, from the official schedule (Central or Mountain converted to ET) and Newsquawk primers: Kashkari June 26 Bloomberg interview 10:30 ET and Aspen panel 11:30 ET; August 5 CNBC 08:00 ET; August 23 CBS taped 10:30 ET; October 1 Bloomberg TV 08:30 ET; Logan November 10 10:50 ET; Logan November 13 09:40 ET; Paulson November 10 18:30 ET. The schedule PDF text layout places the Fox interview under 'September 21, 9:00-9:30 am' Central, but Reuters (via SRN) ran the story on Sunday September 20, so A5's date stands. CONTEXT CHECK: nothing contradicts the brief. Kashkari on November 18 (captions) says 'we raised in September, but then we didn't raise October'; Reuters (November 19) puts the next meeting on December 8-9 and CNBC (November 20) shows a quarter-point hike fully priced. NOT COVERED: Kashkari October and November official schedules and the Logan calendar after September 29 (neither published yet), X or LinkedIn posts by any of the three, and paywalled originals (Bloomberg, WSJ, MNI). The St. Louis Fed FOMC Speak tracker now redirects to FRASER and could not be used; Midwest Communications Reuters mirrors (wsau.com and sister sites) return 403."
+}

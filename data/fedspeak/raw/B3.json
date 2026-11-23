@@ -1,0 +1,384 @@
+{
+ "collector": "B3",
+ "speakers_covered": [
+  "Michael Barr",
+  "Lisa Cook"
+ ],
+ "items": [
+  {
+   "date": "2026-01-15",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Yahoo Finance interview (same day as his Wharton Future of Finance Forum stablecoin panel)",
+   "type": "interview",
+   "source_url": "https://finance.yahoo.com/news/feds-barr-doj-probe-is-an-assault-on-the-independence-of-the-fed-152135692.html",
+   "source_tier": "news_direct_quote",
+   "quote": "A reasonable base case is that the labor market is continuing to stabilize, and that inflation will continue to come down to 2%",
+   "summary": "Barr told Yahoo Finance that rates are at the right level, in the range of neutral, with risks on both sides of the mandate (low job creation versus possibly persistent inflation). He is taking a wait-and-see approach on further cuts and said shutdown-distorted data must be treated with caution into the spring. He called the DOJ probe of the Fed and the accusations against Cook an assault on Fed independence and said a new chair must persuade the committee with data.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Says rates are at the right level with two-sided risks and no lean; wait-and-see on further cuts.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  },
+  {
+   "date": "2026-02-04",
+   "time_et": "18:30",
+   "date_basis": "event",
+   "speaker": "Lisa Cook",
+   "role": "Fed Governor",
+   "occasion": "Economic Club of Miami: 'Economic Outlook'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260204a.htm",
+   "source_tier": "official_text",
+   "quote": "At this time, I see risks as tilted toward higher inflation.",
+   "summary": "Cook said inflation progress stalled in 2025 (core PCE about 3 percent) while the labor market stabilized at 4.4 percent unemployment. She supported the January hold and said her focus stays on inflation until she sees stronger evidence it is moving sustainably back to target, absent unexpected labor-market changes; weak sentiment does not signal slack that demand-side policy can fix. She stressed credibility after nearly five years of above-target inflation. In the Q&A (Reuters) she said policy is \"mildly restrictive but ever so mildly restrictive\" and that after last year's easing \"this is the right time to sit back and wait to see what happens\".",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Explicit risk tilt toward inflation and a bar for further easing; no mention of hikes, so +1.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-february.htm",
+   "related_urls": [
+    "https://finance.yahoo.com/news/feds-cook-says-policy-rate-001107605.html"
+   ]
+  },
+  {
+   "date": "2026-02-17",
+   "time_et": "12:45",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "New York Association for Business Economics, New York: 'What Will Artificial Intelligence Mean for the Labor Market and the Economy?'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260217a.htm",
+   "source_tier": "official_text",
+   "quote": "I would like to see evidence that goods price inflation is sustainably retreating before considering reducing the policy rate further, provided labor market conditions remain stable.",
+   "summary": "Barr said the labor market is stabilizing in a delicate balance while PCE inflation is stuck near 3 percent and the risk of persistent above-target inflation is significant. He said it will likely be appropriate to hold rates steady for some time and that the AI boom is unlikely to be a reason for lowering policy rates (higher r*, possible short-term inflation from data-center power demand). In an 'AI disappoints' scenario he said the balance of risks shifts from the labor market to the financial sector, citing estimates that AI investment needs $1 trillion of new debt over five years.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Hold for some time, sets a bar for further cuts, calls persistent-inflation risk significant and says AI is not a reason to lower rates; no talk of hikes, so +1 not +2.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "labor",
+    "ai_financing",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": "One estimate is that AI investment will require the issuance of $1 trillion in new debt over the next five years, and other estimates are even higher.",
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-february.htm"
+  },
+  {
+   "date": "2026-02-24",
+   "time_et": "09:30",
+   "date_basis": "event",
+   "speaker": "Lisa Cook",
+   "role": "Fed Governor",
+   "occasion": "42nd Annual NABE Economic Policy Conference, Washington: opening remarks for the 'AI and Productivity across the Economy' panel",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260224a.htm",
+   "source_tier": "official_text",
+   "quote": "With investment contributing to strong aggregate demand, it is possible that the current neutral rate is higher than before the pandemic.",
+   "summary": "Cook discussed AI and monetary policy in structural terms. An AI-driven rise in unemployment may not signal slack, so demand-side policy might not offset it without raising inflation pressure. Soaring AI investment in data centers and chips may mean the current neutral rate is higher than before the pandemic, though this could reverse later. She gave no near-term rate guidance.",
+   "score": 0,
+   "score_basis": "own_stance",
+   "score_note": "Structural remarks with no near-term rate call. The higher-neutral-rate point leans hawkish, but torn between 0 and +1 so scored 0.",
+   "drivers": [
+    "labor",
+    "growth",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-february.htm"
+  },
+  {
+   "date": "2026-03-24",
+   "time_et": "18:30",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "2026 National Community Investment Conference, Phoenix: 'Developing Communities through Public-private Partnerships'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260324a.htm",
+   "source_tier": "official_text",
+   "quote": "I supported this decision, and it is my view that we may need to keep rates steady for some time as we assess economic conditions.",
+   "summary": "In a short policy passage inside a community-development speech, Barr said he supported the March hold and that rates may need to stay steady for some time. Inflation is notably above 2 percent; he wants evidence that goods and services inflation is sustainably retreating before considering further cuts, provided the labor market stays stable, and said the Middle East conflict adds risks through oil and gasoline prices.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Same message as Feb 17: extended hold with a bar for further cuts and inflation named as the problem; the only move contemplated is still a cut, so +1 rather than higher.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-march.htm"
+  },
+  {
+   "date": "2026-03-26",
+   "time_et": "16:00",
+   "date_basis": "event",
+   "speaker": "Lisa Cook",
+   "role": "Fed Governor",
+   "occasion": "Yale Program on Financial Stability, New Haven: 'Reflections on Financial Stability'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260326a.htm",
+   "source_tier": "official_text",
+   "quote": "While I take comfort in the very high levels of resilience of the U.S. G-SIBs, vigilance in ensuring their continued resilience is critical.",
+   "summary": "Cook, chair of the Board's Committee on Financial Stability, described how the committee, the Financial Stability Report and scenario analysis work. She said recent committee topics include hedge fund trading strategies, the rise of private credit and bank links to nonbanks (bank commitments to nonbank financials growing about 9 percent a year, three times C&I lending), and used 'What if AI disappoints?' as an example scenario. No comment on the policy rate. Yale's write-up says the Q&A touched on the Iran war's effect on inflation risk, but no direct quote is available.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Financial-stability speech with no statement on the rate path.",
+   "drivers": [
+    "financial_stability_credit",
+    "ai_financing"
+   ],
+   "tool": "none",
+   "ai_quote": "Recently, among the issues we have discussed are hedge fund trading strategies, the rise of private credit arrangements, and the connections between banks and a range of nonbank financial entities.",
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-march.htm"
+  },
+  {
+   "date": "2026-03-26",
+   "time_et": "19:10",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Brookings Institution, Washington: 'Brief Remarks on the Economic Outlook and Monetary Policy' (opening remarks before a moderated conversation)",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260326a.htm",
+   "source_tier": "official_text",
+   "quote": "Our current policy stance puts us in a good place to hold steady while we evaluate incoming data, the evolving forecast, and the balance of risks.",
+   "summary": "Barr said he supported the March hold. After five years of elevated inflation and a rise in near-term expectations, he is particularly concerned that the Middle East energy shock could lift longer-term inflation expectations and said the Fed needs to be especially vigilant; core inflation was likely 3 percent in February. He also noted near-zero job creation leaves the labor market vulnerable, and closed by criticizing recent bank capital, leverage, stress-test and supervision changes as reducing resilience.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Calls the inflation trajectory 'a key concern right now' and stresses expectations risk from a new price shock, while still describing a hold; labor vulnerability noted but secondary.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "labor",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-march.htm"
+  },
+  {
+   "date": "2026-03-31",
+   "time_et": "15:00",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Federalist Society, Washington: 'Brief Remarks on Stablecoins' (The GENIUS Act in Practice)",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260331a.htm",
+   "source_tier": "official_text",
+   "quote": "A second key area of concern is financial stability.",
+   "summary": "Remarks on stablecoin regulation under the GENIUS Act: run risk, reserve-asset quality, money laundering and the importance of regulatory implementation. No monetary-policy content.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "No monetary-policy content (stablecoin regulation only).",
+   "drivers": [
+    "financial_stability_credit"
+   ],
+   "tool": "regulation",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-march.htm"
+  },
+  {
+   "date": "2026-04-14",
+   "time_et": "12:45",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Strengthening America's Economy through Rural Investment: A Working Forum, Washington: 'Rural Communities: Worth the Investment'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260414a.htm",
+   "source_tier": "official_text",
+   "quote": "Given rapidly changing circumstances, it is too early to know the path for prices as events in the Middle East unfold.",
+   "summary": "Community-development speech on rural economies. Mentions tariff disruption to farm exports, the fertilizer and diesel price jump from the Middle East conflict, and AI-driven data centers locating in rural areas (energy and water strain), but gives no view on the policy rate.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "No statement about the policy rate path; price remarks are about farm input costs only.",
+   "drivers": [
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-04.htm"
+  },
+  {
+   "date": "2026-05-03",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Bloomberg News interview on private credit (as reported by Reuters)",
+   "type": "interview",
+   "source_url": "https://finance.yahoo.com/economy/policy/articles/stress-private-credit-could-spark-145636025.html",
+   "source_tier": "news_direct_quote",
+   "quote": "then you could have a credit pullback, and that could lead to more financial strain.",
+   "summary": "Barr said stress in private credit could spark 'psychological contagion': investors might read losses on high-risk private loans as cracks in the wider corporate sector, including corporate bonds, leading to a credit pullback and more financial strain. He said direct bank links to private credit do not yet look 'super worrisome' but flagged insurers' overlaps with private lenders. No comment on the policy rate in the reported excerpts.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Financial-stability warning only; nothing reported on the rate path. Interview date not stated, article published Sunday May 3.",
+   "drivers": [
+    "financial_stability_credit",
+    "ai_financing"
+   ],
+   "tool": "none",
+   "ai_quote": "then you could have a credit pullback, and that could lead to more financial strain."
+  },
+  {
+   "date": "2026-05-08",
+   "time_et": "05:45",
+   "date_basis": "event",
+   "speaker": "Lisa Cook",
+   "role": "Fed Governor",
+   "occasion": "BCEAO Conference on Digital Assets, Dakar: 'Perspectives on Tokenization and Implications for the Financial System'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260508a.htm",
+   "source_tier": "official_text",
+   "quote": "At the same time, I am mindful of financial stability considerations.",
+   "summary": "Speech on tokenization of financial assets, its benefits for payments and collateral, and the financial-stability issues to monitor if it scales. No monetary-policy content.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "No monetary-policy content.",
+   "drivers": [
+    "financial_stability_credit"
+   ],
+   "tool": "none",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-may.htm"
+  },
+  {
+   "date": "2026-05-14",
+   "time_et": "19:00",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "Money Marketeers of New York University, New York: 'Efficient and Effective Central Banking: Beyond the Balance Sheet'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260514a.htm",
+   "source_tier": "official_text",
+   "quote": "In sum, shrinking the Fed's balance sheet is the wrong goal, and reducing the resilience of the banking system is the wrong means.",
+   "summary": "Barr argued against proposals to shrink the Fed's balance sheet (scarce or 'minimally ample' reserves, lower liquidity requirements, counting discount-window collateral as HQLA, a smaller or sterilized TGA), saying they would hurt bank resilience, money-market functioning and rate control and could enlarge the Fed's footprint. He defended the ample-reserves regime and the current gradual bill purchases. The prepared text says nothing about the policy rate path. Reuters reported (paraphrase, no direct quote) that after the speech he said he had not decided what he wants the Fed to do at the next policy meeting.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "Balance-sheet and liquidity-regulation content only; no statement on the rate path, so not scored on the rate rubric.",
+   "drivers": [
+    "financial_stability_credit",
+    "other"
+   ],
+   "tool": "balance_sheet",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-may.htm",
+   "related_urls": [
+    "https://finance.yahoo.com/economy/policy/articles/feds-barr-says-wrong-lower-230720951.html"
+   ]
+  },
+  {
+   "date": "2026-05-20",
+   "time_et": "09:15",
+   "date_basis": "event",
+   "speaker": "Michael Barr",
+   "role": "Fed Governor",
+   "occasion": "EMERGE Financial Health 2026, Atlanta: 'Measuring Financial Health'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260520a.htm",
+   "source_tier": "official_text",
+   "quote": "Financial health begins with access, but it does not end there.",
+   "summary": "Speech on measuring household financial health and the use of data and AI in consumer finance. No monetary-policy content.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "No monetary-policy content.",
+   "drivers": [],
+   "tool": "none",
+   "ai_quote": null,
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-may.htm"
+  },
+  {
+   "date": "2026-05-27",
+   "time_et": "15:55",
+   "date_basis": "event",
+   "speaker": "Lisa Cook",
+   "role": "Fed Governor",
+   "occasion": "Stanford Institute for Economic Policy Research: 'The Opportunities and Risks AI Presents for the Economy and Financial System'",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260527a.htm",
+   "source_tier": "official_text",
+   "quote": "As such, I am prepared to raise rates, if the expected disinflation does not appear in a timely manner.",
+   "summary": "Cook said inflation is clearly moving in the wrong direction (PCE 3.8 percent, core 3.3 percent in April) on the Iran-conflict energy shock and tariffs, with AI investment demand a possible further price shock ($1.5 trillion of announced data-center plans). She favors holding now, sees risks tilted toward higher inflation, expects disinflation to resume without hikes, but is prepared to raise rates if it does not, and to ease if the labor market deteriorates. On financial stability she flagged debt-financed AI capex: hyperscaler bond deals, smaller data-center developers borrowing from private debt funds and ABS markets, and software-related redemptions at BDCs.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Hold is the baseline but risks are tilted to inflation and she explicitly says she is prepared to raise rates; conditional, not a call for a hike soon, so +1 not +2.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "ai_financing",
+    "financial_stability_credit",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": "the increasing use of leverage to finance investments in an emerging technology carries risk, and a sustained boom in debt issuance could eventually represent a financial-stability concern",
+   "time_source": "https://www.federalreserve.gov/newsevents/2026-may.htm"
+  }
+ ],
+ "unverified": [
+  {
+   "date": "2026-03-26",
+   "speaker": "Lisa Cook",
+   "what": "Q&A after the Yale financial-stability speech. Yale SOM's write-up says she addressed the Iran war's impact on inflation risk and AI; American Banker (Mar 26) says Cook, Barr and Jefferson said that day that the balance of risks is shifting toward inflation. No direct Cook quote on either page (American Banker is paywalled).",
+   "url": "https://som.yale.edu/story/2026/federal-reserve-governor-lisa-cook-reflects-stakes-financial-stability"
+  },
+  {
+   "date": "2026-03-26",
+   "speaker": "Lisa Cook",
+   "what": "Same occasion, second pointer: American Banker 'Fed Govs. express concern about Iran war-driven inflation' (published 2026-03-26, teaser only).",
+   "url": "https://www.americanbanker.com/news/fed-govs-express-concern-about-inflation-due-to-iran-war"
+  },
+  {
+   "date": "2026-03-26",
+   "speaker": "Michael Barr",
+   "what": "Moderated conversation at Brookings after his brief prepared remarks (Fed calendar 7:10 p.m. ET). No transcript or event page found; only the prepared text is itemized.",
+   "url": "https://www.federalreserve.gov/newsevents/2026-march.htm"
+  },
+  {
+   "date": "2026-05-14",
+   "speaker": "Michael Barr",
+   "what": "After the Money Marketeers speech, Reuters paraphrased him as saying he had not decided what he wants the Fed to do at the upcoming policy meeting given the energy shock. Paraphrase only, no direct quote.",
+   "url": "https://finance.yahoo.com/economy/policy/articles/feds-barr-says-wrong-lower-230720951.html"
+  },
+  {
+   "date": "2026-02-24",
+   "speaker": "Lisa Cook",
+   "what": "Panel discussion following her NABE opening remarks (Fed calendar 9:30 a.m. ET). Video only; no text of the discussion found. Prepared remarks are itemized.",
+   "url": "https://www.federalreserve.gov/newsevents/2026-february.htm"
+  },
+  {
+   "date": "2026-05-27",
+   "speaker": "Lisa Cook",
+   "what": "Discussion after the Stanford SIEPR speech. A syndicated headline said she urged patience, but the page returned 404; only the prepared text is itemized.",
+   "url": "https://finance.yahoo.com/economy/policy/articles/fed-cook-prepared-raise-rates-200659250.html"
+  }
+ ],
+ "coverage_notes": "Sources walked: the Board's 2026 speech index, the monthly calendar pages for January to May, the 2026 testimony index, and the January 28, March 18 and April 29 FOMC statements. All 12 official speech texts were opened and itemized (7 Barr, 5 Cook). Neither Barr nor Cook dissented at any of the three meetings; both voted with the majority each time, and neither testified. January: no official speech by either. Barr gave one Yahoo Finance interview (Jan 15); no Cook policy remarks were found (her Supreme Court hearing was Jan 21). April: thin. Barr's only speech (Apr 14) had no rate content; Cook had no public events on the Fed calendar. Barr panels with no text and no monetary-policy reporting found were not itemized: Jan 15 Wharton stablecoin panel, Apr 1 National Fair Housing Alliance AI symposium, Apr 15 NCRC Just Economy conference, May 5 Oxford conversation with Sam Woods on bank regulation. His regulatory dissent statements (for example Mar 19 on bank capital proposals) are outside the brief. Q&A portions are mostly video-only; where a wire quoted the Q&A (Cook Feb 4) it is folded into the same item's summary and related_urls rather than made a second item. time_et values for the official speeches come from the Board's monthly calendar pages (field time_source), not from the speech pages. Bloomberg, American Banker and Bloomberg Law pages were paywalled, so the May 3 Barr interview is sourced to the Reuters write-up on Yahoo Finance and dated by article. News search was limited to a handful of queries plus Yahoo Finance listings, so short wire-only remarks may be missing."
+}

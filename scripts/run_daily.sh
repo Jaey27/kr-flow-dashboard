@@ -29,6 +29,7 @@ echo "=== $(date '+%H:%M:%S') build_data.py --auto" >>"$LOG"; "$PY" scripts/buil
 [ "$rc" = 0 ] || [ "$rc" = 3 ] || echo "[WARN] 실패(rc=$rc): scripts/build_data.py --auto" >>"$LOG"
 
 step "$PY" scripts/macro_data.py                 # 미 금리·BEI·TP·원달러·Brent·Kalshi·FedWatch·금리분해·발표일정
+step "$PY" scripts/fedspeak/analyze.py --fetch    # 금리 발언 tracker: 시장선(EFFR·선물·S&P·나스닥) 갱신 + 톤 지수 재계산(발언 원장은 주 1회 수집)
 step "$PY" scripts/hy_split.py                   # HYG/LQD 보유종목 AI/비AI 원장(하루 1행)
 step "$PY" scripts/hy_split.py --fred            # ICE BofA OAS (FRED, UA=curl)
 step "$PY" scripts/risk_breadth.py               # FINRA 공식 API 시장 등락 (.env FINRA_CLIENT/SECRET)
@@ -60,6 +61,7 @@ step "$PY" scripts/crwv_fwb.py                 # CRWV 9.75% 2031 프랑크푸르
 step "$PY" scripts/funding_data.py               # 빅테크 자금 조달(SEC XBRL·424B 설명서 + data/manual/funding_news.json) → 리스크 탭 ①
 step "$PY" scripts/risk_data.py
 step "$PY" scripts/render.py --docs
+step "$PY" scripts/fedspeak/build.py --docs        # docs/fedspeak.html (매크로 탭 「금리 발언 tracker」 iframe)
 step "$PY" scripts/render_sector.py --docs
 if [ "${KRFLOW_PUBLISH:-auto}" != "0" ]; then step bash scripts/publish.sh; fi
 find "$LOG_DIR" -name 'daily_*.log' -type f -mtime +60 -delete 2>/dev/null || true

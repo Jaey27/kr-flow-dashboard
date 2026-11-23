@@ -1,0 +1,1316 @@
+{
+ "collector": "A10",
+ "speakers_covered": [
+  "Goldman Sachs: Jan Hatzius (Chief Economist), David Mericle (Chief US Economist)",
+  "Morgan Stanley: Michael Gapen (Chief U.S. Economist), Seth Carpenter (Global Chief Economist and Head of Macro Research), Matthew Hornbach (Global Head of Macro Strategy), Andrew Sheets (Global Head of Fixed Income Research), Mike Wilson (CIO and Chief U.S. Equity Strategist)",
+  "JPMorgan: Michael Feroli (leads the U.S. economics team notes; with Michael Hanson, Abiel Reinhart); Bruce Kasman (chief global economist; nothing in window)",
+  "Bank of America: BofA Global Research U.S. economics, notes led by Aditya Bhave",
+  "Citi: Andrew Hollenhorst, Veronica Clark",
+  "Barclays (unnamed in reports)",
+  "Deutsche Bank: Matthew Luzzetti (Chief US Economist) team",
+  "UBS: Jonathan Pingle, Abigail Watt; Andrew Dubinsky (UBS GWM, unverified)",
+  "Wells Fargo Economics (Wells Fargo Research Team byline)",
+  "Nomura (undated page only)",
+  "PIMCO: Tiffany Wilding",
+  "BlackRock: Rick Rieder; Kristy Akullian (Head of iShares Investment Strategy, Americas)"
+ ],
+ "items": [
+  {
+   "date": "2026-06-09",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "David Mericle",
+   "role": "Chief US Economist, Goldman Sachs Research",
+   "occasion": "Goldman Sachs Research report summarised on goldmansachs.com: 'Why the Fed Is Unlikely to Cut Rates This Year'",
+   "type": "client_note",
+   "source_url": "https://www.goldmansachs.com/insights/articles/why-the-fed-is-unlikely-to-cut-rates-this-year",
+   "source_tier": "official_text",
+   "quote": "A stronger starting point for the economy reduces the risk that a hike could end up looking like a costly mistake",
+   "summary": "Goldman pushed its final two cuts to June and December 2027 (from December 2026 and March 2027), leaving the terminal rate at 3-3.25%. Mericle said unemployment rising only to 4.4% is not enough to create urgency to cut, and that hikes are unlikely but somewhat more likely than before.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Base case is a hold through 2026 with the next move a cut a year out; cuts were delayed and the bar for a hike was lowered. Torn between 0 and -1, chose 0.",
+   "drivers": [
+    "labor",
+    "inflation",
+    "tariffs_supply",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Goldman Sachs",
+   "call": "No cut in 2026; cuts June 2027 and December 2027; terminal 3-3.25%; hikes unlikely"
+  },
+  {
+   "date": "2026-06-17",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Rick Rieder",
+   "role": "Chief Investment Officer of Global Fixed Income, BlackRock",
+   "occasion": "Written commentary after the June FOMC, quoted by Morningstar",
+   "type": "client_note",
+   "source_url": "https://www.morningstar.com/economy/warshs-tenure-starts-with-fed-seen-laying-groundwork-rate-hike",
+   "source_tier": "news_direct_quote",
+   "quote": "While we don’t believe that a Fed hike is a given from here, we need to be respectful of that policy potential,",
+   "summary": "Rieder took a more cautious view of the rate outlook than those reading the June dot plot as a hike signal. He expected a Warsh Fed with less forward guidance, less frequent communication and possibly no dot plot over time.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Hike not a given but possible; no directional call.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "BlackRock",
+   "call": "No hike forecast; a hike is 'not a given' but a real possibility"
+  },
+  {
+   "date": "2026-06-17",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tiffany Wilding",
+   "role": "Economist, PIMCO (author of Macro Signposts)",
+   "occasion": "PIMCO Macro Signposts, 'Hawkish-Leaning Committee, Reform-Minded Chair: Warsh’s First Fed Meeting'",
+   "type": "client_note",
+   "source_url": "https://www.pimco.com/us/en/insights/hawkish-leaning-committee-reform-minded-chair-warshs-first-fed-meeting",
+   "source_tier": "official_text",
+   "quote": "If the agreement holds and lower oil prices prove durable, inflationary pressures – and the perceived case for hikes – should ease.",
+   "summary": "PIMCO noted that nine of 18 dots showed a 2026 hike but even hawkish participants had not argued for an immediate hike, while 3-3.5% core PCE is inconsistent with cuts. It expects the Warsh Fed to bring fewer press conferences, less prescriptive communication and more rate volatility.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Neither hikes nor cuts expected near term; conditional easing of the hike case.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "PIMCO",
+   "call": "Hold; case for hikes should ease if oil stays lower (no explicit rate forecast on the page)"
+  },
+  {
+   "date": "2026-06-22",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "BofA Global Research analysts (unnamed in report)",
+   "role": "BofA Global Research",
+   "occasion": "Client note on Monday 22 June, reported by Reuters (carried by The Standard HK)",
+   "type": "client_note",
+   "source_url": "https://www.thestandard.com.hk/finance/article/335289/BofA-forecasts-75-bps-of-rate-hikes-in-2026-on-labor-market-resilience-new-Fed-chair",
+   "source_tier": "news_direct_quote",
+   "quote": "the Fed's reaction function is much more hawkish than we thought",
+   "summary": "BofA switched from no change to 75bp of hikes in 2026 after the June projections and Warsh's comments, then a hold in 2027, saying inflation is likely to remain sticky. Per Fortune's account of the same note, the hikes are in September, October and December, to 4.25-4.5%.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Three hikes forecast.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Bank of America",
+   "call": "75bp of hikes in 2026 (three hikes); hold in 2027"
+  },
+  {
+   "date": "2026-06-22",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Deutsche Bank strategists (unnamed; quoting the house economists' forecast)",
+   "role": "Deutsche Bank Research",
+   "occasion": "Deutsche Bank research commentary quoted by FXStreet, 'Fed: Warsh signals tighter path'",
+   "type": "client_note",
+   "source_url": "https://www.fxstreet.com/news/fed-warsh-signals-tighter-path-deutsche-bank-202606221118",
+   "source_tier": "news_direct_quote",
+   "quote": "The central scenario sees two rate increases this year, likely in September and December, taking the fed funds rate to around 4.1%, followed by a prolonged pause through 2027.",
+   "summary": "After the hawkish June FOMC and the shift in style under Warsh, Deutsche Bank's economists put two 25bp hikes into their forecast. The note observed that 9 of 18 dots signalled a 2026 hike and that 39bp of hikes were priced by December.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Two hikes forecast.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Deutsche Bank",
+   "call": "Sep +25bp and Dec +25bp to about 4.1%; prolonged pause through 2027"
+  },
+  {
+   "date": "2026-07-15",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Rick Rieder",
+   "role": "Chief Investment Officer of Global Fixed Income, BlackRock",
+   "occasion": "BlackRock Market Outlook, 'Getting Serious in Summer Markets'",
+   "type": "essay",
+   "source_url": "https://www.blackrock.com/us/financial-professionals/insights/summer-markets-ai-investing",
+   "source_tier": "official_text",
+   "quote": "Another rate hike does not extract more oil or build more homes.",
+   "summary": "Rieder argued the funds rate is powerful but uneven: it pressures borrowers, housing and lower-income consumers while the companies behind the AI capex cycle are far less rate-sensitive, and the categories driving inflation are largely rate-insensitive. He also called the new Fed's hawkish stance very understandable given above-target inflation.",
+   "score": 0,
+   "score_basis": "should",
+   "score_note": "Sceptical that hikes help (-1) but calls the hawkish stance understandable; torn, chose 0.",
+   "drivers": [
+    "inflation",
+    "financial_stability_credit",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "BlackRock",
+   "call": "No rate forecast; hikes seen as a blunt tool with limited effect on current inflation drivers"
+  },
+  {
+   "date": "2026-07-17",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Michael Gapen",
+   "role": "Chief U.S. Economist, Morgan Stanley Research",
+   "occasion": "Morgan Stanley Research article 'Watch Out for a Fed Pause' on morganstanley.com",
+   "type": "client_note",
+   "source_url": "https://www.morganstanley.com/insights/articles/fed-rate-pause-fixed-income-market-impact-2026",
+   "source_tier": "official_text",
+   "quote": "We expect a lower inflation trajectory that keeps policy on hold this year, potentially followed by two rate cuts in 2027 as inflation gradually normalizes",
+   "summary": "Morgan Stanley Research expected the Fed to stay on hold in 2026 even though markets priced at least one hike, citing moderating inflation, a cooling labor market and market rates that had already tightened conditions. Gapen expected no hike in July and potentially two cuts in 2027.",
+   "score": -1,
+   "score_basis": "forecast",
+   "score_note": "Explicitly argues against the hike priced by markets and sees cuts as the next move.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "Hold through 2026 (no July hike); potentially two cuts in 2027"
+  },
+  {
+   "date": "2026-07-28",
+   "time_et": "09:30",
+   "date_basis": "event",
+   "speaker": "Michael Gapen",
+   "role": "Chief U.S. Economist, Morgan Stanley",
+   "occasion": "Thoughts on the Market podcast with Matthew Hornbach, 'Fed in July: A Weaker Case for Hiking' (transcript)",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/fomc-meeting-july-2026-fed-next-move",
+   "source_tier": "official_transcript",
+   "quote": "But we think the case to hike in July is less compelling than it was in June.",
+   "summary": "Gapen expected the FOMC to keep the range at 3.5-3.75% in July because employment growth moderated and disinflation evidence appeared since June. If disinflation continues the Fed stays on hold; if inflation stays firm it can move to hikes later this year.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Forecast of a hold with two-sided conditionality.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "July hold at 3.50-3.75%; hikes later in 2026 only if inflation stays firm"
+  },
+  {
+   "date": "2026-07-31",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Michael Feroli",
+   "role": "JPMorgan U.S. economics team (with Michael Hanson and Abiel Reinhart)",
+   "occasion": "JPMorgan weekly prospects note sent to clients late Friday 31 July, reported by MarketWatch",
+   "type": "client_note",
+   "source_url": "https://www.morningstar.com/news/marketwatch/2026080342/jpmorgan-says-warsh-failure-to-buttress-fed-credibility-may-force-a-rate-hike-before-year-end",
+   "source_tier": "news_direct_quote",
+   "quote": "there's clearly a risk that the FOMC hikes at the next meeting in September.",
+   "summary": "JPMorgan brought its next-hike call forward from the second half of 2027 to December 2026 after the July press conference, which it called the most troubling since press conferences began. Feroli expects the rest of the FOMC to feel it must defend the price stability mandate.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Brings a hike forward to December (not the next meeting) and flags September risk.",
+   "drivers": [
+    "inflation",
+    "other",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "JPMorgan",
+   "call": "Dec +25bp (was: hike in 2H 2027); risk of a September hike"
+  },
+  {
+   "date": "2026-08-03",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "BofA economists (unnamed in report)",
+   "role": "Bank of America economics",
+   "occasion": "Client note after the July FOMC press conference, quoted by MarketWatch on 3 August",
+   "type": "client_note",
+   "source_url": "https://www.morningstar.com/news/marketwatch/2026080342/jpmorgan-says-warsh-failure-to-buttress-fed-credibility-may-force-a-rate-hike-before-year-end",
+   "source_tier": "news_direct_quote",
+   "quote": "Absent a run of dovish data, hiking in September will become imperative for the Fed to regain the narrative.",
+   "summary": "BofA economists wrote that the post-meeting price action (steeper curve, lower equities, weaker dollar) resembled a credibility shock of the kind emerging-market central banks face, and that the Fed has a growing credibility problem.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Says a September hike will become imperative.",
+   "drivers": [
+    "other",
+    "inflation",
+    "fiscal_term_premium"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Bank of America",
+   "call": "September hike 'imperative' absent dovish data"
+  },
+  {
+   "date": "2026-08-16",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Jan Hatzius",
+   "role": "Chief Economist, Goldman Sachs",
+   "occasion": "Client note published Sunday 16 August, reported by Bloomberg (carried by The Star)",
+   "type": "client_note",
+   "source_url": "https://www.thestar.com.my/business/business-news/2026/08/18/markets-too-hawkish-on-betting-fed-will-hike-rates",
+   "source_tier": "news_direct_quote",
+   "quote": "We still think market pricing for the funds rate is too hawkish.",
+   "summary": "Hatzius wrote that a September hike had become 'very unlikely' after softer retail sales, jobs and inflation data, and that under Goldman's baseline the inflation news is more likely to improve than deteriorate.",
+   "score": -1,
+   "score_basis": "forecast",
+   "score_note": "Explicit pushback against the hikes priced by the market; base case remains a hold.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "growth"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Goldman Sachs",
+   "call": "September hike 'very unlikely'; hold; market pricing too hawkish"
+  },
+  {
+   "date": "2026-08-27",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Rick Rieder",
+   "role": "Chief Investment Officer of Global Fixed Income, BlackRock",
+   "occasion": "BlackRock CIO Perspective, 'AI, the Fed and Market Opportunities'",
+   "type": "essay",
+   "source_url": "https://www.blackrock.com/us/financial-professionals/insights/ai-fed-investment-opportunities",
+   "source_tier": "official_text",
+   "quote": "reinforcing the case for patience rather than an aggressive directional rate view.",
+   "summary": "Rieder said inflation is moderating, consumer credit stress is concentrated among weaker borrowers, and higher rates hurt those borrowers while having limited influence on the AI-driven corporate investment cycle. He wrote that the AI build-out is becoming a test of financing and cash-flow durability, with AI-related IG issuance meeting weaker sponsorship.",
+   "score": 0,
+   "score_basis": "should",
+   "score_note": "Argues for patience; leans against hikes on distributional grounds but gives no directional call. Torn between 0 and -1, chose 0.",
+   "drivers": [
+    "inflation",
+    "financial_stability_credit",
+    "ai_financing",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": "Balance sheets are still healthy, but as financing costs rise and oversubscription ratios fall, the margin for error is shrinking.",
+   "firm": "BlackRock",
+   "call": "No rate forecast; patience, no aggressive directional rate view"
+  },
+  {
+   "date": "2026-08-28",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Barclays economists (unnamed in report)",
+   "role": "Barclays Research",
+   "occasion": "Client note on Friday 28 August after Warsh's Jackson Hole speech, reported by Reuters (carried by The Star)",
+   "type": "client_note",
+   "source_url": "https://www.thestar.com.my/business/business-news/2026/08/31/barclays-sees-two-more-fed-rate-hikes-this-year-after-warsh-speech",
+   "source_tier": "news_direct_quote",
+   "quote": "unfavorable base effects will work against progress by those metrics through year-end.",
+   "summary": "Barclays switched from no change through year-end to 25bp hikes in September and December, calling Warsh's speech notably hawkish and an implicit case for further tightening. It still expects monthly inflation readings to be much softer than the longer-horizon measures Warsh emphasised.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Moves from hold to two hikes starting at the next meeting.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Barclays",
+   "call": "Sep +25bp and Dec +25bp (was: unchanged through year-end)"
+  },
+  {
+   "date": "2026-09-04",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Andrew Hollenhorst and Veronica Clark",
+   "role": "Citi economists",
+   "occasion": "Client note on Friday 4 September after the August jobs report, reported by Reuters (carried by Devdiscourse)",
+   "type": "client_note",
+   "source_url": "https://www.devdiscourse.com/article/international/3972720-citigroup-delays-fed-rate-cut-forecast-to-2027-after-strong-us-jobs-report",
+   "source_tier": "news_direct_quote",
+   "quote": "unemployment rate was unchanged and labor force participation rebounded noticeably,",
+   "summary": "Citi pushed its next cut from October 2026 to June 2027, saying the labor data suggest policymakers will view employment as broadly stable and focus on inflation. Per Stocktwits' account of the same note the new baseline is three 25bp cuts in June, September and December 2027.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Still no hike in the forecast and the next move is a cut, but it is pushed out by eight months; hold through 2026 scored 0.",
+   "drivers": [
+    "labor",
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Citi",
+   "call": "No change in 2026; next cut June 2027 (was Oct 2026)"
+  },
+  {
+   "date": "2026-09-08",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Jonathan Pingle and Abigail Watt",
+   "role": "UBS analysts (as described in report)",
+   "occasion": "UBS note after Warsh's Jackson Hole speech and the August jobs report, reported by Investing.com (carried by Hellenic Shipping News)",
+   "type": "client_note",
+   "source_url": "https://www.hellenicshippingnews.com/ubs-expects-the-fed-to-lift-rates-twice-before-the-end-of-the-year/",
+   "source_tier": "news_direct_quote",
+   "quote": "we expect he has little choice but to put his monetary policy where his mouth is,",
+   "summary": "UBS forecast quarter-point hikes in September and December, saying every point in Warsh's Jackson Hole remarks supported hikes and his credibility is on the line. It called the forecast not high conviction and the September decision a close call.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Two hikes starting at the next meeting, though flagged as low conviction.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "UBS",
+   "call": "Sep +25bp and Dec +25bp ('not high conviction'; September a close call)"
+  },
+  {
+   "date": "2026-09-11",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "David Mericle",
+   "role": "Economist, Goldman Sachs (as described by Reuters)",
+   "occasion": "Client note on Friday 11 September, reported by Reuters (carried by The Edge Malaysia)",
+   "type": "client_note",
+   "source_url": "https://theedgemalaysia.com/node/817942",
+   "source_tier": "news_direct_quote",
+   "quote": "We think that the FOMC will be reluctant to surprise",
+   "summary": "Goldman abandoned its call for unchanged rates and now expects a 25bp hike at the September 15-16 meeting after hot August CPI and PPI. In a separate Sunday note it still expected two cuts in 2027, later than before, seeing the hike as driven more by market pricing than inflation fundamentals.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Switch from hold to a hike at the next meeting, but framed as a market-pricing-driven single move with cuts still pencilled in for 2027; chose +1 rather than +2.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Goldman Sachs",
+   "call": "Sep +25bp (was: no change); still two cuts in 2027, later than before"
+  },
+  {
+   "date": "2026-09-14",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Michael Feroli",
+   "role": "Lead economist on the note, J.P. Morgan (as described by Reuters)",
+   "occasion": "Client note after August CPI/PPI, reported by Reuters on 14 September (carried by The Edge Malaysia)",
+   "type": "client_note",
+   "source_url": "https://theedgemalaysia.com/node/817942",
+   "source_tier": "news_direct_quote",
+   "quote": "a firm enough set of inflation readings to make a rate hike at next week's FOMC meeting more likely than not",
+   "summary": "JPMorgan now forecasts quarter-point hikes in both September and December and raised its long-run policy rate estimate to 3.25%, saying the inflation data cast doubt on a sustained disinflation trend.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Two hikes, starting at the next meeting.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "JPMorgan",
+   "call": "Sep +25bp and Dec +25bp; long-run policy rate estimate raised to 3.25%"
+  },
+  {
+   "date": "2026-09-14",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Morgan Stanley economists (unnamed in report)",
+   "role": "Morgan Stanley Research",
+   "occasion": "Client note on Monday 14 September, reported by Reuters (carried by Kitco)",
+   "type": "client_note",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-09-15/morgan-stanley-turns-more-hawkish-forecasts-two-fed-hikes-and-ecb-move",
+   "source_tier": "news_direct_quote",
+   "quote": "the balance of risks now argues for a somewhat more restrictive policy",
+   "summary": "Morgan Stanley switched to forecasting 25bp hikes in September and December, saying disinflation has been slower and less convincing than policymakers need. It cited second-round effects from energy, strong demand tied to AI-related investment, a possibly higher neutral rate and credibility concerns.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Moves from hold to two hikes starting at the next meeting.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "Sep +25bp and Dec +25bp (was: hold through 2026)"
+  },
+  {
+   "date": "2026-09-16",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "David Mericle",
+   "role": "Chief U.S. Economist, Goldman Sachs",
+   "occasion": "Client note after the September FOMC decision, reported by Stocktwits citing The Fly",
+   "type": "client_note",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/is-another-fed-rate-hike-on-the-cards-for-2026-this-analyst-expects-another-25-bps-hike-as-soon-as-october/cZtrXoORB59",
+   "source_tier": "news_direct_quote",
+   "quote": "more hawkish than expected in a few ways",
+   "summary": "Mericle said the statement and projections were more hawkish than expected: a 16-2 majority projecting another 2026 hike, no dissent, an elevated median path through 2029 and a neutral-rate dot up to 3.25%. Goldman now expects a second 25bp hike in October instead of September being the only hike; further hikes are possible but not the base case.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Adds a hike at the very next meeting.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Goldman Sachs",
+   "call": "Oct +25bp (second hike; was: September only); additional hikes possible but not base case"
+  },
+  {
+   "date": "2026-09-16",
+   "time_et": "16:00",
+   "date_basis": "event",
+   "speaker": "Michael Gapen",
+   "role": "Chief U.S. Economist, Morgan Stanley",
+   "occasion": "Thoughts on the Market podcast with Matthew Hornbach after the September FOMC, 'One Fed Hike—Or More to Come?' (transcript)",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/fed-rate-hike-tests-inflation-matthew-hornbach-michael-gapen",
+   "source_tier": "official_transcript",
+   "quote": "I strongly believe the committee as a whole is thinking in terms of more than one move.",
+   "summary": "Gapen said the committee is thinking of a series of moves, probably at a slower, roughly quarterly pace rather than three or four meetings in a row, and that if disinflation continues the cycle could still end up looking like one and done. He noted wage income is decelerating, so the labor market is not a source of inflation pressure.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Expects more than one hike but stresses a slow pace and the chance the Fed stops early; chose +1 over +2.",
+   "drivers": [
+    "inflation",
+    "labor",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "More than one hike likely, at a roughly quarterly pace; could end as one-and-done if disinflation continues"
+  },
+  {
+   "date": "2026-09-16",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tiffany Wilding",
+   "role": "Economist, PIMCO (author of Macro Signposts)",
+   "occasion": "PIMCO Macro Signposts, 'September Fed Hike May Be More Than a Risk Management Exercise'",
+   "type": "client_note",
+   "source_url": "https://www.pimco.com/us/en/insights/september-fed-hike-may-be-more-than-a-risk-management-exercise",
+   "source_tier": "official_text",
+   "quote": "it may be sensible for central banks to lean in a more hawkish direction to ensure their inflation-fighting credibility remains intact.",
+   "summary": "PIMCO said the projections send a strong signal that the September hike will very likely be followed by another this year and possibly one more in 2027 if inflation does not moderate fast enough. It stressed this is not 2022: labor is not driving inflation and wage growth has decelerated.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Endorses a hawkish lean and expects another hike, but frames the labor backdrop as benign.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "PIMCO",
+   "call": "Another hike in 2026 very likely; possibly one more in 2027"
+  },
+  {
+   "date": "2026-09-17",
+   "time_et": "09:00",
+   "date_basis": "event",
+   "speaker": "Andrew Sheets",
+   "role": "Global Head of Fixed Income Research, Morgan Stanley",
+   "occasion": "Thoughts on the Market podcast, 'Why the Fed May Have Further to Go' (transcript)",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/fed-increase-interest-rates-andrew-sheets",
+   "source_tier": "official_transcript",
+   "quote": "Morgan Stanley's economists now expect two additional quarter point rate hikes in December and March",
+   "summary": "Sheets said that after the September meeting Morgan Stanley's economists expect two more hikes, in December and March, to 4.25-4.5%, with rates staying there through the rest of 2027. Reasons: the Fed does not see policy as restrictive, inflation trends are too high, and geopolitics and oil second-round effects. The Fed could stop earlier if energy prices fall.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "House forecast of two further hikes.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "Dec +25bp and Mar 2027 +25bp to 4.25-4.50%; hold through rest of 2027"
+  },
+  {
+   "date": "2026-09-17",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Wells Fargo Economics (Wells Fargo Research Team)",
+   "role": "Wells Fargo Economics",
+   "occasion": "Wells Fargo monthly U.S. Economic Outlook, 'Economic resilience raises the rate floor', as republished by FXStreet",
+   "type": "client_note",
+   "source_url": "https://www.fxstreet.com/analysis/us-economic-outlook-economic-resilience-raises-the-rate-floor-202609171945",
+   "source_tier": "official_text",
+   "quote": "We expect the Fed to hike one more time.",
+   "summary": "Wells Fargo changed its fed funds forecast to 4.00-4.25% by year-end 2026 with no changes in 2027, saying it is hard to justify hiking beyond that when excess inflation is largely supply-driven and the labor market is not overheating.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "One more hike, then a hold through 2027.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Wells Fargo",
+   "call": "One more hike to 4.00-4.25% by year-end 2026; no changes in 2027"
+  },
+  {
+   "date": "2026-09-18",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Kristy Akullian",
+   "role": "Head of iShares Investment Strategy, Americas, BlackRock",
+   "occasion": "BlackRock 'Inside the market' article, 'First Fed rate hike in years: What it may mean for investor portfolios'",
+   "type": "client_note",
+   "source_url": "https://www.blackrock.com/us/financial-professionals/insights/fed-rate-decisions-and-potential-portfolio-implications",
+   "source_tier": "official_text",
+   "quote": "While this hike is significant, we don’t believe this is the start of an aggressive hiking cycle.",
+   "summary": "The iShares strategy team's baseline is one more hike in 2026 as the Fed seeks to reduce inflation at sufficient speed; it noted futures priced 4.25% by year-end.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "One more hike, explicitly not an aggressive cycle.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "labor"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "BlackRock",
+   "call": "One more hike in 2026; not an aggressive hiking cycle"
+  },
+  {
+   "date": "2026-09-21",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Mike Wilson",
+   "role": "CIO and Chief U.S. Equity Strategist, Morgan Stanley",
+   "occasion": "Thoughts on the Market podcast, 'Market Resilience Isn’t Complacency' (transcript)",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/bull-market-resilience-isnt-complacency-mike-wilson",
+   "source_tier": "official_transcript",
+   "quote": "A few additional hikes over the next year are unlikely to end this bull market if earnings remain strong.",
+   "summary": "Wilson said the September hike can enhance credibility and lower uncertainty and term premium, and that the rate hike is not his concern. The bigger unknown is how a Warsh-led Fed handles the balance sheet, money supply and credit growth; an overly restrictive approach to liquidity could matter more than the policy rate.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Treats a few more hikes as the working assumption and as benign; not a house rate forecast.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "both",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "A few additional hikes over the next year assumed; main risk is balance sheet/liquidity policy, not the funds rate"
+  },
+  {
+   "date": "2026-09-22",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Seth Carpenter",
+   "role": "Global Chief Economist and Head of Macro Research, Morgan Stanley",
+   "occasion": "Thoughts on the Market podcast, 'Why Central Banks Are Raising Rates Again' (transcript)",
+   "type": "interview",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/central-banks-rate-hikes-fed-ecb-boj-inflation-outlook-seth-carpenter",
+   "source_tier": "official_transcript",
+   "quote": "we now expect two additional rate hikes, in December and in March",
+   "summary": "Carpenter said Morgan Stanley had thought for much of the year the Fed might avoid hiking, but now expects December and March hikes to a 4.25-4.5% terminal rate. He called it a recalibration rather than a fundamental shift and said the market may have overestimated how much hiking is left.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Two further hikes forecast; note he also says markets may price too much hiking, which argues for +1, but the stated call is two hikes.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "Dec +25bp and Mar 2027 +25bp; terminal 4.25-4.50%"
+  },
+  {
+   "date": "2026-09-23",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tiffany Wilding",
+   "role": "Economist, PIMCO (author of Macro Signposts)",
+   "occasion": "PIMCO Macro Signposts, 'A Recalibration, Not a Rate-Hike Cycle'",
+   "type": "client_note",
+   "source_url": "https://www.pimco.com/us/en/insights/a-recalibration-not-a-rate-hike-cycle",
+   "source_tier": "official_text",
+   "quote": "And our base case is that the FOMC will likely deliver one or two more 25-bp rate hikes through this year and into early next.",
+   "summary": "PIMCO reads the September hike as aimed at preventing financial conditions from easing further rather than as the start of a cycle. As tariff, energy and AI-related computing-equipment price effects fade, further adjustments beyond one or two more hikes may not be necessary.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "One or two more hikes, explicitly not a cycle; chose +1 over +2.",
+   "drivers": [
+    "inflation",
+    "other",
+    "energy",
+    "tariffs_supply"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "PIMCO",
+   "call": "One or two more 25bp hikes through 2026 and into early 2027; then likely stop"
+  },
+  {
+   "date": "2026-09-30",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Goldman Sachs economists (unnamed in report)",
+   "role": "Goldman Sachs Research",
+   "occasion": "Client note on Wednesday 30 September after soft August PCE, reported by Reuters (carried by The Star)",
+   "type": "client_note",
+   "source_url": "https://www.thestar.com.my/business/business-news/2026/10/01/goldman-sachs-pushes-fed-rate-hike-forecast-to-december",
+   "source_tier": "news_direct_quote",
+   "quote": "We are pushing back the second hike in our forecast to December, and we see a strong chance that the FOMC will ultimately conclude that additional rate hikes are unnecessary,",
+   "summary": "Goldman moved its next-hike call from October to December after a softer-than-expected inflation reading and said there is a strong chance no further hikes will be needed.",
+   "score": 0,
+   "score_basis": "forecast",
+   "score_note": "Base case still has one hike in December (+1) but the note explicitly sees a strong chance that none is needed and delays the move; torn, chose 0.",
+   "drivers": [
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Goldman Sachs",
+   "call": "Second hike moved to Dec (was Oct); strong chance no further hikes needed"
+  },
+  {
+   "date": "2026-10-12",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "BofA economists (US Economic Weekly, unnamed in report)",
+   "role": "BofA Global Research",
+   "occasion": "US Economic Weekly report, reported by ANI (carried by Devdiscourse) on 12 October",
+   "type": "client_note",
+   "source_url": "https://www.devdiscourse.com/article/business/3990655-strong-us-growth-sticky-inflation-may-prompt-two-more-fed-rate-hikes-in-2026-bofa",
+   "source_tier": "news_direct_quote",
+   "quote": "If the Fed pauses in Oct, we think the most likely policy path would be two more 25bp hikes, in Dec 2026 and Mar 2027,",
+   "summary": "BofA kept its forecast of 25bp hikes in October and December, warning the Fed risks falling behind the curve if it pauses in October because the nominal economy is booming and the energy shock may pass through to core. Further hikes in June and possibly September 2027 could not be ruled out; it could stop after December if inflation slows sharply in early 2027.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Two more hikes either way.",
+   "drivers": [
+    "inflation",
+    "growth",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Bank of America",
+   "call": "Oct +25bp and Dec +25bp; if Oct pause then Dec 2026 and Mar 2027; June/Sept 2027 hikes not ruled out"
+  },
+  {
+   "date": "2026-10-15",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Wells Fargo Economics (Wells Fargo Research Team)",
+   "role": "Wells Fargo Economics",
+   "occasion": "Wells Fargo monthly Economic Outlook, 'Investment-Led Growth in a Higher-Rate World', as republished by FXStreet",
+   "type": "client_note",
+   "source_url": "https://www.fxstreet.com/analysis/economic-outlook-investment-led-growth-in-a-higher-rate-world-202610151957",
+   "source_tier": "official_text",
+   "quote": "the recent data increases our conviction in a December rate hike",
+   "summary": "Wells Fargo said the hot September CPI is not quite enough to compel a move on October 28, though the meeting could be live, and that the data raise its conviction in a December hike.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Hold in October, hike in December.",
+   "drivers": [
+    "inflation"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Wells Fargo",
+   "call": "Oct hold (meeting could be live); Dec +25bp"
+  },
+  {
+   "date": "2026-10-22",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tiffany Wilding",
+   "role": "Economist, PIMCO (author of Macro Signposts)",
+   "occasion": "PIMCO Macro Signposts, 'October Fed Meeting Preview: A Pause Is Still a Recalibration'",
+   "type": "client_note",
+   "source_url": "https://www.pimco.com/us/en/insights/october-fed-meeting-preview-a-pause-is-still-a-recalibration",
+   "source_tier": "official_text",
+   "quote": "The most likely next move is a 25-basis-point (bp) rate hike in December.",
+   "summary": "PIMCO expected a hold at 3.75-4.0% in October with a clear tightening bias, and sees the rate path as a recalibration with one or two more hikes that would effectively reverse last year's cuts. It notes AI investment is less rate-sensitive, so pushing harder risks overtightening the sectors that are not the source of inflation.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Hold now, hike next in December; modest recalibration.",
+   "drivers": [
+    "inflation",
+    "other",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "PIMCO",
+   "call": "Oct hold; Dec +25bp most likely; one or two more hikes in total"
+  },
+  {
+   "date": "2026-10-27",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Michael Gapen",
+   "role": "Chief U.S. Economist, Morgan Stanley",
+   "occasion": "CNBC interview ahead of the October FOMC, reported by Stocktwits",
+   "type": "interview",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/morgan-stanley-s-michael-gapen-says-fed-is-not-out-of-the-water-even-with-a-hold-decision-economy-can-handle-75-100-bps-in-total-hikes/cZUIztlRBzp",
+   "source_tier": "news_direct_quote",
+   "quote": "I think it's right to think the economy can handle 75 to 100 basis points in total hikes without, without, say, a tremendous amount of concern,",
+   "summary": "Gapen expected a hold in October with rates going higher later, at a more gradual pace because back-to-back hikes risk too much tightening in financial conditions. He said six or seven total hikes back to 2023 levels would cause concern, and that energy markets will dictate whether an every-other-meeting pace is affordable.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Hold now, further hikes ahead at a gradual pace.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "Oct hold; further hikes later at a gradual (roughly every-other-meeting) pace; 75-100bp of total hikes manageable"
+  },
+  {
+   "date": "2026-11-10",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Matthew Hornbach",
+   "role": "Global Head of Macro Strategy, Morgan Stanley",
+   "occasion": "CNBC interview after October CPI, reported by Stocktwits",
+   "type": "interview",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/october-cpi-comes-in-hotter-than-expected-morgan-stanley-strategist-says-50-basis-point-fed-hike-would-be-too-far/cNGukHER9JT",
+   "source_tier": "news_direct_quote",
+   "quote": "To my mind, that's taking it too far.",
+   "summary": "Asked about a 50bp hike, Hornbach said that would be going too far. He said the more immediate question is whether the Fed moves from quarterly 25bp hikes to hiking at consecutive meetings, and questioned how many more elevated readings the Fed would tolerate before accelerating.",
+   "score": 1,
+   "score_basis": "forecast",
+   "score_note": "Expects continued 25bp hikes and possibly a faster cadence, but rejects 50bp.",
+   "drivers": [
+    "inflation",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Morgan Stanley",
+   "call": "25bp hikes continue; 50bp in December 'too far'; open question is quarterly vs consecutive-meeting pace"
+  },
+  {
+   "date": "2026-11-10",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Tiffany Wilding",
+   "role": "Economist, PIMCO (author of Macro Signposts)",
+   "occasion": "PIMCO Macro Signposts, 'Inflation Is Sticky, But This Isn’t 2022 All Over Again' (after October CPI)",
+   "type": "client_note",
+   "source_url": "https://www.pimco.com/us/en/insights/inflation-is-sticky-but-this-isnt-2022-all-over-again",
+   "source_tier": "official_text",
+   "quote": "However, we are shifting our forecast to include 25-bp hikes in both December and January, with some risk of another hike in March.",
+   "summary": "PIMCO said October CPI and Waller's comments strengthen the case for a December hike; its baseline is not yet 50bp but could shift if Williams and Jefferson echo Waller. It still calls the tightening a recalibration, not a new cycle, and says higher yields plus recent weakness in credit and equity markets are already doing some of the Fed's work, so a dramatically higher policy rate is not necessarily needed.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Adds a January hike to December, with risk of March and an open door to 50bp.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "PIMCO",
+   "call": "Dec +25bp and Jan 2027 +25bp; some risk of Mar 2027 hike; 50bp in Dec not baseline"
+  },
+  {
+   "date": "2026-11-13",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Aditya Bhave",
+   "role": "Lead economist on the note, BofA Global Research (as described by Reuters)",
+   "occasion": "Client note on Friday 13 November after October CPI, reported by Reuters (carried by Devdiscourse)",
+   "type": "client_note",
+   "source_url": "https://www.devdiscourse.com/article/international/4006704-bofa-adds-january-fed-hike-to-forecast-says-quarterly-pace-no-longer-enough",
+   "source_tier": "news_direct_quote",
+   "quote": "After October CPI, the Fed looks further behind the curve on inflation,",
+   "summary": "BofA added a January 2027 hike to its December and March hikes, saying the Fed can no longer afford a quarterly pace. Its strategists said the Fed might delay or skip the last hike on a soft patch in data or a significant tightening in financial conditions, while a wage surge or large annual price resets could push the policy rate above 5%.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Three consecutive hikes forecast.",
+   "drivers": [
+    "inflation",
+    "energy",
+    "tariffs_supply",
+    "financial_stability_credit"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "Bank of America",
+   "call": "Dec +25bp, Jan 2027 +25bp, Mar 2027 +25bp (January added)"
+  },
+  {
+   "date": "2026-11-17",
+   "time_et": null,
+   "date_basis": "article",
+   "speaker": "Rick Rieder",
+   "role": "Chief Investment Officer of Global Fixed Income, BlackRock",
+   "occasion": "BlackRock CIO Perspective, 'Income does the heavy lifting'",
+   "type": "essay",
+   "source_url": "https://www.blackrock.com/us/financial-professionals/insights/cio-perspective-fixed-income-yields",
+   "source_tier": "official_text",
+   "quote": "Hawkish rhetoric and patient policy can coexist, and we think they should.",
+   "summary": "With the funds rate at 3.75-4.00%, Rieder said the remaining inflation hot spots (energy, insurance, healthcare, education, shelter) are areas where another 25bp hike is unlikely to have much effect, and that tightening further may cool rate-sensitive areas that are already cool. He noted AI-related debt is set to exceed the entire US high-yield market by end-2027.",
+   "score": -1,
+   "score_basis": "should",
+   "score_note": "Says the Fed should be patient rather than hike further.",
+   "drivers": [
+    "inflation",
+    "financial_stability_credit",
+    "ai_financing"
+   ],
+   "tool": "rates",
+   "ai_quote": "But as financing costs rise, the margin for error narrows.",
+   "firm": "BlackRock",
+   "call": "No rate forecast; argues for patient policy (another 25bp unlikely to have much effect)"
+  },
+  {
+   "date": "2026-11-19",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "Michael Feroli",
+   "role": "Lead strategist/economist on the note, J.P. Morgan (as described by Reuters)",
+   "occasion": "Client note on Thursday 19 November, reported by Reuters (carried by The Standard HK)",
+   "type": "client_note",
+   "source_url": "https://www.thestandard.com.hk/finance/article/349054/JP-Morgan-sees-Fed-rate-hikes-at-next-three-meetings-as-inflation-persists",
+   "source_tier": "news_direct_quote",
+   "quote": "These hikes aren't to deliver a bad labor market, but to preserve credibility when they have no compelling narrative for a pause,",
+   "summary": "JPMorgan added quarter-point hikes in January and March 2027 to its December hike. It said Warsh has left the policy path without an overarching narrative, so policy is more likely to be reactive to data; the labor market has not been a source of inflation pressure yet inflation remains elevated.",
+   "score": 2,
+   "score_basis": "forecast",
+   "score_note": "Three consecutive hikes forecast.",
+   "drivers": [
+    "inflation",
+    "other"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "firm": "JPMorgan",
+   "call": "Dec +25bp, Jan 2027 +25bp, Mar 2027 +25bp (January and March added)"
+  }
+ ],
+ "unverified": [
+  {
+   "date": null,
+   "speaker": "Bruce Kasman (JPMorgan)",
+   "what": "Only page found (jpmorgan.com global inflation forecast, Kasman as chief global economist: Fed hike expected in 2027 with risks tilted earlier) appears to predate the window (refers to upcoming June ECB/BoJ hikes) and carries no clear date; no in-window Kasman statement on the Fed was found.",
+   "url": "https://www.jpmorgan.com/insights/global-research/economy/global-inflation-forecast"
+  },
+  {
+   "date": null,
+   "speaker": "Citi Research (podcast 'The Warsh Fed: Mind the Data', Episode 84)",
+   "what": "citigroup.com PDF returned HTTP 503; date and content not read.",
+   "url": "https://www.citigroup.com/rcs/citigpa/storage/public/Research-Citi-Episode-84-The-Warsh-Fed-Mind-the-Data-Transcript.pdf"
+  },
+  {
+   "date": null,
+   "speaker": "Goldman Sachs",
+   "what": "Removal of the March 2027 hike from the base case in late October is mentioned only retrospectively in the 11 November investingLive article; the original note or a dated report of it was not found.",
+   "url": "https://investinglive.com/central-banks/three-reasons-goldman-has-added-another-fed-rate-hike-to-its-forecast-higher-and-higher/"
+  },
+  {
+   "date": null,
+   "speaker": "Nomura (weekly-updated 'What's on the Horizon for the Global Economy?')",
+   "what": "Page states 'We expect the Fed to deliver another 25bp hike at the December meeting.' and 'We expect the Fed to remain on hold in 2027, with risks skewed towards tightening.' but it is a rolling page labelled June 2026 with no update date, so it cannot be dated; used only in latest_calls.",
+   "url": "https://www.nomuraconnects.com/focused-thinking-posts/the-economy-next-week"
+  },
+  {
+   "date": "2026-06-16",
+   "speaker": "Citi",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Hollenhorst: falling oil prices after the US-Iran MOU support rate cuts (Citi then forecast three cuts starting September) (Korean outlet in English; quotations on the page are translated, so not used as verbatim.)",
+   "url": "https://en.fnnews.com/news/202606171847027994"
+  },
+  {
+   "date": "2026-06-18",
+   "speaker": "Citi",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Cuts delayed by one month: 25bp cuts in Oct 2026, Dec 2026 and Jan 2027 (was Sep, Oct, Dec 2026)",
+   "url": "https://www.kitco.com/news/off-the-wire/2026-06-18/citi-delays-fed-rate-cut-timeline-data-speeches-now-key-after-guidance"
+  },
+  {
+   "date": "2026-07-29",
+   "speaker": "JPMorgan",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Dec +25bp (brought forward from 2H 2027); risk of a September hike (Reuters, note dated Wednesday 29 July. Same page: Goldman Sachs and Barclays still expected no change through year-end; BofA three hikes starting in September; Citi cuts in Oct, Dec and Jan 2027.)",
+   "url": "https://www.thestandard.com.hk/finance/article/338649/JPMorgan-brings-forward-Fed-rate-hike-call-to-December-after-July-hold"
+  },
+  {
+   "date": "2026-08-07",
+   "speaker": "BlackRock",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Rieder (via Bloomberg Markets): Fed unlikely to hike near term after the weak July jobs report (Aggregator summary; no direct quote.)",
+   "url": "https://cryptobriefing.com/blackrocks-rieder-sees-fed-rate-hike-unlikely-after-july-jobs-report/"
+  },
+  {
+   "date": "2026-08-11",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Hatzius (Fox Business): forecast has no hike for the rest of 2026 (Interview date inferred from article timestamp 2026-08-12 01:07 UTC and 'Wednesday's July CPI'; no policy quote in quotation marks on the page.)",
+   "url": "https://investinglive.com/news/goldman-chief-economist-hatzius-expects-a-benign-july-us-cpi-print/"
+  },
+  {
+   "date": "2026-08-30",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Hatzius note after Jackson Hole: still expects a September hold unless August CPI/PPI surprise up (Article timestamp 2026-08-31 00:26 UTC; exact note date not stated.)",
+   "url": "https://investinglive.com/central-banks/goldman-sachs-still-sees-fed-on-hold-despite-warsh-s-hawkish-jackson-hole-tone/"
+  },
+  {
+   "date": "2026-09-15",
+   "speaker": "Rick Rieder (BlackRock)",
+   "what": "Search listing of a CNBC segment titled 'Fed is going to hike rates, says BlackRock's Rick Rieder' (hike not optimal for the economy but a necessary follow-through on communication); page not opened, no transcript found.",
+   "url": "https://podwise.ai/episodes/8911678"
+  },
+  {
+   "date": "2026-09-17",
+   "speaker": "Morgan Stanley",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Added a March 2027 hike to its existing December hike forecast (Reuters; the same page says Morgan Stanley and Macquarie added a March 2027 hike to their existing December forecasts (that sentence contains zero-width characters on the page, so a neighbouring sentence is stored as page_text).)",
+   "url": "https://www.kitco.com/news/off-the-wire/2026-09-17/goldmans-october-hike-call-underscores-renewed-fed-tightening-risks"
+  },
+  {
+   "date": "2026-09-17",
+   "speaker": "Reuters brokerage table (13 houses)",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: BofA: Oct and Dec hikes to 4.25-4.50%; Goldman Sachs: Oct; J.P.Morgan, Nomura, HSBC, Barclays, Deutsche Bank, UBS Global Research, Morgan Stanley, Macquarie, BNP Paribas: Dec; UBS GWM: one hike (timing not given); Citigroup: no policy change (3.75-4.00%)",
+   "url": "https://www.bnnbloomberg.ca/business/economics/2026/09/17/major-brokerages-see-one-more-fed-rate-hike-in-2026-after-policy-meeting/"
+  },
+  {
+   "date": "2026-09-23",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Hatzius: one more hike at the October meeting, then stop; cuts toward 3.25-3.5% neutral beginning late 2027; conditional on Brent falling to about $85 by December (Article date; underlying note date not stated.)",
+   "url": "https://www.thewealthadvisor.com/article/goldman-says-one-more-fed-hike-then-oil-has-cooperate"
+  },
+  {
+   "date": "2026-09-30",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Next hike moved to December from October",
+   "url": "https://investinglive.com/central-banks/goldman-sachs-moves-its-call-for-the-next-fed-rate-hike-to-december-from-october/"
+  },
+  {
+   "date": "2026-10-02",
+   "speaker": "Jan Hatzius (Goldman Sachs)",
+   "what": "Search listing describes a CNBC appearance in which Hatzius saw little need for further tightening and said markets overprice hikes; the listing page returned 403 and no transcript was found.",
+   "url": "https://podwise.ai/episodes/9045558"
+  },
+  {
+   "date": "2026-10-08",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Hatzius after Waller's Istanbul speech: still one more 25bp hike in December; two additional hikes 'would likely be more appropriate' (Article timestamp 2026-10-09 01:25 UTC.)",
+   "url": "https://stocktwits.com/news-articles/markets/equity/two-more-fed-rate-hikes-likely-after-governor-waller-s-hawkish-remarks-goldman-sachs/cZD6eKGRBVe"
+  },
+  {
+   "date": "2026-10-13",
+   "speaker": "Citi",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Dec +25bp (was: no further moves this year); then hold; cuts begin June 2027 (Article timestamp 2026-10-14 23:29 UTC; roic.ai says the revision was reported Tuesday 13 October.)",
+   "url": "https://investinglive.com/central-banks/icymi-citi-now-expects-a-december-fed-rate-hike-after-hotter-september-us-inflation/"
+  },
+  {
+   "date": "2026-10-26",
+   "speaker": "UBS Global Wealth Management (Andrew Dubinsky, House View Briefcase)",
+   "what": "ubs.com blocks scripted fetches (403); read only through the WebFetch summariser, which reported the sentence 'We expect 25-basis-point rate hikes from the Fed in December and March.' Not machine-verified, so no item.",
+   "url": "https://www.ubs.com/us/en/wealth-management/insights/market-news/article.3896883.html"
+  },
+  {
+   "date": "2026-10-28",
+   "speaker": "Morgan Stanley",
+   "what": "Headline 'Morgan Stanley Says Fed Hold Today Won't End Rate Hikes'; page returned 410 Gone and the beincrypto copy 403.",
+   "url": "https://www.mitrade.com/insights/news/live-news/article-3-2201707-20261028"
+  },
+  {
+   "date": "2026-10-28",
+   "speaker": "Reuters brokerage table (13 houses)",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: BofA: Oct and Dec hikes to 4.25-4.50%; Goldman Sachs, J.P.Morgan, Nomura, HSBC, Barclays, Deutsche Bank, UBS GWM, UBS Global Research, Morgan Stanley, Macquarie, Standard Chartered, Citigroup: one 25bp hike in December to 4.00-4.25% (Table covers 2026 only; no 2027 path.)",
+   "url": "https://srnnews.com/factbox-major-brokerages-expect-next-fed-rate-hike-in-december/"
+  },
+  {
+   "date": "2026-11-10",
+   "speaker": "Deutsche Bank",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Dec +25bp, Jan 2027 +25bp, Mar 2027 +25bp to 4.50-4.75% (January added); 50bp in December not ruled out but not base case (Newsquawk headline timestamp 2026-11-10 16:17 UTC; same page says UBS keeps a base case of December and March hikes only.)",
+   "url": "https://investinglive.com/central-banks/deutsche-bank-sees-3-straight-fed-hikes-after-hot-cpi-adding-a-january-move/"
+  },
+  {
+   "date": "2026-11-10",
+   "speaker": "Goldman Sachs",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Mericle: Dec +25bp and Mar 2027 +25bp (March hike re-added; January possible); first cut pushed to Dec 2027 (Same page: in late October Goldman had removed a March hike from its base case. Goldman remains confident inflation will be meaningfully lower by end-2027 as tariff, energy and AI-related price pressures fade.)",
+   "url": "https://investinglive.com/central-banks/three-reasons-goldman-has-added-another-fed-rate-hike-to-its-forecast-higher-and-higher/"
+  },
+  {
+   "date": "2026-11-13",
+   "speaker": "Citi",
+   "what": "Call stated on the page in the journalist's words, no direct quotation: Acknowledged a stronger case for a 50bp December hike but not base case (with BofA and Standard Chartered) (Aggregator; no Citi note or economist named.)",
+   "url": "https://www.roic.ai/news/bofa-adds-january-2027-hike-sees-three-consecutive-fed-increases-11-13-2026"
+  },
+  {
+   "date": "2026-11-16",
+   "speaker": "Citi Research (podcast transcript 'Fed Hawks Are Back in Town', title per search listing)",
+   "what": "citigroup.com PDF returned HTTP 503 on every attempt; content not read.",
+   "url": "https://www.citigroup.com/rcs/citigpa/storage/public/Research-Citi-Markets-Edition-Transcript-11-16-26.pdf"
+  }
+ ],
+ "latest_calls": [
+  {
+   "firm": "Goldman Sachs",
+   "as_of": "2026-11-10",
+   "next_move": "hike +25bp at the December 8-9 meeting",
+   "path_2027": "Mar 2027 +25bp (could come in January); first cut Dec 2027",
+   "source_url": "https://investinglive.com/central-banks/three-reasons-goldman-has-added-another-fed-rate-hike-to-its-forecast-higher-and-higher/",
+   "note": "Mericle note of Tuesday 10 Nov as reported; no direct quote on page."
+  },
+  {
+   "firm": "JPMorgan",
+   "as_of": "2026-11-19",
+   "next_move": "hike +25bp in December",
+   "path_2027": "Jan 2027 +25bp and Mar 2027 +25bp",
+   "source_url": "https://www.thestandard.com.hk/finance/article/349054/JP-Morgan-sees-Fed-rate-hikes-at-next-three-meetings-as-inflation-persists",
+   "note": "Feroli-led note; hikes framed as preserving credibility, not a labor-market call."
+  },
+  {
+   "firm": "Bank of America",
+   "as_of": "2026-11-13",
+   "next_move": "hike +25bp in December",
+   "path_2027": "Jan 2027 +25bp and Mar 2027 +25bp; last hike could be delayed or skipped on soft data or a significant tightening in financial conditions; a wage surge could push the rate above 5%",
+   "source_url": "https://www.devdiscourse.com/article/international/4006704-bofa-adds-january-fed-hike-to-forecast-says-quarterly-pace-no-longer-enough",
+   "note": "Bhave-led note. roic.ai puts the implied peak at 4.50-4.75%."
+  },
+  {
+   "firm": "Deutsche Bank",
+   "as_of": "2026-11-10",
+   "next_move": "hike +25bp in December (50bp not ruled out, not base case)",
+   "path_2027": "Jan 2027 +25bp and Mar 2027 +25bp to 4.50-4.75%; neutral estimate raised to 3.75-4.00%, funds rate seen settling there by end-2028",
+   "source_url": "https://www.fxstreet.com/analysis/fed-policy-january-hike-added-after-hot-cpi-deutsche-bank-202611111106",
+   "note": "Luzzetti team 'Fed Notes' of 10 Nov as summarised by FXStreet; the summary says a deeper AI-valuation sell-off, which has already widened credit spreads, could make the Fed hesitate to speed up (paraphrase, not a direct quote)."
+  },
+  {
+   "firm": "Morgan Stanley",
+   "as_of": "2026-09-22",
+   "next_move": "hike +25bp in December",
+   "path_2027": "Mar 2027 +25bp to 4.25-4.50%, then hold through the rest of 2027",
+   "source_url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market/central-banks-rate-hikes-fed-ecb-boj-inflation-outlook-seth-carpenter",
+   "note": "No later change found: the Reuters table of 28 Oct still lists a December hike, and Hornbach on 10 Nov rejected 50bp while raising the quarterly-vs-consecutive pace question. No post-October-CPI forecast revision was found."
+  },
+  {
+   "firm": "Citi",
+   "as_of": "2026-10-13",
+   "next_move": "hike +25bp in December",
+   "path_2027": "hold after December; cuts begin June 2027",
+   "source_url": "https://investinglive.com/central-banks/icymi-citi-now-expects-a-december-fed-rate-hike-after-hotter-september-us-inflation/",
+   "note": "As of 13 Nov an aggregator says Citi sees a stronger case for 50bp but not as base case. Citi's own 16 Nov transcript could not be opened (503)."
+  },
+  {
+   "firm": "Barclays",
+   "as_of": "2026-10-28",
+   "next_move": "hike +25bp in December",
+   "path_2027": null,
+   "source_url": "https://srnnews.com/factbox-major-brokerages-expect-next-fed-rate-hike-in-december/",
+   "note": "From the Reuters brokerage table; the December call dates from the 28 Aug note. No 2027 path or November update found."
+  },
+  {
+   "firm": "UBS",
+   "as_of": "2026-11-12",
+   "next_move": "hike +25bp in December",
+   "path_2027": "Mar 2027 +25bp; flagged risk of more or faster tightening; limited committee support seen for 50bp",
+   "source_url": "https://investinglive.com/central-banks/deutsche-bank-sees-3-straight-fed-hikes-after-hot-cpi-adding-a-january-move/",
+   "note": "UBS view as described in the investingLive Deutsche Bank article ('said this week'); as_of is that article's date. UBS GWM's 26 Oct House View Briefcase gives the same December and March path (read via summariser only)."
+  },
+  {
+   "firm": "Wells Fargo",
+   "as_of": "2026-10-15",
+   "next_move": "hike +25bp in December",
+   "path_2027": "no changes in 2027 (per the 17 Sept forecast: 4.00-4.25% at year-end 2026)",
+   "source_url": "https://www.fxstreet.com/analysis/economic-outlook-investment-led-growth-in-a-higher-rate-world-202610151957",
+   "note": "The 13 Nov monthly outlook as republished says the outlook was not substantially changed; no rate-path sentence appears in the republished excerpt."
+  },
+  {
+   "firm": "Nomura",
+   "as_of": null,
+   "next_move": "hike +25bp in December",
+   "path_2027": "on hold in 2027, risks skewed towards tightening",
+   "source_url": "https://www.nomuraconnects.com/focused-thinking-posts/the-economy-next-week",
+   "note": "Rolling weekly page read on 2026-11-23, no update date shown; the Reuters table of 28 Oct also lists Nomura with a December hike."
+  },
+  {
+   "firm": "PIMCO",
+   "as_of": "2026-11-10",
+   "next_move": "hike +25bp in December (50bp not yet baseline)",
+   "path_2027": "Jan 2027 +25bp; some risk of another hike in March; still a 'recalibration', inflation expected to ease in 2027",
+   "source_url": "https://www.pimco.com/us/en/insights/inflation-is-sticky-but-this-isnt-2022-all-over-again",
+   "note": "Tiffany Wilding, Macro Signposts."
+  },
+  {
+   "firm": "BlackRock (Rick Rieder)",
+   "as_of": "2026-11-17",
+   "next_move": null,
+   "path_2027": null,
+   "source_url": "https://www.blackrock.com/us/financial-professionals/insights/cio-perspective-fixed-income-yields",
+   "note": "No numeric forecast. Rieder argues hawkish rhetoric and patient policy should coexist and that another 25bp would do little for the remaining inflation hot spots. iShares strategy (Akullian, 18 Sept) had a baseline of one more hike in 2026."
+  }
+ ],
+ "call_history_no_quote": [
+  {
+   "date": "2026-06-16",
+   "firm": "Citi",
+   "call": "Hollenhorst: falling oil prices after the US-Iran MOU support rate cuts (Citi then forecast three cuts starting September)",
+   "source_url": "https://en.fnnews.com/news/202606171847027994",
+   "page_text": "On the 16th local time, Andrew Hollenhorst, Citigroup's chief U.S. analyst, said that recent declines in global oil prices, following the announcement of a U.S.-Iran memorandum of understanding (MOU) on ending hostilities, would support rate cuts.",
+   "note": "Korean outlet in English; quotations on the page are translated, so not used as verbatim."
+  },
+  {
+   "date": "2026-06-18",
+   "firm": "Citi",
+   "call": "Cuts delayed by one month: 25bp cuts in Oct 2026, Dec 2026 and Jan 2027 (was Sep, Oct, Dec 2026)",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-06-18/citi-delays-fed-rate-cut-timeline-data-speeches-now-key-after-guidance",
+   "page_text": "It earlier projected easing in September, ​October and December.",
+   "note": null
+  },
+  {
+   "date": "2026-07-29",
+   "firm": "JPMorgan",
+   "call": "Dec +25bp (brought forward from 2H 2027); risk of a September hike",
+   "source_url": "https://www.thestandard.com.hk/finance/article/338649/JPMorgan-brings-forward-Fed-rate-hike-call-to-December-after-July-hold",
+   "page_text": "J.P.Morgan now expects the Federal Reserve to deliver a quarter-point rate hike in December, bringing forward its previous forecast for an increase in the second half of 2027, after the central bank left policy rates unchanged at its July meeting.",
+   "note": "Reuters, note dated Wednesday 29 July. Same page: Goldman Sachs and Barclays still expected no change through year-end; BofA three hikes starting in September; Citi cuts in Oct, Dec and Jan 2027."
+  },
+  {
+   "date": "2026-08-07",
+   "firm": "BlackRock",
+   "call": "Rieder (via Bloomberg Markets): Fed unlikely to hike near term after the weak July jobs report",
+   "source_url": "https://cryptobriefing.com/blackrocks-rieder-sees-fed-rate-hike-unlikely-after-july-jobs-report/",
+   "page_text": "Rieder’s comments, highlighted by Bloomberg Markets, suggest that the employment data might prompt the Fed to reconsider any plans for a rate hike this year.",
+   "note": "Aggregator summary; no direct quote."
+  },
+  {
+   "date": "2026-08-11",
+   "firm": "Goldman Sachs",
+   "call": "Hatzius (Fox Business): forecast has no hike for the rest of 2026",
+   "source_url": "https://investinglive.com/news/goldman-chief-economist-hatzius-expects-a-benign-july-us-cpi-print/",
+   "page_text": "Hatzius agreed with Warsh's firm restatement of a 2% inflation target, but said Goldman's forecast does not include a rate hike for the remainder of the year, arguing natural downward forces including rent and wage inflation make one unnecessary even though one remains possible",
+   "note": "Interview date inferred from article timestamp 2026-08-12 01:07 UTC and 'Wednesday's July CPI'; no policy quote in quotation marks on the page."
+  },
+  {
+   "date": "2026-08-30",
+   "firm": "Goldman Sachs",
+   "call": "Hatzius note after Jackson Hole: still expects a September hold unless August CPI/PPI surprise up",
+   "source_url": "https://investinglive.com/central-banks/goldman-sachs-still-sees-fed-on-hold-despite-warsh-s-hawkish-jackson-hole-tone/",
+   "page_text": "On that basis, Goldman continues to expect the FOMC will hold rates steady at its September meeting.",
+   "note": "Article timestamp 2026-08-31 00:26 UTC; exact note date not stated."
+  },
+  {
+   "date": "2026-09-17",
+   "firm": "Morgan Stanley",
+   "call": "Added a March 2027 hike to its existing December hike forecast",
+   "source_url": "https://www.kitco.com/news/off-the-wire/2026-09-17/goldmans-october-hike-call-underscores-renewed-fed-tightening-risks",
+   "page_text": "Goldman's revised forecast brings it in line with a growing number of brokerages expecting further tightening from the Fed.",
+   "note": "Reuters; the same page says Morgan Stanley and Macquarie added a March 2027 hike to their existing December forecasts (that sentence contains zero-width characters on the page, so a neighbouring sentence is stored as page_text)."
+  },
+  {
+   "date": "2026-09-17",
+   "firm": "Reuters brokerage table (13 houses)",
+   "call": "BofA: Oct and Dec hikes to 4.25-4.50%; Goldman Sachs: Oct; J.P.Morgan, Nomura, HSBC, Barclays, Deutsche Bank, UBS Global Research, Morgan Stanley, Macquarie, BNP Paribas: Dec; UBS GWM: one hike (timing not given); Citigroup: no policy change (3.75-4.00%)",
+   "source_url": "https://www.bnnbloomberg.ca/business/economics/2026/09/17/major-brokerages-see-one-more-fed-rate-hike-in-2026-after-policy-meeting/",
+   "page_text": "While most major brokerages expect the Fed to deliver one more rate hike this year, likely in December, Goldman Sachs and BofA Global Research see the next increase coming as early as October.",
+   "note": null
+  },
+  {
+   "date": "2026-09-23",
+   "firm": "Goldman Sachs",
+   "call": "Hatzius: one more hike at the October meeting, then stop; cuts toward 3.25-3.5% neutral beginning late 2027; conditional on Brent falling to about $85 by December",
+   "source_url": "https://www.thewealthadvisor.com/article/goldman-says-one-more-fed-hike-then-oil-has-cooperate",
+   "page_text": "Goldman Sachs thinks the Federal Reserve will raise interest rates once more at its Oct. 27 meeting and then stop.",
+   "note": "Article date; underlying note date not stated."
+  },
+  {
+   "date": "2026-09-30",
+   "firm": "Goldman Sachs",
+   "call": "Next hike moved to December from October",
+   "source_url": "https://investinglive.com/central-banks/goldman-sachs-moves-its-call-for-the-next-fed-rate-hike-to-december-from-october/",
+   "page_text": "Goldman Sachs has changed its forecast for the next Fed rate hike from October to December.",
+   "note": null
+  },
+  {
+   "date": "2026-10-08",
+   "firm": "Goldman Sachs",
+   "call": "Hatzius after Waller's Istanbul speech: still one more 25bp hike in December; two additional hikes 'would likely be more appropriate'",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/two-more-fed-rate-hikes-likely-after-governor-waller-s-hawkish-remarks-goldman-sachs/cZD6eKGRBVe",
+   "page_text": "According to The Fly, Hatzius said in a note that two additional rate hikes would likely be more appropriate and that the odds of a single hike in December have decreased.",
+   "note": "Article timestamp 2026-10-09 01:25 UTC."
+  },
+  {
+   "date": "2026-10-13",
+   "firm": "Citi",
+   "call": "Dec +25bp (was: no further moves this year); then hold; cuts begin June 2027",
+   "source_url": "https://investinglive.com/central-banks/icymi-citi-now-expects-a-december-fed-rate-hike-after-hotter-september-us-inflation/",
+   "page_text": "Citi said it expects the Fed to leave rates unchanged after that December hike, and does not see cuts beginning until June 2027.",
+   "note": "Article timestamp 2026-10-14 23:29 UTC; roic.ai says the revision was reported Tuesday 13 October."
+  },
+  {
+   "date": "2026-10-28",
+   "firm": "Reuters brokerage table (13 houses)",
+   "call": "BofA: Oct and Dec hikes to 4.25-4.50%; Goldman Sachs, J.P.Morgan, Nomura, HSBC, Barclays, Deutsche Bank, UBS GWM, UBS Global Research, Morgan Stanley, Macquarie, Standard Chartered, Citigroup: one 25bp hike in December to 4.00-4.25%",
+   "source_url": "https://srnnews.com/factbox-major-brokerages-expect-next-fed-rate-hike-in-december/",
+   "page_text": "Oct 28 (Reuters) – Global brokerages expect the US Federal Reserve to keep interest rates unchanged on Wednesday, with BofA Global Research one of the only outliers among Wall Street majors.",
+   "note": "Table covers 2026 only; no 2027 path."
+  },
+  {
+   "date": "2026-11-10",
+   "firm": "Deutsche Bank",
+   "call": "Dec +25bp, Jan 2027 +25bp, Mar 2027 +25bp to 4.50-4.75% (January added); 50bp in December not ruled out but not base case",
+   "source_url": "https://investinglive.com/central-banks/deutsche-bank-sees-3-straight-fed-hikes-after-hot-cpi-adding-a-january-move/",
+   "page_text": "Deutsche Bank had previously expected hikes in December and March, with a pause in January.",
+   "note": "Newsquawk headline timestamp 2026-11-10 16:17 UTC; same page says UBS keeps a base case of December and March hikes only."
+  },
+  {
+   "date": "2026-11-10",
+   "firm": "Goldman Sachs",
+   "call": "Mericle: Dec +25bp and Mar 2027 +25bp (March hike re-added; January possible); first cut pushed to Dec 2027",
+   "source_url": "https://investinglive.com/central-banks/three-reasons-goldman-has-added-another-fed-rate-hike-to-its-forecast-higher-and-higher/",
+   "page_text": "The bank also pushed back its forecast for the first rate cut by a quarter, to December 2027.",
+   "note": "Same page: in late October Goldman had removed a March hike from its base case. Goldman remains confident inflation will be meaningfully lower by end-2027 as tariff, energy and AI-related price pressures fade."
+  },
+  {
+   "date": "2026-11-13",
+   "firm": "Citi",
+   "call": "Acknowledged a stronger case for a 50bp December hike but not base case (with BofA and Standard Chartered)",
+   "source_url": "https://www.roic.ai/news/bofa-adds-january-2027-hike-sees-three-consecutive-fed-increases-11-13-2026",
+   "page_text": "have acknowledged a stronger case for a half-point increase but say the evidence is not yet sufficient to make that their base case.",
+   "note": "Aggregator; no Citi note or economist named."
+  }
+ ],
+ "coverage_notes": "Method: every quote was checked programmatically as an exact substring of the fetched page text. Scoring convention for forecasts: +2 = hike forecast at the next meeting or two or more further hikes; +1 = one more hike later or a tightening bias; 0 = hold (including hold with cuts a year or more out); -1 = explicit pushback against priced hikes or cuts seen as the next move. Rieder's essays are normative and carry score_basis 'should'. Extra top-level key call_history_no_quote holds dated calls that were readable on a page only in the journalist's words (each is also listed in unverified, per rule 3); page_text there is a verbatim sentence from that page. Thin or missing: (1) June: no Goldman/JPMorgan/Morgan Stanley reaction to the June 17 FOMC with a direct quote was found; the Reuters post-June and post-July brokerage tables were not found on an open page. (2) Post-October-28 FOMC: no brokerage round-up dated after the meeting was found; the last Reuters table is dated Oct 28 (pre-decision). kfgo/whbl/wtvbam copies of Reuters factboxes return 403. (3) November: no dated post-CPI forecast update found for Morgan Stanley, Citi, Barclays, Nomura, UBS Global Research or Wells Fargo. (4) Blocked sources: ubs.com (403 to scripts), advisorperspectives.com (403), citigroup.com transcripts (503), Bloomberg/CNBC video interviews (no transcripts). (5) Bruce Kasman: nothing in window. Jan Hatzius: four notes and two TV appearances seen, only one with a direct policy quote. (6) Wells Fargo items use the firm's text as republished by FXStreet (tier official_text); the bank's own site was not opened. AI/credit as a reason: only Rieder (27 Aug, 17 Nov) explicitly ties AI capex financing to the rate question, as a reason hikes bite weak borrowers but not the AI investment cycle while financing terms tighten. BofA (13 Nov) and PIMCO (10 Nov) name tighter financial conditions or credit-market weakness as something that could shorten the hiking path; Deutsche Bank's 10 Nov note, per FXStreet's paraphrase, says an AI-valuation sell-off that has widened credit spreads could make the Fed hesitate. No house has a cut as its next move as of November; Goldman is the only one with a dated first cut (Dec 2027), Citi sees cuts from June 2027. Inconsistency noticed on a source page: Stocktwits (17 Sept) says August core inflation eased to 2.4%, which conflicts with other pages describing core PCE above 3%."
+}

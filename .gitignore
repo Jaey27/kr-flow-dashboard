@@ -36,3 +36,9 @@ data/pce.json
 data/risk/FWB_BLOCKED
 data/funding.json
 data/funding/
+data/fedspeak/cache/
+data/fedspeak/market/
+data/fedspeak/analysis.json
+data/fedspeak/ledger_raw.json
+data/fedspeak/artifact/
+data/fedspeak/fedspeak.html
