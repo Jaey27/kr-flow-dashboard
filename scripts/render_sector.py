@@ -219,7 +219,7 @@ def main() -> int:
         return 0
     payload = {"generated_at": flows["generated_at"], "dates": flows["dates"], "sector": flows["sector"]}
     # 화면 코드만 먼저 끼워 테마 변환(다크/라이트 — 메인 페이지에서 고른 테마를 따라감) → 데이터·Chart.js 는 그 뒤에
-    code = render.theme.themeify(HTML.replace("__CSS__", render.CSS + CSS).replace("__APP__", render.script_safe(JS)))
+    code = render.theme.legible(render.theme.themeify(HTML.replace("__CSS__", render.CSS + CSS).replace("__APP__", render.script_safe(JS))))
     html = (code.replace("__THEMEHEAD__", render.theme.HEAD)
             .replace("__DATA__", render.js_safe_json(payload))
             .replace("__CHARTJS__", render.script_safe(render.VENDOR_PATH.read_text(encoding="utf-8"))))

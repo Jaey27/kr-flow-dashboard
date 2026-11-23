@@ -52,8 +52,6 @@ LIGHT = (":root[data-theme=\"light\"]{"
          "border:1px solid var(--hl-teal-border);border-radius:999px;padding:4px 12px;cursor:pointer;margin-left:8px}\n"
          ".theme-btn:hover{color:var(--text);border-color:var(--hl-teal)}\n"
          ":root[data-theme=\"light\"] .card,:root[data-theme=\"light\"] .tile{box-shadow:0 1px 3px rgba(15,23,42,.06)}\n"
-         # 경제지표 탭에 끼워 넣는 CPI 페이지(cpi.html)는 자체 다크 화면 — 라이트에서는 임시로 색 반전(전용 라이트 화면은 다음 작업)
-         ":root[data-theme=\"light\"] #ec-cpi{filter:invert(.92) hue-rotate(180deg)}\n"
          # 리스크 탭 자금조달 표: 다크용 파스텔 글씨는 흰 바탕에서 안 읽힌다 → 같은 색상을 어둡게
          ":root[data-theme=\"light\"] .fund-cal .b{color:#C2410C}:root[data-theme=\"light\"] .fund-cal .e{color:#6D28D9}\n"
          ":root[data-theme=\"light\"] .fund-cal .x[style*=\"color\"],:root[data-theme=\"light\"] .fund-cal [style*=\"#f0756a\"]{color:#DC2626 !important}\n"
@@ -92,4 +90,63 @@ def themeify(src: str) -> str:
     if m:
         root2 = root[:-1].rstrip().rstrip(";") + ";" + DARK_EXTRA + "}"
         src = src.replace("\x00ROOT\x00", root2 + "\n" + LIGHT, 1)
+    return src
+
+
+# ---- CPI 세부 페이지(cpi_dashboard/scripts/template.html) — 경제지표 탭에 iframe 으로 들어가고 단독 페이지(cpi.html)로도 열린다 ----
+# 같은 출처라 localStorage('krflow.theme')를 같이 쓴다 → 메인에서 테마를 바꾸면 iframe 도 새로고침되며 같은 테마로 뜬다.
+_CPI_HEX = [
+    ("#ffffff", "var(--c-main)"), ("#fff", "var(--c-main)"),
+    ("#2ec4b6", "var(--accent)"), ("#06221f", "var(--on-ac)"),
+    ("#0f2026", "var(--grp)"), ("#1a333b", "var(--line2)"), ("#183740", "var(--hover)"), ("#0d1d22", "var(--card3)"),
+    ("#ffe066", "var(--spike)"), ("#86a2ab", "var(--muted)"), ("#1d3a43", "var(--grid)"), ("#8aa", "var(--muted)"),
+    ("#ff6b6b", "var(--up)"), ("#4dabf7", "var(--down)"), ("#ffb347", "var(--warn)"),
+]
+_CPI_RGBA = [("134,162,171", "--muted-rgb"), ("255,255,255", "--hi-rgb"), ("11,26,31", "--bg-rgb")]
+_CPI_DARK = ("--c-main:#ffffff;--on-ac:#06221f;--grp:#0f2026;--line2:#1a333b;--hover:#183740;--card3:#0d1d22;--spike:#ffe066;"
+             "--grid:#1d3a43;--muted-rgb:134,162,171;--hi-rgb:255,255,255;--bg-rgb:11,26,31;color-scheme:dark")
+_CPI_LIGHT = (":root[data-theme=\"light\"]{--bg:#F3F5F7;--card:#FFFFFF;--card2:#EEF2F5;--line:#D9DFE6;--text:#17202B;--muted:#5B6675;--dim:#7A8594;"
+              "--accent:#15803D;--up:#DC2626;--down:#2563EB;--warn:#B45309;--good:#15803D;"
+              "--c-main:#17202B;--on-ac:#FFFFFF;--grp:#E8EDF2;--line2:#E3E8EE;--hover:#EAF4EE;--card3:#F7F9FB;--spike:#CA8A04;"
+              "--grid:#E3E8EE;--muted-rgb:91,102,117;--hi-rgb:23,32,43;--bg-rgb:243,245,247;color-scheme:light}\n"
+              ":root[data-theme=\"light\"] .b-up{background:#FEE2E2;color:#B91C1C}:root[data-theme=\"light\"] .b-dn{background:#DBEAFE;color:#1D4ED8}"
+              ":root[data-theme=\"light\"] .b-rv{background:#DCFCE7;color:#15803D}:root[data-theme=\"light\"] .b-ps{background:#FFEDD5;color:#C2410C}\n")
+
+
+def themeify_cpi(src: str) -> str:
+    m = _ROOT.search(src)
+    root = m.group(0) if m else ""
+    if m:
+        src = src[:m.start()] + "\x00ROOT\x00" + src[m.end():]
+    for rgb, var in _CPI_RGBA:
+        src = re.sub(r"rgba\(\s*" + rgb.replace(",", r"\s*,\s*") + r"\s*,", f"rgba(var({var}),", src)
+    for hx, expr in _CPI_HEX:
+        src = re.sub(re.escape(hx) + r"(?![0-9a-fA-F])", expr, src, flags=re.I)
+    src = _SOLO.sub(lambda g: "T('" + g.group(1) + "')", src)
+    if m:
+        src = src.replace("\x00ROOT\x00", root[:-1].rstrip().rstrip(";") + ";" + _CPI_DARK + "}\n" + _CPI_LIGHT, 1)
+    return src.replace("<head>", "<head>\n" + HEAD, 1)
+
+
+# ---- 글자 크기(11/23 Jae: TV 가독성) — 굽는 시점에 작은 글자만 키운다 ----
+def _bump(x: float) -> float:
+    if x < 11:
+        return 12
+    if x < 12:
+        return 12.5
+    if x < 13:
+        return x + 1          # 12 → 13, 12.5 → 13.5
+    return x
+
+
+def _fmt(x: float) -> str:
+    return ("%g" % x)
+
+
+def legible(src: str) -> str:
+    """CSS font-size·Chart.js font size·캔버스 글꼴의 13px 미만 값을 키운다(최소 12px). 13px 이상은 그대로."""
+    src = re.sub(r"(font-size\s*:\s*)(\d+(?:\.\d+)?)px", lambda g: g.group(1) + _fmt(_bump(float(g.group(2)))) + "px", src)
+    src = re.sub(r"(\bsize\s*:\s*)(\d+(?:\.\d+)?)(?=\s*[,}])", lambda g: g.group(1) + _fmt(_bump(float(g.group(2)))), src)
+    src = re.sub(r"(Chart\.defaults\.font\.size\s*=\s*)(\d+(?:\.\d+)?)", lambda g: g.group(1) + _fmt(_bump(float(g.group(2)))), src)
+    src = re.sub(r"(['\"`](?:\d00 )?)(\d+(?:\.\d+)?)px(?= )", lambda g: g.group(1) + _fmt(_bump(float(g.group(2)))) + "px", src)
     return src

@@ -1256,7 +1256,7 @@ def build(flows: dict, hol: dict) -> str:
             .replace("__ECONJS__", script_safe(render_macro.ECON_JS))
             .replace("__RISKJS__", script_safe(render_macro.RISK_JS))
             .replace("__SEIBROJS__", script_safe(render_macro.SEIBRO_JS)))
-    code = theme.themeify(code).replace("__THEMEHEAD__", theme.HEAD).replace("__THEMEBTN__", theme.TOGGLE)
+    code = theme.legible(theme.themeify(code)).replace("__THEMEHEAD__", theme.HEAD).replace("__THEMEBTN__", theme.TOGGLE)  # 테마 + TV용 최소 글자 크기
     return (code.replace("__BBDATA__", js_safe_json(json.loads(render_buyback.bb_data_json())))
             .replace("__SLDATA__", js_safe_json(json.loads(render_shlong.sl_data_json())))
             .replace("__DATA__", js_safe_json(flows))
