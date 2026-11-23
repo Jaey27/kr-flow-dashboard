@@ -346,20 +346,20 @@ var Y2S=['y2','미 2Y 금리(오른쪽)',true,'y3'];  // 이 카드 한정 보�
 var fwViews=(M.fedwatch&&(M.fedwatch.ledger_meetings||[]).length)?[{label:'FedWatch 누적 bp',u:'bp',zero:true,series:M.fedwatch.ledger_meetings.map(function(m){return ['fw_'+m.replace(/-/g,''),dl(m)+' 회의 후',FW_ON.indexOf(m)<0];}).filter(function(x){return S[x[0]];}).concat([Y2S])}]:[];
 var fedViews=(M.fed||[]).map(function(m,i){return {label:dl(m.date),u:'pp',series:[['fed'+i+'_H0','동결'],['fed'+i+'_H25','인상 25bp'],['fed'+i+'_H26','인상 >25bp'],['fed'+i+'_C25','인하 25bp'],Y2S]};});
 var CHARTS=[
-  {id:'curve',t:'미 국채 금리',sub:'재무부 고시(종가) · %',views:[
+  {id:'fed',ovOff:true,t:'연준 기대 추이 — FedWatch 방식(앞) · Kalshi(뒤)',sub:'FedWatch: 회의 후 예상 금리 − 그날 EFFR(누적 bp), 실행할 때마다 원장(data/fedwatch_ledger.json)에 쌓음 · Kalshi: 회의별 결과 확률(%)',views:fwViews.concat(fedViews)},
+  {id:'curve',ovOff:true,t:'미 국채 금리',sub:'재무부 고시(종가) · %',views:[
     {label:'2·5·10·30Y',u:'%',series:[['y2','2Y'],['y5','5Y'],['y10','10Y'],['y30','30Y']]},
     {label:'커브(bp)',u:'bp',series:[['s2s10','2s10s'],['s10s30','10s30s']],zero:true}]},
-  {id:'real',t:'실질금리 vs BEI',sub:'재무부 명목 − 실질(TIPS) 커브 · %',views:[
+  {id:'real',ovOff:true,t:'실질금리 vs BEI',sub:'재무부 명목 − 실질(TIPS) 커브 · %',views:[
     {label:'10Y',u:'%',series:[['real10','10Y 실질'],['bei10','10Y BEI']]},
     {label:'5Y',u:'%',series:[['real5','5Y 실질'],['bei5','5Y BEI']]},
     {label:'10Y 명목',u:'%',series:[['y10','10Y 명목'],['real10','10Y 실질']]}]},
-  {id:'tp',t:'텀프리미엄 (NY Fed ACM)',sub:'1영업일 지연 · MacroMicro 차트와 같은 원천 · %',views:[
+  {id:'tp',ovOff:true,t:'텀프리미엄 (NY Fed ACM)',sub:'1영업일 지연 · MacroMicro 차트와 같은 원천 · %',views:[
     {label:'10Y TP',u:'%',series:[['tp10','10Y TP']]},
     {label:'2·5·10Y TP',u:'%',series:[['tp2','2Y TP'],['tp5','5Y TP'],['tp10','10Y TP']]},
     {label:'10Y = 기대경로 + TP',u:'%',series:[['rny10','기대 단기금리 경로'],['tp10','TP']]}]},
   {id:'krw',t:'원/달러',sub:'Yahoo KRW=X 일봉(뉴욕 마감 기준) · 원',views:[{label:'원/달러',u:'원',series:[['usdkrw','원/달러']]}]},
-  {id:'brent',t:'Brent 선물',sub:'Yahoo BZ=F 일봉 · $',views:[{label:'Brent',u:'$',series:[['brent','Brent']]}]},
-  {id:'fed',ovOff:true,t:'연준 기대 추이 — FedWatch 방식(앞) · Kalshi(뒤)',sub:'FedWatch: 회의 후 예상 금리 − 그날 EFFR(누적 bp), 실행할 때마다 원장(data/fedwatch_ledger.json)에 쌓음 · Kalshi: 회의별 결과 확률(%)',views:fwViews.concat(fedViews)}
+  {id:'brent',t:'Brent 선물',sub:'Yahoo BZ=F 일봉 · $',views:[{label:'Brent',u:'$',series:[['brent','Brent']]}]}
 ];
 function el(t,c,h){var e=document.createElement(t);if(c) e.className=c;if(h!=null) e.innerHTML=h;return e;}
 function fmtU(u,v){if(v==null) return '–';if(u==='%') return nf(v,2)+'%';if(u==='bp') return nf(v,0)+'bp';if(u==='pp') return nf(v,0)+'%';if(u==='원') return nf(v,1);if(u==='$') return '$'+nf(v,2);return nf(v,2);}
@@ -422,7 +422,7 @@ var pb=document.getElementById('mx-presets');PR.forEach(function(p){var b=el('bu
 var A=M.asof;function ad(x){return x&&x.date?String(x.date).slice(5,10).replace('-','/')+(x.via==='cache'?'(캐시)':''):'–';}
 document.getElementById('mx-asof').textContent='기준 · 재무부 '+ad(A.treasury)+' · ACM '+ad(A.acm)+' · Brent '+ad(A.brent)+' · 원/달러 '+ad(A.usdkrw)+' · 생성 '+M.generated_at.slice(5,16).replace('T',' ');
 // ---- 기간 분해: 10Y = 실질+BEI (재무부) / 기대경로+TP (ACM) ----
-var DEC=null,DECOV=ls('ov.dec')!=='0',DECM='cum';
+var DEC=null,DECOV=ls('ovf.dec')==='1',DECM='cum';  // 코스피 겹치기 기본 꺼짐(11/23)
 function fNN(a,i,j){for(var k=i;k<=j;k++) if(a[k]!=null) return k;return -1;}
 function lNN(a,i,j){for(var k=j;k>=i;k--) if(a[k]!=null) return k;return -1;}
 function rel(k){var a=S[k]||[],b=fNN(a,W.i0,W.i1);return a.slice(W.i0,W.i1+1).map(function(v){return (v==null||b<0)?null:Math.round((v-a[b])*1000)/10;});}
@@ -458,7 +458,7 @@ function drawDec(){
       y2:{display:false}}}});
 }
 (function(){var hd=document.querySelector('#mx-dec-card .card-head'),tl=el('div','card-tools');var ob=el('button','ov-btn'+(DECOV?' on':''),'코스피');ob.type='button';ob.title='코스피를 회색 선(오른쪽 축)으로 겹치기';
-  ob.onclick=function(){DECOV=!DECOV;ls('ov.dec',DECOV?'1':'0');ob.classList.toggle('on',DECOV);drawDec();};tl.appendChild(ob);hd.appendChild(tl);})();
+  ob.onclick=function(){DECOV=!DECOV;ls('ovf.dec',DECOV?'1':'0');ob.classList.toggle('on',DECOV);drawDec();};tl.appendChild(ob);hd.appendChild(tl);})();
 
 renderTiles();renderVerdict();renderFW();renderFed();build();
 var pre=ls('preset');var pp=PR.filter(function(p){return p[0]===pre;})[0]||PR[2];setP(pp[1],pp[0]);

@@ -404,6 +404,7 @@ def assemble(now: dt.datetime) -> dict:
             p0 = px[c][keys[j]] if j >= 0 and keys[j] >= (dt.date.fromisoformat(ref) - dt.timedelta(days=7)).isoformat() else None
             out.append(round((p1 / p0 - 1) * 100, 1) if p1 and p0 else None)
         S[f"yoy_{c}"] = out
+        S[f"px_{c}"] = [px.get(c, {}).get(d) for d in dates]   # 종가(원) — VKOSPI 카드 주가 겹치기
 
     # ADR(등락비율) = 최근 20영업일 상승 종목 수 합 ÷ 하락 종목 수 합 × 100 (KRX 종목별 시세)
     kr = dict(load_ledger("krx_mcap")["rows"])

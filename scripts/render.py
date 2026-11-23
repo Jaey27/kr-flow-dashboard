@@ -263,6 +263,13 @@ var CS={samsung:'#9085e9',hynix:'#d55181',other:'#9db3b0',kospi:'#97FCE4',kosdaq
 // ---- 파생 시리즈 ----------------------------------------------------------
 S.ratio_credit_deposit=D.map(function(_,i){var a=S.credit_total[i],b=S.deposit[i];
   return (a==null||b==null||!b)?null:Math.round(a/b*10000)/100;});
+// 시총 대비 비율(%) — 시총(KRX, 억원)과 금투협 값(억원)이 둘 다 있는 날만
+function ratioMcap(k,m){return D.map(function(_,i){var a=(S[k]||[])[i],b=(S[m]||[])[i];return (a==null||!b)?null:a/b*100;});}
+S.ratio_credit_kospi_mcap=ratioMcap('credit_kospi','mcap_kospi');
+S.ratio_credit_kosdaq_mcap=ratioMcap('credit_kosdaq','mcap_kosdaq');
+S.ratio_credit_total_mcap=ratioMcap('credit_total','mcap_total');
+S.ratio_deposit_mcap=ratioMcap('deposit','mcap_total');
+S.ratio_forced_mcap=ratioMcap('forced_sale','mcap_total');
 // 외국인 보유 삼성·하이닉스 ÷ 코스피 시총 (%)
 ['005930','000660'].forEach(function(c){S['s'+c+'_fo_in_mcap']=D.map(function(_,i){var a=S['s'+c+'_fo_val'][i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});});
 S.sh_fo_in_mcap=D.map(function(_,i){var a=S.sh_fo_val[i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});
@@ -279,6 +286,7 @@ var FMT={
   eok2:function(v){return nf(v,Math.abs(v)<100?1:0)+'억';},
   ct:function(v){return nf(Math.round(v))+'계약';},
   pct:function(v){return nf(v,2)+'%';},
+  pct5:function(v){return nf(v,5)+'%';},
   idx:function(v){return nf(v,2);},
   shr:function(v){return nf(v/1e8,2)+'억주';},
   cnt:function(v){return nf(Math.round(v))+'개';}
@@ -288,7 +296,8 @@ var TICK={
   eok:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,a>=100000?0:1)+'조':nf(v)+'억';},
   eok2:function(v){return nf(v)+'억';},
   ct:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,1)+'만':nf(v);},
-  pct:function(v){return nf(v,1)+'%';},
+  pct:function(v){var a=Math.abs(v);return nf(v,a&&a<2?2:1)+'%';},
+  pct5:function(v){return nf(v,4)+'%';},
   idx:function(v){return nf(v);},
   shr:function(v){return nf(v/1e8,1)+'억';},
   cnt:function(v){return nf(v);}
@@ -350,19 +359,27 @@ var PANELS=[
     {label:'합계',type:'line',unit:'jo',series:[{k:'credit_total',name:'신용융자 합계',color:COL.teal}]},
     {label:'코스피',type:'line',unit:'jo',series:[{k:'credit_kospi',name:'코스피',color:COL.foreign}]},
     {label:'코스닥',type:'line',unit:'jo',series:[{k:'credit_kosdaq',name:'코스닥',color:COL.inst}]},
-    {label:'시장별 누적',type:'stack',unit:'jo',series:[{k:'credit_kospi',name:'코스피',color:COL.foreign},{k:'credit_kosdaq',name:'코스닥',color:COL.inst}]}
+    {label:'시장별 누적',type:'stack',unit:'jo',series:[{k:'credit_kospi',name:'코스피',color:COL.foreign},{k:'credit_kosdaq',name:'코스닥',color:COL.inst}]},
+    {label:'시총 대비',type:'line',unit:'pct',note:'각 시장 신용융자 ÷ 그 시장 시가총액(KRX)',series:[{k:'ratio_credit_kospi_mcap',name:'코스피 신용 ÷ 코스피 시총',short:'코스피',color:COL.foreign},{k:'ratio_credit_kosdaq_mcap',name:'코스닥 신용 ÷ 코스닥 시총',short:'코스닥',color:COL.inst},{k:'ratio_credit_total_mcap',name:'합계 ÷ 합산 시총',short:'합계',color:COL.teal,dash:true}]}
   ]},
   {id:'deposit',title:'투자자예탁금',src:'금융투자협회',asof:'funds',views:[
     {label:'예탁금',type:'line',unit:'jo',series:[{k:'deposit',name:'투자자예탁금',color:COL.teal}]},
+    {label:'시총 대비',type:'line',unit:'pct',note:'투자자예탁금 ÷ (코스피+코스닥 시가총액)',series:[{k:'ratio_deposit_mcap',name:'예탁금 ÷ 코스피+코스닥 시총',color:COL.teal}]},
     {label:'신용÷예탁금',type:'line',unit:'pct',series:[{k:'ratio_credit_deposit',name:'신용융자 ÷ 예탁금',color:COL.teal}]},
     {label:'파생 예수금',type:'line',unit:'jo',series:[{k:'deriv_deposit',name:'장내파생 거래예수금',color:COL.teal}]}
   ]},
   {id:'forced',title:'미수금 · 반대매매',src:'금융투자협회',asof:'funds',views:[
     {label:'반대매매 비중',type:'line',unit:'pct',series:[{k:'forced_ratio',name:'미수금 대비 반대매매 비중',color:COL.teal}]},
     {label:'반대매매',type:'bar',unit:'eok2',series:[{k:'forced_sale',name:'반대매매 금액',color:COL.teal}]},
+    {label:'시총 대비',type:'line',unit:'pct5',note:'반대매매 금액 ÷ (코스피+코스닥 시가총액)',series:[{k:'ratio_forced_mcap',name:'반대매매 ÷ 코스피+코스닥 시총',color:COL.teal}]},
     {label:'미수금',type:'line',unit:'eok',series:[{k:'unpaid',name:'위탁매매 미수금',color:COL.teal}]}
   ]},
-  {id:'vkospi',title:'VKOSPI · 삼성전자/하이닉스 주가 YoY',src:'KRX 파생상품지수 · 왼쪽 VKOSPI / 오른쪽 YoY%',asof:'index',views:[
+  {id:'vkospi',title:'VKOSPI · 삼성전자/SK하이닉스/코스피 주가',src:'KRX 파생상품지수 · 왼쪽 VKOSPI / 오른쪽 주가(기간 시작=100) 또는 YoY%',asof:'index',views:[
+    {label:'VKOSPI + 주가',type:'line',unit:'idx',unit2:'idx',note:'오른쪽 축 = 기간 시작일을 100으로 맞춘 주가·지수',series:[
+      {k:'vkospi',name:'VKOSPI',color:COL.teal},
+      {k:'px_005930',name:'삼성전자 주가',short:'삼성',color:'#9085e9',axis:'y1',unit:'idx',rebase:true},
+      {k:'px_000660',name:'SK하이닉스 주가',short:'하이닉스',color:'#d55181',axis:'y1',unit:'idx',rebase:true},
+      {k:'idx_kospi',name:'코스피',color:'#c9d1d9',axis:'y1',unit:'idx',rebase:true,dash:true}]},
     {label:'VKOSPI + YoY',type:'line',unit:'idx',unit2:'pct',note:(S.vkospi.some(function(v){return v!=null;})?'오른쪽 축 = 전년 같은 날 대비 주가 상승률':'VKOSPI 는 KRX 파생상품지수 승인 후 표시'),series:[
       {k:'vkospi',name:'VKOSPI',color:COL.teal},
       {k:'yoy_005930',name:'삼성전자 YoY',color:'#9085e9',axis:'y1',unit:'pct',signed:true},
@@ -504,6 +521,7 @@ function ovY2(view){return view.series.some(function(sp){return sp.axis==='y1';}
 function datasets(view,card){
   var out=view.series.map(function(sp,j){
     var data=slice(sp.k,isCum(view,sp),view.base);
+    if(sp.rebase){var b0=null;for(var q=0;q<data.length;q++) if(data[q]!=null){b0=data[q];break;}data=data.map(function(v){return (v==null||!b0)?null:Math.round(v/b0*1000)/10;});}  // 기간 시작=100
     // 선 보기 안의 막대(지수 + 거래대금, 10/27): 오른쪽 축, 차트 아래 1/3에 깔림(low2)
     if(sp.bar) return {type:'bar',label:sp.name,data:data,yAxisID:'y1',order:10,borderWidth:0,categoryPercentage:1,barPercentage:.9,backgroundColor:sp.color};
     if(view.type==='bar'){
@@ -635,7 +653,7 @@ function updateSub(card){
   var view=card.p.views[card.v],a=F.asof[card.p.asof]||{},d=a.date;
   var prov=d&&(a.prov||[]).indexOf(d)>=0;
   if(card.p.id==='adr'&&F.asof.adr_prov){d=F.asof.adr_prov.date;prov=true;}  // 오늘은 네이버 실시간 상승·하락 종목 수(다음 날 KRX로 교체)
-  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
+  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',pct5:'%',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
   card.sub.innerHTML=card.p.src+' · '+unitName+(d?' · '+dshort(d)+' 기준':'')+(prov?'<span class="prov-tag">잠정</span>':'');
 }
 
