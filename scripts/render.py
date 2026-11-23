@@ -187,7 +187,7 @@ table.ct .dim{color:var(--text-muted);font-weight:400;font-size:11px}
   color:var(--text-muted);font-variant-numeric:tabular-nums;pointer-events:none}
 
 /* ── 요약 타일 ───────────────────────────────────────────────── */
-.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
 @media (max-width:1100px){.tiles{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:560px){.tiles{grid-template-columns:1fr 1fr}}
 .tile{background:var(--surface);border:1px solid rgba(151,252,228,.08);border-left:3px solid var(--hl-teal-border);
@@ -270,6 +270,12 @@ S.ratio_credit_kosdaq_mcap=ratioMcap('credit_kosdaq','mcap_kosdaq');
 S.ratio_credit_total_mcap=ratioMcap('credit_total','mcap_total');
 S.ratio_deposit_mcap=ratioMcap('deposit','mcap_total');
 S.ratio_forced_mcap=ratioMcap('forced_sale','mcap_total');
+function movAvg(a,n){var out=[],w=[];for(var i=0;i<a.length;i++){if(a[i]!=null){w.push(a[i]);if(w.length>n) w.shift();}out.push(a[i]!=null&&w.length>=n?w.reduce(function(s,v){return s+v;},0)/w.length:null);}return out;}
+S.ratio_deposit_mcap_ma20=movAvg(S.ratio_deposit_mcap,20);
+// 순매수 ÷ 그날 시총 (bp = 시총의 0.01%) — 누적 보기에서 기간 시작부터 더한다
+['kospi','kosdaq'].forEach(function(mk){['foreign','inst','indiv'].forEach(function(w){S[mk+'_'+w+'_bpm']=D.map(function(_,i){var a=(S[mk+'_'+w]||[])[i],b=(S['mcap_'+mk]||[])[i];return (a==null||!b)?null:a/b*10000;});});});
+// 외국인 선물 순매수 ÷ 그날 미결제약정 (%)
+S.fut_foreign_poi=D.map(function(_,i){var a=(S.fut_foreign||[])[i],b=(S.fut_oi||[])[i];return (a==null||!b)?null:a/b*100;});
 // 외국인 보유 삼성·하이닉스 ÷ 코스피 시총 (%)
 ['005930','000660'].forEach(function(c){S['s'+c+'_fo_in_mcap']=D.map(function(_,i){var a=S['s'+c+'_fo_val'][i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});});
 S.sh_fo_in_mcap=D.map(function(_,i){var a=S.sh_fo_val[i],b=S.mcap_kospi[i];return (a==null||!b)?null:Math.round(a/b*10000)/100;});
@@ -287,6 +293,7 @@ var FMT={
   ct:function(v){return nf(Math.round(v))+'계약';},
   pct:function(v){return nf(v,2)+'%';},
   pct5:function(v){return nf(v,5)+'%';},
+  bp:function(v){return nf(v,1)+'bp';},
   idx:function(v){return nf(v,2);},
   shr:function(v){return nf(v/1e8,2)+'억주';},
   cnt:function(v){return nf(Math.round(v))+'개';}
@@ -298,6 +305,7 @@ var TICK={
   ct:function(v){var a=Math.abs(v);return a>=10000?nf(v/10000,1)+'만':nf(v);},
   pct:function(v){var a=Math.abs(v);return nf(v,a&&a<2?2:1)+'%';},
   pct5:function(v){return nf(v,4)+'%';},
+  bp:function(v){return nf(v,0)+'bp';},
   idx:function(v){return nf(v);},
   shr:function(v){return nf(v/1e8,1)+'억';},
   cnt:function(v){return nf(v);}
@@ -337,6 +345,7 @@ function inv(mk,f,name,color){return {k:mk+'_'+f,name:name,color:color};}
 function invViews(mk){
   return [
     {label:'누적',type:'line',cum:true,unit:'eok',series:[inv(mk,'foreign','외국인',COL.foreign),inv(mk,'inst','기관',COL.inst),inv(mk,'indiv','개인',COL.indiv)]},
+    {label:'누적 ÷ 시총',type:'line',cum:true,unit:'bp',note:'기간 시작부터 누적 순매수 ÷ 그날 시가총액 · 1bp = 시총의 0.01%',series:[{k:mk+'_foreign_bpm',name:'외국인',color:COL.foreign},{k:mk+'_inst_bpm',name:'기관',color:COL.inst},{k:mk+'_indiv_bpm',name:'개인',color:COL.indiv}]},
     {label:'외국인 일별',type:'bar',unit:'eok',series:[{k:mk+'_foreign',name:'외국인 순매수',sign:true}]},
     {label:'기관 일별',type:'bar',unit:'eok',series:[{k:mk+'_inst',name:'기관 순매수',sign:true}]},
     {label:'개인 일별',type:'bar',unit:'eok',series:[{k:mk+'_indiv',name:'개인 순매수',sign:true}]}
@@ -364,7 +373,7 @@ var PANELS=[
   ]},
   {id:'deposit',title:'투자자예탁금',src:'금융투자협회',asof:'funds',views:[
     {label:'예탁금',type:'line',unit:'jo',series:[{k:'deposit',name:'투자자예탁금',color:COL.teal}]},
-    {label:'시총 대비',type:'line',unit:'pct',note:'투자자예탁금 ÷ (코스피+코스닥 시가총액)',series:[{k:'ratio_deposit_mcap',name:'예탁금 ÷ 코스피+코스닥 시총',color:COL.teal}]},
+    {label:'시총 대비',type:'line',unit:'pct',note:'투자자예탁금 ÷ (코스피+코스닥 시가총액) · 굵은 선 = 20일 평균',series:[{k:'ratio_deposit_mcap_ma20',name:'20일 평균',color:COL.teal},{k:'ratio_deposit_mcap',name:'일별',color:'rgba(157,179,176,.55)',thin:true}]},
     {label:'신용÷예탁금',type:'line',unit:'pct',series:[{k:'ratio_credit_deposit',name:'신용융자 ÷ 예탁금',color:COL.teal}]},
     {label:'파생 예수금',type:'line',unit:'jo',series:[{k:'deriv_deposit',name:'장내파생 거래예수금',color:COL.teal}]}
   ]},
@@ -389,6 +398,7 @@ var PANELS=[
   ]},
   {id:'futures',title:'외국인 코스피200 선물',src:'다음 금융(KRX) · 전 월물 합계',asof:'futures',views:[
     {label:'누적 순매수',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인 누적',color:COL.foreign}]},
+    {label:'누적 ÷ 미결제',type:'line',cum:true,unit:'pct',note:'기간 시작부터 (일별 순매수 ÷ 그날 미결제약정)을 더한 값',series:[{k:'fut_foreign_poi',name:'외국인 누적 ÷ 미결제약정',color:COL.foreign}]},
     {label:'일별',type:'bar',unit:'ct',series:[{k:'fut_foreign',name:'외국인 순매수',sign:true}]},
     {label:'투자자별 누적',type:'line',cum:true,unit:'ct',series:[{k:'fut_foreign',name:'외국인',color:COL.foreign},{k:'fut_inst',name:'기관',color:COL.inst},{k:'fut_indiv',name:'개인',color:COL.indiv}]},
     {label:'미결제약정',type:'line',unit:'ct',series:[{k:'fut_oi',name:'미결제약정(전 월물)',color:COL.teal}]}
@@ -535,6 +545,7 @@ function datasets(view,card){
       o.pointBackgroundColor=sp.color;o.pointBorderColor='#061E20';o.pointBorderWidth=1.5;o.spanGaps=false;o.stack='pts';}
     else if(view.type==='stack'){o.stack='s';o.fill=j===0?'origin':'-1';o.backgroundColor=hexA(sp.color,.30);}
     if(sp.dash) o.borderDash=[5,4];
+    if(sp.thin) o.borderWidth=1;
     if(sp.axis==='y1') o.yAxisID='y1';
     return o;
   });
@@ -611,9 +622,10 @@ function buildCard(p){
       b.onclick=function(){card.v=i;ls('view.'+p.id,i);rebuild(card);};seg.appendChild(b);});
     tools.appendChild(seg);card.seg=seg;
   }
-  card.ov=ls('ov.'+p.id)!=='0';
+  // 코스피 겹치기: ADR 만 기본 켬, 나머지는 기본 끔(11/23 — 새 키라 예전 '켬' 기억은 초기화)
+  var ovk=(p.id==='adr'?'ov.':'ovf.')+p.id;card.ov=p.id==='adr'?ls(ovk)!=='0':ls(ovk)==='1';
   if(p.id!=='index'){var ob=el('button','tbl-btn'+(card.ov?' on':''),'코스피');ob.type='button';ob.title='코스피를 회색 선(오른쪽 축)으로 겹치기';
-    ob.onclick=function(){card.ov=!card.ov;ls('ov.'+p.id,card.ov?'1':'0');ob.classList.toggle('on',card.ov);rebuild(card);};tools.appendChild(ob);card.ob=ob;}
+    ob.onclick=function(){card.ov=!card.ov;ls(ovk,card.ov?'1':'0');ob.classList.toggle('on',card.ov);rebuild(card);};tools.appendChild(ob);card.ob=ob;}
   var tb=el('button','tbl-btn','표');tb.type='button';tb.title='현재 기간의 값을 표로 보기';
   tb.onclick=function(){card.table=!card.table;tb.classList.toggle('on',card.table);renderTable(card);};
   tools.appendChild(tb);
@@ -653,7 +665,7 @@ function updateSub(card){
   var view=card.p.views[card.v],a=F.asof[card.p.asof]||{},d=a.date;
   var prov=d&&(a.prov||[]).indexOf(d)>=0;
   if(card.p.id==='adr'&&F.asof.adr_prov){d=F.asof.adr_prov.date;prov=true;}  // 오늘은 네이버 실시간 상승·하락 종목 수(다음 날 KRX로 교체)
-  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',pct5:'%',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
+  var unitName={jo:'조원',eok:'억원',eok2:'억원',ct:'계약',pct:'%',pct5:'%',bp:'bp',idx:'pt',cnt:'종목 수',shr:'주(왼쪽 삼성·오른쪽 하이닉스)'}[view.unit];
   card.sub.innerHTML=card.p.src+' · '+unitName+(d?' · '+dshort(d)+' 기준':'')+(prov?'<span class="prov-tag">잠정</span>':'');
 }
 
@@ -706,7 +718,9 @@ function renderTiles(){
       return {k:'반대매매 · '+dshort(D[li]),v:FMT.eok2(a[li]),s:'비중 '+FMT.pct(S.forced_ratio[li])+' · 구간 평균 '+FMT.eok2(s/n)};})(),
     flowTile('fut_foreign','외국인 선물','ct'),
     flowTile('kospi_foreign','외국인 코스피','eok'),
-    flowTile('kosdaq_foreign','외국인 코스닥','eok')
+    flowTile('kosdaq_foreign','외국인 코스닥','eok'),
+    balTile('adr_kospi','ADR 코스피(20일)','idx',function(i){var v=S.adr_kospi[i],k=S.adr_kosdaq[i];return (v>=120?'<b class="pos">과매수</b>':v<=80?'<b class="neg">과매도</b>':'중립(80~120)')+' · 코스닥 '+FMT.idx(k);}),
+    balTile('vkospi','VKOSPI','idx')
   ];
   document.getElementById('tiles').innerHTML=T.map(function(t){
     return '<div class="tile"><div class="k">'+t.k+'</div><div class="v">'+t.v+'</div><div class="s">'+t.s+'</div></div>';}).join('');

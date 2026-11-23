@@ -775,7 +775,7 @@ function lineChart(cv,list,o){
   var ds={};list.forEach(function(x){x.s.forEach(function(r){ds[r[0]]=1;});});
   var lo=RD[RW.i0],hi=RD[RW.i1],L=Object.keys(ds).filter(function(d){return d>=lo&&d<=hi;}).sort();
   var sets=list.map(function(x,j){var m={};x.s.forEach(function(r){m[r[0]]=r[1];});
-    return {label:x.n,borderDash:x.dash||[],data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide,yAxisID:x.ax||'y'};});
+    return {label:x.n,endName:x.e,borderDash:x.dash||[],data:L.map(function(d){return m[d]==null?null:m[d];}),borderColor:x.c||P[j%P.length],backgroundColor:x.c||P[j%P.length],borderWidth:o.bw||1.8,pointRadius:o.pts?1.8:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!x.hide,yAxisID:x.ax||'y'};});
   (o.stocks||[]).forEach(function(tk,j){var px=((R.stocks||{})[tk])||[];var m={};px.forEach(function(r){m[r[0]]=r[1];});
     var b=null;for(var i=0;i<L.length;i++){if(m[L[i]]!=null){b=m[L[i]];break;}}if(b==null) return;
     var last=null;sets.push({label:tk+' 주가',isStock:true,data:L.map(function(d){if(m[d]!=null) last=m[d];return last==null?null:Math.round(last/b*1000)/10;}),
@@ -783,7 +783,7 @@ function lineChart(cv,list,o){
   if(o.par) sets.push({label:'액면가 100',data:L.map(function(){return 100;}),borderColor:'rgba(232,255,250,.35)',borderDash:[4,4],borderWidth:1,pointRadius:0,pointHoverRadius:0,yAxisID:'y'});
   // 끝 라벨(이름 + 마지막 값) — 겹치면 아래로 밀어냄
   var endLab={id:'endLab',afterDatasetsDraw:function(ch){if(!o.end) return;var c=ch.ctx,ca=ch.chartArea,it=[];
-    ch.data.datasets.forEach(function(d,i){if(!ch.isDatasetVisible(i)||d.label==='액면가 100') return;var me=ch.getDatasetMeta(i);for(var k=d.data.length-1;k>=0;k--) if(d.data[k]!=null&&me.data[k]){it.push({y:me.data[k].y,t:d.label+' '+o.fmt(d.data[k]),c:d.borderColor});break;}});
+    ch.data.datasets.forEach(function(d,i){if(!ch.isDatasetVisible(i)||d.label==='액면가 100') return;var me=ch.getDatasetMeta(i);for(var k=d.data.length-1;k>=0;k--) if(d.data[k]!=null&&me.data[k]){it.push({y:me.data[k].y,t:(d.endName||d.label)+' '+(d.isStock?nf(d.data[k],0):o.fmt(d.data[k])),c:d.borderColor});break;}});
     it.sort(function(a,b){return a.y-b.y;});for(var i=1;i<it.length;i++) if(it[i].y-it[i-1].y<15) it[i].y=it[i-1].y+15;
     c.save();c.font='600 12px -apple-system,"Malgun Gothic",sans-serif';c.textBaseline='middle';it.forEach(function(x){c.fillStyle=x.c;c.fillText(x.t,ca.right+8,x.y);});c.restore();}};
   var NICE=[10,25,50,75,100,150,200,300,500,750,1000,1500,2000];
@@ -810,8 +810,8 @@ function drawIss(){segs('rk-grp',R.groups.map(function(g,i){return [i,g[0]];}),S
   segs('rk-ism',[['px','가격'],['ytm','YTM']],ST.ism,function(k){ST.ism=k;ls('ism',k);drawIss();});
   var grp=R.groups[ST.gi]||R.groups[0],m=M[ST.ism];
   var L=grp[1].map(function(tk){var i=R.issuers.filter(function(x){return x.tk===tk;})[0];
-    return i?{n:tk+' '+cp(i.bond.coupon)+' '+(i.bond.maturity||'').slice(0,4),s:pick(i.series,m.col)}:null;}).filter(Boolean);
-  if(CH.iss) CH.iss.destroy();CH.iss=lineChart(document.getElementById('rk-iss'),L,Object.assign({stocks:grp[1]},m));}
+    return i?{n:tk+' '+cp(i.bond.coupon)+' '+(i.bond.maturity||'').slice(0,4),e:tk,s:pick(i.series,m.col)}:null;}).filter(Boolean);
+  if(CH.iss) CH.iss.destroy();CH.iss=lineChart(document.getElementById('rk-iss'),L,Object.assign({stocks:grp[1],end:true},m));}  // 선 끝에 티커+마지막 값(11/23)
 var CG=[['비교 · 로그 · 5거래일 중앙값',['ORCL','CRWV','META','GOOGL','MSFT','AMZN','SBG','SPCX']],['고위험',['CRWV','SBG','ORCL','SPCX']],['M7 + AI 반도체',['META','AMZN','GOOGL','MSFT','AAPL','TSLA','NVDA','AMD','AVGO']]];
 var CNAME={AAPL:'Apple',TSLA:'Tesla',NVDA:'Nvidia',AMD:'AMD',AVGO:'Broadcom',ORCL:'Oracle',CRWV:'CoreWeave',META:'Meta',GOOGL:'Alphabet',MSFT:'Microsoft',AMZN:'Amazon',SBG:'SoftBank',SPCX:'SpaceX'};
 var CCOL={AAPL:'#c8d6d4',TSLA:'#f0756a',NVDA:'#7cc44a',AMD:'#e05a9a',AVGO:'#5fb0e8',ORCL:'#3987e5',CRWV:'#e8823a',META:'#2aa58a',GOOGL:'#a463d6',MSFT:'#d4a72c',AMZN:'#d55181',SBG:'#9db3b0',SPCX:'#6cc3c1'};
@@ -971,7 +971,23 @@ var dh='';Object.keys(R.debt).forEach(function(k){var t=R.debt[k];
   t.rows.map(function(r){var o={};t.fields.forEach(function(f,i){o[f]=r[i];});
     return '<tr><td class="l">'+esc(o.date_filed)+'</td><td class="l">'+esc(o.instrument)+'</td><td>'+(o.amount?'$'+nf(o.amount/1e9,2)+'bn':'–')+'</td><td class="l">'+esc(o.rate)+'</td><td class="l">'+esc(o.maturity)+'</td><td class="l">'+(o.gpu_backed===true?'<b style="color:var(--warn)">예</b>':o.gpu_backed===false?'아니오':'–')+'</td><td class="l">'+(o.url?'<a href="'+esc(o.url)+'" target="_blank" rel="noopener" style="color:var(--hl-teal)">'+esc(o.filing||'원문')+'</a>':esc(o.filing||''))+'</td></tr>';}).join('')+'</tbody></table></div>';});
 document.getElementById('rk-debt').innerHTML=dh;
-document.getElementById('rk-asof').textContent=(R.finra_blocked?'⚠ FINRA 수집 멈춤('+R.finra_blocked+') — 채권 가격은 마지막 값 · ':'')+'표 = FINRA TRACE 10/16 1MM+ 체결 중앙값 · 선 = FINRA 일별 종가(T-1, 최근 2년) · CDS = DTCC 공개 체결 · 수동 갱신(개인 리서치용)';
+// 출처별 최신일(11/23): 안내문에 실제 날짜를 쓰고, 4영업일 넘게 묵은 출처는 상단 배너(#stale)에 올린다
+function lastD(a){return a&&a.length?a[a.length-1][0]:null;}
+function maxD(l){return l.filter(Boolean).sort().pop()||null;}
+var LD={finra:maxD(R.dc.map(function(d){return lastD(d.series);}).concat(R.issuers.filter(function(i){return i.tk!=='CRWV';}).map(function(i){return lastD(i.series);}))),
+  cds:maxD(R.issuers.map(function(i){return lastD(i.cds_series);})),
+  oas:R.fred&&R.fred.series?lastD(R.fred.series.hy):null,
+  breadth:R.breadth&&R.breadth.sets&&R.breadth.sets.pub?lastD(R.breadth.sets.pub['high yield']):null};
+function mdS(d){return d?(+d.slice(5,7))+'/'+(+d.slice(8,10)):'–';}
+document.getElementById('rk-asof').textContent=(R.finra_blocked?'⚠ FINRA 수집 멈춤('+R.finra_blocked+') — 채권 가격은 마지막 값 · ':'')+'표·선 = FINRA 일별 종가(최신 '+mdS(LD.finra)+', 영업일 1일 늦음) · CDS = DTCC 공개 체결(최신 '+mdS(LD.cds)+') · ICE OAS '+mdS(LD.oas)+' · 개인 리서치용';
+(function(){var MM=window.__MACRO__||{},now=new Date(),lim=4;
+  function bdays(d){if(!d) return 0;var a=new Date(d.slice(0,10)+'T00:00:00'),n=0;a.setDate(a.getDate()+1);while(a<=now){var w=a.getDay();if(w!==0&&w!==6) n++;a.setDate(a.getDate()+1);}return n;}
+  var src=[['FINRA 채권 가격',LD.finra],['CDS(DTCC)',LD.cds],['ICE OAS(FRED)',LD.oas],['회사채 등락(FINRA API)',LD.breadth],
+    ['미 국채 금리(재무부)',MM.asof&&MM.asof.treasury&&MM.asof.treasury.date],['텀프리미엄(NY Fed)',MM.asof&&MM.asof.acm&&MM.asof.acm.date],['FedWatch',MM.fedwatch&&MM.fedwatch.asof]];
+  var late=src.filter(function(x){return x[1]&&bdays(x[1])>lim;}).map(function(x){return x[0]+'('+mdS(x[1])+')';});
+  if(!late.length) return;var s=document.getElementById('stale');if(!s) return;
+  var msg='<span>⚠︎</span><span>수집이 멈췄을 수 있습니다 — '+late.join(', ')+' 이후 값이 '+lim+'영업일 넘게 없습니다. 맥미니 logs/risk_*.log · daily_*.log 와 data/risk/FINRA_BLOCKED 를 확인하세요.</span>';
+  if(s.hidden){s.hidden=false;s.innerHTML=msg;}else s.innerHTML+='<br>'+msg;})();
 var SHOWN=false;var rp0=ls('rp');var RP=RPR.filter(function(p){return p[0]===rp0;})[0]||RPR[1];rSet(rIdx(RP[1]),RN-1,RP[0]);
 window.RISK={show:function(){if(!SHOWN){SHOWN=true;draw();}}};
 if(!root.hidden) window.RISK.show();

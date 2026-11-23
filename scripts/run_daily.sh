@@ -24,7 +24,9 @@ step(){ echo "=== $(date '+%H:%M:%S') $*" >>"$LOG"; "$@" >>"$LOG" 2>&1 || echo "
 # 편집은 다른 곳(Windows·웹 Claude)에서 GitHub로 push → 맥미니는 실행 전에 받아서 새 코드로 굽는다(코드만 받고, docs/data 는 맥미니가 주인)
 step git pull -q --rebase --autostash origin "$(git rev-parse --abbrev-ref HEAD)"
 # 새 코드로 flows.json 도 다시 조립(아래 render.py 가 새 화면 코드 + 옛 flows.json 으로 굽지 않게 — 11/01 보유 주식 수 빈 차트). exit 3(변경 없음)은 정상
-step "$PY" scripts/build_data.py --auto
+# build_data.py 는 '바뀐 것 없음'을 종료 코드 3 으로 알린다 → 실패(WARN)로 적지 않는다(11/23)
+echo "=== $(date '+%H:%M:%S') build_data.py --auto" >>"$LOG"; "$PY" scripts/build_data.py --auto >>"$LOG" 2>&1; rc=$?
+[ "$rc" = 0 ] || [ "$rc" = 3 ] || echo "[WARN] 실패(rc=$rc): scripts/build_data.py --auto" >>"$LOG"
 
 step "$PY" scripts/macro_data.py                 # 미 금리·BEI·TP·원달러·Brent·Kalshi·FedWatch·금리분해·발표일정
 step "$PY" scripts/hy_split.py                   # HYG/LQD 보유종목 AI/비AI 원장(하루 1행)
@@ -47,6 +49,11 @@ step "$PY" scripts/retail_data.py               # 소매판매 세부(Census MAR
 step "$PY" scripts/emp_data.py                  # 고용 세부(BLS CES 플랫파일 + FRED 실업률 등) — 경제지표 탭
 step "$PY" scripts/ppi_data.py                  # PPI 세부(BLS wp.data.22.FD-ID, Last-Modified 같으면 재다운로드 안 함) — 경제지표 탭
 step "$PY" scripts/pce_data.py                  # PCE 추정(CPI·PPI 브릿지) + 실제값 대조 — ppi_data 다음
+# 네이버 업종·소속 종목 목록(섹터 수급 기준) — 월요일 아침에만 다시 받는다(신규 상장·업종 변경 반영, 11/23)
+if [ "$(date +%u)" = 1 ] && [ "$(date +%H)" -lt 12 ]; then
+  step env PYTHONPATH=scripts "$PY" scripts/sources/naver_sector.py
+  step env PYTHONPATH=scripts:scripts/sources "$PY" -c "import sector_flow; sector_flow.rebuild_ledger()"   # 새 목록으로 섹터 원장 전체 재계산
+fi
 step "$PY" scripts/stock_long.py                 # 삼성·하이닉스 외국인 보유 5년(네이버 보유율·종가 + 다음 보유주식 수) — 외국인 보유 탭 카드
 step "$PY" scripts/buyback_fetch.py               # 자사주 매입(buyback-dashboard 공개 리포 data/buyback.json) — 수급 탭 「자사주 매입」
 step "$PY" scripts/crwv_fwb.py                 # CRWV 9.75% 2031 프랑크푸르트 시세 1회(FINRA 빈 날 메우기)

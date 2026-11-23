@@ -278,11 +278,13 @@ function kpis() {
   const surp = (o, a) => o && o.f != null && a != null ? `예상 ${o.f.toFixed(1)} → ${(a - o.f) >= 0.05 ? '<span class="pos">상회</span>' : (a - o.f) <= -0.05 ? '<span class="neg">하회</span>' : '부합'}` : '컨센서스 없음';
   const v = (c0, m) => ser(c0, m)[k];
   const hm = v('SA0', 'mom'), cm = v('SA0L1E', 'mom');
+  // 전년 같은 달 지수가 없으면(2025-10 은 셧다운으로 미발표) 전년비를 못 낸다 → 이유를 적는다
+  const NOYOY = '전년 같은 달(' + lab(M[k - 12] || '') + ') 지수 미발표 — 계산 불가';
   document.getElementById('kpis').innerHTML =
     card(`헤드라인 전월비 · ${lab(ym)}`, fmt(hm) + '%', surp(c.h_mom, hm == null ? null : +hm.toFixed(1))) +
-    card('헤드라인 전년비', fmt(v('SA0', 'yoy')) + '%', surp(c.h_yoy, v('SA0', 'yoy') == null ? null : +v('SA0', 'yoy').toFixed(1))) +
+    card('헤드라인 전년비', fmt(v('SA0', 'yoy')) + '%', v('SA0', 'yoy') == null ? NOYOY : surp(c.h_yoy, +v('SA0', 'yoy').toFixed(1))) +
     card('근원 전월비', fmt(cm) + '%', surp(c.c_mom, cm == null ? null : +cm.toFixed(1))) +
-    card('근원 전년비', fmt(v('SA0L1E', 'yoy')) + '%', surp(c.c_yoy, v('SA0L1E', 'yoy') == null ? null : +v('SA0L1E', 'yoy').toFixed(1))) +
+    card('근원 전년비', fmt(v('SA0L1E', 'yoy')) + '%', v('SA0L1E', 'yoy') == null ? NOYOY : surp(c.c_yoy, +v('SA0L1E', 'yoy').toFixed(1))) +
     // 메인 4개(Jae 10/18) 외 나머지는 접기 — 열림 상태는 기간을 바꿔 다시 그려도 유지
     `<details class="kpi-more" style="grid-column:1/-1"${window.__kpiMore ? ' open' : ''} ontoggle="window.__kpiMore=this.open"><summary style="cursor:pointer;font-size:12px;color:#8aa;padding:4px 2px">더 보기 — 근원 3·6개월 연율 · 슈퍼코어 · 주거비</summary><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:8px">` +
     card('근원 3개월 / 6개월 연율', fmt(v('SA0L1E', 'ann3'), 1) + ' / ' + fmt(v('SA0L1E', 'ann6'), 1), '전년비보다 빠르게 변곡을 보여줌') +
