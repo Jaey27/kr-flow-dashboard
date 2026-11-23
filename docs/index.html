@@ -225,6 +225,7 @@ footer a{color:var(--hl-teal-dim);text-decoration:none;border-bottom:1px dotted 
 @media (prefers-reduced-motion:reduce){.logo-dot{animation:none}}
 
 #tab-macro .card{margin-bottom:16px}
+.mx-subnav{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px}.mx-subnav .nav-link{font-size:13.5px;padding:5px 14px}
 .mx-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
 .mx-bar .lbl{font-size:13px;color:var(--text-dim)}
 .mx-bar label{font-size:13px;color:var(--text-dim);display:inline-flex;gap:6px;align-items:center;cursor:pointer}
@@ -351,6 +352,10 @@ body.fs-lock{overflow:hidden}
 
 
 <div id="tab-macro" hidden>
+<!-- 매크로 안 하위 탭: 금리 발언 tracker(기본) | 금리·시장. tracker 는 docs/fedspeak.html(scripts/fedspeak/build.py --docs)을 iframe 으로 띄운다(흰 배경 단독 페이지, Jae 11/23) -->
+<div class="mx-subnav" role="tablist" aria-label="매크로 보기"><button class="nav-link active" type="button" data-mx="fed" role="tab">금리 발언 tracker</button><button class="nav-link" type="button" data-mx="rates" role="tab">금리·시장</button><a class="nav-link" href="fedspeak.html" target="_blank" rel="noopener">tracker 새 창 ↗</a></div>
+<div id="mx-fs"><iframe id="mx-fs-frame" title="금리 발언 tracker" loading="lazy" style="width:100%;height:calc(100vh - 140px);min-height:640px;border:0;border-radius:12px;background:#fff;display:block"></iframe></div>
+<div id="mx-main" hidden>
 <div class="mx-bar"><span class="lbl">기간</span><div class="seg" id="mx-presets"></div>
   <div class="range-dates"><input id="mx-d0" class="dinp" inputmode="numeric" aria-label="시작일 입력" title="날짜 입력 후 Enter (예: 2026-04-15, 260415, 4/15)"><span>~</span><input id="mx-d1" class="dinp" inputmode="numeric" aria-label="종료일 입력" title="날짜 입력 후 Enter"><span id="mx-rlab"></span></div>
   <span class="asof" id="mx-asof"></span></div>
@@ -372,6 +377,7 @@ body.fs-lock{overflow:hidden}
 <div class="mx-grid" id="mx-grid"></div>
 <details class="card mx-links"><summary>링크 서랍 — 바이백·이격도·국채·정치 아티팩트 (매일 보는 것 아님)</summary>
   <div class="body"><div><h5>수급·자사주</h5><ul><li><a href="https://jaey27.github.io/buyback-dashboard/" target="_blank" rel="noopener">자사주 바이백 대시보드 (삼성전자·SK하이닉스) ↗</a><span class=n>윈도우 수동 갱신 · 삼성 15조 완료(10/6)</span></li><li><span>이격도 대시보드</span><span class=n>미배포(7/1 로컬 커밋만) · 예탁금·신용은 이 페이지 '시장 수급' 탭과 같음</span></li><li><span>ETF 자금유출입 트래커</span><span class=n>텔레그램 평일 08:30 자동 발송(맥미니)</span></li></ul></div><div><h5>금리·국채</h5><ul><li><a href="https://en.macromicro.me/charts/45452/us-10-treasury-term-premium" target="_blank" rel="noopener">MacroMicro — ACM 10Y 텀프리미엄 ↗</a><span class=n>원천 = NY Fed ACM(이 탭과 같은 데이터)</span></li><li><a href="https://en.macromicro.me/charts/86836/us-10y-treasury-yield-composition" target="_blank" rel="noopener">MacroMicro — 10Y 금리 구성(실질·BEI·TP) ↗</a></li><li><a href="https://en.macromicro.me/search?q=10Y%20Treasury%20vs%20TIPS" target="_blank" rel="noopener">MacroMicro — 10Y vs TIPS ↗</a></li><li><a href="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs" target="_blank" rel="noopener">NY Fed ACM 원자료 ↗</a><span class=n>1영업일 지연</span></li><li><a href="https://claude.ai/artifact/1YVZ2tAs873qQ9x2hEqtME" target="_blank" rel="noopener">국채 숫자 눈금자 ↗</a><span class=n>아티팩트(9/10)</span></li><li><a href="https://claude.ai/code/artifact/f62274d4-dbae-4fce-a326-3bd1581c468e" target="_blank" rel="noopener">롱본드 수급 레이더 ↗</a><span class=n>아티팩트</span></li><li><a href="https://claude.ai/artifact/Ja9yTBJ3vSQEYkZBfG9Bbc" target="_blank" rel="noopener">롱본드 갈림길 ↗</a><span class=n>아티팩트(9/3)</span></li><li><a href="https://claude.ai/artifact/XPqaBcitVEqe26JN4gHwZf" target="_blank" rel="noopener">미국채 수급 아티팩트집 ↗</a><span class=n>아티팩트(9/13)</span></li><li><a href="https://claude.ai/artifact/TtmcWygLh8RdApWBscfxFy" target="_blank" rel="noopener">실질금리 vs AI 일별 분해 ↗</a><span class=n>아티팩트(10/14)</span></li></ul></div><div><h5>정치·지정학</h5><ul><li><a href="https://claude.ai/artifact/Bc7p7WQ4yvgG6fBMGqeuBB" target="_blank" rel="noopener">블루스윕 반영도 점검 ↗</a><span class=n>아티팩트(10/14 기준)</span></li><li><a href="https://claude.ai/artifact/XgEXRAad4aUE1PSvLPj9L9" target="_blank" rel="noopener">전쟁·금리 매크로 노트 ↗</a><span class=n>아티팩트</span></li><li><a href="https://claude.ai/artifact/QTU2SewAwbw4Gi7psr1629" target="_blank" rel="noopener">전쟁과 금리 케이스스터디 ↗</a><span class=n>아티팩트</span></li></ul></div></div></details>
+</div><!-- /mx-main -->
 </div>
 <div id="tab-econ" hidden>
 <section class="card"><div class="card-head"><div><div class="card-title">발표 일정 — 발표 전후에만 본다</div>
@@ -1425,7 +1431,7 @@ setWindow(idxMonthsBack(P[1]),N-1,P[0]);
 'use strict';
 var M=window.__MACRO__;
 var root=document.getElementById('tab-macro');
-if(!M){root.innerHTML='<section class="card mx-empty">매크로 데이터가 없습니다 — <code>python scripts/macro_data.py</code> 를 먼저 실행하세요.</section>';window.MACRO={show:function(){}};return;}
+if(!M){document.getElementById('mx-main').innerHTML='<section class="card mx-empty">매크로 데이터가 없습니다 — <code>python scripts/macro_data.py</code> 를 먼저 실행하세요.</section>';window.MACRO={show:function(){}};return;}
 var D=M.dates,S=M.series,N=D.length;
 var css=getComputedStyle(document.documentElement);function cv(n){return css.getPropertyValue(n).trim();}
 var COL={text:cv('--text'),dim:cv('--text-dim'),muted:cv('--text-muted'),teal:cv('--hl-teal'),grid:T('rgba(var(--ac-rgb),.13)'),ov:T('rgba(var(--ov-rgb),.75)')};
@@ -1633,6 +1639,20 @@ renderTiles();renderVerdict();renderFW();renderFed();build();
 var pre=ls('preset');var pp=PR.filter(function(p){return p[0]===pre;})[0]||PR[2];setP(pp[1],pp[0]);
 window.MACRO={show:function(){drawOv();if(!SHOWN){SHOWN=true;CH.forEach(draw);drawDec();}else CH.forEach(function(c){c.ch&&c.ch.resize();});}};
 if(!root.hidden) window.MACRO.show();  // 앱 스크립트가 먼저 매크로 탭을 열었을 때
+})();
+// ---- 매크로 하위 탭: 금리 발언 tracker | 금리·시장 ----
+(function(){
+var root=document.getElementById('tab-macro'),fed=document.getElementById('mx-fs'),main=document.getElementById('mx-main'),fr=document.getElementById('mx-fs-frame');
+var base=window.MACRO&&window.MACRO.show?window.MACRO.show:function(){};
+function ls(k,v){try{if(v===undefined) return localStorage.getItem('krflow.'+k);localStorage.setItem('krflow.'+k,v);}catch(e){return null;}}
+var SUB=ls('mxsub')||'fed';
+function apply(){fed.hidden=SUB!=='fed';main.hidden=SUB!=='rates';
+  Array.prototype.forEach.call(document.querySelectorAll('.mx-subnav [data-mx]'),function(b){var on=b.getAttribute('data-mx')===SUB;b.classList.toggle('active',on);b.setAttribute('aria-selected',on);});
+  if(root.hidden) return;
+  if(SUB==='fed'){if(!fr.getAttribute('src')) fr.setAttribute('src','fedspeak.html');}else base();}
+Array.prototype.forEach.call(document.querySelectorAll('.mx-subnav [data-mx]'),function(b){b.onclick=function(){SUB=b.getAttribute('data-mx');ls('mxsub',SUB);apply();};});
+window.MACRO={show:apply};
+apply();
 })();
 </script>
 <script>
