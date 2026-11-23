@@ -166,8 +166,8 @@ HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#061E20" />
+<meta name="color-scheme" content="light dark" />
+__THEMEHEAD__
 <title>섹터별 수급</title>
 <meta name="description" content="네이버 업종 78개의 개인·기관·외국인 순매수 — 당일·1주·2주." />
 <style>__CSS__</style>
@@ -218,10 +218,11 @@ def main() -> int:
         print("[render_sector] 섹터 데이터 없음 — 건너뜀")
         return 0
     payload = {"generated_at": flows["generated_at"], "dates": flows["dates"], "sector": flows["sector"]}
-    html = (HTML.replace("__CSS__", render.CSS + CSS)
+    # 화면 코드만 먼저 끼워 테마 변환(다크/라이트 — 메인 페이지에서 고른 테마를 따라감) → 데이터·Chart.js 는 그 뒤에
+    code = render.theme.themeify(HTML.replace("__CSS__", render.CSS + CSS).replace("__APP__", render.script_safe(JS)))
+    html = (code.replace("__THEMEHEAD__", render.theme.HEAD)
             .replace("__DATA__", render.js_safe_json(payload))
-            .replace("__CHARTJS__", render.script_safe(render.VENDOR_PATH.read_text(encoding="utf-8")))
-            .replace("__APP__", render.script_safe(JS)))
+            .replace("__CHARTJS__", render.script_safe(render.VENDOR_PATH.read_text(encoding="utf-8"))))
     targets = [OUT] + ([DOCS] if "--docs" in sys.argv else [])
     for t in targets:
         tmp = t.with_suffix(".tmp")

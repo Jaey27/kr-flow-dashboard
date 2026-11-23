@@ -12,6 +12,7 @@ import json
 import sys
 from pathlib import Path
 
+import theme  # noqa: E402
 import render_macro
 import render_buyback
 import render_shlong
@@ -1113,8 +1114,8 @@ HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="light dark" />
+__THEMEHEAD__
 <title>리스크·매크로·수급</title>
 <meta name="description" content="신용거래융자·투자자예탁금·반대매매·외국인 코스피200 선물·코스피/코스닥 투자자별 순매수를 매일 자동 갱신하는 대시보드." />
 <style>__CSS__</style>
@@ -1124,7 +1125,7 @@ HTML = r"""<!DOCTYPE html>
 <header>
   <div class="brand"><span class="logo-dot" aria-hidden="true"></span>
     <div><h1>리스크 · 매크로 · 수급</h1><div class="sub">회사채·데이터센터 채권 · 경제지표 · 미 금리·텀프리미엄·BEI · 국내 수급</div></div></div>
-  <div class="stamp"><div id="gen"></div><div class="chips" id="chips"></div></div>
+  <div class="stamp"><div style="display:flex;align-items:center;justify-content:flex-end"><div id="gen"></div>__THEMEBTN__</div><div class="chips" id="chips"></div></div>
 </header>
 <div class="stale" id="stale" hidden></div>
 <div class="top-nav-row"><nav class="top-nav" id="tabs" aria-label="보기 전환">
@@ -1243,25 +1244,27 @@ __BBHTML__
 
 
 def build(flows: dict, hol: dict) -> str:
-    return (HTML.replace("__CSS__", CSS + render_macro.MACRO_CSS + render_buyback.BB_CSS)
+    # 1) 화면 코드(CSS·HTML·JS)만 먼저 끼우고 테마 변환(theme.themeify) → 2) Chart.js·데이터는 변환 뒤에 넣는다(데이터 안 글자를 건드리지 않게)
+    code = (HTML.replace("__CSS__", CSS + render_macro.MACRO_CSS + render_buyback.BB_CSS)
             .replace("__BBHTML__", render_buyback.BB_HTML)
-            .replace("__BBDATA__", js_safe_json(json.loads(render_buyback.bb_data_json())))
             .replace("__BBJS__", script_safe(render_buyback.BB_JS))
-            .replace("__SLDATA__", js_safe_json(json.loads(render_shlong.sl_data_json())))
             .replace("__SLJS__", script_safe(render_shlong.SL_JS))
             .replace("__MACROHTML__", render_macro.macro_html())
-            .replace("__DATA__", js_safe_json(flows))
-            .replace("__HOLDATA__", js_safe_json({"holidays": hol["holidays"]}))
-            .replace("__CHARTJS__", script_safe(VENDOR_PATH.read_text(encoding="utf-8")))
             .replace("__APP__", script_safe(JS))
-            .replace("__MACRODATA__", js_safe_json(json.loads(render_macro.macro_data_json())))
             .replace("__MACROJS__", script_safe(render_macro.MACRO_JS))
             .replace("__FSJS__", script_safe(render_macro.FS_JS))
             .replace("__ECONJS__", script_safe(render_macro.ECON_JS))
-            .replace("__RISKDATA__", js_safe_json(json.loads(render_macro.risk_data_json())))
             .replace("__RISKJS__", script_safe(render_macro.RISK_JS))
-            .replace("__SEIBRODATA__", js_safe_json(json.loads(render_macro.seibro_data_json())))
             .replace("__SEIBROJS__", script_safe(render_macro.SEIBRO_JS)))
+    code = theme.themeify(code).replace("__THEMEHEAD__", theme.HEAD).replace("__THEMEBTN__", theme.TOGGLE)
+    return (code.replace("__BBDATA__", js_safe_json(json.loads(render_buyback.bb_data_json())))
+            .replace("__SLDATA__", js_safe_json(json.loads(render_shlong.sl_data_json())))
+            .replace("__DATA__", js_safe_json(flows))
+            .replace("__HOLDATA__", js_safe_json({"holidays": hol["holidays"]}))
+            .replace("__CHARTJS__", script_safe(VENDOR_PATH.read_text(encoding="utf-8")))
+            .replace("__MACRODATA__", js_safe_json(json.loads(render_macro.macro_data_json())))
+            .replace("__RISKDATA__", js_safe_json(json.loads(render_macro.risk_data_json())))
+            .replace("__SEIBRODATA__", js_safe_json(json.loads(render_macro.seibro_data_json()))))
 
 
 def main() -> int:

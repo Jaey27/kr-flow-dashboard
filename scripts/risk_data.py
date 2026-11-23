@@ -102,12 +102,13 @@ def _cdsvol() -> dict | None:
 
 
 def clean_cds(rows: list) -> list:
-    """upfront 역산은 부호를 몰라 가끔 반대쪽 해가 섞인다 → 직전 5개 중앙값 대비 0.5배 미만·2배 초과 점은 뺀다."""
+    """upfront 역산은 부호를 몰라 가끔 반대쪽 해가 섞인다 → 앞뒤 5개씩(자기 제외) 이웃 중앙값 대비 0.5배 미만·2배 초과 점은 뺀다.
+    11/23: 예전엔 '이미 받아들인 직전 5개'와 비교해서, 첫 몇 점이 틀리면(MSFT 2025-02 의 3~5bp) 그 뒤 진짜 값(45bp)이 전부 버려졌다."""
     out = []
-    for r in rows:
-        prev = sorted(x[1] for x in out[-5:])
-        if len(prev) >= 3:
-            m = prev[len(prev) // 2]
+    for k, r in enumerate(rows):
+        nb = sorted(x[1] for x in rows[max(0, k - 5):k] + rows[k + 1:k + 6])
+        if len(nb) >= 3:
+            m = nb[len(nb) // 2]
             if not (0.5 * m <= r[1] <= 2 * m):
                 continue
         out.append(r)
