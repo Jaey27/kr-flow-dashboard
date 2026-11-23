@@ -340,8 +340,11 @@ function renderFed(){
 
 // ---- 차트 -----------------------------------------------------------------
 var W={i0:0,i1:N-1},CH=[];
-var fwViews=(M.fedwatch&&(M.fedwatch.ledger_meetings||[]).length)?[{label:'FedWatch 누적 bp',u:'bp',zero:true,series:M.fedwatch.ledger_meetings.map(function(m){return ['fw_'+m.replace(/-/g,''),dl(m)+' 회의 후'];}).filter(function(x){return S[x[0]];})}]:[];
-var fedViews=(M.fed||[]).map(function(m,i){return {label:dl(m.date),u:'pp',series:[['fed'+i+'_H0','동결'],['fed'+i+'_H25','인상 25bp'],['fed'+i+'_H26','인상 >25bp'],['fed'+i+'_C25','인하 25bp']]};});
+// 기본으로 켜 둘 회의 = 기준일 이후 가장 가까운 2개. 이미 지난 회의(·그 뒤 회의)는 범례에서 꺼 둔다(클릭하면 켬)
+var FW_ASOF=(M.fedwatch&&M.fedwatch.asof)||D[N-1],FW_ON=((M.fedwatch&&M.fedwatch.ledger_meetings)||[]).filter(function(m){return m>=FW_ASOF;}).slice(0,2);
+var Y2S=['y2','미 2Y 금리(오른쪽)',true,'y3'];  // 이 카드 한정 보조축 — 기본 꺼짐
+var fwViews=(M.fedwatch&&(M.fedwatch.ledger_meetings||[]).length)?[{label:'FedWatch 누적 bp',u:'bp',zero:true,series:M.fedwatch.ledger_meetings.map(function(m){return ['fw_'+m.replace(/-/g,''),dl(m)+' 회의 후',FW_ON.indexOf(m)<0];}).filter(function(x){return S[x[0]];}).concat([Y2S])}]:[];
+var fedViews=(M.fed||[]).map(function(m,i){return {label:dl(m.date),u:'pp',series:[['fed'+i+'_H0','동결'],['fed'+i+'_H25','인상 25bp'],['fed'+i+'_H26','인상 >25bp'],['fed'+i+'_C25','인하 25bp'],Y2S]};});
 var CHARTS=[
   {id:'curve',t:'미 국채 금리',sub:'재무부 고시(종가) · %',views:[
     {label:'2·5·10·30Y',u:'%',series:[['y2','2Y'],['y5','5Y'],['y10','10Y'],['y30','30Y']]},
@@ -356,30 +359,31 @@ var CHARTS=[
     {label:'10Y = 기대경로 + TP',u:'%',series:[['rny10','기대 단기금리 경로'],['tp10','TP']]}]},
   {id:'krw',t:'원/달러',sub:'Yahoo KRW=X 일봉(뉴욕 마감 기준) · 원',views:[{label:'원/달러',u:'원',series:[['usdkrw','원/달러']]}]},
   {id:'brent',t:'Brent 선물',sub:'Yahoo BZ=F 일봉 · $',views:[{label:'Brent',u:'$',series:[['brent','Brent']]}]},
-  {id:'fed',t:'연준 기대 추이 — FedWatch 방식(앞) · Kalshi(뒤)',sub:'FedWatch: 회의 후 예상 금리 − 그날 EFFR(누적 bp), 실행할 때마다 원장(data/fedwatch_ledger.json)에 쌓음 · Kalshi: 회의별 결과 확률(%)',views:fwViews.concat(fedViews)}
+  {id:'fed',ovOff:true,t:'연준 기대 추이 — FedWatch 방식(앞) · Kalshi(뒤)',sub:'FedWatch: 회의 후 예상 금리 − 그날 EFFR(누적 bp), 실행할 때마다 원장(data/fedwatch_ledger.json)에 쌓음 · Kalshi: 회의별 결과 확률(%)',views:fwViews.concat(fedViews)}
 ];
 function el(t,c,h){var e=document.createElement(t);if(c) e.className=c;if(h!=null) e.innerHTML=h;return e;}
 function fmtU(u,v){if(v==null) return '–';if(u==='%') return nf(v,2)+'%';if(u==='bp') return nf(v,0)+'bp';if(u==='pp') return nf(v,0)+'%';if(u==='원') return nf(v,1);if(u==='$') return '$'+nf(v,2);return nf(v,2);}
 function cfg(c){var v=c.p.views[c.v],L=D.slice(W.i0,W.i1+1);
-  var ds=v.series.map(function(s,j){return {label:s[1],data:(S[s[0]]||[]).slice(W.i0,W.i1+1),borderColor:P[j],backgroundColor:P[j],borderWidth:2,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,yAxisID:'y'};});
+  var ds=v.series.map(function(s,j){var ax=s[3]||'y',cl=ax==='y3'?'#c9d1d9':P[j];return {label:s[1],data:(S[s[0]]||[]).slice(W.i0,W.i1+1),borderColor:cl,backgroundColor:cl,borderWidth:ax==='y3'?1.4:2,borderDash:ax==='y3'?[4,3]:undefined,pointRadius:0,pointHoverRadius:3,tension:0,spanGaps:true,hidden:!!s[2],yAxisID:ax};});
   if(c.ov&&S.kospi) ds.push({label:'코스피',data:S.kospi.slice(W.i0,W.i1+1),borderColor:COL.ov,backgroundColor:COL.ov,borderWidth:1.2,pointRadius:0,tension:0,spanGaps:true,yAxisID:'y1',order:9});
   return {type:'line',data:{labels:L,datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
     plugins:{legend:{display:true,labels:{color:COL.dim,boxWidth:12,boxHeight:3,font:{size:12.5}}},
       tooltip:{backgroundColor:'rgba(6,30,32,.95)',borderColor:'rgba(151,252,228,.25)',borderWidth:1,titleColor:COL.text,bodyColor:COL.text,
-        callbacks:{title:function(it){return it.length?'미국 '+it[0].label:'';},label:function(it){return ' '+it.dataset.label+'  '+(it.dataset.yAxisID==='y1'?nf(it.raw,2)+' (같은 날짜 이전 마지막 국내 종가)':fmtU(v.u,it.raw));}}}},
+        callbacks:{title:function(it){return it.length?'미국 '+it[0].label:'';},label:function(it){return ' '+it.dataset.label+'  '+(it.dataset.yAxisID==='y1'?nf(it.raw,2)+' (같은 날짜 이전 마지막 국내 종가)':it.dataset.yAxisID==='y3'?nf(it.raw,2)+'%':fmtU(v.u,it.raw));}}}},
     scales:{x:{grid:{display:false},ticks:{color:COL.muted,maxRotation:0,autoSkip:true,maxTicksLimit:7,font:{size:12},callback:function(x){var s=this.getLabelForValue(x);return s.slice(2,7).replace('-','.')+(W.i1-W.i0<70?'.'+s.slice(8):'');}}},
       y:{grid:{color:function(g){return v.zero&&g.tick&&g.tick.value===0?'rgba(151,252,228,.3)':COL.grid;}},border:{display:false},ticks:{color:COL.muted,font:{size:12},maxTicksLimit:6,callback:function(x){return fmtU(v.u,x);}}},
+      y3:{display:'auto',position:'right',grid:{display:false},border:{display:false},title:{display:true,text:'2Y %',color:COL.muted,font:{size:11}},ticks:{color:'#c9d1d9',font:{size:11},maxTicksLimit:5,callback:function(x){return nf(x,2)+'%';}}},
       y1:{display:c.ov&&!!S.kospi,position:'right',grid:{display:false},border:{display:false},ticks:{color:'#B4D6D1',font:{size:11},maxTicksLimit:5,callback:function(x){return nf(x,0);}}}}}};}
 function draw(c){if(c.ch) c.ch.destroy();c.ch=new Chart(c.cv,cfg(c));
   if(c.seg) Array.prototype.forEach.call(c.seg.children,function(b,i){b.classList.toggle('on',i===c.v);});}
 function build(){var g=document.getElementById('mx-grid');
-  CHARTS.forEach(function(p){if(!p.views.length) return;var c={p:p,v:0,ov:ls('ov.'+p.id)!=='0'};var sv=parseInt(ls('v.'+p.id),10);if(sv>=0&&sv<p.views.length) c.v=sv;
+  CHARTS.forEach(function(p){if(!p.views.length) return;var ok=(p.ovOff?'ovf.':'ov.')+p.id,c={p:p,v:0,ov:p.ovOff?ls(ok)==='1':ls(ok)!=='0'};  // ovOff 카드는 저장 키를 새로 써서 기존 '켬' 기억도 초기화var sv=parseInt(ls('v.'+p.id),10);if(sv>=0&&sv<p.views.length) c.v=sv;
     var r=el('section','card'),hd=el('div','card-head'),tt=el('div');r.id='mxc-'+p.id;tt.appendChild(el('div','card-title',p.t));tt.appendChild(el('div','card-sub',p.sub));hd.appendChild(tt);
     var tl=el('div','card-tools');hd.appendChild(tl);
     if(p.views.length>1){var sg=el('div','seg');p.views.forEach(function(v,i){var b=el('button',null,v.label);b.type='button';b.onclick=function(){c.v=i;ls('v.'+p.id,i);draw(c);};sg.appendChild(b);});
       tl.appendChild(sg);c.seg=sg;}
     var ob=el('button','ov-btn'+(c.ov?' on':''),'코스피');ob.type='button';ob.title='코스피를 회색 선(오른쪽 축)으로 겹치기';
-    ob.onclick=function(){c.ov=!c.ov;ls('ov.'+p.id,c.ov?'1':'0');ob.classList.toggle('on',c.ov);draw(c);};tl.appendChild(ob);
+    ob.onclick=function(){c.ov=!c.ov;ls(ok,c.ov?'1':'0');ob.classList.toggle('on',c.ov);draw(c);};tl.appendChild(ob);
     r.appendChild(hd);var bx=el('div','mx-box');c.cv=document.createElement('canvas');bx.appendChild(c.cv);r.appendChild(bx);g.appendChild(r);CH.push(c);});}
 var PR=[['1M',1],['3M',3],['6M',6],['1Y',12],['전체',0]];
 function setP(m,lab){var i0=0;if(m){var t=new Date(D[N-1]+'T00:00:00');t.setMonth(t.getMonth()-m);var s=t.toISOString().slice(0,10);for(var i=0;i<N;i++) if(D[i]>=s){i0=i;break;}}
