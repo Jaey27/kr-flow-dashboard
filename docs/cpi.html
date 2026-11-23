@@ -1,71 +1,84 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<script>
+(function(){var t='light';try{t=localStorage.getItem('krflow.theme')||'light';}catch(e){}
+  if(t!=='dark'&&t!=='light') t='light';document.documentElement.setAttribute('data-theme',t);window.__THEME__=t;
+  var cs=null,memo={};
+  // 색 문자열 안의 var(--x) 를 실제 값으로 푼다 — 캔버스(Chart.js)는 CSS 변수를 못 읽는다
+  window.T=function(c){if(typeof c!=='string'||c.indexOf('var(')<0) return c;if(memo[c]) return memo[c];
+    cs=cs||getComputedStyle(document.documentElement);
+    return memo[c]=c.replace(/var\((--[\w-]+)\)/g,function(_,n){return cs.getPropertyValue(n).trim();});};
+  window.__setTheme=function(n){try{localStorage.setItem('krflow.theme',n);}catch(e){}location.reload();};
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>미국 CPI 세부</title>
 <style>
 :root{
   --bg:#0b1a1f; --card:#11242b; --card2:#162e36; --line:#21414b; --text:#dce8ec; --muted:#86a2ab; --dim:#5d7880;
-  --accent:#2ec4b6; --up:#ff6b6b; --down:#4dabf7; --warn:#ffb347; --good:#51cf66;
-}
+  --accent:#2ec4b6; --up:#ff6b6b; --down:#4dabf7; --warn:#ffb347; --good:#51cf66;--c-main:#ffffff;--on-ac:#06221f;--grp:#0f2026;--line2:#1a333b;--hover:#183740;--card3:#0d1d22;--spike:#ffe066;--grid:#1d3a43;--muted-rgb:134,162,171;--hi-rgb:255,255,255;--bg-rgb:11,26,31;color-scheme:dark}
+:root[data-theme="light"]{--bg:#F3F5F7;--card:#FFFFFF;--card2:#EEF2F5;--line:#D9DFE6;--text:#17202B;--muted:#5B6675;--dim:#7A8594;--accent:#15803D;--up:#DC2626;--down:#2563EB;--warn:#B45309;--good:#15803D;--c-main:#17202B;--on-ac:#FFFFFF;--grp:#E8EDF2;--line2:#E3E8EE;--hover:#EAF4EE;--card3:#F7F9FB;--spike:#CA8A04;--grid:#E3E8EE;--muted-rgb:91,102,117;--hi-rgb:23,32,43;--bg-rgb:243,245,247;color-scheme:light}
+:root[data-theme="light"] .b-up{background:#FEE2E2;color:#B91C1C}:root[data-theme="light"] .b-dn{background:#DBEAFE;color:#1D4ED8}:root[data-theme="light"] .b-rv{background:#DCFCE7;color:#15803D}:root[data-theme="light"] .b-ps{background:#FFEDD5;color:#C2410C}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .wrap{max-width:1320px;margin:0 auto;padding:16px}
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px;margin-bottom:12px}
-h1{font-size:22px;margin:0} .sub{color:var(--muted);font-size:12.5px}
+h1{font-size:22px;margin:0} .sub{color:var(--muted);font-size:13.5px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted)}
+.chip{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px;color:var(--muted)}
 .chip b{color:var(--text)}
-.bar{position:sticky;top:0;z-index:20;background:rgba(11,26,31,.96);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.bar{position:sticky;top:0;z-index:20;background:rgba(var(--bg-rgb),.96);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.seg button{background:transparent;border:0;color:var(--muted);padding:5px 10px;cursor:pointer;font:inherit;font-size:12.5px}
-.seg button.on{background:var(--accent);color:#06221f;font-weight:700}
-.lbl{color:var(--dim);font-size:12px;margin-right:4px}
+.seg button{background:transparent;border:0;color:var(--muted);padding:5px 10px;cursor:pointer;font:inherit;font-size:13.5px}
+.seg button.on{background:var(--accent);color:var(--on-ac);font-weight:700}
+.lbl{color:var(--dim);font-size:13px;margin-right:4px}
 .range{position:relative;width:260px;height:22px}
 .range input{position:absolute;left:0;top:0;width:100%;pointer-events:none;-webkit-appearance:none;appearance:none;background:transparent;height:22px;margin:0}
-.range input::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #06221f;cursor:pointer}
-.range input::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #06221f;cursor:pointer}
+.range input::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--on-ac);cursor:pointer}
+.range input::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--on-ac);cursor:pointer}
 .range .track{position:absolute;left:0;right:0;top:9px;height:4px;background:var(--line);border-radius:2px}
 .range .sel{position:absolute;top:9px;height:4px;background:var(--accent);border-radius:2px}
-input.ym{width:78px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 6px;font:inherit;font-size:12.5px}
-.btn{background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 10px;cursor:pointer;font:inherit;font-size:12.5px}
+input.ym{width:78px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 6px;font:inherit;font-size:13.5px}
+.btn{background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 10px;cursor:pointer;font:inherit;font-size:13.5px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
-.card h2{font-size:16px;margin:0 0 2px} .card .desc{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+.card h2{font-size:16px;margin:0 0 2px} .card .desc{color:var(--muted);font-size:13.5px;margin-bottom:8px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.kpi .t{color:var(--muted);font-size:12px} .kpi .v{font-size:22px;font-weight:800}
-.kpi .s{font-size:12px;color:var(--muted)}
+.kpi .t{color:var(--muted);font-size:13px} .kpi .v{font-size:22px;font-weight:800}
+.kpi .s{font-size:13px;color:var(--muted)}
 .pos{color:var(--up)} .neg{color:var(--down)} .warn{color:var(--warn)}
 .cv{position:relative;height:340px} .cv.sm{height:260px} .cv.tall{height:520px}
 .toggles{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
-.tg{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
+.tg{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
 .tg.on{color:var(--text);border-color:var(--accent)} .tg i{width:10px;height:10px;border-radius:2px;display:inline-block}
-details{margin-top:8px} summary{cursor:pointer;color:var(--muted);font-size:12.5px} details .body{color:var(--text);font-size:13px;padding:8px 2px 2px;line-height:1.65}
+details{margin-top:8px} summary{cursor:pointer;color:var(--muted);font-size:13.5px} details .body{color:var(--text);font-size:13px;padding:8px 2px 2px;line-height:1.65}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px} @media(max-width:900px){.grid2{grid-template-columns:1fr}.range{width:180px}}
 .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
-table.hm{border-collapse:separate;border-spacing:0;font-size:12px;min-width:100%}
-table.hm th,table.hm td{padding:4px 6px;white-space:nowrap;text-align:right;border-bottom:1px solid #1a333b}
+table.hm{border-collapse:separate;border-spacing:0;font-size:13px;min-width:100%}
+table.hm th,table.hm td{padding:4px 6px;white-space:nowrap;text-align:right;border-bottom:1px solid var(--line2)}
 table.hm thead th{position:sticky;top:0;background:var(--card2);color:var(--muted);font-weight:600;z-index:2}
 table.hm th.nm,table.hm td.nm{position:sticky;left:0;background:var(--card);text-align:left;z-index:1;min-width:210px;max-width:260px}
 table.hm thead th.nm{z-index:3;background:var(--card2)}
-table.hm tr.grp td{background:#0f2026;color:var(--accent);font-weight:700;text-align:left}
-table.hm tr.sub td{background:#0f2026;color:var(--muted);font-weight:600;text-align:left}
-table.hm tr.item{cursor:pointer} table.hm tr.item:hover td{background:#183740} table.hm tr.item.sel td.nm{box-shadow:inset 3px 0 0 var(--accent)}
+table.hm tr.grp td{background:var(--grp);color:var(--accent);font-weight:700;text-align:left}
+table.hm tr.sub td{background:var(--grp);color:var(--muted);font-weight:600;text-align:left}
+table.hm tr.item{cursor:pointer} table.hm tr.item:hover td{background:var(--hover)} table.hm tr.item.sel td.nm{box-shadow:inset 3px 0 0 var(--accent)}
 table.hm td.w{color:var(--dim)}
 table.hm tr.agg td{font-weight:700}
 .cell{display:inline-block;min-width:44px;border-radius:4px;padding:1px 4px;position:relative}
-.flag{font-size:10px;margin-left:2px}
-.dt{display:none} .dt.open{display:table-row} .dt td{white-space:normal;text-align:left;color:var(--muted);font-size:12.5px;background:#0d1d22;line-height:1.6}
+.flag{font-size:12px;margin-left:2px}
+.dt{display:none} .dt.open{display:table-row} .dt td{white-space:normal;text-align:left;color:var(--muted);font-size:13.5px;background:var(--card3);line-height:1.6}
 .caret{display:inline-block;width:14px;color:var(--dim);cursor:pointer}
-.ext{font-size:11px;margin-left:4px;color:var(--dim)}
-.legend-note{font-size:12px;color:var(--muted);margin-top:6px}
+.ext{font-size:12.5px;margin-left:4px;color:var(--dim)}
+.legend-note{font-size:13px;color:var(--muted);margin-top:6px}
 .lst{margin:0;padding-left:18px} .lst li{margin:3px 0}
-.badge{display:inline-block;border-radius:4px;padding:0 5px;font-size:11px;font-weight:700}
+.badge{display:inline-block;border-radius:4px;padding:0 5px;font-size:12.5px;font-weight:700}
 .b-up{background:#5a1f24;color:#ffb3b3} .b-dn{background:#173a5a;color:#a5d8ff} .b-rv{background:#2b3d1c;color:#b2f2bb} .b-ps{background:#5a3b12;color:#ffd8a8}
-select{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:3px 6px;font:inherit;font-size:12.5px}
-footer{color:var(--dim);font-size:12px;padding:10px 0 30px}
+select{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:3px 6px;font:inherit;font-size:13.5px}
+footer{color:var(--dim);font-size:13px;padding:10px 0 30px}
 </style>
 </head>
 <body>
@@ -224,8 +237,8 @@ seg('metric', [['mom', '전월비'], ['yoy', '전년비'], ['ann3', '3개월 연
 seg('base', [['h', '헤드라인'], ['c', '근원']], 'base');
 
 /* ---------- 차트 공통 ---------- */
-Chart.defaults.animation = false; Chart.defaults.color = '#86a2ab'; Chart.defaults.borderColor = '#1d3a43';
-Chart.defaults.font.family = getComputedStyle(document.body).fontFamily; Chart.defaults.font.size = 11.5;
+Chart.defaults.animation = false; Chart.defaults.color = T('var(--muted)'); Chart.defaults.borderColor = T('var(--grid)');
+Chart.defaults.font.family = getComputedStyle(document.body).fontFamily; Chart.defaults.font.size = 12.5;
 const charts = {};
 function mk(id, cfg) { if (charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); return charts[id]; }
 
@@ -240,7 +253,7 @@ const markerPlugin = {
       const px = x.getPixelForValue(m.pos); if (px < a.left - 1 || px > a.right + 1) return;
       ctx.strokeStyle = m.color; ctx.lineWidth = m.w || 1; ctx.setLineDash(m.dash || []);
       ctx.beginPath(); ctx.moveTo(px, a.top); ctx.lineTo(px, a.bottom); ctx.stroke();
-      if (m.label) { ctx.setLineDash([]); ctx.fillStyle = m.color; ctx.font = '10.5px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(m.label, px, a.top + 10 + (m.row || 0) * 12); }
+      if (m.label) { ctx.setLineDash([]); ctx.fillStyle = m.color; ctx.font = '12px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(m.label, px, a.top + 10 + (m.row || 0) * 12); }
     });
     ctx.restore();
   }
@@ -254,10 +267,10 @@ function fomcMarkers(i0, i1) {
     const day = +f.date.slice(8, 10), pos = k - i0 + (day - 15) / 31;
     const chg = Math.round((f.rate - (f.prev ?? f.rate)) * 100);
     if (st.fomc === 'off' || (chg === 0 && st.fomc !== 'all')) return;
-    out.push({pos, color: chg > 0 ? '#ff6b6b' : chg < 0 ? '#4dabf7' : 'rgba(134,162,171,.35)', dash: chg === 0 ? [2, 3] : [5, 3],
+    out.push({pos, color: chg > 0 ? T('var(--up)') : chg < 0 ? T('var(--down)') : T('rgba(var(--muted-rgb),.35)'), dash: chg === 0 ? [2, 3] : [5, 3],
       label: chg ? (chg > 0 ? '+' : '') + chg : '', w: chg ? 1.2 : 1, row: out.filter(o => o.label).length % 2});
   });
-  if (st.notes) D.notes.forEach((n, j) => { const k = M.indexOf(n.month); if (k >= i0 && k <= i1) out.push({pos: k - i0, color: '#ffb347', dash: [2, 2], label: '※' + (j + 1), row: 2}); });
+  if (st.notes) D.notes.forEach((n, j) => { const k = M.indexOf(n.month); if (k >= i0 && k <= i1) out.push({pos: k - i0, color: T('var(--warn)'), dash: [2, 2], label: '※' + (j + 1), row: 2}); });
   return out;
 }
 const tipNum = (d = 2) => ({callbacks: {label: c => `${c.dataset.label}: ${c.parsed.y == null ? '–' : fmt(c.parsed.y, d)}`}});
@@ -286,7 +299,7 @@ function kpis() {
     card('근원 전월비', fmt(cm) + '%', surp(c.c_mom, cm == null ? null : +cm.toFixed(1))) +
     card('근원 전년비', fmt(v('SA0L1E', 'yoy')) + '%', v('SA0L1E', 'yoy') == null ? NOYOY : surp(c.c_yoy, +v('SA0L1E', 'yoy').toFixed(1))) +
     // 메인 4개(Jae 10/18) 외 나머지는 접기 — 열림 상태는 기간을 바꿔 다시 그려도 유지
-    `<details class="kpi-more" style="grid-column:1/-1"${window.__kpiMore ? ' open' : ''} ontoggle="window.__kpiMore=this.open"><summary style="cursor:pointer;font-size:12px;color:#8aa;padding:4px 2px">더 보기 — 근원 3·6개월 연율 · 슈퍼코어 · 주거비</summary><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:8px">` +
+    `<details class="kpi-more" style="grid-column:1/-1"${window.__kpiMore ? ' open' : ''} ontoggle="window.__kpiMore=this.open"><summary style="cursor:pointer;font-size:13px;color:var(--muted);padding:4px 2px">더 보기 — 근원 3·6개월 연율 · 슈퍼코어 · 주거비</summary><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:8px">` +
     card('근원 3개월 / 6개월 연율', fmt(v('SA0L1E', 'ann3'), 1) + ' / ' + fmt(v('SA0L1E', 'ann6'), 1), '전년비보다 빠르게 변곡을 보여줌') +
     card('슈퍼코어 전월비 / 3개월 연율', fmt(v('SUPERCORE', 'mom')) + ' / ' + fmt(v('SUPERCORE', 'ann3'), 1), '주거 제외 근원 서비스') +
     card('주거비 전월비 (자가주거비)', fmt(v('SAH1', 'mom')) + ' (' + fmt(v('SEHC', 'mom')) + ')', '집세 ' + fmt(v('SEHA', 'mom'))) +
@@ -295,7 +308,7 @@ function kpis() {
 
 /* ---------- 메인 라인 ---------- */
 const MAIN_LINES = [
-  ['SA0', '전체 CPI', '#ffffff', 2.4], ['SA0L1E', '근원 CPI', '#2ec4b6', 2.4],
+  ['SA0', '전체 CPI', T('var(--c-main)'), 2.4], ['SA0L1E', '근원 CPI', T('var(--accent)'), 2.4],
   ['SACL1E', '근원 상품', '#5aa9e6', 1.5], ['SASLE', '근원 서비스', '#c77dff', 1.5], ['SAH1', '주거비', '#e76f51', 1.5],
   ['SUPERCORE', '슈퍼코어', '#f78c6b', 1.5], ['COREGX_VEH', '차량 제외 근원 상품', '#74c0fc', 1.2], ['SHELTER_XL', '숙박 제외 주거비', '#ffa94d', 1.2],
   ['ext:median', '클리블랜드 중위', '#94d82d', 1.2], ['ext:trim', '절사평균', '#c0eb75', 1.2], ['ext:sticky', '애틀랜타 sticky', '#ffd43b', 1.2], ['ext:core_sticky_xs', '근원 sticky(주거 제외)', '#fab005', 1.2],
@@ -323,7 +336,7 @@ function mainChart() {
     ds.push({type: 'line', label: t, data: arr.slice(i0, i1 + 1), borderColor: col, backgroundColor: col, borderWidth: w, pointRadius: 0, pointHoverRadius: 3, spanGaps: false, tension: 0.15});
   });
   if (metric === 'mom' || metric === 'yoy') {
-    [['SA0', 'h_', '#ffffff', '전체 컨센서스'], ['SA0L1E', 'c_', '#2ec4b6', '근원 컨센서스']].forEach(([c, p, col, t]) => {
+    [['SA0', 'h_', T('var(--c-main)'), '전체 컨센서스'], ['SA0L1E', 'c_', T('var(--accent)'), '근원 컨센서스']].forEach(([c, p, col, t]) => {
       if (!st.mainOn.has(c)) return;
       ds.push({type: 'line', label: t, data: M.slice(i0, i1 + 1).map(ym => ((D.consensus[ym] || {})[p + metric] || {}).f ?? null),
         borderColor: col, backgroundColor: 'transparent', showLine: false, pointStyle: 'rectRot', pointRadius: 4, borderWidth: 1.2});
@@ -350,7 +363,7 @@ function contribChart() {
   const ds = bks.map(b => ({type: 'bar', label: b.ko, data: bucketSeries(b.key, metric, base).slice(i0, i1 + 1), backgroundColor: b.color, stack: 's', borderWidth: 0}));
   ds.push({type: 'bar', label: '기타(잔여)', data: contrib('RESID', metric, base).slice(i0, i1 + 1), backgroundColor: '#495057', stack: 's'});
   const tot = base === 'h' ? 'SA0' : 'SA0L1E';
-  ds.unshift({type: 'line', label: (base === 'h' ? '전체' : '근원') + ' CPI', data: ser(tot, metric).slice(i0, i1 + 1), borderColor: '#fff', borderWidth: 2, pointRadius: 1.5, backgroundColor: '#fff'});
+  ds.unshift({type: 'line', label: (base === 'h' ? '전체' : '근원') + ' CPI', data: ser(tot, metric).slice(i0, i1 + 1), borderColor: T('var(--c-main)'), borderWidth: 2, pointRadius: 1.5, backgroundColor: T('var(--c-main)')});
   mk('cContrib', {data: {labels, datasets: ds}, options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false},
     plugins: {legend: {labels: {boxWidth: 10}}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${fmt(c.parsed.y, 3)}${c.dataset.type === 'line' ? '%' : '%p'}`}}, markers: {list: fomcMarkers(i0, i1)}},
     scales: {x: {stacked: true}, y: {stacked: true, ticks: {callback: v => +(+v).toFixed(2) + ''}}}}});
@@ -367,10 +380,10 @@ function waterfall() {
   rows.push({m: {ko: '기타(잔여)', bucket: null}, v: contrib('RESID', metric, base)[k], p: contrib('RESID', metric, base)[kp]});
   rows.sort((a, b) => (b.v ?? 0) - (a.v ?? 0));
   mk('cWater', {type: 'bar', data: {labels: rows.map(r => r.m.ko), datasets: [
-      {label: lab(M[k]), data: rows.map(r => r.v), backgroundColor: rows.map(r => (r.v ?? 0) >= 0 ? (r.m.bucket ? BK[r.m.bucket].color : '#868e96') : '#4dabf7'), borderWidth: 0},
-      {label: lab(M[kp]) + ' (직전)', data: rows.map(r => r.p), backgroundColor: 'rgba(255,255,255,.14)', borderWidth: 0}]},
+      {label: lab(M[k]), data: rows.map(r => r.v), backgroundColor: rows.map(r => (r.v ?? 0) >= 0 ? (r.m.bucket ? BK[r.m.bucket].color : '#868e96') : T('var(--down)')), borderWidth: 0},
+      {label: lab(M[kp]) + ' (직전)', data: rows.map(r => r.p), backgroundColor: T('rgba(var(--hi-rgb),.14)'), borderWidth: 0}]},
     options: {indexAxis: 'y', maintainAspectRatio: false, plugins: {legend: {labels: {boxWidth: 10}}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${fmt(c.parsed.x, 3)}%p`}}},
-      scales: {y: {ticks: {autoSkip: false, font: {size: 11}}}, x: {ticks: {callback: v => v}}},
+      scales: {y: {ticks: {autoSkip: false, font: {size: 12.5}}}, x: {ticks: {callback: v => v}}},
       onClick: (e, els) => { if (els.length) { const r = rows[els[0].index]; if (r.m.code) goItem(r.m.code); } }}});
   document.getElementById('wfTitle').textContent = `항목별 기여도 — ${M[k]}`;
   document.getElementById('wfDesc').textContent = `기간 바의 마지막 달 기준 · ${base === 'h' ? '헤드라인' : '근원'} ${MET[metric]} · 단위 %p · 회색 막대는 직전 달 · 막대를 누르면 항목 상세로 이동`;
@@ -404,8 +417,8 @@ function flagList() {
 function diffChart() {
   const {i0, i1} = st;
   mk('cDiff', {type: 'line', data: {labels: M.slice(i0, i1 + 1).map(lab), datasets: [
-      {label: '상승 항목 비중', data: D.diffusion.up.slice(i0, i1 + 1), borderColor: '#2ec4b6', pointRadius: 0, borderWidth: 1.8},
-      {label: '연율 3% 초과 비중', data: D.diffusion.hot.slice(i0, i1 + 1), borderColor: '#ff6b6b', pointRadius: 0, borderWidth: 1.8}]},
+      {label: '상승 항목 비중', data: D.diffusion.up.slice(i0, i1 + 1), borderColor: T('var(--accent)'), pointRadius: 0, borderWidth: 1.8},
+      {label: '연율 3% 초과 비중', data: D.diffusion.hot.slice(i0, i1 + 1), borderColor: T('var(--up)'), pointRadius: 0, borderWidth: 1.8}]},
     options: {maintainAspectRatio: false, interaction: {mode: 'index', intersect: false}, plugins: {legend: {labels: {boxWidth: 10}}, tooltip: tipNum(0), markers: {list: fomcMarkers(i0, i1)}},
       scales: {y: {min: 0, max: 100, ticks: {callback: v => v + '%'}}}}});
 }
@@ -512,13 +525,13 @@ function detail() {
     ds.push({type: 'line', label: '일회성 플래그 (직전 12개월 대비 2σ 이상)', yAxisID: 'y1', showLine: false, order: 1,
       data: mom.map((v, k) => sts[k] && sts[k].startsWith('spike') ? v : null),
       pointStyle: 'triangle', rotation: sts.map(x => x === 'spike_down' ? 180 : 0),
-      pointRadius: 6, backgroundColor: '#ffe066', borderColor: '#ffe066', hidden: true});  // 기본 꺼짐 — 범례 클릭으로 켬
+      pointRadius: 6, backgroundColor: T('var(--spike)'), borderColor: T('var(--spike)'), hidden: true});  // 기본 꺼짐 — 범례 클릭으로 켬
   }
   if (metric === 'yoy') {
-    ds.push({type: 'line', label: nm + ' 전년비', data: sl(c, 'yoy'), borderColor: '#ffffff', borderWidth: 2.4, pointRadius: 0, yAxisID: 'y'});
+    ds.push({type: 'line', label: nm + ' 전년비', data: sl(c, 'yoy'), borderColor: T('var(--c-main)'), borderWidth: 2.4, pointRadius: 0, yAxisID: 'y'});
   } else {
-    ds.push({type: 'line', label: nm + ' 3개월 연율', data: sl(c, 'ann3'), borderColor: '#2ec4b6', borderWidth: 2.2, pointRadius: 0, yAxisID: 'y'});
-    ds.push({type: 'line', label: nm + ' 6개월 연율', data: sl(c, 'ann6'), borderColor: '#2ec4b6', borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, yAxisID: 'y'});
+    ds.push({type: 'line', label: nm + ' 3개월 연율', data: sl(c, 'ann3'), borderColor: T('var(--accent)'), borderWidth: 2.2, pointRadius: 0, yAxisID: 'y'});
+    ds.push({type: 'line', label: nm + ' 6개월 연율', data: sl(c, 'ann6'), borderColor: T('var(--accent)'), borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, yAxisID: 'y'});
   }
   if (st.cmp && st.cmp !== c && META[st.cmp]) {
     const k = metric === 'yoy' ? 'yoy' : metric === 'ann6' ? 'ann6' : 'ann3';
