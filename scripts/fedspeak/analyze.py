@@ -278,6 +278,33 @@ def main() -> None:
                     dw.loc[t] = [win.fin.mean() * 100, win.ai.mean() * 100, win.infl.mean() * 100, win.labor.mean() * 100, len(win)]
         drv_w[wdays] = dw
     drv = drv_w[30]
+    # 대표 근거 구성비: 발언마다 근거 1~3순위에 3:2:1 가중(2개면 2:1, 1개면 전부) → 매 시점 합 100%
+    CAT = {"inflation": "infl", "energy": "energy", "tariffs_supply": "tariff", "labor": "labor", "growth": "labor",
+           "financial_stability_credit": "fin", "ai_financing": "fin"}
+    cats = ["infl", "energy", "tariff", "labor", "fin", "other"]
+    rows = []
+    for it in fed_items:
+        ds = [d for d in (it.get("drivers") or [])][:3]
+        if not ds:
+            continue
+        wts = [3, 2, 1][:len(ds)]
+        tot = sum(wts)
+        row = dict.fromkeys(cats, 0.0)
+        for d, w in zip(ds, wts):
+            row[CAT.get(d, "other")] += w / tot
+        row["date"] = pd.Timestamp(it["date"])
+        rows.append(row)
+    cd = pd.DataFrame(rows)
+    comp_w = {}
+    for wdays, minn in ((30, 5), (20, 4), (14, 3)):
+        cw = pd.DataFrame(index=grid, columns=cats, dtype=float)
+        if not cd.empty:
+            for t in grid:
+                win = cd[(cd.date <= t) & (cd.date > t - pd.Timedelta(days=wdays))]
+                if len(win) >= minn:
+                    s = win[cats].sum()
+                    cw.loc[t] = (s / s.sum() * 100).values
+        comp_w[wdays] = cw
 
     # ---- AI 발언 성격별 월 건수 ----
     ai_month = {}
@@ -379,6 +406,7 @@ def main() -> None:
         index={c: ser(idx[c]) for c in idx.columns},
         drivers={c: ser(drv[c], 1) for c in drv.columns},
         drivers_w={str(w): {c: ser(dw[c], 1) for c in dw.columns} for w, dw in drv_w.items()},
+        comp_w={str(w): {c: ser(cw[c], 1) for c in cw.columns} for w, cw in comp_w.items()},
         index_last={c: ser(idx_last[c]) for c in idx_last.columns},
         market={c: ser(mkg[c]) for c in mkg.columns if not c.startswith("d_")},
         market_tdays=[d.date().isoformat() for d in tdays],

@@ -138,9 +138,10 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="note">+주 = 톤이 그만큼 먼저 움직였을 때의 상관, −주 = 시장이 먼저. 순위상관(Spearman), 괄호는 주 수.</div></details>
 </details></div>
 
-<div class="card"><h2>발언이 내세운 근거 (연준 인사, 지난 30일 발언 중 비중)</h2>
-<div class="note">한 발언에 근거가 여러 개면 각각 셈. 선마다 뜻은 차트 아래에 있음.</div>
+<div class="card"><h2>발언이 내세운 근거 (연준 인사, 지난 30일)</h2>
+<div class="note">기본은 <b>대표 근거 구성비</b>: 발언마다 근거 1·2·3순위에 1/2·1/3·1/6 가중(근거가 2개면 2/3·1/3, 1개면 전부)을 줘서 30일 창 안에서 더함 → 매 시점 합 100%. 「무엇이 금리 결정의 주된 이유였나」를 봄. 「언급률」은 한 번이라도 언급한 발언 비율(여러 개 각각 셈, 합 100% 넘음)이고, AI 조달 언급은 단서로 한마디 해도 금융안정에 넣음. 둘의 차이 = 「말은 하지만 결정의 이유는 아닌」 부분.</div>
 <details class="in" style="margin:0 0 6px"><summary>%는 이렇게 계산함</summary><div style="color:var(--text-dim);font-size:12px;line-height:1.6;margin-top:4px">① 매일, 그날 포함 지난 30일 동안 나온 <b>연준 인사(이사회·투표권·비투표 총재) 발언 중 금리 점수가 붙은 것</b>만 모음(트럼프·베센트·투자자·셀사이드는 제외, 점수 없는 규제·결제 연설도 제외). 5건 미만이면 그날은 비움.<br>② 수집할 때 발언마다 "이 사람이 정책 판단의 이유로 든 것"을 근거 태그로 붙여 둠(인플레 / 고용 / 성장 / 금융안정·신용 / AI 자금조달 / 재정 / 관세 / 에너지 등, 여러 개 가능).<br>③ 선 하나 = 30일 창 안 발언 중 그 태그가 붙은 발언의 비율. 인플레 = 인플레 태그, 고용·성장 = 고용 또는 성장 태그, 금융안정·신용 = 금융안정·신용 태그이거나 AI 발언 분류가 조달 위험 주시·자본 경쟁·위험 일축인 것, 그중 AI = AI 분류가 조달 위험 주시·자본 경쟁인 것.<br>④ 한 발언이 여러 태그를 가지면 각각 세므로 선들의 합은 100%를 넘음. 태그는 사람이 아니라 수집 모델이 인용·요약을 읽고 붙였음.</div></details>
+<div class="row"><span class="dim" style="font-size:11.5px">보기:</span><div class="seg" id="cmode"><button type="button" data-c="comp" class="on">대표 근거 구성비 (3순위 가중, 합 100%)</button><button type="button" data-c="mention">언급률 (각각 셈)</button></div></div>
 <div class="row" id="lg3"></div><div class="ch s"><canvas id="c3"></canvas></div><div class="lgx" id="x3"></div>
 <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px"><h2 style="font-size:14px">주간 변화(WoW): 근거 비중 vs 나스닥</h2>
 <div class="note">막대 = 그 주 금요일 비중 − 직전 금요일 비중(%p, 왼쪽 축). 점선 = 나스닥 주간 등락률(%, 오른쪽 축). 창 = 비중을 계산하는 기간. 11/24 분석: 나스닥 주간 등락과 가장 일관되게 같이 움직인 건 30일 창 인플레 비중(ρ +0.48, 46주, 상·하반기 모두 +). 금융안정·신용 비중은 나스닥이 2주 먼저 움직이는 쪽(20일 창 ρ −0.37: 나스닥이 빠지면 2주 뒤 금융안정 언급이 늘어남). 연준 근거가 나스닥을 앞선 증거는 없음.</div>
@@ -249,27 +250,41 @@ document.querySelectorAll('#tmode button').forEach(b=>b.onclick=()=>{TMODE=b.dat
 
 // ---- 근거 비중 ----
 const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
-const ds3=S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y'}));
+let CMODE='comp';
+const CMP=[['infl','인플레','--s1'],['energy','에너지','#8d99ae'],['tariff','관세·공급','#b35c00'],['labor','고용·성장','--s2'],['fin','금융안정·신용 (AI 조달 포함)','--s3'],['other','재정·정치·기타','#c9c8c2']];
+const colv=c=>c.startsWith('--')?css(c):c;
+const mainSeries=()=>CMODE==='comp'?CMP:S3;
+function ds3main(){const cm=CMODE==='comp',src=cm?((D.comp_w||{})['30']||{}):D.drivers;return mainSeries().map((s,i)=>({label:s[1],data:src[s[0]]||X.map(()=>null),borderColor:colv(s[2]),backgroundColor:cm?colv(s[2])+'B3':colv(s[2]),fill:cm?(i?'-1':'origin'):false,borderWidth:cm?1:2,yAxisID:'y',_main:true}));}
+const ds3=ds3main();
 ds3.push({label:'FOMC 블랙아웃 구간',data:X.map(()=>null),borderColor:'rgba(98,80,214,.7)',backgroundColor:'rgba(98,80,214,.07)',yAxisID:'y',hidden:true,_bo:true,_sep:'구간'});
 [['spx','S&P 500','#6250d6'],['ndq','나스닥 종합','#c2185b']].forEach((o,j)=>ds3.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[5,3],borderWidth:1.5,yAxisID:'y3_'+o[0],hidden:true,_dash:true,_sep:j===0?'비교 지표':''}));
 const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:ds3},
  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>dates[t[0].dataIndex],label:t=>t.dataset.label+': '+(t.dataset._dash?Math.round(t.raw).toLocaleString():t.raw.toFixed(0)+'%')}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}},y3_spx:{position:'right',display:false,grid:{display:false},ticks:{color:'#6250d6',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y3_ndq:{position:'right',display:false,grid:{display:false},ticks:{color:'#c2185b',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
 let C5,WOWW='20',wowHidden={};
-function drawWoW(){if(C5)C5.destroy();const src=(D.drivers_w||{})[WOWW]||{};const fr=[];for(let i=W.i0;i<=W.i1;i++){if(new Date(dates[i]+'T00:00:00Z').getUTCDay()===5)fr.push(i);}
+function drawWoW(){if(C5)C5.destroy();const src=(CMODE==='comp'?(D.comp_w||{}):(D.drivers_w||{}))[WOWW]||{};const fr=[];for(let i=W.i0;i<=W.i1;i++){if(new Date(dates[i]+'T00:00:00Z').getUTCDay()===5)fr.push(i);}
  const at=(a,i)=>{for(let j=i;j>=0;j--)if(a&&a[j]!=null)return a[j];return null;};
  const lab=fr.slice(1).map(i=>dates[i].slice(5).replace('-','/'));
- const ds=S3.map(s=>({type:'bar',label:s[1]+' (%p)',_k:s[0],data:fr.slice(1).map((i,j)=>{const a=at(src[s[0]],i),b=at(src[s[0]],fr[j]);return a==null||b==null?null:Math.round((a-b)*10)/10;}),backgroundColor:css(s[2]),borderColor:css(s[2]),borderRadius:2,maxBarThickness:10,yAxisID:'y',hidden:!!wowHidden[s[0]]}));
+ const ds=mainSeries().map(s=>({type:'bar',label:s[1]+' (%p)',_k:s[0],data:fr.slice(1).map((i,j)=>{const a=at(src[s[0]],i),b=at(src[s[0]],fr[j]);return a==null||b==null?null:Math.round((a-b)*10)/10;}),backgroundColor:colv(s[2]),borderColor:colv(s[2]),borderRadius:2,maxBarThickness:10,yAxisID:'y',hidden:!!wowHidden[s[0]]}));
  ds.push({type:'line',label:'나스닥 주간 등락률 (%)',_k:'ndq',data:fr.slice(1).map((i,j)=>{const a=at(D.market.ndq,i),b=at(D.market.ndq,fr[j]);return a==null||b==null?null:Math.round((a/b-1)*1000)/10;}),borderColor:'#c2185b',backgroundColor:'#c2185b',borderDash:[5,3],borderWidth:1.6,pointRadius:2,yAxisID:'y5',_dash:true,hidden:!!wowHidden.ndq});
  C5=new Chart(document.getElementById('c5'),{data:{labels:lab,datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null}},scales:{x:{grid:{display:false},ticks:{maxTicksLimit:12}},y:{title:{display:true,text:'비중 변화 %p'},grid:{color:c=>c.tick.value===0?'rgba(0,0,0,.5)':'rgba(0,0,0,.07)'}},y5:{position:'right',grid:{display:false},title:{display:true,text:'나스닥 %'},ticks:{color:'#c2185b'}}}}});
  legend('lg5',C5,c=>c.data.datasets.forEach((d,i)=>{wowHidden[d._k]=!c.isDatasetVisible(i);if(d._k==='ndq')c.options.scales.y5.display=c.isDatasetVisible(i);}),true);}
 document.querySelectorAll('#wow-w button').forEach(b=>b.onclick=()=>{WOWW=b.dataset.w;document.querySelectorAll('#wow-w button').forEach(x=>x.classList.toggle('on',x===b));drawWoW();});
-function after3(c){fitY(c,'y',0,100,3,d=>!d._dash&&!d._bo);c.data.datasets.forEach((d,i)=>{if(d._bo){BO3on=c.isDatasetVisible(i);return;}if(d._dash)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});}
-legend('lg3',C3,after3);
+function after3(c){if(CMODE==='comp'){c.options.scales.y.min=0;c.options.scales.y.max=100;}else fitY(c,'y',0,100,3,d=>!d._dash&&!d._bo);c.data.datasets.forEach((d,i)=>{if(d._bo){BO3on=c.isDatasetVisible(i);return;}if(d._dash)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});}
+const redraw3=legend('lg3',C3,after3);C3.options.scales.y.stacked=true;C3.update();
+function setCMode(m){CMODE=m;const others=C3.data.datasets.filter(d=>!d._main);C3.data.datasets=ds3main().concat(others);C3.options.scales.y.stacked=(m==='comp');after3(C3);C3.update();redraw3();drawX3();drawWoW();document.querySelectorAll('#cmode button').forEach(b=>b.classList.toggle('on',b.dataset.c===m));}
+document.querySelectorAll('#cmode button').forEach(b=>b.onclick=()=>setCMode(b.dataset.c));
 const X3=['물가가 목표(2%)보다 높거나 더 오를 위험을 이유로 든 발언. 이 선이 높을수록 매파 논리가 주도한다는 뜻.',
  '고용 둔화나 경기 약화를 이유로 든 발언. 이 선이 오르면 "더 올리면 안 된다"는 쪽 논리가 힘을 얻는 중.',
  '신용 스프레드, 사모신용, 시장 기능, 자산가격을 정책 판단의 근거로 든 발언. 연준이 금리 결정에 금융시장 상태를 끌어들이기 시작했는지 보는 선.',
  '금융안정·신용 가운데 AI 투자 자금조달(부채 의존, 스프레드 확대, 국채와의 자본 경쟁)을 직접 짚은 발언. AI 조달 문제가 반응함수에 들어오는지 보는 가장 직접적인 선.'];
-document.getElementById('x3').innerHTML=S3.map((s,i)=>'<div><i style="background:var('+s[2]+')"></i><b>'+s[1]+'</b><br>'+X3[i]+'</div>').join('');
+const X3C=['물가가 목표보다 높거나 더 오를 위험이 결정의 주된 이유인 몫. 이 몫이 줄어야 다른 논리가 들어올 자리가 생김.',
+ '유가·연료비를 이유로 든 몫. 유가가 내리면 이 몫이 줄고, 「공급 충격은 지나간다」 논리의 근거도 함께 사라짐.',
+ '관세·공급망을 이유로 든 몫. 상품 물가 전이를 볼 때.',
+ '고용 둔화·경기 약화를 이유로 든 몫. 커지면 「더 올리면 안 된다」 쪽 논리가 힘을 얻는 중.',
+ '신용 스프레드·사모신용·AI 투자 조달 등 금융 여건이 결정의 이유로 쓰인 몫. 언급률(30% 안팎)과 달리 아직 한 자릿수면 「말은 하지만 결정 이유는 아님」. 한 자릿수를 넘어 커지면 반응함수에 들어오는 신호.',
+ '재정·텀프리미엄, 정치, 그 밖의 이유.'];
+function drawX3(){const S=mainSeries(),T=CMODE==='comp'?X3C:X3;document.getElementById('x3').innerHTML=S.map((s,i)=>'<div><i style="background:'+colv(s[2])+'"></i><b>'+s[1]+'</b><br>'+T[i]+'</div>').join('');}
+drawX3();
 
 // ---- AI 발언 성격 ----
 const AIS=[['demand','수요 압력','#2a78d6'],['loose','조달 쉬움','#eb6834'],['crowding','자본 경쟁','#1baf7a'],['watch','조달 위험 주시','#eda100'],['calm','위험 일축','#e87ba4']];
