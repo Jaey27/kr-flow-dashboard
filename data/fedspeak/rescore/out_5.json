@@ -1,0 +1,497 @@
+{
+ "c5cf0f5e82": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hike only a risk scenario; baseline hold, hopes normalization resumes"
+ },
+ "345639d92d": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation most pressing risk; no path statement"
+ },
+ "b61eab255d": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Hold through 2026, two cuts H1 2027"
+ },
+ "93dc8cf551": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided dilemma, no rate call"
+ },
+ "ba705b510e": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Cuts impossible with 2y above funds; no hike call"
+ },
+ "2634d33031": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Base hold; hikes and cuts both feasible"
+ },
+ "209f6ac6cd": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Rates could be much higher; not explicit Fed call"
+ },
+ "b7aa73a9b1": {
+  "s": 5,
+  "path_bp": null,
+  "note": "No cuts in 2026, hold"
+ },
+ "56df4b358b": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold for a bit, no directional call"
+ },
+ "525fc23587": {
+  "s": 6,
+  "path_bp": null,
+  "note": "More inflation than expected, leans tighter"
+ },
+ "27ffb6185c": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Lean against demand, real rate below neutral"
+ },
+ "c67d8332eb": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Hike likely if no disinflation; wanted easing bias removed"
+ },
+ "c62879c553": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation top worry, could hit 4%"
+ },
+ "3afd6346dc": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Not very restrictive, consider more restrictive tools"
+ },
+ "cf589248ac": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Bond-market debt warning, no near-term rate call"
+ },
+ "e309117ba4": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Openly weighing quarter-point hike or two"
+ },
+ "fb1700ca89": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Hold through 2026, cuts 2027, hike unlikely"
+ },
+ "5add8dd09b": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hike not given but possible"
+ },
+ "d68ea3eb92": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold; hike case conditional on oil"
+ },
+ "f7444db653": {
+  "s": 9,
+  "path_bp": 75,
+  "note": "Three hikes Sep, Oct, Dec"
+ },
+ "a511c0d0b4": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Two hikes Sep and Dec"
+ },
+ "4553235083": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Argues another hike does not help; calls hawkishness understandable"
+ },
+ "f4ec4d52d4": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation primary concern, rejects looking through"
+ },
+ "cc4a8ab4fe": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Hold 2026, two cuts 2027"
+ },
+ "e326eecd2e": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Policy only about neutral; distrusts disinflation"
+ },
+ "c13d31742d": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold in July, hikes later if inflation firm"
+ },
+ "f5a4b44a9c": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Rates must rise to reach 2%"
+ },
+ "8a27437cc1": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Hike call Dec, Sept risk flagged"
+ },
+ "84fbcc59a5": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Preferred 25bp hike at July meeting, earlier better"
+ },
+ "13a612bf4e": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "September hike imperative"
+ },
+ "4e053354e5": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "September hike high probability and necessary"
+ },
+ "f1a1944f8c": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Requires tighter policy, not restrictive now"
+ },
+ "e4a6f96ce7": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Fed will have to fight inflation if persists"
+ },
+ "d89d2fc872": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Meaningful restraint needed; preferred 25bp in July"
+ },
+ "d0d6ca2e8b": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Prepared to hike as soon as September if data warrant"
+ },
+ "50f447eb4e": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Sept hike very unlikely, market too hawkish"
+ },
+ "4eab27d2ec": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Earlier hikes better; open mind on September"
+ },
+ "251bb92978": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Against forced lower rates, but wants lower rates overall"
+ },
+ "74757de103": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Tighten soon absent inflation progress"
+ },
+ "9e84a08431": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Modal gradual disinflation, hike option kept"
+ },
+ "29ae04ce2c": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Patience, against aggressive rate view"
+ },
+ "b708a0efd3": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Unsure policy restricts; withheld September hike call"
+ },
+ "7faea8dd84": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Maybe accommodative, work to do"
+ },
+ "e0bc355718": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes Sept and Dec"
+ },
+ "b48520eaef": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Next cut pushed to June 2027"
+ },
+ "f274723efa": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes Sept and Dec, low conviction"
+ },
+ "9daf8d2be9": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Cuts not needed, policy not restrictive"
+ },
+ "cc5c11491a": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Hike at September meeting"
+ },
+ "5deac243e7": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes Sept and Dec"
+ },
+ "00f7a3336e": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes Sept and Dec"
+ },
+ "1a48f9b747": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Second hike in October"
+ },
+ "24bc42802d": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation not slain, rates biased higher"
+ },
+ "d641aa41d1": {
+  "s": 9,
+  "path_bp": null,
+  "note": "Wanted 50bp in September; past meeting"
+ },
+ "fa73ba1f65": {
+  "s": 7,
+  "path_bp": null,
+  "note": "More than one hike, slow quarterly pace"
+ },
+ "9fa2d41fcb": {
+  "s": 8,
+  "path_bp": 25,
+  "note": "Another hike likely this year, possibly 2027"
+ },
+ "939a4f5af9": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Two more hikes Dec and March"
+ },
+ "fa2203a6ee": {
+  "s": 8,
+  "path_bp": 25,
+  "note": "One more hike by year-end"
+ },
+ "1044d662f2": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "One more hike, not aggressive cycle"
+ },
+ "d80956d242": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Supports hike, inflation primary concern"
+ },
+ "2527dcc88e": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Backed hike; second hike penciled for year-end"
+ },
+ "350cfcb1ea": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation may rise; hold to 2% target"
+ },
+ "78373a5a1b": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Few more hikes benign working assumption"
+ },
+ "4eb0ff46b9": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Earlier incremental firming, more hikes needed"
+ },
+ "4cbf378770": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Backs hike, more restrictive stance helps"
+ },
+ "a702db37db": {
+  "s": 6,
+  "path_bp": null,
+  "note": "No rate decline soon"
+ },
+ "b4cc220b38": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Two more hikes Dec and March"
+ },
+ "2081cf7edd": {
+  "s": 8,
+  "path_bp": null,
+  "note": "One or two more 25bp hikes"
+ },
+ "d20628a1e9": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Questions September hike, may backfire"
+ },
+ "fa318df415": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Policy still accommodative, more hikes needed"
+ },
+ "814afb72e3": {
+  "s": 6,
+  "path_bp": 25,
+  "note": "December hike, may prove last"
+ },
+ "cad01a6edf": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Fears too many hikes"
+ },
+ "99096d3b90": {
+  "s": 8,
+  "path_bp": null,
+  "note": "More firming will be required"
+ },
+ "6f91e57b57": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Bond bear market, yields still rising"
+ },
+ "ddc193cd46": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes Dec and Mar, risk behind curve"
+ },
+ "dabe6ff781": {
+  "s": 8,
+  "path_bp": 25,
+  "note": "Further hike before year-end"
+ },
+ "13157e4f3d": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hikes not off table, not a prediction"
+ },
+ "9068e12206": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Long-end bear market, not funds rate specific"
+ },
+ "bd8cd856de": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Structurally higher rates, mainly long end"
+ },
+ "4cf22dec45": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Bets against return to low rates"
+ },
+ "00e984e0a4": {
+  "s": 8,
+  "path_bp": 25,
+  "note": "Hold Oct, hike December"
+ },
+ "600c04723a": {
+  "s": 8,
+  "path_bp": 25,
+  "note": "Hold Oct, hike December"
+ },
+ "296a1e2221": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Hikes wrong tool, wants fiscal containment"
+ },
+ "9d0b89a7b3": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Hold now, gradual hikes later"
+ },
+ "35abf2b6aa": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Has to hike in December"
+ },
+ "9a0b65cd81": {
+  "s": 9,
+  "path_bp": null,
+  "note": "Firming necessary and soon"
+ },
+ "45fedd254e": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation first, no explicit rate call"
+ },
+ "3cf9c32fda": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Continued 25bp hikes, rejects 50bp"
+ },
+ "bf101d6cd0": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Rate fairly accommodative, inflation top of mind"
+ },
+ "759e3d3d58": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Hikes in Dec and Jan"
+ },
+ "9ca7e78a3b": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Will not ease for housing; no path"
+ },
+ "42e5323f54": {
+  "s": 9,
+  "path_bp": 75,
+  "note": "Hikes Dec, Jan, Mar"
+ },
+ "acecb87831": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Additional tightening appropriate soon"
+ },
+ "dccff4f2cb": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Steady gradual tightening, cool on faster pace"
+ },
+ "2eb85a55b1": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Inflation wrong direction, Fed has work to do"
+ },
+ "9f45e66ed3": {
+  "s": 9,
+  "path_bp": null,
+  "note": "Several hikes before spring 2027, soon"
+ },
+ "358f43f54d": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Patience over further hike"
+ },
+ "4d42956690": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Tightening underway, regime change"
+ },
+ "9c36664043": {
+  "s": 9,
+  "path_bp": 75,
+  "note": "Hikes Dec, Jan, Mar"
+ },
+ "c905409647": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Opposes more hikes, recession risk"
+ }
+}

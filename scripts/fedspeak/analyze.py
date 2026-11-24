@@ -4,6 +4,7 @@
   python -X utf8 analyze.py
 
 눈금(Jae 11/23): 10 = 매파, 5 = 중도, 0 = 비둘기파. 소수 첫째 자리.
+  11/25~: 발언 점수는 score11.json(0~10 정수 11단계)을 우선 쓰고, 없으면 원장 5단계를 5+2.5×로 환산.
   원장(ledger.json)의 점수는 −2~+2 다섯 단계 → 화면 점수 = 5 + 2.5 × 원장 점수 (0 / 2.5 / 5 / 7.5 / 10).
 인물 수준 L_i(t): 그 인물의 발언 점수를 반감기 HALF일로 지수 가중 평균(마지막 발언 이후엔 그대로 유지).
 위원회 지수: 그 시점 재임 중인 2026 투표권자 L_i의 단순 평균(의장 3배 가중판 병기).
@@ -152,6 +153,8 @@ def main() -> None:
     items = [it for it in led["items"] if it.get("verify") in OKV]
     ovp = HERE / "overrides.json"  # 다시 본 결과: {id: {score(원장 눈금), drivers, drop, ai_side, note}}
     ov = json.loads(ovp.read_text(encoding="utf-8")) if ovp.exists() else {}
+    s11p = HERE / "score11.json"  # {id: {s: 0~10 정수, path_bp, note}} (scripts/fedspeak/RESCORE_BRIEF.md 기준)
+    S11 = json.loads(s11p.read_text(encoding="utf-8")) if s11p.exists() else {}
     kept = []
     for it in items:
         o = ov.get(it["id"])
@@ -161,7 +164,13 @@ def main() -> None:
             it.update({k: v for k, v in o.items() if k in ("score", "drivers", "date", "time_et", "ai_side")})
             it["override_note"] = o.get("note")
         it["raw_score"] = it.get("score")
-        it["score"] = disp(it.get("score"))
+        s11 = S11.get(it["id"])
+        if s11 is not None and it.get("score") is not None:  # 11단계(0~10 정수) 재채점 결과 우선(11/25~)
+            it["score"] = float(s11["s"])
+            if s11.get("path_bp") is not None:
+                it["path_bp"] = s11["path_bp"]
+        else:
+            it["score"] = disp(it.get("score"))
         if it["group"] == "sellside" and it.get("firm"):  # 셀사이드는 사람이 아니라 하우스 단위로 묶는다
             f = FIRM_ALIAS.get(it["firm"], it["firm"])
             it["firm"] = f

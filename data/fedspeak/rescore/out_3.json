@@ -1,0 +1,597 @@
+{
+ "f63d1498b0": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Markets tightened on their own; hold, no lean"
+ },
+ "6b203cba11": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Close call between hold and hike; on the fence"
+ },
+ "968b258810": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Dissented for 25bp hike; says now is the time"
+ },
+ "36742e7017": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Dissented for 25bp hike; small steps now"
+ },
+ "7be3fd6f42": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Would have hiked 25bp at the July meeting"
+ },
+ "3a31251aa9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Backed hold; acting only if inflation fails to fall"
+ },
+ "673744c30b": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Doubts a hike's usefulness; core tame"
+ },
+ "4e7a9c108a": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Backs hold; lack of progress would need tightening"
+ },
+ "606b0952fb": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold clear; recalibration only if no progress"
+ },
+ "abf96b7e35": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Would support a hike if needed; may not be needed"
+ },
+ "674733d5cd": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Backs hold; risks skewed toward tighter policy"
+ },
+ "08db5158f3": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Start small hikes now; no meeting committed"
+ },
+ "cd96af3bba": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Wants lower rates but no demand; pledges not to criticize"
+ },
+ "26b46c6a10": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Now is time to act; several hikes likely needed"
+ },
+ "a07a7731b9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Inflation high, two-sided risks, no policy view"
+ },
+ "87be70927b": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Lays out both cases; declines to prejudge"
+ },
+ "8395d1a06f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Mildly optimistic, watching inflation, no lean"
+ },
+ "4d8996d444": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Act now; policy needs restraint, no size given"
+ },
+ "c3ebd02f12": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Wants lower rates, attacks hiking board; no explicit cut demand"
+ },
+ "1758dda6ff": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Declines to address rate path"
+ },
+ "5b9599574a": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold appropriate; no urgency either way"
+ },
+ "ac8a1ea88b": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Eventually more needed; not prejudging September"
+ },
+ "be56c430dc": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold base case; hike if pressures embed"
+ },
+ "b482633b4c": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Reiterates a hike is needed; inflation near 3%"
+ },
+ "8e70f672d5": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Conditions not restrictive; inflation bar not met"
+ },
+ "a77069ec14": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Argues against hiking into a supply shock"
+ },
+ "3eb6bc7117": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Rates too high but gives Warsh a pass"
+ },
+ "b872597205": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Two-way; decisive hike if inflation not moderating"
+ },
+ "1b28f2c074": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wait and see; overheating worry offsets"
+ },
+ "dbc7b213ab": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Data dependent, undecided before September"
+ },
+ "915435a52c": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold if disinflation continues; hike if hot"
+ },
+ "6306f1efe3": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Patience; hike only if inflation reverses"
+ },
+ "6137b69e3b": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Ultimatum demanding lower rates immediately"
+ },
+ "d81d68d404": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Demands rates at 1% or less, and fast"
+ },
+ "d6410d4a94": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Calls hike wrong thing; no explicit cut size"
+ },
+ "fdedbe254e": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Delivered hike; says confidence standard not met"
+ },
+ "0b0d4f3682": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Refuses to prejudge next move"
+ },
+ "1255c98daf": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Conditions not restrictive; leans tighter, no commitment"
+ },
+ "03156608fc": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation too high; supportive of tightening"
+ },
+ "0a0824c124": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Declines view on hike; says rates should come down"
+ },
+ "1c067607f0": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Supply shocks need tightening if persistent; conditional"
+ },
+ "0a1cd99c6c": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation risks dominate; more hikes open"
+ },
+ "ef4134946e": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Base case: further adjustments likely needed"
+ },
+ "80f9d591b7": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Justifies hike; inflation persistent, no further call"
+ },
+ "e3484962ef": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Modest further tightening may be warranted"
+ },
+ "68ccc25142": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Another hike by year-end seems reasonable"
+ },
+ "3519041657": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Wants restrictive stance; policy not restraining"
+ },
+ "7158b18c44": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Urges open mind; indirect pushback on hikes"
+ },
+ "4ea6f3e565": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Backed hike; will consider needed rate, data dependent"
+ },
+ "bee4d6cf19": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Further adjustments likely needed in base case"
+ },
+ "d45ed42218": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Revisit looking through supply shocks; hawkish, no call"
+ },
+ "44c3c29c72": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "One more hike late this year may be appropriate"
+ },
+ "7dfbd67fe3": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Thin content; inflation too high, backed hike"
+ },
+ "2ccfb97e50": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Expects one more hike this year; dots in pencil"
+ },
+ "44be9ab6b0": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wait and see after September hike"
+ },
+ "5e4c11a4d5": {
+  "s": 6,
+  "path_bp": null,
+  "note": "AI inflation concern; no explicit rate call"
+ },
+ "8ec50a10ea": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Backed hike; upside inflation risk; no commitment"
+ },
+ "6b93e45ee3": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Will do what is needed; unknown terminal rate"
+ },
+ "c3b19d3b3f": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "One more hike in 2026; non-committal on October"
+ },
+ "3c203828e8": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "Says at least another 50bp needed"
+ },
+ "ec119f9843": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Would have voted against hike; no cut size stated"
+ },
+ "1514f1093b": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Backs hike; more only if shocks persist"
+ },
+ "6b982afcc5": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Anticipates additional hikes; timing flexible"
+ },
+ "60bed5f4c3": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Persistent inflation means hikes; cuts possible if fades"
+ },
+ "eed6cde09e": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Tighter hand needed; frequent smaller hikes"
+ },
+ "314644ada8": {
+  "s": 8,
+  "path_bp": null,
+  "note": "More restriction needed; timing open"
+ },
+ "bb6daf8f11": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Yields doing some tightening work; mild offset"
+ },
+ "b1e7ecfb0a": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Still sees one more hike appropriate this year"
+ },
+ "f59537b73d": {
+  "s": 5,
+  "path_bp": null,
+  "note": "No urgency; wait and see"
+ },
+ "f07c7fd832": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Further hikes more likely than not; no urgency"
+ },
+ "7cf7357f6e": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Raises prospect of more aggressive action as question"
+ },
+ "0bcebe94a3": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Hot core unacceptable; clear response but no call"
+ },
+ "bdf7f70b16": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Conditional remarks, no rate path stated"
+ },
+ "ded983e640": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Needs evidence inflation fading; rejects market-tightening reliance"
+ },
+ "35e9e8bd87": {
+  "s": 7,
+  "path_bp": null,
+  "note": "No restraint from conditions; might need to move more"
+ },
+ "f2431e7dd3": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Refuses to say what he will do"
+ },
+ "21508f06e4": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Urges open mind on transitory shock; cites ECB error"
+ },
+ "c3a05b6ba8": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Dissented for 25bp hike in October"
+ },
+ "c3d69875c1": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Dissented for 25bp hike in October"
+ },
+ "5544789bd8": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Held against dissents; inflation too high, data dependent"
+ },
+ "053d6c5615": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Declines to prejudge; December open both ways"
+ },
+ "b00f1b264a": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hike biting on AI financing; no call for more"
+ },
+ "40c2f3b0c0": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Balance sheet timing remark; neutral on rate path"
+ },
+ "d444307134": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Direction straightforward, gradual pace"
+ },
+ "23afa0c521": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "At least two more 25bp hikes needed"
+ },
+ "d484f65647": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Gradual hikes still make sense"
+ },
+ "5da7f80ed7": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Policy must move to restrictive stance"
+ },
+ "b38d480afa": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Expects further tightening; timing and size open"
+ },
+ "fe0ce86995": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation too high; no view on next move"
+ },
+ "f1ebdc548f": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Risk on inflation side; tighten with care"
+ },
+ "cb6a3eb2fa": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Work to do, but tighter conditions weigh"
+ },
+ "b07170d908": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Addressing inflation is right move; gradual, uncommitted"
+ },
+ "ec33b36c0b": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation wrong way; everything on table"
+ },
+ "e0eec218e4": {
+  "s": 9,
+  "path_bp": 50,
+  "note": "At least two more hikes, maybe faster pace"
+ },
+ "a6fdbdd82b": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Further gradual tightening appropriate"
+ },
+ "6564bf7b87": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Supports 25bp December hike; 50bp if CPI hot"
+ },
+ "3f32aa2ba8": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Bias toward tightening; size and timing open"
+ },
+ "4ff4554ee8": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Rates up if inflation keeps worsening; no size"
+ },
+ "fe46a75c57": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Need restrictive stance; smaller steps preferred"
+ },
+ "a80c96a334": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Policy not yet right place; more action needed"
+ },
+ "e2fd024b54": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Warns against hiking too much into fading shock"
+ },
+ "4a1245818f": {
+  "s": 7,
+  "path_bp": null,
+  "note": "In all likelihood raise rates; hedged on timing"
+ },
+ "d0989de816": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Not on path to 2%; must deal with it"
+ },
+ "ee85dabd54": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation trajectory key signal; no explicit call"
+ },
+ "9f6e0fb448": {
+  "s": 9,
+  "path_bp": null,
+  "note": "Policy must be more restrictive; restates earlier hike call"
+ },
+ "fd234e4b2b": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Overheating risk; rate hikes address it"
+ },
+ "419f9a06b9": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Gradual hikes in 25bp steps; not yet restrictive"
+ },
+ "0badc1dec7": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Inflation high; no rate preference"
+ },
+ "637e219696": {
+  "s": 6,
+  "path_bp": null,
+  "note": "May need to raise more next year; rejects 50bp"
+ },
+ "63db663431": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Expects further hikes appropriate on his forecast"
+ },
+ "85c962ffac": {
+  "s": 7,
+  "path_bp": null,
+  "note": "More hikes required at measured pace"
+ },
+ "2940f4351a": {
+  "s": 10,
+  "path_bp": 50,
+  "note": "Wants 50bp in December or 25bp plus January signal"
+ },
+ "19c25c06e8": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Overheating warning; no explicit hike call"
+ },
+ "2a1928af21": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Not on path to 2%; steepness depends on inflation"
+ },
+ "3d33f92131": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Framework remarks; no rate-path lean"
+ },
+ "e49c17f627": {
+  "s": 8,
+  "path_bp": null,
+  "note": "Q&A: more tightening to do; slow and steady"
+ },
+ "6e31cd6e91": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Argues against large December hike"
+ },
+ "1e0f027d00": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Dissented for hike; one hike not enough"
+ },
+ "008dc13d5c": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Wants lower rates, stop raising; not explicitly big"
+ }
+}

@@ -1,0 +1,592 @@
+{
+ "b3ee8adba0": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Modest cuts later this year if inflation moderates; no urgency"
+ },
+ "a2b1739a6f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided risks, near neutral, wants more data"
+ },
+ "211e4f85fb": {
+  "s": 0,
+  "path_bp": -150,
+  "note": "Policy materially too tight; 150bp cuts this year"
+ },
+ "e894040a25": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided, policy near neutral, no lean"
+ },
+ "5734e49fef": {
+  "s": 0,
+  "path_bp": -100,
+  "note": "More than 100bp of cuts this year"
+ },
+ "3f3c1f552d": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Fed should not delay, cuts the missing ingredient; Treasury pressure"
+ },
+ "8cd9754043": {
+  "s": 0,
+  "path_bp": -150,
+  "note": "About 150bp of cuts in 2026"
+ },
+ "aef948d936": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Fine-tuning phase, no large moves"
+ },
+ "e1d09e17d3": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Complaint Fed not helping; no explicit cut demand"
+ },
+ "d37dcc5462": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned, data dependent, no lean"
+ },
+ "96baf566c8": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided, no urgency either way"
+ },
+ "e0f2a25060": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Demands Powell cut meaningfully, attacks chair"
+ },
+ "b5dd0c8742": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Demands big beautiful rate cut, attacks Powell"
+ },
+ "2a276e125c": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Rates should go down; attacks Fed and Powell"
+ },
+ "92417a9b05": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Says rates were too high; no explicit new demand"
+ },
+ "3972442afd": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Powell should have cut more; backward-looking criticism"
+ },
+ "866e1a68d5": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Rates should be lower; no size or timing"
+ },
+ "81023d18f4": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wait for evidence; no rate guidance"
+ },
+ "82d9afff90": {
+  "s": 6,
+  "path_bp": null,
+  "note": "No cut in January, way too soon; inflation concern"
+ },
+ "3d1de74c87": {
+  "s": 5,
+  "path_bp": null,
+  "note": "No guidance, watch both sides of mandate"
+ },
+ "671a117cee": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Policy too tight; correct response is cutting rates"
+ },
+ "933db30f87": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Little restrictive; modest cuts later in year"
+ },
+ "b7e25c47c0": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Rates right level, wait-and-see, two-sided"
+ },
+ "43687a75ff": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Good place, deliberate calibration, no lean"
+ },
+ "b2d13d0b24": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Rates can fall fair amount if inflation evidence convincing"
+ },
+ "9a1bfb29ef": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Inflation gap and strong labor; no rate statement"
+ },
+ "c5cee8b82d": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Hold now; modest cuts later in year possible"
+ },
+ "9ab9407921": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Ready to move toward neutral; against signaling pause"
+ },
+ "ee7d05703b": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned, no prejudging, two-sided"
+ },
+ "b7bcd5ef72": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Open mind, inflation to drop; argues against tightening"
+ },
+ "2c44613a10": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Opposes hikes on good numbers; no explicit cut ask"
+ },
+ "2629b492af": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Wants chair who won't hike; Powell too late"
+ },
+ "9bf67f7a8e": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Should pay much lower rate; attacks Powell"
+ },
+ "57483d0ff0": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Attacks Powell for keeping rates high; no explicit ask"
+ },
+ "774098c27e": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Too late criticism; no explicit demand"
+ },
+ "5ac2a27852": {
+  "s": 3,
+  "path_bp": null,
+  "note": "General wish for lower rates"
+ },
+ "e0bdcd0c8a": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Attacks Powell for keeping rates high"
+ },
+ "a0aafb2ddc": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Fed inflation narrative false; hopes for open mind"
+ },
+ "d940343ab0": {
+  "s": 1,
+  "path_bp": -25,
+  "note": "Dissent for 25bp cut"
+ },
+ "59cd0ba2d8": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Stance appropriate, meeting by meeting, no lean"
+ },
+ "635c42734f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hike not base case, easing conditional; balanced"
+ },
+ "ce84b59a55": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Demands substantially lower rates NOW"
+ },
+ "47ee415441": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Rates unacceptably high; wants lowest in world"
+ },
+ "e6c5cece85": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Says Fed could have been more helpful"
+ },
+ "88c173e5a9": {
+  "s": 2,
+  "path_bp": -75,
+  "note": "Projects three 2026 cuts; warns against extended hold"
+ },
+ "53c19c8488": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Economy can have lower rates; post-dissent"
+ },
+ "ebc8fef0cb": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Expects nominee to cut; no direct demand"
+ },
+ "552f8cc987": {
+  "s": 1,
+  "path_bp": -25,
+  "note": "Dissent for 25bp cut, further easing needed"
+ },
+ "ce5cd17ec2": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold, ready to respond either way"
+ },
+ "fef51948c7": {
+  "s": 0,
+  "path_bp": -100,
+  "note": "A bit more than 100bp of cuts this year"
+ },
+ "55b2a5f6fd": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation risks tilted up; sit and wait"
+ },
+ "8b05f35a8a": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Rates way high, must come down"
+ },
+ "5ebb4ec495": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Case for cut in January; leans to cuts in 2026"
+ },
+ "3cdb6a3621": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned, data dependent, balanced"
+ },
+ "9d7bbc14e5": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Balance sheet comment only; neutral for rates"
+ },
+ "11abc61079": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Inflation is measurement artifact; no direct cut call"
+ },
+ "2227bfb911": {
+  "s": 0,
+  "path_bp": -200,
+  "note": "Rates should be two points lower now"
+ },
+ "d4d2aeaf9f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold for quite some time; risks balanced"
+ },
+ "3e90ee5617": {
+  "s": 6,
+  "path_bp": null,
+  "note": "No more cuts needed; worried inflation stays high"
+ },
+ "4fdc8b6257": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Stay on hold; no new lean"
+ },
+ "5664f51264": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Wants lower rates despite strong jobs"
+ },
+ "9089339e5f": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Argues for looser policy now"
+ },
+ "5c19d8e4dd": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Rates can fall more once inflation progress seen"
+ },
+ "947dc8852d": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold for some time; AI no reason to cut"
+ },
+ "ce054747d9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Slightly restrictive but inflation must fall first"
+ },
+ "029a7116b6": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Several more cuts in 2026 if inflation data cooperate"
+ },
+ "6b2c7bfda4": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Policy in good place, no lean"
+ },
+ "76f9e3a1fa": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Purely data dependent"
+ },
+ "0bae5f4100": {
+  "s": 2,
+  "path_bp": -100,
+  "note": "Dot back to 100bp of cuts; still dovish"
+ },
+ "b80c3c5581": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Not convinced inflation heads to 2%; no cuts needed"
+ },
+ "8cde5067f0": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Demands lower interest rates; attacks Powell"
+ },
+ "7c92938b78": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Rates down very substantially; attacks chair"
+ },
+ "df2181dc68": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Cuts by year-end but warns against front-loading"
+ },
+ "f3980b1392": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Coin flip between hold and 25bp cut in March"
+ },
+ "a43cde7cda": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Inflation concern, policy well positioned"
+ },
+ "a7c43d1139": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Structural remarks; higher neutral rate, no near-term call"
+ },
+ "84af55d17c": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Cuts later only after inflation progress; balanced"
+ },
+ "9ee318402d": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Several cuts later in 2026, not front-loaded"
+ },
+ "34f0293f2c": {
+  "s": 1,
+  "path_bp": -100,
+  "note": "Four quarter-point cuts this year"
+ },
+ "c26b8e7ad7": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Powell too late cutting; no explicit new demand"
+ },
+ "97866e2e6a": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wait-and-see after oil shock"
+ },
+ "eb9f4eee77": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Further cuts eventually warranted; no urgency"
+ },
+ "dc02f10470": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Extended hold, both directions possible"
+ },
+ "cc99f126a2": {
+  "s": 1,
+  "path_bp": -100,
+  "note": "Keep cutting despite oil; four cuts this year"
+ },
+ "a292411a2a": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Balance shifted to inflation; fight not done"
+ },
+ "225f7afbc0": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Labor weak, needs policy rate support"
+ },
+ "c768d730f9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided: weak jobs, high inflation and oil"
+ },
+ "4ffded5c3b": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Easing later in year but timing pushed back"
+ },
+ "2a1d2f38bc": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Extended hold, two-sided risks"
+ },
+ "3b1e9047f6": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold; might need more restrictive if no inflation progress"
+ },
+ "cfda8949df": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Wants Committee to cut; labor needs accommodation"
+ },
+ "5bbe143a47": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Immediate inter-meeting cut demanded"
+ },
+ "cf1ff9d1aa": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Cut right now, special meeting demanded"
+ },
+ "dd12f73da3": {
+  "s": 1,
+  "path_bp": -25,
+  "note": "Dissent for 25bp cut"
+ },
+ "d8a1a3c74e": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold, stance appropriate, oil uncertainty"
+ },
+ "54c6c98a46": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hike discussed not base case; cuts conditional"
+ },
+ "0b2218bde2": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Vigilant on expectations; no commitment to tighten"
+ },
+ "beb61574ea": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Presses Powell to lower rates on decision day"
+ },
+ "5565262ff4": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Should be lowering rates today"
+ },
+ "6acc99ce78": {
+  "s": 2,
+  "path_bp": -75,
+  "note": "Three cuts projected in 2026 to support jobs"
+ },
+ "d35ae6c5dd": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Holds now; would advocate cuts later if labor weak"
+ },
+ "b664e9ab13": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Good place, flexible, no lean"
+ },
+ "fd8da82b1f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Inflation bigger worry but still hopes for end-year cuts"
+ },
+ "08d089ce6f": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Outlook for gradual cuts unchanged"
+ },
+ "c6d6474017": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Steady for some time; bar for further cuts"
+ },
+ "f83c2ac492": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Cuts conditional on inflation progress; stagflation two-sided"
+ },
+ "c87dc2399b": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Wants policy near neutral, below current; no slamming gas"
+ },
+ "24b3a2c210": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold; inflation key concern, expectations risk"
+ },
+ "55234c8160": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned, two-sided risks"
+ },
+ "6bc80d09fe": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Runoff warrants lower funds rate; no immediate cut call"
+ },
+ "3b1a8debc2": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Who wouldn't be lowering rates now"
+ },
+ "5584a282f7": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold prudent, risks both sides"
+ },
+ "4dd4e07151": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Cautious on overheating, no stated next move"
+ },
+ "a6d0c1c9e9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Easing hope offset by front-loading caution"
+ },
+ "de900d23ab": {
+  "s": 1,
+  "path_bp": -100,
+  "note": "About a point easier over a year"
+ },
+ "5e2b50916a": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Good place to wait and see"
+ },
+ "bb520a7c0d": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned, balanced risks"
+ },
+ "5f97cf342c": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hike and cut cases both laid out"
+ }
+}

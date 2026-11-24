@@ -1,0 +1,592 @@
+{
+ "b0954984e4": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation is chief concern, two-sided wait-and-see, no explicit lean"
+ },
+ "b3bfa0ffc8": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Structural labor essay, two-sided risks, no rate lean"
+ },
+ "5b06d067a0": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Withdraws 2026 cut baseline on inflation; pushes back on cuts"
+ },
+ "7c2732c6b6": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation orange heading red; no rate guidance, inflation dominates"
+ },
+ "d69738bf94": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Long hold; explicitly cut or hike possible"
+ },
+ "4df7b3da1c": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation worry dominates, no rate path stated"
+ },
+ "2f80841edf": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Two-sided, unsure which way policy should move"
+ },
+ "d620ceed90": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold appropriate, two-sided risks, no lean"
+ },
+ "b254b51986": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Policy well positioned, wait and see"
+ },
+ "ab54f3b8c3": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Hold or cut ranked above hike; mild dovish tilt"
+ },
+ "2e70ea1536": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Says rates should be lowered eventually, endorses wait now; no urgency"
+ },
+ "6b6f186209": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Looks through energy shock, no evidence of expectations drift; dovish"
+ },
+ "3fdcbc4b0d": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Repeats call for cuts, accepts a pause"
+ },
+ "907be10064": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Cuts pushed out; hikes possible but also cuts, inflation worry"
+ },
+ "c1b30614e6": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Not inclined to tighten into supply shock, cuts deferred, two-sided"
+ },
+ "3ece963ce5": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Says Fed wrong on inflation, would prefer cuts but accepts wait"
+ },
+ "cec1dcf889": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Extended hold, explicitly two-sided rate risk"
+ },
+ "9b41c1fbb6": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Rates should be much lower; threatens to fire Powell"
+ },
+ "e0b96b1ffe": {
+  "s": 0,
+  "path_bp": -100,
+  "note": "Wants 100bp cuts to neutral (above old band: explicit full-point call)"
+ },
+ "a3112123ba": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Rejects wait-and-see, rates should be lower"
+ },
+ "5185b57191": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Stance well positioned, balanced risks"
+ },
+ "ea3aba11eb": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Slightly restrictive, wait-and-see, hike and cut both described"
+ },
+ "235cc55f1f": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Cautious on cuts now, cuts later or hold if energy persists"
+ },
+ "80af102e8e": {
+  "s": 0,
+  "path_bp": null,
+  "note": "Wants lowest rate in the world, disappointed without immediate cut"
+ },
+ "b97ab3d86d": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Declines to preview decisions or give forward guidance"
+ },
+ "3b539a4674": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Smaller balance sheet could allow lower rates, no timing"
+ },
+ "5285518c68": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Past-tense criticism that Powell should have cut"
+ },
+ "414f344665": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Says should have lowered rates long ago"
+ },
+ "0c38e1fa79": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hawkish dissent against easing bias, supports hold"
+ },
+ "795e5b3d94": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Dissent against easing bias, supports hold, not for hike"
+ },
+ "96c03aa2df": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Dissent against easing bias, supports hold, not for hike"
+ },
+ "135043713b": {
+  "s": 1,
+  "path_bp": -25,
+  "note": "Formal dissent for 25bp cut"
+ },
+ "d0d54a24c1": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Statement text: hold appropriate, both-sided risks"
+ },
+ "0c6cee1eb0": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Pushes back on cuts, hikes conditional, no case restrictive"
+ },
+ "3aef23b096": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Bias drifting neutral, favors waiting, no lean"
+ },
+ "b99575ea57": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Easing bias inappropriate, upside inflation risk, supports hold"
+ },
+ "414f0e59df": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Wants neutral guidance; adverse-scenario hikes, benign scenario still easing"
+ },
+ "bd85124104": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Removes cut bias, hike as plausible as cut, no hike call"
+ },
+ "9cbbccf38a": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Complains Fed too late on cuts, no explicit demand"
+ },
+ "a670036aae": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Cautious on cuts until inflation assured, no hike call"
+ },
+ "8893fd8775": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Will not signal cuts; hikes possible in worse scenarios"
+ },
+ "a82d5d97e8": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hold appropriate, risks higher both sides"
+ },
+ "ab10a4e3d0": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Analytic case rates need to rise if AI boom anticipated, conditional"
+ },
+ "0f79ad3b5f": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation-only shock, growing nervousness, no explicit call"
+ },
+ "2983c6ff4d": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Patient hold, cuts still possible, no next-move lean"
+ },
+ "ee43d27ac1": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold long; neutral guidance, inflation more persistent"
+ },
+ "8cf81e2812": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Entrenched inflation mindset, open mind on next move"
+ },
+ "e01934af9d": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Next move may need to be up if Hormuz closed long"
+ },
+ "b7f3f66c8a": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Flags persistence risk but no rate prescription"
+ },
+ "eeb4e2a48c": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Expected AI boom implies higher rates, conditional, no meeting call"
+ },
+ "d96f85bb1c": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation going wrong way, labor stable, all options open"
+ },
+ "851f80534a": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Restates anti-easing-bias view on inflation risk"
+ },
+ "76b0a34304": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation the one problem, labor stable, no hike call"
+ },
+ "841347df88": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Next move may well be up if strait stays closed"
+ },
+ "4fd0dc6a92": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wait and see, no loosening, no tightening"
+ },
+ "7518448c1f": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation worse, labor better, dead serious on inflation"
+ },
+ "b4a985578e": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Look through transient supply shock, forecasts disinflation, against hikes"
+ },
+ "0995654ae5": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Resignation case for lower rates, no specific meeting"
+ },
+ "aae682537e": {
+  "s": 5,
+  "path_bp": null,
+  "note": "No reason to raise or lower rates now"
+ },
+ "b4a34a4dc8": {
+  "s": 0,
+  "path_bp": -75,
+  "note": "Wants 75bp of cuts this year, front-loaded"
+ },
+ "80c046c697": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold, no cuts until sustained progress, tightening scenarios accepted"
+ },
+ "6553523874": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Declines to demand cuts or oppose hike, defers to Warsh"
+ },
+ "87402e115c": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Questions looking through shocks, ends two-sided, no call to move"
+ },
+ "cdb0296e7d": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Significant inflation problem developing, labor stable"
+ },
+ "a3cf962b7b": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Professes independence but says let economy boom, do not fight growth"
+ },
+ "a469f3651b": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Rates should come down quickly, mostly mortgage framing"
+ },
+ "540c486b64": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hikes cannot be ruled out later, but premature now; hold"
+ },
+ "a07156c80e": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Prepared to raise rates if disinflation does not appear"
+ },
+ "4a9da35f7b": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Expected AI productivity may require higher rates, conditional"
+ },
+ "24a4591370": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation not temporary, overheating risk, conditional"
+ },
+ "bf64074bb6": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Risks tilted to upside inflation, stance well positioned, June open"
+ },
+ "56055ccbe7": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation far too high, would do what it takes to anchor expectations"
+ },
+ "4e30c548c3": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Policy right where wanted, hike only if inflation persists"
+ },
+ "e964cd4dcf": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Looks through energy inflation, defends easing bias"
+ },
+ "e0d6fd7cc9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "No urgency to adjust, conditional oil concern"
+ },
+ "9ebe936e08": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hike premature but all risk on inflation side, options open"
+ },
+ "060145baf0": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold now, open to extended hold or further tightening"
+ },
+ "40d59c786c": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Policy may not be restrictive enough; may soon be appropriate to act"
+ },
+ "2f9d019083": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Increasingly concerned hikes needed later this year"
+ },
+ "4a316d30bf": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Policy exactly right, no direction next"
+ },
+ "a166107468": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Prepared to respond either way, no lean"
+ },
+ "a32793e499": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Wants lower rates, says no reason to hike"
+ },
+ "4385cffa01": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Dislikes hike idea but defers to Warsh, no cut demand"
+ },
+ "2e210cc5b3": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold; inflation only risk dwelt on, unconditional price stability pledge"
+ },
+ "8cbff5f18e": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Policy not restrictive outside housing, work to do on inflation"
+ },
+ "e25d840b19": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Refuses to lean on next meeting, no forward guidance"
+ },
+ "81f19628f1": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Inflation dominates, defends anti-cut dissent, no hike call"
+ },
+ "e0fd1664a1": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Defers to Warsh, expects inflation falling, mild dovish undertone"
+ },
+ "8535ba11fc": {
+  "s": 4,
+  "path_bp": null,
+  "note": "Open mind, Greenspan one-hike reference offsets dovish framing"
+ },
+ "90bb491cd9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Hopeful signs but inflation concern, no lean"
+ },
+ "f306e916eb": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Endorses hold, stance well positioned"
+ },
+ "8ec4a6c9d5": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Pencils one hike for 2026, tentative"
+ },
+ "43c86d504c": {
+  "s": 7,
+  "path_bp": 25,
+  "note": "Pencils one hike for 2026 on broad inflation"
+ },
+ "767f22a3e5": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Modestly restrictive stance reasonable, persistence worry"
+ },
+ "e9d34cde86": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Pushes back on cut pressure, inflation sideways or up"
+ },
+ "49ebf6b1c6": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Rates may need to rise if inflation persists"
+ },
+ "ca259808c8": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Wont accept above-2% inflation but persistence risk moderated, no guidance"
+ },
+ "fb950df32c": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Slightly restrictive, next step uncertain"
+ },
+ "05ae7b4cf7": {
+  "s": 3,
+  "path_bp": null,
+  "note": "Opposes hikes, blames board, no explicit cut demand"
+ },
+ "e9974c63e3": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Good place, data dependent, no lean"
+ },
+ "530a5cab96": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Well positioned; tightening only if AI demand persists"
+ },
+ "0fd80647ae": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Ready to tighten if hot core print, hold if cooling"
+ },
+ "f020ec1852": {
+  "s": 6,
+  "path_bp": null,
+  "note": "No tolerance for elevated inflation, no explicit hike signal"
+ },
+ "867bc1b132": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Prepared to act if no disinflation soon"
+ },
+ "222d5841ac": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Do not over-read one print, data dependent"
+ },
+ "2737db4627": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Does not take comfort from cooler prints, no hike signal"
+ },
+ "0d5837c740": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Stance well positioned, data dependent"
+ },
+ "a326bba186": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Could be appropriate to reconsider stance if inflation does not cool"
+ },
+ "8523d3b21f": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Modestly higher rates better now; July dissent for hike"
+ },
+ "34ee24e9ba": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Inflation bigger concern, labor at max employment, no explicit hike call"
+ },
+ "5703a38865": {
+  "s": 1,
+  "path_bp": null,
+  "note": "Rates should be lowered, lowest in the world"
+ },
+ "386b862e78": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Formal dissent for 25bp hike"
+ },
+ "5ba5982c04": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Formal dissent for 25bp hike"
+ },
+ "0a5aab6f68": {
+  "s": 9,
+  "path_bp": 25,
+  "note": "Formal dissent for 25bp hike"
+ },
+ "0e8d947950": {
+  "s": 2,
+  "path_bp": null,
+  "note": "Prefers lower rates, blames board, no direct demand"
+ },
+ "cabb8fa3d1": {
+  "s": 6,
+  "path_bp": null,
+  "note": "Hold framed on inflation, readiness to act, no hike commitment"
+ },
+ "83430883c6": {
+  "s": 7,
+  "path_bp": null,
+  "note": "Not a pause; rates could well be part of solution"
+ },
+ "63da9b56a9": {
+  "s": 5,
+  "path_bp": null,
+  "note": "Balance sheet transmission discussion, no rate signal"
+ }
+}
