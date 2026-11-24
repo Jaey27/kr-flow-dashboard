@@ -410,7 +410,8 @@ function drawInfl(){const ev=D.events.filter(e=>inW(e.date)&&e.surprise!=null&&M
 // ---- 원장 ----
 function opts(id,arr,first){document.getElementById(id).innerHTML='<option value="">'+first+'</option>'+arr.map(a=>'<option value="'+a[0]+'">'+esc(a[1])+'</option>').join('');}
 opts('f-g',GO.filter(g=>D.items.some(i=>i.g7===g)).map(g=>[g,G7[g]]),'그룹 전체');
-opts('f-k',Object.keys(byKey).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||byKey[b].length-byKey[a].length).map(k=>[k,nm(k)+' ('+byKey[k].length+')']),'인물 전체');
+const isKo=s=>/^[가-힣]/.test(s);
+opts('f-k',Object.keys(byKey).sort((a,b)=>{const x=nm(a),y=nm(b);return (isKo(y)-isKo(x))||x.localeCompare(y,isKo(x)?'ko':'en',{sensitivity:'base'});}).map(k=>[k,nm(k)+' ('+byKey[k].length+')']),'인물 전체');
 opts('f-d',Object.keys(DRV).filter(d=>D.items.some(i=>(i.drivers||[]).includes(d))).map(d=>[d,DRV[d]]),'근거 전체');
 opts('f-m',[...new Set(D.items.map(i=>i.date.slice(0,7)))].sort().reverse().map(m=>[m,m]),'월 전체');
 
