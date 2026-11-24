@@ -171,8 +171,6 @@ def main() -> None:
                 it["path_bp"] = s11["path_bp"]
         else:
             it["score"] = disp(it.get("score"))
-        if it["key"] == "trump" and it.get("score") is not None:  # Jae 11/25: 트럼프는 늘 「크게 내려라」라 0 고정(표현 강도 차이는 신호로 안 봄)
-            it["score"] = 0.0
         if it["group"] == "sellside" and it.get("firm"):  # 셀사이드는 사람이 아니라 하우스 단위로 묶는다
             f = FIRM_ALIAS.get(it["firm"], it["firm"])
             it["firm"] = f
@@ -259,6 +257,8 @@ def main() -> None:
     inv = [k for k in L.columns if grp_of.get(k) == "investor"]
     ssd = [k for k in L.columns if grp_of.get(k) == "sellside"]
     idx["investor"] = L[inv].mean(axis=1) if inv else np.nan
+    for k in ("trump", "bessent"):  # Jae 11/25: 정치 선을 두 사람으로 분리
+        idx[k] = L[k] if k in L else np.nan
     idx["sellside"] = L[ssd].mean(axis=1) if ssd else np.nan
     # 같은 묶음을 '최근 발언만' 방식으로(재임 기간 마스크 동일)
     L2m = L2.where(Lm.notna() | L.isna(), np.nan)
@@ -273,6 +273,8 @@ def main() -> None:
     idx_last["chair"] = ch2
     idx_last["political"] = L2[pol].mean(axis=1) if pol else np.nan
     idx_last["investor"] = L2[inv].mean(axis=1) if inv else np.nan
+    for k in ("trump", "bessent"):
+        idx_last[k] = L2[k] if k in L2 else np.nan
     idx_last["sellside"] = L2[ssd].mean(axis=1) if ssd else np.nan
 
     # ---- 근거 태그 비중(연준 인사, 지난 30일) ----
