@@ -100,6 +100,7 @@ def load_market():
             s = s[~s.index.duplicated(keep="last")]
             out[col] = s.reindex(out.index.union(s.index)).ffill().reindex(out.index)
     out["y2"] = pd.to_numeric(df["y2"], errors="coerce")
+    out["brent"] = pd.to_numeric(df["brent"], errors="coerce") if "brent" in df else np.nan  # Brent 선물(대시보드 macro.json)
     out["y10"] = pd.to_numeric(df["y10"], errors="coerce")
     for i, mt in enumerate(m["fed"]):
         h = sum(pd.to_numeric(df.get(f"fed{i}_{c}"), errors="coerce").fillna(0) for c in ("H25", "H26"))
@@ -306,6 +307,41 @@ def main() -> None:
                     cw.loc[t] = (s / s.sum() * 100).values
         comp_w[wdays] = cw
 
+    # 같은 계산을 전체 발언(연준 + 정치 + 투자자 + 셀사이드, 근거 태그가 있는 모든 발언)으로 = Blended
+    def _tables(its):
+        d1 = pd.DataFrame([dict(date=pd.Timestamp(it["date"]),
+                                fin=int("financial_stability_credit" in (it.get("drivers") or []) or it.get("ai_side") in ("watch", "crowding", "calm")),
+                                ai=int(it.get("ai_side") in ("watch", "crowding")), infl=int("inflation" in (it.get("drivers") or [])),
+                                labor=int(bool(set(it.get("drivers") or []) & {"labor", "growth"}))) for it in its])
+        r2 = []
+        for it in its:
+            ds = (it.get("drivers") or [])[:3]
+            if not ds:
+                continue
+            wts = [3, 2, 1][:len(ds)]
+            row = dict.fromkeys(cats, 0.0)
+            for d, w in zip(ds, wts):
+                row[CAT.get(d, "other")] += w / sum(wts)
+            row["date"] = pd.Timestamp(it["date"])
+            r2.append(row)
+        c1 = pd.DataFrame(r2)
+        dws, cws = {}, {}
+        for wdays, minn in ((30, 5), (20, 4), (14, 3)):
+            dw = pd.DataFrame(index=grid, columns=["fin", "ai", "infl", "labor", "n"], dtype=float)
+            cw = pd.DataFrame(index=grid, columns=cats, dtype=float)
+            for t in grid:
+                lo = t - pd.Timedelta(days=wdays)
+                w1 = d1[(d1.date <= t) & (d1.date > lo)]
+                if len(w1) >= minn:
+                    dw.loc[t] = [w1.fin.mean() * 100, w1.ai.mean() * 100, w1.infl.mean() * 100, w1.labor.mean() * 100, len(w1)]
+                w2 = c1[(c1.date <= t) & (c1.date > lo)]
+                if len(w2) >= minn:
+                    s = w2[cats].sum()
+                    cw.loc[t] = (s / s.sum() * 100).values
+            dws[wdays], cws[wdays] = dw, cw
+        return dws, cws
+    drv_w_all, comp_w_all = _tables([it for it in items if it.get("drivers")])
+
     # ---- AI 발언 성격별 월 건수 ----
     ai_month = {}
     for it in items:
@@ -407,6 +443,8 @@ def main() -> None:
         drivers={c: ser(drv[c], 1) for c in drv.columns},
         drivers_w={str(w): {c: ser(dw[c], 1) for c in dw.columns} for w, dw in drv_w.items()},
         comp_w={str(w): {c: ser(cw[c], 1) for c in cw.columns} for w, cw in comp_w.items()},
+        drivers_w_all={str(w): {c: ser(dw[c], 1) for c in dw.columns} for w, dw in drv_w_all.items()},
+        comp_w_all={str(w): {c: ser(cw[c], 1) for c in cw.columns} for w, cw in comp_w_all.items()},
         index_last={c: ser(idx_last[c]) for c in idx_last.columns},
         market={c: ser(mkg[c]) for c in mkg.columns if not c.startswith("d_")},
         market_tdays=[d.date().isoformat() for d in tdays],

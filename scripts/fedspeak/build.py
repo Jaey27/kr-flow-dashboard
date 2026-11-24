@@ -138,10 +138,10 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="note">+주 = 톤이 그만큼 먼저 움직였을 때의 상관, −주 = 시장이 먼저. 순위상관(Spearman), 괄호는 주 수.</div></details>
 </details></div>
 
-<div class="card"><h2>발언이 내세운 근거 (연준 인사, 지난 30일)</h2>
-<div class="note">기본은 <b>대표 근거 구성비</b>: 발언마다 근거 1·2·3순위에 1/2·1/3·1/6 가중(근거가 2개면 2/3·1/3, 1개면 전부)을 줘서 30일 창 안에서 더함 → 매 시점 합 100%. 「무엇이 금리 결정의 주된 이유였나」를 봄. 「언급률」은 한 번이라도 언급한 발언 비율(여러 개 각각 셈, 합 100% 넘음)이고, AI 조달 언급은 단서로 한마디 해도 금융안정에 넣음. 둘의 차이 = 「말은 하지만 결정의 이유는 아닌」 부분.</div>
+<div class="card"><h2>발언이 내세운 근거 (지난 30일)</h2>
+<div class="note"><b>대상</b>: 기본은 전체(Blended) = 연준 인사 + 트럼프·베센트 + 투자자 + 셀사이드의 근거 태그가 있는 모든 발언(금리 의견 없는 신용·AI 발언 포함). 「연준 인사만」은 금리 점수가 붙은 연준 발언만. 연준 밖 사람의 근거는 「연준이 무엇을 해야 하나」의 이유라서 연준 결정의 이유와 성격이 다름.<br>기본 보기는 <b>대표 근거 구성비</b>: 발언마다 근거 1·2·3순위에 1/2·1/3·1/6 가중(근거가 2개면 2/3·1/3, 1개면 전부)을 줘서 30일 창 안에서 더함 → 매 시점 합 100%. 「무엇이 금리 결정의 주된 이유였나」를 봄. 「언급률」은 한 번이라도 언급한 발언 비율(여러 개 각각 셈, 합 100% 넘음)이고, AI 조달 언급은 단서로 한마디 해도 금융안정에 넣음. 둘의 차이 = 「말은 하지만 결정의 이유는 아닌」 부분.</div>
 <details class="in" style="margin:0 0 6px"><summary>%는 이렇게 계산함</summary><div style="color:var(--text-dim);font-size:12px;line-height:1.6;margin-top:4px">① 매일, 그날 포함 지난 30일 동안 나온 <b>연준 인사(이사회·투표권·비투표 총재) 발언 중 금리 점수가 붙은 것</b>만 모음(트럼프·베센트·투자자·셀사이드는 제외, 점수 없는 규제·결제 연설도 제외). 5건 미만이면 그날은 비움.<br>② 수집할 때 발언마다 "이 사람이 정책 판단의 이유로 든 것"을 근거 태그로 붙여 둠(인플레 / 고용 / 성장 / 금융안정·신용 / AI 자금조달 / 재정 / 관세 / 에너지 등, 여러 개 가능).<br>③ 선 하나 = 30일 창 안 발언 중 그 태그가 붙은 발언의 비율. 인플레 = 인플레 태그, 고용·성장 = 고용 또는 성장 태그, 금융안정·신용 = 금융안정·신용 태그이거나 AI 발언 분류가 조달 위험 주시·자본 경쟁·위험 일축인 것, 그중 AI = AI 분류가 조달 위험 주시·자본 경쟁인 것.<br>④ 한 발언이 여러 태그를 가지면 각각 세므로 선들의 합은 100%를 넘음. 태그는 사람이 아니라 수집 모델이 인용·요약을 읽고 붙였음.</div></details>
-<div class="row"><span class="dim" style="font-size:11.5px">보기:</span><div class="seg" id="cmode"><button type="button" data-c="comp" class="on">대표 근거 구성비 (3순위 가중, 합 100%)</button><button type="button" data-c="mention">언급률 (각각 셈)</button></div></div>
+<div class="row"><span class="dim" style="font-size:11.5px">대상:</span><div class="seg" id="cscope"><button type="button" data-s="all" class="on">전체 (Blended)</button><button type="button" data-s="fed">연준 인사만</button></div><span class="dim" style="font-size:11.5px;margin-left:8px">보기:</span><div class="seg" id="cmode"><button type="button" data-c="comp" class="on">대표 근거 구성비 (3순위 가중, 합 100%)</button><button type="button" data-c="mention">언급률 (각각 셈)</button></div></div>
 <div class="row" id="lg3"></div><div class="ch s"><canvas id="c3"></canvas></div><div class="lgx" id="x3"></div>
 <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px"><h2 style="font-size:14px">주간 변화(WoW): 근거 비중 vs 나스닥</h2>
 <div class="note">막대 = 그 주 금요일 비중 − 직전 금요일 비중(%p, 왼쪽 축). 점선 = 나스닥 주간 등락률(%, 오른쪽 축). 창 = 비중을 계산하는 기간. 11/24 분석: 나스닥 주간 등락과 가장 일관되게 같이 움직인 건 30일 창 인플레 비중(ρ +0.48, 46주, 상·하반기 모두 +). 금융안정·신용 비중은 나스닥이 2주 먼저 움직이는 쪽(20일 창 ρ −0.37: 나스닥이 빠지면 2주 뒤 금융안정 언급이 늘어남). 연준 근거가 나스닥을 앞선 증거는 없음.</div>
@@ -231,7 +231,7 @@ const TONE=[['voter26','2026 투표권자','--s1'],['chair','의장(5월까지 �
 let TMODE='decay';const tSrc=k=>(TMODE==='last'?(D.index_last||{}):D.index)[k]||D.index[k];
 function lastLevel(k){const by={};(byKey[k]||[]).forEach(i=>{if(i.score!=null)(by[i.date]=by[i.date]||[]).push(i.score)});let cur=null;return dates.map(d=>{if(by[d])cur=by[d].reduce((a,b)=>a+b,0)/by[d].length;return cur;});}
 const pLevel=k=>TMODE==='last'?lastLevel(k):D.levels[k];
-const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',true,0]]
+const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',true,0],['brent','Brent 유가 ($)','#3f3e3b',false,1]]
  .concat(Object.keys(D.market).filter(k=>k.startsWith('k_hike_')).sort().map(k=>[k,'Kalshi '+k.slice(12,17).replace('-','/')+' 인상 확률(%)','#00707d',false,0]));
 const ds1=TONE.map(s=>({label:s[1],data:tSrc(s[0]),borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y',_tone:true,_k:s[0],borderDash:(s[0]==='investor'||s[0]==='sellside')?[2,2]:undefined,hidden:(s[0]==='investor'||s[0]==='sellside')}));
 ds1.push({label:'(인물 선택)',data:X.map(()=>null),borderColor:'#d55181',backgroundColor:'#d55181',yAxisID:'y',_tone:true,hidden:true,_person:true});
@@ -250,18 +250,20 @@ document.querySelectorAll('#tmode button').forEach(b=>b.onclick=()=>{TMODE=b.dat
 
 // ---- 근거 비중 ----
 const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
-let CMODE='comp';
+let CMODE='comp',CSCOPE='all';
+const compSrc=w=>((CSCOPE==='all'?D.comp_w_all:D.comp_w)||{})[w]||{};
+const drvSrc=w=>CSCOPE==='all'?(((D.drivers_w_all||{})[w])||{}):(w==='30'?D.drivers:((D.drivers_w||{})[w]||{}));
 const CMP=[['infl','인플레','--s1'],['energy','에너지','#e3a008'],['tariff','관세·공급','#8c564b'],['labor','고용·성장','--s2'],['fin','금융안정·신용 (AI 조달 포함)','--s3'],['other','재정·정치·기타','#c9c8c2']];
 const colv=c=>c.startsWith('--')?css(c):c;
 const mainSeries=()=>CMODE==='comp'?CMP:S3;
-function ds3main(){const cm=CMODE==='comp',src=cm?((D.comp_w||{})['30']||{}):D.drivers;return mainSeries().map((s,i)=>({label:s[1],data:src[s[0]]||X.map(()=>null),borderColor:colv(s[2]),backgroundColor:cm?colv(s[2])+'B3':colv(s[2]),fill:cm?(i?'-1':'origin'):false,borderWidth:cm?1:2,yAxisID:'y',_main:true}));}
+function ds3main(){const cm=CMODE==='comp',src=cm?compSrc('30'):drvSrc('30');return mainSeries().map((s,i)=>({label:s[1],data:src[s[0]]||X.map(()=>null),borderColor:colv(s[2]),backgroundColor:cm?colv(s[2])+'B3':colv(s[2]),fill:cm?(i?'-1':'origin'):false,borderWidth:cm?1:2,yAxisID:'y',_main:true}));}
 const ds3=ds3main();
 ds3.push({label:'FOMC 블랙아웃 구간',data:X.map(()=>null),borderColor:'rgba(98,80,214,.7)',backgroundColor:'rgba(98,80,214,.07)',yAxisID:'y',hidden:true,_bo:true,_sep:'구간'});
-[['spx','S&P 500','#6250d6'],['ndq','나스닥 종합','#c2185b']].forEach((o,j)=>ds3.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[6,3],borderWidth:2.4,order:-1,yAxisID:'y3_'+o[0],hidden:true,_dash:true,_sep:j===0?'비교 지표':''}));
+[['spx','S&P 500','#6250d6'],['ndq','나스닥 종합','#c2185b'],['brent','Brent 유가 ($)','#3f3e3b']].forEach((o,j)=>ds3.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[6,3],borderWidth:2.4,order:-1,yAxisID:'y3_'+o[0],hidden:true,_dash:true,_sep:j===0?'비교 지표':''}));
 const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:ds3},
- options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>dates[t[0].dataIndex],label:t=>t.dataset.label+': '+(t.dataset._dash?Math.round(t.raw).toLocaleString():t.raw.toFixed(0)+'%')}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}},y3_spx:{position:'right',display:false,grid:{display:false},ticks:{color:'#6250d6',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y3_ndq:{position:'right',display:false,grid:{display:false},ticks:{color:'#c2185b',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
+ options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>dates[t[0].dataIndex],label:t=>t.dataset.label+': '+(t.dataset._dash?Math.round(t.raw).toLocaleString():t.raw.toFixed(0)+'%')}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}},y3_spx:{position:'right',display:false,grid:{display:false},ticks:{color:'#6250d6',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y3_ndq:{position:'right',display:false,grid:{display:false},ticks:{color:'#c2185b',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y3_brent:{position:'right',display:false,grid:{display:false},ticks:{color:'#3f3e3b',maxTicksLimit:5,callback:v=>'$'+Math.round(v)}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
 let C5,WOWW='20',wowHidden={};
-function drawWoW(){if(C5)C5.destroy();const src=(CMODE==='comp'?(D.comp_w||{}):(D.drivers_w||{}))[WOWW]||{};const fr=[];for(let i=W.i0;i<=W.i1;i++){if(new Date(dates[i]+'T00:00:00Z').getUTCDay()===5)fr.push(i);}
+function drawWoW(){if(C5)C5.destroy();const src=CMODE==='comp'?compSrc(WOWW):drvSrc(WOWW);const fr=[];for(let i=W.i0;i<=W.i1;i++){if(new Date(dates[i]+'T00:00:00Z').getUTCDay()===5)fr.push(i);}
  const at=(a,i)=>{for(let j=i;j>=0;j--)if(a&&a[j]!=null)return a[j];return null;};
  const lab=fr.slice(1).map(i=>dates[i].slice(5).replace('-','/'));
  const ds=mainSeries().map(s=>({type:'bar',label:s[1]+' (%p)',_k:s[0],data:fr.slice(1).map((i,j)=>{const a=at(src[s[0]],i),b=at(src[s[0]],fr[j]);return a==null||b==null?null:Math.round((a-b)*10)/10;}),backgroundColor:colv(s[2]),borderColor:colv(s[2]),borderRadius:2,maxBarThickness:10,yAxisID:'y',hidden:!!wowHidden[s[0]]}));
@@ -273,6 +275,7 @@ function after3(c){if(CMODE==='comp'){c.options.scales.y.min=0;c.options.scales.
 const redraw3=legend('lg3',C3,after3);C3.options.scales.y.stacked=true;C3.update();
 function setCMode(m){CMODE=m;const others=C3.data.datasets.filter(d=>!d._main);C3.data.datasets=ds3main().concat(others);C3.options.scales.y.stacked=(m==='comp');after3(C3);C3.update();redraw3();drawX3();drawWoW();document.querySelectorAll('#cmode button').forEach(b=>b.classList.toggle('on',b.dataset.c===m));}
 document.querySelectorAll('#cmode button').forEach(b=>b.onclick=()=>setCMode(b.dataset.c));
+document.querySelectorAll('#cscope button').forEach(b=>b.onclick=()=>{CSCOPE=b.dataset.s;document.querySelectorAll('#cscope button').forEach(x=>x.classList.toggle('on',x===b));setCMode(CMODE);});
 const X3=['물가가 목표(2%)보다 높거나 더 오를 위험을 이유로 든 발언. 이 선이 높을수록 매파 논리가 주도한다는 뜻.',
  '고용 둔화나 경기 약화를 이유로 든 발언. 이 선이 오르면 "더 올리면 안 된다"는 쪽 논리가 힘을 얻는 중.',
  '신용 스프레드, 사모신용, 시장 기능, 자산가격을 정책 판단의 근거로 든 발언. 연준이 금리 결정에 금융시장 상태를 끌어들이기 시작했는지 보는 선.',
