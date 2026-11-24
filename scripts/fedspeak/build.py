@@ -116,7 +116,7 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="tiles" id="tiles"></div>
 
 <div class="card"><h2>톤 지수와 시장 가격</h2>
-<div class="note">왼쪽 축 = 톤(0~10). 세로 점선 = FOMC 결정일. 비교 지표는 꺼진 것을 누르면 켜지고, 각자 오른쪽에 자기 축을 씀.</div>
+<div class="note">왼쪽 축 = 톤(0~10). 세로 점선 = FOMC 결정일. 「FOMC 블랙아웃 구간」을 켜면 위원들이 공개 발언을 못 하는 기간(회의 전 두 번째 토요일 ~ 회의 다음 날)이 보라색 실선·음영으로 표시됨. 비교 지표는 꺼진 것을 누르면 켜지고, 각자 오른쪽에 자기 축을 씀.</div>
 <div class="row" id="lg1"></div>
 <div class="row"><span class="dim" style="font-size:11.5px">인물 선 추가:</span><select id="psel"></select></div>
 <div class="ch"><canvas id="c1"></canvas></div>
@@ -197,6 +197,9 @@ function drawTiles(){const I=D.index,M=D.market,e=W.i1,[v,i]=lastAt(I.voter26,e)
 // ---- 차트 공통 ----
 Chart.defaults.color='#52514e';Chart.defaults.font.size=11;Chart.defaults.borderColor='rgba(0,0,0,.07)';
 const fomc=Object.keys(D.releases).filter(d=>D.releases[d].includes('FOMC')&&d>=P.start&&d<=P.end);
+// FOMC 블랙아웃: 회의 시작일 전 두 번째 토요일 0시 ~ 회의 끝난 다음 날 자정(연준 규정). 결정일 = 회의 둘째 날
+let BOon=false;const BO=fomc.map(d=>{const f=new Date(d+'T00:00:00Z');f.setUTCDate(f.getUTCDate()-1);const s=new Date(f);do{s.setUTCDate(s.getUTCDate()-1);}while(s.getUTCDay()!==6);s.setUTCDate(s.getUTCDate()-7);const e=new Date(d+'T00:00:00Z');e.setUTCDate(e.getUTCDate()+1);const iso=x=>x.toISOString().slice(0,10);return [iso(s),iso(e)];});
+const boBand={id:'bo',beforeDatasetsDraw(c){if(!BOon)return;const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();BO.forEach(([s,e])=>{let i0=dates.indexOf(s),i1=dates.indexOf(e);if(i1<0&&e>dates[N-1])i1=N-1;if(i0<0&&s<dates[0])i0=0;if(i0<0||i1<0)return;const p0=x.getPixelForValue(i0),p1=x.getPixelForValue(i1);if(p1<a.left||p0>a.right)return;const l=Math.max(p0,a.left),r=Math.min(p1,a.right);g.fillStyle='rgba(98,80,214,.07)';g.fillRect(l,a.top,r-l,a.bottom-a.top);g.setLineDash([]);g.strokeStyle='rgba(98,80,214,.7)';g.lineWidth=1.3;[p0,p1].forEach(p=>{if(p>=a.left&&p<=a.right){g.beginPath();g.moveTo(p,a.top);g.lineTo(p,a.bottom);g.stroke();}});if(c.canvas.id==='c1'){g.fillStyle='rgba(98,80,214,.85)';g.font='10px sans-serif';g.fillText('블랙아웃',l+3,a.bottom-4);}});g.restore();}};
 const vline={id:'vl',afterDraw(c){const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();g.setLineDash([3,3]);g.strokeStyle='rgba(0,0,0,.35)';g.fillStyle='#6f6e69';g.font='10px sans-serif';
  fomc.forEach(d=>{const i=dates.indexOf(d);if(i<0)return;const px=x.getPixelForValue(i);g.beginPath();g.moveTo(px,a.top);g.lineTo(px,a.bottom);g.stroke();if(c.canvas.id==='c1')g.fillText('FOMC',px+3,a.top+9);});g.restore();}};
 const xax={ticks:{maxTicksLimit:11,callback:function(v){return dates[v].slice(2,7).replace('-','.')}},grid:{display:false}};
@@ -215,16 +218,17 @@ function fitY(chart,axis,lo,hi,pad,filter){let mn=Infinity,mx=-Infinity,nvis=0,n
 
 // ---- 톤 지수 + 비교 지표 ----
 const TONE=[['voter26','2026 투표권자','--s1'],['chair','의장(5월까지 파월, 이후 워시)','--s2'],['voter27','2027 투표권자','--s3'],['political','트럼프·베센트','--s4']];
-const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',false,0]]
+const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',true,0]]
  .concat(Object.keys(D.market).filter(k=>k.startsWith('k_hike_')).sort().map(k=>[k,'Kalshi '+k.slice(12,17).replace('-','/')+' 인상 확률(%)','#00707d',false,0]));
 const ds1=TONE.map(s=>({label:s[1],data:D.index[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y',_tone:true}));
 ds1.push({label:'(인물 선택)',data:X.map(()=>null),borderColor:'#d55181',backgroundColor:'#d55181',yAxisID:'y',_tone:true,hidden:true,_person:true});
 const sc1={x:xax,y:{min:0,max:10,position:'left',ticks:{maxTicksLimit:9,callback:v=>v},grid:{color:c=>c.tick.value===5?'rgba(0,0,0,.6)':'rgba(0,0,0,.07)'},title:{display:true,text:'← 비둘기파(0)      중도(5)      매파(10) →'}}};
+ds1.push({label:'FOMC 블랙아웃 구간',data:X.map(()=>null),borderColor:'rgba(98,80,214,.7)',backgroundColor:'rgba(98,80,214,.07)',yAxisID:'y',hidden:true,_bo:true,_sep:'구간'});
 OV.forEach((o,j)=>{const id='o'+j;ds1.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[5,3],borderWidth:1.5,yAxisID:id,hidden:!o[3],_dash:true,_sep:j===0?'비교 지표':''});
  sc1[id]={position:'right',display:!!o[3],grid:{display:false},ticks:{color:o[2],maxTicksLimit:6,callback:v=>o[4]?v.toFixed(o[4]):Math.round(v).toLocaleString()},border:{color:o[2]}};});
-const C1=new Chart(document.getElementById('c1'),{type:'line',plugins:[vline],data:{labels:X,datasets:ds1},
+const C1=new Chart(document.getElementById('c1'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:ds1},
  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>t.length?dates[t[0].dataIndex]:'',label:t=>t.dataset.label+': '+(t.dataset._tone?t.raw.toFixed(1):(t.raw>=1000?Math.round(t.raw).toLocaleString():t.raw.toFixed(2)))}}},scales:sc1,elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
-function after1(c){fitY(c,'y',0,10,0.4,d=>d._tone&&!(d._person&&!c.isDatasetVisible(c.data.datasets.indexOf(d))));c.data.datasets.forEach((d,i)=>{if(!d._tone)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});}
+function after1(c){fitY(c,'y',0,10,0.4,d=>d._tone&&!(d._person&&!c.isDatasetVisible(c.data.datasets.indexOf(d))));c.data.datasets.forEach((d,i)=>{if(d._bo){BOon=c.isDatasetVisible(i);return;}if(!d._tone)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});if(typeof C3!=='undefined')C3.update();}
 const redraw1=legend('lg1',C1,after1);
 (function(){const ks=Object.keys(D.levels).filter(k=>byKey[k]).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||byKey[b].length-byKey[a].length);
  const sel=document.getElementById('psel');sel.innerHTML='<option value="">선택 안 함</option>'+ks.map(k=>'<option value="'+k+'">'+esc(nm(k))+' · '+G7[gOf(k)]+'</option>').join('');
@@ -232,7 +236,7 @@ const redraw1=legend('lg1',C1,after1);
 
 // ---- 근거 비중 ----
 const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
-const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[vline],data:{labels:X,datasets:S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2])}))},
+const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2])}))},
  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:t=>dates[t[0].dataIndex]}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
 legend('lg3',C3,c=>fitY(c,'y',0,100,3));
 const X3=['물가가 목표(2%)보다 높거나 더 오를 위험을 이유로 든 발언. 이 선이 높을수록 매파 논리가 주도한다는 뜻.',
