@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-24T13:03:53+09:00",
+ "fetched_at": "2026-11-24T15:07:32+09:00",
  "prov": [],
  "rows": {
   "2024-10-02": {
@@ -4177,6 +4177,14 @@
    "forced_sale": 5307,
    "rp_balance": 108369897,
    "unpaid": 901495
+  },
+  "2026-11-23": {
+   "deposit": 85336163,
+   "deriv_deposit": 30606569,
+   "forced_ratio": 1.2,
+   "forced_sale": 11147,
+   "rp_balance": 107411495,
+   "unpaid": 876053
   }
  }
 }
