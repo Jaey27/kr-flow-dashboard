@@ -129,19 +129,22 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="card"><h2>백테스트: 누구 발언에 시장이 같이 움직였나</h2>
 <div class="note" id="btnote"></div>
 <div class="row"><span class="btn on" data-bt="clean">지표 발표일·FOMC일 제외</span><span class="btn" data-bt="all">전체</span></div>
+<div class="note" style="margin:0 0 6px">열 제목을 누르면 그 열 기준으로 높은 순 정렬(한 번 더 누르면 낮은 순). 기본은 방향 적중 높은 순.</div>
 <div style="overflow-x:auto"><table id="bt"></table></div>
+<details class="in" style="margin-top:8px"><summary>열 설명 보기</summary><ul style="margin:6px 0 0 18px;padding:0;color:var(--text-dim);font-size:12px;line-height:1.6"><li><b>발언 수</b>: 이 기간 점수가 붙은 발언 수. 「지표 발표일·FOMC일 제외」면 CPI·고용 등 발표일과 FOMC 결정일 발언을 뺀 수(의장 기자회견은 남김). 10건 미만은 흐리게.</li><li><b>평균 점수</b>: 그 사람 발언 점수의 단순 평균(0 비둘기파 ~ 10 매파).</li><li><b>서프라이즈</b>: 그날 발언 점수 − 그 사람의 직전 수준. +면 "평소보다 매파적으로 말한 날".</li><li><b>서프라이즈 ↔ 금리 기대(당일·2일)</b>: 서프라이즈와 같은 날(또는 전날~다음 날 2일) 연방기금 선물 27년 1월물 금리 변화의 순위상관 ρ. +1에 가까울수록 "평소보다 매파적으로 말하면 금리 기대가 올랐다". 굵게 = p&lt;0.1.</li><li><b>서프라이즈 ↔ 2년물</b>: 같은 계산을 미 2년물 금리 변화로.</li><li><b>점수 ↔ 금리 기대</b>: 서프라이즈가 아니라 점수 자체와 금리 기대 변화의 순위상관. 늘 매파인 사람은 여기서는 안 걸림.</li><li><b>방향 적중</b>: 서프라이즈가 0이 아니고 2년물이 움직인 날만 놓고, 서프라이즈 부호와 2년물 변화 부호가 같았던 비율. 50%면 동전 던지기 수준이고, 높을수록 그 사람 말에 시장이 같은 방향으로 반응한 날이 많았다는 뜻. 괄호는 표본 수(5건 미만은 계산 안 함).</li><li><b>발언일 |2년물 변화|</b>: 그 사람이 말한 날 2년물이 평균 몇 bp 움직였나. 제목 아래 "평소"보다 크면 그 사람 발언일에 시장이 더 출렁였다는 뜻(원인이 발언이라는 보장은 없음).</li><li><b>주간 동행</b>: 주 단위로 그 사람 수준(최근 발언 가중 평균)의 변화와 금리 기대 변화의 순위상관. 기간 막대와 상관없이 전체 기간으로 계산. +면 그 사람 톤이 매파 쪽으로 움직인 주에 금리 기대도 올랐다는 뜻.</li><li>모두 상관이지 인과가 아님. 같은 날 여러 명이 말하면 누구 때문인지 가를 수 없음.</li></ul></details>
 <details class="in" style="margin-top:10px"><summary>주간 선후행(톤 지수 변화 vs 금리 기대 변화)</summary><div style="overflow-x:auto"><table id="ll"></table></div>
 <div class="note">+주 = 톤이 그만큼 먼저 움직였을 때의 상관, −주 = 시장이 먼저. 순위상관(Spearman), 괄호는 주 수.</div></details>
 </div>
 
 <div class="card"><h2>발언이 내세운 근거 (연준 인사, 지난 30일 발언 중 비중)</h2>
 <div class="note">한 발언에 근거가 여러 개면 각각 셈. 선마다 뜻은 차트 아래에 있음.</div>
+<details class="in" style="margin:0 0 6px"><summary>%는 이렇게 계산함</summary><div style="color:var(--text-dim);font-size:12px;line-height:1.6;margin-top:4px">① 매일, 그날 포함 지난 30일 동안 나온 <b>연준 인사(이사회·투표권·비투표 총재) 발언 중 금리 점수가 붙은 것</b>만 모음(트럼프·베센트·투자자·셀사이드는 제외, 점수 없는 규제·결제 연설도 제외). 5건 미만이면 그날은 비움.<br>② 수집할 때 발언마다 "이 사람이 정책 판단의 이유로 든 것"을 근거 태그로 붙여 둠(인플레 / 고용 / 성장 / 금융안정·신용 / AI 자금조달 / 재정 / 관세 / 에너지 등, 여러 개 가능).<br>③ 선 하나 = 30일 창 안 발언 중 그 태그가 붙은 발언의 비율. 인플레 = 인플레 태그, 고용·성장 = 고용 또는 성장 태그, 금융안정·신용 = 금융안정·신용 태그이거나 AI 발언 분류가 조달 위험 주시·자본 경쟁·위험 일축인 것, 그중 AI = AI 분류가 조달 위험 주시·자본 경쟁인 것.<br>④ 한 발언이 여러 태그를 가지면 각각 세므로 선들의 합은 100%를 넘음. 태그는 사람이 아니라 수집 모델이 인용·요약을 읽고 붙였음.</div></details>
 <div class="row" id="lg3"></div><div class="ch s"><canvas id="c3"></canvas></div><div class="lgx" id="x3"></div></div>
 
 <div class="card"><h2>AI 투자·자금조달을 어떤 맥락으로 말했나 (월별 건수)</h2>
 <div class="note">AI 투자·자금조달을 언급한 발언을 다섯 가지 맥락으로 나눔. 분류는 인용을 읽고 직접 붙였고, 뜻은 차트 아래에 있음.</div>
 <div class="row"><span class="btn on" data-ai="all">셋 다</span><span class="btn" data-ai="fed">연준 인사</span><span class="btn" data-ai="political">트럼프·베센트</span><span class="btn" data-ai="street">투자자·셀사이드</span></div>
-<div class="row" id="lg4"></div><div class="row" id="lg4g"></div>
+<div class="row" id="lg4"></div><div class="row" id="lg4g"></div><div class="row" id="lg4i"></div>
 <div class="ch s"><canvas id="c4"></canvas></div><div class="lgx" id="x4"></div><div id="ailist" style="margin-top:8px"></div></div>
 
 <div class="card"><details id="d-infl"><summary>변곡 로그<small>직전까지의 본인 수준보다 2.5점(한 단계) 이상 달라진 발언</small></summary><div id="infl" style="margin-top:8px"></div></details></div>
@@ -182,13 +185,13 @@ document.getElementById('glegend').innerHTML=GO.map(g=>'<span class="gtag" style
 let W={i0:0,i1:N-1};  // 기간 막대가 고른 구간(날짜 인덱스)
 const inW=d=>d>=dates[W.i0]&&d<=dates[W.i1];
 function lastAt(a,e){if(!a)return [null,-1];for(let j=Math.min(e,a.length-1);j>=0;j--)if(a[j]!=null)return [a[j],j];return [null,-1];}
-function drawTiles(){const I=D.index,M=D.market,e=W.i1,[v,i]=lastAt(I.voter26,e);const ago=i>=30?I.voter26[i-30]:null;
- const [ch]=lastAt(I.chair,e),[v27]=lastAt(I.voter27,e),[zq]=lastAt(M.zq,e),[ef]=lastAt(M.effr,e),[fin]=lastAt(D.drivers.fin,e),[ai]=lastAt(D.drivers.ai,e);
- const nh=i<0?null:I.n_hawk[i],nd=i<0?null:I.n_dove[i],nmid=i<0?null:I.n_mid[i],nv=i<0?null:I.n_voter26[i],nh0=i>=30?I.n_hawk[i-30]:null;
+function drawTiles(){const I=D.index,M=D.market,e=W.i1,[v,i]=lastAt(I.voter27,e);const ago=i>=30?I.voter27[i-30]:null;
+ const [ch]=lastAt(I.chair,e),[v26]=lastAt(I.voter26,e),[zq]=lastAt(M.zq,e),[ef]=lastAt(M.effr,e),[fin]=lastAt(D.drivers.fin,e),[ai]=lastAt(D.drivers.ai,e);
+ const nh=i<0?null:I.n_hawk27[i],nd=i<0?null:I.n_dove27[i],nmid=i<0?null:I.n_mid27[i],nv=i<0?null:I.n_voter27[i],nh0=i>=30?I.n_hawk27[i-30]:null;
  const kk=Object.keys(M).filter(k=>k.startsWith('k_hike_')).sort(),gap=(zq!=null&&ef!=null)?(zq-ef)*100:null;
- const T=[['2026 투표권자 톤 (0~10)',f1(v),ago==null?'':'30일 전 '+f1(ago)+' → 변화 '+fs(v-ago),''],
- ['투표권자 성향 분포',nv==null?'–':'매파 '+nh+' · 중도 '+nmid+' · 비둘기 '+nd,nv==null?'':'발언이 확인된 투표권자 '+nv+'명 기준. 수준 '+P.hawk_t+' 초과 = 매파 쪽, '+P.dove_t+' 미만 = 비둘기파 쪽'+(nh0==null?'':' · 30일 전 매파 '+nh0+'명'),'sm'],
- ['의장('+(dates[e]<P.chair_switch[1]?'파월':'워시')+') 수준',f1(ch),'2027 투표권자 톤 '+f1(v27),''],
+ const T=[['2027 투표권자 톤 (0~10)',f1(v),ago==null?'':'30일 전 '+f1(ago)+' → 변화 '+fs(v-ago),''],
+ ['2027 투표권자 성향 분포',nv==null?'–':'매파 '+nh+' · 중도 '+nmid+' · 비둘기 '+nd,nv==null?'':'발언이 확인된 2027 투표권자 '+nv+'명 기준(이사 + 뉴욕·시카고·리치먼드·애틀랜타·샌프란시스코). 수준 '+P.hawk_t+' 초과 = 매파 쪽, '+P.dove_t+' 미만 = 비둘기파 쪽'+(nh0==null?'':' · 30일 전 매파 '+nh0+'명'),'sm'],
+ ['의장('+(dates[e]<P.chair_switch[1]?'파월':'워시')+') 수준',f1(ch),'2026 투표권자 톤 '+f1(v26),''],
  ['시장: 금리 기대(12/9 회의 뒤)',zq==null?'–':zq.toFixed(2)+'%',(gap==null?'':'지금 금리 '+ef.toFixed(2)+'% 대비 '+(gap>0?'+':'')+gap.toFixed(0)+'bp')+kk.map(k=>{const x=lastAt(M[k],e)[0];return x==null?'':' · '+k.slice(12,17).replace('-','/')+' 인상 '+x+'%'}).join(''),''],
  ['금융안정·신용 근거 비중',fin==null?'–':fin.toFixed(0)+'%','지난 30일 연준 인사 발언 중 · AI 조달 위험·자본 경쟁 '+(ai==null?'–':ai.toFixed(0)+'%'),'']];
  document.getElementById('tiles').innerHTML=T.map(t=>'<div class="tile"><div class="k">'+t[0]+'</div><div class="v '+t[3]+'">'+t[1]+'</div><div class="d">'+t[2]+'</div></div>').join('');
@@ -253,7 +256,9 @@ const X4=['AI capex가 수요와 물가를 밀어 올린다는 말. 금리를 �
  '스프레드 확대, 구조화 금융, 부채 의존을 위험으로 언급한 말. 인상 속도 조절이나 중단 논리로 이어질 수 있는 싹.',
  '문제 될 규모가 아니라고 선을 긋는 말. 위험을 알고도 정책을 바꿀 뜻이 없다는 신호.'];
 document.getElementById('x4').innerHTML=AIS.map((s,i)=>'<div><i style="background:'+s[2]+'"></i><b>'+s[1]+'</b><br>'+X4[i]+'</div>').join('');
-let C4,aicur='all',aiHidden={},aiGHidden={};const months0=[...new Set(dates.map(d=>d.slice(0,7)))];
+let C4,aicur='all',aiHidden={},aiGHidden={},aiIdx={};
+const AIX=[['spx','S&P 500 (월말)','#6250d6'],['ndq','나스닥 종합 (월말)','#c2185b']];
+function monthEnd(arr,months){return months.map(mo=>{let v=null;for(let i=0;i<N;i++){if(dates[i].slice(0,7)===mo&&i<=W.i1&&arr[i]!=null)v=arr[i];}return v;});}const months0=[...new Set(dates.map(d=>d.slice(0,7)))];
 // 그룹은 채우는 방식으로 가름: 연준 = 꽉 채움, 트럼프·베센트 = 빗금, 투자자·셀사이드 = 반투명 + 테두리
 const AIG=[['fed','연준 인사'],['political','트럼프·베센트'],['street','투자자·셀사이드']];
 function hatch(c){const cv=document.createElement('canvas');cv.width=cv.height=8;const g=cv.getContext('2d');g.fillStyle=c+'33';g.fillRect(0,0,8,8);g.strokeStyle=c;g.lineWidth=2;g.beginPath();g.moveTo(-2,10);g.lineTo(10,-2);g.moveTo(-2,2);g.lineTo(2,-2);g.moveTo(6,10);g.lineTo(10,6);g.stroke();return g.createPattern(cv,'repeat');}
@@ -261,13 +266,16 @@ function aiStyle(g,c){return g==='fed'?{backgroundColor:c,borderColor:c,borderWi
 function aiSwatch(g){return g==='fed'?'background:#6f6e69':g==='political'?'background:repeating-linear-gradient(45deg,#6f6e69 0 2px,#6f6e6933 2px 5px);border:1px solid #6f6e69':'background:#6f6e6940;border:1.5px solid #6f6e69';}
 function drawAI(){if(C4)C4.destroy();const months=months0.filter(x=>x>=dates[W.i0].slice(0,7)&&x<=dates[W.i1].slice(0,7));
  const gs=aicur==='all'?AIG.map(a=>a[0]):[aicur],ds=[];
- AIS.forEach(s=>gs.forEach(g=>{const m=(D.ai_month||{})[g]||{};ds.push(Object.assign({label:s[1],_g:g,_k:s[0],data:months.map(x=>(m[x]||{})[s[0]]||0),borderRadius:3,maxBarThickness:46,stack:'s',hidden:!!aiHidden[s[0]]||!!aiGHidden[g]},aiStyle(g,s[2])));}));
+ AIS.forEach(s=>gs.forEach(g=>{const m=(D.ai_month||{})[g]||{};ds.push(Object.assign({label:s[1],_g:g,_k:s[0],data:months.map(x=>(m[x]||{})[s[0]]||0),borderRadius:3,maxBarThickness:46,stack:'s',yAxisID:'y',hidden:!!aiHidden[s[0]]||!!aiGHidden[g]},aiStyle(g,s[2])));}))
+ AIX.forEach(x=>ds.push({type:'line',label:x[1],_ix:x[0],data:monthEnd(D.market[x[0]]||[],months),borderColor:x[2],backgroundColor:x[2],borderDash:[5,3],borderWidth:1.6,pointRadius:2,yAxisID:'y_'+x[0],hidden:!aiIdx[x[0]],order:-1}));;
  C4=new Chart(document.getElementById('c4'),{type:'bar',data:{labels:months.map(x=>x.slice(2).replace('-','.')),datasets:ds},
-  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw>0,callbacks:{label:t=>(gs.length>1?AIG.find(a=>a[0]===t.dataset._g)[1]+' · ':'')+t.dataset.label+': '+t.raw+'건'}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{precision:0,maxTicksLimit:6},title:{display:true,text:'건'}}}}});
- const vis=()=>C4.data.datasets.forEach((d,i)=>C4.setDatasetVisibility(i,!aiHidden[d._k]&&!aiGHidden[d._g]));
+  options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null&&(t.dataset._ix||t.raw>0),callbacks:{label:t=>t.dataset._ix?t.dataset.label+': '+Math.round(t.raw).toLocaleString():(gs.length>1?AIG.find(a=>a[0]===t.dataset._g)[1]+' · ':'')+t.dataset.label+': '+t.raw+'건'}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{precision:0,maxTicksLimit:6},title:{display:true,text:'건'}},y_spx:{beginAtZero:false,position:'right',display:!!aiIdx.spx,grid:{display:false},ticks:{color:'#6250d6',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y_ndq:{beginAtZero:false,position:'right',display:!!aiIdx.ndq,grid:{display:false},ticks:{color:'#c2185b',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}}}}});
+ const vis=()=>{C4.data.datasets.forEach((d,i)=>C4.setDatasetVisibility(i,d._ix?!!aiIdx[d._ix]:(!aiHidden[d._k]&&!aiGHidden[d._g])));C4.options.scales.y_spx.display=!!aiIdx.spx;C4.options.scales.y_ndq.display=!!aiIdx.ndq;};
  const b1=document.getElementById('lg4'),b2=document.getElementById('lg4g');
  const draw=()=>{b1.innerHTML=AIS.map(s=>'<span class="lg sq'+(aiHidden[s[0]]?' off':'')+'" data-k="'+s[0]+'"><i style="background:'+s[2]+'"></i>'+s[1]+'</span>').join('');
   b2.innerHTML=gs.length>1?'<span class="lgsep">그룹</span>'+AIG.map(a=>'<span class="lg sq'+(aiGHidden[a[0]]?' off':'')+'" data-g="'+a[0]+'"><i style="'+aiSwatch(a[0])+';width:14px;height:11px;border-radius:2px"></i>'+a[1]+'</span>').join(''):'';
+  const b3=document.getElementById('lg4i');b3.innerHTML='<span class="lgsep">비교 지표</span>'+AIX.map(x=>'<span class="lg'+(aiIdx[x[0]]?'':' off')+'" data-x="'+x[0]+'"><i style="background:repeating-linear-gradient(90deg,'+x[2]+' 0 4px,transparent 4px 6px)"></i>'+x[1]+'</span>').join('');
+  b3.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiIdx[e.dataset.x]=!aiIdx[e.dataset.x];vis();C4.update();draw();});
   b1.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiHidden[e.dataset.k]=!aiHidden[e.dataset.k];vis();C4.update();draw();});
   b2.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiGHidden[e.dataset.g]=!aiGHidden[e.dataset.g];vis();C4.update();draw();});};
  draw();
@@ -304,16 +312,20 @@ function tP(t,df){const f=x=>Math.pow(1+x*x/df,-(df+1)/2),simp=(a,b,n)=>{const h
 function sp(x,y){const xs=[],ys=[];x.forEach((v,i)=>{if(v!=null&&y[i]!=null){xs.push(v);ys.push(y[i]);}});const n=xs.length;if(n<P.min_n||new Set(xs).size<2||new Set(ys).size<2)return [null,null,n];
  const rx=rank(xs),ry=rank(ys),mx=rx.reduce((a,b)=>a+b)/n,my=ry.reduce((a,b)=>a+b)/n;let sxy=0,sxx=0,syy=0;for(let i=0;i<n;i++){sxy+=(rx[i]-mx)*(ry[i]-my);sxx+=(rx[i]-mx)**2;syy+=(ry[i]-my)**2;}
  const r=sxy/Math.sqrt(sxx*syy),t=Math.abs(r)>=0.9999?1e9:r*Math.sqrt((n-2)/(1-r*r));return [Math.round(r*100)/100,n>2?tP(t,n-2):1,n];}
+let btSort='hit',btDir=-1;
+const BTC=[['name','인물',''],['nn','발언 수',''],['mean','평균 점수','0~10'],['a','서프라이즈 ↔ 금리 기대','당일, ρ (N)'],['b','서프라이즈 ↔ 금리 기대','2일'],['c','서프라이즈 ↔ 2년물','당일'],['d','점수 ↔ 금리 기대','수준 그대로'],['hit','방향 적중','2년물, % (N)'],['abs','발언일 |2년물 변화|',''],['wk','주간 동행','전체 기간 고정']];
 function drawBT(){const m=btMode,by={};D.events.filter(e=>inW(e.date)).forEach(e=>{(by[e.key]=by[e.key]||[]).push(e)});const wkm={};D.speaker_weekly.forEach(w=>wkm[w.key]=w);
  let bs=0,bn=0,prev=null;D.market_tdays.forEach(d=>{if(!inW(d))return;const v=D.market.y2[dates.indexOf(d)];if(v!=null&&prev!=null){bs+=Math.abs(v-prev)*100;bn++;}if(v!=null)prev=v;});const base=bn?bs/bn:null;
  const rows=Object.keys(by).map(k=>{const all=by[k],cl=all.filter(e=>!e.data_day&&!(e.fomc_day&&!['warsh','powell'].includes(e.key))),g=m==='clean'?cl:all,c=x=>g.map(e=>e[x]);
   const hx=g.filter(e=>e.surprise!=null&&e.d_y2!=null&&e.surprise!==0&&e.d_y2!==0);
   return {key:k,g7:all[0].g7,n:all.length,nn:g.length,mean:all.reduce((s,e)=>s+e.score,0)/all.length,a:sp(c('surprise'),c('d_dec')),b:sp(c('surprise'),c('d_dec2')),c:sp(c('surprise'),c('d_y2')),d:sp(c('score'),c('d_dec')),
-   hit:hx.length>=P.min_n?[hx.filter(e=>Math.sign(e.surprise)===Math.sign(e.d_y2)).length/hx.length*100,hx.length]:null,abs:g.length?g.reduce((s,e)=>s+Math.abs(e.d_y2||0),0)/g.length:null};}).filter(r=>r.n>=P.min_n).sort((a,b)=>b.nn-a.nn||b.n-a.n);
- let h='<tr><th>인물</th><th>발언 수<small>'+(m==='clean'?'제외 후':'전체')+'</small></th><th>평균 점수<small>0~10</small></th><th>서프라이즈 ↔ 금리 기대<small>당일 변화, ρ (N)</small></th><th>서프라이즈 ↔ 금리 기대<small>2일 변화</small></th><th>서프라이즈 ↔ 2년물<small>당일 변화</small></th><th>점수 ↔ 금리 기대<small>수준 그대로</small></th><th>방향 적중<small>2년물, % (N)</small></th><th>발언일 |2년물 변화|<small>이 기간 평소 '+(base==null?'–':base.toFixed(1)+'bp')+'</small></th><th>주간 동행<small>전체 기간 고정</small></th></tr>';
- rows.forEach(r=>{const w=wkm[r.key];
-  h+='<tr'+(r.nn<10?' class="lo"':'')+'><td>'+who(r.key)+' <span class="dim">'+esc(roleOf(r.key)||G7[r.g7])+'</span></td><td>'+r.nn+'</td><td>'+f1(r.mean)+'</td>'+cell(r.a)+cell(r.b)+cell(r.c)+cell(r.d)+'<td>'+(r.hit?r.hit[0].toFixed(0)+'%<small class="dim"> ('+r.hit[1]+')</small>':'<span class="dim">–</span>')+'</td><td>'+(r.abs==null?'–':r.abs.toFixed(1)+'bp')+'</td>'+(w?cell(w.same):'<td class="dim">–</td>')+'</tr>';});
- document.getElementById('bt').innerHTML=h||'';if(!rows.length)document.getElementById('bt').innerHTML+='<tr><td colspan="10" class="dim">이 기간에 발언 '+P.min_n+'건 이상인 인물이 없음</td></tr>';}
+   hit:hx.length>=P.min_n?[hx.filter(e=>Math.sign(e.surprise)===Math.sign(e.d_y2)).length/hx.length*100,hx.length]:null,abs:g.length?g.reduce((s,e)=>s+Math.abs(e.d_y2||0),0)/g.length:null,wk:wkm[k]?wkm[k].same:null};}).filter(r=>r.n>=P.min_n);
+ const val=r=>btSort==='name'?nm(r.key):btSort==='nn'||btSort==='mean'||btSort==='abs'?r[btSort]:(r[btSort]&&r[btSort][0]!=null?r[btSort][0]:null);
+ rows.sort((x,y)=>{const a=val(x),b=val(y);if(a==null&&b==null)return y.nn-x.nn;if(a==null)return 1;if(b==null)return -1;return (typeof a==='string'?a.localeCompare(b):a-b)*btDir||y.nn-x.nn;});
+ let h='<tr>'+BTC.map(c=>'<th class="sort" data-s="'+c[0]+'">'+c[1]+(btSort===c[0]?(btDir<0?' ▼':' ▲'):'')+'<small>'+(c[0]==='nn'?(m==='clean'?'제외 후':'전체'):c[0]==='abs'?'이 기간 평소 '+(base==null?'–':base.toFixed(1)+'bp'):c[2])+'</small></th>').join('')+'</tr>';
+ rows.forEach(r=>{h+='<tr'+(r.nn<10?' class="lo"':'')+'><td>'+who(r.key)+' <span class="dim">'+esc(roleOf(r.key)||G7[r.g7])+'</span></td><td>'+r.nn+'</td><td>'+f1(r.mean)+'</td>'+cell(r.a)+cell(r.b)+cell(r.c)+cell(r.d)+'<td>'+(r.hit?r.hit[0].toFixed(0)+'%<small class="dim"> ('+r.hit[1]+')</small>':'<span class="dim">–</span>')+'</td><td>'+(r.abs==null?'–':r.abs.toFixed(1)+'bp')+'</td>'+(r.wk?cell(r.wk):'<td class="dim">–</td>')+'</tr>';});
+ const t=document.getElementById('bt');t.innerHTML=h;if(!rows.length)t.innerHTML+='<tr><td colspan="10" class="dim">이 기간에 발언 '+P.min_n+'건 이상인 인물이 없음</td></tr>';
+ t.querySelectorAll('th[data-s]').forEach(th=>th.onclick=()=>{const s=th.dataset.s;if(btSort===s)btDir=-btDir;else{btSort=s;btDir=s==='name'?1:-1;}drawBT();});}
 document.querySelectorAll('[data-bt]').forEach(b=>b.onclick=()=>{btMode=b.dataset.bt;document.querySelectorAll('[data-bt]').forEach(x=>x.classList.toggle('on',x===b));drawBT();});drawBT();
 document.getElementById('btnote').innerHTML='서프라이즈 = 그날 발언 점수 − 그 인물의 직전 수준. 금리 기대 = 연방기금 선물 2027년 1월물 내재 금리(12/9 회의 뒤 정책금리 기대). 시장 변화 = 발언일(ET '+P.cutoff_et+' 이후 발언은 다음 거래일)의 금리 기대·2년물 변화(bp). ρ가 +면 "평소보다 매파적으로 말한 날 금리 기대가 올랐다"는 뜻. 발언 '+P.min_n+'건 미만은 계산 안 함, 10건 미만은 흐리게. <b>같은 날 여러 명이 말하면 누구 때문인지 가를 수 없고, 표본이 작아 상관은 참고용임.</b>';
 (function(){const L=D.leadlag,names={voter26:'2026 투표권자',voter26_cw:'2026 투표권자(의장 3배)',chair:'의장',fed_all:'연준 전체',nonvoter:'비투표 총재',political:'트럼프·베센트'};

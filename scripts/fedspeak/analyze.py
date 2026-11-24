@@ -231,6 +231,10 @@ def main() -> None:
     idx["n_hawk"] = (Lm[v26] > HAWK_T).sum(axis=1)
     idx["n_dove"] = (Lm[v26] < DOVE_T).sum(axis=1)
     idx["n_mid"] = idx["n_voter26"] - idx["n_hawk"] - idx["n_dove"]
+    idx["n_voter27"] = Lm[v27].notna().sum(axis=1)
+    idx["n_hawk27"] = (Lm[v27] > HAWK_T).sum(axis=1)
+    idx["n_dove27"] = (Lm[v27] < DOVE_T).sum(axis=1)
+    idx["n_mid27"] = idx["n_voter27"] - idx["n_hawk27"] - idx["n_dove27"]
 
     # ---- 근거 태그 비중(연준 인사, 지난 30일) ----
     fed_items = [it for it in items if it["group"] in ("board", "voter", "nonvoter") and it.get("score") is not None]
