@@ -35,10 +35,12 @@ _HEX = [
     ("#c9d1d9", "var(--c-soft)"), ("#c8d6d4", "var(--c-soft)"), ("#c9d6d4", "var(--c-soft)"),
     ("#fca5a5", "var(--up)"), ("#93c5fd", "var(--down)"),
     ("#ffffff", "var(--c-white)"), ("#c9c2ff", "var(--c-vio2)"), ("#ff9cc4", "var(--c-pink2)"),
+    ("#0f3436", "var(--surface-3)"),   # 표 강조 행의 첫 칸(외국인 보유 탭 주장 검증 표)
+    ("#000000", "var(--page)"), ("#000", "var(--page)"),   # 전체화면 카드 바탕 등 순검정(11/24 — 라이트에서 확대하면 검정으로 나오던 것)
 ]
 
 DARK_EXTRA = ("--ac-rgb:151,252,228;--on-ac:#061E20;--surface-2:#0b2b2d;--tip-rgb:6,30,32;--gray-rgb:157,179,176;"
-              "--c-gray:#9db3b0;--c-soft:#c9d1d9;--text-rgb:232,255,250;--ov-rgb:200,215,212;--hi-rgb:255,255,255;--c-white:#ffffff;--c-vio2:#c9c2ff;--c-pink2:#ff9cc4;--page:#000000;color-scheme:dark")
+              "--c-gray:#9db3b0;--c-soft:#c9d1d9;--text-rgb:232,255,250;--ov-rgb:200,215,212;--hi-rgb:255,255,255;--c-white:#ffffff;--c-vio2:#c9c2ff;--c-pink2:#ff9cc4;--surface-3:#0f3436;--page:#000000;color-scheme:dark")
 
 # 라이트: 바탕 밝은 회색·카드 흰색, 강조 = 초록, 상승 빨강 · 하락 파랑(흰 바탕 명암비 4.8~5.5:1)
 LIGHT = (":root[data-theme=\"light\"]{"
@@ -46,7 +48,7 @@ LIGHT = (":root[data-theme=\"light\"]{"
          "--bg-0:#F3F5F7;--surface:#FFFFFF;--text:#17202B;--text-dim:#3E4A59;--text-muted:#657181;"
          "--up:#DC2626;--down:#2563EB;--warn:#B45309;--shadow:0 2px 12px rgba(15,23,42,.08);"
          "--ac-rgb:21,128,61;--on-ac:#FFFFFF;--surface-2:#EEF2F5;--tip-rgb:255,255,255;--gray-rgb:91,102,117;"
-         "--c-gray:#6B7684;--c-soft:#4B5563;--text-rgb:23,32,43;--ov-rgb:91,102,117;--hi-rgb:23,32,43;--c-white:#17202B;--c-vio2:#6D28D9;--c-pink2:#BE185D;--page:#F3F5F7;color-scheme:light}\n"
+         "--c-gray:#6B7684;--c-soft:#4B5563;--text-rgb:23,32,43;--ov-rgb:91,102,117;--hi-rgb:23,32,43;--c-white:#17202B;--c-vio2:#6D28D9;--c-pink2:#BE185D;--surface-3:#E3F0E7;--page:#F3F5F7;color-scheme:light}\n"
          "html,body{background:var(--page) !important;background-color:var(--page) !important}\n"
          ".theme-btn{font:inherit;font-size:12px;font-weight:600;color:var(--text-dim);background:var(--surface);"
          "border:1px solid var(--hl-teal-border);border-radius:999px;padding:4px 12px;cursor:pointer;margin-left:8px}\n"
