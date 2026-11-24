@@ -203,7 +203,7 @@ Chart.defaults.color='#52514e';Chart.defaults.font.size=11;Chart.defaults.border
 const fomc=Object.keys(D.releases).filter(d=>D.releases[d].includes('FOMC')&&d>=P.start&&d<=P.end);
 // FOMC 블랙아웃: 회의 시작일 전 두 번째 토요일 0시 ~ 회의 끝난 다음 날 자정(연준 규정). 결정일 = 회의 둘째 날
 let BOon=false;const BO=fomc.map(d=>{const f=new Date(d+'T00:00:00Z');f.setUTCDate(f.getUTCDate()-1);const s=new Date(f);do{s.setUTCDate(s.getUTCDate()-1);}while(s.getUTCDay()!==6);s.setUTCDate(s.getUTCDate()-7);const e=new Date(d+'T00:00:00Z');e.setUTCDate(e.getUTCDate()+1);const iso=x=>x.toISOString().slice(0,10);return [iso(s),iso(e)];});
-const boBand={id:'bo',beforeDatasetsDraw(c){if(!BOon)return;const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();BO.forEach(([s,e])=>{let i0=dates.indexOf(s),i1=dates.indexOf(e);if(i1<0&&e>dates[N-1])i1=N-1;if(i0<0&&s<dates[0])i0=0;if(i0<0||i1<0)return;const p0=x.getPixelForValue(i0),p1=x.getPixelForValue(i1);if(p1<a.left||p0>a.right)return;const l=Math.max(p0,a.left),r=Math.min(p1,a.right);g.fillStyle='rgba(98,80,214,.07)';g.fillRect(l,a.top,r-l,a.bottom-a.top);g.setLineDash([]);g.strokeStyle='rgba(98,80,214,.7)';g.lineWidth=1.3;[p0,p1].forEach(p=>{if(p>=a.left&&p<=a.right){g.beginPath();g.moveTo(p,a.top);g.lineTo(p,a.bottom);g.stroke();}});if(c.canvas.id==='c1'){g.fillStyle='rgba(98,80,214,.85)';g.font='10px sans-serif';g.fillText('블랙아웃',l+3,a.bottom-4);}});g.restore();}};
+let BO3on=false;const boBand={id:'bo',beforeDatasetsDraw(c){if(!(c.canvas.id==='c3'?BO3on:BOon))return;const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();BO.forEach(([s,e])=>{let i0=dates.indexOf(s),i1=dates.indexOf(e);if(i1<0&&e>dates[N-1])i1=N-1;if(i0<0&&s<dates[0])i0=0;if(i0<0||i1<0)return;const p0=x.getPixelForValue(i0),p1=x.getPixelForValue(i1);if(p1<a.left||p0>a.right)return;const l=Math.max(p0,a.left),r=Math.min(p1,a.right);g.fillStyle='rgba(98,80,214,.07)';g.fillRect(l,a.top,r-l,a.bottom-a.top);g.setLineDash([]);g.strokeStyle='rgba(98,80,214,.7)';g.lineWidth=1.3;[p0,p1].forEach(p=>{if(p>=a.left&&p<=a.right){g.beginPath();g.moveTo(p,a.top);g.lineTo(p,a.bottom);g.stroke();}});if(c.canvas.id==='c1'){g.fillStyle='rgba(98,80,214,.85)';g.font='10px sans-serif';g.fillText('블랙아웃',l+3,a.bottom-4);}});g.restore();}};
 const vline={id:'vl',afterDraw(c){const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();g.setLineDash([3,3]);g.strokeStyle='rgba(0,0,0,.35)';g.fillStyle='#6f6e69';g.font='10px sans-serif';
  fomc.forEach(d=>{const i=dates.indexOf(d);if(i<0)return;const px=x.getPixelForValue(i);g.beginPath();g.moveTo(px,a.top);g.lineTo(px,a.bottom);g.stroke();if(c.canvas.id==='c1')g.fillText('FOMC',px+3,a.top+9);});g.restore();}};
 const xax={ticks:{maxTicksLimit:11,callback:function(v){return dates[v].slice(2,7).replace('-','.')}},grid:{display:false}};
@@ -240,9 +240,13 @@ const redraw1=legend('lg1',C1,after1);
 
 // ---- 근거 비중 ----
 const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
-const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2])}))},
- options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:t=>dates[t[0].dataIndex]}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
-legend('lg3',C3,c=>fitY(c,'y',0,100,3));
+const ds3=S3.map(s=>({label:s[1],data:D.drivers[s[0]],borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y'}));
+ds3.push({label:'FOMC 블랙아웃 구간',data:X.map(()=>null),borderColor:'rgba(98,80,214,.7)',backgroundColor:'rgba(98,80,214,.07)',yAxisID:'y',hidden:true,_bo:true,_sep:'구간'});
+[['spx','S&P 500','#6250d6'],['ndq','나스닥 종합','#c2185b']].forEach((o,j)=>ds3.push({label:o[1],data:D.market[o[0]]||X.map(()=>null),borderColor:o[2],backgroundColor:o[2],borderDash:[5,3],borderWidth:1.5,yAxisID:'y3_'+o[0],hidden:true,_dash:true,_sep:j===0?'비교 지표':''}));
+const C3=new Chart(document.getElementById('c3'),{type:'line',plugins:[boBand,vline],data:{labels:X,datasets:ds3},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{filter:t=>t.raw!=null,callbacks:{title:t=>dates[t[0].dataIndex],label:t=>t.dataset.label+': '+(t.dataset._dash?Math.round(t.raw).toLocaleString():t.raw.toFixed(0)+'%')}}},scales:{x:xax,y:{min:0,max:100,ticks:{maxTicksLimit:6,callback:v=>v+'%'}},y3_spx:{position:'right',display:false,grid:{display:false},ticks:{color:'#6250d6',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}},y3_ndq:{position:'right',display:false,grid:{display:false},ticks:{color:'#c2185b',maxTicksLimit:5,callback:v=>Math.round(v).toLocaleString()}}},elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0,spanGaps:true}}}});
+function after3(c){fitY(c,'y',0,100,3,d=>!d._dash&&!d._bo);c.data.datasets.forEach((d,i)=>{if(d._bo){BO3on=c.isDatasetVisible(i);return;}if(d._dash)c.options.scales[d.yAxisID].display=c.isDatasetVisible(i);});}
+legend('lg3',C3,after3);
 const X3=['물가가 목표(2%)보다 높거나 더 오를 위험을 이유로 든 발언. 이 선이 높을수록 매파 논리가 주도한다는 뜻.',
  '고용 둔화나 경기 약화를 이유로 든 발언. 이 선이 오르면 "더 올리면 안 된다"는 쪽 논리가 힘을 얻는 중.',
  '신용 스프레드, 사모신용, 시장 기능, 자산가격을 정책 판단의 근거로 든 발언. 연준이 금리 결정에 금융시장 상태를 끌어들이기 시작했는지 보는 선.',
@@ -384,7 +388,7 @@ function setWindow(a,b,preset){a=Math.max(0,Math.min(a,N-2));b=Math.max(a+7,Math
  document.getElementById('d0').value=dates[a].replace(/-/g,'.');document.getElementById('d1').value=dates[b].replace(/-/g,'.');
  document.getElementById('range-label').textContent=(b-a+1)+'일';
  drawOverview();drawTiles();
- [C1,C3].forEach(c=>{c.options.scales.x.min=a;c.options.scales.x.max=b;});after1(C1);fitY(C3,'y',0,100,3);C1.update();C3.update();
+ [C1,C3].forEach(c=>{c.options.scales.x.min=a;c.options.scales.x.max=b;});after1(C1);after3(C3);C1.update();C3.update();
  drawHM();drawAI();drawInfl();drawBT();render();
  const n=D.items.filter(i=>inW(i.date)).length;document.getElementById('led-n').textContent='이 기간 '+n+'건 · 그룹·인물·근거·월로 거르기';}
 function onSlide(e){let a=+r0.value,b=+r1.value;if(b-a<7){if(e.target===r0)a=Math.max(0,b-7);else b=Math.min(N-1,a+7);}setWindow(a,b,null);}
