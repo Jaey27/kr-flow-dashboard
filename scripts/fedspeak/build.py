@@ -49,7 +49,7 @@ td{padding:5px 8px;border-bottom:1px solid rgba(0,0,0,.07);text-align:right;font
 td:first-child,th:first-child{text-align:left;white-space:nowrap}.dim{color:var(--text-muted)}.lo{opacity:.5}
 .hm{overflow-x:auto}.hm table{width:auto;min-width:100%}.hm td{padding:0;border:none}
 .hm td.nm{padding:2px 8px 2px 0;font-size:12px;font-weight:700;line-height:1.2;max-width:132px;min-width:104px;white-space:normal;word-break:keep-all}.hm td.nm small{display:block;color:var(--text-muted);font-weight:400;font-size:10.5px}
-.hm td.c{width:19px;min-width:19px;height:21px;border:1px solid #fff;border-radius:4px;cursor:pointer;text-align:center;font-size:9.5px;font-weight:700}
+.hm td.c{width:22px;min-width:22px;height:21px;border:1px solid #fff;border-radius:4px;cursor:pointer;text-align:center;font-size:8.5px;font-weight:700;letter-spacing:-.03em}
 .hm td.c.e{background:#f6f5f2;cursor:default}.hm td.c.n{background:#fff;border:1px dashed #b9b8b3;color:#6f6e69}
 .hm th{padding:2px 0;text-align:left;font-size:10px;font-weight:500;color:var(--text-muted);border:none}
 .hm td.lv{padding-left:10px;font-weight:700}.hm tr.g td{padding-top:10px;font-size:11.5px;font-weight:700}
@@ -117,13 +117,14 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 
 <div class="card"><h2>톤 지수와 시장 가격</h2>
 <div class="note">왼쪽 축 = 톤(0~10). 세로 점선 = FOMC 결정일. 「FOMC 블랙아웃 구간」을 켜면 위원들이 공개 발언을 못 하는 기간(회의 전 두 번째 토요일 ~ 회의 다음 날)이 보라색 실선·음영으로 표시됨. 비교 지표는 꺼진 것을 누르면 켜지고, 각자 오른쪽에 자기 축을 씀.</div>
+<details class="in" style="margin:0 0 6px"><summary>톤 지수는 이렇게 계산함</summary><div style="color:var(--text-dim);font-size:12px;line-height:1.6;margin-top:4px">① 발언 하나의 점수: 0(곧 인하 필요) / 2.5 / 5(동결·양쪽 위험) / 7.5 / 10(곧 인상 필요·인상 소수의견) 다섯 단계. 금리 의견이 없는 발언은 점수 없음.<br>② 인물 수준: 그날까지 그 사람이 한 발언 점수의 가중 평균. 가중치는 발언이 오래될수록 줄어서 30일 전 발언은 오늘 발언의 절반, 60일 전은 4분의 1 무게(반감기 30일). 같은 날 여러 발언은 먼저 평균. 새 발언이 없으면 값이 그대로 유지됨(그래서 계단 모양).<br>③ 묶음 지수: 그날 재임 중이고 발언이 한 번이라도 확인된 사람들의 인물 수준을 단순 평균(사람마다 1표). 2026 투표권자 = 이사 7명 + 뉴욕·클리블랜드·필라델피아·댈러스·미니애폴리스(마이런은 5/15까지, 워시는 5/22부터). 2027 투표권자 = 이사 + 뉴욕·시카고·리치먼드·애틀랜타·샌프란시스코.<br>④ 의장 선: 5/15까지 파월, 5/22부터 워시의 인물 수준. 트럼프·베센트 선: 두 사람 인물 수준의 평균(연준이 어떻게 해야 한다고 말했는지 기준).<br>⑤ 전일 평균이 아님: 매일 다시 계산하지만, 그날 새 발언이 없으면 수준은 바뀌지 않음.</div></details>
 <div class="row" id="lg1"></div>
 <div class="row"><span class="dim" style="font-size:11.5px">인물 선 추가:</span><select id="psel"></select></div>
 <div class="ch"><canvas id="c1"></canvas></div>
 </div>
 
 <div class="card"><h2>누가 언제 어떤 톤이었나</h2>
-<div class="note">칸 = 그 주 발언의 평균 점수(숫자는 발언 건수, 색이 진할수록 강함). 점선 칸 = 금리 언급 없는 발언(신용·AI만). 빈 칸 = 확인된 발언 없음. 칸을 누르면 맨 아래 원장이 그 인물·그 주로 걸러져 열림. 맨 오른쪽 = 현재 수준.</div>
+<div class="note">칸 = 그 주 발언의 평균 점수(칸 안 숫자 = 평균 점수 0~10, 색이 진할수록 강함. 발언 건수는 칸에 마우스를 올리면 보임). 점선 칸 = 금리 언급 없는 발언(신용·AI만). 빈 칸 = 확인된 발언 없음. 칸을 누르면 맨 아래 원장이 그 인물·그 주로 걸러져 열림. 맨 오른쪽 = 현재 수준.</div>
 <div class="hm" id="hm"></div></div>
 
 <div class="card"><h2>백테스트: 누구 발언에 시장이 같이 움직였나</h2>
@@ -150,7 +151,7 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="card"><details id="d-infl"><summary>변곡 로그<small>직전까지의 본인 수준보다 2.5점(한 단계) 이상 달라진 발언</small></summary><div id="infl" style="margin-top:8px"></div></details></div>
 <div class="card" id="calls-card"><details id="d-calls"><summary>하우스 콜·투자자</summary><div id="calls" style="margin-top:8px"></div></details></div>
 <div class="card"><details id="d-led"><summary>발언 원장<small id="led-n"></small></summary>
-<div class="row" style="margin-top:8px"><select id="f-g"></select><select id="f-k"></select><select id="f-d"></select><select id="f-m"></select><span class="btn" id="f-x">필터 지우기</span><span class="dim" id="f-n"></span></div>
+<div class="row" style="margin-top:8px"><select id="f-g"></select><select id="f-k"></select><select id="f-d"></select><select id="f-m"></select><span class="btn on" id="f-nn" title="금리 경로에 대한 의견(점수)이 없는 발언을 숨김">의견 없는 발언 제외</span><span class="btn" id="f-x">필터 지우기</span><span class="dim" id="f-n"></span></div>
 <div id="list"></div></details></div>
 
 <div class="card"><details class="in"><summary>방법과 한계</summary><div id="method" style="margin-top:8px;color:var(--text-dim)"></div></details></div>
@@ -276,14 +277,17 @@ function drawAI(){if(C4)C4.destroy();const months=months0.filter(x=>x>=dates[W.i
   b2.innerHTML=gs.length>1?'<span class="lgsep">그룹</span>'+AIG.map(a=>'<span class="lg sq'+(aiGHidden[a[0]]?' off':'')+'" data-g="'+a[0]+'"><i style="'+aiSwatch(a[0])+';width:14px;height:11px;border-radius:2px"></i>'+a[1]+'</span>').join(''):'';
   const b3=document.getElementById('lg4i');b3.innerHTML='<span class="lgsep">비교 지표</span>'+AIX.map(x=>'<span class="lg'+(aiIdx[x[0]]?'':' off')+'" data-x="'+x[0]+'"><i style="background:repeating-linear-gradient(90deg,'+x[2]+' 0 4px,transparent 4px 6px)"></i>'+x[1]+'</span>').join('');
   b3.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiIdx[e.dataset.x]=!aiIdx[e.dataset.x];vis();C4.update();draw();});
-  b1.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiHidden[e.dataset.k]=!aiHidden[e.dataset.k];vis();C4.update();draw();});
-  b2.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiGHidden[e.dataset.g]=!aiGHidden[e.dataset.g];vis();C4.update();draw();});};
+  b1.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiHidden[e.dataset.k]=!aiHidden[e.dataset.k];vis();C4.update();draw();aiList();});
+  b2.querySelectorAll('.lg').forEach(e=>e.onclick=()=>{aiGHidden[e.dataset.g]=!aiGHidden[e.dataset.g];vis();C4.update();draw();aiList();});};
  draw();
+ aiList();}
+function aiList(){const gs=aicur==='all'?AIG.map(a=>a[0]):[aicur];const od=document.getElementById('ailist-d');if(od)window.__aiOpen=od.open;
  const GG={fed:['board','voter','nonvoter'],political:['political'],street:['investor','sellside']};
  const G=gs.filter(g=>!aiGHidden[g]).flatMap(g=>GG[g]);
- const its=D.items.filter(i=>i.ai_side&&inW(i.date)&&G.includes(i.group)&&['watch','crowding','calm'].includes(i.ai_side)).sort((a,b)=>b.date.localeCompare(a.date));
+ const its=D.items.filter(i=>i.ai_side&&inW(i.date)&&G.includes(i.group)&&!aiHidden[i.ai_side]).sort((a,b)=>b.date.localeCompare(a.date));
+ const onK=AIS.filter(s=>!aiHidden[s[0]]).map(s=>s[1]),onG=gs.filter(g=>!aiGHidden[g]).map(g=>AIG.find(a=>a[0]===g)[1]);
  const lab={};AIS.forEach(s=>lab[s[0]]=s[1]);
- document.getElementById('ailist').innerHTML='<details class="in"><summary>조달 위험·자본 경쟁·일축 발언 '+its.length+'건 보기</summary>'+its.map(i=>itemHTML(i,'<span class="tag" style="color:#0b0b0b">'+lab[i.ai_side]+'</span>')).join('')+'</details>';}
+ document.getElementById('ailist').innerHTML='<details class="in" id="ailist-d"'+(window.__aiOpen?' open':'')+'><summary>'+(onK.length===AIS.length?'전체 맥락':onK.join('·'))+' · '+onG.join('·')+' 발언 '+its.length+'건 보기</summary>'+its.map(i=>itemHTML(i,'<span class="tag" style="color:#0b0b0b">'+lab[i.ai_side]+'</span>')).join('')+'</details>';}
 document.querySelectorAll('[data-ai]').forEach(b=>b.onclick=()=>{aicur=b.dataset.ai;document.querySelectorAll('[data-ai]').forEach(x=>x.classList.toggle('on',x===b));drawAI();});
 
 // ---- 히트맵 ----
@@ -299,7 +303,7 @@ function drawHM(){const wks=wk.map((i,wi)=>[i,wi]).filter(x=>x[0]+6>=W.i0&&x[0]<
     if(!all.length){h+='<td class="c e"></td>';return;}
     if(!its.length){h+='<td class="c n" data-k="'+k+'" data-w="'+wi+'" title="'+esc(nm(k))+' '+a.slice(5)+'~'+b.slice(5)+' · 금리 언급 없는 발언 '+all.length+'건">·</td>';return;}
     const m=its.reduce((s,i)=>s+i.score,0)/its.length;
-    h+='<td class="c" style="background:'+col(m)+';color:'+ink(m)+'" data-k="'+k+'" data-w="'+wi+'" title="'+esc(nm(k))+' '+a.slice(5)+'~'+b.slice(5)+' · 평균 '+f1(m)+' · '+its.length+'건">'+(its.length>1?its.length:'')+'</td>';});
+    h+='<td class="c" style="background:'+col(m)+';color:'+ink(m)+'" data-k="'+k+'" data-w="'+wi+'" title="'+esc(nm(k))+' '+a.slice(5)+'~'+b.slice(5)+' · 평균 '+f1(m)+' · '+its.length+'건">'+(Math.round(m*10)/10).toString().replace(/\.0$/,'')+'</td>';});
    const [lv]=lastAt(D.levels[k],W.i1);h+='<td class="lv">'+(lv==null?'–':'<span class="chip" style="background:'+col(lv)+';color:'+ink(lv)+'">'+lv.toFixed(1)+'</span>')+'</td></tr>';});});
  document.getElementById('hm').innerHTML=h+'</table>';
  document.querySelectorAll('.hm td.c[data-k]').forEach(c=>c.onclick=()=>{F={g:'',k:c.dataset.k,d:'',m:'',w:+c.dataset.w};sync();render();const d=document.getElementById('d-led');d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});});}
@@ -361,7 +365,8 @@ opts('f-m',[...new Set(D.items.map(i=>i.date.slice(0,7)))].sort().reverse().map(
 function sync(){['g','k','d','m'].forEach(x=>document.getElementById('f-'+x).value=F[x]);}
 ['g','k','d','m'].forEach(x=>document.getElementById('f-'+x).onchange=e=>{F[x]=e.target.value;F.w=null;render();});
 document.getElementById('f-x').onclick=()=>{F={g:'',k:'',d:'',m:'',w:null};sync();render();};
-function render(){let a=D.items.filter(i=>inW(i.date)&&(!F.g||i.g7===F.g)&&(!F.k||i.key===F.k)&&(!F.d||(i.drivers||[]).includes(F.d))&&(!F.m||i.date.startsWith(F.m)));
+let NOOP=true;document.getElementById('f-nn').onclick=e=>{NOOP=!NOOP;e.target.classList.toggle('on',NOOP);render();};
+function render(){let a=D.items.filter(i=>inW(i.date)&&(!NOOP||i.score!=null)&&(!F.g||i.g7===F.g)&&(!F.k||i.key===F.k)&&(!F.d||(i.drivers||[]).includes(F.d))&&(!F.m||i.date.startsWith(F.m)));
  if(F.w!=null){const s=dates[wk[F.w]],e=dates[Math.min(N-1,wk[F.w]+6)];a=a.filter(i=>i.date>=s&&i.date<=e);}
  a.sort((x,y)=>y.date.localeCompare(x.date));document.getElementById('f-n').textContent=a.length+'건'+(a.length>200?' (최근 200건만 표시)':'');
  document.getElementById('list').innerHTML=a.slice(0,200).map(i=>itemHTML(i)).join('')||'<div class="dim">해당 없음</div>';}
