@@ -171,6 +171,8 @@ def main() -> None:
                 it["path_bp"] = s11["path_bp"]
         else:
             it["score"] = disp(it.get("score"))
+        if it["key"] == "trump" and it.get("score") is not None:  # Jae 11/25: 트럼프는 늘 「크게 내려라」라 0 고정(표현 강도 차이는 신호로 안 봄)
+            it["score"] = 0.0
         if it["group"] == "sellside" and it.get("firm"):  # 셀사이드는 사람이 아니라 하우스 단위로 묶는다
             f = FIRM_ALIAS.get(it["firm"], it["firm"])
             it["firm"] = f
