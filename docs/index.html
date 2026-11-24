@@ -2195,12 +2195,22 @@ function el(t,c,h){var e=document.createElement(t);if(c) e.className=c;if(h!=nul
 var sec=el('section','card');sec.id='card-seibro';
 sec.innerHTML='<div class="card-head"><div><div class="card-title">한국인 미국주식 결제 (SEIBro)</div><div class="card-sub" id="sb-sub"></div></div>'+
   '<div class="card-tools"><div class="seg" id="sb-v"></div><div class="seg" id="sb-t"></div><div class="seg" id="sb-p"></div></div></div><div class="chart-box"><canvas id="sb-c"></canvas></div>'+
-  '<div class="legend" style="margin-top:6px"><span class="note">출처: 한국예탁결제원 증권정보포털(SEIBro) · 단위 백만달러 · 날짜 = 한국시간 결제일(미국 매매 다음 날 무렵) · 종목은 그날 매수결제 상위 50위 안일 때만 값(빈칸 = 50위 밖)</span></div>';
+  '<div class="legend" style="margin-top:6px"><span class="note">출처: 한국예탁결제원 증권정보포털(SEIBro) · 단위 백만달러 · 날짜 = 미국 매매일(SEIBro 한국시간 결제일에서 하루 당김) · 종목은 그날 매수결제 상위 50위 안일 때만 값(빈칸 = 50위 밖)</span></div>';
 var after=document.getElementById('card-vkospi');if(after&&after.nextSibling) grid.insertBefore(sec,after.nextSibling);else grid.appendChild(sec);
 // 투자자예탁금(금투협, 억원) + 원/달러(매크로 탭 데이터)
 var FL=window.__FLOWS__||{},FD=FL.dates||[],DEP=(FL.series||{}).deposit||[],MX=window.__MACRO__||{},KD=MX.dates||[],KR=(MX.series||{}).usdkrw||[];
 function fxAt(d){for(var i=KD.length-1;i>=0;i--) if(KD[i]<=d&&KR[i]!=null) return KR[i];for(i=0;i<KR.length;i++) if(KR[i]!=null) return KR[i];return 1350;}
-var US=SB.us||[],TK=SB.tick||{},V=ls('v0')==null?3:+ls('v0'),PR=[['1M',1],['3M',3],['6M',6],['1Y',12],['2Y',24]],P=ls('p')||'6M',CH=null;
+// 11/25 Jae: SEIBro 날짜는 한국시간 결제일 → 미국 매매일로 하루 당긴다(미국 휴장일 '당일'에 큰 금액·다음 날 0 으로 확인).
+//   기준 달력 = 같이 받은 미국 시세 날짜(거래일). 결제일 D → D 보다 앞선 마지막 미국 거래일. 한국 휴일로 이틀치가 한 날에 몰리거나
+//   휴장 다음 날 0 이 같은 미국 날로 겹치면 합친다. 보관금액(custody, 잔액)은 그대로 둔다.
+var USD=(function(){var m={};Object.keys(SB.prices||{}).forEach(function(k){((SB.prices[k]||{}).px||[]).forEach(function(r){m[r[0]]=1;});});return Object.keys(m).sort();})();
+function toUS(d){var lo=0,hi=USD.length-1,j=-1;while(lo<=hi){var mid=(lo+hi)>>1;if(USD[mid]<d){j=mid;lo=mid+1;}else hi=mid-1;}
+  if(j>=0&&(j<USD.length-1||USD[j]>=prevWk(d))) return USD[j];return prevWk(d);}
+function prevWk(d){var x=new Date(d+'T00:00:00Z');do{x.setUTCDate(x.getUTCDate()-1);}while(x.getUTCDay()===0||x.getUTCDay()===6);return x.toISOString().slice(0,10);}
+function shiftRows(rows){var m={};(rows||[]).forEach(function(r){var k=toUS(r[0]),o=m[k]||(m[k]=[k,0,0]);o[1]+=r[1];o[2]+=r[2];});
+  return Object.keys(m).sort().map(function(k){var o=m[k];return [k,Math.round(o[1]*100)/100,Math.round(o[2]*100)/100];}).filter(function(o){return o[1]||o[2];});}
+var US=shiftRows(SB.us),TK={};Object.keys(SB.tick||{}).forEach(function(k){TK[k]=shiftRows(SB.tick[k]);});
+var V=ls('v0')==null?3:+ls('v0'),PR=[['1M',1],['3M',3],['6M',6],['1Y',12],['2Y',24]],P=ls('p')||'6M',CH=null;
 function since(m){var t=new Date();t.setMonth(t.getMonth()-m);return t.toISOString().slice(0,10);}
 function segs(id,items,cur,on){var b=document.getElementById(id);b.innerHTML='';items.forEach(function(x){var e=el('button',x[0]===cur?'on':null,x[1]);e.type='button';e.onclick=function(){on(x[0]);};b.appendChild(e);});}
 function draw(){
@@ -2239,7 +2249,7 @@ function draw(){
     y1fmt=function(v){return nf(v,v>=1000?0:1);};
     tip=function(v){return v;};
     var s1=0,b1=0,n1=0;(TK[tk]||[]).forEach(function(r){if(r[0]>=lo){s1+=r[1]-r[2];b1+=r[1];n1++;}});var pa=px.filter(function(r){return r[0]>=lo;});
-    document.getElementById('sb-sub').innerHTML=tk+' 기간 순매수 <b>$'+nf(s1,0)+'M</b> (매수 $'+nf(b1,0)+'M, 상위 50위 안에 든 '+n1+'일) · '+nm+(pa.length>1?' '+nf(pa[0][1],1)+' → '+nf(pa[pa.length-1][1],1)+' ('+((pa[pa.length-1][1]/pa[0][1]-1)>0?'+':'')+nf((pa[pa.length-1][1]/pa[0][1]-1)*100,1)+'%)':'')+' · 막대 날짜 = 한국 결제일(미국 매매 다음 날 무렵), 선 = 미국 거래일';
+    document.getElementById('sb-sub').innerHTML=tk+' 기간 순매수 <b>$'+nf(s1,0)+'M</b> (매수 $'+nf(b1,0)+'M, 상위 50위 안에 든 '+n1+'일) · '+nm+(pa.length>1?' '+nf(pa[0][1],1)+' → '+nf(pa[pa.length-1][1],1)+' ('+((pa[pa.length-1][1]/pa[0][1]-1)>0?'+':'')+nf((pa[pa.length-1][1]/pa[0][1]-1)*100,1)+'%)':'')+' · 막대·선 모두 미국 매매일 기준(결제일에서 하루 당김)';
   }
   else if(V===0){var rows=US.filter(function(r){return r[0]>=lo;}),acc=0;L=rows.map(function(r){return r[0];});
     ds=[{type:'bar',label:'일별 순매수',data:rows.map(function(r){return Math.round((r[1]-r[2])*10)/10;}),backgroundColor:rows.map(function(r){return r[1]-r[2]>=0?COL.up:COL.down;}),yAxisID:'y',order:2},
