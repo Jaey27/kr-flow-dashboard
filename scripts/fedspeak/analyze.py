@@ -190,6 +190,14 @@ def main() -> None:
             vals.append(float((past.values * w).sum() / w.sum()))
         lev[k] = pd.Series(vals, index=grid)
     L = pd.DataFrame(lev)
+    lev_last = {}
+    for k, g in sc.groupby("key"):
+        s = g.groupby("date")["score"].mean().sort_index()
+        lev_last[k] = s.reindex(grid.union(s.index)).ffill().reindex(grid)
+    L2 = pd.DataFrame(lev_last)[L.columns]
+    grp_of = {}
+    for it in items:
+        grp_of.setdefault(it["key"], it["group"])
 
     # 재임 기간 밖은 지수에서 뺀다(수준 자체는 남김)
     Lm = L.copy()
@@ -235,6 +243,24 @@ def main() -> None:
     idx["n_hawk27"] = (Lm[v27] > HAWK_T).sum(axis=1)
     idx["n_dove27"] = (Lm[v27] < DOVE_T).sum(axis=1)
     idx["n_mid27"] = idx["n_voter27"] - idx["n_hawk27"] - idx["n_dove27"]
+    inv = [k for k in L.columns if grp_of.get(k) == "investor"]
+    ssd = [k for k in L.columns if grp_of.get(k) == "sellside"]
+    idx["investor"] = L[inv].mean(axis=1) if inv else np.nan
+    idx["sellside"] = L[ssd].mean(axis=1) if ssd else np.nan
+    # 같은 묶음을 '최근 발언만' 방식으로(재임 기간 마스크 동일)
+    L2m = L2.where(Lm.notna() | L.isna(), np.nan)
+    idx_last = pd.DataFrame(index=grid)
+    idx_last["voter26"] = L2m[v26].mean(axis=1)
+    idx_last["voter27"] = L2m[v27].mean(axis=1)
+    ch2 = pd.Series(np.nan, index=grid)
+    if "powell" in L2:
+        ch2[grid <= pd.Timestamp(CHAIR_SWITCH[0])] = L2["powell"][grid <= pd.Timestamp(CHAIR_SWITCH[0])]
+    if "warsh" in L2:
+        ch2[grid >= pd.Timestamp(CHAIR_SWITCH[1])] = L2["warsh"][grid >= pd.Timestamp(CHAIR_SWITCH[1])]
+    idx_last["chair"] = ch2
+    idx_last["political"] = L2[pol].mean(axis=1) if pol else np.nan
+    idx_last["investor"] = L2[inv].mean(axis=1) if inv else np.nan
+    idx_last["sellside"] = L2[ssd].mean(axis=1) if ssd else np.nan
 
     # ---- 근거 태그 비중(연준 인사, 지난 30일) ----
     fed_items = [it for it in items if it["group"] in ("board", "voter", "nonvoter") and it.get("score") is not None]
@@ -242,12 +268,16 @@ def main() -> None:
                             fin=int("financial_stability_credit" in (it.get("drivers") or []) or it.get("ai_side") in ("watch", "crowding", "calm")),
                             ai=int(it.get("ai_side") in ("watch", "crowding")), infl=int("inflation" in (it.get("drivers") or [])),
                             labor=int(bool(set(it.get("drivers") or []) & {"labor", "growth"}))) for it in fed_items])
-    drv = pd.DataFrame(index=grid, columns=["fin", "ai", "infl", "labor", "n"], dtype=float)
-    if not dd.empty:
-        for t in grid:
-            win = dd[(dd.date <= t) & (dd.date > t - pd.Timedelta(days=30))]
-            if len(win) >= 5:
-                drv.loc[t] = [win.fin.mean() * 100, win.ai.mean() * 100, win.infl.mean() * 100, win.labor.mean() * 100, len(win)]
+    drv_w = {}
+    for wdays, minn in ((30, 5), (20, 4), (14, 3)):
+        dw = pd.DataFrame(index=grid, columns=["fin", "ai", "infl", "labor", "n"], dtype=float)
+        if not dd.empty:
+            for t in grid:
+                win = dd[(dd.date <= t) & (dd.date > t - pd.Timedelta(days=wdays))]
+                if len(win) >= minn:
+                    dw.loc[t] = [win.fin.mean() * 100, win.ai.mean() * 100, win.infl.mean() * 100, win.labor.mean() * 100, len(win)]
+        drv_w[wdays] = dw
+    drv = drv_w[30]
 
     # ---- AI 발언 성격별 월 건수 ----
     ai_month = {}
@@ -348,6 +378,8 @@ def main() -> None:
         levels={k: ser(L[k]) for k in L.columns},
         index={c: ser(idx[c]) for c in idx.columns},
         drivers={c: ser(drv[c], 1) for c in drv.columns},
+        drivers_w={str(w): {c: ser(dw[c], 1) for c in dw.columns} for w, dw in drv_w.items()},
+        index_last={c: ser(idx_last[c]) for c in idx_last.columns},
         market={c: ser(mkg[c]) for c in mkg.columns if not c.startswith("d_")},
         market_tdays=[d.date().isoformat() for d in tdays],
         events=json.loads(E.to_json(orient="records")) if not E.empty else [],
