@@ -100,6 +100,7 @@ def load_market():
             s = s[~s.index.duplicated(keep="last")]
             out[col] = s.reindex(out.index.union(s.index)).ffill().reindex(out.index)
     out["y2"] = pd.to_numeric(df["y2"], errors="coerce")
+    out["kospi"] = pd.to_numeric(df["kospi"], errors="coerce") if "kospi" in df else np.nan  # 코스피 종가(대시보드 flows.json 경유)
     out["brent"] = pd.to_numeric(df["brent"], errors="coerce") if "brent" in df else np.nan  # Brent 선물(대시보드 macro.json)
     out["y10"] = pd.to_numeric(df["y10"], errors="coerce")
     for i, mt in enumerate(m["fed"]):
