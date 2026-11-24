@@ -40,7 +40,7 @@ h1{font-size:19px;margin:0 0 2px;letter-spacing:-.02em}h2{font-size:15px;margin:
 .lg i{width:14px;height:3px;border-radius:2px;display:inline-block}.lg.sq i{width:9px;height:9px}
 .lg.off{opacity:.38;text-decoration:line-through}
 .lgsep{font-size:11px;color:var(--text-muted);margin:0 4px 0 8px}
-.ch{position:relative;height:320px}.ch.s{height:180px}
+.ch{position:relative;height:320px}.ch.s{height:330px}
 select{background:#fff;color:var(--text);border:1px solid rgba(0,0,0,.25);border-radius:8px;padding:4px 8px;font:inherit;font-size:12px}
 table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 th{font-size:11.5px;color:var(--text-dim);font-weight:700;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -80,7 +80,7 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 .rng input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:12px;height:30px;border-radius:5px;background:#0b0b0b;border:2px solid #fff;box-shadow:0 0 6px rgba(0,0,0,.35);cursor:ew-resize}
 .rng input::-moz-range-thumb{pointer-events:auto;width:10px;height:28px;border-radius:5px;background:#0b0b0b;border:2px solid #fff;cursor:ew-resize}
 .rng-axis{position:absolute;left:0;right:0;top:31px;display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;pointer-events:none}
-@media(max-width:640px){.ch{height:260px}.tile .v{font-size:20px}}
+@media(max-width:640px){.ch{height:260px}.ch.s{height:260px}.tile .v{font-size:20px}}
 </style></head><body><div class="wrap">
 <h1>금리 발언 tracker</h1>
 <div class="intro">2026년 1월 이후 Fed 의장 · 대통령 · 재무장관 · Fed 위원 · 셀사이드 · 투자자의 발언을 종합. 전문은 아래 발언 원장 참고.</div>
