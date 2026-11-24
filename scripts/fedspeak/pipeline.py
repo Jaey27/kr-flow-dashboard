@@ -135,6 +135,7 @@ def toks(s: str) -> list[str]:
 
 def fetch(url: str) -> tuple[str | None, str]:
     """페이지 본문 텍스트. 캐시(cache/<sha1>.txt). 실패하면 (None, 이유)."""
+    CACHE.mkdir(parents=True, exist_ok=True)  # 리포에서는 cache/ 가 무시 목록이라 처음엔 없음
     h = hashlib.sha1(url.encode()).hexdigest()[:16]
     cp = CACHE / f"{h}.txt"
     if cp.exists():
