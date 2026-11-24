@@ -35,7 +35,8 @@
    - 이 PC에서 curl이 막히는 곳: kansascityfed.org, stlouisfed.org(타임아웃) → 브라우저로 열어 인용을 확인하고 id를 `verify_manual.json`에 넣는다.
 4. 새 id에 한국어 요약을 붙여 `kr.json`에 합친다.
 5. 채점 통일: +2(화면 10)는 "곧·이번 회의·필요하다·소수의견" 같은 무조건형만, 조건부·확률 표현은 +1(7.5). AI 투자·조달을 언급한 건은 `overrides.json`에 `ai_side`(demand / loose / crowding / watch / calm)를 붙인다.
-6. `analyze.py && build.py --docs`로 확인한 뒤 `data/fedspeak/`만 커밋한다(docs는 맥미니 run_daily가 다시 굽는다).
+6. **11단계 재채점(11/25~)**: 새 id만 모아 `RESCORE_BRIEF.md` 기준으로 0~10 정수 점수와 `path_bp`를 매겨 `data/fedspeak/score11.json`에 합친다. 화면은 score11 점수를 우선 쓰고, 없으면 5단계 원장 점수를 환산해서 쓴다.
+7. `analyze.py && build.py --docs`로 확인한 뒤 `data/fedspeak/`만 커밋한다(docs는 맥미니 run_daily가 다시 굽는다).
 
 FOMC 주간(블랙아웃 직후 ~ 회의 다음 주)에는 발언이 몰리므로 수요일에 한 번 더 돌려도 된다.
 
