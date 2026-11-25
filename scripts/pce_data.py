@@ -2,7 +2,8 @@
 
     python scripts/pce_data.py      # cpi_dashboard(cpi.json)·ppi_data.py(ppi_cache.txt) 다음에 실행
 
-- 실제 PCE: FRED PCEPI(헤드라인)·PCEPILFE(근원) 월 지수(BEA, UA=curl). MoM·YoY 는 지수로 계산.
+- 실제 PCE: BEA NIPA 월간 파일(DPCERG 헤드라인·DPCCRG 근원, 발표 즉시 갱신)을 먼저 쓰고, 실패하면 FRED PCEPI·PCEPILFE.
+  둘 다 받히면 더 최근 달까지 있는 쪽. BEA 파일(약 37MB)은 Last-Modified 가 바뀔 때만 다시 받음(data/raw/bea_pce.json 캐시). MoM·YoY 는 지수로 계산.
 - 추정(브릿지 회귀, 계절조정 MoM %):
     근원 PCE ~ CPI 근원상품(SACL1E) + CPI 주거비(SAH1) + CPI 슈퍼코어(SUPERCORE)
                + PPI 소비자 서비스(운송·유통 제외, WPSFD42111: 의료·금융자문 등 PCE가 PPI로 재는 항목) + PPI 여객운송(WPSFD42211: 항공료)
@@ -41,6 +42,53 @@ def fred(sid: str) -> dict[str, float]:
     return {d[:7]: float(v) for d, v in (x.split(",")[:2] for x in rows) if v not in ("", ".")}
 
 
+BEA_M = "https://apps.bea.gov/national/Release/TXT/NipaDataM.txt"
+BEA_CACHE = ROOT / "data" / "raw" / "bea_pce.json"
+BEA_CODES = {"DPCCRG": "core", "DPCERG": "head"}
+
+
+def bea_levels() -> dict[str, dict[str, float]]:
+    """BEA 월간 NIPA 파일에서 PCE 가격지수(헤드라인·근원). 파일이 안 바뀌었으면 캐시."""
+    ua = {"User-Agent": "Mozilla/5.0"}
+    with urllib.request.urlopen(urllib.request.Request(BEA_M, headers=ua, method="HEAD"), timeout=60) as r:
+        lm = r.headers.get("Last-Modified", "")
+    if BEA_CACHE.exists():
+        c = json.loads(BEA_CACHE.read_text(encoding="utf-8"))
+        if lm and c.get("last_modified") == lm:
+            return c["levels"]
+    lv: dict[str, dict[str, float]] = {"core": {}, "head": {}}
+    with urllib.request.urlopen(urllib.request.Request(BEA_M, headers=ua), timeout=600) as r:
+        for raw in r:
+            line = raw.decode("utf-8", "ignore")
+            code = line.split(",", 1)[0]
+            if code in BEA_CODES:
+                _, per, val = line.strip().split(",", 2)
+                if per[:4] >= "2019":
+                    lv[BEA_CODES[code]][f"{per[:4]}-{per[5:]}"] = float(val.strip('"').replace(",", ""))
+    if not lv["core"] or not lv["head"]:
+        raise RuntimeError("BEA 파일에서 DPCCRG/DPCERG 를 못 찾음")
+    BEA_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    BEA_CACHE.write_text(json.dumps({"last_modified": lm, "levels": lv}), encoding="utf-8")
+    return lv
+
+
+def pce_levels() -> tuple[dict[str, dict[str, float]], str]:
+    """BEA 우선, FRED 보조. 더 최근 달까지 있는 쪽(같으면 BEA)."""
+    cands = []
+    try:
+        cands.append(("BEA NIPA DPCERG·DPCCRG", bea_levels()))
+    except Exception as e:  # noqa: BLE001
+        print(f"[pce] BEA 실패: {e}", file=sys.stderr)
+    try:
+        cands.append(("FRED PCEPI·PCEPILFE(BEA)", {"core": fred("PCEPILFE"), "head": fred("PCEPI")}))
+    except Exception as e:  # noqa: BLE001
+        print(f"[pce] FRED 실패: {e}", file=sys.stderr)
+    if not cands:
+        raise RuntimeError("PCE 실제값을 BEA·FRED 어디서도 못 받음")
+    name, lv = max(cands, key=lambda c: min(max(c[1]["core"]), max(c[1]["head"])))  # max 는 동률이면 앞(BEA)
+    return lv, name
+
+
 def mom_of(lv: dict[str, float]) -> dict[str, float]:
     ks = sorted(lv)
     return {k: (lv[k] / lv[p] - 1) * 100 for p, k in zip(ks, ks[1:])}
@@ -72,7 +120,7 @@ def main() -> int:
     c = json.loads((ROOT / "cpi_dashboard" / "data" / "cpi.json").read_text(encoding="utf-8"))
     cpi = {k: {m: v for m, v in zip(c["months"], c["series"][k]["mom"]) if v is not None} for k in set(CPI_HEAD)}
     ppi = ppi_mom()
-    lvl = {"core": fred("PCEPILFE"), "head": fred("PCEPI")}
+    lvl, src_name = pce_levels()
     act = {k: mom_of(v) for k, v in lvl.items()}
     srcs = {**cpi, **ppi}
     allm = sorted(set(c["months"]) | set(act["core"]))
@@ -109,7 +157,7 @@ def main() -> int:
     months = [m for m in allm if m >= START][-MONTHS:]
     yoy = {k: {m: (lvl[k][m] / lvl[k][f"{int(m[:4]) - 1}-{m[5:]}"] - 1) * 100 for m in lvl[k] if f"{int(m[:4]) - 1}-{m[5:]}" in lvl[k]} for k in lvl}
     r = lambda d, m, n=3: round(d[m], n) if m in d and d[m] is not None else None  # noqa: E731
-    out = {"src": "FRED PCEPI·PCEPILFE(BEA) · CPI(cpi_dashboard) · PPI(BLS FD-ID)", "months": months, "last_actual": last_act,
+    out = {"src": f"{src_name} · CPI(cpi_dashboard) · PPI(BLS FD-ID)", "months": months, "last_actual": last_act,
            "fetched": date.today().isoformat(), "start": START, "ko": KO}
     for k in ("core", "head"):
         R = res[k]
