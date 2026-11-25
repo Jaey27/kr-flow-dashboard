@@ -631,29 +631,62 @@ if(EM){emTable();}else{document.getElementById('ec-em-tbl').innerHTML='<div clas
 // ---- PCE 추정·대조 (scripts/pce_data.py → data/pce.json) ----
 var PC=window.__PCE__,PCV=0,PCH2=null;try{PCV=+(localStorage.getItem('krflow.ec.pcv')||0);}catch(e){}
 function pcTable(){var M=PC.months,la=M.indexOf(PC.last_actual),nm=null;for(var j=M.length-1;j>=0;j--) if(PC.core.now_mom[j]!=null){nm=j;break;}
-  var h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">PCE 물가</th><th>최근 실제 '+PC.last_actual.slice(2).replace('-','.')+' MoM</th><th>YoY</th><th>'+(nm!=null?'추정 '+M[nm].slice(2).replace('-','.')+' MoM':'추정')+'</th><th>추정 YoY</th><th>1개월 앞 오차(최근 12개월)</th></tr></thead><tbody>';
-  [['core','근원 PCE (식품·에너지 제외)'],['head','헤드라인 PCE']].forEach(function(k,j){var x=PC[k[0]];h+='<tr><td class="l" style="font-weight:700">'+k[1]+'</td><td>'+pf(x.act_mom[la])+'</td><td>'+pf(x.act_yoy[la],2)+'</td><td><b>'+(nm!=null?pf(x.now_mom[nm]):'–')+'</b></td><td><b>'+(nm!=null?pf(x.now_yoy[nm],2):'–')+'</b></td><td>평균 ±'+x.bt_mae.toFixed(2)+'%p · R² '+x.r2+'</td></tr>';});
-  var lg=Object.keys(PC.log||{}).sort().map(function(m){var c=(PC.log[m]||{}).core;if(!c) return null;return m.slice(2).replace('-','.')+' 첫 추정 '+pf(c.first)+(c.actual!=null?' → 실제 '+pf(c.actual)+' (오차 '+(c.err_first>0?'+':'')+c.err_first.toFixed(2)+'%p)':' (실제 발표 전)');}).filter(Boolean);
-  document.getElementById('ec-pc-tbl').innerHTML=h+'</tbody></table></div><div class="card-sub" style="margin-top:4px">추정 기록(근원): '+(lg.length?lg.join(' · '):'–')+'</div>';}
+  var lm=PC.last_actual,lab=function(m){return m.slice(2).replace('-','.');};
+  var h='<div style="overflow-x:auto"><table class="mx-tbl ec-tbl"><thead><tr><th class="l">PCE 물가</th><th>최근 실제 '+lab(lm)+' MoM</th><th>'+lab(lm)+' 우리 추정 → 오차</th><th>YoY</th><th>'+(nm!=null?'추정 '+lab(M[nm])+' MoM':'추정')+'</th><th>추정 YoY</th><th>1개월 앞 오차(최근 12개월)</th></tr></thead><tbody>';
+  [['core','근원 PCE (식품·에너지 제외)'],['head','헤드라인 PCE']].forEach(function(k){var x=PC[k[0]],e=((PC.log||{})[lm]||{})[k[0]],est=e?e.first:x.bt_mom[la],er=est!=null&&x.act_mom[la]!=null?est-x.act_mom[la]:null;
+    var ec=er==null?'':(Math.abs(er)<=0.05?'color:var(--hl-teal)':'color:'+(er>0?'#DC2626':'#2563EB'));
+    h+='<tr><td class="l" style="font-weight:700">'+k[1]+'</td><td><b>'+pf(x.act_mom[la])+'</b></td><td>'+(est!=null?pf(est)+' → <span style="font-weight:700;'+ec+'">'+(er>0?'+':'')+er.toFixed(2)+'%p</span>'+(e?'':' <span style="color:var(--text-muted)">(백테스트)</span>'):'–')+'</td><td>'+pf(x.act_yoy[la],2)+'</td><td><b>'+(nm!=null?pf(x.now_mom[nm]):'–')+'</b></td><td><b>'+(nm!=null?pf(x.now_yoy[nm],2):'–')+'</b></td><td>평균 ±'+x.bt_mae.toFixed(2)+'%p · R² '+x.r2+'</td></tr>';});
+  var lg=Object.keys(PC.log||{}).sort().map(function(m){var c=(PC.log[m]||{}).core;if(!c) return null;return lab(m)+' 첫 추정 '+pf(c.first)+(c.actual!=null?' → 실제 '+pf(c.actual)+' (오차 '+(c.err_first>0?'+':'')+c.err_first.toFixed(2)+'%p)':' (실제 발표 전)');}).filter(Boolean);
+  document.getElementById('ec-pc-tbl').innerHTML=h+'</tbody></table></div><div class="card-sub" style="margin-top:4px">추정 기록(근원): '+(lg.length?lg.join(' · '):'–')+' · 오차 = 추정 − 실제(+ 면 추정이 높았음)</div>';}
+var PCK='core',PCM=null;try{PCK=localStorage.getItem('krflow.ec.pck')||'core';}catch(e){}
+// 그달 추정값(쪼개기·오차 막대 공통): 처음 낸 추정(기록) > 1개월 앞 백테스트 > 발표 전 추정
+function pcEst(k,m){var x=PC[k],i=PC.months.indexOf(m),e=((PC.log||{})[m]||{})[k];
+  if(e&&e.first!=null) return {v:e.first,src:'처음 낸 추정('+e.made+')'};
+  if(x.bt_mom[i]!=null) return {v:x.bt_mom[i],src:'1개월 앞 예측(그달 직전까지로만 맞춤)'};
+  if(x.now_mom[i]!=null) return {v:x.now_mom[i],src:'발표 전 추정'};return null;}
+function pcGo(code){var st=PC.ko[code]||'';
+  if(/^CPI/.test(st)){var w=fr.contentWindow;if(!loaded){loaded=true;fr.src='cpi.html';}
+    var go=function(){var y=fr.getBoundingClientRect().top+window.scrollY;try{fr.contentWindow.goItem(code);var dc=fr.contentDocument.getElementById('detailCard');y+=dc.getBoundingClientRect().top+fr.contentWindow.scrollY;}catch(e){}window.scrollTo({top:y-10,behavior:'smooth'});};
+    if(w&&w.goItem) go(); else fr.addEventListener('load',function(){setTimeout(go,300);},{once:true});}
+  else if(/^PPI/.test(st)) document.getElementById('ec-ppi-card').scrollIntoView({behavior:'smooth'});}
 function pcDraw(){if(!PC) return;var css=getComputedStyle(document.documentElement),cv=function(n){return css.getPropertyValue(n).trim();};
   var C={dim:cv('--text-dim'),muted:cv('--text-muted'),grid:'rgba(151,252,228,.13)'},n=24,L=PC.months.slice(-n),cut=function(a){return a.slice(-n);};
-  var sb=document.getElementById('ec-pc-v');sb.innerHTML='';[['근원: 실제 vs 예측',0],['헤드라인: 실제 vs 예측',1],['추정치 쪼개기',2]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===PCV) b.className='on';b.onclick=function(){PCV=x[1];try{localStorage.setItem('krflow.ec.pcv',PCV);}catch(e){}pcDraw();};sb.appendChild(b);});
-  var type='bar',labels=L.map(function(m){return m.slice(2).replace('-','.');}),ds,idx='x',note;
-  if(PCV<2){var x=PC[PCV?'head':'core'];
-    ds=[{label:'실제 MoM',data:cut(x.act_mom),backgroundColor:'rgba(42,165,138,.7)'},{type:'line',label:'1개월 앞 예측(그달 직전까지로만 맞춤)',data:cut(x.bt_mom),borderColor:'#e8823a',pointRadius:3,borderWidth:0,showLine:false},
-        {type:'line',label:'회귀 적합값',data:cut(x.fit_mom),borderColor:'rgba(242,255,252,.55)',pointRadius:0,borderWidth:1.4},{type:'bar',label:'추정(실제 발표 전)',data:cut(x.now_mom),backgroundColor:'rgba(232,130,58,.45)',borderColor:'#e8823a',borderWidth:1.5}];
-    note='막대 = 실제 PCE MoM(BEA), 주황 점 = 그달 직전까지의 데이터로만 다시 맞춘 1개월 앞 예측, 흰 선 = 전체 표본 적합값, 주황 테두리 막대 = 아직 발표 전인 달의 추정. 회귀 표본 '+PC.start+'~'+PC.last_actual+'('+x.n+'개월).';}
-  else{var k='core',x=PC.core,nm=Object.keys(x.nowx||{}).sort().pop();idx='y';
-    if(!nm){labels=['추정할 달 없음'];ds=[{label:'',data:[0]}];note='CPI·PPI가 나왔는데 PCE가 아직 안 나온 달이 없음.';}
-    else{var parts=[['상수(평균적인 차이)',x.coef.const]];Object.keys(x.nowx[nm]).forEach(function(c){parts.push([PC.ko[c]+' '+pf(x.nowx[nm][c]),x.coef[c]*x.nowx[nm][c]]);});
-      labels=parts.map(function(p){return p[0];});ds=[{label:nm+' 근원 PCE 추정 '+pf(x.now_mom[PC.months.indexOf(nm)])+' 의 구성(%p)',data:parts.map(function(p){return Math.round(p[1]*1000)/1000;}),backgroundColor:parts.map(function(p){return p[1]>=0?'rgba(240,117,106,.75)':'rgba(120,170,255,.75)';})}];
-      note='추정 = 상수 + Σ(계수 × 그달 CPI·PPI MoM). 계수가 곧 근원 PCE 안에서 각 항목이 차지하는 무게(대략). 주거비 계수가 CPI보다 작고 의료·금융은 PPI로 들어가는 것이 CPI와 PCE의 차이.';}}
+  var sb=document.getElementById('ec-pc-v');sb.innerHTML='';[['근원: 실제 vs 예측',0],['헤드라인: 실제 vs 예측',1],['추정치 쪼개기',2]].forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[0];if(x[1]===PCV) b.className='on';b.onclick=function(){PCV=x[1];if(PCV<2){PCK=PCV?'head':'core';try{localStorage.setItem('krflow.ec.pck',PCK);}catch(e){}}try{localStorage.setItem('krflow.ec.pcv',PCV);}catch(e){}pcDraw();};sb.appendChild(b);});
+  var type='bar',labels=L.map(function(m){return m.slice(2).replace('-','.');}),ds,idx='x',note,onClick=null,codes=null;
+  if(PCV<2){var k=PCV?'head':'core',x=PC[k];
+    var err=L.map(function(m,i){var a=cut(x.act_mom)[i],e=pcEst(k,m);return a!=null&&e?Math.round((e.v-a)*1000)/1000:null;});
+    ds=[{label:'실제 MoM',data:cut(x.act_mom),backgroundColor:'rgba(42,165,138,.7)',order:3},
+        {type:'line',label:'1개월 앞 예측(그달 직전까지로만 맞춤)',data:cut(x.bt_mom),borderColor:'#C2410C',backgroundColor:'#F97316',pointBorderColor:'#fff',pointBorderWidth:1.5,pointRadius:6,pointHoverRadius:8,showLine:false,order:0},
+        {type:'line',label:'회귀 적합값',data:cut(x.fit_mom),borderColor:C.muted,borderDash:[4,3],pointRadius:0,borderWidth:1.2,order:1},
+        {type:'bar',label:'추정(실제 발표 전)',data:cut(x.now_mom),backgroundColor:'rgba(232,130,58,.45)',borderColor:'#e8823a',borderWidth:1.5,order:3},
+        {type:'line',label:'실제 YoY(오른쪽 축)',data:cut(x.act_yoy),yAxisID:'y2',borderColor:'#7C3AED',backgroundColor:'#7C3AED',borderWidth:2,pointRadius:0,pointHitRadius:6,order:0},
+        {type:'line',label:'추정 YoY(오른쪽 축)',data:cut(x.now_yoy).map(function(v,i,a){if(v!=null) return v;return a[i+1]!=null?cut(x.act_yoy)[i]:null;}),yAxisID:'y2',borderColor:'#7C3AED',backgroundColor:'#fff',borderDash:[5,4],borderWidth:2,pointRadius:function(c){return cut(x.now_yoy)[c.dataIndex]!=null?4:0;},order:0},
+        {type:'bar',label:'오차 = 추정 − 실제(%p)',data:err,backgroundColor:err.map(function(v){return v>0?'rgba(220,38,38,.55)':'rgba(37,99,235,.55)';}),order:2}];
+    var me=err.filter(function(v){return v!=null;});
+    note='막대(초록) = 실제 PCE MoM(BEA) · 주황 점 = 그달 직전까지의 데이터로만 맞춘 1개월 앞 예측 · 점선 = 전체 표본 적합값 · 주황 테두리 = 아직 발표 전인 달의 추정 · 보라 실선 = 실제 YoY, 보라 점선 = 추정 YoY(오른쪽 축) · 빨강/파랑 막대 = 오차(추정 − 실제, 빨강=추정이 높았음; 처음 낸 추정 기록이 있으면 그것, 없으면 1개월 앞 예측)'+(me.length?' · 표시 구간 평균 |오차| '+(me.reduce(function(s,v){return s+Math.abs(v);},0)/me.length).toFixed(3)+'%p':'')+'. 막대를 누르면 그 달 추정치 쪼개기. 회귀 표본 '+PC.start+'~'+PC.last_actual+'('+x.n+'개월).';
+    onClick=function(ev,el){if(!el.length) return;var m=L[el[0].index];if(!(PC[k].xm||{})[m]) return;PCM=m;PCK=k;PCV=2;try{localStorage.setItem('krflow.ec.pcv',2);}catch(e){}setTimeout(pcDraw,0);};}
+  else{var k=PCK,x=PC[k],months=Object.keys(x.xm||{}).sort(),m=(PCM&&x.xm[PCM])?PCM:months[months.length-1];idx='y';PCM=m;
+    if(!m){labels=['추정할 달 없음'];ds=[{label:'',data:[0]}];note='CPI·PPI 입력이 있는 달이 없음.';}
+    else{var sel=document.createElement('select');sel.style.cssText='margin-left:6px;font:inherit;padding:2px 4px;border-radius:6px;background:var(--surface-2);color:var(--text);border:1px solid var(--border)';
+      months.slice().reverse().forEach(function(t){sel.add(new Option(t.slice(2).replace('-','.'),t));});sel.value=m;sel.onchange=function(){PCM=sel.value;pcDraw();};
+      var kb=document.createElement('button');kb.type='button';kb.textContent=k==='core'?'근원':'헤드라인';kb.title='근원/헤드라인 전환';kb.onclick=function(){PCK=PCK==='core'?'head':'core';pcDraw();};
+      sb.appendChild(kb);sb.appendChild(sel);
+      var i=PC.months.indexOf(m),b=x.bcoef[m],useBt=!!b&&x.now_mom[i]==null,cf=useBt?b:[x.coef.const].concat(x.xs.map(function(c){return x.coef[c];}));
+      var parts=[['상수(평균적인 차이)',cf[0],null]];x.xs.forEach(function(c,j){parts.push([PC.ko[c]+' '+pf(x.xm[m][j]),cf[j+1]*x.xm[m][j],c]);});
+      var tot=parts.reduce(function(s,p){return s+p[1];},0),act=x.act_mom[i];codes=parts.map(function(p){return p[2];});
+      labels=parts.map(function(p){return p[0];});
+      ds=[{label:m+' '+(k==='core'?'근원':'헤드라인')+' PCE '+(x.now_mom[i]!=null?'추정':useBt?'1개월 앞 예측':'적합값')+' '+pf(tot)+(act!=null?' · 실제 '+pf(act)+' · 오차 '+((tot-act)>0?'+':'')+(tot-act).toFixed(2)+'%p':' · 실제 발표 전')+' — 구성(%p)',
+        data:parts.map(function(p){return Math.round(p[1]*1000)/1000;}),backgroundColor:parts.map(function(p){return p[1]>=0?'rgba(240,117,106,.75)':'rgba(120,170,255,.75)';})}];
+      note='추정 = 상수 + Σ(계수 × 그달 CPI·PPI MoM)'+(useBt?' — 이 달 계수는 그달 직전까지의 데이터로만 맞춘 것(1개월 앞 예측과 같은 값)':' — 전체 표본 계수')+'. CPI 항목 막대를 누르면 위 「CPI 세부」에서 그 항목 상세로, PPI 항목은 PPI 카드로 이동. 주거비 계수가 CPI보다 작고 의료·금융은 PPI로 들어가는 것이 CPI와 PCE의 차이.';
+      onClick=function(ev,el){if(!el.length) return;var c=codes[el[0].index];if(c) setTimeout(function(){pcGo(c);},0);};}}
   document.getElementById('ec-pc-sub').textContent='BEA(FRED PCEPI·PCEPILFE) 실제 '+PC.last_actual+'까지 · CPI·PPI 브릿지 회귀 · 받은 날 '+PC.fetched;
   document.getElementById('ec-pc-note').textContent=note;
   if(PCH2) PCH2.destroy();
-  PCH2=new Chart(document.getElementById('ec-pc-c'),{type:type,data:{labels:labels,datasets:ds},options:{indexAxis:idx,responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
-    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(PCV===2?(it.raw>0?'+':'')+Number(it.raw).toFixed(3)+'%p':pf(it.raw));}}}},
-    scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false}}}}});}
+  PCH2=new Chart(document.getElementById('ec-pc-c'),{type:type,data:{labels:labels,datasets:ds},options:{indexAxis:idx,responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false,axis:idx},
+    onClick:onClick,onHover:function(ev,el){ev.native.target.style.cursor=el.length&&(PCV<2||(codes&&codes[el[0].index]))?'pointer':'default';},
+    plugins:{legend:{labels:{color:C.dim,boxWidth:12,boxHeight:6}},tooltip:{callbacks:{label:function(it){return ' '+it.dataset.label+'  '+(PCV===2||/오차/.test(it.dataset.label)?(it.raw>0?'+':'')+Number(it.raw).toFixed(3)+'%p':pf(it.raw));},
+      footer:function(){return PCV<2?'눌러서 그 달 쪼개기':(codes?'CPI·PPI 항목은 눌러서 이동':'');}}}},
+    scales:{x:{grid:{display:idx==='y',color:C.grid},ticks:{color:C.muted,maxRotation:0,autoSkip:idx==='x',maxTicksLimit:12}},y:{grid:{color:C.grid,display:idx==='x'},ticks:{color:C.muted,autoSkip:false},title:{display:PCV<2,text:'MoM %',color:C.muted}},y2:{display:PCV<2,position:'right',beginAtZero:false,grace:'10%',grid:{display:false},ticks:{color:'#7C3AED',callback:function(v){return v.toFixed(1)+'%';}},title:{display:true,text:'YoY %',color:'#7C3AED'}}}}});}
 if(PC){pcTable();}else{document.getElementById('ec-pc-tbl').innerHTML='<div class="card-sub">PCE 데이터 없음 — scripts/pce_data.py 실행 필요</div>';}
 window.ECON={show:function(){if(!loaded){loaded=true;fr.src='cpi.html';}if(P) setTimeout(ppiDraw,30);if(RT) setTimeout(rtDraw,40);if(EM) setTimeout(emDraw,50);if(PC) setTimeout(pcDraw,60);}};
 if(!document.getElementById('tab-econ').hidden) window.ECON.show();

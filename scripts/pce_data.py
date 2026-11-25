@@ -87,11 +87,12 @@ def main() -> int:
         fitted = {m: pred(b, np.array(row(m))) for m in train}
         r2 = 1 - np.sum((y - X @ b[1:] - b[0]) ** 2) / np.sum((y - y.mean()) ** 2)
         # 1개월 앞 백테스트: 그달 직전까지로만 맞춰 그달 예측
-        bt = {}
+        bt, bcoef = {}, {}
         for m in train[-12:]:
             tr = [t for t in train if t < m]
             bb = fit(np.array([row(t) for t in tr]), np.array([act[key][t] for t in tr]))
             bt[m] = pred(bb, np.array(row(m)))
+            bcoef[m] = [round(float(v), 4) for v in bb]   # 그달 1개월 앞 예측에 쓴 계수(쪼개기 화면용)
         mae = float(np.mean([abs(bt[m] - act[key][m]) for m in bt]))
         # 실제값이 아직 없는 달 추정
         now = {m: pred(b, np.array(row(m))) for m in allm if m > last_act and ok(m)}
@@ -103,7 +104,8 @@ def main() -> int:
             nyoy[m] = (lv[m] / lv[y0] - 1) * 100 if y0 in lv else None
         nowx = {m: {x: round(v, 3) for x, v in zip(xs, row(m))} for m in now}
         res[key] = {"nowx": nowx, "coef": {"const": round(float(b[0]), 4), **{x: round(float(v), 4) for x, v in zip(xs, b[1:])}},
-                    "r2": round(float(r2), 3), "n": len(train), "bt_mae": round(mae, 3), "fitted": fitted, "bt": bt, "now": now, "now_yoy": nyoy}
+                    "r2": round(float(r2), 3), "n": len(train), "bt_mae": round(mae, 3), "fitted": fitted, "bt": bt, "now": now, "now_yoy": nyoy,
+                    "xs": list(xs), "xm": {m: [round(v, 3) for v in row(m)] for m in allm if ok(m)}, "bcoef": bcoef}
     months = [m for m in allm if m >= START][-MONTHS:]
     yoy = {k: {m: (lvl[k][m] / lvl[k][f"{int(m[:4]) - 1}-{m[5:]}"] - 1) * 100 for m in lvl[k] if f"{int(m[:4]) - 1}-{m[5:]}" in lvl[k]} for k in lvl}
     r = lambda d, m, n=3: round(d[m], n) if m in d and d[m] is not None else None  # noqa: E731
@@ -114,7 +116,9 @@ def main() -> int:
         out[k] = {"act_mom": [r(act[k], m) for m in months], "act_yoy": [r(yoy[k], m, 2) for m in months],
                   "fit_mom": [r(R["fitted"], m) for m in months], "bt_mom": [r(R["bt"], m) for m in months],
                   "now_mom": [r(R["now"], m) for m in months], "now_yoy": [r(R["now_yoy"], m, 2) for m in months],
-                  "coef": R["coef"], "r2": R["r2"], "n": R["n"], "bt_mae": R["bt_mae"], "nowx": R["nowx"]}
+                  "coef": R["coef"], "r2": R["r2"], "n": R["n"], "bt_mae": R["bt_mae"], "nowx": R["nowx"],
+                  # 달마다 쪼개기(막대 클릭): 입력 MoM(xs 순서) + 1개월 앞 예측 계수(있는 달만, 없으면 화면이 전체 표본 coef 사용)
+                  "xs": R["xs"], "xm": {m: v for m, v in R["xm"].items() if m in months}, "bcoef": R["bcoef"]}
     # 추정 기록(처음 낸 값 유지) + 실제값 나오면 오차
     log = json.loads(LOG.read_text(encoding="utf-8")) if LOG.exists() else {}
     for k in ("core", "head"):
