@@ -341,12 +341,13 @@ function aiList(){const gs=aicur==='all'?AIG.map(a=>a[0]):[aicur];const od=docum
 document.querySelectorAll('[data-ai]').forEach(b=>b.onclick=()=>{aicur=b.dataset.ai;document.querySelectorAll('[data-ai]').forEach(x=>x.classList.toggle('on',x===b));drawAI();});
 
 // ---- 히트맵 ----
+function koCmp(a,b){const x=nm(a),y=nm(b),ko=s=>/^[\uac00-\ud7a3]/.test(s);return (ko(y)-ko(x))||x.localeCompare(y,ko(x)?'ko':'en',{sensitivity:'base'});}  // 한글 가나다 → 영문 A~Z
 const wk=[];for(let i=0;i<N;i+=7)wk.push(i);
 let F={g:'',k:'',d:'',m:'',w:null};
 const HMOPEN={};
 function drawHM(){const wks=wk.map((i,wi)=>[i,wi]).filter(x=>x[0]+6>=W.i0&&x[0]<=W.i1);let h='<table><tr><th></th>'+wks.map((x,j)=>{const m=dates[x[0]].slice(5,7),pm=j?dates[wks[j-1][0]].slice(5,7):'';return '<th>'+(m!==pm?(+m)+'월':'')+'</th>'}).join('')+'<th></th></tr>';
  GO.forEach(g=>{let ks=Object.keys(byKey).filter(k=>gOf(k)===g&&(g==='investor'||byKey[k].some(i=>i.score!=null)));if(!ks.length)return;
-  if(R[ks[0]])ks.sort((a,b)=>Object.keys(R).indexOf(a)-Object.keys(R).indexOf(b));else ks.sort((a,b)=>(b==='stanley_druckenmiller')-(a==='stanley_druckenmiller')||byKey[b].length-byKey[a].length);
+  ks.sort(koCmp);
   if(g==='sellside')ks=ks.filter(k=>byKey[k].filter(i=>i.score!=null).length>=2);
   const op=!!HMOPEN[g];h+='<tr class="g" data-g="'+g+'" style="cursor:pointer"><td colspan="'+(wks.length+2)+'" style="color:'+gc(g)+'">'+(op?'▼ ':'▶ ')+G7[g]+' <span class="dim" style="font-weight:400">('+ks.length+'명)</span></td></tr>';
   ks.forEach(k=>{h+='<tr data-gr="'+g+'"'+(op?'':' hidden')+'><td class="nm" style="color:'+gc(g)+'">'+esc(nm(k))+(roleOf(k)?'<small>'+esc(roleOf(k))+'</small>':'')+'</td>';
