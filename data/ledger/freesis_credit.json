@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-26T09:57:09+09:00",
+ "fetched_at": "2026-11-26T15:06:35+09:00",
  "prov": [],
  "rows": {
   "2024-10-02": {
@@ -4193,6 +4193,14 @@
    "credit_total": 25877746,
    "ipo_loan": 0,
    "short_total": 24341
+  },
+  "2026-11-25": {
+   "collateral_loan": 24940693,
+   "credit_kosdaq": 5730099,
+   "credit_kospi": 19682178,
+   "credit_total": 25412277,
+   "ipo_loan": 0,
+   "short_total": 22386
   }
  }
 }
