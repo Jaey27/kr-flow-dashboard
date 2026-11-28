@@ -22,7 +22,8 @@ HERE = Path(__file__).resolve().parents[2] / "data" / "fedspeak"  # 원장·덮�
 REPO = Path(__file__).resolve().parents[2]
 RAW = HERE / "raw"
 CACHE = HERE / "cache"
-START, END = "2026-01-01", "2026-11-23"
+START = "2026-01-01"
+END = __import__("datetime").date.today().isoformat()  # 수집 상한·차트 날짜축 끝 = 오늘(11/28 수정: 고정값이면 매일 시장선 갱신이 그 날짜에서 멈춤)
 
 # 인물 명단. group: board/voter(2026 투표) /nonvoter /political /investor /sellside
 # v26·v27 = 그해 FOMC 투표권. 지역 연은 로테이션은 수집 에이전트가 각 은행 사이트에서 재확인한 뒤 고친다.

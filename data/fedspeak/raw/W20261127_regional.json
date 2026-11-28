@@ -1,0 +1,44 @@
+{
+ "collector": "W2",
+ "speakers_covered": [
+  "John Williams",
+  "Beth Hammack",
+  "Anna Paulson",
+  "Lorie Logan",
+  "Neel Kashkari",
+  "Austan Goolsbee",
+  "Mary Daly",
+  "Alberto Musalem",
+  "Tom Barkin",
+  "Jeffrey Schmid",
+  "Susan Collins",
+  "Cheryl Venable"
+ ],
+ "items": [
+  {
+   "date": "2026-11-23",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "John Williams",
+   "role": "President, Federal Reserve Bank of New York",
+   "occasion": "The Economic Mixdown, remarks at University of Mount Saint Vincent, Bronx (as prepared for delivery)",
+   "type": "speech",
+   "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil261123",
+   "source_tier": "official_text",
+   "quote": "It is imperative that we restore inflation to our 2 percent target in a timely manner and on a sustained basis.",
+   "summary": "Williams says the economy is strong and the labor market stable but inflation is simply too high, about 3-1/2 percent this year, driven by tariffs, Middle East energy/supply shocks and AI-related demand. He stresses policy works with a one-to-two-year lag so the Fed must stay forward-looking, and quotes the FOMC statement that more information will determine the stance. No explicit December decision is announced.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation-dominant, forward-looking, but no explicit call for a hike or size; chose +1 as lean tighter, not +2.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null
+  }
+ ],
+ "unverified": [],
+ "coverage_notes": "Only Williams Nov 23 found within Nov 20-27. Official pages checked with no entries in window: Cleveland (latest Nov 17), Dallas (latest Nov 13), Richmond (Nov 9), Kansas City (Nov 19 Smith, not Schmid), Boston (Nov 13). Philadelphia page 404, Minneapolis/Chicago/St. Louis/Atlanta/SF pages returned no listings or stale ones, so those are not confirmed empty. No Kitco/Reuters Nov 23 reprint found by search. Search index shows nothing after Nov 19 for Hammack, Paulson, Logan, Kashkari, Goolsbee, Daly, Musalem, Barkin, Schmid, Collins, Venable; Thanksgiving week likely quiet. Williams Nov 12 Berkeley panel (investinglive) has no verbatim quote and is outside window."
+}

@@ -1,0 +1,11 @@
+{
+  "collector": "W4",
+  "speakers_covered": ["Stanley Druckenmiller","Mohamed El-Erian","Jamie Dimon","Ray Dalio","Jeffrey Gundlach","Larry Fink","David Solomon","Ted Pick","Bill Ackman","Howard Marks","Ken Griffin","Marc Rowan","Paul Tudor Jones","Michael Burry","David Einhorn","Goldman Sachs","J.P. Morgan","Morgan Stanley","BofA","Citi","Barclays","Deutsche Bank","Wells Fargo","UBS","Nomura","PIMCO","BlackRock","Goldman Sachs Asset Management"],
+  "items": [],
+  "unverified": [
+    {"date": "2026-11-24", "speaker": "Lindsay Rosner (Goldman Sachs Asset Management)", "what": "Bloomberg-reported Fed/rates comments; no openable reprint found in searches", "url": "https://www.bloomberg.com (paywalled; no URL confirmed)"},
+    {"date": "2026-11-24", "speaker": "Dan Ivascyn (PIMCO)", "what": "Bloomberg-reported Fed/rates comments; searches only surfaced an Oct 13 Reuters piece (outside window)", "url": "https://www.kitco.com/news/off-the-wire/2026-10-13/us-treasury-yield-peak-still-ahead-fed-likely-tighten-again-pimcos"},
+    {"date": "2026-11-16", "speaker": "Goldman Sachs economists", "what": "2027 US Outlook: The End of the Inflation Shocks (outside window; page returned HTTP 403)", "url": "https://www.gspublishing.com/content/research/en/reports/2026/11/16/7a9c39de-c84f-458e-a138-fd547ab80334.html"}
+  ],
+  "coverage_notes": "No in-window (2026-11-20..27) item could be verified for any assigned name. Search results for the firms were dated outside the window: JPM (Feroli, 2026-11-03, jpmorgan.com), Goldman (2026-11-11, investinglive), BofA (2026-11-13 January-hike call), Citi (2026-10-14), Morgan Stanley (2026-09-15), Gundlach (2026-10-28, roic.ai). Nothing found for Dimon, Dalio, Druckenmiller, El-Erian, Fink, Solomon, Pick, Marks, Griffin, Rowan, Jones, Burry, Einhorn in window. Bill Ackman X post 11/22 already in ledger. WebFetch returns model summaries, so verbatim quotes could not be guaranteed; none were included. Barclays, Deutsche, Wells Fargo, UBS, Nomura, BlackRock: no in-window note found."
+}

@@ -1,0 +1,27 @@
+{
+  "collector": "W1",
+  "speakers_covered": ["Kevin Warsh","Philip Jefferson","Michelle Bowman","Christopher Waller","Michael Barr","Lisa Cook","Jerome Powell"],
+  "items": [
+    {
+      "date": "2026-11-25",
+      "time_et": "07:25",
+      "date_basis": "event",
+      "speaker": "Michelle Bowman",
+      "role": "Vice Chair for Supervision",
+      "occasion": "Pre-recorded video remarks, ASBA-BCBS-FSI High-Level Meeting for the Americas on Banking Supervision, Brasilia",
+      "type": "speech",
+      "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20261125a.htm",
+      "source_tier": "official_text",
+      "quote": "Banking supervisors around the world are tasked with ensuring the safety and soundness of the banking system.",
+      "summary": "Supervisory speech on modernizing bank supervision and cooperation among supervisors in the Americas. No monetary policy content.",
+      "score": null,
+      "score_basis": "own_stance",
+      "score_note": "No monetary-policy content; included for coverage audit.",
+      "drivers": [],
+      "tool": "regulation",
+      "ai_quote": null
+    }
+  ],
+  "unverified": [],
+  "coverage_notes": "Fed Board calendar (2026-november.htm) and 2026 speeches page show only Cook and Waller (Nov 20, already in ledger) and Bowman (Nov 25) in Nov 20-27. No Warsh, Jefferson, Barr, Powell speeches in window. Thanksgiving week searches found no wire-reported interviews/panels by assigned speakers; search tool coverage is limited so interviews may exist undetected. No new governor sworn in found. Waller calendar title is 'Welcoming Remarks' vs speeches page 'Opening Remarks' (already in ledger)."
+}

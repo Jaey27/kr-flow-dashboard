@@ -3041,7 +3041,7 @@
    "group": "investor",
    "id": "a955b43b24",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-01-30",
@@ -3071,7 +3071,7 @@
    "group": "investor",
    "id": "e5ec679428",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-01-30",
@@ -3101,7 +3101,7 @@
    "group": "investor",
    "id": "a8093cc74a",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-01-30",
@@ -3446,8 +3446,8 @@
    "key": "michael_feroli",
    "group": "sellside",
    "id": "f41ba1fd68",
-   "verify": "agent_ok",
-   "verify_note": "브라우저로 원문 열어 확인"
+   "verify": "exact",
+   "verify_note": "cache 1.0"
   },
   {
    "date": "2026-02-04",
@@ -9235,8 +9235,8 @@
    "key": "michael_feroli",
    "group": "sellside",
    "id": "3b4eb9e256",
-   "verify": "agent_ok",
-   "verify_note": "브라우저로 원문 열어 확인"
+   "verify": "exact",
+   "verify_note": "cache 1.0"
   },
   {
    "date": "2026-04-17",
@@ -10990,7 +10990,7 @@
    "id": "5768d0936a",
    "verify": "exact",
    "verify_note": "cache 1.0",
-   "ai_verify": "fetch_fail"
+   "ai_verify": "exact"
   },
   {
    "date": "2026-05-07",
@@ -21156,7 +21156,7 @@
    "group": "investor",
    "id": "4d42956690",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-11-17",
@@ -21186,7 +21186,7 @@
    "group": "investor",
    "id": "1fe32d4bc5",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-11-17",
@@ -21216,7 +21216,7 @@
    "group": "investor",
    "id": "62fcd5241c",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-11-17",
@@ -21247,7 +21247,7 @@
    "group": "investor",
    "id": "b196af34cb",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-11-17",
@@ -21277,7 +21277,7 @@
    "group": "investor",
    "id": "c2767d8806",
    "verify": "notion",
-   "verify_note": "노션 사본 대조 1.0"
+   "verify_note": "노션 사본 없음, 기존 대조 유지"
   },
   {
    "date": "2026-11-17",
@@ -21768,6 +21768,35 @@
   {
    "date": "2026-11-22",
    "time_et": null,
+   "date_basis": "event",
+   "speaker": "Scott Bessent",
+   "role": "Treasury Secretary",
+   "occasion": "CBS Face the Nation interview",
+   "type": "interview",
+   "source_url": "https://www.thestar.com.my/business/business-news/2026/11/24/bessent-points-to-signs-of-fragility-in-us-financial-system",
+   "source_tier": "news_direct_quote",
+   "quote": "Many people believe that they may be making a policy mistake if they overtighten",
+   "summary": "Bessent warned the Fed risks overtightening, citing a run of hawkish comments from governors and a substantial tightening in financial conditions over recent months. He pointed to fragility in the financial system ahead of the December 8-9 FOMC, where a hike is priced. Quotes are from the Bloomberg wire as carried by The Star (article dated Nov 24); the full CBS transcript could not be opened.",
+   "score": -1,
+   "score_basis": "should",
+   "score_note": "Argues against further tightening but does not explicitly demand cuts, so -1 not -2.",
+   "drivers": [
+    "financial_stability_credit",
+    "growth",
+    "political"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "collector": "W3",
+   "key": "bessent",
+   "group": "political",
+   "id": "1493d2ae2f",
+   "verify": "exact",
+   "verify_note": "cache 1.0"
+  },
+  {
+   "date": "2026-11-22",
+   "time_et": null,
    "date_basis": "article",
    "speaker": "Bill Ackman",
    "role": "Founder and CEO, Pershing Square Capital Management",
@@ -21797,6 +21826,60 @@
    "verify": "exact",
    "verify_note": "cache 1.0",
    "ai_verify": "exact"
+  },
+  {
+   "date": "2026-11-23",
+   "time_et": null,
+   "date_basis": "event",
+   "speaker": "John Williams",
+   "role": "President, Federal Reserve Bank of New York",
+   "occasion": "The Economic Mixdown, remarks at University of Mount Saint Vincent, Bronx (as prepared for delivery)",
+   "type": "speech",
+   "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil261123",
+   "source_tier": "official_text",
+   "quote": "It is imperative that we restore inflation to our 2 percent target in a timely manner and on a sustained basis.",
+   "summary": "Williams says the economy is strong and the labor market stable but inflation is simply too high, about 3-1/2 percent this year, driven by tariffs, Middle East energy/supply shocks and AI-related demand. He stresses policy works with a one-to-two-year lag so the Fed must stay forward-looking, and quotes the FOMC statement that more information will determine the stance. No explicit December decision is announced.",
+   "score": 1,
+   "score_basis": "own_stance",
+   "score_note": "Inflation-dominant, forward-looking, but no explicit call for a hike or size; chose +1 as lean tighter, not +2.",
+   "drivers": [
+    "inflation",
+    "tariffs_supply",
+    "energy"
+   ],
+   "tool": "rates",
+   "ai_quote": null,
+   "collector": "W2",
+   "key": "williams",
+   "group": "voter",
+   "id": "733effe2ca",
+   "verify": "exact",
+   "verify_note": "cache 1.0"
+  },
+  {
+   "date": "2026-11-25",
+   "time_et": "07:25",
+   "date_basis": "event",
+   "speaker": "Michelle Bowman",
+   "role": "Vice Chair for Supervision",
+   "occasion": "Pre-recorded video remarks, ASBA-BCBS-FSI High-Level Meeting for the Americas on Banking Supervision, Brasilia",
+   "type": "speech",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20261125a.htm",
+   "source_tier": "official_text",
+   "quote": "Banking supervisors around the world are tasked with ensuring the safety and soundness of the banking system.",
+   "summary": "Supervisory speech on modernizing bank supervision and cooperation among supervisors in the Americas. No monetary policy content.",
+   "score": null,
+   "score_basis": "own_stance",
+   "score_note": "No monetary-policy content; included for coverage audit.",
+   "drivers": [],
+   "tool": "regulation",
+   "ai_quote": null,
+   "collector": "W1",
+   "key": "bowman",
+   "group": "board",
+   "id": "74113ba40d",
+   "verify": "exact",
+   "verify_note": "cache 1.0"
   }
  ],
  "unverified": [
@@ -23268,6 +23351,27 @@
    "what": "'People by WTF' podcast with Nikhil Kamath (AI, debt versus equity); transcript site timed out, press coverage opened had no rates or credit quote.",
    "url": "https://singjupost.com/howard-marks-ai-debt-vs-equity-the-next-40-years-of-investing-people-by-wtf-transcript/",
    "collector": "B9"
+  },
+  {
+   "date": "2026-11-24",
+   "speaker": "Lindsay Rosner (Goldman Sachs Asset Management)",
+   "what": "Bloomberg-reported Fed/rates comments; no openable reprint found in searches",
+   "url": "https://www.bloomberg.com (paywalled; no URL confirmed)",
+   "collector": "W4"
+  },
+  {
+   "date": "2026-11-24",
+   "speaker": "Dan Ivascyn (PIMCO)",
+   "what": "Bloomberg-reported Fed/rates comments; searches only surfaced an Oct 13 Reuters piece (outside window)",
+   "url": "https://www.kitco.com/news/off-the-wire/2026-10-13/us-treasury-yield-peak-still-ahead-fed-likely-tighten-again-pimcos",
+   "collector": "W4"
+  },
+  {
+   "date": "2026-11-16",
+   "speaker": "Goldman Sachs economists",
+   "what": "2027 US Outlook: The End of the Inflation Shocks (outside window; page returned HTTP 403)",
+   "url": "https://www.gspublishing.com/content/research/en/reports/2026/11/16/7a9c39de-c84f-458e-a138-fd547ab80334.html",
+   "collector": "W4"
   }
  ],
  "dropped": [],
@@ -23441,7 +23545,11 @@
    "B6": "Window 2026-01-01 to 2026-05-31. Sources: the four banks' own pages (Richmond speeches and media advisories; Boston speech PDFs and news write-ups; Chicago Fed speaking list plus the May 1 Wayback snapshot of its media-appearance list; Atlanta Fed speeches/interviews feed and president's essays), then wire copies found through the Kitco off-the-wire sitemap, the SRN News post search, Google News RSS title listings, Yahoo Finance, CNBC, CBS, PBS and NPR transcripts. investingLive was not used: its robots.txt disallows Claude agents. Thin spots. Collins: January and April have no policy remarks found (January has only a non-policy introduction); she appears to have spoken rarely as a non-voter. Barkin: April has only the Reuters interview published April 1 and May only the May 21 speech; no late-April or early-May appearances were found. Bostic: most January-February appearances are video or audio only, so 6 items against 7 unverified. Venable: one item, the May 12 essay; the Atlanta Fed feed lists no speeches or interviews by her from March to May and wire searches return nothing. Goolsbee: the Chicago Fed media list snapshot ends April 17, so May interviews were found through news listings only and some may be missing; about 16 TV, podcast and paywalled appearances are in the unverified list. Quote caveats. Kitco copies of Reuters stories from March onward contain zero-width characters inside sentences; quotes from Kitco were chosen from clean spans (the pipeline's normaliser also strips them). SRN News and the Boston Globe use curly apostrophes, quoted as on the page. Collins speech quotes are from the official PDF texts. The Yahoo Finance April 14 transcript is auto-generated. The Chicago magazine Q&A URL on the Chicago Fed list redirects to chicagotribune.com, which is the URL used. Dates. Bostic's WLRN interview is dated Jan 9 (spoken; the station write-up is Jan 12 and the Atlanta Fed lists it under Jan 12). The Indicator episode is dated April 6 (published; Reuters says taped April 1). Barkin's Reuters interview is dated April 1 (published; conducted March 31). Goolsbee's CNBC Tokyo interview is dated May 27 ET (May 28 in Tokyo). Barkin speech times come from Richmond Fed media advisories, not the speech pages. Scoring convention for Goolsbee in January-February: statements that affirm several cuts in 2026 conditional on inflation are scored -1; statements whose main message is 'not yet, policy may not even be restrictive' are scored 0. AI: Goolsbee, Barkin and Collins discuss AI investment, data-center demand and productivity as demand or overheating drivers; none links policy to AI debt financing or private credit in the pages opened, so this is tagged 'other' or 'growth', never 'ai_financing'. Context checks. The April 29 FOMC statement lists Miran (for a cut) and Hammack, Kashkari and Logan (against the easing bias) as dissenters, so three regional presidents dissented, not only Logan. A Reuters story of May 12 says Goolsbee 'dissented' in April; he was not a voter and is not on the official list. CBS describes Goolsbee as an alternate FOMC member in 2026. Venable's May 12 essay gives April CPI at 3.8 percent year over year and March PCE inflation was 3.5 percent.",
    "B7": "Presidents and occasions were taken from each bank's own lists, then cross-checked against wire coverage. Musalem: every entry on the St. Louis Fed 'Remarks and Speeches' list dated Jan 1 to May 31, 2026 was opened (9 policy occasions: Jan 13 MNI, Jan 30 Arkansas, Feb 20 Fox Business, Feb 25 Missouri Athletic Club, Apr 1 AEI, Apr 15 Reuters, May 6 Mississippi Bankers, May 28 Reykjavik speech, May 28 Bloomberg TV); the list shows no remarks in March (only a March 2 agriculture roundtable and an April 8-9 Memphis visit, no texts). Schmid: the kansascityfed.org sitemap was filtered for /speeches/ pages by Jeff Schmid (Jan 15, Feb 11, Mar 3, Mar 31, May 14, May 29); the other /speeches/ entries in the window are staff presentations. Wire coverage added Feb 25 (Economic Club of Colorado). Nothing was found for Schmid in April. Daly: SF Fed speeches, events and news-coverage posts for the window were pulled through the site's WordPress API and every Daly entry was opened; event dates and times come from the event pages (Pacific time converted to ET). Transcripts are posted for Feb 17, Feb 19, Mar 6, Apr 8, Apr 17 and May 8. Wire layer: Kitco's off-the-wire sitemap lists every Reuters reprint by date; all 864 Fed- and market-related reprints dated Jan 1 to Jun 2, 2026 were downloaded and searched for the three names, and a headline feed (Newsquawk via StockNow) was used to confirm that no occasion was missed. Read in a browser because command-line fetches time out: all stlouisfed.org and kansascityfed.org URLs in items (quotes confirmed there by exact substring match on the page text). All other quotes were matched by script against saved page text. Not readable: reuters.com, bloomberg.com, cnbc.com video, LinkedIn. investinglive.com was not used because its robots.txt disallows Anthropic agents. Substitutes: Kitco and Yahoo Finance Reuters copies, a radio-station syndication page (Daly Jan 15), Bloomberg Government teasers, and the machine-generated transcripts that Bloomberg publishes with its 'Bloomberg Talks' podcast clips on Omny (Musalem May 28, Daly May 7; source_url is the transcript endpoint, which returns plain text). Those two transcripts contain recognition errors in names, so treat wording as approximate to the audio although it is verbatim to the page. Zero-width characters: several Kitco reprints embed them; all quotes were cut to spans without them (Daly Mar 23 is a fragment for that reason; full sentence in summary). The Musalem Feb 20 quote is only the two words Fox Business put in quotation marks in its page title. Dates: Daly Jan 9 uses the Substack page date (the SF Fed coverage post is stamped Jan 6); Musalem Apr 15 uses the date on the St. Louis Fed list although the quotes were read in an April 27 Reuters story; Daly Apr 9 is the interview day stated by Reuters (exclusive published Apr 10). One occasion, one item: where a speech and its Q&A were both reported (Schmid May 29, Musalem May 28 Reykjavik, Daly Feb 17 and Apr 8) the Q&A remarks are in the summary. Musalem's May 28 Bloomberg interview is a separate occasion from his Reykjavik speech the same day. ai_financing is tagged once (Musalem Apr 1, private credit stress); Daly's Apr 17 mention of private credit was about crypto opacity and Musalem/Schmid/Daly remarks on AI capex were about demand, not financing, so they are not tagged. Skipped as non-policy or without remarks text: Daly's introductions at SF Fed conferences (Feb 5 AI event, Mar 24 Macroeconomics and Monetary Policy Conference), her May 3 Bloomberg 'Wall Street Week' segment on the Las Vegas economy, an April 15 Reuters feature quoting her on the regional-bank structure, and a Bloomberg Talks clip dated Feb 17 that is the same San Jose conversation already in items. Thin spots: Musalem March (no public remarks listed), Schmid April (none found), Daly January (two items). Three Daly video or audio appearances and two Schmid remarks without usable policy quotations are in unverified. Context check: pages opened agree with the brief (holds in January, March and April at 3.50-3.75%; Warsh sworn in by late May). Additional detail seen: Reuters describes the January vote as 10-2 and reports three hawkish dissents in April over the statement's easing bias (Kashkari named); Musalem, a non-voter, said he also wanted the easing bias removed. Reuters labels Musalem and Schmid 2028 voters and Daly a 2027 voter. A Feb 11 Reuters story mentions a June 16-17 FOMC meeting.",
    "B8": "Sources and method. Trump: (1) every Truth Social post in the window that mentions Powell, the Fed, Warsh or interest rates, read in full on the trumpstruth.org archive (timestamps are US Eastern); (2) Roll Call Factba.se full transcripts of speeches, interviews and press gaggles. Factba.se transcript pages are rendered by JavaScript, so source_url for those items is the site's own JSON endpoint that the page loads (rollcall.com/api/factbase/transcripts?person=trump&slug=...), where the quote can be matched as plain text; the human-readable page is rollcall.com/factbase/trump/transcript/<slug>/. These are third-party transcripts, labelled official_transcript only for want of a closer tier. (3) CNBC transcripts on the Versant press room. Bessent: all Treasury press releases sb0340-sb0560 were scanned by title; CNBC transcripts from the Versant press room; Reuters reports republished by SRN News (found through the site's WordPress search API for 'Bessent' over the window); Semafor. Thin spots. Bessent in March: the March 16 CNBC interview has no Fed content (only that inflation expectations are anchored) and was left out; Fox Business March 19 is covered only through a Reuters report. Bessent in May: the May 20 remarks on Treasury yields could not be opened (see unverified). Fox News, Fox Business, NBC, CBS and ABC interview transcripts for Bessent were not found as full texts, so those occasions rest on Reuters direct quotes or are missing. Bloomberg, WSJ and FT were not opened (paywall). Trump occasions were limited to those where he said something about rates, the Fed Chair or the Powell probe; passing mentions of the Fed building alone (for example March 24, March 26 Fox 'The Five', March 31 remarks, April 25, April 30 Newsmax, May 19) were not itemised. On days with several occasions (January 13, January 29, April 23, May 22) each occasion is a separate item, so same-day duplicates should be averaged before use. Scoring conventions. Posts or remarks that only attack Powell or discuss the Fed Chair choice are scored null. 'Too late' or 'rates too high' without an explicit demand is -1; an explicit call to cut now or for lower rates is -2. Balance-sheet-only remarks: the January 9 MBS comment is null, the February 8 forecast is 0 with score_basis 'forecast'. Dating notes. The CNBC Halftime excerpts page prints 'February 6, 2025' in its header but the body and video link show February 6, 2026. The Factba.se slug for the Kudlow interview ends in 2023 but the record is dated February 9, 2026. The Trump CNBC Davos interview is listed by Factba.se as airing on 'The Exchange' and by CNBC as airing during 'Closing Bell', both January 21. Discrepancy. The January 8 Bessent text on treasury.gov does not contain the line 'the Fed should not delay' that CNBC-based press reports quote from the remarks; see that item's score_note. The ai_financing tag is used twice: April 15 (Bessent on private credit, saying Treasury's work shows no systemic problem) and March 3 (liquidity rules reducing bank lending to AI hyperscalers). Neither links AI or private-credit stress to the policy rate.",
-   "B9": "Window 2026-01-01 to 2026-05-31. Every quote and ai_quote was re-checked by substring match against its page, both with a browser-style fetch and with the same curl method pipeline.py uses (89 of 89 exact on 2026-11-23). Method: firms' own pages first (Oaktree memos, JPMorgan letter and official call transcripts, BlackRock letter, Goldman and Morgan Stanley shareholder letters), Motley Fool transcript pages for BlackRock, Goldman, Morgan Stanley and Apollo calls, then news articles with direct quotes found mostly through StockNow news search (Yahoo Finance, CNBC, Fortune, Business Insider) and El-Erian's own LinkedIn posts. Gaps: David Tepper, no on-topic statement found in the window (0 items). Paul Tudor Jones, only the Apr 28 podcast and the May 7 CNBC interview; no CNBC full-transcript page found and nothing for January to March. Howard Marks, the two memos only; a Mar 17 fireside chat and a May 5 podcast are in unverified. Bill Ackman, January only. Ken Griffin, Davos Jan 21 and Milken May 5 only. Ted Pick, Davos and Apr 15 Bloomberg interviews are video-only. Gundlach's Mar 10, Mar 18 (FOMC day) and Mar 26 appearances have no open direct quote. El-Erian weekly notes for Jan 25, Apr 26, May 3, May 24 and May 31 were not located. Steve Cohen, nothing found. Earnings calls: JPMorgan Jan 13 call had no Fed or credit-cycle remarks by Dimon (his Fed-independence remarks that day were on the media call, which is itemized); Goldman Jan 15 call had only a passing mention of monetary stimulus and is not itemized; no open transcript page was found for the BlackRock Jan 15 call (Fink's CNBC interview that day is itemized instead). Scoring: 57 of 89 items are unscored because they address only credit stress, AI financing or Fed independence. Judgment calls to review: Gundlach Mar 23 (+1 rests on DoubleLine's recap, the quote is about credit), Gundlach Jan 13 (0 from a paraphrase), Dimon Apr 28 (+1 leans on Fortune's report of the same event), Ackman Jan 11 (+1 for fewer cuts than priced, although he also expects the Fed to drop the 2% goal), Dalio Jan 8 and May 7 (set to null by the lead collector: long-run debt-monetization thesis, not a rate-path call). Private-credit warnings tied to AI disruption of software loans are tagged ai_financing. Where score is null and the sub-collector left score_basis empty it was filled with 'forecast' as a placeholder. Dates: Dimon's Shanghai Bloomberg interview is dated May 20 ET (aired May 21 local time). Fink's letter page has no date; Mar 23 comes from the Reuters release report (date_basis article). The Apr 29 El-Erian item uses X's syndication JSON URL as source_url. One Gundlach X post in unverified carries a placeholder date (2026-01-31) because only the month is known. Nothing found contradicts the context section of the brief."
+   "B9": "Window 2026-01-01 to 2026-05-31. Every quote and ai_quote was re-checked by substring match against its page, both with a browser-style fetch and with the same curl method pipeline.py uses (89 of 89 exact on 2026-11-23). Method: firms' own pages first (Oaktree memos, JPMorgan letter and official call transcripts, BlackRock letter, Goldman and Morgan Stanley shareholder letters), Motley Fool transcript pages for BlackRock, Goldman, Morgan Stanley and Apollo calls, then news articles with direct quotes found mostly through StockNow news search (Yahoo Finance, CNBC, Fortune, Business Insider) and El-Erian's own LinkedIn posts. Gaps: David Tepper, no on-topic statement found in the window (0 items). Paul Tudor Jones, only the Apr 28 podcast and the May 7 CNBC interview; no CNBC full-transcript page found and nothing for January to March. Howard Marks, the two memos only; a Mar 17 fireside chat and a May 5 podcast are in unverified. Bill Ackman, January only. Ken Griffin, Davos Jan 21 and Milken May 5 only. Ted Pick, Davos and Apr 15 Bloomberg interviews are video-only. Gundlach's Mar 10, Mar 18 (FOMC day) and Mar 26 appearances have no open direct quote. El-Erian weekly notes for Jan 25, Apr 26, May 3, May 24 and May 31 were not located. Steve Cohen, nothing found. Earnings calls: JPMorgan Jan 13 call had no Fed or credit-cycle remarks by Dimon (his Fed-independence remarks that day were on the media call, which is itemized); Goldman Jan 15 call had only a passing mention of monetary stimulus and is not itemized; no open transcript page was found for the BlackRock Jan 15 call (Fink's CNBC interview that day is itemized instead). Scoring: 57 of 89 items are unscored because they address only credit stress, AI financing or Fed independence. Judgment calls to review: Gundlach Mar 23 (+1 rests on DoubleLine's recap, the quote is about credit), Gundlach Jan 13 (0 from a paraphrase), Dimon Apr 28 (+1 leans on Fortune's report of the same event), Ackman Jan 11 (+1 for fewer cuts than priced, although he also expects the Fed to drop the 2% goal), Dalio Jan 8 and May 7 (set to null by the lead collector: long-run debt-monetization thesis, not a rate-path call). Private-credit warnings tied to AI disruption of software loans are tagged ai_financing. Where score is null and the sub-collector left score_basis empty it was filled with 'forecast' as a placeholder. Dates: Dimon's Shanghai Bloomberg interview is dated May 20 ET (aired May 21 local time). Fink's letter page has no date; Mar 23 comes from the Reuters release report (date_basis article). The Apr 29 El-Erian item uses X's syndication JSON URL as source_url. One Gundlach X post in unverified carries a placeholder date (2026-01-31) because only the month is known. Nothing found contradicts the context section of the brief.",
+   "W1": "Fed Board calendar (2026-november.htm) and 2026 speeches page show only Cook and Waller (Nov 20, already in ledger) and Bowman (Nov 25) in Nov 20-27. No Warsh, Jefferson, Barr, Powell speeches in window. Thanksgiving week searches found no wire-reported interviews/panels by assigned speakers; search tool coverage is limited so interviews may exist undetected. No new governor sworn in found. Waller calendar title is 'Welcoming Remarks' vs speeches page 'Opening Remarks' (already in ledger).",
+   "W4": "No in-window (2026-11-20..27) item could be verified for any assigned name. Search results for the firms were dated outside the window: JPM (Feroli, 2026-11-03, jpmorgan.com), Goldman (2026-11-11, investinglive), BofA (2026-11-13 January-hike call), Citi (2026-10-14), Morgan Stanley (2026-09-15), Gundlach (2026-10-28, roic.ai). Nothing found for Dimon, Dalio, Druckenmiller, El-Erian, Fink, Solomon, Pick, Marks, Griffin, Rowan, Jones, Burry, Einhorn in window. Bill Ackman X post 11/22 already in ledger. WebFetch returns model summaries, so verbatim quotes could not be guaranteed; none were included. Barclays, Deutsche, Wells Fargo, UBS, Nomura, BlackRock: no in-window note found.",
+   "W3": "Window 2026-11-20..27. Only Bessent Face the Nation (Nov 22) found with an openable direct quote. No new Trump Fed/rates remarks found Nov 21-27 in search (Thanksgiving week); Bloomberg and CBS transcript pages were not accessible (403/404). Bessent/Trump Nov 20 items already in ledger.",
+   "W2": "Only Williams Nov 23 found within Nov 20-27. Official pages checked with no entries in window: Cleveland (latest Nov 17), Dallas (latest Nov 13), Richmond (Nov 9), Kansas City (Nov 19 Smith, not Schmid), Boston (Nov 13). Philadelphia page 404, Minneapolis/Chicago/St. Louis/Atlanta/SF pages returned no listings or stale ones, so those are not confirmed empty. No Kitco/Reuters Nov 23 reprint found by search. Search index shows nothing after Nov 19 for Hammack, Paulson, Logan, Kashkari, Goolsbee, Daly, Musalem, Barkin, Schmid, Collins, Venable; Thanksgiving week likely quiet. Williams Nov 12 Berkeley panel (investinglive) has no verbatim quote and is outside window."
   },
   "latest_calls": {
    "A10": [
