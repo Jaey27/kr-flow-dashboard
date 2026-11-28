@@ -22,7 +22,7 @@ TEMPLATE = r"""<!doctype html>
 <style>
 :root{--text:#0b0b0b;--text-dim:#3f3e3b;--text-muted:#6f6e69;--line:rgba(0,0,0,.13);--hl:#0b0b0b;
  --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;
- --g-board:#5b3fb5;--g-v26:#0b7a3e;--g-v27:#b35c00;--g-nv:#6f6e69;--g-political:#b0307a;--g-investor:#00707d;--g-sellside:#8a6d00}
+ --g-board:#5b3fb5;--g-v26:#0b7a3e;--g-v27:#b35c00;--g-nv:#6f6e69;--g-political:#b0307a;--g-admin:#7a2e12;--g-investor:#00707d;--g-sellside:#8a6d00}
 *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;font-size:13px;line-height:1.55}
 .wrap{max-width:1240px;margin:0 auto;padding-block:18px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:#fff}
@@ -227,13 +227,13 @@ function fitY(chart,axis,lo,hi,pad,filter){let mn=Infinity,mx=-Infinity,nvis=0,n
  const p=Math.max(pad,(mx-mn)*0.15);s.min=Math.max(lo,Math.floor((mn-p)*2)/2);s.max=Math.min(hi,Math.ceil((mx+p)*2)/2);}
 
 // ---- 톤 지수 + 비교 지표 ----
-const TONE=[['voter26','2026 투표권자','--s1'],['chair','의장(5월까지 파월, 이후 워시)','--s2'],['voter27','2027 투표권자','--s3'],['bessent','베센트','--s4'],['trump','트럼프','--g-political'],['investor','투자자·구루 평균','--g-investor'],['sellside','셀사이드 평균','--g-sellside']];
+const TONE=[['voter26','2026 투표권자','--s1'],['chair','의장(5월까지 파월, 이후 워시)','--s2'],['voter27','2027 투표권자','--s3'],['bessent','베센트','--s4'],['trump','트럼프','--g-political'],['political','행정부(트럼프+베센트 평균)','--g-admin'],['investor','투자자·구루 평균','--g-investor'],['sellside','셀사이드 평균','--g-sellside']];
 let TMODE='decay';const tSrc=k=>(TMODE==='last'?(D.index_last||{}):D.index)[k]||D.index[k];
 function lastLevel(k){const by={};(byKey[k]||[]).forEach(i=>{if(i.score!=null)(by[i.date]=by[i.date]||[]).push(i.score)});let cur=null;return dates.map(d=>{if(by[d])cur=by[d].reduce((a,b)=>a+b,0)/by[d].length;return cur;});}
 const pLevel=k=>TMODE==='last'?lastLevel(k):D.levels[k];
 const OV=[['zq','금리 기대: 연방기금 선물 27년 1월물(%)','#0b0b0b',true,2],['dec_rate','12/9 회의 후 예상 금리(대시보드 FedWatch, %)','#6f6e69',false,2],['y2','미 2년물(%)','#7a4b1e',false,2],['spx','S&P 500','#6250d6',false,0],['ndq','나스닥 종합','#c2185b',true,0],['kospi','코스피','#0b7a3e',false,0],['brent','Brent 유가 ($)','#3f3e3b',false,1]]
  .concat(Object.keys(D.market).filter(k=>k.startsWith('k_hike_')).sort().map(k=>[k,'Kalshi '+k.slice(12,17).replace('-','/')+' 인상 확률(%)','#00707d',false,0]));
-const ds1=TONE.map(s=>({label:s[1],data:tSrc(s[0]),borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y',_tone:true,_k:s[0],borderDash:(s[0]==='investor'||s[0]==='sellside')?[2,2]:undefined,hidden:['investor','sellside','trump'].includes(s[0])}));
+const ds1=TONE.map(s=>({label:s[1],data:tSrc(s[0]),borderColor:css(s[2]),backgroundColor:css(s[2]),yAxisID:'y',_tone:true,_k:s[0],borderDash:(s[0]==='investor'||s[0]==='sellside')?[2,2]:s[0]==='political'?[7,3]:undefined,borderWidth:s[0]==='political'?2.4:undefined,hidden:['investor','sellside','trump'].includes(s[0])}));
 ds1.push({label:'(인물 선택)',data:X.map(()=>null),borderColor:'#d55181',backgroundColor:'#d55181',yAxisID:'y',_tone:true,hidden:true,_person:true});
 const sc1={x:xax,y:{min:0,max:10,position:'left',ticks:{maxTicksLimit:9,callback:v=>v},grid:{color:c=>c.tick.value===5?'rgba(0,0,0,.6)':'rgba(0,0,0,.07)'},title:{display:true,text:'← 비둘기파(0)      중도(5)      매파(10) →'}}};
 ds1.push({label:'FOMC 블랙아웃 구간',data:X.map(()=>null),borderColor:'rgba(98,80,214,.7)',backgroundColor:'rgba(98,80,214,.07)',yAxisID:'y',hidden:true,_bo:true,_sep:'구간'});
