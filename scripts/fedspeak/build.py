@@ -124,6 +124,19 @@ details.in>summary{font-size:12.5px;color:var(--text-dim)}
 <div class="ch"><canvas id="c1"></canvas></div>
 </div>
 
+<div class="card"><h2>발언 하나하나로 보기: 평균선과 나스닥 하락 구간</h2>
+<div class="note">점 = 발언 한 건의 점수(색은 톤 색과 같음). 검은 선 = 위 톤 차트에 쓰는 30일 반감기 평균. 평균선은 새 발언이 나올 때 다시 계산되는데 그때 옛 발언은 무게가 줄어 있어서, 새 발언이 평소와 같은 점수여도 선이 움직일 수 있음. 회색 음영 = 나스닥이 최근 60거래일 고점보다 기준 이상 내려와 있는 구간. 시장이 빠질 때 말이 실제로 달라졌는지는 선이 아니라 음영 안의 점으로 확인함.</div>
+<div class="row"><span class="dim" style="font-size:11.5px">인물:</span><select id="dsel"></select><span class="dim" style="font-size:11.5px;margin-left:8px">하락 구간 기준:</span><div class="seg" id="dthr"><button type="button" data-v="-5" class="on">고점 대비 -5% 이하</button><button type="button" data-v="-10">-10% 이하</button></div></div>
+<div class="row"><span class="lg" style="cursor:default"><i style="width:9px;height:9px;border-radius:50%;background:#c38280;border:1px solid #0b0b0b"></i>발언 한 건</span><span class="lg" style="cursor:default"><i style="background:#0b0b0b"></i>30일 반감기 평균</span><span class="lg sq" style="cursor:default"><i style="background:rgba(0,0,0,.16)"></i>나스닥 하락 구간</span></div>
+<div class="ch" style="height:250px"><canvas id="c6"></canvas></div>
+<div class="note" style="margin:6px 0 0">나스닥 종합</div>
+<div class="ch" style="height:110px"><canvas id="c7"></canvas></div>
+<div id="dots-sum" style="margin-top:8px;font-size:12.5px"></div>
+<details class="in" style="margin-top:10px"><summary>하락 구간에서 누가 달라졌나 (인물별 표)</summary>
+<div class="note" style="margin-top:4px">위 기간 막대와 하락 구간 기준을 그대로 따름. 「본인 직전 수준 대비」가 -면 하락 구간에서 평소보다 비둘기 쪽으로 말했다는 뜻. 하락 구간과 그 외 구간에 각각 2건 이상 발언한 사람만 넣었고, 행을 누르면 위 차트가 그 사람으로 바뀜. 건수가 적으면 우연일 수 있음.</div>
+<div style="overflow-x:auto"><table id="dots-tbl"></table></div></details>
+</div>
+
 <div class="card"><details id="d-hm"><summary>누가 언제 어떤 톤이었나<small>그룹 이름을 누르면 펼쳐짐</small></summary>
 <div class="note">칸 = 그 주 발언의 평균 점수(칸 안 숫자 = 평균 점수 0~10, 색이 진할수록 강함. 발언 건수는 칸에 마우스를 올리면 보임). 점선 칸 = 금리 언급 없는 발언(신용·AI만). 빈 칸 = 확인된 발언 없음. 칸을 누르면 맨 아래 원장이 그 인물·그 주로 걸러져 열림. 맨 오른쪽 = 현재 수준.</div>
 <div class="hm" id="hm"></div></details></div>
@@ -247,6 +260,52 @@ document.querySelectorAll('#tmode button').forEach(b=>b.onclick=()=>{TMODE=b.dat
 (function(){const ks=Object.keys(D.levels).filter(k=>byKey[k]).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||byKey[b].length-byKey[a].length);
  const sel=document.getElementById('psel');sel.innerHTML='<option value="">선택 안 함</option>'+ks.map(k=>'<option value="'+k+'">'+esc(nm(k))+' · '+G7[gOf(k)]+'</option>').join('');
  sel.onchange=()=>{const i=C1.data.datasets.findIndex(d=>d._person),d=C1.data.datasets[i];if(!sel.value){C1.setDatasetVisibility(i,false);d.label='(인물 선택)';d.data=X.map(()=>null);}else{d.label=nm(sel.value);d.data=pLevel(sel.value);C1.setDatasetVisibility(i,true);}after1(C1);C1.update();redraw1();};})();
+
+// ---- 발언 하나하나: 평균선 점검 + 나스닥 하락 구간 ----
+const TDI=D.market_tdays.map(d=>dates.indexOf(d)).filter(i=>i>=0),NQ=D.market.ndq||[];
+// 나스닥 60거래일 고점 대비 낙폭(%), 휴일은 직전 거래일 값
+const DDV=(function(){const o=new Array(N).fill(null),m={};TDI.forEach((i,p)=>{let mx=-Infinity;for(let q=Math.max(0,p-60);q<=p;q++){const v=NQ[TDI[q]];if(v!=null&&v>mx)mx=v;}if(NQ[i]!=null&&mx>0)m[i]=(NQ[i]/mx-1)*100;});let last=null;for(let i=0;i<N;i++){if(m[i]!=null)last=m[i];o[i]=last;}return o;})();
+let DTHR=-5,DSEL='bessent';
+const FEDG=['board','v26','v27','nv'];
+const DGRP={__fed:['연준 인사 전체',e=>FEDG.includes(e.g7),'fed_all'],__admin:['행정부(트럼프+베센트)',e=>e.key==='trump'||e.key==='bessent','political']};
+const dSel=(sel,e)=>DGRP[sel]?DGRP[sel][1](e):e.key===sel;
+const dName=sel=>DGRP[sel]?DGRP[sel][0]:nm(sel);
+const EVS=D.events.filter(e=>e.score!=null&&dates.indexOf(e.date)>=0).map(e=>Object.assign({i:dates.indexOf(e.date)},e));
+const inDD=i=>DDV[i]!=null&&DDV[i]<=DTHR;
+const ddBand={id:'ddb',beforeDatasetsDraw(c){const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();g.fillStyle='rgba(0,0,0,.075)';let s=null;for(let i=0;i<=N;i++){const on=i<N&&inDD(i);if(on&&s==null)s=i;if(!on&&s!=null){const l=Math.max(x.getPixelForValue(s-0.5),a.left),r=Math.min(x.getPixelForValue(i-0.5),a.right);if(r>l)g.fillRect(l,a.top,r-l,a.bottom-a.top);s=null;}}g.restore();}};
+const xlin=()=>({type:'linear',min:W.i0,max:W.i1,ticks:{maxTicksLimit:11,callback:v=>(Number.isInteger(v)&&dates[v])?dates[v].slice(2,7).replace('-','.'):''},grid:{display:false}});
+function dotPts(){const c={};return EVS.filter(e=>dSel(DSEL,e)).map(e=>{const k=e.i+'|'+e.score;c[k]=(c[k]||0)+1;return {x:e.i+(c[k]-1)*0.8,y:e.score,e:e};});}
+function dotLine(){const a=DGRP[DSEL]?D.index[DGRP[DSEL][2]]:D.levels[DSEL];return (a||[]).map((v,i)=>({x:i,y:v}));}
+const wrapKr=(s,n)=>{const o=[];s=String(s||'');for(let i=0;i<s.length&&o.length<4;i+=n)o.push(s.slice(i,i+n));return o;};
+const C6=new Chart(document.getElementById('c6'),{type:'scatter',plugins:[ddBand,vline],data:{datasets:[
+ {label:'발언 한 건의 점수',data:[],pointRadius:5,pointHoverRadius:7,pointBackgroundColor:c=>c.raw?col(c.raw.y):'#ccc',pointBorderColor:'#0b0b0b',pointBorderWidth:1,order:0},
+ {label:'30일 반감기 평균',type:'line',data:[],borderColor:'#0b0b0b',borderWidth:1.6,pointRadius:0,pointHitRadius:0,spanGaps:true,tension:0,order:1}]},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'nearest',intersect:true},
+  plugins:{legend:{display:false},tooltip:{filter:t=>t.datasetIndex===0,callbacks:{title:t=>t.length?(t[0].raw.e.date+' · '+nm(t[0].raw.e.key)):'',label:t=>{const e=t.raw.e,d=DDV[e.i];return '점수 '+e.score+(e.surprise==null?'':' · 본인 직전 수준 대비 '+fs(e.surprise))+(d==null?'':' · 나스닥 고점 대비 '+d.toFixed(1)+'%');},afterLabel:t=>wrapKr(KR[t.raw.e.id],34)}}},
+  scales:{x:xlin(),y:{min:0,max:10,afterFit:s=>{s.width=46;},ticks:{stepSize:1,callback:v=>v},grid:{color:c=>c.tick.value===5?'rgba(0,0,0,.6)':'rgba(0,0,0,.07)'},title:{display:true,text:'← 비둘기파(0)   매파(10) →'}}}}});
+const C7=new Chart(document.getElementById('c7'),{type:'line',plugins:[ddBand,vline],data:{datasets:[{label:'나스닥 종합',data:NQ.map((v,i)=>({x:i,y:v})),borderColor:'#c2185b',borderWidth:1.6,pointRadius:0,pointHoverRadius:3,spanGaps:true,tension:0}]},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,parsing:false,interaction:{mode:'nearest',axis:'x',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:t=>t.length?dates[t[0].raw.x]:'',label:t=>'나스닥 '+Math.round(t.raw.y).toLocaleString()+(DDV[t.raw.x]==null?'':' · 60거래일 고점 대비 '+DDV[t.raw.x].toFixed(1)+'%')}}},
+  scales:{x:xlin(),y:{afterFit:s=>{s.width=46;},ticks:{maxTicksLimit:4,callback:v=>(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,.07)'}}}}});
+// 기간 막대 구간 안에서: 하락 구간 vs 그 외 구간의 발언 수·평균 점수·본인 직전 수준 대비·30일당 빈도
+function ddStats(sel){const ev=EVS.filter(e=>dSel(sel,e)&&e.i>=W.i0&&e.i<=W.i1);let dS=0,dN=0;for(let i=W.i0;i<=W.i1;i++){if(inDD(i))dS++;else dN++;}
+ const S=ev.filter(e=>inDD(e.i)),O=ev.filter(e=>!inDD(e.i)),avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null,sp=S.filter(e=>e.surprise!=null).map(e=>e.surprise);
+ return {nS:S.length,nN:O.length,mS:avg(S.map(e=>e.score)),mN:avg(O.map(e=>e.score)),sp:avg(sp),nsp:sp.length,fS:dS?S.length/dS*30:null,fN:dN?O.length/dN*30:null,dS:dS};}
+function drawDotsTbl(){const keys=[...new Set(EVS.map(e=>e.key))],rows=Object.keys(DGRP).concat(keys).map(k=>[k,ddStats(k)]).filter(r=>DGRP[r[0]]||(r[1].nS>=2&&r[1].nN>=2));
+ rows.sort((a,b)=>(DGRP[b[0]]?1:0)-(DGRP[a[0]]?1:0)||((a[1].sp==null?9:a[1].sp)-(b[1].sp==null?9:b[1].sp)));
+ const f=v=>v==null?'–':v.toFixed(1);
+ document.getElementById('dots-tbl').innerHTML='<tr><th>인물</th><th>그 외 구간<small>발언 수 · 평균 점수</small></th><th>하락 구간<small>발언 수 · 평균 점수</small></th><th>점수 차이<small>하락 − 그 외</small></th><th>본인 직전 수준 대비<small>하락 구간 평균, −면 비둘기 쪽</small></th><th>30일당 발언 수<small>그 외 → 하락</small></th></tr>'
+  +rows.map(r=>{const k=r[0],s=r[1],d=(s.mS!=null&&s.mN!=null)?s.mS-s.mN:null;return '<tr data-k="'+k+'" style="cursor:pointer'+(k===DSEL?';background:#faf9f6':'')+'"><td>'+(DGRP[k]?'<b>'+DGRP[k][0]+'</b>':who(k)+' <span class="dim">'+esc(roleOf(k)||'')+'</span>')+'</td><td>'+s.nN+' · '+f(s.mN)+'</td><td>'+s.nS+' · '+f(s.mS)+'</td><td>'+fs(d)+'</td><td>'+(s.nsp?fs(s.sp):'–')+'</td><td>'+f(s.fN)+' → '+f(s.fS)+'</td></tr>';}).join('');
+ document.querySelectorAll('#dots-tbl tr[data-k]').forEach(tr=>tr.onclick=()=>{DSEL=tr.dataset.k;document.getElementById('dsel').value=DSEL;drawDots();});}
+function drawDots(){C6.data.datasets[0].data=dotPts();C6.data.datasets[1].data=dotLine();
+ [C6,C7].forEach(c=>{c.options.scales.x.min=W.i0;c.options.scales.x.max=W.i1;});
+ let mn=Infinity,mx=-Infinity;for(let i=W.i0;i<=W.i1;i++){const v=NQ[i];if(v!=null){if(v<mn)mn=v;if(v>mx)mx=v;}}if(mn<Infinity){const p=(mx-mn)*0.08||1;C7.options.scales.y.min=mn-p;C7.options.scales.y.max=mx+p;}
+ C6.update();C7.update();
+ const s=ddStats(DSEL),f=v=>v==null?'–':v.toFixed(1);
+ document.getElementById('dots-sum').innerHTML='<b>'+esc(dName(DSEL))+'</b> · 하락 구간(음영 '+s.dS+'일) 발언 <b>'+s.nS+'건</b> · 평균 <b>'+f(s.mS)+'</b> · 30일당 '+f(s.fS)+'건'+(s.nsp?' · 본인 직전 수준 대비 '+fs(s.sp):'')+' <span class="dim">↔</span> 그 외 구간 '+s.nN+'건 · 평균 '+f(s.mN)+' · 30일당 '+f(s.fN)+'건';
+ drawDotsTbl();}
+(function(){const cnt={};EVS.forEach(e=>cnt[e.key]=(cnt[e.key]||0)+1);const ks=Object.keys(cnt).filter(k=>cnt[k]>=3).sort((a,b)=>GO.indexOf(gOf(a))-GO.indexOf(gOf(b))||cnt[b]-cnt[a]);
+ const sel=document.getElementById('dsel');sel.innerHTML=Object.keys(DGRP).map(k=>'<option value="'+k+'">'+DGRP[k][0]+'</option>').join('')+ks.map(k=>'<option value="'+k+'">'+esc(nm(k))+' · '+G7[gOf(k)]+' ('+cnt[k]+'건)</option>').join('');sel.value=DSEL;sel.onchange=()=>{DSEL=sel.value;drawDots();};
+ document.querySelectorAll('#dthr button').forEach(b=>b.onclick=()=>{DTHR=+b.dataset.v;document.querySelectorAll('#dthr button').forEach(x=>x.classList.toggle('on',x===b));drawDots();});})();
 
 // ---- 근거 비중 ----
 const S3=[['infl','인플레','--s1'],['labor','고용·성장','--s2'],['fin','금융안정·신용','--s3'],['ai','그중 AI 조달 위험·자본 경쟁','--s4']];
@@ -439,7 +498,7 @@ function setWindow(a,b,preset){a=Math.max(0,Math.min(a,N-2));b=Math.max(a+7,Math
  document.getElementById('range-label').textContent=(b-a+1)+'일';
  drawOverview();drawTiles();
  [C1,C3].forEach(c=>{c.options.scales.x.min=a;c.options.scales.x.max=b;});after1(C1);after3(C3);C1.update();C3.update();drawWoW();
- drawHM();drawAI();drawInfl();drawBT();render();
+ drawDots();drawHM();drawAI();drawInfl();drawBT();render();
  const n=D.items.filter(i=>inW(i.date)).length;document.getElementById('led-n').textContent='이 기간 '+n+'건 · 그룹·인물·근거·월로 거르기';}
 function onSlide(e){let a=+r0.value,b=+r1.value;if(b-a<7){if(e.target===r0)a=Math.max(0,b-7);else b=Math.min(N-1,a+7);}setWindow(a,b,null);}
 r0.addEventListener('input',onSlide);r1.addEventListener('input',onSlide);
