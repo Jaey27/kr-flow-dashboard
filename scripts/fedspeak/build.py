@@ -273,7 +273,7 @@ const dName=sel=>DGRP[sel]?DGRP[sel][0]:nm(sel);
 const EVS=D.events.filter(e=>e.score!=null&&dates.indexOf(e.date)>=0).map(e=>Object.assign({i:dates.indexOf(e.date)},e));
 const inDD=i=>DDV[i]!=null&&DDV[i]<=DTHR;
 const ddBand={id:'ddb',beforeDatasetsDraw(c){const x=c.scales.x,a=c.chartArea,g=c.ctx;g.save();g.fillStyle='rgba(0,0,0,.075)';let s=null;for(let i=0;i<=N;i++){const on=i<N&&inDD(i);if(on&&s==null)s=i;if(!on&&s!=null){const l=Math.max(x.getPixelForValue(s-0.5),a.left),r=Math.min(x.getPixelForValue(i-0.5),a.right);if(r>l)g.fillRect(l,a.top,r-l,a.bottom-a.top);s=null;}}g.restore();}};
-const xlin=()=>({type:'linear',min:W.i0,max:W.i1,ticks:{maxTicksLimit:11,callback:v=>(Number.isInteger(v)&&dates[v])?dates[v].slice(2,7).replace('-','.'):''},grid:{display:false}});
+const xlin=()=>({type:'linear',min:W.i0,max:W.i1,ticks:{maxTicksLimit:11,callback:v=>(Number.isInteger(v)&&dates[v])?((W.i1-W.i0)<=200?dates[v].slice(5).replace('-','/'):dates[v].slice(2,7).replace('-','.')):''},grid:{display:false}});
 function dotPts(){const c={};return EVS.filter(e=>dSel(DSEL,e)).map(e=>{const k=e.i+'|'+e.score;c[k]=(c[k]||0)+1;return {x:e.i+(c[k]-1)*0.8,y:e.score,e:e};});}
 function dotLine(){const a=DGRP[DSEL]?D.index[DGRP[DSEL][2]]:D.levels[DSEL];return (a||[]).map((v,i)=>({x:i,y:v}));}
 const wrapKr=(s,n)=>{const o=[];s=String(s||'');for(let i=0;i<s.length&&o.length<4;i+=n)o.push(s.slice(i,i+n));return o;};
